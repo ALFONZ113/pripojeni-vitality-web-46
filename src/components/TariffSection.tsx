@@ -84,7 +84,7 @@ const TariffSection = () => {
                 </div>
                 <div className="recommended-badge">Doporučujeme</div>
                 <div className="tariff-header">
-                  <h3 className="text-xl font-bold">Internet + TV Mých 10</h3>
+                  <h3 className="text-xl font-bold">                      Internet + TV Mých 10</h3>
                 </div>
                 <div className="p-6">
                   <div className="mb-6 flex items-center justify-center">

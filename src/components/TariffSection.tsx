@@ -82,7 +82,7 @@ const TariffSection = () => {
                 <div className="absolute top-4 left-4">
                   <span className="promo-tag">Promo tarif</span>
                 </div>
-                <div className="recommended-badge">Doporučujeme</div>
+                <div className="recommended-badge mx-[17px] my-[39px] px-[22px] py-[2px]">Doporučujeme</div>
                 <div className="tariff-header">
                   <h3 className="text-xl font-bold">                      Internet + TV Mých 10</h3>
                 </div>

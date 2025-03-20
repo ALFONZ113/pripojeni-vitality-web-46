@@ -1,10 +1,7 @@
-
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-poda-blue text-white pt-16 pb-8">
+  return <footer className="bg-poda-blue text-white pt-16 pb-8">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -95,13 +92,8 @@ const Footer = () => {
           {/* Quick Access */}
           <div>
             <h4 className="text-lg font-semibold mb-5 text-poda-orange">Rychlý kontakt</h4>
-            <Link
-              to="/kontakt"
-              className="bg-poda-orange hover:bg-poda-orange/90 text-white px-6 py-3 rounded-lg 
-              font-medium transition-all duration-300 inline-block mb-4"
-            >
-              Kontaktovat Milana Terče
-            </Link>
+            <Link to="/kontakt" className="bg-poda-orange hover:bg-poda-orange/90 text-white px-6 py-3 rounded-lg 
+              font-medium transition-all duration-300 inline-block mb-4">Kontaktovat Milan Terč</Link>
             <p className="text-blue-100 mt-2">
               Máte otázky nebo potřebujete poradit s výběrem služby? 
               Neváhejte nás kontaktovat, rádi vám pomůžeme.
@@ -120,8 +112,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

@@ -1,24 +1,19 @@
-
 import { useEffect } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { initAnimations } from '../utils/animation';
-
 const Contact = () => {
   useEffect(() => {
     // Initialize scroll animations
     const cleanupAnimation = initAnimations();
-    
+
     // Scroll to top on component mount
     window.scrollTo(0, 0);
-    
     return () => {
       cleanupAnimation();
     };
   }, []);
-
-  return (
-    <div className="min-h-screen pt-24">
+  return <div className="min-h-screen pt-24">
       {/* Hero section */}
       <section className="section-padding bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
@@ -29,10 +24,8 @@ const Contact = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
               Kontakt
             </h1>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200">
-              Máte zájem o naše služby nebo potřebujete poradit? Neváhejte nás kontaktovat. 
-              Milan Terč vám rád zodpoví všechny vaše otázky.
-            </p>
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200">Máte zájem o naše služby nebo potřebujete poradit? Neváhejte nás kontaktovat.  
+Milan Terč vám rád zodpoví všechny vaše otázky a vytvoří pro vás objednávku</p>
           </div>
         </div>
       </section>
@@ -150,8 +143,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;

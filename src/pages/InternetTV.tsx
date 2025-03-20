@@ -1,25 +1,20 @@
-
 import { useEffect } from 'react';
 import { ArrowRight, Download, Upload, Tv, Monitor, Smartphone, Tablet, Wifi, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TariffSection from '../components/TariffSection';
 import { initAnimations } from '../utils/animation';
-
 const InternetTV = () => {
   useEffect(() => {
     // Initialize scroll animations
     const cleanupAnimation = initAnimations();
-    
+
     // Scroll to top on component mount
     window.scrollTo(0, 0);
-    
     return () => {
       cleanupAnimation();
     };
   }, []);
-
-  return (
-    <div className="min-h-screen pt-24">
+  return <div className="min-h-screen pt-24">
       {/* Hero section */}
       <section className="section-padding pt-16 bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
@@ -219,10 +214,7 @@ const InternetTV = () => {
               </div>
               
               <div className="mt-8">
-                <Link
-                  to="/programy"
-                  className="btn-outline inline-flex items-center"
-                >
+                <Link to="/programy" className="btn-outline inline-flex items-center">
                   Zobrazit nabídku programů <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </div>
@@ -276,23 +268,13 @@ const InternetTV = () => {
             Kontaktujte Milana Terče ještě dnes a získejte speciální nabídku internetového a televizního připojení na míru pro vaši domácnost.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center reveal-animation delay-200">
-            <Link
-              to="/kontakt"
-              className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300"
-            >
-              Kontaktovat Milana Terče
-            </Link>
-            <a
-              href="tel:+420730431313"
-              className="bg-transparent border border-white text-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all duration-300"
-            >
+            <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300">Kontakt Milan Terč</Link>
+            <a href="tel:+420730431313" className="bg-transparent border border-white text-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all duration-300">
               +420 730 431 313
             </a>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default InternetTV;

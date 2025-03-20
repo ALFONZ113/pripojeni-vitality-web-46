@@ -1,10 +1,7 @@
-
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 const Hero = () => {
-  return (
-    <section className="relative pt-28 pb-24 overflow-hidden">
+  return <section className="relative pt-28 pb-24 overflow-hidden">
       {/* Background with subtle patterns */}
       <div className="absolute inset-0 radial-gradient">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iI0YwRjdGRiIgc3Ryb2tlLXdpZHRoPSIxIiBjeD0iMTAiIGN5PSIxMCIgcj0iMyIvPjwvZz48L3N2Zz4=')] opacity-50"></div>
@@ -28,9 +25,7 @@ const Hero = () => {
               <Link to="/internet-tv" className="btn-primary">
                 Prozkoumat nabídku <ArrowRight className="ml-2 h-5 w-5 inline" />
               </Link>
-              <Link to="/kontakt" className="btn-outline">
-                Kontaktovat Milana
-              </Link>
+              <Link to="/kontakt" className="btn-outline"> Přímo Objednat</Link>
             </div>
           </div>
           
@@ -82,8 +77,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;

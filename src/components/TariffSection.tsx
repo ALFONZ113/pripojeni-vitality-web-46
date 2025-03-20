@@ -128,7 +128,7 @@ const TariffSection = () => {
                   <span className="promo-tag">Promo tarif</span>
                 </div>
                 <div className="tariff-header">
-                  <h3 className="text-xl font-bold">Internet + TV Basic</h3>
+                  <h3 className="text-xl font-bold">                      Internet + TV Basic</h3>
                 </div>
                 <div className="p-6">
                   <div className="mb-6 flex items-center justify-center">

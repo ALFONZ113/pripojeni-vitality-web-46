@@ -25,7 +25,7 @@ const Hero = () => {
               <Link to="/internet-tv" className="btn-primary">
                 Prozkoumat nabídku <ArrowRight className="ml-2 h-5 w-5 inline" />
               </Link>
-              <Link to="/kontakt" className="btn-outline"> Přímo Objednat</Link>
+              <Link to="/kontakt" className="btn-outline"> Kontaktní formulář</Link>
             </div>
           </div>
           

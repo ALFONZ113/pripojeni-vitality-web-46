@@ -165,6 +165,19 @@ const Hero = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Legal information - subtle and unobtrusive */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          className="mt-16 text-xs text-gray-400 text-center max-w-3xl mx-auto"
+        >
+          <p>Tato webová stránka je provozována obchodním zástupcem společnosti PODA, nikoliv samotnou společností PODA.</p>
+          <p className="mt-1">
+            Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku
+          </p>
+        </motion.div>
       </div>
     </section>
   );

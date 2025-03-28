@@ -1,5 +1,7 @@
+
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Info } from 'lucide-react';
+
 const Footer = () => {
   return <footer className="bg-poda-blue text-white pt-16 pb-8">
       <div className="container-custom">
@@ -101,17 +103,29 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-blue-800 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-blue-200 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Připojení-PODA.cz. Všechna práva vyhrazena.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-200">
-            <a href="#" className="hover:text-poda-orange transition-colors">Ochrana soukromí</a>
-            <a href="#" className="hover:text-poda-orange transition-colors">Obchodní podmínky</a>
-            <a href="#" className="hover:text-poda-orange transition-colors">Cookies</a>
+        <div className="border-t border-blue-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-4">
+            <p className="text-blue-200 text-sm mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} Připojení-PODA.cz. Všechna práva vyhrazena.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-200">
+              <a href="#" className="hover:text-poda-orange transition-colors">Ochrana soukromí</a>
+              <a href="#" className="hover:text-poda-orange transition-colors">Obchodní podmínky</a>
+              <a href="#" className="hover:text-poda-orange transition-colors">Cookies</a>
+            </div>
+          </div>
+          
+          {/* Legal information */}
+          <div className="flex items-start mt-6 pt-6 border-t border-blue-800/50">
+            <Info className="h-5 w-5 text-blue-300 mr-3 flex-shrink-0 mt-0.5" />
+            <div className="text-xs text-blue-300">
+              <p className="mb-1">Tato webová stránka je provozována obchodním zástupcem společnosti PODA, nikoliv samotnou společností PODA.</p>
+              <p>Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku</p>
+            </div>
           </div>
         </div>
       </div>
     </footer>;
 };
+
 export default Footer;

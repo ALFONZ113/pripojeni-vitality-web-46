@@ -1,8 +1,31 @@
+
 import { useState } from 'react';
-import { Wifi, Tv, MonitorPlay, Check } from 'lucide-react';
+import { Wifi, Tv, MonitorPlay, Check, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+
 const TariffSection = () => {
   const [activeTab, setActiveTab] = useState('byty');
+  
+  const [openPromoInfo, setOpenPromoInfo] = useState<{
+    bytyBasic: boolean;
+    bytyMych10: boolean;
+    domyBasic: boolean;
+    domyMych10: boolean;
+  }>({
+    bytyBasic: false,
+    bytyMych10: false,
+    domyBasic: false,
+    domyMych10: false,
+  });
+
+  const togglePromoInfo = (tariff: keyof typeof openPromoInfo) => {
+    setOpenPromoInfo((prev) => ({
+      ...prev,
+      [tariff]: !prev[tariff],
+    }));
+  };
+
   return <section className="section-padding bg-gradient-to-b from-white to-blue-50" id="tarify">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -39,13 +62,28 @@ const TariffSection = () => {
                   <span className="promo-tag">Promo tarif</span>
                 </div>
                 <div className="tariff-header">
-                  <h3 className="text-xl font-bold">                      Internet + TV Basic</h3>
+                  <h3 className="text-xl font-bold">Internet + TV Basic</h3>
                 </div>
                 <div className="p-6">
                   <div className="mb-6 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-4xl font-bold text-poda-blue">250 Kč</div>
                       <div className="text-gray-500 text-sm">měsíčně + 50 Kč za zařízení</div>
+                      <Collapsible
+                        open={openPromoInfo.bytyBasic}
+                        onOpenChange={() => togglePromoInfo('bytyBasic')}
+                        className="mt-1"
+                      >
+                        <CollapsibleTrigger className="flex items-center justify-center mx-auto text-gray-400 hover:text-gray-600 transition-colors">
+                          <Info className="h-3.5 w-3.5 mr-1" />
+                          <span className="text-xs">Více o ceně</span>
+                          <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" 
+                            style={{ transform: openPromoInfo.bytyBasic ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded-md">
+                          Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 440 Kč/měsíc.
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
                   </div>
                   <div className="space-y-4 mb-8">
@@ -84,13 +122,28 @@ const TariffSection = () => {
                 </div>
                 <div className="recommended-badge px-[22px] mx-[15px] my-[36px] py-0">Doporučujeme</div>
                 <div className="tariff-header">
-                  <h3 className="text-xl font-bold">                      Internet + TV Mých 10</h3>
+                  <h3 className="text-xl font-bold">Internet + TV Mých 10</h3>
                 </div>
                 <div className="p-6">
                   <div className="mb-6 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-4xl font-bold text-poda-blue">390 Kč</div>
                       <div className="text-gray-500 text-sm">měsíčně + 50 Kč za zařízení</div>
+                      <Collapsible
+                        open={openPromoInfo.bytyMych10}
+                        onOpenChange={() => togglePromoInfo('bytyMych10')}
+                        className="mt-1"
+                      >
+                        <CollapsibleTrigger className="flex items-center justify-center mx-auto text-gray-400 hover:text-gray-600 transition-colors">
+                          <Info className="h-3.5 w-3.5 mr-1" />
+                          <span className="text-xs">Více o ceně</span>
+                          <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" 
+                            style={{ transform: openPromoInfo.bytyMych10 ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded-md">
+                          Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 520 Kč/měsíc.
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
                   </div>
                   <div className="space-y-4 mb-8">
@@ -128,13 +181,28 @@ const TariffSection = () => {
                   <span className="promo-tag">Promo tarif</span>
                 </div>
                 <div className="tariff-header">
-                  <h3 className="text-xl font-bold">                      Internet + TV Basic</h3>
+                  <h3 className="text-xl font-bold">Internet + TV Basic</h3>
                 </div>
                 <div className="p-6">
                   <div className="mb-6 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-4xl font-bold text-poda-blue">250 Kč</div>
                       <div className="text-gray-500 text-sm">měsíčně + 50 Kč za zařízení</div>
+                      <Collapsible
+                        open={openPromoInfo.domyBasic}
+                        onOpenChange={() => togglePromoInfo('domyBasic')}
+                        className="mt-1"
+                      >
+                        <CollapsibleTrigger className="flex items-center justify-center mx-auto text-gray-400 hover:text-gray-600 transition-colors">
+                          <Info className="h-3.5 w-3.5 mr-1" />
+                          <span className="text-xs">Více o ceně</span>
+                          <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" 
+                            style={{ transform: openPromoInfo.domyBasic ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded-md">
+                          Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 440 Kč/měsíc.
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
                   </div>
                   <div className="space-y-4 mb-8">
@@ -173,13 +241,28 @@ const TariffSection = () => {
                 </div>
                 <div className="recommended-badge mx-[15px] px-[22px] my-[36px]">Doporučujeme</div>
                 <div className="tariff-header">
-                  <h3 className="text-xl font-bold">                      Internet + TV Mých 10</h3>
+                  <h3 className="text-xl font-bold">Internet + TV Mých 10</h3>
                 </div>
                 <div className="p-6">
                   <div className="mb-6 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-4xl font-bold text-poda-blue">390 Kč</div>
                       <div className="text-gray-500 text-sm">měsíčně + 50 Kč za zařízení</div>
+                      <Collapsible
+                        open={openPromoInfo.domyMych10}
+                        onOpenChange={() => togglePromoInfo('domyMych10')}
+                        className="mt-1"
+                      >
+                        <CollapsibleTrigger className="flex items-center justify-center mx-auto text-gray-400 hover:text-gray-600 transition-colors">
+                          <Info className="h-3.5 w-3.5 mr-1" />
+                          <span className="text-xs">Více o ceně</span>
+                          <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" 
+                            style={{ transform: openPromoInfo.domyMych10 ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded-md">
+                          Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 520 Kč/měsíc.
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
                   </div>
                   <div className="space-y-4 mb-8">

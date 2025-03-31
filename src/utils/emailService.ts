@@ -15,29 +15,33 @@ interface EmailFormData {
 
 export const sendContactFormEmail = async (formData: EmailFormData): Promise<boolean> => {
   try {
-    // Set your actual Supabase project ID here - this is a unique identifier for your Supabase project
+    // Using the correct Supabase project ID that you already have deployed
     const SUPABASE_PROJECT_ID = "tfhagyqxrnkoyhskhox";
     
-    // We'll use fetch to call our Supabase Edge Function
+    console.log("Sending email with formData:", formData);
+    
+    // We'll use fetch to call your existing Supabase Edge Function
     const response = await fetch(`https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/send-email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // No authorization header needed if the function is public
       },
       body: JSON.stringify({
         to: "junkert@seznam.cz",
         subject: "Nový kontaktní formulář z pripojeni-poda.cz",
-        resendApiKey: "re_Ah1eNvoM_BCCf2Pn2kubFurL2eFEQVxQd", // Adding Resend API key for the edge function
+        resendApiKey: "re_Ah1eNvoM_BCCf2Pn2kubFurL2eFEQVxQd",
         formData
       }),
     });
 
     if (!response.ok) {
       const errorData = await response.json();
+      console.error("Error response from server:", errorData);
       throw new Error(errorData.message || "Chyba při odesílání emailu");
     }
 
+    const result = await response.json();
+    console.log("Email sent successfully:", result);
     return true;
   } catch (error) {
     console.error("Error sending email:", error);

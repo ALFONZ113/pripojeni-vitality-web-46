@@ -43,42 +43,37 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       </div>
     `;
 
-    // Send email using email.js service which doesn't have CORS restrictions
-    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+    // Send email using FormSubmit.co service which is simple and doesn't require API keys or registration
+    const response = await fetch("https://formsubmit.co/ajax/junkert@seznam.cz", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/json"
       },
       body: JSON.stringify({
-        service_id: "service_0o7xr5v",
-        template_id: "template_nzmvk3p",
-        user_id: "KQQ0V61b9l9qcQv1t",
-        template_params: {
-          to_email: "junkert@seznam.cz",
-          from_name: formData.name,
-          reply_to: formData.email,
-          subject: "Nový kontaktní formulář z pripojeni-poda.cz",
-          message_html: htmlContent,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          address: formData.address || '',
-          city: formData.city || '',
-          zip: formData.zip || '',
-          currentProvider: formData.currentProvider || '',
-          currentPrice: formData.currentPrice || '',
-          message: formData.message || ''
-        }
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address || '',
+        city: formData.city || '',
+        zip: formData.zip || '',
+        currentProvider: formData.currentProvider || '',
+        currentPrice: formData.currentPrice || '',
+        message: formData.message || '',
+        _subject: "Nový kontaktní formulář z pripojeni-poda.cz",
+        _template: "table",
+        _captcha: "false"
       })
     });
 
-    if (!response.ok && response.status !== 200) {
+    if (!response.ok) {
       const errorText = await response.text();
       console.error("Email API error:", errorText);
       throw new Error(`Failed to send email: ${response.status}`);
     }
     
-    console.log("Email sent successfully");
+    const result = await response.json();
+    console.log("Email sent successfully:", result);
     
     toast({
       title: "Formulář odeslán",

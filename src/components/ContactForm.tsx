@@ -1,6 +1,8 @@
 
 import { useState } from 'react';
 import { Check, AlertTriangle } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import { sendContactFormEmail } from '../utils/emailService';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +20,8 @@ const ContactForm = () => {
   const [formState, setFormState] = useState({
     submitted: false,
     success: false,
-    error: null as string | null
+    error: null as string | null,
+    loading: false
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -29,7 +32,7 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -37,38 +40,64 @@ const ContactForm = () => {
       setFormState({
         submitted: true,
         success: false,
-        error: 'Prosím vyplňte všechna povinná pole označená *'
+        error: 'Prosím vyplňte všechna povinná pole označená *',
+        loading: false
       });
       return;
     }
     
-    // In a real application, you would send the form data to your backend here
-    // For demo purposes, we'll just simulate a successful submission
-    setFormState({
-      submitted: true,
-      success: true,
-      error: null
-    });
-    
-    // Reset form after 5 seconds
-    setTimeout(() => {
+    setFormState(prev => ({ ...prev, loading: true }));
+
+    try {
+      // Send email notification
+      const emailSent = await sendContactFormEmail(formData);
+      
+      if (emailSent) {
+        setFormState({
+          submitted: true,
+          success: true,
+          error: null,
+          loading: false
+        });
+        
+        toast({
+          title: "Úspěch",
+          description: "Formulář byl úspěšně odeslán. Brzy vás budeme kontaktovat.",
+          variant: "default"
+        });
+        
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setFormState({
+            submitted: false,
+            success: false,
+            error: null,
+            loading: false
+          });
+          setFormData({
+            name: '',
+            address: '',
+            city: '',
+            zip: '',
+            phone: '',
+            email: '',
+            currentProvider: '',
+            currentPrice: '',
+            message: ''
+          });
+        }, 5000);
+      } else {
+        throw new Error("Nepodařilo se odeslat email");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
       setFormState({
-        submitted: false,
+        submitted: true,
         success: false,
-        error: null
+        error: 'Nastala chyba při odesílání formuláře. Zkuste to prosím později.',
+        loading: false
       });
-      setFormData({
-        name: '',
-        address: '',
-        city: '',
-        zip: '',
-        phone: '',
-        email: '',
-        currentProvider: '',
-        currentPrice: '',
-        message: ''
-      });
-    }, 5000);
+    }
   };
 
   return (
@@ -109,6 +138,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
                 required
+                disabled={formState.loading}
               />
             </div>
             
@@ -124,6 +154,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
                 required
+                disabled={formState.loading}
               />
             </div>
             
@@ -139,6 +170,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
                 required
+                disabled={formState.loading}
               />
             </div>
             
@@ -153,6 +185,7 @@ const ContactForm = () => {
                 value={formData.address}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                disabled={formState.loading}
               />
             </div>
             
@@ -167,6 +200,7 @@ const ContactForm = () => {
                 value={formData.city}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                disabled={formState.loading}
               />
             </div>
             
@@ -181,6 +215,7 @@ const ContactForm = () => {
                 value={formData.zip}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                disabled={formState.loading}
               />
             </div>
             
@@ -196,6 +231,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
                 placeholder="např. O2, T-Mobile, UPC, ..."
+                disabled={formState.loading}
               />
             </div>
             
@@ -211,6 +247,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
                 placeholder="např. 500 Kč"
+                disabled={formState.loading}
               />
             </div>
           </div>
@@ -227,15 +264,17 @@ const ContactForm = () => {
               rows={4}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
               placeholder="Napište nám, pokud máte nějaké specifické požadavky nebo dotazy..."
+              disabled={formState.loading}
             ></textarea>
           </div>
           
           <div className="flex justify-end">
             <button
               type="submit"
-              className="btn-secondary"
+              className={`btn-secondary ${formState.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              disabled={formState.loading}
             >
-              Odeslat formulář
+              {formState.loading ? 'Odesílání...' : 'Odeslat formulář'}
             </button>
           </div>
         </form>

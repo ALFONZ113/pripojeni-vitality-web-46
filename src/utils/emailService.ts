@@ -16,7 +16,7 @@ interface EmailFormData {
 export const sendContactFormEmail = async (formData: EmailFormData): Promise<boolean> => {
   try {
     // Set your actual Supabase project ID here - this is a unique identifier for your Supabase project
-    const SUPABASE_PROJECT_ID = "8n0vrgydpfcncdmwukwz";
+    const SUPABASE_PROJECT_ID = "tfhagyqxrnkoyhskhox";
     
     // We'll use fetch to call our Supabase Edge Function
     const response = await fetch(`https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/send-email`, {

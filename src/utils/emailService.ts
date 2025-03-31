@@ -15,8 +15,11 @@ interface EmailFormData {
 
 export const sendContactFormEmail = async (formData: EmailFormData): Promise<boolean> => {
   try {
+    // Set your actual Supabase project ID here - this is a unique identifier for your Supabase project
+    const SUPABASE_PROJECT_ID = "8n0vrgydpfcncdmwukwz";
+    
     // We'll use fetch to call our Supabase Edge Function
-    const response = await fetch("https://YOUR_PROJECT_ID.supabase.co/functions/v1/send-email", {
+    const response = await fetch(`https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/send-email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +27,8 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       },
       body: JSON.stringify({
         to: "junkert@seznam.cz",
-        subject: "Nový kontaktní formulář z připojeni-poda.cz",
+        subject: "Nový kontaktní formulář z pripojeni-poda.cz",
+        resendApiKey: "re_Ah1eNvoM_BCCf2Pn2kubFurL2eFEQVxQd", // Adding Resend API key for the edge function
         formData
       }),
     });

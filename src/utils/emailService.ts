@@ -17,8 +17,9 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
   try {
     const SUPABASE_PROJECT_ID = "tfhagyqxrnkoyhskhox";
     
-    console.log("Sending email with formData:", formData);
+    console.log("Preparing to send email with formData:", JSON.stringify(formData));
     
+    // Using a custom endpoint to avoid CORS issues
     const response = await fetch(`https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/send-email`, {
       method: "POST",
       headers: {
@@ -30,27 +31,30 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
         resendApiKey: "re_Ah1eNvoM_BCCf2Pn2kubFurL2eFEQVxQd",
         formData
       }),
-      mode: 'no-cors' // Handle CORS issues with no-cors mode
+      mode: 'no-cors' // Using no-cors mode to bypass CORS restrictions
     });
 
-    console.log("Response received (no details available due to no-cors mode)");
+    console.log("Email request sent, showing success toast");
     
-    // With no-cors mode, we can't access response details
-    // So we'll just assume success and show a toast message
+    // Since we're using no-cors mode, we don't have access to actual response status
+    // Display success message to the user
     toast({
-      title: "Úspěch",
-      description: "Formulář byl úspěšně odeslán. Brzy vás budeme kontaktovat.",
+      title: "Formulář odeslán",
+      description: "Děkujeme za vyplnění formuláře. Brzy vás budeme kontaktovat.",
       variant: "default"
     });
     
     return true;
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Failed to send email:", error);
+    
+    // Show error message to the user
     toast({
-      title: "Chyba",
-      description: "Nepodařilo se odeslat email. Zkuste to prosím později.",
+      title: "Chyba při odesílání",
+      description: "Nepodařilo se odeslat formulář. Zkuste to prosím později nebo nás kontaktujte telefonicky.",
       variant: "destructive"
     });
+    
     return false;
   }
 };

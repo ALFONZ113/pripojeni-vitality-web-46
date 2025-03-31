@@ -16,10 +16,11 @@ interface EmailFormData {
 export const sendContactFormEmail = async (formData: EmailFormData): Promise<boolean> => {
   try {
     // We'll use fetch to call our Supabase Edge Function
-    const response = await fetch("/api/send-contact-email", {
+    const response = await fetch("https://YOUR_PROJECT_ID.supabase.co/functions/v1/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        // No authorization header needed if the function is public
       },
       body: JSON.stringify({
         to: "junkert@seznam.cz",

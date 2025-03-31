@@ -1,5 +1,6 @@
+
 import { useState } from 'react';
-import { Check, AlertTriangle } from 'lucide-react';
+import { Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { sendContactFormEmail } from '../utils/emailService';
 
@@ -42,10 +43,17 @@ const ContactForm = () => {
         error: 'Prosím vyplňte všechna povinná pole označená *',
         loading: false
       });
+      
+      toast({
+        title: "Kontrola formuláře",
+        description: "Prosím vyplňte všechna povinná pole označená *",
+        variant: "destructive"
+      });
+      
       return;
     }
     
-    setFormState(prev => ({ ...prev, loading: true }));
+    setFormState(prev => ({ ...prev, loading: true, error: null }));
 
     try {
       // Send email notification
@@ -59,13 +67,7 @@ const ContactForm = () => {
           loading: false
         });
         
-        toast({
-          title: "Úspěch",
-          description: "Formulář byl úspěšně odeslán. Brzy vás budeme kontaktovat.",
-          variant: "default"
-        });
-        
-        // Reset form after 5 seconds
+        // Reset form after successful submission
         setTimeout(() => {
           setFormState({
             submitted: false,
@@ -173,6 +175,7 @@ const ContactForm = () => {
               />
             </div>
             
+            {/* Additional form fields */}
             <div>
               <label className="block text-gray-700 font-medium mb-2" htmlFor="address">
                 Ulice a číslo popisné
@@ -270,10 +273,15 @@ const ContactForm = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className={`btn-secondary ${formState.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`btn-secondary flex items-center justify-center min-w-[180px] ${formState.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               disabled={formState.loading}
             >
-              {formState.loading ? 'Odesílání...' : 'Odeslat formulář'}
+              {formState.loading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Odesílání...
+                </>
+              ) : 'Odeslat formulář'}
             </button>
           </div>
         </form>

@@ -43,40 +43,54 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       </div>
     `;
 
-    // Using Resend API directly
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer re_Ah1eNvoM_BCCf2Pn2kubFurL2eFEQVxQd"
-      },
-      body: JSON.stringify({
-        from: "onboarding@resend.dev",
-        to: "junkert@seznam.cz",
-        subject: "Nový kontaktní formulář z pripojeni-poda.cz",
-        html: htmlContent,
-        reply_to: formData.email
-      })
-    });
+    // Using Resend API directly but with proper CORS headers and handling
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 seconds timeout
+    
+    try {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer re_Ah1eNvoM_BCCf2Pn2kubFurL2eFEQVxQd"
+        },
+        body: JSON.stringify({
+          from: "onboarding@resend.dev",
+          to: "junkert@seznam.cz",
+          subject: "Nový kontaktní formulář z pripojeni-poda.cz",
+          html: htmlContent,
+          reply_to: formData.email
+        }),
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error("Email API error response:", errorData);
+        throw new Error(`API error: ${response.status} ${response.statusText}`);
+      }
+      
+      const responseData = await response.json();
+      console.log("Email API success response:", responseData);
 
-    const responseData = await response.json();
-    console.log("Email API response:", responseData);
-
-    if (!response.ok) {
-      console.error("Failed to send email:", responseData);
-      throw new Error("Chyba při odesílání emailu");
+      // Display success message to the user
+      toast({
+        title: "Formulář odeslán",
+        description: "Děkujeme za vyplnění formuláře. Brzy vás budeme kontaktovat.",
+        variant: "default"
+      });
+      
+      return true;
+    } catch (fetchError: any) {
+      if (fetchError.name === 'AbortError') {
+        throw new Error("Připojení vypršelo - zkuste to prosím znovu");
+      }
+      throw fetchError;
+    } finally {
+      clearTimeout(timeoutId);
     }
-
-    console.log("Email sent successfully");
-    
-    // Display success message to the user
-    toast({
-      title: "Formulář odeslán",
-      description: "Děkujeme za vyplnění formuláře. Brzy vás budeme kontaktovat.",
-      variant: "default"
-    });
-    
-    return true;
   } catch (error) {
     console.error("Failed to send email:", error);
     

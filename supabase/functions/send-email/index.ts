@@ -23,15 +23,23 @@ interface EmailRequest {
 }
 
 serve(async (req: Request) => {
+  console.log("Function triggered with a new request");
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
+    console.log("Handling OPTIONS preflight request");
     return new Response("ok", { headers: corsHeaders });
   }
 
   try {
-    const { to, subject, resendApiKey, formData } = await req.json() as EmailRequest;
+    console.log("Processing POST request");
+    const requestData = await req.json();
+    console.log("Request data received:", JSON.stringify(requestData));
+    
+    const { to, subject, resendApiKey, formData } = requestData as EmailRequest;
 
     if (!to || !subject || !formData || !resendApiKey) {
+      console.error("Missing required fields:", { to, subject, formData: !!formData, resendApiKey: !!resendApiKey });
       return new Response(
         JSON.stringify({ message: "Chybí povinné údaje" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -52,6 +60,8 @@ serve(async (req: Request) => {
       ${formData.message ? `<p><strong>Zpráva:</strong> ${formData.message}</p>` : ''}
     `;
 
+    console.log("Sending email to Resend API");
+    
     // Send the email using Resend API
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -69,6 +79,7 @@ serve(async (req: Request) => {
     });
 
     const responseData = await response.json();
+    console.log("Resend API response:", JSON.stringify(responseData));
 
     if (!response.ok) {
       console.error("Resend API error:", responseData);
@@ -78,6 +89,7 @@ serve(async (req: Request) => {
       );
     }
 
+    console.log("Email sent successfully");
     return new Response(
       JSON.stringify({ message: "Email úspěšně odeslán", data: responseData }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }

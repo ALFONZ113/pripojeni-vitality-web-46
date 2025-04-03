@@ -23,14 +23,17 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/poda-favicon-32x32.png">
     <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png">
     
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) - implementace přes asynchronní skript -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B56HVH7E5R"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-B56HVH7E5R');
+      gtag('config', 'G-B56HVH7E5R', {
+        'cookie_domain': 'www.pripojeni-poda.cz',
+        'cookie_flags': 'SameSite=None;Secure',
+        'send_page_view': true
+      });
     </script>
   </head>
 

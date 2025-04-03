@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Calendar, User, ArrowLeft, Share2, Bookmark, MessageSquare } from 'lucide-react';
@@ -6,6 +5,55 @@ import { initAnimations } from '../utils/animation';
 
 // Re-use the blog posts data from Blog.tsx
 const blogPosts = [
+  {
+    id: 7,
+    title: 'Rozšíření optické sítě PODA v brněnském Komárově',
+    excerpt: 'Společnost PODA nově připojila několik ulic v městské části Komárov k vysokorychlostní optické síti s rychlostí až 1 Gb/s.',
+    content: `
+      <p>Společnost PODA, významný poskytovatel telekomunikačních služeb v České republice, rozšířila svou moderní optickou síť do dalších ulic v brněnské městské části Komárov. Podle zpráv byly nově připojeny ulice Schwaigrova, Hodonínská, Za školou a Za mostem, což přináší obyvatelům této oblasti přístup k vysokorychlostnímu internetu s rychlostí až 1 Gb/s a možnost sledování více než 160 televizních kanálů.</p>
+      
+      <h3>Význam optické sítě v Komárově</h3>
+      <p>Rozšíření optické sítě PODA v Komárově představuje významný krok k modernizaci internetové infrastruktury v této části Brna. Optické připojení nabízí obyvatelům řadu výhod oproti tradičním technologiím:</p>
+      
+      <ul>
+        <li><strong>Extrémně vysoké rychlosti</strong> až 1 Gb/s umožňují bezproblémové streamování, online gaming a práci z domova.</li>
+        <li><strong>Stabilita a nízká latence</strong> (kolem 10 ms) zajišťují plynulý provoz i při náročných aplikacích.</li>
+        <li><strong>Odolnost vůči elektromagnetickému rušení</strong> a povětrnostním vlivům zaručuje spolehlivé připojení za všech podmínek.</li>
+        <li><strong>Možnost současného využívání</strong> vysokorychlostního internetu a sledování IPTV s více než 160 programy rozšiřuje multimediální možnosti domácností.</li>
+      </ul>
+      
+      <p>Tato investice do moderní infrastruktury zvyšuje atraktivitu Komárova pro nové obyvatele a podniky, podporuje digitální rozvoj oblasti a zlepšuje kvalitu života místních občanů.</p>
+      
+      <h3>Technologie GPON a její přínosy</h3>
+      <p>GPON (Gigabit Passive Optical Network) je moderní technologie optického připojení, kterou PODA využívá pro poskytování vysokorychlostního internetu v Komárově. Tato technologie umožňuje přenos dat rychlostí až 2,5 Gb/s směrem k uživateli a 1,25 Gb/s směrem od uživatele. GPON vyniká několika klíčovými výhodami:</p>
+      
+      <ul>
+        <li>Vysoká přenosová kapacita umožňující bezproblémové streamování 4K videa a online gaming</li>
+        <li>Nízká latence, která je ideální pro aplikace vyžadující okamžitou odezvu</li>
+        <li>Efektivní využití optických vláken - jedno vlákno může obsluhovat až 64 uživatelů</li>
+        <li>Odolnost vůči elektromagnetickému rušení zajišťující stabilní připojení</li>
+        <li>Možnost budoucího navýšení rychlosti bez nutnosti výměny optických kabelů</li>
+      </ul>
+      
+      <p>Díky těmto vlastnostem přináší GPON technologie obyvatelům Komárova spolehlivé a rychlé internetové připojení, které plně odpovídá nárokům moderní digitální doby.</p>
+      
+      <h3>Seznam nově připojených ulic</h3>
+      <p>Společnost PODA rozšířila svou optickou síť v brněnské městské části Komárov o několik nových ulic. Konkrétně se jedná o tyto lokality:</p>
+      
+      <ul>
+        <li>Schwaigrova</li>
+        <li>Hodonínská</li>
+        <li>Za školou</li>
+        <li>Za mostem</li>
+      </ul>
+      
+      <p>Tyto ulice jsou nyní připojeny k moderní optické infrastruktuře, která umožňuje obyvatelům využívat vysokorychlostní internet s rychlostí až 1 Gb/s a sledovat více než 160 televizních programů. Zajímavostí je, že tyto ulice jsou součástí tzv. Bloku 1a, který je pravidelně čištěn v rámci blokového čištění městské části Brno-jih. Rozšíření optické sítě tak přispívá nejen k digitálnímu rozvoji této oblasti, ale také k celkovému zlepšení kvality života místních obyvatel.</p>
+    `,
+    date: '1. 4. 2025',
+    author: 'Milan Terč',
+    category: 'Technologie',
+    image: 'https://images.unsplash.com/photo-1557191358-57dfbc468c2e?q=80&w=2070&auto=format&fit=crop'
+  },
   {
     id: 1,
     title: 'Výhody technologie GPON pro domácí připojení',
@@ -88,7 +136,7 @@ const blogPosts = [
         <li><strong>Arena Sport 1 a 2</strong> - Prémiové sportovní kanály s exkluzivními přenosy.</li>
       </ul>
       
-      <p>S naším balíčkem TV Mých 10 si můžete zvolit své oblíbené sportovní kanály a být si jisti, že nepřijdete o žádný důležitý sportovní zážitek. Navíc díky službě PODA net.TV můžete sledovat sportovní přenosy na jakémkoli zařízení, ať už jste doma nebo na cestách.</p>
+      <p>S naším balíčkem TV Mých 10 si můžete zvolit své oblíbené sportovní kanály a být si jisti, že nepřijdete o žádný důležitý sportovní zážitek. Navíc díky službě PODA net.TV můžete sledovat sportovní přenosy na jakémkoli zařízení, ať už jste kdekoliv.</p>
     `,
     date: '20. 3. 2023',
     author: 'Tým PODA',

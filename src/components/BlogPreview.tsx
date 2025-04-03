@@ -4,6 +4,15 @@ import { Link } from 'react-router-dom';
 
 const blogPosts = [
   {
+    id: 7,
+    title: 'Rozšíření optické sítě PODA v brněnském Komárově',
+    excerpt: 'Společnost PODA nově připojila několik ulic v městské části Komárov k vysokorychlostní optické síti s rychlostí až 1 Gb/s.',
+    date: '1. 4. 2025',
+    author: 'Milan Terč',
+    category: 'Technologie',
+    image: 'https://images.unsplash.com/photo-1557191358-57dfbc468c2e?q=80&w=2070&auto=format&fit=crop'
+  },
+  {
     id: 1,
     title: 'Výhody technologie GPON pro domácí připojení',
     excerpt: 'Objevte, proč je optické připojení GPON revoluční technologií pro stabilní a rychlý internet...',
@@ -20,15 +29,6 @@ const blogPosts = [
     author: 'Tým PODA',
     category: 'Tipy a rady',
     image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop'
-  },
-  {
-    id: 3,
-    title: 'Snadný přechod k nám od stávajícího poskytovatele',
-    excerpt: 'Přechod k novému poskytovateli internetu nemusí být komplikovaný. Přečtěte si, jak vám s tím pomůžeme...',
-    date: '10. 4. 2023',
-    author: 'Milan Terč',
-    category: 'Služby',
-    image: 'https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?q=80&w=2070&auto=format&fit=crop'
   }
 ];
 

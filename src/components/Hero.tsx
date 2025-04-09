@@ -45,9 +45,9 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden">
+    <section className="relative pt-32 pb-24 overflow-hidden" aria-labelledby="hero-title">
       {/* Background with subtle gradients */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-white"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iI0YwRjdGRiIgc3Ryb2tlLXdpZHRoPSIxIiBjeD0iMTAiIGN5PSIxMCIgcj0iMyIvPjwvZz48L3N2Zz4=')] opacity-40"></div>
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-100/40 rounded-full filter blur-3xl opacity-30"></div>
@@ -70,6 +70,7 @@ const Hero = () => {
               Nejlepší připojení pro váš domov
             </motion.span>
             <motion.h1 
+              id="hero-title"
               variants={item} 
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
             >
@@ -86,11 +87,11 @@ const Hero = () => {
               variants={item} 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Link to="/internet-tv" className="btn-primary group transition-all">
+              <Link to="/internet-tv" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku internetu a televize">
                 Prozkoumat nabídku 
-                <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
-              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10">
+              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Přejít na kontaktní formulář">
                 Kontaktní formulář
               </Link>
             </motion.div>
@@ -99,12 +100,12 @@ const Hero = () => {
           {/* Feature cards with glass morphism */}
           <div className="relative mt-10 lg:mt-0">
             {/* Decorative elements */}
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow"></div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow"></div>
+            <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
             
             <div className="relative space-y-6">
               {/* Card 1 */}
-              <motion.div 
+              <motion.article 
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.2 }}
@@ -113,7 +114,7 @@ const Hero = () => {
                 className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all"
               >
                 <div className="flex items-start">
-                  <div className="bg-poda-blue/10 p-3 rounded-lg mr-4 flex items-center justify-center">
+                  <div className="bg-poda-blue/10 p-3 rounded-lg mr-4 flex items-center justify-center" aria-hidden="true">
                     <Wifi className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
@@ -121,10 +122,10 @@ const Hero = () => {
                     <p className="text-gray-600">Až 1000/1000 Mbps - bleskové stahování a nahrávání.</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
               
               {/* Card 2 */}
-              <motion.div 
+              <motion.article 
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.2 }}
@@ -133,7 +134,7 @@ const Hero = () => {
                 className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all ml-6"
               >
                 <div className="flex items-start">
-                  <div className="bg-poda-orange/10 p-3 rounded-lg mr-4 flex items-center justify-center">
+                  <div className="bg-poda-orange/10 p-3 rounded-lg mr-4 flex items-center justify-center" aria-hidden="true">
                     <Tv className="h-6 w-6 text-poda-orange" />
                   </div>
                   <div>
@@ -141,10 +142,10 @@ const Hero = () => {
                     <p className="text-gray-600">Více než 100 programů a možnost výběru 10 vlastních stanic.</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
               
               {/* Card 3 */}
-              <motion.div 
+              <motion.article 
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.2 }}
@@ -153,7 +154,7 @@ const Hero = () => {
                 className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all"
               >
                 <div className="flex items-start">
-                  <div className="bg-poda-blue/10 p-3 rounded-lg mr-4 flex items-center justify-center">
+                  <div className="bg-poda-blue/10 p-3 rounded-lg mr-4 flex items-center justify-center" aria-hidden="true">
                     <Zap className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
@@ -161,7 +162,7 @@ const Hero = () => {
                     <p className="text-gray-600">Nejmodernější optické připojení pro stabilní rychlost.</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             </div>
           </div>
         </motion.div>
@@ -182,4 +183,5 @@ const Hero = () => {
     </section>
   );
 };
+
 export default Hero;

@@ -1,0 +1,16 @@
+
+# www.pripojeni-poda.cz robots.txt
+# Všem robotům vyhledávačů je povoleno procházet všechny části webu
+User-agent: *
+Allow: /
+
+# Specifická povolení pro AI agenty
+User-agent: GPTBot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Googlebot
+Allow: /
+
+# Mapa webu
+Sitemap: https://www.pripojeni-poda.cz/sitemap.xml

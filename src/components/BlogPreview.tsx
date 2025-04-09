@@ -10,7 +10,8 @@ const blogPosts = [
     date: '1. 4. 2025',
     author: 'Milan Terč',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1557191358-57dfbc468c2e?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1557191358-57dfbc468c2e?q=80&w=2070&auto=format&fit=crop',
+    alt: 'Technik instalující optické vlákno'
   },
   {
     id: 1,
@@ -19,7 +20,8 @@ const blogPosts = [
     date: '15. 6. 2023',
     author: 'Milan Terč',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop',
+    alt: 'Optické kabely vedoucí do routeru'
   },
   {
     id: 2,
@@ -28,19 +30,20 @@ const blogPosts = [
     date: '2. 5. 2023',
     author: 'Tým PODA',
     category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop',
+    alt: 'Rodina sledující televizi v obývacím pokoji'
   }
 ];
 
 const BlogPreview = () => {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-white" aria-labelledby="blog-heading">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
             Blog a novinky
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
+          <h2 id="blog-heading" className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
             Zajímavé články a informace
           </h2>
           <p className="text-gray-600 leading-relaxed">
@@ -51,27 +54,30 @@ const BlogPreview = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post) => (
-            <div 
+            <article 
               key={post.id} 
               className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group"
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={post.image} 
-                  alt={post.title} 
+                  alt={post.alt} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width="640"
+                  height="360"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3 text-sm text-gray-500">
                   <span className="bg-blue-50 text-poda-blue px-2 py-1 rounded">
                     {post.category}
                   </span>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" />
+                  <time className="flex items-center" dateTime={post.date.replace(/\. /g, '-').replace(/\./g, '')}>
+                    <Calendar className="h-4 w-4 mr-1" aria-hidden="true" />
                     {post.date}
-                  </div>
+                  </time>
                 </div>
                 <h3 className="text-xl font-semibold text-poda-blue mb-3 group-hover:text-poda-orange transition-colors">
                   {post.title}
@@ -81,18 +87,19 @@ const BlogPreview = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm text-gray-500">
-                    <User className="h-4 w-4 mr-1" />
-                    {post.author}
+                    <User className="h-4 w-4 mr-1" aria-hidden="true" />
+                    <span itemProp="author">{post.author}</span>
                   </div>
                   <Link 
                     to={`/blog/${post.id}`} 
                     className="text-poda-blue hover:text-poda-orange font-medium flex items-center transition-colors"
+                    aria-label={`Číst více o článku: ${post.title}`}
                   >
-                    Číst více <ArrowRight className="ml-1 h-4 w-4" />
+                    Číst více <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -100,8 +107,9 @@ const BlogPreview = () => {
           <Link 
             to="/blog" 
             className="btn-outline flex items-center"
+            aria-label="Zobrazit všechny články na blogu"
           >
-            Zobrazit všechny články <ArrowRight className="ml-2 h-5 w-5" />
+            Zobrazit všechny články <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
       </div>

@@ -27,13 +27,13 @@ const ChannelsSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-b from-blue-50 to-white">
+    <section className="section-padding bg-gradient-to-b from-blue-50 to-white" aria-labelledby="channels-heading">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
             TV programy
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
+          <h2 id="channels-heading" className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
             Bohatá programová nabídka
           </h2>
           <p className="text-gray-600 leading-relaxed">
@@ -44,24 +44,24 @@ const ChannelsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {channelCategories.map((category, index) => (
-            <div 
+            <article 
               key={index} 
               className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg border border-gray-100"
             >
-              <div className="bg-poda-blue/10 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+              <div className="bg-poda-blue/10 rounded-full w-12 h-12 flex items-center justify-center mb-4" aria-hidden="true">
                 <Tv className="h-6 w-6 text-poda-blue" />
               </div>
               <h3 className="text-xl font-semibold text-poda-blue mb-2">{category.name}</h3>
               <p className="text-gray-600 mb-4 text-sm">{category.description}</p>
-              <ul className="space-y-2 mb-4">
+              <ul className="space-y-2 mb-4" aria-label={`Kanály v kategorii ${category.name}`}>
                 {category.channels.map((channel, i) => (
                   <li key={i} className="flex items-center">
-                    <span className="w-1.5 h-1.5 bg-poda-orange rounded-full mr-2"></span>
+                    <span className="w-1.5 h-1.5 bg-poda-orange rounded-full mr-2" aria-hidden="true"></span>
                     <span className="text-gray-700">{channel}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -69,8 +69,9 @@ const ChannelsSection = () => {
           <Link 
             to="/programy" 
             className="btn-outline flex items-center"
+            aria-label="Zobrazit všechny programy"
           >
-            Zobrazit všechny programy <ArrowRight className="ml-2 h-5 w-5" />
+            Zobrazit všechny programy <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
       </div>

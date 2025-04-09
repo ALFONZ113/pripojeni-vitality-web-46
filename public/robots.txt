@@ -1,10 +1,10 @@
 
 # www.pripojeni-poda.cz robots.txt
-# Všem robotům vyhledávačů je povoleno procházet všechny části webu
+# Povolení pro všechny vyhledávače
 User-agent: *
 Allow: /
 
-# Specifická povolení pro AI agenty
+# Explicitní povolení pro AI agenty
 User-agent: GPTBot
 Allow: /
 User-agent: Bingbot
@@ -30,7 +30,7 @@ Allow: /
 User-agent: ChatGPT
 Allow: /
 
-# Explicitní povolení pro všechny AI boty
+# Wildcards pro všechny AI boty
 User-agent: *-ai
 Allow: /
 User-agent: *bot

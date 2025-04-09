@@ -25,6 +25,22 @@ User-agent: Google-Extended
 Allow: /
 User-agent: PerplexityBot
 Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ChatGPT
+Allow: /
+
+# Explicitní povolení pro všechny AI boty
+User-agent: *-ai
+Allow: /
+User-agent: *bot
+Allow: /
+User-agent: *Bot
+Allow: /
+User-agent: *crawler
+Allow: /
+User-agent: *Crawler
+Allow: /
 
 # Mapa webu
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml

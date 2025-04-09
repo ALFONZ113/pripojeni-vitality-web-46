@@ -11,6 +11,20 @@ User-agent: Bingbot
 Allow: /
 User-agent: Googlebot
 Allow: /
+User-agent: Baiduspider
+Allow: /
+User-agent: FacebookBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
 
 # Mapa webu
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml

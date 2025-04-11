@@ -42,5 +42,5 @@ Allow: /
 User-agent: *Crawler
 Allow: /
 
-# Mapa webu
+# Mapa webu pro Google Search Console a další vyhledávače
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml

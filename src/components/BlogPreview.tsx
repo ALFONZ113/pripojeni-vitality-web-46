@@ -4,6 +4,17 @@ import { Link } from 'react-router-dom';
 
 const blogPosts = [
   {
+    id: 8,
+    title: '60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie',
+    excerpt: 'Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s.',
+    date: '10. 4. 2025',
+    author: 'Team PODA',
+    category: 'Technologie',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
+    alt: 'Vysokorýchlostná bezdrôtová technológia',
+    customUrl: '/blog/60ghz-internet'
+  },
+  {
     id: 7,
     title: 'Rozšíření optické sítě PODA v brněnském Komárově',
     excerpt: 'Společnost PODA nově připojila několik ulic v městské části Komárov k vysokorychlostní optické síti s rychlostí až 1 Gb/s.',
@@ -22,16 +33,6 @@ const blogPosts = [
     category: 'Technologie',
     image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop',
     alt: 'Optické kabely vedoucí do routeru'
-  },
-  {
-    id: 2,
-    title: 'Jak vybrat nejlepší televizní balíček pro vaši rodinu',
-    excerpt: 'Průvodce výběrem televzního balíčku, který uspokojí potřeby všech členů vaší domácnosti...',
-    date: '2. 5. 2023',
-    author: 'Tým PODA',
-    category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop',
-    alt: 'Rodina sledující televizi v obývacím pokoji'
   }
 ];
 
@@ -91,7 +92,7 @@ const BlogPreview = () => {
                     <span itemProp="author">{post.author}</span>
                   </div>
                   <Link 
-                    to={`/blog/${post.id}`} 
+                    to={post.customUrl || `/blog/${post.id}`} 
                     className="text-poda-blue hover:text-poda-orange font-medium flex items-center transition-colors"
                     aria-label={`Číst více o článku: ${post.title}`}
                   >

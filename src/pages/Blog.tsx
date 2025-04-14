@@ -1,9 +1,35 @@
+
 import { useEffect, useState } from 'react';
 import { Calendar, User, Search, Bookmark, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { initAnimations } from '../utils/animation';
 
 const blogPosts = [
+  {
+    id: 8,
+    title: '60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie',
+    excerpt: 'Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti.',
+    content: `
+      <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti. Tento inovatívny systém ponúka výkon takmer porovnateľný s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>
+      
+      <h3>Výhody 60 GHz pripojenia</h3>
+      <p>60 GHz internetové pripojenie prináša niekoľko významných výhod oproti tradičným bezdrôtovým technológiám:</p>
+      
+      <ul>
+        <li><strong>Vysoká rýchlosť</strong>: Umožňuje prenosové rýchlosti až 1 000 Mb/s, čo je porovnateľné s optickým pripojením</li>
+        <li><strong>Nízka latencia</strong>: Poskytuje veľmi nízku a stabilnú odozvu, čo ocenia najmä hráči</li>
+        <li><strong>Menšie rušenie</strong>: V porovnaní s bežnými Wi-Fi sieťami (2,4 GHz a 5 GHz) dochádza k výrazne menšiemu vzájomnému rušeniu signálov</li>
+        <li><strong>Bezpečnosť</strong>: Pásmo 60 GHz je považované za veľmi bezpečné a dlhodobo ho využíva aj armáda</li>
+      </ul>
+      
+      <p>Napriek kratšiemu dosahu signálu (do cca 400 metrov) predstavuje 60 GHz technológia optimálne riešenie pre rodinné domy bez prístupu k optickej sieti, ponúkajúc stabilné a vysokorýchlostné pripojenie.</p>
+    `,
+    date: '10. 4. 2025',
+    author: 'Team PODA',
+    category: 'Technologie',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
+    customUrl: '/blog/60ghz-internet'
+  },
   {
     id: 7,
     title: 'Rozšíření optické sítě PODA v brněnském Komárově',
@@ -363,7 +389,7 @@ const Blog = () => {
                         {post.author}
                       </div>
                       <Link 
-                        to={`/blog/${post.id}`} 
+                        to={post.customUrl || `/blog/${post.id}`} 
                         className="text-poda-blue hover:text-poda-orange font-medium flex items-center transition-colors"
                       >
                         Číst více <ArrowRight className="ml-1 h-4 w-4" />

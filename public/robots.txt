@@ -3,6 +3,8 @@
 # Povolení pro všechny vyhledávače
 User-agent: *
 Allow: /
+# Důležité: přikázat Googlebot okamžitě recrawlovat favicon
+Crawl-delay: 1
 
 # Explicitní povolení pro AI agenty
 User-agent: GPTBot
@@ -10,6 +12,8 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
 Allow: /
 User-agent: Baiduspider
 Allow: /

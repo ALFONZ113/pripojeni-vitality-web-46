@@ -9,22 +9,22 @@
     <meta name="keywords" content="PODA, internet, TV, gigabit, optický internet, internetové připojení, televizní programy" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Extreme cache busting - FORCE REFRESH -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <!-- Ultimate cache busting - FORCE REFRESH -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
     <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Expires" content="-1" />
     <!-- Random version param to force refresh even with persistent caches -->
-    <meta name="version" content="v2025041503-<?php echo rand(1000,9999); ?>" />
+    <meta name="version" content="v2025041504-<?php echo rand(10000,99999); ?>" />
 
     <!-- Favicons with explicit dimensions and forced version param to bypass cache -->
-    <link rel="icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
-    <link rel="shortcut icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
-    <link rel="apple-touch-icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
-    <link rel="manifest" href="/manifest.json?v=2025041503" />
+    <link rel="icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <link rel="shortcut icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <link rel="apple-touch-icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <link rel="manifest" href="/manifest.json?v=2025041504" />
     
     <!-- Canonical URL - EXPLICIT instruction for search engines -->
     <link rel="canonical" href="https://www.pripojeni-poda.cz/" />
@@ -34,14 +34,14 @@
     <meta property="og:url" content="https://www.pripojeni-poda.cz/" />
     <meta property="og:title" content="Připojení-PODA.cz - Gigabitový internet a TV pro váš domov" />
     <meta property="og:description" content="Rychlý a stabilní internet s bohatou nabídkou televizních programů za výjimečnou cenu." />
-    <meta property="og:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
+    <meta property="og:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.pripojeni-poda.cz/" />
     <meta property="twitter:title" content="Připojení-PODA.cz - Gigabitový internet a TV pro váš domov" />
     <meta property="twitter:description" content="Rychlý a stabilní internet s bohatou nabídkou televizních programů za výjimečnou cenu." />
-    <meta property="twitter:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041503" />
+    <meta property="twitter:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
     
     <!-- DNS prefetch and preconnect for faster loading -->
     <link rel="dns-prefetch" href="//www.pripojeni-poda.cz" />
@@ -51,11 +51,54 @@
     <link rel="alternate" href="https://www.pripojeni-poda.cz/" hreflang="cs" />
     <link rel="alternate" href="https://pripojeni-poda.cz/" hreflang="cs" />
     
+    <!-- Load script that forces refresh -->
+    <script>
+      (function() {
+        // Force refresh if page is loaded from cache
+        if (window.performance && window.performance.navigation.type === 2) {
+          window.location.reload(true);
+        }
+        
+        // Random version to prevent caching
+        window.__version = new Date().getTime() + Math.random().toString(36).substring(2);
+        
+        // Clear all caches
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            names.forEach(function(name) {
+              caches.delete(name);
+            });
+          });
+        }
+        
+        // Add random parameter to all resource URLs
+        document.addEventListener('DOMContentLoaded', function() {
+          var links = document.getElementsByTagName('link');
+          var scripts = document.getElementsByTagName('script');
+          
+          function addRandomParam(element, attr) {
+            var value = element.getAttribute(attr);
+            if (value && !value.includes('v=20250415')) {
+              element.setAttribute(attr, value + (value.includes('?') ? '&' : '?') + 'v=' + window.__version);
+            }
+          }
+          
+          for (var i = 0; i < links.length; i++) {
+            addRandomParam(links[i], 'href');
+          }
+          
+          for (var j = 0; j < scripts.length; j++) {
+            addRandomParam(scripts[j], 'src');
+          }
+        });
+      })();
+    </script>
+    
     <!-- Required Lovable script tag for "Select" feature -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx?v=2025041503"></script>
+    <script type="module" src="/src/main.tsx?v=2025041504"></script>
   </body>
 </html>

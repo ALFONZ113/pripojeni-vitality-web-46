@@ -16,4 +16,14 @@ if ('caches' in window) {
 const cacheBuster = new Date().getTime();
 document.documentElement.dataset.cacheBuster = cacheBuster.toString();
 
+// Force reload if version mismatch detected
+const lastVersion = localStorage.getItem('site-version');
+const currentVersion = '2025041504'; // Update this when making significant changes
+localStorage.setItem('site-version', currentVersion);
+
+if (lastVersion && lastVersion !== currentVersion) {
+  console.log('New version detected, forcing reload');
+  window.location.reload(true);
+}
+
 createRoot(document.getElementById("root")!).render(<App />);

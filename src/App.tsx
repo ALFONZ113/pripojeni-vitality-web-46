@@ -31,18 +31,28 @@ const App = () => {
     if (currentUrl.includes("wwwpripojeni-poda.cz") && !currentUrl.includes("www.pripojeni-poda.cz")) {
       // Přesměrujeme na správnou URL s 'www.'
       window.location.href = currentUrl.replace("wwwpripojeni-poda.cz", "www.pripojeni-poda.cz");
+      return;
     }
     
     // Kontrola, zda URL neobsahuje 'www.' a obsahuje 'pripojeni-poda.cz'
     if (!currentUrl.includes("www.") && currentUrl.includes("pripojeni-poda.cz")) {
       // Přesměrujeme na správnou URL s 'www.'
       window.location.href = currentUrl.replace("pripojeni-poda.cz", "www.pripojeni-poda.cz");
+      return;
+    }
+    
+    // Kontrola, zda URL obsahuje formát 'https//www' bez dvojtečky
+    if (currentUrl.includes("https//www")) {
+      // Přesměrujeme na správnou URL s ':' po 'https'
+      window.location.href = currentUrl.replace("https//www", "https://www");
+      return;
     }
     
     // Kontrola, zda URL končí lomítkem
     if (!currentUrl.endsWith("/") && !currentUrl.includes("#") && !currentUrl.includes("?")) {
       // Přesměrujeme na URL s lomítkem na konci
       window.location.href = currentUrl + "/";
+      return;
     }
   }, []);
 
@@ -72,6 +82,7 @@ const App = () => {
               {/* Přesměrování pro neplatné URL formáty */}
               <Route path="/wwwpripojeni-poda.cz/*" element={<Navigate to="/" replace />} />
               <Route path="/https:/*" element={<Navigate to="/" replace />} />
+              <Route path="/https/*" element={<Navigate to="/" replace />} />
               
               {/* Catch-all - pokud uživatel zadá neexistující URL adresu */}
               <Route path="*" element={<NotFound />} />

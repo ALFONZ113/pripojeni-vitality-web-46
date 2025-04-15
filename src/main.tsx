@@ -23,7 +23,7 @@ localStorage.setItem('site-version', currentVersion);
 
 if (lastVersion && lastVersion !== currentVersion) {
   console.log('New version detected, forcing reload');
-  window.location.reload(true);
+  window.location.reload();
 }
 
 createRoot(document.getElementById("root")!).render(<App />);

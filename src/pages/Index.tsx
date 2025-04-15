@@ -24,7 +24,7 @@ const Index = () => {
       const timeDiff = currentTime - parseInt(pageLoadTime);
       // If the page was loaded more than 5 minutes ago, refresh
       if (timeDiff > 5 * 60 * 1000) {
-        window.location.reload(true);
+        window.location.reload();
       }
     }
     

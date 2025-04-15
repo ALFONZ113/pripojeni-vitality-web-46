@@ -4,7 +4,8 @@
 User-agent: *
 Allow: /
 # Důležité: přikázat Googlebot okamžitě recrawlovat favicon a indexovat pouze správnou verzi URL
-Crawl-delay: 1
+Crawl-delay: 0
+# Přinutit roboty překontrolovat stránku HOURLY
 
 # URL normalizační pravidla - prosíme indexovat pouze www verzi
 User-agent: Googlebot
@@ -12,8 +13,8 @@ Allow: /
 Disallow: /wwwpripojeni-poda.cz
 Disallow: /httpspripojeni-poda.cz
 Disallow: /https:/www.pripojeni-poda.cz
-Visit-time: 12:00-14:00
-Request-rate: 1/1m
+Visit-time: 00:00-23:59
+Request-rate: 1/5s
 
 # Explicitní povolení pro AI agenty
 User-agent: GPTBot
@@ -57,4 +58,3 @@ Allow: /
 
 # Mapa webu pro Google Search Console a další vyhledávače
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml
-

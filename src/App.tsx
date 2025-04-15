@@ -19,13 +19,31 @@ import BlogPost60GHz from "./pages/BlogPost60GHz";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60, // 1 minute
+    },
+  },
+});
 
 const App = () => {
-  // Efekt pro správnou normalizaci URL
+  // Efekt pro správnou normalizaci URL a vynutí refresh
   useEffect(() => {
     // Získáme aktuální URL
     const currentUrl = window.location.href;
+    
+    // Vynucení refreshe při prvním nahrání stránky
+    const cacheBreaker = new Date().getTime();
+    window.localStorage.setItem('cache-breaker', cacheBreaker.toString());
+    
+    // Přidání parametru do URL pro vynucení refreshe
+    if (!currentUrl.includes('cache=') && !currentUrl.includes('#') && !currentUrl.includes('?')) {
+      const separator = currentUrl.includes('?') ? '&' : '?';
+      const newUrl = `${currentUrl}${separator}cache=${cacheBreaker}`;
+      window.history.replaceState(null, '', newUrl);
+    }
     
     // Kontrola, zda URL obsahuje neplatný formát 'wwwpripojeni-poda.cz' (bez tečky)
     if (currentUrl.includes("wwwpripojeni-poda.cz") && !currentUrl.includes("www.pripojeni-poda.cz")) {
@@ -54,6 +72,27 @@ const App = () => {
       window.location.href = currentUrl + "/";
       return;
     }
+    
+    // Přidání meta tagu pro refresh
+    const metaRefresh = document.createElement('meta');
+    metaRefresh.httpEquiv = 'refresh';
+    metaRefresh.content = '3600'; // Automatický refresh každou hodinu
+    document.head.appendChild(metaRefresh);
+    
+    // Vynucení nové verze CSS a JS souborů přidáním parametru 'v'
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && !href.includes('v=')) {
+        link.setAttribute('href', `${href}${href.includes('?') ? '&' : '?'}v=${cacheBreaker}`);
+      }
+    });
+    
+    document.querySelectorAll('script[src]').forEach(script => {
+      const src = script.getAttribute('src');
+      if (src && !src.includes('v=')) {
+        script.setAttribute('src', `${src}${src.includes('?') ? '&' : '?'}v=${cacheBreaker}`);
+      }
+    });
   }, []);
 
   return (

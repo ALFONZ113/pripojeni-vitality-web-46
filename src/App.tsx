@@ -53,8 +53,9 @@ const App = () => {
               <Route path="/internet-tv" element={<InternetTV />} />
               <Route path="/programy" element={<TvPrograms />} />
               <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogPost />} />
+              {/* Important: Specific routes must come before dynamic routes */}
               <Route path="/blog/60ghz-internet" element={<BlogPost60GHz />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/kontakt" element={<Contact />} />
               
               {/* Právní stránky */}

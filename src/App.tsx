@@ -41,48 +41,46 @@ const queryClient = new QueryClient({
 
 const App = () => {
   return (
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <BrowserRouter>
-            <Toaster />
-            <Sonner />
-            <Navbar />
-            <main>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/internet-tv" element={<InternetTV />} />
-                <Route path="/programy" element={<TvPrograms />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:id" element={<BlogPost />} />
-                <Route path="/blog/60ghz-internet" element={<BlogPost60GHz />} />
-                <Route path="/kontakt" element={<Contact />} />
-                
-                {/* Právní stránky */}
-                <Route path="/ochrana-soukromi" element={<PrivacyPolicy />} />
-                <Route path="/obchodni-podminky" element={<TermsConditions />} />
-                <Route path="/cookies" element={<CookiesPolicy />} />
-                
-                {/* Nové stránky pre mestá */}
-                <Route path="/internet-ostrava" element={<InternetOstrava />} />
-                <Route path="/internet-karvina" element={<InternetKarvina />} />
-                <Route path="/internet-havirov" element={<InternetHavirov />} />
-                <Route path="/internet-bohumin" element={<InternetBohumin />} />
-                
-                {/* Přesměrování pro případné staré nebo nesprávné URL adresy */}
-                <Route path="/internet" element={<Navigate to="/" replace />} />
-                <Route path="/tv" element={<Navigate to="/" replace />} />
-                <Route path="/internet-tv/*" element={<Navigate to="/" replace />} />
-                
-                {/* Catch-all - pokud uživatel zadá neexistující URL adresu */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BrowserRouter>
+          <Toaster />
+          <Sonner />
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/internet-tv" element={<InternetTV />} />
+              <Route path="/programy" element={<TvPrograms />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/blog/60ghz-internet" element={<BlogPost60GHz />} />
+              <Route path="/kontakt" element={<Contact />} />
+              
+              {/* Právní stránky */}
+              <Route path="/ochrana-soukromi" element={<PrivacyPolicy />} />
+              <Route path="/obchodni-podminky" element={<TermsConditions />} />
+              <Route path="/cookies" element={<CookiesPolicy />} />
+              
+              {/* Nové stránky pre mestá */}
+              <Route path="/internet-ostrava" element={<InternetOstrava />} />
+              <Route path="/internet-karvina" element={<InternetKarvina />} />
+              <Route path="/internet-havirov" element={<InternetHavirov />} />
+              <Route path="/internet-bohumin" element={<InternetBohumin />} />
+              
+              {/* Přesměrování pro případné staré nebo nesprávné URL adresy */}
+              <Route path="/internet" element={<Navigate to="/" replace />} />
+              <Route path="/tv" element={<Navigate to="/" replace />} />
+              <Route path="/internet-tv/*" element={<Navigate to="/" replace />} />
+              
+              {/* Catch-all - pokud uživatel zadá neexistující URL adresu */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 };
 

@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Info } from 'lucide-react';
 
@@ -118,7 +117,6 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Legal information */}
           <div className="flex items-start mt-6 pt-6 border-t border-blue-800/50">
             <Info className="h-5 w-5 text-blue-300 mr-3 flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div className="text-xs text-blue-300">

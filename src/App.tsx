@@ -19,12 +19,12 @@ import BlogPost60GHz from "./pages/BlogPost60GHz";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-// Právní stránky
+// Legal pages
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import CookiesPolicy from "./pages/CookiesPolicy";
 
-// Nové stránky pro mestá
+// City pages
 import InternetOstrava from "./pages/cities/InternetOstrava";
 import InternetKarvina from "./pages/cities/InternetKarvina";
 import InternetHavirov from "./pages/cities/InternetHavirov";
@@ -58,23 +58,23 @@ const App = () => {
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/kontakt" element={<Contact />} />
               
-              {/* Právní stránky */}
+              {/* Legal pages */}
               <Route path="/ochrana-soukromi" element={<PrivacyPolicy />} />
               <Route path="/obchodni-podminky" element={<TermsConditions />} />
               <Route path="/cookies" element={<CookiesPolicy />} />
               
-              {/* Nové stránky pre mestá */}
+              {/* City pages */}
               <Route path="/internet-ostrava" element={<InternetOstrava />} />
               <Route path="/internet-karvina" element={<InternetKarvina />} />
               <Route path="/internet-havirov" element={<InternetHavirov />} />
               <Route path="/internet-bohumin" element={<InternetBohumin />} />
               
-              {/* Přesměrování pro případné staré nebo nesprávné URL adresy */}
+              {/* Redirects for old or incorrect URLs */}
               <Route path="/internet" element={<Navigate to="/" replace />} />
               <Route path="/tv" element={<Navigate to="/" replace />} />
               <Route path="/internet-tv/*" element={<Navigate to="/" replace />} />
               
-              {/* Catch-all - pokud uživatel zadá neexistující URL adresu */}
+              {/* Catch-all for non-existent URLs */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

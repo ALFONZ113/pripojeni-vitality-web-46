@@ -9,16 +9,6 @@
     <meta name="keywords" content="PODA, internet, TV, gigabit, optický internet, internetové připojení, televizní programy" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Přednostní načtení stylů -->
-    <link rel="stylesheet" href="/src/index.css" />
-    <style>
-      /* Kritické CSS pro zabránění skoků v layoutu */
-      body { opacity: 0; transition: opacity 0.2s ease-in; }
-      .loaded { opacity: 1; }
-      html { visibility: hidden; }
-      .fonts-loaded { visibility: visible; }
-    </style>
-
     <!-- Favicons -->
     <link rel="icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png" />
     <link rel="shortcut icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png" />
@@ -59,13 +49,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap">
     
-    <!-- Basic page load script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.classList.add('loaded');
-        document.documentElement.classList.add('fonts-loaded');
-      });
-    </script>
+    <!-- Style for smooth loading -->
+    <style>
+      html, body { opacity: 1; }
+      .fonts-loaded { visibility: visible; }
+    </style>
     
     <!-- Required Lovable script tag -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>

@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Hero from '../components/Hero';
 import TariffSection from '../components/TariffSection';
 import ChannelsSection from '../components/ChannelsSection';
@@ -8,31 +8,12 @@ import BlogPreview from '../components/BlogPreview';
 import { initAnimations } from '../utils/animation';
 
 const Index = () => {
-  const [isFullyLoaded, setIsFullyLoaded] = useState(false);
-  
   useEffect(() => {
-    // Inicializace scroll animací
+    // Initialize scroll animations
     const cleanupAnimation = initAnimations();
     
-    // Scroll na začátek při mount komponentu
+    // Scroll to top when component mounts
     window.scrollTo(0, 0);
-    
-    // Kontrola reálného načtení zdrojů a nastavení stavu
-    const checkIfFullyLoaded = () => {
-      // Ověření, že všechny obrázky jsou načteny
-      const allImages = document.querySelectorAll('img');
-      const imagesLoaded = Array.from(allImages).every(img => img.complete);
-      
-      if (imagesLoaded) {
-        setIsFullyLoaded(true);
-        document.body.classList.add('loaded');
-      } else {
-        setTimeout(checkIfFullyLoaded, 100);
-      }
-    };
-    
-    // Spustit kontrolu po krátké prodlevě
-    setTimeout(checkIfFullyLoaded, 200);
     
     return () => {
       cleanupAnimation();
@@ -40,7 +21,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className={`min-h-screen ${isFullyLoaded ? 'content-loaded' : 'content-loading'}`}>
+    <div className="min-h-screen">
       <Hero />
       <TariffSection />
       <ChannelsSection />

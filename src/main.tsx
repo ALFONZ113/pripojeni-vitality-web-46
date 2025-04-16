@@ -3,10 +3,6 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Přidání časové značky
-const cacheBuster = new Date().getTime();
-document.documentElement.dataset.cacheBuster = cacheBuster.toString();
-
 // Funkce pro ověření, zda byl web plně načten
 function checkFullLoad() {
   // Kontroluje, zda jsou všechny styly a skripty načteny

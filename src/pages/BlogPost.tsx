@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Calendar, User, ArrowLeft, Share2, Bookmark, MessageSquare } from 'lucide-react';
@@ -210,11 +211,20 @@ const BlogPost = () => {
     // Scroll to top on component mount
     window.scrollTo(0, 0);
     
+    // Find the post by ID and handle route conflict with 60ghz-internet
+    if (id === '60ghz-internet') {
+      // Redirect to the dedicated 60GHz page
+      navigate('/blog/60ghz-internet', { replace: true });
+      return;
+    }
+    
     // Find the post by ID
     const foundPost = blogPosts.find(p => p.id === Number(id));
     if (foundPost) {
       setPost(foundPost);
+      console.log("Blog post found with ID:", id);
     } else {
+      console.error("Blog post not found with ID:", id);
       navigate('/blog');
     }
     
@@ -224,7 +234,7 @@ const BlogPost = () => {
   }, [id, navigate]);
   
   if (!post) {
-    return null;
+    return <div className="min-h-screen pt-24 text-center">Načítání...</div>;
   }
 
   return (

@@ -19,6 +19,12 @@ import BlogPost60GHz from "./pages/BlogPost60GHz";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
+// Nové stránky pro mestá
+import InternetOstrava from "./pages/cities/InternetOstrava";
+import InternetKarvina from "./pages/cities/InternetKarvina";
+import InternetHavirov from "./pages/cities/InternetHavirov";
+import InternetBohumin from "./pages/cities/InternetBohumin";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -46,6 +52,12 @@ const App = () => {
                 <Route path="/blog/:id" element={<BlogPost />} />
                 <Route path="/blog/60ghz-internet" element={<BlogPost60GHz />} />
                 <Route path="/kontakt" element={<Contact />} />
+                
+                {/* Nové stránky pre mestá */}
+                <Route path="/internet-ostrava" element={<InternetOstrava />} />
+                <Route path="/internet-karvina" element={<InternetKarvina />} />
+                <Route path="/internet-havirov" element={<InternetHavirov />} />
+                <Route path="/internet-bohumin" element={<InternetBohumin />} />
                 
                 {/* Přesměrování pro případné staré nebo nesprávné URL adresy */}
                 <Route path="/internet" element={<Navigate to="/" replace />} />

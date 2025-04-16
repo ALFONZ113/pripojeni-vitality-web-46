@@ -1,16 +1,16 @@
 
 {
-  "name": "Připojení-PODA.cz",
-  "short_name": "PODA",
+  "name": "PODA internet a TV | Připojení-PODA.cz",
+  "short_name": "PODA internet",
   "icons": [
     {
-      "src": "/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20",
+      "src": "/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-21",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20",
+      "src": "/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-21",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -19,7 +19,8 @@
   "theme_color": "#0066cc",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "https://www.pripojeni-poda.cz/?v=20250416-20",
+  "start_url": "https://www.pripojeni-poda.cz/?utm_source=homescreen",
   "scope": "/",
-  "description": "Gigabitový internet s chytrou TV do vašeho domova v Ostravě a okolí"
+  "description": "Rychlý a levný internet PODA v Ostravě, Karviné, Havířově a Bohumíně s bohatou nabídkou TV programů",
+  "categories": ["internet", "television", "telco", "poda", "ostrava", "karvina", "havirov", "bohumin"]
 }

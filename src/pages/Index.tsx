@@ -15,6 +15,18 @@ const Index = () => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
     
+    // Update document title for SEO
+    document.title = "PODA internet a TV | Připojení-PODA.cz | Rychlý a levný internet v Ostravě";
+    
+    // Update meta description for SEO
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        'content', 
+        'Rychlý a levný internet PODA v Ostravě, Karviné, Havířově a Bohumíně. Gigabitové optické připojení GPON s bohatou nabídkou TV programů za výhodné ceny.'
+      );
+    }
+    
     return () => {
       cleanupAnimation();
     };

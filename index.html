@@ -7,156 +7,79 @@
     <title>Připojení-PODA.cz | Gigabitový internet a TV v Ostravě</title>
     <meta name="description" content="Gigabitový internet s chytrou TV do vašeho domova v Ostravě a okolí. Vysokorychlostní optické připojení GPON a bohatá programová nabídka za výhodné ceny." />
     <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
-    <meta name="keywords" content="internet Ostrava, televizia PODA, PODA internet, gigabitový internet, TV programy, internetové pripojenie, wifi, optické pripojenie, GPON, 60 GHz internet" />
     <meta name="robots" content="index, follow" />
     
-    <!-- Ultimate cache busting - FORCE REFRESH -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
+    <!-- Force Cache Refresh for Google -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="-1" />
-    <meta http-equiv="refresh" content="300" /> <!-- Force refresh every 5 minutes -->
-    <!-- Random version param to force refresh even with persistent caches -->
-    <meta name="version" content="v2025041504-<?php echo rand(10000,99999); ?>" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- Dynamic version to break cache -->
+    <meta name="version" content="v20250416-20" />
     
-    <!-- Canonical URL - EXPLICIT instruction for search engines -->
+    <!-- PŘESMĚROVÁNÍ NA SPRÁVNOU VERZI STRÁNKY - POMŮŽE ODSTRANIT PROBLÉM S CACHOVANÝM FAVICONEM -->
+    <script>
+      // Pokud nejsme na www.pripojeni-poda.cz, přesměruj
+      if (window.location.hostname !== 'www.pripojeni-poda.cz') {
+        window.location.href = 'https://www.pripojeni-poda.cz' + window.location.pathname;
+      }
+    </script>
+    
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://www.pripojeni-poda.cz/" />
     
-    <!-- Favicons with explicit dimensions and forced version param to bypass cache -->
-    <link rel="icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="shortcut icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="apple-touch-icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="mask-icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" color="#0066cc" />
-    <meta name="msapplication-TileImage" content="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <!-- NOVÁ FAVICON KONFIGURACE S VYNUCENÝM OBNOVENÍM -->
+    <!-- Základní favicon s časovou značkou -->
+    <link rel="icon" href="/poda-logo.svg?v=20250416-20" type="image/svg+xml" />
+    <link rel="shortcut icon" href="/poda-logo.svg?v=20250416-20" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/poda-logo.svg?v=20250416-20" />
+    
+    <!-- PNG verze faviconu pro starší prohlížeče -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20" />
+    
+    <!-- Náhrada <meta http-equiv> tagu používající pouze povolené tagy -->
+    <meta name="msapplication-TileImage" content="/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20" />
     <meta name="msapplication-TileColor" content="#0066cc" />
     <meta name="theme-color" content="#0066cc" />
-    <link rel="manifest" href="/manifest.json?v=2025041504" />
     
-    <!-- DNS prefetch and preconnect for faster loading -->
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json?v=20250416-20" />
+    
+    <!-- DNS prefetch -->
     <link rel="dns-prefetch" href="//www.pripojeni-poda.cz" />
     <link rel="preconnect" href="https://www.pripojeni-poda.cz" crossorigin />
     
-    <!-- Alternative links for other URL variants -->
+    <!-- Alternate links -->
     <link rel="alternate" href="https://www.pripojeni-poda.cz/" hreflang="cs" />
     <link rel="alternate" href="https://pripojeni-poda.cz/" hreflang="cs" />
     
-    <!-- Open Graph Tags with explicit favicon image -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.pripojeni-poda.cz/" />
     <meta property="og:title" content="Připojení-PODA.cz | Gigabitový internet a TV" />
     <meta property="og:description" content="Rychlý internet a kvalitní televize za výhodné ceny. Kontaktujte obchodního zástupce Milan Terč pro nejlepší nabídku v Ostravě." />
-    <meta property="og:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <meta property="og:image" content="https://www.pripojeni-poda.cz/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20" />
     <meta property="og:locale" content="cs_CZ" />
     <meta property="og:site_name" content="Připojení-PODA.cz" />
     
-    <!-- Twitter Card Tags with explicit favicon image -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Připojení-PODA.cz | Gigabitový internet a TV" />
     <meta name="twitter:description" content="Rychlý internet a kvalitní televize za výhodné ceny. Kontaktujte obchodního zástupce Milan Terč pro nejlepší nabídku v Ostravě." />
-    <meta name="twitter:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <meta name="twitter:image" content="https://www.pripojeni-poda.cz/lovable-uploads/e90b87ac-5291-43af-9c6b-e25fcefb5fd7.png?v=20250416-20" />
     
-    <!-- Google specific favicon hints -->
+    <!-- Google specifické pokyny -->
     <meta name="google" content="notranslate" />
     <meta name="google-site-verification" content="PODA-verification-2025" />
     
-    <!-- Font preloading for better performance -->
+    <!-- Font preloading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap">
     
-    <!-- Sitemap odkaz pre Google Search Console -->
-    <link rel="sitemap" type="application/xml" href="https://www.pripojeni-poda.cz/sitemap.xml" />
-    
-    <!-- Schema.org markup using JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Připojení-PODA.cz",
-        "url": "https://www.pripojeni-poda.cz",
-        "logo": "https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+420730431313",
-          "contactType": "sales",
-          "availableLanguage": "Czech"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Ostrava - Poruba",
-          "postalCode": "708 00",
-          "streetAddress": "Porubská 944/5",
-          "addressCountry": "CZ"
-        },
-        "sameAs": [
-          "https://www.facebook.com/podacz/",
-          "https://www.instagram.com/poda.cz/",
-          "https://www.linkedin.com/company/poda-a-s-/"
-        ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://www.pripojeni-poda.cz/",
-        "name": "Připojení-PODA.cz",
-        "description": "Gigabitový internet s chytrou TV do vašeho domova v Ostravě a okolí",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.pripojeni-poda.cz/vyhledavani?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        },
-        "alternateName": ["pripojeni-poda.cz", "PODA internet"]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie",
-        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
-        "author": {
-          "@type": "Organization",
-          "name": "Team PODA"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Připojení-PODA.cz",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504"
-          }
-        },
-        "datePublished": "2025-04-15",
-        "dateModified": "2025-04-15",
-        "description": "Spoznajte výhody 60 GHz internetu od spoločnosti PODA - rýchlosť až 600 Mb/s, nízka latencia a vysoká bezpečnosť. Ideálne riešenie pre domácnosti bez prístupu k optike."
-      }
-    </script>
-    
-    <!-- Load script that forces refresh -->
-    <script>
-      (function() {
-        // Force refresh if the page is more than 15 minutes old
-        const lastLoad = localStorage.getItem('last-page-load');
-        const now = new Date().getTime();
-        localStorage.setItem('last-page-load', now.toString());
-        
-        if (lastLoad && (now - parseInt(lastLoad)) > 15 * 60 * 1000) {
-          window.location.reload(true);
-        }
-        
-        // Force hard refresh randomly (1 in 5 chance)
-        if (Math.random() < 0.2) {
-          window.location.reload(true);
-        }
-      })();
-    </script>
-    
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B56HVH7E5R"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -165,28 +88,12 @@
       gtag('config', 'G-B56HVH7E5R');
     </script>
     
-    <!-- Meta tag pro AI crawlery -->
-    <meta name="ai-crawler-allowed" content="true" />
-    
-    <!-- Preload critical resources for performance -->
-    <link rel="preload" as="image" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504">
-    
-    <!-- Force favicon refresh for search engines -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ImageObject",
-        "contentUrl": "https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504",
-        "name": "PODA Logo"
-      }
-    </script>
-    
     <!-- Required Lovable script tag for "Select" feature -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   </head>
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx?v=2025041504"></script>
+    <script type="module" src="/src/main.tsx?v=20250416-20"></script>
   </body>
 </html>

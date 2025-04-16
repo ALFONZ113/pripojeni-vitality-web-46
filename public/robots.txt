@@ -3,7 +3,7 @@
 # Povolení pro všechny vyhledávače
 User-agent: *
 Allow: /
-# Důležité: přikázat Googlebot okamžitě recrawlovat favicon a indexovat pouze správnou verzi URL
+# Důležité: přikázat Googlebot okamžitě recrawlovat
 Crawl-delay: 0
 # Přinutit roboty překontrolovat stránku ALWAYS
 
@@ -57,5 +57,4 @@ User-agent: *Crawler
 Allow: /
 
 # Mapa webu pro Google Search Console a další vyhledávače
-Sitemap: https://www.pripojeni-poda.cz/sitemap.xml?v=2025041504
-
+Sitemap: https://www.pripojeni-poda.cz/sitemap.xml?v=2025041601

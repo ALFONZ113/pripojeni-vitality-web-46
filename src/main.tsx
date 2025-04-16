@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Force clear cache before mounting
+// Vymazání všech cache před montáží
 if ('caches' in window) {
   caches.keys().then((names) => {
     names.forEach(name => {
@@ -12,18 +12,43 @@ if ('caches' in window) {
   });
 }
 
-// Add timestamp to force browser to re-download assets
+// Přidání časové značky, aby se prohlížeč nucen znovu stáhnout prostředky
 const cacheBuster = new Date().getTime();
 document.documentElement.dataset.cacheBuster = cacheBuster.toString();
 
-// Force reload if version mismatch detected
+// Vynucení obnovení při zjištění neodpovídající verze
 const lastVersion = localStorage.getItem('site-version');
-const currentVersion = '2025041504'; // Update this when making significant changes
+const currentVersion = '2025041601'; // Aktualizováno při významných změnách
 localStorage.setItem('site-version', currentVersion);
 
 if (lastVersion && lastVersion !== currentVersion) {
-  console.log('New version detected, forcing reload');
+  console.log('Zjištěna nová verze, vynuceno obnovení');
   window.location.reload();
 }
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Funkce pro ověření, zda byl web plně načten
+function checkFullLoad() {
+  // Kontroluje, zda jsou všechny styly a skripty načteny
+  const allResourcesLoaded = Array.from(document.styleSheets).every(sheet => {
+    try {
+      return sheet.cssRules.length > 0;
+    } catch (e) {
+      return false; // Chyba při přístupu k pravidlům CSS (cross-origin)
+    }
+  });
+
+  if (allResourcesLoaded) {
+    document.body.classList.add('loaded');
+    document.documentElement.classList.add('fonts-loaded');
+  } else {
+    // Zkusit znovu za krátkou dobu
+    setTimeout(checkFullLoad, 50);
+  }
+}
+
+// Spustit ověření načtení po vykreslení aplikace
+const root = createRoot(document.getElementById("root")!);
+root.render(<App />);
+
+// Ověřit plné načtení po vykreslení
+setTimeout(checkFullLoad, 100);

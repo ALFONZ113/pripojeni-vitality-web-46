@@ -9,22 +9,32 @@
     <meta name="keywords" content="PODA, internet, TV, gigabit, optický internet, internetové připojení, televizní programy" />
     <meta name="robots" content="index, follow" />
 
+    <!-- Přednostní načtení stylů pro zabránění FOUC (Flash of Unstyled Content) -->
+    <link rel="stylesheet" href="/src/index.css?v=2025041601" />
+    <style>
+      /* Kritické CSS pro zabránění skoků v layoutu */
+      body { opacity: 0; transition: opacity 0.2s ease-in; }
+      .loaded { opacity: 1; }
+      html { visibility: hidden; }
+      .fonts-loaded { visibility: visible; }
+    </style>
+
     <!-- Ultimate cache busting - FORCE REFRESH -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="-1" />
     <!-- Random version param to force refresh even with persistent caches -->
-    <meta name="version" content="v2025041504-<?php echo rand(10000,99999); ?>" />
+    <meta name="version" content="v2025041601" />
 
     <!-- Favicons with explicit dimensions and forced version param to bypass cache -->
-    <link rel="icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="shortcut icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="apple-touch-icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
-    <link rel="manifest" href="/manifest.json?v=2025041504" />
+    <link rel="icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
+    <link rel="shortcut icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
+    <link rel="apple-touch-icon" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
+    <link rel="manifest" href="/manifest.json?v=2025041601" />
     
     <!-- Canonical URL - EXPLICIT instruction for search engines -->
     <link rel="canonical" href="https://www.pripojeni-poda.cz/" />
@@ -34,14 +44,14 @@
     <meta property="og:url" content="https://www.pripojeni-poda.cz/" />
     <meta property="og:title" content="Připojení-PODA.cz - Gigabitový internet a TV pro váš domov" />
     <meta property="og:description" content="Rychlý a stabilní internet s bohatou nabídkou televizních programů za výjimečnou cenu." />
-    <meta property="og:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <meta property="og:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.pripojeni-poda.cz/" />
     <meta property="twitter:title" content="Připojení-PODA.cz - Gigabitový internet a TV pro váš domov" />
     <meta property="twitter:description" content="Rychlý a stabilní internet s bohatou nabídkou televizních programů za výjimečnou cenu." />
-    <meta property="twitter:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041504" />
+    <meta property="twitter:image" content="https://www.pripojeni-poda.cz/lovable-uploads/034ac388-d914-4b00-bb65-e5f0a83e1527.png?v=2025041601" />
     
     <!-- DNS prefetch and preconnect for faster loading -->
     <link rel="dns-prefetch" href="//www.pripojeni-poda.cz" />
@@ -51,47 +61,49 @@
     <link rel="alternate" href="https://www.pripojeni-poda.cz/" hreflang="cs" />
     <link rel="alternate" href="https://pripojeni-poda.cz/" hreflang="cs" />
     
-    <!-- Load script that forces refresh -->
+    <!-- Font preloading for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap">
+    
+    <!-- Script to handle loading optimization -->
     <script>
-      (function() {
-        // Force refresh if page is loaded from cache
-        if (window.performance && window.performance.navigation.type === 2) {
-          window.location.reload(true);
+      // Přidá třídu 'loaded' po načtení DOM
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('loaded');
+        document.documentElement.classList.add('fonts-loaded');
+        
+        // Agresivní odstranění cache
+        function generateCacheBuster() {
+          return 'v' + Date.now() + Math.random().toString(36).substring(2);
         }
         
-        // Random version to prevent caching
-        window.__version = new Date().getTime() + Math.random().toString(36).substring(2);
+        // Přidání parametrů verze ke všem CSS a JS souborům
+        const cacheBuster = generateCacheBuster();
         
-        // Clear all caches
-        if ('caches' in window) {
-          caches.keys().then(function(names) {
-            names.forEach(function(name) {
-              caches.delete(name);
-            });
-          });
-        }
-        
-        // Add random parameter to all resource URLs
-        document.addEventListener('DOMContentLoaded', function() {
-          var links = document.getElementsByTagName('link');
-          var scripts = document.getElementsByTagName('script');
-          
-          function addRandomParam(element, attr) {
-            var value = element.getAttribute(attr);
-            if (value && !value.includes('v=20250415')) {
-              element.setAttribute(attr, value + (value.includes('?') ? '&' : '?') + 'v=' + window.__version);
-            }
-          }
-          
-          for (var i = 0; i < links.length; i++) {
-            addRandomParam(links[i], 'href');
-          }
-          
-          for (var j = 0; j < scripts.length; j++) {
-            addRandomParam(scripts[j], 'src');
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(function(link) {
+          const href = link.getAttribute('href');
+          if (href && !href.includes('v=202504')) {
+            link.setAttribute('href', href + (href.includes('?') ? '&' : '?') + 'v=' + cacheBuster);
           }
         });
-      })();
+        
+        document.querySelectorAll('script[src]').forEach(function(script) {
+          const src = script.getAttribute('src');
+          if (src && !src.includes('v=202504')) {
+            script.setAttribute('src', src + (src.includes('?') ? '&' : '?') + 'v=' + cacheBuster);
+          }
+        });
+        
+        // Force hard refresh after 15 minutes
+        const lastRefresh = localStorage.getItem('last-refresh-time');
+        const now = Date.now();
+        localStorage.setItem('last-refresh-time', now);
+        
+        if (lastRefresh && (now - parseInt(lastRefresh)) > 15 * 60 * 1000) {
+          window.location.reload();
+        }
+      });
     </script>
     
     <!-- Required Lovable script tag for "Select" feature -->
@@ -99,6 +111,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx?v=2025041504"></script>
+    <script type="module" src="/src/main.tsx?v=2025041601"></script>
   </body>
 </html>

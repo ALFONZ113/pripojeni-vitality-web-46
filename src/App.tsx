@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -107,7 +106,6 @@ const App = () => {
             <main>
               <Routes>
                 <Route path="/" element={<Index />} />
-                {/* Zajistíme, že internet-tv se zobrazí jen když uživatel klikne přímo na tento odkaz */}
                 <Route path="/internet-tv" element={<InternetTV />} />
                 <Route path="/programy" element={<TvPrograms />} />
                 <Route path="/blog" element={<Blog />} />

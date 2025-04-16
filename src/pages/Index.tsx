@@ -17,19 +17,6 @@ const Index = () => {
     // Scroll na začátek při mount komponentu
     window.scrollTo(0, 0);
     
-    // Vynucené obnovení, pokud stránka byla načtena z cache
-    const pageLoadTime = sessionStorage.getItem('index-page-load-time');
-    const currentTime = new Date().getTime();
-    sessionStorage.setItem('index-page-load-time', currentTime.toString());
-    
-    if (pageLoadTime) {
-      const timeDiff = currentTime - parseInt(pageLoadTime);
-      // Pokud stránka byla načtena před více než 5 minutami, obnovit
-      if (timeDiff > 5 * 60 * 1000) {
-        window.location.reload();
-      }
-    }
-    
     // Kontrola reálného načtení zdrojů a nastavení stavu
     const checkIfFullyLoaded = () => {
       // Ověření, že všechny obrázky jsou načteny
@@ -47,14 +34,8 @@ const Index = () => {
     // Spustit kontrolu po krátké prodlevě
     setTimeout(checkIfFullyLoaded, 200);
     
-    // Naplánovat vynucené obnovení po 30 minutách
-    const refreshTimeout = setTimeout(() => {
-      window.location.reload();
-    }, 30 * 60 * 1000);
-    
     return () => {
       cleanupAnimation();
-      clearTimeout(refreshTimeout);
     };
   }, []);
 

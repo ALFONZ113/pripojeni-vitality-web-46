@@ -3,28 +3,9 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Vymazání všech cache před montáží
-if ('caches' in window) {
-  caches.keys().then((names) => {
-    names.forEach(name => {
-      caches.delete(name);
-    });
-  });
-}
-
-// Přidání časové značky, aby se prohlížeč nucen znovu stáhnout prostředky
+// Přidání časové značky
 const cacheBuster = new Date().getTime();
 document.documentElement.dataset.cacheBuster = cacheBuster.toString();
-
-// Vynucení obnovení při zjištění neodpovídající verze
-const lastVersion = localStorage.getItem('site-version');
-const currentVersion = '2025041601'; // Aktualizováno při významných změnách
-localStorage.setItem('site-version', currentVersion);
-
-if (lastVersion && lastVersion !== currentVersion) {
-  console.log('Zjištěna nová verze, vynuceno obnovení');
-  window.location.reload();
-}
 
 // Funkce pro ověření, zda byl web plně načten
 function checkFullLoad() {
@@ -46,7 +27,7 @@ function checkFullLoad() {
   }
 }
 
-// Spustit ověření načtení po vykreslení aplikace
+// Spustit vykreslení aplikace
 const root = createRoot(document.getElementById("root")!);
 root.render(<App />);
 

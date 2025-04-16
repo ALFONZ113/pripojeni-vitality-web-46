@@ -1,7 +1,6 @@
 
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -97,39 +96,37 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
+      <BrowserRouter>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              {/* Zajistíme, že internet-tv se zobrazí jen když uživatel klikne přímo na tento odkaz */}
-              <Route path="/internet-tv" element={<InternetTV />} />
-              <Route path="/programy" element={<TvPrograms />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogPost />} />
-              <Route path="/blog/60ghz-internet" element={<BlogPost60GHz />} />
-              <Route path="/kontakt" element={<Contact />} />
-              
-              {/* Přesměrování pro případné staré nebo nesprávné URL adresy */}
-              <Route path="/internet" element={<Navigate to="/" replace />} />
-              <Route path="/tv" element={<Navigate to="/" replace />} />
-              <Route path="/internet-tv/*" element={<Navigate to="/" replace />} />
-              
-              {/* Přesměrování pro neplatné URL formáty */}
-              <Route path="/wwwpripojeni-poda.cz/*" element={<Navigate to="/" replace />} />
-              <Route path="/https:/*" element={<Navigate to="/" replace />} />
-              <Route path="/https/*" element={<Navigate to="/" replace />} />
-              
-              {/* Catch-all - pokud uživatel zadá neexistující URL adresu */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </BrowserRouter>
-      </TooltipProvider>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            {/* Zajistíme, že internet-tv se zobrazí jen když uživatel klikne přímo na tento odkaz */}
+            <Route path="/internet-tv" element={<InternetTV />} />
+            <Route path="/programy" element={<TvPrograms />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/blog/60ghz-internet" element={<BlogPost60GHz />} />
+            <Route path="/kontakt" element={<Contact />} />
+            
+            {/* Přesměrování pro případné staré nebo nesprávné URL adresy */}
+            <Route path="/internet" element={<Navigate to="/" replace />} />
+            <Route path="/tv" element={<Navigate to="/" replace />} />
+            <Route path="/internet-tv/*" element={<Navigate to="/" replace />} />
+            
+            {/* Přesměrování pro neplatné URL formáty */}
+            <Route path="/wwwpripojeni-poda.cz/*" element={<Navigate to="/" replace />} />
+            <Route path="/https:/*" element={<Navigate to="/" replace />} />
+            <Route path="/https/*" element={<Navigate to="/" replace />} />
+            
+            {/* Catch-all - pokud uživatel zadá neexistující URL adresu */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
     </QueryClientProvider>
   );
 };

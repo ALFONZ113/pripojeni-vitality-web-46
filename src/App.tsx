@@ -19,6 +19,11 @@ import BlogPost60GHz from "./pages/BlogPost60GHz";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
+// Právní stránky
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import CookiesPolicy from "./pages/CookiesPolicy";
+
 // Nové stránky pro mestá
 import InternetOstrava from "./pages/cities/InternetOstrava";
 import InternetKarvina from "./pages/cities/InternetKarvina";
@@ -52,6 +57,11 @@ const App = () => {
                 <Route path="/blog/:id" element={<BlogPost />} />
                 <Route path="/blog/60ghz-internet" element={<BlogPost60GHz />} />
                 <Route path="/kontakt" element={<Contact />} />
+                
+                {/* Právní stránky */}
+                <Route path="/ochrana-soukromi" element={<PrivacyPolicy />} />
+                <Route path="/obchodni-podminky" element={<TermsConditions />} />
+                <Route path="/cookies" element={<CookiesPolicy />} />
                 
                 {/* Nové stránky pre mestá */}
                 <Route path="/internet-ostrava" element={<InternetOstrava />} />

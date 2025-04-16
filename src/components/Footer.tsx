@@ -112,9 +112,9 @@ const Footer = () => {
               &copy; {currentYear} Připojení-PODA.cz. Všechna práva vyhrazena.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-200">
-              <a href="/ochrana-soukromi" className="hover:text-poda-orange transition-colors">Ochrana soukromí</a>
-              <a href="/obchodni-podminky" className="hover:text-poda-orange transition-colors">Obchodní podmínky</a>
-              <a href="/cookies" className="hover:text-poda-orange transition-colors">Cookies</a>
+              <Link to="/ochrana-soukromi" className="hover:text-poda-orange transition-colors">Ochrana soukromí</Link>
+              <Link to="/obchodni-podminky" className="hover:text-poda-orange transition-colors">Obchodní podmínky</Link>
+              <Link to="/cookies" className="hover:text-poda-orange transition-colors">Cookies</Link>
             </div>
           </div>
           

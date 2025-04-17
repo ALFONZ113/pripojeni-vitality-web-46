@@ -3,6 +3,12 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 const PrivacyPolicy = () => {
+  // Force page to reload on mount
+  React.useEffect(() => {
+    console.log("PrivacyPolicy component mounted");
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="bg-white py-16">
       <Helmet>

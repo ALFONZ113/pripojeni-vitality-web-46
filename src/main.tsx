@@ -27,10 +27,28 @@ const forceCacheUpdate = () => {
     const newUrl = window.location.href + separator + 'cache=' + new Date().getTime();
     window.history.replaceState(null, document.title, newUrl);
   }
+  
+  // Clear any localStorage cache that might be affecting the app
+  const cacheKeys = Object.keys(localStorage).filter(key => key.includes('cache') || key.includes('route'));
+  cacheKeys.forEach(key => localStorage.removeItem(key));
+  
+  // Force a hard reload if needed
+  if (window.performance && window.performance.navigation.type === 1) {
+    console.log('Page was reloaded, clearing cache...');
+    caches.keys().then(names => {
+      names.forEach(name => {
+        console.log('Deleting cache:', name);
+        caches.delete(name);
+      });
+    });
+  }
 };
 
 // Run the cache update on load
 forceCacheUpdate();
+
+// Add event listener for route changes
+window.addEventListener('popstate', forceCacheUpdate);
 
 // Render the application
 const root = createRoot(document.getElementById("root")!);

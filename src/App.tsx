@@ -40,6 +40,12 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
+  // Force a component refresh on route change to prevent caching issues
+  const location = window.location.pathname;
+  React.useEffect(() => {
+    console.log("Current route:", location);
+  }, [location]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

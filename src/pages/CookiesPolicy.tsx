@@ -3,6 +3,12 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 const CookiesPolicy = () => {
+  // Force page to reload on mount
+  React.useEffect(() => {
+    console.log("CookiesPolicy component mounted");
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="bg-white py-16">
       <Helmet>

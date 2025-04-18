@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   // Zjistíme aktuální cestu pro označení aktivního odkazu
   const isActivePath = (path: string) => {
@@ -34,11 +35,29 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
   
+  // Custom navigation handler to preserve edit state
+  const handleNavigation = (path: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    // Save the current edit state if needed
+    if (window.__LOVABLE_EDIT_MODE) {
+      sessionStorage.setItem('editState', JSON.stringify({
+        path: location.pathname,
+        timestamp: Date.now()
+      }));
+    }
+    navigate(path);
+  };
+  
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`} role="banner">
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Připojení-PODA.cz - Domovská stránka">
+        <Link 
+          to="/" 
+          className="text-2xl font-bold text-poda-blue flex items-center" 
+          aria-label="Připojení-PODA.cz - Domovská stránka"
+          onClick={(e) => handleNavigation('/', e)}
+        >
           <span className="text-poda-orange">P</span>řipojení-<span className="text-poda-blue">PODA</span>
           <span className="text-poda-orange">.cz</span>
         </Link>
@@ -49,6 +68,7 @@ const Navbar = () => {
             to="/" 
             className={`${isActivePath('/') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors`}
             aria-current={isActivePath('/') ? 'page' : undefined}
+            onClick={(e) => handleNavigation('/', e)}
           >
             Domů
           </Link>
@@ -56,6 +76,7 @@ const Navbar = () => {
             to="/internet-tv" 
             className={`${isActivePath('/internet-tv') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors flex items-center`}
             aria-current={isActivePath('/internet-tv') ? 'page' : undefined}
+            onClick={(e) => handleNavigation('/internet-tv', e)}
           >
             <Wifi className="mr-1 h-4 w-4" aria-hidden="true" /> Internet & TV
           </Link>
@@ -63,6 +84,7 @@ const Navbar = () => {
             to="/programy" 
             className={`${isActivePath('/programy') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors flex items-center`}
             aria-current={isActivePath('/programy') ? 'page' : undefined}
+            onClick={(e) => handleNavigation('/programy', e)}
           >
             <Tv className="mr-1 h-4 w-4" aria-hidden="true" /> TV Programy
           </Link>
@@ -70,6 +92,7 @@ const Navbar = () => {
             to="/blog" 
             className={`${isActivePath('/blog') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors flex items-center`}
             aria-current={isActivePath('/blog') ? 'page' : undefined}
+            onClick={(e) => handleNavigation('/blog', e)}
           >
             <FileText className="mr-1 h-4 w-4" aria-hidden="true" /> Blog
           </Link>
@@ -77,6 +100,7 @@ const Navbar = () => {
             to="/kontakt" 
             className={`${isActivePath('/kontakt') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors flex items-center`}
             aria-current={isActivePath('/kontakt') ? 'page' : undefined}
+            onClick={(e) => handleNavigation('/kontakt', e)}
           >
             <MessageSquare className="mr-1 h-4 w-4" aria-hidden="true" /> Kontakt
           </Link>
@@ -88,7 +112,13 @@ const Navbar = () => {
             <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
             +420 730 431 313
           </a>
-          <Link to="/kontakt" className="btn-secondary">Kontakt</Link>
+          <Link 
+            to="/kontakt" 
+            className="btn-secondary"
+            onClick={(e) => handleNavigation('/kontakt', e)}
+          >
+            Kontakt
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -115,6 +145,7 @@ const Navbar = () => {
               to="/" 
               className={`${isActivePath('/') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium text-xl transition-colors`}
               aria-current={isActivePath('/') ? 'page' : undefined}
+              onClick={(e) => handleNavigation('/', e)}
             >
               Domů
             </Link>
@@ -122,6 +153,7 @@ const Navbar = () => {
               to="/internet-tv" 
               className={`${isActivePath('/internet-tv') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium text-xl transition-colors flex items-center`}
               aria-current={isActivePath('/internet-tv') ? 'page' : undefined}
+              onClick={(e) => handleNavigation('/internet-tv', e)}
             >
               <Wifi className="mr-2 h-5 w-5" aria-hidden="true" /> Internet & TV
             </Link>
@@ -129,6 +161,7 @@ const Navbar = () => {
               to="/programy" 
               className={`${isActivePath('/programy') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium text-xl transition-colors flex items-center`}
               aria-current={isActivePath('/programy') ? 'page' : undefined}
+              onClick={(e) => handleNavigation('/programy', e)}
             >
               <Tv className="mr-2 h-5 w-5" aria-hidden="true" /> TV Programy
             </Link>
@@ -136,6 +169,7 @@ const Navbar = () => {
               to="/blog" 
               className={`${isActivePath('/blog') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium text-xl transition-colors flex items-center`}
               aria-current={isActivePath('/blog') ? 'page' : undefined}
+              onClick={(e) => handleNavigation('/blog', e)}
             >
               <FileText className="mr-2 h-5 w-5" aria-hidden="true" /> Blog
             </Link>
@@ -143,6 +177,7 @@ const Navbar = () => {
               to="/kontakt" 
               className={`${isActivePath('/kontakt') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium text-xl transition-colors flex items-center`}
               aria-current={isActivePath('/kontakt') ? 'page' : undefined}
+              onClick={(e) => handleNavigation('/kontakt', e)}
             >
               <MessageSquare className="mr-2 h-5 w-5" aria-hidden="true" /> Kontakt
             </Link>
@@ -152,7 +187,11 @@ const Navbar = () => {
                 <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
                 +420 730 431 313
               </a>
-              <Link to="/kontakt" className="btn-secondary w-full flex justify-center">
+              <Link 
+                to="/kontakt" 
+                className="btn-secondary w-full flex justify-center"
+                onClick={(e) => handleNavigation('/kontakt', e)}
+              >
                 Kontaktovat Milana
               </Link>
             </div>

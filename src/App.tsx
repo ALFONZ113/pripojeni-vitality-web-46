@@ -48,13 +48,40 @@ const RouteTracker = () => {
     // Force scroll to top on route change
     window.scrollTo(0, 0);
     
-    // Clear any potential cache issues
-    sessionStorage.removeItem('lastEditPath');
+    // Check for saved edit state
+    const editStateJson = sessionStorage.getItem('editState');
+    if (editStateJson) {
+      try {
+        const editState = JSON.parse(editStateJson);
+        console.log('Detected edit state:', editState);
+        
+        // If the edit state is for a different path, clear it
+        if (editState.path !== location.pathname) {
+          console.log('Edit state path mismatch, clearing...');
+          sessionStorage.removeItem('editState');
+        }
+        
+        // If the edit state is older than 5 minutes, clear it
+        const timeNow = Date.now();
+        if (timeNow - editState.timestamp > 5 * 60 * 1000) {
+          console.log('Edit state expired, clearing...');
+          sessionStorage.removeItem('editState');
+        }
+      } catch (e) {
+        console.error('Error parsing edit state', e);
+        sessionStorage.removeItem('editState');
+      }
+    }
     
     // Add cache busting parameter to the URL
     const url = new URL(window.location.href);
     url.searchParams.set('cache_bust', Date.now().toString());
     window.history.replaceState({}, '', url.toString());
+    
+    // Ensure edit mode flag is properly set
+    if (window.__LOVABLE_EDIT_MODE) {
+      document.body.setAttribute('data-edit-mode', 'true');
+    }
   }, [location]);
   
   return null;

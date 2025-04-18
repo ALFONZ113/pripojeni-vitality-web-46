@@ -2,7 +2,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import * as React from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -39,13 +39,28 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => {
-  // Force a component refresh on route change to prevent caching issues
-  const location = window.location.pathname;
+// Create a RouteTracker component to log and handle route changes
+const RouteTracker = () => {
+  const location = useLocation();
+  
   React.useEffect(() => {
-    console.log("Current route:", location);
+    console.log("Current route:", location.pathname);
+    // Force scroll to top on route change
+    window.scrollTo(0, 0);
+    
+    // Clear any potential cache issues
+    sessionStorage.removeItem('lastEditPath');
+    
+    // Add cache busting parameter to the URL
+    const url = new URL(window.location.href);
+    url.searchParams.set('cache_bust', Date.now().toString());
+    window.history.replaceState({}, '', url.toString());
   }, [location]);
+  
+  return null;
+};
 
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -53,6 +68,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <Navbar />
+          <RouteTracker />
           <main>
             <Routes>
               <Route path="/" element={<Index />} />

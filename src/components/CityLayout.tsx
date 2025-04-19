@@ -1,7 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, MapPin, Wifi, Tv } from 'lucide-react';
 import { makeEditable, useEditableContent, isEditMode } from '../utils/editMode';
+import { useToast } from '@/hooks/use-toast';
 
 type CityLayoutProps = {
   cityName: string;
@@ -24,20 +26,24 @@ const CityLayout: React.FC<CityLayoutProps> = ({
   benefits,
   prices
 }) => {
+  // For toast notifications
+  const { toast } = useToast();
+  
   // State to track whether edit elements have been initialized
   const [editInitialized, setEditInitialized] = useState(false);
   
-  // For editable elements
+  // For editable elements with better refs management
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const internetPriceRef = useRef<HTMLSpanElement>(null);
   const tvPriceRef = useRef<HTMLSpanElement>(null);
   const comboPriceRef = useRef<HTMLSpanElement>(null);
   
-  // Get editable content
-  const editableDescription = useEditableContent(`${cityName.toLowerCase()}-description`, cityDescription);
-  const editableInternetPrice = useEditableContent(`${cityName.toLowerCase()}-internet-price`, prices.internet);
-  const editableTvPrice = useEditableContent(`${cityName.toLowerCase()}-tv-price`, prices.tv);
-  const editableComboPrice = useEditableContent(`${cityName.toLowerCase()}-combo-price`, prices.combo);
+  // Get editable content with more descriptive keys
+  const cityKey = cityName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  const editableDescription = useEditableContent(`${cityKey}-description`, cityDescription);
+  const editableInternetPrice = useEditableContent(`${cityKey}-internet-price`, prices.internet);
+  const editableTvPrice = useEditableContent(`${cityKey}-tv-price`, prices.tv);
+  const editableComboPrice = useEditableContent(`${cityKey}-combo-price`, prices.combo);
 
   console.log(`CityLayout rendering for ${cityName} with prices:`, {
     internet: editableInternetPrice,
@@ -45,7 +51,52 @@ const CityLayout: React.FC<CityLayoutProps> = ({
     combo: editableComboPrice
   });
 
-  // Update metadata for SEO
+  // Improved function to make elements editable
+  const initializeEditableElements = useCallback(() => {
+    console.log(`Initializing editable elements for: ${cityName}`);
+    
+    // Make description editable
+    if (descriptionRef.current) {
+      makeEditable(descriptionRef.current, `${cityKey}-description`);
+    } else {
+      console.warn(`Description ref not found for ${cityName}`);
+    }
+    
+    // Make internet price editable
+    if (internetPriceRef.current) {
+      makeEditable(internetPriceRef.current, `${cityKey}-internet-price`);
+    } else {
+      console.warn(`Internet price ref not found for ${cityName}`);
+    }
+    
+    // Make TV price editable
+    if (tvPriceRef.current) {
+      makeEditable(tvPriceRef.current, `${cityKey}-tv-price`);
+    } else {
+      console.warn(`TV price ref not found for ${cityName}`);
+    }
+    
+    // Make combo price editable
+    if (comboPriceRef.current) {
+      makeEditable(comboPriceRef.current, `${cityKey}-combo-price`);
+    } else {
+      console.warn(`Combo price ref not found for ${cityName}`);
+    }
+    
+    setEditInitialized(true);
+    console.log(`Editable elements initialized for: ${cityName}`);
+    
+    // Show toast confirmation in edit mode
+    if (isEditMode()) {
+      toast({
+        title: "Edit mód je aktivní",
+        description: `Klikněte na zvýrazněné prvky pro úpravu obsahu v ${cityName}.`,
+        duration: 5000,
+      });
+    }
+  }, [cityName, cityKey, toast]);
+
+  // Update metadata for SEO and initialize editable elements
   useEffect(() => {
     document.title = metaTitle;
     
@@ -58,61 +109,43 @@ const CityLayout: React.FC<CityLayoutProps> = ({
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
     
-    // Make elements editable
-    const initEditables = () => {
-      console.log(`Initializing editable elements for: ${cityName}`);
-      
-      if (descriptionRef.current) {
-        makeEditable(descriptionRef.current, `${cityName.toLowerCase()}-description`);
-      } else {
-        console.warn(`Description ref not found for ${cityName}`);
-      }
-      
-      if (internetPriceRef.current) {
-        makeEditable(internetPriceRef.current, `${cityName.toLowerCase()}-internet-price`);
-      } else {
-        console.warn(`Internet price ref not found for ${cityName}`);
-      }
-      
-      if (tvPriceRef.current) {
-        makeEditable(tvPriceRef.current, `${cityName.toLowerCase()}-tv-price`);
-      } else {
-        console.warn(`TV price ref not found for ${cityName}`);
-      }
-      
-      if (comboPriceRef.current) {
-        makeEditable(comboPriceRef.current, `${cityName.toLowerCase()}-combo-price`);
-      } else {
-        console.warn(`Combo price ref not found for ${cityName}`);
-      }
-      
-      setEditInitialized(true);
-      console.log(`Editable elements initialized for: ${cityName}`);
-    };
+    // Reset edit initialization state when component updates
+    setEditInitialized(false);
     
-    // Initialize after a delay to ensure refs are populated
-    const timer = setTimeout(initEditables, 500);
+    // Initialize editable elements after a short delay to ensure refs are populated
+    const timer = setTimeout(() => {
+      initializeEditableElements();
+    }, 300);
     
     return () => {
       clearTimeout(timer);
     };
-  }, [cityName, metaTitle, metaDescription]);
+  }, [cityName, metaTitle, metaDescription, initializeEditableElements]);
   
-  // Add a listener for the lovableContentSaved event
+  // Add a listener for the content saved event
   useEffect(() => {
     const handleContentSaved = (event: CustomEvent) => {
       console.log('Content saved event detected:', event.detail);
-      // Force re-render when content is saved
+      
+      // Show confirmation toast
+      toast({
+        title: "Změny uloženy",
+        description: `Upravený obsah pro ${cityName} byl úspěšně uložen.`,
+        duration: 3000,
+      });
+      
+      // Force re-initialization of editable elements
       setEditInitialized(false);
-      setTimeout(() => setEditInitialized(true), 100);
+      setTimeout(() => initializeEditableElements(), 100);
     };
     
+    // Add event listener with correct typing
     window.addEventListener('lovableContentSaved', handleContentSaved as EventListener);
     
     return () => {
       window.removeEventListener('lovableContentSaved', handleContentSaved as EventListener);
     };
-  }, []);
+  }, [cityName, initializeEditableElements, toast]);
   
   // Debug if edit mode is active
   const editModeActive = isEditMode();

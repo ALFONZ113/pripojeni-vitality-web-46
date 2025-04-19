@@ -42,12 +42,13 @@ const blogPosts = [
         <li><strong>Dosah</strong>: Optika nemá prakticky obmedzenia v dosahu, 60 GHz je limitované na stovky metrov</li>
       </ul>
       
-      <p>Pre koncových užívateľov predstavuje 60 GHz technológia výbornú alternatívu k optike, najmä v lokalitách, kde optické siete nie sú dostupné.</p>
+      <p>Pre koncových užívateľov predstavuje 60 GHz technológia výbornou alternatívu k optike, najmä v lokalitách, kde optické siete nie sú dostupné.</p>
     `,
     date: '10. 4. 2025',
     author: 'Tým PODA',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?q=80&w=2070&auto=format&fit=crop'
+    image: '/lovable-uploads/b0b30d37-5c6d-4a95-9df6-55d891426ddf.png',
+    alt: 'Vizualizácia 60 GHz internetového pripojenia v modernej bytovej zástavbe'
   },
   {
     id: 1,
@@ -60,7 +61,7 @@ const blogPosts = [
       <ul>
         <li><strong>Vyšší rychlosti</strong> - GPON umožňuje symetrické rychlosti až 1000/1000 Mbps, což je ideální pro streamování, hraní her a práci z domova.</li>
         <li><strong>Nížší latence</strong> - Optické připojení má výrazně nižší odezvu než jiné typy připojení, což oceníte zejména při online hrách nebo videokonferencích.</li>
-        <li><strong>Vysoká spolehlivost</strong> - Optické vlákno není ovlivněno elektromagnetickým rušením a nabízí stabilní připojení i při špatném počasí.</li>
+        <li><strong>Vysoká spolehlivost</strong> - Optická vlákno není ovlivněno elektromagnetickým rušením a nabízí stabilní připojení i při špatném počasí.</li>
         <li><strong>Dlouhá životnost</strong> - Optická infrastruktura má dlouhou životnost a je připravena na budoucí technologické nároky.</li>
       </ul>
       

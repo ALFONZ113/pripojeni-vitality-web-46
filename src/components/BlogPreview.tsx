@@ -9,8 +9,8 @@ const blogPosts = [
     date: '10. 4. 2025',
     author: 'Tým PODA',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?q=80&w=2070&auto=format&fit=crop',
-    alt: 'Bezdrôtová anténa pre 60 GHz pripojenie'
+    image: '/lovable-uploads/b0b30d37-5c6d-4a95-9df6-55d891426ddf.png',
+    alt: 'Vizualizácia 60 GHz internetového pripojenia v modernej bytovej zástavbe'
   },
   {
     id: 7,

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import TariffCard from './tariffs/TariffCard';
 import TariffTabs from './tariffs/TariffTabs';
+import { tariffConfig } from '../config/tariffConfig';
 
 const TariffSection = () => {
   const [activeTab, setActiveTab] = useState('byty');
@@ -24,95 +25,6 @@ const TariffSection = () => {
     }));
   };
 
-  const tariffData = {
-    byty: [
-      {
-        title: 'Internet + TV Basic',
-        price: '250',
-        deviceFee: '50',
-        features: [
-          {
-            title: 'Internet 1000/1000 Mbps',
-            description: 'Symetrická rychlost pomocí GPON technologie',
-          },
-          {
-            title: 'Více než 85 TV programů',
-            description: 'Automaticky v ceně',
-          },
-          {
-            title: 'Služba PODA net.TV',
-            description: 'Až pro 4 zařízení',
-          },
-        ],
-        promoDescription: 'Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 440 Kč/měsíc.',
-      },
-      {
-        title: 'Internet + TV Mých 10',
-        price: '390',
-        deviceFee: '50',
-        isRecommended: true,
-        features: [
-          {
-            title: 'Internet 1000/1000 Mbps',
-            description: 'Symetrická rychlost pomocí GPON technologie',
-          },
-          {
-            title: 'Více než 100 TV programů',
-            description: 'Možnost výběru 10 vlastních stanic',
-          },
-          {
-            title: 'Služba PODA net.TV',
-            description: 'Až pro 4 zařízení',
-          },
-        ],
-        promoDescription: 'Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 520 Kč/měsíc.',
-      },
-    ],
-    domy: [
-      {
-        title: 'Internet + TV Basic',
-        price: '250',
-        deviceFee: '50',
-        features: [
-          {
-            title: 'Internet 500/200 Mbps',
-            description: 'Bezdrátový internet s rychlostí optického',
-          },
-          {
-            title: 'Více než 85 TV programů',
-            description: 'Automaticky v ceně',
-          },
-          {
-            title: 'Služba PODA net.TV',
-            description: 'Až pro 4 zařízení',
-          },
-        ],
-        promoDescription: 'Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 440 Kč/měsíc.',
-      },
-      {
-        title: 'Internet + TV Mých 10',
-        price: '390',
-        deviceFee: '50',
-        isRecommended: true,
-        features: [
-          {
-            title: 'Internet 500/200 Mbps',
-            description: 'Bezdrátový internet s rychlostí optického',
-          },
-          {
-            title: 'Více než 100 TV programů',
-            description: 'Možnost výběru 10 vlastních stanic',
-          },
-          {
-            title: 'Služba PODA net.TV',
-            description: 'Až pro 4 zařízení',
-          },
-        ],
-        promoDescription: 'Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 520 Kč/měsíc.',
-      },
-    ],
-  };
-
   return (
     <section className="section-padding bg-gradient-to-b from-white to-blue-50" id="tarify">
       <div className="container-custom">
@@ -132,7 +44,7 @@ const TariffSection = () => {
         <TariffTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {tariffData[activeTab as keyof typeof tariffData].map((tariff, index) => (
+          {tariffConfig[activeTab as keyof typeof tariffConfig].map((tariff, index) => (
             <TariffCard
               key={`${activeTab}-${index}`}
               {...tariff}

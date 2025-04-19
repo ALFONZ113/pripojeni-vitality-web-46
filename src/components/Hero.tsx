@@ -1,4 +1,3 @@
-
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -86,12 +85,12 @@ const Hero = () => {
               variants={item} 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Link to="/internet-tv" className="btn-primary group transition-all" aria-label="Získejte internet PODA">
-                Akční nabídka internetu
+              <Link to="/tarify" className="btn-primary group transition-all" aria-label="Zobrazit tarify internetu">
+                Tarify
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
-              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktujte nás pro nejlepší nabídku">
-                Nezávazná kalkulace
+              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktujte nás pro nezávaznou konzultaci">
+                Kontakt
               </Link>
             </motion.div>
           </div>

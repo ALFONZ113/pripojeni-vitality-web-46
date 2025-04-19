@@ -8,16 +8,24 @@ interface TariffFeature {
   description: string;
 }
 
+// Define the expected shape of the openPromoInfo object
+interface PromoInfoState {
+  bytyBasic: boolean;
+  bytyMych10: boolean;
+  domyBasic: boolean;
+  domyMych10: boolean;
+}
+
 interface TariffCardProps {
   title: string;
   price: string;
   priceNote: string;
-  promoId: keyof typeof openPromoInfo;
+  promoId: keyof PromoInfoState;
   isPromo?: boolean;
   isRecommended?: boolean;
   features: TariffFeature[];
-  openPromoInfo: Record<string, boolean>;
-  onPromoInfoToggle: (tariff: string) => void;
+  openPromoInfo: PromoInfoState;
+  onPromoInfoToggle: (tariff: keyof PromoInfoState) => void;
   promoInfoText: string;
 }
 

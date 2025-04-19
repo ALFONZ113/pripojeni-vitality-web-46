@@ -1,23 +1,26 @@
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
 const Hero = () => {
   const container = {
-    hidden: { opacity: 0 },
+    hidden: {
+      opacity: 0
+    },
     show: {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.3,
+        delayChildren: 0.3
       }
     }
   };
-
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
+    hidden: {
+      opacity: 0,
+      y: 20
+    },
+    show: {
+      opacity: 1,
       y: 0,
       transition: {
         ease: "easeOut",
@@ -25,7 +28,6 @@ const Hero = () => {
       }
     }
   };
-
   const featureCardVariants = {
     offscreen: {
       y: 50,
@@ -42,9 +44,7 @@ const Hero = () => {
       }
     })
   };
-
-  return (
-    <section className="relative pt-32 pb-24 overflow-hidden" aria-labelledby="hero-title">
+  return <section className="relative pt-32 pb-24 overflow-hidden" aria-labelledby="hero-title">
       <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-white"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iI0YwRjdGRiIgc3Ryb2tlLXdpZHRoPSIxIiBjeD0iMTAiIGN5PSIxMCIgcj0iMyIvPjwvZz48L3N2Zz4=')] opacity-40"></div>
@@ -53,38 +53,20 @@ const Hero = () => {
       </div>
 
       <div className="container-custom relative z-10">
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-          initial="hidden"
-          animate="show"
-          variants={container}
-        >
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" initial="hidden" animate="show" variants={container}>
           <div className="text-center lg:text-left">
-            <motion.span 
-              variants={item} 
-              className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4"
-            >
+            <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
               Získejte spolehlivý internet PODA s nejlepší cenou na trhu
             </motion.span>
-            <motion.h1 
-              id="hero-title"
-              variants={item} 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
-            >
+            <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
               Rychlý gigabitový internet<br />
-              s <span className="text-poda-orange">chytrou televizí ZDARMA</span>
+              s <span className="text-poda-orange">chytrou televizí </span>
             </motion.h1>
-            <motion.p 
-              variants={item} 
-              className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
-            >
+            <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
               Připojte se k nejmodernější optické síti PODA s garantovanou rychlostí až 1000 Mbps. 
               Vyzkoušejte stabilní připojení bez výpadků a užijte si neomezené sledování TV.
             </motion.p>
-            <motion.div 
-              variants={item} 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">
                 Prozkoumat nabídku
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -100,14 +82,10 @@ const Hero = () => {
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
             
             <div className="relative space-y-6">
-              <motion.article 
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{ once: true, amount: 0.2 }}
-                custom={0}
-                variants={featureCardVariants}
-                className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all"
-              >
+              <motion.article initial="offscreen" whileInView="onscreen" viewport={{
+              once: true,
+              amount: 0.2
+            }} custom={0} variants={featureCardVariants} className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all">
                 <div className="flex items-start">
                   <div className="bg-poda-blue/10 p-3 rounded-lg mr-4 flex items-center justify-center" aria-hidden="true">
                     <Wifi className="h-6 w-6 text-poda-blue" />
@@ -119,14 +97,10 @@ const Hero = () => {
                 </div>
               </motion.article>
               
-              <motion.article 
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{ once: true, amount: 0.2 }}
-                custom={1}
-                variants={featureCardVariants}
-                className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all ml-6"
-              >
+              <motion.article initial="offscreen" whileInView="onscreen" viewport={{
+              once: true,
+              amount: 0.2
+            }} custom={1} variants={featureCardVariants} className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all ml-6">
                 <div className="flex items-start">
                   <div className="bg-poda-orange/10 p-3 rounded-lg mr-4 flex items-center justify-center" aria-hidden="true">
                     <Tv className="h-6 w-6 text-poda-orange" />
@@ -138,14 +112,10 @@ const Hero = () => {
                 </div>
               </motion.article>
               
-              <motion.article 
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{ once: true, amount: 0.2 }}
-                custom={2}
-                variants={featureCardVariants}
-                className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all"
-              >
+              <motion.article initial="offscreen" whileInView="onscreen" viewport={{
+              once: true,
+              amount: 0.2
+            }} custom={2} variants={featureCardVariants} className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all">
                 <div className="flex items-start">
                   <div className="bg-poda-blue/10 p-3 rounded-lg mr-4 flex items-center justify-center" aria-hidden="true">
                     <Zap className="h-6 w-6 text-poda-blue" />
@@ -160,20 +130,20 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="mt-16 text-xs text-gray-400 text-center max-w-3xl mx-auto"
-        >
+        <motion.div initial={{
+        opacity: 0
+      }} animate={{
+        opacity: 1
+      }} transition={{
+        delay: 1.5,
+        duration: 0.8
+      }} className="mt-16 text-xs text-gray-400 text-center max-w-3xl mx-auto">
           <p>Tato webová stránka je provozována obchodním zástupcem společnosti PODA, nikoliv samotnou společností PODA.</p>
           <p className="mt-1">
             Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku
           </p>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;

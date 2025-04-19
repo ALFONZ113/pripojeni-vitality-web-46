@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { initEditListener } from './utils/editMode.ts'
+import { initEditListener, isEditMode, enableEditMode } from './utils/editMode.ts'
 
 // Add global flag for edit mode
 declare global {
@@ -30,22 +30,39 @@ updateFavicon();
 const forceCacheUpdate = () => {
   // Check if we're in edit mode from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
-  const isEditMode = urlParams.get('edit') === 'true' || 
-                     document.querySelector('[data-lovable-edit="true"]') !== null;
+  const editParam = urlParams.get('edit') === 'true';
+  const hasEditAttribute = document.querySelector('[data-lovable-edit="true"]') !== null;
+  const hasEditFlag = localStorage.getItem('lovable-edit-mode') === 'true';
+  
+  // Combine all possible edit mode indicators
+  const isInEditMode = editParam || hasEditAttribute || hasEditFlag;
   
   // Set the global edit mode flag
-  window.__LOVABLE_EDIT_MODE = isEditMode;
+  window.__LOVABLE_EDIT_MODE = isInEditMode;
   
-  if (isEditMode) {
-    console.log('Edit mode activated from URL parameter');
+  if (isInEditMode) {
+    console.log('Edit mode activated from parameters');
+    document.body.setAttribute('data-edit-mode', 'true');
+    localStorage.setItem('lovable-edit-mode', 'true');
   }
   
   // Add a timestamp to the URL if not already present
-  if (window.location.href.indexOf('cache=') === -1) {
+  const cacheBustKey = 'cache';
+  if (window.location.href.indexOf(cacheBustKey + '=') === -1) {
     const separator = window.location.href.indexOf('?') === -1 ? '?' : '&';
-    const newUrl = window.location.href + separator + 'cache=' + new Date().getTime();
+    const newUrl = window.location.href + separator + cacheBustKey + '=' + new Date().getTime();
     window.history.replaceState(null, document.title, newUrl);
   }
+  
+  // Preserve editable content in localStorage
+  const editableKeys = Object.keys(localStorage).filter(key => 
+    key.startsWith('lovable-edit-')
+  );
+  
+  const editableContent = {};
+  editableKeys.forEach(key => {
+    editableContent[key] = localStorage.getItem(key);
+  });
   
   // Clear localStorage cache that might affect the app
   const cacheKeys = Object.keys(localStorage).filter(key => 
@@ -54,9 +71,15 @@ const forceCacheUpdate = () => {
     (key.includes('edit') && !key.startsWith('lovable-edit-')) || 
     key.includes('state')
   );
+  
   cacheKeys.forEach(key => {
     // Keep lovable-edit keys
     localStorage.removeItem(key);
+  });
+  
+  // Restore editable content
+  Object.keys(editableContent).forEach(key => {
+    localStorage.setItem(key, editableContent[key]);
   });
   
   // Clear sessionStorage as well, but preserve edit state
@@ -71,7 +94,7 @@ const forceCacheUpdate = () => {
   sessionKeys.forEach(key => sessionStorage.removeItem(key));
   
   // Restore edit state if needed
-  if (isEditMode && editState) {
+  if (isInEditMode && editState) {
     sessionStorage.setItem('editState', editState);
   }
   
@@ -92,14 +115,8 @@ forceCacheUpdate();
 
 // Check if the edit mode has been activated
 const checkEditMode = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const isEditMode = urlParams.get('edit') === 'true' || 
-                    document.querySelector('[data-lovable-edit="true"]') !== null;
-  window.__LOVABLE_EDIT_MODE = isEditMode;
-  
-  if (isEditMode) {
-    console.log('Edit mode is active');
-    document.body.setAttribute('data-edit-mode', 'true');
+  if (isEditMode()) {
+    console.log('Edit mode is active, setting up UI indicators');
     
     // Make editable elements more visible in edit mode
     const style = document.createElement('style');
@@ -114,8 +131,61 @@ const checkEditMode = () => {
         outline: 2px dashed rgba(0, 123, 255, 0.8) !important;
         background-color: rgba(0, 123, 255, 0.05) !important;
       }
+      [data-edit-mode="true"] .editable-indicator {
+        display: block !important;
+      }
+      .editable-indicator {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: rgba(0, 123, 255, 0.6);
+        color: white;
+        font-size: 9px;
+        padding: 1px 4px;
+        border-radius: 0 0 0 4px;
+        pointer-events: none;
+      }
     `;
     document.head.appendChild(style);
+    
+    // Add a toggle button for edit mode
+    const editToggle = document.createElement('div');
+    editToggle.style.position = 'fixed';
+    editToggle.style.bottom = '10px';
+    editToggle.style.right = '10px';
+    editToggle.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
+    editToggle.style.color = 'white';
+    editToggle.style.padding = '5px 10px';
+    editToggle.style.borderRadius = '4px';
+    editToggle.style.zIndex = '9999';
+    editToggle.style.cursor = 'pointer';
+    editToggle.style.fontSize = '12px';
+    editToggle.textContent = 'Edit Mode: ON';
+    
+    editToggle.addEventListener('click', () => {
+      const currentState = window.__LOVABLE_EDIT_MODE;
+      if (currentState) {
+        // Disable edit mode
+        window.__LOVABLE_EDIT_MODE = false;
+        localStorage.removeItem('lovable-edit-mode');
+        document.body.removeAttribute('data-edit-mode');
+        editToggle.textContent = 'Edit Mode: OFF';
+        editToggle.style.backgroundColor = 'rgba(108, 117, 125, 0.8)';
+      } else {
+        // Enable edit mode
+        window.__LOVABLE_EDIT_MODE = true;
+        localStorage.setItem('lovable-edit-mode', 'true');
+        document.body.setAttribute('data-edit-mode', 'true');
+        editToggle.textContent = 'Edit Mode: ON';
+        editToggle.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
+      }
+      
+      // Reload the page to apply changes
+      window.location.reload();
+    });
+    
+    document.body.appendChild(editToggle);
   }
 };
 
@@ -127,33 +197,18 @@ window.addEventListener('popstate', () => {
   forceCacheUpdate();
   checkEditMode();
 });
+
 window.addEventListener('beforeunload', forceCacheUpdate);
-
-// Make sure all click handlers preserve edit state
-document.addEventListener('click', (e) => {
-  // Check if we're in edit mode
-  if (!window.__LOVABLE_EDIT_MODE) return;
-  
-  const target = e.target as HTMLElement;
-  const linkElement = target.closest('a') as HTMLAnchorElement;
-  
-  if (linkElement && linkElement.getAttribute('href')?.startsWith('/')) {
-    // This will be handled by the custom navigation in the Navbar component
-    console.log('Edit mode link click detected');
-  }
-});
-
-// Create a global event to notify when the edit mode changes
-window.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'lovable-edit-mode-change') {
-    window.__LOVABLE_EDIT_MODE = event.data.enabled;
-    checkEditMode();
-    console.log('Edit mode changed via message:', event.data.enabled);
-  }
-});
 
 // Initialize edit listener
 initEditListener();
+
+// Check for edit mode in URL parameters and enable if needed
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('edit') === 'true') {
+  console.log('Edit mode detected in URL, enabling...');
+  enableEditMode();
+}
 
 // Render the application
 const root = createRoot(document.getElementById("root")!);

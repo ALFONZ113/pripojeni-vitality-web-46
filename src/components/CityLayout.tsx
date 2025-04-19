@@ -1,8 +1,6 @@
-
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, MapPin, Wifi, Tv } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { makeEditable, useEditableContent, isEditMode } from '../utils/editMode';
 
 type CityLayoutProps = {
@@ -26,6 +24,9 @@ const CityLayout: React.FC<CityLayoutProps> = ({
   benefits,
   prices
 }) => {
+  // State to track whether edit elements have been initialized
+  const [editInitialized, setEditInitialized] = useState(false);
+  
   // For editable elements
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const internetPriceRef = useRef<HTMLSpanElement>(null);
@@ -37,6 +38,12 @@ const CityLayout: React.FC<CityLayoutProps> = ({
   const editableInternetPrice = useEditableContent(`${cityName.toLowerCase()}-internet-price`, prices.internet);
   const editableTvPrice = useEditableContent(`${cityName.toLowerCase()}-tv-price`, prices.tv);
   const editableComboPrice = useEditableContent(`${cityName.toLowerCase()}-combo-price`, prices.combo);
+
+  console.log(`CityLayout rendering for ${cityName} with prices:`, {
+    internet: editableInternetPrice,
+    tv: editableTvPrice,
+    combo: editableComboPrice
+  });
 
   // Update metadata for SEO
   useEffect(() => {
@@ -51,18 +58,65 @@ const CityLayout: React.FC<CityLayoutProps> = ({
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
     
-    console.log("Edit mode is:", isEditMode());
-    
     // Make elements editable
-    setTimeout(() => {
-      makeEditable(descriptionRef.current, `${cityName.toLowerCase()}-description`);
-      makeEditable(internetPriceRef.current, `${cityName.toLowerCase()}-internet-price`);
-      makeEditable(tvPriceRef.current, `${cityName.toLowerCase()}-tv-price`);
-      makeEditable(comboPriceRef.current, `${cityName.toLowerCase()}-combo-price`);
+    const initEditables = () => {
+      console.log(`Initializing editable elements for: ${cityName}`);
       
-      console.log("Editable elements initialized for:", cityName);
-    }, 500);
+      if (descriptionRef.current) {
+        makeEditable(descriptionRef.current, `${cityName.toLowerCase()}-description`);
+      } else {
+        console.warn(`Description ref not found for ${cityName}`);
+      }
+      
+      if (internetPriceRef.current) {
+        makeEditable(internetPriceRef.current, `${cityName.toLowerCase()}-internet-price`);
+      } else {
+        console.warn(`Internet price ref not found for ${cityName}`);
+      }
+      
+      if (tvPriceRef.current) {
+        makeEditable(tvPriceRef.current, `${cityName.toLowerCase()}-tv-price`);
+      } else {
+        console.warn(`TV price ref not found for ${cityName}`);
+      }
+      
+      if (comboPriceRef.current) {
+        makeEditable(comboPriceRef.current, `${cityName.toLowerCase()}-combo-price`);
+      } else {
+        console.warn(`Combo price ref not found for ${cityName}`);
+      }
+      
+      setEditInitialized(true);
+      console.log(`Editable elements initialized for: ${cityName}`);
+    };
+    
+    // Initialize after a delay to ensure refs are populated
+    const timer = setTimeout(initEditables, 500);
+    
+    return () => {
+      clearTimeout(timer);
+    };
   }, [cityName, metaTitle, metaDescription]);
+  
+  // Add a listener for the lovableContentSaved event
+  useEffect(() => {
+    const handleContentSaved = (event: CustomEvent) => {
+      console.log('Content saved event detected:', event.detail);
+      // Force re-render when content is saved
+      setEditInitialized(false);
+      setTimeout(() => setEditInitialized(true), 100);
+    };
+    
+    window.addEventListener('lovableContentSaved', handleContentSaved as EventListener);
+    
+    return () => {
+      window.removeEventListener('lovableContentSaved', handleContentSaved as EventListener);
+    };
+  }, []);
+  
+  // Debug if edit mode is active
+  const editModeActive = isEditMode();
+  console.log(`Edit mode is: ${editModeActive ? 'ACTIVE' : 'INACTIVE'} for ${cityName}`);
 
   return (
     <div className="pt-32 pb-20">

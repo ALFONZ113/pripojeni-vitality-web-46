@@ -5,15 +5,15 @@ import CityLayout from '../../components/CityLayout';
 const InternetHavirov = () => {
   const cityData = {
     cityName: "Havířov",
-    cityDescription: "Spolehlivý a rychlý internet PODA v Havířově za výhodné ceny. Připojte celou domácnost k vysokorychlostnímu internetu a užívejte si kvalitní televizní programy.",
+    cityDescription: "Využijte rychlý a spolehlivý internet PODA v Havířově za výhodné ceny. Nabízíme vysokorychlostní připojení s možností kombinace s televizí a dalšími službami.",
     metaTitle: "Internet PODA Havířov | Rychlý a levný internet v Havířově",
-    metaDescription: "Rychlý a levný internet PODA v Havířově. Vysokorychlostní připojení a bohatá nabídka TV programů za výhodné ceny.",
+    metaDescription: "Rychlý a stabilní internet PODA v Havířově. Spolehlivé připojení s možností TV služeb za příznivé ceny. Zjistěte dostupnost.",
     benefits: [
-      "Rychlosti připojení až 1000/1000 Mbps v Havířově",
-      "Stabilní a spolehlivé připojení pro práci i zábavu",
-      "Možnost sledování TV na více zařízeních současně",
-      "Bez omezení přenesených dat",
-      "Připojení bez nutnosti pevné linky"
+      "Rychlost až 1000/1000 Mbps - nejrychlejší připojení v Havířově",
+      "Stabilní připojení bez výpadků",
+      "Bezplatná instalace při závazku",
+      "Výhodné kombinace s digitální televizí",
+      "Technická podpora 7 dní v týdnu"
     ],
     prices: {
       internet: "300",

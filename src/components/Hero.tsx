@@ -85,12 +85,12 @@ const Hero = () => {
               variants={item} 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Link to="/tarify" className="btn-primary group transition-all" aria-label="Zobrazit tarify internetu">
-                Tarify
+              <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">
+                Prozkoumat nabídku
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
-              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktujte nás pro nezávaznou konzultaci">
-                Kontakt
+              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktní formulář">
+                Kontaktní formulář
               </Link>
             </motion.div>
           </div>

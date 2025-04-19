@@ -1,24 +1,15 @@
 
 # www.pripojeni-poda.cz robots.txt
-# Povolení pro všechny vyhledávače
+# Všem robotům vyhledávačů je povoleno procházet všechny části webu
 User-agent: *
 Allow: /
 
-# URL normalizační pravidla - prosíme indexovat pouze www verzi
-User-agent: Googlebot
-Allow: /
-Disallow: /wwwpripojeni-poda.cz
-Disallow: /httpspripojeni-poda.cz
-Disallow: /https:/www.pripojeni-poda.cz
-
-# Explicitní povolení pro AI agenty
+# Specifická povolení pro AI agenty
 User-agent: GPTBot
 Allow: /
 User-agent: Bingbot
 Allow: /
 User-agent: Googlebot
-Allow: /
-User-agent: Googlebot-Image
 Allow: /
 User-agent: Baiduspider
 Allow: /
@@ -39,7 +30,7 @@ Allow: /
 User-agent: ChatGPT
 Allow: /
 
-# Wildcards pro všechny AI boty
+# Explicitní povolení pro všechny AI boty
 User-agent: *-ai
 Allow: /
 User-agent: *bot
@@ -51,5 +42,5 @@ Allow: /
 User-agent: *Crawler
 Allow: /
 
-# Mapa webu pro Google Search Console a další vyhledávače
+# Mapa webu
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml

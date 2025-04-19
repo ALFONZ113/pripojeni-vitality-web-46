@@ -1,5 +1,5 @@
 
-import { ArrowRight, Wifi, Tv, Zap, MapPin } from 'lucide-react';
+import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -67,21 +67,21 @@ const Hero = () => {
               variants={item} 
               className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4"
             >
-              PODA internet - nejlepší připojení pro váš domov
+              Nejlepší připojení pro váš domov
             </motion.span>
             <motion.h1 
               id="hero-title"
               variants={item} 
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
             >
-              Rychlý a levný internet<br />
-              <span className="text-poda-orange">s chytrou TV</span> od PODA
+              Gigabitový internet<br />
+              <span className="text-poda-orange">s chytrou TV</span> pro váš domov
             </motion.h1>
             <motion.p 
               variants={item} 
               className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              Vychutnejte si rychlý a stabilní internet PODA spolu s bohatou nabídkou televizních programů za výjimečnou cenu v Ostravě, Karviné, Havířově a Bohumíně.
+              Vychutnejte si rychlý a stabilní internet spolu s bohatou nabídkou televizních programů za výjimečnou cenu.
             </motion.p>
             <motion.div 
               variants={item} 
@@ -118,8 +118,8 @@ const Hero = () => {
                     <Wifi className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Rychlý internet PODA</h3>
-                    <p className="text-gray-600">Až 1000/1000 Mbps - bleskové stahování a nahrávání za příznivou cenu.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Rychlý internet</h3>
+                    <p className="text-gray-600">Až 1000/1000 Mbps - bleskové stahování a nahrávání.</p>
                   </div>
                 </div>
               </motion.article>
@@ -159,55 +159,11 @@ const Hero = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-xl text-poda-blue mb-2">GPON technologie</h3>
-                    <p className="text-gray-600">Nejmodernější optické připojení pro stabilní rychlost v Ostravě.</p>
-                  </div>
-                </div>
-              </motion.article>
-
-              {/* Nový Card 4 - Lokality */}
-              <motion.article 
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{ once: true, amount: 0.2 }}
-                custom={3}
-                variants={featureCardVariants}
-                className="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all ml-6"
-              >
-                <div className="flex items-start">
-                  <div className="bg-poda-orange/10 p-3 rounded-lg mr-4 flex items-center justify-center" aria-hidden="true">
-                    <MapPin className="h-6 w-6 text-poda-orange" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Dostupnost v regionu</h3>
-                    <p className="text-gray-600">Pokrytí v Ostravě, Karviné, Havířově, Bohumíně a okolí.</p>
+                    <p className="text-gray-600">Nejmodernější optické připojení pro stabilní rychlost.</p>
                   </div>
                 </div>
               </motion.article>
             </div>
-          </div>
-        </motion.div>
-
-        {/* City selection section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-20 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-100"
-        >
-          <h2 className="text-2xl font-bold text-poda-blue text-center mb-6">Internet PODA v těchto lokalitách</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Link to="/internet-ostrava" className="bg-poda-blue/5 hover:bg-poda-blue/10 text-poda-blue p-4 rounded-lg text-center font-medium transition-all">
-              Internet Ostrava
-            </Link>
-            <Link to="/internet-karvina" className="bg-poda-blue/5 hover:bg-poda-blue/10 text-poda-blue p-4 rounded-lg text-center font-medium transition-all">
-              Internet Karviná
-            </Link>
-            <Link to="/internet-havirov" className="bg-poda-blue/5 hover:bg-poda-blue/10 text-poda-blue p-4 rounded-lg text-center font-medium transition-all">
-              Internet Havířov
-            </Link>
-            <Link to="/internet-bohumin" className="bg-poda-blue/5 hover:bg-poda-blue/10 text-poda-blue p-4 rounded-lg text-center font-medium transition-all">
-              Internet Bohumín
-            </Link>
           </div>
         </motion.div>
 

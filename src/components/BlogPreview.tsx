@@ -1,33 +1,8 @@
 
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
-// Define the blog post type
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  author: string;
-  category: string;
-  image: string;
-  alt: string;
-  customUrl?: string;
-}
-
-const defaultBlogPosts: BlogPost[] = [
-  {
-    id: 8,
-    title: '60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie',
-    excerpt: 'Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s.',
-    date: '10. 4. 2025',
-    author: 'Team PODA',
-    category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
-    alt: 'Vysokorýchlostná bezdrôtová technológia',
-    customUrl: '/blog/60ghz-internet'
-  },
+const blogPosts = [
   {
     id: 7,
     title: 'Rozšíření optické sítě PODA v brněnském Komárově',
@@ -47,22 +22,20 @@ const defaultBlogPosts: BlogPost[] = [
     category: 'Technologie',
     image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop',
     alt: 'Optické kabely vedoucí do routeru'
+  },
+  {
+    id: 2,
+    title: 'Jak vybrat nejlepší televizní balíček pro vaši rodinu',
+    excerpt: 'Průvodce výběrem televzního balíčku, který uspokojí potřeby všech členů vaší domácnosti...',
+    date: '2. 5. 2023',
+    author: 'Tým PODA',
+    category: 'Tipy a rady',
+    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop',
+    alt: 'Rodina sledující televizi v obývacím pokoji'
   }
 ];
 
 const BlogPreview = () => {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  
-  useEffect(() => {
-    // This simulates a dynamic load of blog posts
-    // Adding a slight delay to ensure rendering happens after component mounts
-    const timer = setTimeout(() => {
-      setBlogPosts(defaultBlogPosts);
-    }, 50);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section className="section-padding bg-white" aria-labelledby="blog-heading">
       <div className="container-custom">
@@ -80,77 +53,54 @@ const BlogPreview = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {blogPosts.length > 0 ? (
-            blogPosts.map((post) => (
-              <article 
-                key={post.id} 
-                className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group"
-                data-post-id={post.id}
-                data-version="v2025041504"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={`${post.image}${post.image.includes('?') ? '&' : '?'}v=2025041504`}
-                    alt={post.alt} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                    width="640"
-                    height="360"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+          {blogPosts.map((post) => (
+            <article 
+              key={post.id} 
+              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={post.image} 
+                  alt={post.alt} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3 text-sm text-gray-500">
+                  <span className="bg-blue-50 text-poda-blue px-2 py-1 rounded">
+                    {post.category}
+                  </span>
+                  <time className="flex items-center" dateTime={post.date.replace(/\. /g, '-').replace(/\./g, '')}>
+                    <Calendar className="h-4 w-4 mr-1" aria-hidden="true" />
+                    {post.date}
+                  </time>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3 text-sm text-gray-500">
-                    <span className="bg-blue-50 text-poda-blue px-2 py-1 rounded">
-                      {post.category}
-                    </span>
-                    <time className="flex items-center" dateTime={post.date.replace(/\. /g, '-').replace(/\./g, '')}>
-                      <Calendar className="h-4 w-4 mr-1" aria-hidden="true" />
-                      {post.date}
-                    </time>
+                <h3 className="text-xl font-semibold text-poda-blue mb-3 group-hover:text-poda-orange transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  {post.excerpt}
+                </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center text-sm text-gray-500">
+                    <User className="h-4 w-4 mr-1" aria-hidden="true" />
+                    <span itemProp="author">{post.author}</span>
                   </div>
-                  <h3 className="text-xl font-semibold text-poda-blue mb-3 group-hover:text-poda-orange transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <User className="h-4 w-4 mr-1" aria-hidden="true" />
-                      <span itemProp="author">{post.author}</span>
-                    </div>
-                    <Link 
-                      to={post.customUrl || `/blog/${post.id}`} 
-                      className="text-poda-blue hover:text-poda-orange font-medium flex items-center transition-colors"
-                      aria-label={`Číst více o článku: ${post.title}`}
-                    >
-                      Číst více <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))
-          ) : (
-            // Show loading state if posts aren't loaded yet
-            Array.from({ length: 3 }).map((_, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 animate-pulse">
-                <div className="h-48 bg-gray-200"></div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="bg-gray-200 h-6 w-24 rounded"></div>
-                    <div className="bg-gray-200 h-6 w-32 rounded"></div>
-                  </div>
-                  <div className="bg-gray-200 h-8 w-full rounded mb-3"></div>
-                  <div className="bg-gray-200 h-20 w-full rounded mb-4"></div>
-                  <div className="flex items-center justify-between">
-                    <div className="bg-gray-200 h-6 w-32 rounded"></div>
-                    <div className="bg-gray-200 h-6 w-24 rounded"></div>
-                  </div>
+                  <Link 
+                    to={`/blog/${post.id}`} 
+                    className="text-poda-blue hover:text-poda-orange font-medium flex items-center transition-colors"
+                    aria-label={`Číst více o článku: ${post.title}`}
+                  >
+                    Číst více <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                  </Link>
                 </div>
               </div>
-            ))
-          )}
+            </article>
+          ))}
         </div>
 
         <div className="flex justify-center">

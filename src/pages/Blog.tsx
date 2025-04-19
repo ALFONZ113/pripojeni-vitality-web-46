@@ -5,53 +5,49 @@ import { initAnimations } from '../utils/animation';
 
 const blogPosts = [
   {
-    id: 7,
-    title: 'Rozšíření optické sítě PODA v brněnském Komárově',
-    excerpt: 'Společnost PODA nově připojila několik ulic v městské části Komárov k vysokorychlostní optické síti s rychlostí až 1 Gb/s.',
+    id: 8,
+    title: '60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie',
+    excerpt: 'Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti.',
     content: `
-      <p>Společnost PODA, významný poskytovatel telekomunikačních služeb v České republice, rozšířila svou moderní optickou síť do dalších ulic v brněnské městské části Komárov. Podle zpráv byly nově připojeny ulice Schwaigrova, Hodonínská, Za školou a Za mostem, což přináší obyvatelům této oblasti přístup k vysokorychlostnímu internetu s rychlostí až 1 Gb/s a možnost sledování více než 160 televizních kanálů.</p>
+      <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti. Tento inovatívny systém ponúka výkon takmer porovnateľný s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>
       
-      <h3>Význam optické sítě v Komárově</h3>
-      <p>Rozšíření optické sítě PODA v Komárově představuje významný krok k modernizaci internetové infrastruktury v této části Brna. Optické připojení nabízí obyvatelům řadu výhod oproti tradičním technologiím:</p>
-      
-      <ul>
-        <li><strong>Extrémně vysoké rychlosti</strong> až 1 Gb/s umožňují bezproblémové streamování, online gaming a práci z domova.</li>
-        <li><strong>Stabilita a nízká latence</strong> (kolem 10 ms) zajišťují plynulý provoz i při náročných aplikacích.</li>
-        <li><strong>Odolnost vůči elektromagnetickému rušení</strong> a povětrnostním vlivům zaručuje spolehlivé připojení za všech podmínek.</li>
-        <li><strong>Možnost současného využívání</strong> vysokorychlostního internetu a sledování IPTV s více než 160 programy rozšiřuje multimediální možnosti domácností.</li>
-      </ul>
-      
-      <p>Tato investice do moderní infrastruktury zvyšuje atraktivitu Komárova pro nové obyvatele a podniky, podporuje digitální rozvoj oblasti a zlepšuje kvalitu života místních občanů.</p>
-      
-      <h3>Technologie GPON a její přínosy</h3>
-      <p>GPON (Gigabit Passive Optical Network) je moderní technologie optického připojení, kterou PODA využívá pro poskytování vysokorychlostního internetu v Komárově. Tato technologie umožňuje přenos dat rychlostí až 2,5 Gb/s směrem k uživateli a 1,25 Gb/s směrem od uživatele. GPON vyniká několika klíčovými výhodami:</p>
+      <h3>Výhody 60 GHz pripojenia</h3>
+      <p>60 GHz internetové pripojenie prináša niekoľko významných výhod oproti tradičným bezdrôtovým technológiám:</p>
       
       <ul>
-        <li>Vysoká přenosová kapacita umožňující bezproblémové streamování 4K videa a online gaming</li>
-        <li>Nízká latence, která je ideální pro aplikace vyžadující okamžitou odezvu</li>
-        <li>Efektivní využití optických vláken - jedno vlákno může obsluhovat až 64 uživatelů</li>
-        <li>Odolnost vůči elektromagnetickému rušení zajišťující stabilní připojení</li>
-        <li>Možnost budoucího navýšení rychlosti bez nutnosti výměny optických kabelů</li>
+        <li><strong>Vysoká rýchlosť</strong>: Umožňuje prenosové rýchlosti až 1 000 Mb/s, čo je porovnateľné s optickým pripojením.</li>
+        <li><strong>Nízka latencia</strong>: Poskytuje veľmi nízku a stabilnú odozvu, čo ocenia najmä hráči.</li>
+        <li><strong>Menšie rušenie</strong>: V porovnaní s bežnými Wi-Fi sieťami (2,4 GHz a 5 GHz) dochádza k výrazne menšiemu vzájomnému rušeniu signálov.</li>
+        <li><strong>Bezpečnosť</strong>: Pásmo 60 GHz je považované za veľmi bezpečné a dlhodobo ho využíva aj armáda.</li>
       </ul>
       
-      <p>Díky těmto vlastnostem přináší GPON technologie obyvatelům Komárova spolehlivé a rychlé internetové připojení, které plně odpovídá nárokům moderní digitální doby.</p>
-      
-      <h3>Seznam nově připojených ulic</h3>
-      <p>Společnost PODA rozšířila svou optickou síť v brněnské městské části Komárov o několik nových ulic. Konkrétně se jedná o tyto lokality:</p>
+      <h3>Mesh Wi-Fi pre lepší signál</h3>
+      <p>Mesh Wi-Fi systémy predstavujú efektívne riešenie pre rozšírenie a zlepšenie pokrytia Wi-Fi signálom v domácnostiach. Na rozdiel od tradičných Wi-Fi extenderov vytvára mesh systém jednotnú sieť s plynulým prechodom medzi jednotlivými prístupovými bodmi. Hlavné výhody mesh Wi-Fi zahŕňajú:</p>
       
       <ul>
-        <li>Schwaigrova</li>
-        <li>Hodonínská</li>
-        <li>Za školou</li>
-        <li>Za mostem</li>
+        <li>Jednotná sieť s automatickým pripojením k najsilnejšiemu signálu</li>
+        <li>Stabilné a rýchle pripojenie vďaka dynamickej optimalizácii</li>
+        <li>Jednoduchá konfigurácia a správa cez mobilnú aplikáciu</li>
+        <li>Škálovateľnosť - možnosť pridania ďalších mesh jednotiek pre rozšírenie pokrytia</li>
+        <li>Samoopraviteľná sieť odolná voči výpadkom jednotlivých uzlov</li>
       </ul>
       
-      <p>Tyto ulice jsou nyní připojeny k moderní optické infrastruktuře, která umožňuje obyvatelům využívat vysokorychlostní internet s rychlostí až 1 Gb/s a sledovat více než 160 televizních programů. Zajímavostí je, že tyto ulice jsou součástí tzv. Bloku 1a, který je pravidelně čištěn v rámci blokového čištění městské části Brno-jih. Rozšíření optické sítě tak přispívá nejen k digitálnímu rozvoji této oblasti, ale také k celkovému zlepšení kvality života místních obyvatel.</p>
+      <h3>Porovnanie s optickým internetom</h3>
+      <p>Zatiaľ čo optické pripojenie zostáva špičkou v rýchlosti a stabilite, 60 GHz bezdrôtová technológia sa mu v mnohých ohľadoch približuje. Optika ponúka vyššie maximálne rýchlosti (až 100 Gb/s), ale 60 GHz pripojenie s rýchlosťami až 1 Gb/s je pre väčšinu domácností viac než dostačujúce.</p>
+      
+      <ul>
+        <li><strong>Latencia</strong>: Obe technológie poskytujú veľmi nízku a stabilnú odozvu</li>
+        <li><strong>Stabilita</strong>: Optika je menej náchylná k rušeniu, 60 GHz však tiež vykazuje vysokú stabilitu</li>
+        <li><strong>Inštalácia</strong>: 60 GHz nevyžaduje nákladné pokládanie káblov, čo umožňuje rýchlejšie nasadenie</li>
+        <li><strong>Dosah</strong>: Optika nemá prakticky obmedzenia v dosahu, 60 GHz je limitované na stovky metrov</li>
+      </ul>
+      
+      <p>Pre koncových užívateľov predstavuje 60 GHz technológia výbornú alternatívu k optike, najmä v lokalitách, kde optické siete nie sú dostupné.</p>
     `,
-    date: '1. 4. 2025',
-    author: 'Milan Terč',
+    date: '10. 4. 2025',
+    author: 'Tým PODA',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1557191358-57dfbc468c2e?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 1,
@@ -125,7 +121,7 @@ const blogPosts = [
     title: 'Nejlepší sportovní přenosy v naší televizní nabídce',
     excerpt: 'Přehled sportovních kanálů a možností sledování nejdůležitějších sportovních událostí s našimi televizními balíčky.',
     content: `
-      <p>Sportovní fanoušci vyžadují kvalitní a kompletní pokrytí sportovních událostí. V naší nabídce najdete širokou škálu sportovních kanálů, které vám přinesou všechny důležité sportovní přenosy.</p>
+      <p>Sportovní fanoušci vyžadují kvalitní a kompletní pokrytí sportovních událostí. V naší nabídce najdete širokou škálu sportovních kanálov, které vám přinesou všechny důležité sportovní přenosy.</p>
       
       <h3>Sportovní kanály v naší nabídce:</h3>
       <ul>
@@ -135,7 +131,7 @@ const blogPosts = [
         <li><strong>Arena Sport 1 a 2</strong> - Prémiové sportovní kanály s exkluzivními přenosy.</li>
       </ul>
       
-      <p>S naším balíčkem TV Mých 10 si můžete zvolit své oblíbené sportovní kanály a být si jisti, že nepřijdete o žádný důležitý sportovní zážitek. Navíc díky službě PODA net.TV můžete sledovat sportovní přenosy na jakémkoli zařízení, ať už jste doma nebo na cestách.</p>
+      <p>S naším balíčkem TV Mých 10 si můžete zvolit své oblíbené sportovní kanály a být si jisti, že nepřijdete o žádný důležitý sportovní zážitek. Navíc díky službě PODA net.TV můžete sledovat sportovní přenosy na jakémkoli zařízení, ať už jste kdekoliv.</p>
     `,
     date: '20. 3. 2023',
     author: 'Tým PODA',

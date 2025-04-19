@@ -1,8 +1,17 @@
-
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const blogPosts = [
+  {
+    id: 8,
+    title: '60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie',
+    excerpt: 'Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti.',
+    date: '10. 4. 2025',
+    author: 'Tým PODA',
+    category: 'Technologie',
+    image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?q=80&w=2070&auto=format&fit=crop',
+    alt: 'Bezdrôtová anténa pre 60 GHz pripojenie'
+  },
   {
     id: 7,
     title: 'Rozšíření optické sítě PODA v brněnském Komárově',

@@ -10,6 +10,7 @@ import BlogPostSidebar from '../components/blog/BlogPostSidebar';
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<typeof blogPosts[0] | null>(null);
+  const [imageError, setImageError] = useState(false);
   const navigate = useNavigate();
   
   const relatedPosts = post 
@@ -23,6 +24,7 @@ const BlogPost = () => {
     const foundPost = blogPosts.find(p => p.id === Number(id));
     if (foundPost) {
       setPost(foundPost);
+      setImageError(false); // Reset error state when post changes
     } else {
       navigate('/blog');
     }
@@ -36,16 +38,28 @@ const BlogPost = () => {
     return null;
   }
 
+  const handleImageError = () => {
+    console.error(`Failed to load image: ${post.image}`);
+    setImageError(true);
+  };
+
   return (
     <div className="min-h-screen pt-24">
       <BlogPostHeader post={post} />
 
       <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
-        <img 
-          src={post.image} 
-          alt={post.title} 
-          className="w-full h-full object-cover"
-        />
+        {imageError ? (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <p className="text-gray-500">Obrázek není k dispozici</p>
+          </div>
+        ) : (
+          <img 
+            src={post.image} 
+            alt={post.alt || post.title} 
+            className="w-full h-full object-cover"
+            onError={handleImageError}
+          />
+        )}
       </div>
 
       <section className="section-padding bg-white">

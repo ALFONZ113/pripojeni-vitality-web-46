@@ -1,3 +1,4 @@
+
 export interface BlogPost {
   id: number;
   title: string;
@@ -18,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     date: '10. 4. 2025',
     author: 'Tým PODA',
     category: 'Technologie',
-    image: '/lovable-uploads/4c300768-454f-4276-9d49-7b587a8eac83.png',
+    image: '/lovable-uploads/4b28b803-b450-4db8-9ae2-fad2fc0adfa1.png',
     alt: 'Vizualizácia 60 GHz internetového pripojenia v modernej bytovej zástavbe',
     content: `
       <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti. Tento inovatívny systém ponúka výkon takmer porovnateľný s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>

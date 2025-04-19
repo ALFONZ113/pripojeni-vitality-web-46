@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import OchranaSoukromi from "./pages/OchranaSoukromi";
 import ObchodniPodminky from "./pages/ObchodniPodminky";
 import Cookies from "./pages/Cookies";
+import Tarify from "./pages/Tarify";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/ochrana-soukromi" element={<OchranaSoukromi />} />
             <Route path="/obchodni-podminky" element={<ObchodniPodminky />} />
             <Route path="/cookies" element={<Cookies />} />
+            <Route path="/tarify" element={<Tarify />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

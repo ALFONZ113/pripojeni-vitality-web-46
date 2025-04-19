@@ -28,12 +28,17 @@ updateFavicon();
 
 // Enhanced cache clearing function
 const forceCacheUpdate = () => {
-  // Check if we're in edit mode
-  const isEditMode = window.location.href.includes('edit=true') || 
+  // Check if we're in edit mode from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const isEditMode = urlParams.get('edit') === 'true' || 
                      document.querySelector('[data-lovable-edit="true"]') !== null;
   
   // Set the global edit mode flag
   window.__LOVABLE_EDIT_MODE = isEditMode;
+  
+  if (isEditMode) {
+    console.log('Edit mode activated from URL parameter');
+  }
   
   // Add a timestamp to the URL if not already present
   if (window.location.href.indexOf('cache=') === -1) {
@@ -46,14 +51,12 @@ const forceCacheUpdate = () => {
   const cacheKeys = Object.keys(localStorage).filter(key => 
     key.includes('cache') || 
     key.includes('route') || 
-    key.includes('edit') || 
+    (key.includes('edit') && !key.startsWith('lovable-edit-')) || 
     key.includes('state')
   );
   cacheKeys.forEach(key => {
     // Keep lovable-edit keys
-    if (!key.startsWith('lovable-edit-')) {
-      localStorage.removeItem(key);
-    }
+    localStorage.removeItem(key);
   });
   
   // Clear sessionStorage as well, but preserve edit state
@@ -89,7 +92,8 @@ forceCacheUpdate();
 
 // Check if the edit mode has been activated
 const checkEditMode = () => {
-  const isEditMode = window.location.href.includes('edit=true') || 
+  const urlParams = new URLSearchParams(window.location.search);
+  const isEditMode = urlParams.get('edit') === 'true' || 
                     document.querySelector('[data-lovable-edit="true"]') !== null;
   window.__LOVABLE_EDIT_MODE = isEditMode;
   
@@ -144,6 +148,7 @@ window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'lovable-edit-mode-change') {
     window.__LOVABLE_EDIT_MODE = event.data.enabled;
     checkEditMode();
+    console.log('Edit mode changed via message:', event.data.enabled);
   }
 });
 

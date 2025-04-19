@@ -5,7 +5,14 @@
 
 // Check if the application is currently in edit mode
 export const isEditMode = (): boolean => {
-  return !!window.__LOVABLE_EDIT_MODE;
+  const urlParams = new URLSearchParams(window.location.search);
+  const editMode = urlParams.get('edit') === 'true' || !!window.__LOVABLE_EDIT_MODE;
+  
+  if (editMode) {
+    console.log('Edit mode is active');
+  }
+  
+  return editMode;
 };
 
 // Make an element editable in Lovable
@@ -30,6 +37,23 @@ export const makeEditable = (ref: HTMLElement | null, id: string): void => {
       
       console.log('Edit requested for', id);
     });
+    
+    // Add visual indicator for editable elements
+    ref.style.outline = '2px dashed rgba(0, 123, 255, 0.5)';
+    ref.style.outlineOffset = '2px';
+    ref.style.position = 'relative';
+    ref.style.cursor = 'pointer';
+    
+    // Add hover effect
+    ref.addEventListener('mouseenter', () => {
+      ref.style.outline = '2px dashed rgba(0, 123, 255, 0.8)';
+      ref.style.backgroundColor = 'rgba(0, 123, 255, 0.05)';
+    });
+    
+    ref.addEventListener('mouseleave', () => {
+      ref.style.outline = '2px dashed rgba(0, 123, 255, 0.5)';
+      ref.style.backgroundColor = '';
+    });
   }
 };
 
@@ -44,6 +68,7 @@ export const useEditableContent = (id: string, defaultContent: string): string =
 
 // Save edited content
 export const saveEditedContent = (id: string, content: string): void => {
+  console.log(`Saving content for ${id}:`, content);
   localStorage.setItem(`lovable-edit-${id}`, content);
 };
 
@@ -52,6 +77,7 @@ export const initEditListener = (): void => {
   window.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'lovable-save-edit') {
       const { id, content } = event.data;
+      console.log('Received edit save request for', id, content);
       saveEditedContent(id, content);
       
       // Refresh the page to show edited content

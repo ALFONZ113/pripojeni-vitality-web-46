@@ -1,4 +1,3 @@
-
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -46,7 +45,6 @@ const Hero = () => {
 
   return (
     <section className="relative pt-32 pb-24 overflow-hidden" aria-labelledby="hero-title">
-      {/* Background with subtle gradients */}
       <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-white"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iI0YwRjdGRiIgc3Ryb2tlLXdpZHRoPSIxIiBjeD0iMTAiIGN5PSIxMCIgcj0iMyIvPjwvZz48L3N2Zz4=')] opacity-40"></div>
@@ -54,7 +52,6 @@ const Hero = () => {
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-orange-100/40 rounded-full filter blur-3xl opacity-30"></div>
       </div>
 
-      {/* Hero content */}
       <div className="container-custom relative z-10">
         <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
@@ -67,44 +64,41 @@ const Hero = () => {
               variants={item} 
               className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4"
             >
-              Nejlepší připojení pro váš domov
+              PODA - Spolehlivý poskytovatel internetu v Ostravě a okolí
             </motion.span>
             <motion.h1 
               id="hero-title"
               variants={item} 
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
             >
-              Gigabitový internet<br />
-              <span className="text-poda-orange">s chytrou TV</span> pro váš domov
+              Levný a rychlý internet<br />
+              v <span className="text-poda-orange">Ostravě, Karviné a Havířově</span>
             </motion.h1>
             <motion.p 
               variants={item} 
               className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              Vychutnejte si rychlý a stabilní internet spolu s bohatou nabídkou televizních programů za výjimečnou cenu.
+              Připojení PODA nabízí stabilní gigabitový internet a chytrou TV za nejlepší ceny v regionu. Dostupné v Ostravě, Karviné, Havířově a okolí.
             </motion.p>
             <motion.div 
               variants={item} 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Link to="/internet-tv" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku internetu a televize">
-                Prozkoumat nabídku 
+              <Link to="/internet-tv" className="btn-primary group transition-all" aria-label="Získejte internet PODA">
+                Získejte internet PODA
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
-              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Přejít na kontaktní formulář">
-                Kontaktní formulář
+              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktujte nás pro nejlepší nabídku">
+                Kontaktujte nás
               </Link>
             </motion.div>
           </div>
           
-          {/* Feature cards with glass morphism */}
           <div className="relative mt-10 lg:mt-0">
-            {/* Decorative elements */}
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
             
             <div className="relative space-y-6">
-              {/* Card 1 */}
               <motion.article 
                 initial="offscreen"
                 whileInView="onscreen"
@@ -118,13 +112,12 @@ const Hero = () => {
                     <Wifi className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Rychlý internet</h3>
-                    <p className="text-gray-600">Až 1000/1000 Mbps - bleskové stahování a nahrávání.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Nejrychlejší internet PODA</h3>
+                    <p className="text-gray-600">Gigabitové připojení PODA - stabilní rychlost až 1000/1000 Mbps v Ostravě a okolí.</p>
                   </div>
                 </div>
               </motion.article>
               
-              {/* Card 2 */}
               <motion.article 
                 initial="offscreen"
                 whileInView="onscreen"
@@ -144,7 +137,6 @@ const Hero = () => {
                 </div>
               </motion.article>
               
-              {/* Card 3 */}
               <motion.article 
                 initial="offscreen"
                 whileInView="onscreen"
@@ -167,7 +159,6 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Legal information - subtle and unobtrusive */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

@@ -1,3 +1,4 @@
+
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -64,32 +65,33 @@ const Hero = () => {
               variants={item} 
               className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4"
             >
-              PODA - Spolehlivý poskytovatel internetu v Ostravě a okolí
+              Získejte spolehlivý internet PODA s nejlepší cenou na trhu
             </motion.span>
             <motion.h1 
               id="hero-title"
               variants={item} 
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
             >
-              Levný a rychlý internet<br />
-              v <span className="text-poda-orange">Ostravě, Karviné a Havířově</span>
+              Rychlý gigabitový internet<br />
+              s <span className="text-poda-orange">chytrou televizí ZDARMA</span>
             </motion.h1>
             <motion.p 
               variants={item} 
               className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              Připojení PODA nabízí stabilní gigabitový internet a chytrou TV za nejlepší ceny v regionu. Dostupné v Ostravě, Karviné, Havířově a okolí.
+              Připojte se k nejmodernější optické síti PODA s garantovanou rychlostí až 1000 Mbps. 
+              Vyzkoušejte stabilní připojení bez výpadků a užijte si neomezené sledování TV.
             </motion.p>
             <motion.div 
               variants={item} 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <Link to="/internet-tv" className="btn-primary group transition-all" aria-label="Získejte internet PODA">
-                Získejte internet PODA
+                Akční nabídka internetu
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
               <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktujte nás pro nejlepší nabídku">
-                Kontaktujte nás
+                Nezávazná kalkulace
               </Link>
             </motion.div>
           </div>
@@ -112,8 +114,8 @@ const Hero = () => {
                     <Wifi className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Nejrychlejší internet PODA</h3>
-                    <p className="text-gray-600">Gigabitové připojení PODA - stabilní rychlost až 1000/1000 Mbps v Ostravě a okolí.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Nejrychlejší optický internet</h3>
+                    <p className="text-gray-600">Stabilní připojení s garantovanou rychlostí až 1000/1000 Mbps pro dokonalý zážitek.</p>
                   </div>
                 </div>
               </motion.article>
@@ -131,8 +133,8 @@ const Hero = () => {
                     <Tv className="h-6 w-6 text-poda-orange" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">TV programy</h3>
-                    <p className="text-gray-600">Více než 100 programů a možnost výběru 10 vlastních stanic.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Chytrá TV zdarma</h3>
+                    <p className="text-gray-600">Více než 100 TV programů s možností vlastního výběru stanic a sledování až na 4 zařízeních.</p>
                   </div>
                 </div>
               </motion.article>
@@ -150,8 +152,8 @@ const Hero = () => {
                     <Zap className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">GPON technologie</h3>
-                    <p className="text-gray-600">Nejmodernější optické připojení pro stabilní rychlost.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Nejmodernější technologie</h3>
+                    <p className="text-gray-600">Optická síť GPON pro maximální stabilitu a rychlost bez kompromisů.</p>
                   </div>
                 </div>
               </motion.article>

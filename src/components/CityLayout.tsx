@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, MapPin, Wifi, Tv } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { makeEditable, useEditableContent } from '../utils/editMode';
 
 type CityLayoutProps = {
   cityName: string;
@@ -25,8 +26,20 @@ const CityLayout: React.FC<CityLayoutProps> = ({
   benefits,
   prices
 }) => {
+  // For editable elements
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const internetPriceRef = useRef<HTMLParagraphElement>(null);
+  const tvPriceRef = useRef<HTMLParagraphElement>(null);
+  const comboPriceRef = useRef<HTMLParagraphElement>(null);
+  
+  // Get editable content
+  const editableDescription = useEditableContent(`${cityName.toLowerCase()}-description`, cityDescription);
+  const editableInternetPrice = useEditableContent(`${cityName.toLowerCase()}-internet-price`, prices.internet);
+  const editableTvPrice = useEditableContent(`${cityName.toLowerCase()}-tv-price`, prices.tv);
+  const editableComboPrice = useEditableContent(`${cityName.toLowerCase()}-combo-price`, prices.combo);
+
   // Update metadata for SEO
-  React.useEffect(() => {
+  useEffect(() => {
     document.title = metaTitle;
     
     // Update meta description
@@ -37,7 +50,13 @@ const CityLayout: React.FC<CityLayoutProps> = ({
     
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
-  }, [metaTitle, metaDescription]);
+    
+    // Make elements editable
+    makeEditable(descriptionRef.current, `${cityName.toLowerCase()}-description`);
+    makeEditable(internetPriceRef.current, `${cityName.toLowerCase()}-internet-price`);
+    makeEditable(tvPriceRef.current, `${cityName.toLowerCase()}-tv-price`);
+    makeEditable(comboPriceRef.current, `${cityName.toLowerCase()}-combo-price`);
+  }, [cityName, metaTitle, metaDescription]);
 
   return (
     <div className="pt-32 pb-20">
@@ -49,8 +68,8 @@ const CityLayout: React.FC<CityLayoutProps> = ({
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-poda-blue mb-4">
                 Rychlý internet PODA v {cityName}
               </h1>
-              <p className="text-lg text-gray-600 mb-6">
-                {cityDescription}
+              <p ref={descriptionRef} className="text-lg text-gray-600 mb-6">
+                {editableDescription}
               </p>
               <div className="space-y-4 mb-8">
                 {benefits.map((benefit, index) => (
@@ -84,14 +103,14 @@ const CityLayout: React.FC<CityLayoutProps> = ({
                       <Wifi className="h-5 w-5 text-poda-blue mr-2" />
                       <p className="text-gray-700 font-medium">Internet</p>
                     </div>
-                    <p className="text-2xl font-bold text-poda-blue mt-1">od {prices.internet} Kč/měsíc</p>
+                    <p ref={internetPriceRef} className="text-2xl font-bold text-poda-blue mt-1">od {editableInternetPrice} Kč/měsíc</p>
                   </div>
                   <div className="border-b border-gray-100 pb-3">
                     <div className="flex items-center">
                       <Tv className="h-5 w-5 text-poda-blue mr-2" />
                       <p className="text-gray-700 font-medium">Televize</p>
                     </div>
-                    <p className="text-2xl font-bold text-poda-blue mt-1">od {prices.tv} Kč/měsíc</p>
+                    <p ref={tvPriceRef} className="text-2xl font-bold text-poda-blue mt-1">od {editableTvPrice} Kč/měsíc</p>
                   </div>
                   <div>
                     <div className="flex items-center">
@@ -99,7 +118,7 @@ const CityLayout: React.FC<CityLayoutProps> = ({
                       <Tv className="h-5 w-5 text-poda-orange mr-2" />
                       <p className="text-gray-700 font-medium">Kombinace</p>
                     </div>
-                    <p className="text-2xl font-bold text-poda-orange mt-1">od {prices.combo} Kč/měsíc</p>
+                    <p ref={comboPriceRef} className="text-2xl font-bold text-poda-orange mt-1">od {editableComboPrice} Kč/měsíc</p>
                   </div>
                 </div>
               </div>

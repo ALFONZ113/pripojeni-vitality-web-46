@@ -1,7 +1,7 @@
-
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { initEditListener } from './utils/editMode.ts'
 
 // Add global flag for edit mode
 declare global {
@@ -49,7 +49,12 @@ const forceCacheUpdate = () => {
     key.includes('edit') || 
     key.includes('state')
   );
-  cacheKeys.forEach(key => localStorage.removeItem(key));
+  cacheKeys.forEach(key => {
+    // Keep lovable-edit keys
+    if (!key.startsWith('lovable-edit-')) {
+      localStorage.removeItem(key);
+    }
+  });
   
   // Clear sessionStorage as well, but preserve edit state
   const editState = sessionStorage.getItem('editState');
@@ -141,6 +146,9 @@ window.addEventListener('message', (event) => {
     checkEditMode();
   }
 });
+
+// Initialize edit listener
+initEditListener();
 
 // Render the application
 const root = createRoot(document.getElementById("root")!);

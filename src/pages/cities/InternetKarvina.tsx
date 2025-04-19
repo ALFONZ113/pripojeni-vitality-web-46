@@ -16,9 +16,9 @@ const InternetKarvina = () => {
       "Rychlá instalace a profesionální servis"
     ],
     prices: {
-      internet: "399",
-      tv: "199",
-      combo: "499"
+      internet: "300",
+      tv: "280",
+      combo: "440"
     }
   };
 

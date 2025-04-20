@@ -42,5 +42,9 @@ Allow: /
 User-agent: *Crawler
 Allow: /
 
+# Přesměrování na www verzi
+# Canonical URL
+host: www.pripojeni-poda.cz
+
 # Mapa webu
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml

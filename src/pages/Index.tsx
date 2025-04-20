@@ -17,8 +17,34 @@ const Index = () => {
       return;
     }
     
+    // Přidáno pro vynucení obnovení cache i pro www verzi, pokud ještě nejsme v režimu s cache-busting
+    if (hostname === 'www.pripojeni-poda.cz' && !window.location.search.includes('cb=')) {
+      const timestamp = new Date().getTime();
+      window.location.href = `${window.location.pathname}?cb=${timestamp}`;
+      return;
+    }
+    
     // Initialize scroll animations
     const cleanupAnimation = initAnimations();
+    
+    // Force reload CSS to bust cache
+    const reloadStyles = () => {
+      const links = document.querySelectorAll('link[rel="stylesheet"]');
+      if (links.length > 0) {
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href) {
+            const newHref = href.includes('?') 
+              ? `${href}&t=${new Date().getTime()}` 
+              : `${href}?t=${new Date().getTime()}`;
+            link.setAttribute('href', newHref);
+          }
+        });
+      }
+    };
+    
+    // Spustit obnovení stylů při načtení stránky
+    reloadStyles();
     
     // Scroll to top on component mount
     window.scrollTo(0, 0);

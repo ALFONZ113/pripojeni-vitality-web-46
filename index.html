@@ -9,6 +9,11 @@
     <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
     <meta name="robots" content="index, follow" />
     
+    <!-- Agresivní nastavení proti cachování -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <!-- Script pro přesměrování z non-www na www verzi s cache-busting parametrem -->
     <script>
       if (window.location.hostname === 'pripojeni-poda.cz') {
@@ -17,10 +22,18 @@
           (window.location.search ? window.location.search + '&' : '?') + 'cb=' + timestamp + 
           window.location.hash;
       }
+      
+      // Přidáno pro vynucení obnovení cache i pro www verzi
+      if (window.location.hostname === 'www.pripojeni-poda.cz' && !window.location.search.includes('cb=')) {
+        var timestamp = new Date().getTime();
+        window.location.href = window.location.pathname + 
+          (window.location.search ? window.location.search + '&' : '?') + 'cb=' + timestamp + 
+          window.location.hash;
+      }
     </script>
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.pripojeni-poda.cz/" />
+    <!-- Canonical URL s časovým razítkem pro zamezení cachování -->
+    <link rel="canonical" href="https://www.pripojeni-poda.cz/?no_cache=<?php echo time(); ?>" />
     
     <!-- Open Graph Tags -->
     <meta property="og:type" content="website" />
@@ -47,11 +60,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap">
-    
-    <!-- Cache-control meta tag to prevent caching -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     
     <!-- Other resources -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -109,6 +117,26 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-B56HVH7E5R');
+    </script>
+    
+    <!-- Přidáno časové razítko pro vynucení obnovení cache -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Přidání časového razítka ke všem zdrojům pro vynucení obnovení cache
+        var timestamp = new Date().getTime();
+        var links = document.getElementsByTagName('link');
+        for (var i = 0; i < links.length; i++) {
+          if (links[i].rel !== 'canonical' && links[i].href.indexOf('googleapis.com') === -1) {
+            links[i].href = links[i].href + (links[i].href.indexOf('?') === -1 ? '?' : '&') + 'v=' + timestamp;
+          }
+        }
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++) {
+          if (scripts[i].src && scripts[i].src.indexOf('googleapis.com') === -1 && scripts[i].src.indexOf('googletagmanager.com') === -1) {
+            scripts[i].src = scripts[i].src + (scripts[i].src.indexOf('?') === -1 ? '?' : '&') + 'v=' + timestamp;
+          }
+        }
+      });
     </script>
     
     <!-- Preload critical resources for performance -->

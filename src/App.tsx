@@ -33,6 +33,45 @@ const RedirectHandler = () => {
       const timestamp = new Date().getTime();
       window.location.href = `https://www.pripojeni-poda.cz${window.location.pathname}${window.location.search ? window.location.search + '&' : '?'}cb=${timestamp}${window.location.hash}`;
     }
+    
+    // Přidáno pro vynucení obnovení cache i pro www verzi, pokud ještě nejsme v režimu s cache-busting
+    if (hostname === 'www.pripojeni-poda.cz' && !window.location.search.includes('cb=')) {
+      const timestamp = new Date().getTime();
+      window.location.href = `${window.location.pathname}${window.location.search ? window.location.search + '&' : '?'}cb=${timestamp}${window.location.hash}`;
+    }
+    
+    // Vynucení obnovení cache pro statické soubory
+    const forceRefresh = () => {
+      console.log('Forcing cache refresh for static resources...');
+      const links = document.querySelectorAll('link[rel="stylesheet"]');
+      const scripts = document.querySelectorAll('script[src]');
+      const timestamp = new Date().getTime();
+      
+      links.forEach(link => {
+        const url = new URL(link.href);
+        url.searchParams.set('v', timestamp.toString());
+        link.href = url.toString();
+      });
+      
+      scripts.forEach(script => {
+        if (script.src && !script.src.includes('googleapis.com') && !script.src.includes('googletagmanager.com')) {
+          const url = new URL(script.src);
+          url.searchParams.set('v', timestamp.toString());
+          const newScript = document.createElement('script');
+          newScript.src = url.toString();
+          newScript.type = script.type;
+          script.parentNode.replaceChild(newScript, script);
+        }
+      });
+    };
+    
+    // Spustíme funkci pro obnovení cache po načtení stránky
+    if (document.readyState === 'complete') {
+      forceRefresh();
+    } else {
+      window.addEventListener('load', forceRefresh);
+      return () => window.removeEventListener('load', forceRefresh);
+    }
   }, []);
   
   return null;

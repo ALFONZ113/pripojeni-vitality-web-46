@@ -42,12 +42,12 @@ Allow: /
 User-agent: *Crawler
 Allow: /
 
-# Přesměrování na www verzi
+# Přesměrování na www verzi a definice kanonické domény
 # Canonical URL
 host: www.pripojeni-poda.cz
 
 # Mapa webu
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml
 
-# Pravidlo pro non-www doménu
+# Pravidlo pro non-www doménu - přesměrování na www verzi
 host-meta: https://www.pripojeni-poda.cz/.well-known/host-meta

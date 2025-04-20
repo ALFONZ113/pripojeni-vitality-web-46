@@ -15,6 +15,17 @@ const Index = () => {
     // Scroll to top on component mount
     window.scrollTo(0, 0);
     
+    // Force cache refresh for images on the main page
+    const refreshImages = () => {
+      document.querySelectorAll('img').forEach((img: HTMLImageElement) => {
+        if (img.src && !img.src.includes('?v=')) {
+          img.src = `${img.src}?v=${new Date().getTime()}`;
+        }
+      });
+    };
+    
+    refreshImages();
+    
     return () => {
       cleanupAnimation();
     };

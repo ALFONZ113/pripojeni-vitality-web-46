@@ -48,19 +48,21 @@ const RedirectHandler = () => {
       const timestamp = new Date().getTime();
       
       links.forEach(link => {
-        const url = new URL(link.href);
+        const htmlLink = link as HTMLLinkElement;
+        const url = new URL(htmlLink.href);
         url.searchParams.set('v', timestamp.toString());
-        link.href = url.toString();
+        htmlLink.href = url.toString();
       });
       
       scripts.forEach(script => {
-        if (script.src && !script.src.includes('googleapis.com') && !script.src.includes('googletagmanager.com')) {
-          const url = new URL(script.src);
+        const htmlScript = script as HTMLScriptElement;
+        if (htmlScript.src && !htmlScript.src.includes('googleapis.com') && !htmlScript.src.includes('googletagmanager.com')) {
+          const url = new URL(htmlScript.src);
           url.searchParams.set('v', timestamp.toString());
           const newScript = document.createElement('script');
           newScript.src = url.toString();
-          newScript.type = script.type;
-          script.parentNode.replaceChild(newScript, script);
+          newScript.type = htmlScript.type;
+          script.parentNode?.replaceChild(newScript, script);
         }
       });
     };

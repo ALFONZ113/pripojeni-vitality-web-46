@@ -9,6 +9,13 @@ import { initAnimations } from '../utils/animation';
 
 const Index = () => {
   useEffect(() => {
+    // Kontrola, zda jsme na non-www doméně a přesměrování na www verzi
+    const hostname = window.location.hostname;
+    if (hostname === 'pripojeni-poda.cz') {
+      window.location.href = 'https://www.pripojeni-poda.cz' + window.location.pathname;
+      return;
+    }
+    
     // Initialize scroll animations
     const cleanupAnimation = initAnimations();
     

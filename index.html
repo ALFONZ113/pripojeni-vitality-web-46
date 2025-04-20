@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
   <head>
@@ -8,6 +9,13 @@
     <meta name="keywords" content="PODA, Poda internet, rychly internet, levny internet, pripojeni Poda, opticky internet, gigabitovy internet, internet s televizí, TV PODA" />
     <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
     <meta name="robots" content="index, follow" />
+    
+    <!-- Script pro přesměrování z non-www na www verzi -->
+    <script>
+      if (window.location.hostname === 'pripojeni-poda.cz') {
+        window.location.href = 'https://www.pripojeni-poda.cz' + window.location.pathname + window.location.search + window.location.hash;
+      }
+    </script>
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.pripojeni-poda.cz/" />

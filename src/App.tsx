@@ -29,7 +29,9 @@ const RedirectHandler = () => {
     // Kontrola, zda jsme na non-www doméně a přesměrování na www verzi
     const hostname = window.location.hostname;
     if (hostname === 'pripojeni-poda.cz') {
-      window.location.href = 'https://www.pripojeni-poda.cz' + window.location.pathname + window.location.search + window.location.hash;
+      // Přidáme cache-busting parametr pro zajištění aktuální verze
+      const timestamp = new Date().getTime();
+      window.location.href = `https://www.pripojeni-poda.cz${window.location.pathname}${window.location.search ? window.location.search + '&' : '?'}cb=${timestamp}${window.location.hash}`;
     }
   }, []);
   

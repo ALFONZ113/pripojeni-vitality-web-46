@@ -48,3 +48,6 @@ host: www.pripojeni-poda.cz
 
 # Mapa webu
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml
+
+# Pravidlo pro non-www doménu
+host-meta: https://www.pripojeni-poda.cz/.well-known/host-meta

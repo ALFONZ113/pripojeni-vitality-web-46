@@ -1,0 +1,27 @@
+
+# Přesměrování HTTP na HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Přesměrování z non-www na www verzi
+RewriteCond %{HTTP_HOST} ^pripojeni-poda.cz [NC]
+RewriteRule ^(.*)$ https://www.pripojeni-poda.cz/$1 [L,R=301]
+
+# Nastavení HSTS hlavičky
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Zabránění prohlížení adresářů
+Options -Indexes
+
+# Komprese souborů pro rychlejší načítání
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
+
+# Cache-Control hlavičky pro statický obsah
+<FilesMatch "\.(ico|pdf|jpg|jpeg|png|webp|gif|js|css|svg)$">
+  Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>

@@ -9,10 +9,11 @@ import { initAnimations } from '../utils/animation';
 
 const Index = () => {
   useEffect(() => {
-    // Kontrola, zda jsme na non-www doméně a přesměrování na www verzi
+    // Kontrola, zda jsme na non-www doméně a přesměrování na www verzi s cache-busting parametrem
     const hostname = window.location.hostname;
     if (hostname === 'pripojeni-poda.cz') {
-      window.location.href = 'https://www.pripojeni-poda.cz' + window.location.pathname;
+      const timestamp = new Date().getTime();
+      window.location.href = `https://www.pripojeni-poda.cz${window.location.pathname}?cb=${timestamp}`;
       return;
     }
     

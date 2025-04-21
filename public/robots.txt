@@ -1,5 +1,5 @@
 
-# www.pripojeni-poda.cz robots.txt
+# www.pripojeni-poda.cz robots.txt aktualizovaný 2025-04-21
 # Všem robotům vyhledávačů je povoleno procházet všechny části webu
 User-agent: *
 Allow: /
@@ -42,11 +42,14 @@ Allow: /
 User-agent: *Crawler
 Allow: /
 
-# Mapa webu
-Sitemap: https://www.pripojeni-poda.cz/sitemap.xml
+# Explicitní pokyn pro Google indexovat stránku s vysokou prioritou
+User-agent: Googlebot
+Priority: 1
 
-# Cache control
-# No caching - force fresh content
+# Mapa webu s časovým razítkem pro lepší indexaci
+Sitemap: https://www.pripojeni-poda.cz/sitemap.xml?v=20250421
+
+# Cache control - zajistíme aktuálnost obsahu pro vyhledávače
 Cache-Control: no-store, no-cache, must-revalidate, max-age=0
 Pragma: no-cache
 Expires: 0

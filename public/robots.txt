@@ -46,8 +46,8 @@ Allow: /
 User-agent: Googlebot
 Priority: 1
 
-# Mapa webu s časovým razítkem pro lepší indexaci
-Sitemap: https://www.pripojeni-poda.cz/sitemap.xml?v=20250421
+# Mapa webu
+Sitemap: https://www.pripojeni-poda.cz/sitemap.xml
 
 # Cache control - zajistíme aktuálnost obsahu pro vyhledávače
 Cache-Control: no-store, no-cache, must-revalidate, max-age=0

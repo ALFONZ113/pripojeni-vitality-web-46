@@ -15,46 +15,34 @@ const Index = () => {
     // Scroll to top on component mount
     window.scrollTo(0, 0);
     
-    // Force cache refresh for ALL images and resources on the main page
-    const refreshImages = () => {
-      const timestamp = new Date().getTime();
+    // Client-side only cache busting (no URL modifications)
+    const refreshLocalCache = () => {
+      console.log('Cache refresh performed at: ' + new Date().toISOString());
       
-      // Refresh all images
-      document.querySelectorAll('img').forEach((img: HTMLImageElement) => {
-        if (img.src && !img.src.includes('?v=')) {
-          img.src = `${img.src}?v=${timestamp}`;
-        }
-      });
-      
-      // Refresh all stylesheets
-      document.querySelectorAll('link[rel="stylesheet"]').forEach((link: HTMLLinkElement) => {
-        if (link.href && !link.href.includes('?v=')) {
-          link.href = `${link.href}?v=${timestamp}`;
-        }
-      });
-      
-      // Refresh all scripts
-      document.querySelectorAll('script').forEach((script: HTMLScriptElement) => {
-        if (script.src && !script.src.includes('?v=')) {
-          const newScript = document.createElement('script');
-          newScript.src = `${script.src}?v=${timestamp}`;
-          script.parentNode?.replaceChild(newScript, script);
-        }
-      });
+      // Force browser to refresh local resources without modifying URLs
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          names.forEach(name => {
+            caches.delete(name);
+          });
+        });
+      }
       
       // Set a meta tag for cache version
-      const metaCache = document.createElement('meta');
-      metaCache.setAttribute('name', 'cache-version');
-      metaCache.setAttribute('content', timestamp.toString());
-      document.head.appendChild(metaCache);
-      
-      // Notify console for debugging
-      console.log('Cache refresh performed at: ' + new Date().toISOString());
+      const metaCache = document.querySelector('meta[name="cache-version"]');
+      if (metaCache) {
+        metaCache.setAttribute('content', new Date().getTime().toString());
+      } else {
+        const newMetaCache = document.createElement('meta');
+        newMetaCache.setAttribute('name', 'cache-version');
+        newMetaCache.setAttribute('content', new Date().getTime().toString());
+        document.head.appendChild(newMetaCache);
+      }
     };
     
     // Run on load and every 5 minutes
-    refreshImages();
-    const refreshInterval = setInterval(refreshImages, 5 * 60 * 1000);
+    refreshLocalCache();
+    const refreshInterval = setInterval(refreshLocalCache, 5 * 60 * 1000);
     
     return () => {
       cleanupAnimation();

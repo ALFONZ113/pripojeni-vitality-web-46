@@ -24,64 +24,18 @@ import Tarify from "./pages/Tarify";
 
 const queryClient = new QueryClient();
 
-// Cache busting function
-const applyForcedRefresh = () => {
-  // Check if on the production domain
-  if (window.location.hostname === 'www.pripojeni-poda.cz' || window.location.hostname === 'pripojeni-poda.cz') {
-    // Add version parameter to CSS links
-    document.querySelectorAll('link[rel="stylesheet"]').forEach((element) => {
-      const link = element as HTMLLinkElement;
-      if (link.href && !link.href.includes('?v=')) {
-        link.href = `${link.href}?v=${new Date().getTime()}`;
-      }
-    });
-
-    // Add version parameter to script sources
-    document.querySelectorAll('script').forEach((element) => {
-      const script = element as HTMLScriptElement;
-      if (script.src && !script.src.includes('?v=') && script.src.includes('pripojeni-poda.cz')) {
-        const newSrc = `${script.src}?v=${new Date().getTime()}`;
-        script.src = newSrc;
-      }
-    });
-
-    // Add version parameter to image sources
-    document.querySelectorAll('img').forEach((element) => {
-      const img = element as HTMLImageElement;
-      if (img.src && !img.src.includes('?v=')) {
-        img.src = `${img.src}?v=${new Date().getTime()}`;
-      }
-    });
-
-    // Clear browser cache for this page
-    window.onpageshow = function(event) {
-      if (event.persisted) {
-        window.location.reload();
-      }
-    };
-  }
-};
-
 // ScrollToTop component to ensure page starts at the top
 const ScrollToTop = () => {
   const location = useLocation();
   
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Apply cache busting on every route change
-    applyForcedRefresh();
   }, [location]);
   
   return null;
 };
 
 const App = () => {
-  // Apply cache busting on initial load
-  useEffect(() => {
-    applyForcedRefresh();
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

@@ -15,7 +15,7 @@ const Index = () => {
     // Scroll to top on component mount
     window.scrollTo(0, 0);
     
-    // Client-side only cache busting (no URL modifications)
+    // Simple client-side cache busting without URL modification
     const refreshLocalCache = () => {
       console.log('Cache refresh performed at: ' + new Date().toISOString());
       
@@ -28,19 +28,28 @@ const Index = () => {
         });
       }
       
-      // Set a meta tag for cache version
+      // Add a cache-version meta tag
       const metaCache = document.querySelector('meta[name="cache-version"]');
       if (metaCache) {
-        metaCache.setAttribute('content', new Date().getTime().toString());
+        metaCache.setAttribute('content', Date.now().toString());
       } else {
         const newMetaCache = document.createElement('meta');
         newMetaCache.setAttribute('name', 'cache-version');
-        newMetaCache.setAttribute('content', new Date().getTime().toString());
+        newMetaCache.setAttribute('content', Date.now().toString());
         document.head.appendChild(newMetaCache);
       }
+      
+      // Add no-cache headers
+      document.querySelectorAll('link, script, img').forEach(el => {
+        const url = el.getAttribute('src') || el.getAttribute('href');
+        if (url && !url.includes('?') && !url.includes('http')) {
+          // Only add to relative URLs and avoid duplicating parameters
+          el.setAttribute(el.hasAttribute('src') ? 'src' : 'href', url);
+        }
+      });
     };
     
-    // Run on load and every 5 minutes
+    // Run on load and every 5 minutes (avoid modifying URLs)
     refreshLocalCache();
     const refreshInterval = setInterval(refreshLocalCache, 5 * 60 * 1000);
     

@@ -46,10 +46,5 @@ Allow: /
 User-agent: Googlebot
 Priority: 1
 
-# Mapa webu
+# Mapa webu - přesné URL s https
 Sitemap: https://www.pripojeni-poda.cz/sitemap.xml
-
-# Cache control - zajistíme aktuálnost obsahu pro vyhledávače
-Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-Pragma: no-cache
-Expires: 0

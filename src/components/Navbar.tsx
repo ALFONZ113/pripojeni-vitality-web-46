@@ -1,7 +1,11 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight } from 'lucide-react';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,11 +41,39 @@ const Navbar = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`} role="banner">
       <div className="container-custom flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Popri.cz - Domovská stránka">
-          <span className="text-poda-orange">P</span>o<span className="text-poda-blue">pri</span>
-          <span className="text-poda-orange">.cz</span>
-        </Link>
+        {/* Logo with Info Popover */}
+        <div className="flex flex-col items-start">
+          <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Popri.cz - Domovská stránka">
+            <span className="text-poda-orange">P</span>o<span className="text-poda-blue">pri</span>
+            <span className="text-poda-orange">.cz</span>
+          </Link>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="flex items-center text-xs text-gray-500 hover:text-poda-orange transition-colors mt-1">
+                <Info className="h-3 w-3 mr-1" />
+                <span>Info o službě</span>
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80 p-4">
+              <div className="space-y-2">
+                <h3 className="font-medium text-sm text-poda-blue">Autorizovaný obchodní zástupce PODA</h3>
+                <p className="text-sm text-gray-600">
+                  Zajistíme vám nejrychlejší připojení PODA za nejvýhodnější cenu na trhu.
+                </p>
+                <p className="text-sm text-gray-600">
+                  Jako autorizovaný obchodní zástupce vám garantujeme stejné podmínky jako přímo u společnosti PODA.
+                </p>
+                <Link 
+                  to="/kontakt"
+                  className="inline-flex items-center text-sm text-poda-orange hover:text-poda-blue transition-colors mt-2"
+                >
+                  Kontaktujte nás pro více informací
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-8" aria-label="Hlavní navigace">

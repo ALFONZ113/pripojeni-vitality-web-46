@@ -12,7 +12,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   
-  // Zjistíme aktuální cestu pro označení aktivního odkazu
   const isActivePath = (path: string) => {
     return location.pathname === path;
   };
@@ -33,7 +32,6 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   
-  // Zavře mobilní menu při navigaci
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
@@ -41,7 +39,6 @@ const Navbar = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`} role="banner">
       <div className="container-custom flex items-center justify-between">
-        {/* Logo with Info Popover */}
         <div className="flex flex-col items-start">
           <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Popri.cz - Domovská stránka">
             <span className="text-poda-orange">P</span>o<span className="text-poda-blue">pri</span>
@@ -56,12 +53,9 @@ const Navbar = () => {
             </PopoverTrigger>
             <PopoverContent className="w-80 p-4">
               <div className="space-y-2">
-                <h3 className="font-medium text-sm text-poda-blue">Autorizovaný obchodní zástupce PODA</h3>
+                <h3 className="font-medium text-sm text-poda-blue">Popři.cz - PODA připojení</h3>
                 <p className="text-sm text-gray-600">
-                  Zajistíme vám nejrychlejší připojení PODA za nejvýhodnější cenu na trhu.
-                </p>
-                <p className="text-sm text-gray-600">
-                  Jako autorizovaný obchodní zástupce vám garantujeme stejné podmínky jako přímo u společnosti PODA.
+                  Jsme specialisté na PODA připojení. Zajistíme vám nejlepší a nejlevnější internetové připojení na trhu.
                 </p>
                 <Link 
                   to="/kontakt"
@@ -75,7 +69,6 @@ const Navbar = () => {
           </Popover>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-8" aria-label="Hlavní navigace">
           <Link 
             to="/" 
@@ -114,7 +107,6 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Contact Button */}
         <div className="hidden lg:flex items-center">
           <a href="tel:+420730431313" className="flex items-center text-poda-blue hover:text-poda-orange transition-colors font-medium mr-6">
             <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
@@ -123,7 +115,6 @@ const Navbar = () => {
           <Link to="/kontakt" className="btn-secondary">Kontakt</Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button 
           className="lg:hidden text-poda-blue" 
           onClick={toggleMobileMenu} 
@@ -135,7 +126,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div 
         id="mobile-menu"
         className={`fixed inset-0 z-40 bg-white pt-20 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}

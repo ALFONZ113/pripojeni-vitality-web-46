@@ -1,3 +1,4 @@
+
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -76,7 +77,7 @@ const Hero = () => {
                     <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-80">
+                <PopoverContent className="z-50 w-80 p-4 bg-white rounded-md shadow-lg">
                   <div className="space-y-2">
                     <h3 className="font-medium text-poda-blue">PODA připojení</h3>
                     <p className="text-sm text-gray-600">

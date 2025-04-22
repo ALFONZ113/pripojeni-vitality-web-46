@@ -1,7 +1,9 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, ArrowRight } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,11 +39,29 @@ const Navbar = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`} role="banner">
       <div className="container-custom flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Popri.cz - Domovská stránka">
-          <span className="text-poda-orange">P</span>o<span className="text-poda-blue">pri</span>
-          <span className="text-poda-orange">.cz</span>
-        </Link>
+        {/* Logo with Popover */}
+        <Popover>
+          <PopoverTrigger asChild>
+            <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Popri.cz - Domovská stránka">
+              <span className="text-poda-orange">P</span>o<span className="text-poda-blue">pri</span>
+              <span className="text-poda-orange">.cz</span>
+            </Link>
+          </PopoverTrigger>
+          <PopoverContent className="z-50 w-72 p-4 bg-white rounded-md shadow-lg" sideOffset={5}>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-poda-blue">PODA připojení</h3>
+              <p className="text-sm text-gray-600">
+                Autorizovaný obchodní zástupce PODA vám zajistí nejrychlejší připojení za nejlepší cenu na trhu.
+              </p>
+              <div className="pt-2">
+                <Link to="/kontakt" className="text-sm text-poda-blue hover:text-poda-orange flex items-center">
+                  Nezávazně poptat připojení
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-8" aria-label="Hlavní navigace">
@@ -159,6 +179,16 @@ const Navbar = () => {
           </nav>
         </div>
       </div>
+      
+      {/* Tooltip that shows on first visit */}
+      <TooltipProvider delayDuration={1000}>
+        <Tooltip defaultOpen>
+          <TooltipTrigger className="hidden" />
+          <TooltipContent side="bottom" className="bg-white text-poda-blue p-2 text-xs border border-blue-100">
+            Klikněte na logo pro více informací o PODA připojení
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </header>
   );
 };

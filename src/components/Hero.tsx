@@ -1,9 +1,6 @@
-
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-
 const Hero = () => {
   const container = {
     hidden: {
@@ -59,38 +56,23 @@ const Hero = () => {
         <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" initial="hidden" animate="show" variants={container}>
           <div className="text-center lg:text-left">
             <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
-              Exkluzivní nabídka internetu PODA s nejlepší cenou
+              Získejte spolehlivý internet PODA s nejlepší cenou na trhu
             </motion.span>
             <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
-              Špičkový optický internet<br />
-              a <span className="text-poda-orange">chytrá TV zdarma</span>
+              Rychlý gigabitový internet<br />
+              s <span className="text-poda-orange">chytrou televizí </span>
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Využijte speciální nabídku a získejte stabilní připojení s garantovanou rychlostí až 1000 Mbps. 
-              Jako bonus vám přidáme chytrou televizi se 100+ programy zcela zdarma.
+              Připojte se k nejmodernější optické síti PODA s garantovanou rychlostí až 1000 Mbps. 
+              Vyzkoušejte stabilní připojení bez výpadků a užijte si neomezené sledování TV.
             </motion.p>
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Popover>
-                <PopoverTrigger asChild>
-                  <button className="btn-primary group transition-all" aria-label="Zjistit více">
-                    Zjistit více o nabídce
-                    <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent className="z-50 w-80 p-4 bg-white rounded-md shadow-lg">
-                  <div className="space-y-2">
-                    <h3 className="font-medium text-poda-blue">PODA připojení</h3>
-                    <p className="text-sm text-gray-600">
-                      Jako autorizovaný obchodní zástupce PODA vám garantuji nejrychlejší připojení za nejlepší cenu na trhu.
-                    </p>
-                    <Link to="/kontakt" className="inline-block w-full text-center bg-poda-blue text-white py-2 rounded-md text-sm hover:bg-poda-blue/90 transition-colors">
-                      Nezávazně poptat
-                    </Link>
-                  </div>
-                </PopoverContent>
-              </Popover>
-              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktovat">
-                Kontaktovat ihned
+              <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">
+                Prozkoumat nabídku
+                <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </Link>
+              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktní formulář">
+                Kontaktní formulář
               </Link>
             </motion.div>
           </div>
@@ -148,7 +130,14 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1.5, duration: 0.8}} className="mt-16 text-xs text-gray-400 text-center max-w-3xl mx-auto">
+        <motion.div initial={{
+        opacity: 0
+      }} animate={{
+        opacity: 1
+      }} transition={{
+        delay: 1.5,
+        duration: 0.8
+      }} className="mt-16 text-xs text-gray-400 text-center max-w-3xl mx-auto">
           <p>Tato webová stránka je provozována obchodním zástupcem společnosti PODA, nikoliv samotnou společností PODA.</p>
           <p className="mt-1">
             Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku
@@ -157,5 +146,4 @@ const Hero = () => {
       </div>
     </section>;
 };
-
 export default Hero;

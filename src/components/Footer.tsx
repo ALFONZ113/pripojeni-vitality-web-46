@@ -11,8 +11,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <section aria-label="O společnosti">
-            <Link to="/" className="text-2xl font-bold flex items-center mb-4" aria-label="Domovská stránka Připojení-PODA.cz">
-              <span className="text-poda-orange">P</span>řipojení-<span className="text-white">PODA</span>
+            <Link to="/" className="text-2xl font-bold flex items-center mb-4" aria-label="Domovská stránka Popri.cz">
+              <span className="text-poda-orange">P</span>o<span className="text-white">pri</span>
               <span className="text-poda-orange">.cz</span>
             </Link>
             <p className="text-blue-100 leading-relaxed">
@@ -86,7 +86,7 @@ const Footer = () => {
                 <div>
                   <p className="text-white font-medium">Adresa</p>
                   <address className="text-blue-100 not-italic">
-                    Připojení-PODA.cz<br />
+                    Popri.cz<br />
                     Ostrava, Česká republika
                   </address>
                 </div>
@@ -109,7 +109,7 @@ const Footer = () => {
         <div className="border-t border-blue-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between mb-4">
             <p className="text-blue-200 text-sm mb-4 md:mb-0">
-              &copy; {currentYear} Připojení-PODA.cz. Všechna práva vyhrazena.
+              &copy; {currentYear} Popri.cz. Všechna práva vyhrazena.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-200">
               <a href="/ochrana-soukromi" className="hover:text-poda-orange transition-colors">Ochrana soukromí</a>
@@ -122,7 +122,7 @@ const Footer = () => {
           <div className="flex items-start mt-6 pt-6 border-t border-blue-800/50">
             <Info className="h-5 w-5 text-blue-300 mr-3 flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div className="text-xs text-blue-300">
-              <p className="mb-1">Tato webová stránka je provozována obchodním zástupcem společnosti PODA, nikoliv samotnou společností PODA.</p>
+              <p className="mb-1">Tato webová stránka je provozována obchodním zástupcem společnosti PODA pod doménou Popri.cz, nikoliv samotnou společností PODA.</p>
               <p>Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku</p>
             </div>
           </div>

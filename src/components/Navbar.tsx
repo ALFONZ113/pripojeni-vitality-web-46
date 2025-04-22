@@ -38,8 +38,8 @@ const Navbar = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`} role="banner">
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Připojení-PODA.cz - Domovská stránka">
-          <span className="text-poda-orange">P</span>řipojení-<span className="text-poda-blue">PODA</span>
+        <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Popri.cz - Domovská stránka">
+          <span className="text-poda-orange">P</span>o<span className="text-poda-blue">pri</span>
           <span className="text-poda-orange">.cz</span>
         </Link>
 

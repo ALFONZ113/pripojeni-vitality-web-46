@@ -17,7 +17,7 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
   try {
     console.log("Preparing to send email with formData:", formData);
     
-    // Použití přímého URL k edge function
+    // Use direct URL to edge function
     const functionUrl = "https://yjzzhfvwbnzhecffuelt.supabase.co/functions/v1/send-email";
     
     console.log("Making request to:", functionUrl);

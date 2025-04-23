@@ -2,7 +2,7 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
-// Inicializace Resend s API klíčem
+// Initialize Resend with API key
 const resendApiKey = Deno.env.get("RESEND_API_KEY");
 console.log("RESEND_API_KEY exists:", !!resendApiKey);
 const resend = new Resend(resendApiKey);
@@ -70,7 +70,7 @@ serve(async (req) => {
 
     console.log("📧 Preparing email with data:", { to, subject, formData });
 
-    // Sestavení HTML obsahu emailu
+    // Construct HTML content for the email
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #0066cc; border-bottom: 1px solid #eee; padding-bottom: 10px;">Nový kontakt z pripojeni-poda.cz</h2>
@@ -98,10 +98,10 @@ serve(async (req) => {
     console.log("📝 Subject:", subject);
     console.log("🔑 RESEND_API_KEY present:", !!resendApiKey);
     
-    // Pokus o odeslání emailu s více záložními postupy
+    // Use onboarding@resend.dev as the default sender (always verified)
     try {
       const emailResponse = await resend.emails.send({
-        from: "PODA <hello@kanga.wtf>", // Používám ověřenou doménu Resend
+        from: "Contact Form <onboarding@resend.dev>", // Always use the default Resend domain
         to: [to],
         subject: subject,
         html: htmlContent,
@@ -126,37 +126,7 @@ serve(async (req) => {
       );
     } catch (emailError: any) {
       console.error("❌ Resend API error:", emailError);
-      
-      // V případě chyby se pokusíme použít jiný odesílatel
-      try {
-        const fallbackResponse = await resend.emails.send({
-          from: "Contact Form <onboarding@resend.dev>", // Fallback na výchozí Resend doménu
-          to: [to],
-          subject: subject + " (záložní email)",
-          html: htmlContent,
-          reply_to: formData.email
-        });
-        
-        console.log("⚠️ Fallback email sent:", fallbackResponse);
-        
-        return new Response(
-          JSON.stringify({ 
-            success: true, 
-            message: "Email odeslán pomocí záložního odesílatele",
-            response: fallbackResponse
-          }), 
-          { 
-            status: 200, 
-            headers: { 
-              ...corsHeaders, 
-              "Content-Type": "application/json" 
-            } 
-          }
-        );
-      } catch (fallbackError: any) {
-        console.error("❌ Fallback email also failed:", fallbackError);
-        throw new Error(`Both primary and fallback email sending failed: ${emailError.message}`);
-      }
+      throw new Error(`Email sending failed: ${emailError.message}`);
     }
 
   } catch (error: any) {

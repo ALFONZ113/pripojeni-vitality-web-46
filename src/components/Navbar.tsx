@@ -48,20 +48,22 @@ const Navbar = () => {
             <PopoverTrigger asChild>
               <button className="flex items-center text-xs text-gray-500 hover:text-poda-orange transition-colors mt-1">
                 <Info className="h-3 w-3 mr-1" />
-                <span>Info o službě</span>
+                <span>Info o službe</span>
               </button>
             </PopoverTrigger>
             <PopoverContent className="w-80 p-4">
               <div className="space-y-2">
-                <h3 className="font-medium text-sm text-poda-blue">Popři.cz - PODA připojení</h3>
+                <h3 className="font-medium text-sm text-poda-blue">
+                  Popri.cz = půda připojení
+                </h3>
                 <p className="text-sm text-gray-600">
-                  Jsme specialisté na PODA připojení. Zajistíme vám nejlepší a nejlevnější internetové připojení na trhu.
+                  Sme vaším autorizovaným partnerom pre špičkové internetové pripojenie PODA. Popri znamená <b>pôda pripojení</b> – s nami získate <b>najlepšie a najlacnejšie pripojenie na trhu</b>, rýchlo a bez starostí.
                 </p>
                 <Link 
                   to="/kontakt"
                   className="inline-flex items-center text-sm text-poda-orange hover:text-poda-blue transition-colors mt-2"
                 >
-                  Kontaktujte nás pro více informací
+                  Nechajte si poradiť od expertov na pripojenie
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </div>

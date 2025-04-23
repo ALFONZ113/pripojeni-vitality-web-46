@@ -50,8 +50,8 @@ const ContactSection = () => {
                       <User className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm text-blue-100">Osobní konzultace</p>
-                      <p className="font-medium">Po domluvě u vás doma nebo na pobočce</p>
+                      <p className="text-sm text-blue-100">Adresa</p>
+                      <p className="font-medium">Popri.cz<br />Ostrava, Česká republika</p>
                     </div>
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { initAnimations } from '../utils/animation';
+
 const Contact = () => {
   useEffect(() => {
     // Initialize scroll animations
@@ -13,6 +14,7 @@ const Contact = () => {
       cleanupAnimation();
     };
   }, []);
+
   return <div className="min-h-screen pt-24">
       {/* Hero section */}
       <section className="section-padding bg-gradient-to-b from-white to-blue-50">
@@ -78,7 +80,7 @@ const Contact = () => {
                       <div>
                         <p className="text-sm text-blue-100">Adresa</p>
                         <address className="not-italic font-medium">
-                          Připojení-PODA.cz<br />
+                          Popri.cz<br />
                           Ostrava, Česká republika
                         </address>
                       </div>
@@ -144,4 +146,5 @@ const Contact = () => {
       </section>
     </div>;
 };
+
 export default Contact;

@@ -54,16 +54,16 @@ const Navbar = () => {
             <PopoverContent className="w-80 p-4">
               <div className="space-y-2">
                 <h3 className="font-medium text-sm text-poda-blue">
-                  Popri.cz = půda připojení
+                  Popri.cz - PODA připojení
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Sme vaším autorizovaným partnerom pre špičkové internetové pripojenie PODA. Popri znamená <b>pôda pripojení</b> – s nami získate <b>najlepšie a najlacnejšie pripojenie na trhu</b>, rýchlo a bez starostí.
+                  Jsme specialisté na PODA připojení. Zajistíme vám nejlepší a nejlevnější internetové připojení na trhu.
                 </p>
                 <Link 
                   to="/kontakt"
                   className="inline-flex items-center text-sm text-poda-orange hover:text-poda-blue transition-colors mt-2"
                 >
-                  Nechajte si poradiť od expertov na pripojenie
+                  Kontaktujte nás pro více informací
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </div>

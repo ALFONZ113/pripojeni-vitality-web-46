@@ -17,14 +17,15 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
   try {
     console.log("Preparing to send email with formData:", formData);
     
-    // Použití přímého URL k edge function, ne dynamickou proměnnou
+    // Použití přímého URL k edge function
     const functionUrl = "https://yjzzhfvwbnzhecffuelt.supabase.co/functions/v1/send-email";
+    
+    console.log("Making request to:", functionUrl);
     
     const response = await fetch(functionUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqenpoZnZ3Ym56aGVjZmZ1ZWx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU0NDEzMDgsImV4cCI6MjA2MTAxNzMwOH0.Buhkufn2M3P0sGnWoQrbvZ3iHv7gMT2kDLJzQ5rNGTE`
       },
       body: JSON.stringify({
         to: "junkert@seznam.cz",
@@ -33,10 +34,12 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       })
     });
 
+    console.log("Response status:", response.status);
+    
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Email API error:", errorText);
-      throw new Error(`Failed to send email: ${response.status}`);
+      throw new Error(`Failed to send email: ${response.status} - ${errorText}`);
     }
     
     const result = await response.json();

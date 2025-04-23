@@ -2,7 +2,10 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+// Inicializace Resend s API klíčem
+const resendApiKey = Deno.env.get("RESEND_API_KEY");
+console.log("RESEND_API_KEY exists:", !!resendApiKey);
+const resend = new Resend(resendApiKey);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -27,23 +30,27 @@ interface EmailRequest {
 }
 
 serve(async (req) => {
+  console.log("🔄 Request received for send-email function");
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
+    console.log("👍 Handling OPTIONS preflight request");
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // Log request headers and body for debugging
-    console.log("Request headers:", Object.fromEntries(req.headers.entries()));
+    // Log request headers
+    console.log("📝 Request headers:", Object.fromEntries(req.headers.entries()));
     
+    // Parse request body and log it
     const requestBody = await req.text();
-    console.log("Request body:", requestBody);
+    console.log("📦 Request body:", requestBody);
     
     let requestData;
     try {
       requestData = JSON.parse(requestBody);
     } catch (parseError) {
-      console.error("Error parsing JSON:", parseError);
+      console.error("❌ Error parsing JSON:", parseError);
       return new Response(
         JSON.stringify({ 
           error: true, 
@@ -59,10 +66,11 @@ serve(async (req) => {
       );
     }
     
-    const { formData } = requestData as EmailRequest;
+    const { to, subject, formData } = requestData as EmailRequest;
 
-    console.log("Processing email with data:", formData);
+    console.log("📧 Preparing email with data:", { to, subject, formData });
 
+    // Sestavení HTML obsahu emailu
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #0066cc; border-bottom: 1px solid #eee; padding-bottom: 10px;">Nový kontakt z pripojeni-poda.cz</h2>
@@ -85,40 +93,81 @@ serve(async (req) => {
       </div>
     `;
 
-    console.log("Sending email to:", "junkert@seznam.cz");
-    console.log("RESEND_API_KEY present:", !!Deno.env.get("RESEND_API_KEY"));
+    console.log("📨 Sending email with Resend API");
+    console.log("📧 To:", to);
+    console.log("📝 Subject:", subject);
+    console.log("🔑 RESEND_API_KEY present:", !!resendApiKey);
+    
+    // Pokus o odeslání emailu s více záložními postupy
+    try {
+      const emailResponse = await resend.emails.send({
+        from: "PODA <hello@kanga.wtf>", // Používám ověřenou doménu Resend
+        to: [to],
+        subject: subject,
+        html: htmlContent,
+        reply_to: formData.email
+      });
 
-    const emailResponse = await resend.emails.send({
-      from: "Poda.cz <noreply@pripojeni-poda.cz>",
-      to: ["junkert@seznam.cz"],
-      subject: "Nový kontakt z připojeni-poda.cz",
-      html: htmlContent,
-      reply_to: formData.email
-    });
+      console.log("✅ Email sent successfully:", emailResponse);
 
-    console.log("Email sent successfully:", emailResponse);
-
-    return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: "Email úspěšně odeslán" 
-      }), 
-      { 
-        status: 200, 
-        headers: { 
-          ...corsHeaders, 
-          "Content-Type": "application/json" 
-        } 
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: "Email úspěšně odeslán",
+          response: emailResponse
+        }), 
+        { 
+          status: 200, 
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json" 
+          } 
+        }
+      );
+    } catch (emailError: any) {
+      console.error("❌ Resend API error:", emailError);
+      
+      // V případě chyby se pokusíme použít jiný odesílatel
+      try {
+        const fallbackResponse = await resend.emails.send({
+          from: "Contact Form <onboarding@resend.dev>", // Fallback na výchozí Resend doménu
+          to: [to],
+          subject: subject + " (záložní email)",
+          html: htmlContent,
+          reply_to: formData.email
+        });
+        
+        console.log("⚠️ Fallback email sent:", fallbackResponse);
+        
+        return new Response(
+          JSON.stringify({ 
+            success: true, 
+            message: "Email odeslán pomocí záložního odesílatele",
+            response: fallbackResponse
+          }), 
+          { 
+            status: 200, 
+            headers: { 
+              ...corsHeaders, 
+              "Content-Type": "application/json" 
+            } 
+          }
+        );
+      } catch (fallbackError: any) {
+        console.error("❌ Fallback email also failed:", fallbackError);
+        throw new Error(`Both primary and fallback email sending failed: ${emailError.message}`);
       }
-    );
+    }
 
-  } catch (error) {
-    console.error("Email sending error:", error);
+  } catch (error: any) {
+    console.error("❌ Email sending error:", error);
+    console.error("Stack trace:", error.stack);
     return new Response(
       JSON.stringify({ 
         error: true, 
         message: "Chyba při odesílání emailu", 
-        details: error.message 
+        details: error.message,
+        stack: error.stack
       }), 
       { 
         status: 500, 

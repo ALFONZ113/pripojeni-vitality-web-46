@@ -1,4 +1,3 @@
-
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -49,7 +48,8 @@ const Hero = () => {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
             >
               Rychlý gigabitový internet
-              <span className="text-poda-orange whitespace-nowrap block md:inline">
+              <br className="block md:hidden" />
+              <span className="text-poda-orange block md:inline">
                 {" "}s chytrou televizí
               </span>
             </motion.h1>

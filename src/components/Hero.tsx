@@ -1,3 +1,4 @@
+
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -57,18 +58,18 @@ const Hero = () => {
         <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" initial="hidden" animate="show" variants={container}>
           <div className="text-center lg:text-left">
             <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
-              Pripojenie internetu a televízie PODA jednoducho v našej sieti
+              Pripojenie internetu a televízie PODA jednoducho u vás doma
             </motion.span>
             <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
-              Rýchle a spoľahlivé <span className="text-poda-orange">internetové a TV služby</span>
+              Stabilné pripojenie a kvalitná televízia od PODA 
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Pripojíme vás k špičkovému optickému internetu s rýchlosťou až 1000 Mbps a viac než <b>100 TV programami</b>. 
-              Všetko vybavíte ľahko online a naša profesionálna inštalácia a podpora sú samozrejmosťou. S nami je prechod k PODA bez starostí, rýchly a férový.
+              Pripojíme vás k rýchlemu a spoľahlivému internetu s rýchlosťou až 1000 Mbps priamo u vás doma. Oceníte viac ako <b>100 TV programov</b>, stabilné pripojenie v celej domácnosti a podporu, na ktorú sa môžete obrátiť vždy, keď budete potrebovať. Bez zbytočných komplikácií, bez skrytých poplatkov a bez starostí.<br /><br />
+              Prepojíme vás s moderným svetom – pre viac informácií využite <b>kontaktný formulár</b>.
             </motion.p>
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/tarify" className="btn-primary group transition-all" aria-label="Zobraziť ponuku tarifov">
-                Vybrať tarif
+                Zobraziť tarify
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
               <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktný formulár">
@@ -91,8 +92,8 @@ const Hero = () => {
                     <Wifi className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Nejrychlejší optický internet</h3>
-                    <p className="text-gray-600">Stabilní připojení s garantovanou rychlostí až 1000/1000 Mbps pro dokonalý zážitek.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Rýchly optický internet</h3>
+                    <p className="text-gray-600">Stabilné pripojenie s garantovanou rýchlosťou až 1000/1000 Mbps pre vašu domácnosť.</p>
                   </div>
                 </div>
               </motion.article>
@@ -106,8 +107,8 @@ const Hero = () => {
                     <Tv className="h-6 w-6 text-poda-orange" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Chytrá TV zdarma</h3>
-                    <p className="text-gray-600">Více než 100 TV programů s možností vlastního výběru stanic a sledování až na 4 zařízeních.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Televízia na mieru</h3>
+                    <p className="text-gray-600">Viac než 100 TV programov, vlastný výber staníc a sledovanie na viacerých zariadeniach.</p>
                   </div>
                 </div>
               </motion.article>
@@ -121,8 +122,8 @@ const Hero = () => {
                     <Zap className="h-6 w-6 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Nejmodernější technologie</h3>
-                    <p className="text-gray-600">Optická síť GPON pro maximální stabilitu a rychlost bez kompromisů.</p>
+                    <h3 className="font-semibold text-xl text-poda-blue mb-2">Moderné technológie</h3>
+                    <p className="text-gray-600">Optická sieť GPON zaručí maximálnu stabilitu a komfort bez kompromisov.</p>
                   </div>
                 </div>
               </motion.article>

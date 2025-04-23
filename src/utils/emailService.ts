@@ -15,60 +15,25 @@ interface EmailFormData {
 
 export const sendContactFormEmail = async (formData: EmailFormData): Promise<boolean> => {
   try {
-    console.log("Preparing to send email with formData:", JSON.stringify(formData));
+    console.log("Preparing to send email with formData:", formData);
     
-    // Create email HTML content with improved formatting
-    const htmlContent = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #0066cc; border-bottom: 1px solid #eee; padding-bottom: 10px;">Nový kontakt z formuláře</h2>
-        <div style="margin: 20px 0;">
-          <p style="margin: 10px 0;"><strong>Jméno:</strong> ${formData.name}</p>
-          <p style="margin: 10px 0;"><strong>Email:</strong> ${formData.email}</p>
-          <p style="margin: 10px 0;"><strong>Telefon:</strong> ${formData.phone}</p>
-          ${formData.address ? `<p style="margin: 10px 0;"><strong>Adresa:</strong> ${formData.address}</p>` : ''}
-          ${formData.city ? `<p style="margin: 10px 0;"><strong>Město:</strong> ${formData.city}</p>` : ''}
-          ${formData.zip ? `<p style="margin: 10px 0;"><strong>PSČ:</strong> ${formData.zip}</p>` : ''}
-          ${formData.currentProvider ? `<p style="margin: 10px 0;"><strong>Současný poskytovatel:</strong> ${formData.currentProvider}</p>` : ''}
-          ${formData.currentPrice ? `<p style="margin: 10px 0;"><strong>Aktuální cena:</strong> ${formData.currentPrice}</p>` : ''}
-        </div>
-        ${formData.message ? `
-          <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 20px;">
-            <h3 style="margin-top: 0; color: #333;">Zpráva od zákazníka:</h3>
-            <p style="white-space: pre-line;">${formData.message}</p>
-          </div>
-        ` : ''}
-        <div style="margin-top: 30px; font-size: 12px; color: #999; border-top: 1px solid #eee; padding-top: 10px;">
-          Odesláno z kontaktního formuláře na pripojeni-poda.cz
-        </div>
-      </div>
-    `;
-
-    // Send email using FormSubmit.co service which is simple and doesn't require API keys or registration
-    const response = await fetch("https://formsubmit.co/ajax/junkert@seznam.cz", {
+    const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
       },
       body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        address: formData.address || '',
-        city: formData.city || '',
-        zip: formData.zip || '',
-        currentProvider: formData.currentProvider || '',
-        currentPrice: formData.currentPrice || '',
-        message: formData.message || '',
-        _subject: "Nový kontaktní formulář z pripojeni-poda.cz",
-        _template: "table",
-        _captcha: "false"
+        to: "terc@obchod.poda.cz",
+        subject: "Nový kontakt z pripojeni-poda.cz",
+        formData: formData,
+        resendApiKey: "re_BYkUxZxo_Gp2EPXgjf6JVFyn2Uu8eWuk3" // This will be replaced by Supabase secret
       })
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Email API error:", errorText);
+      const errorData = await response.json();
+      console.error("Email API error:", errorData);
       throw new Error(`Failed to send email: ${response.status}`);
     }
     

@@ -57,24 +57,24 @@ const Hero = () => {
         <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" initial="hidden" animate="show" variants={container}>
           <div className="text-center lg:text-left">
             <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
-              Užívať si spoľahlivý, ultrarýchly internet a televíziu s najlepšou podporou môže každý
+              Rýchly internet a televízia PODA priamo k vám
             </motion.span>
             <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
-              Internet novej generácie<br />
-              pre váš <span className="text-poda-orange">domov aj kanceláriu</span>
+              Objednajte si <br />
+              <span className="text-poda-orange">internet a TV</span> jednoducho online
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Získajte špičkové optické pripojenie s rýchlosťou do 1000 Mbps, <b>100+ TV programov zdarma k internetu</b> a skutočne nadštandardným osobným prístupom. Volíte <span className="text-poda-blue font-bold">Popri.cz</span> – pretože kvalita a nízka cena môžu ísť ruka v ruke.<br />
-              <span className="hidden md:inline"><br /></span>
-              Zmeniť operátora je s nami hračka.
+              Najrýchlejší optický internet až 1000 Mbps a viac než <b>100 TV programov</b>. 
+              Profesionálna inštalácia a podpora sú súčasťou služby. 
+              Prechod k nám je rýchly a bezstarostný.
             </motion.p>
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">
-                Pozrieť ponuku tarifov
+              <Link to="/tarify" className="btn-primary group transition-all" aria-label="Zobraziť ponuku tarifov">
+                Vybrať tarif
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
-              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktní formulář">
-                Nezáväzná konzultácia zdarma
+              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktný formulár">
+                Poradiť sa zadarmo
               </Link>
             </motion.div>
           </div>

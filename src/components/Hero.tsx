@@ -1,4 +1,3 @@
-
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -58,7 +57,7 @@ const Hero = () => {
         <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" initial="hidden" animate="show" variants={container}>
           <div className="text-center lg:text-left">
             <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
-              Pripojenie internetu a televízie PODA jednoducho u vás doma
+              Pripojenie internetu a televízie PODA jednoducho v našej sieti
             </motion.span>
             <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
               Rýchle a spoľahlivé <span className="text-poda-orange">internetové a TV služby</span>
@@ -143,22 +142,9 @@ const Hero = () => {
           <p className="mt-1">
             Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku
           </p>
-          <p className="mt-2">
-            <b>Mapa stránky (sitemap):</b>{" "}
-            <a
-              href="/sitemap.xml"
-              className="text-blue-500 underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              https://www.popri.cz/sitemap.xml
-            </a>
-            {" "} – tento odkaz vložte do Google Search Console pre lepšiu indexáciu stránky.
-          </p>
         </motion.div>
       </div>
     </section>;
 };
 
 export default Hero;
-

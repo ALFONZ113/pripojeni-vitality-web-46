@@ -17,22 +17,25 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
   try {
     console.log("Preparing to send email with formData:", formData);
     
-    const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-email`, {
+    // Použití přímého URL k edge function, ne dynamickou proměnnou
+    const functionUrl = "https://yjzzhfvwbnzhecffuelt.supabase.co/functions/v1/send-email";
+    
+    const response = await fetch(functionUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqenpoZnZ3Ym56aGVjZmZ1ZWx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU0NDEzMDgsImV4cCI6MjA2MTAxNzMwOH0.Buhkufn2M3P0sGnWoQrbvZ3iHv7gMT2kDLJzQ5rNGTE`
       },
       body: JSON.stringify({
-        to: "terc@obchod.poda.cz",
+        to: "junkert@seznam.cz",
         subject: "Nový kontakt z pripojeni-poda.cz",
         formData: formData
       })
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error("Email API error:", errorData);
+      const errorText = await response.text();
+      console.error("Email API error:", errorText);
       throw new Error(`Failed to send email: ${response.status}`);
     }
     

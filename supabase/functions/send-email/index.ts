@@ -33,8 +33,35 @@ serve(async (req) => {
   }
 
   try {
-    const requestData = await req.json();
+    // Log request headers and body for debugging
+    console.log("Request headers:", Object.fromEntries(req.headers.entries()));
+    
+    const requestBody = await req.text();
+    console.log("Request body:", requestBody);
+    
+    let requestData;
+    try {
+      requestData = JSON.parse(requestBody);
+    } catch (parseError) {
+      console.error("Error parsing JSON:", parseError);
+      return new Response(
+        JSON.stringify({ 
+          error: true, 
+          message: "Invalid JSON in request body" 
+        }), 
+        { 
+          status: 400, 
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json" 
+          } 
+        }
+      );
+    }
+    
     const { formData } = requestData as EmailRequest;
+
+    console.log("Processing email with data:", formData);
 
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -58,8 +85,11 @@ serve(async (req) => {
       </div>
     `;
 
+    console.log("Sending email to:", "junkert@seznam.cz");
+    console.log("RESEND_API_KEY present:", !!Deno.env.get("RESEND_API_KEY"));
+
     const emailResponse = await resend.emails.send({
-      from: "Poda.cz <obchod@pripojeni-poda.cz>",
+      from: "Poda.cz <noreply@pripojeni-poda.cz>",
       to: ["junkert@seznam.cz"],
       subject: "Nový kontakt z připojeni-poda.cz",
       html: htmlContent,
@@ -87,7 +117,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         error: true, 
-        message: "Chyba při odesílání emailu" 
+        message: "Chyba při odesílání emailu", 
+        details: error.message 
       }), 
       { 
         status: 500, 

@@ -48,9 +48,9 @@ const Hero = () => {
               variants={item}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
             >
-              Rychlý gigabitový internet<br />
-              <span className="text-poda-orange">
-                s chytrou televizí
+              Rychlý gigabitový internet
+              <span className="text-poda-orange whitespace-nowrap block md:inline">
+                {" "}s chytrou televizí
               </span>
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">

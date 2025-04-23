@@ -6,6 +6,7 @@ import ChannelsSection from '../components/ChannelsSection';
 import ContactSection from '../components/ContactSection';
 import BlogPreview from '../components/BlogPreview';
 import { initAnimations } from '../utils/animation';
+import { Helmet } from 'react-helmet-async';
 
 const Index = () => {
   useEffect(() => {
@@ -45,6 +46,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+      </Helmet>
       <Hero />
       <TariffSection />
       <ChannelsSection />

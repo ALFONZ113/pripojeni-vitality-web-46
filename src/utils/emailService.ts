@@ -26,8 +26,7 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       body: JSON.stringify({
         to: "terc@obchod.poda.cz",
         subject: "Nový kontakt z pripojeni-poda.cz",
-        formData: formData,
-        resendApiKey: "re_BYkUxZxo_Gp2EPXgjf6JVFyn2Uu8eWuk3" // This will be replaced by Supabase secret
+        formData: formData
       })
     });
 

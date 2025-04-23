@@ -1,3 +1,4 @@
+
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -57,16 +58,14 @@ const Hero = () => {
         <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" initial="hidden" animate="show" variants={container}>
           <div className="text-center lg:text-left">
             <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
-              Rýchly internet a televízia PODA priamo k vám
+              Pripojenie internetu a televízie PODA jednoducho u vás doma
             </motion.span>
             <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
-              Objednajte si <br />
-              <span className="text-poda-orange">internet a TV</span> jednoducho online
+              Rýchle a spoľahlivé <span className="text-poda-orange">internetové a TV služby</span>
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Najrýchlejší optický internet až 1000 Mbps a viac než <b>100 TV programov</b>. 
-              Profesionálna inštalácia a podpora sú súčasťou služby. 
-              Prechod k nám je rýchly a bezstarostný.
+              Pripojíme vás k špičkovému optickému internetu s rýchlosťou až 1000 Mbps a viac než <b>100 TV programami</b>. 
+              Všetko vybavíte ľahko online a naša profesionálna inštalácia a podpora sú samozrejmosťou. S nami je prechod k PODA bez starostí, rýchly a férový.
             </motion.p>
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/tarify" className="btn-primary group transition-all" aria-label="Zobraziť ponuku tarifov">
@@ -74,7 +73,7 @@ const Hero = () => {
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
               <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktný formulár">
-                Poradiť sa zadarmo
+                Kontaktný formulár
               </Link>
             </motion.div>
           </div>
@@ -144,9 +143,22 @@ const Hero = () => {
           <p className="mt-1">
             Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku
           </p>
+          <p className="mt-2">
+            <b>Mapa stránky (sitemap):</b>{" "}
+            <a
+              href="/sitemap.xml"
+              className="text-blue-500 underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.popri.cz/sitemap.xml
+            </a>
+            {" "} – tento odkaz vložte do Google Search Console pre lepšiu indexáciu stránky.
+          </p>
         </motion.div>
       </div>
     </section>;
 };
 
 export default Hero;
+

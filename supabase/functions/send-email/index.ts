@@ -1,14 +1,18 @@
 
-// Follow this setup guide to integrate the Deno runtime into your Supabase project:
-// https://supabase.com/docs/guides/functions/deno-runtime
-
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
-import { corsHeaders } from "../_shared/cors.ts";
+import { Resend } from "npm:resend@2.0.0";
+
+const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+};
 
 interface EmailRequest {
   to: string;
   subject: string;
-  resendApiKey: string;
   formData: {
     name: string;
     email: string;
@@ -22,52 +26,19 @@ interface EmailRequest {
   };
 }
 
-serve(async (req: Request) => {
-  console.log("[SEND-EMAIL] Function invoked:", new Date().toISOString());
-  
+serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
-    console.log("[SEND-EMAIL] Handling OPTIONS preflight request");
-    return new Response("ok", { headers: corsHeaders });
+    return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    console.log("[SEND-EMAIL] Processing POST request");
-    
-    // Parse request body
     const requestData = await req.json();
-    console.log("[SEND-EMAIL] Request data received:", JSON.stringify(requestData, null, 2));
-    
-    const { to, subject, resendApiKey, formData } = requestData as EmailRequest;
+    const { formData } = requestData as EmailRequest;
 
-    // Validate required fields
-    if (!to || !subject || !formData || !resendApiKey) {
-      console.error("[SEND-EMAIL] Missing required fields:", { 
-        to: !!to, 
-        subject: !!subject, 
-        formData: !!formData, 
-        resendApiKey: !!resendApiKey 
-      });
-      
-      return new Response(
-        JSON.stringify({ 
-          error: true,
-          message: "Chybí povinné údaje" 
-        }),
-        { 
-          status: 400, 
-          headers: { 
-            ...corsHeaders, 
-            "Content-Type": "application/json" 
-          } 
-        }
-      );
-    }
-    
-    // Create email HTML content with improved formatting
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #0066cc; border-bottom: 1px solid #eee; padding-bottom: 10px;">Nový kontakt z formuláře</h2>
+        <h2 style="color: #0066cc; border-bottom: 1px solid #eee; padding-bottom: 10px;">Nový kontakt z pripojeni-poda.cz</h2>
         <div style="margin: 20px 0;">
           <p style="margin: 10px 0;"><strong>Jméno:</strong> ${formData.name}</p>
           <p style="margin: 10px 0;"><strong>Email:</strong> ${formData.email}</p>
@@ -84,58 +55,24 @@ serve(async (req: Request) => {
             <p style="white-space: pre-line;">${formData.message}</p>
           </div>
         ` : ''}
-        <div style="margin-top: 30px; font-size: 12px; color: #999; border-top: 1px solid #eee; padding-top: 10px;">
-          Odesláno z kontaktního formuláře na pripojeni-poda.cz
-        </div>
       </div>
     `;
 
-    console.log("[SEND-EMAIL] Preparing to call Resend API");
-    
-    // Send the email using Resend API
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${resendApiKey}`
-      },
-      body: JSON.stringify({
-        from: "onboarding@resend.dev",
-        to: [to],
-        subject: subject,
-        html: htmlContent,
-        reply_to: formData.email
-      })
+    const emailResponse = await resend.emails.send({
+      from: "Poda.cz <obchod@pripojeni-poda.cz>",
+      to: ["junkert@seznam.cz"],
+      subject: "Nový kontakt z připojeni-poda.cz",
+      html: htmlContent,
+      reply_to: formData.email
     });
 
-    const responseData = await response.json();
-    console.log("[SEND-EMAIL] Resend API response:", JSON.stringify(responseData, null, 2));
+    console.log("Email sent successfully:", emailResponse);
 
-    if (!response.ok) {
-      console.error("[SEND-EMAIL] Resend API error:", JSON.stringify(responseData));
-      return new Response(
-        JSON.stringify({ 
-          error: true,
-          message: "Chyba při odesílání emailu", 
-          details: responseData 
-        }),
-        { 
-          status: 500, 
-          headers: { 
-            ...corsHeaders, 
-            "Content-Type": "application/json" 
-          } 
-        }
-      );
-    }
-
-    console.log("[SEND-EMAIL] Email sent successfully");
     return new Response(
       JSON.stringify({ 
-        success: true,
-        message: "Email úspěšně odeslán", 
-        data: responseData 
-      }),
+        success: true, 
+        message: "Email úspěšně odeslán" 
+      }), 
       { 
         status: 200, 
         headers: { 
@@ -146,13 +83,12 @@ serve(async (req: Request) => {
     );
 
   } catch (error) {
-    console.error("[SEND-EMAIL] Server error:", error);
+    console.error("Email sending error:", error);
     return new Response(
       JSON.stringify({ 
-        error: true,
-        message: "Server error", 
-        details: error.message 
-      }),
+        error: true, 
+        message: "Chyba při odesílání emailu" 
+      }), 
       { 
         status: 500, 
         headers: { 

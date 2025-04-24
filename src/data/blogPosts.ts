@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   id: number;
   title: string;
@@ -19,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/ee77bf94-1334-43c7-8c7f-3b5ec2645396.png',
+    image: '/lovable-uploads/d47a00b6-557e-4a38-bc08-cb585187676f.png',
     alt: 'Síťový kabel s optickým připojením PODA v Ostravě-Porubě, v pozadí silueta městské zástavby',
     content: `
       <h3>Dostupné ulice v Porubě:</h3>
@@ -119,7 +118,7 @@ export const blogPosts: BlogPost[] = [
       <p>60 GHz internetové pripojenie prináša niekoľko významných výhod oproti tradičným bezdrôtovým technológiám:</p>
       
       <ul>
-        <li><strong>Vysoká rýchlosť</strong>: Umožňuje prenosové rýchlosti až 1 000 Mb/s, čo je porovnateľné s optickým pripojením.</li>
+        <li><strong>Vysoká rychlost</strong>: Umožňuje prenosové rýchlosti až 1 000 Mb/s, čo je porovnateľné s optickým pripojením.</li>
         <li><strong>Nízka latencia</strong>: Poskytuje veľmi nízku a stabilnú odozvu, čo ocenia najmä hráči.</li>
         <li><strong>Menšie rušenie</strong>: V porovnaní s bežnými Wi-Fi sieťami (2,4 GHz a 5 GHz) dochádza k výrazne menšiemu vzájomnému rušeniu signálov.</li>
         <li><strong>Bezpečnosť</strong>: Pásmo 60 GHz je považované za veľmi bezpečné a dlhodobo ho využíva aj armáda.</li>
@@ -225,7 +224,7 @@ export const blogPosts: BlogPost[] = [
       
       <h3>Sportovní kanály v naší nabídce:</h3>
       <ul>
-        <li><strong>ČT sport</strong> - Přináší nejdůležitější české i zahraniční sportovní události.</li>
+        <li><strong>ČT sport</strong> - Přináší nejdůležitější české i zahraniční sportovn�� události.</li>
         <li><strong>Eurosport 1 a 2</strong> - Kompletní pokrytí olympijských her, cyklistiky, tenisu a mnoha dalších sportů.</li>
         <li><strong>Nova Sport 1 a 2</strong> - Fotbalové ligy, hokej, motoristické sporty a další.</li>
         <li><strong>Arena Sport 1 a 2</strong> - Prémiové sportovní kanály s exkluzivními přenosy.</li>

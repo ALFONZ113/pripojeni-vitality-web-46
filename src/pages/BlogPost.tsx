@@ -40,7 +40,20 @@ const BlogPost = () => {
 
   const handleImageError = () => {
     console.error(`Failed to load image: ${post.image}`);
-    setImageError(true);
+    
+    // Try with the full URL if it's a relative path
+    if (!imageError && post.image.startsWith('/')) {
+      const fullUrl = window.location.origin + post.image;
+      console.log(`Trying with full URL: ${fullUrl}`);
+      
+      // We set this with a timeout to prevent infinite rendering loops
+      setTimeout(() => {
+        const img = document.getElementById('blog-post-image') as HTMLImageElement;
+        if (img) img.src = fullUrl;
+      }, 100);
+    } else {
+      setImageError(true);
+    }
   };
 
   return (
@@ -54,6 +67,7 @@ const BlogPost = () => {
           </div>
         ) : (
           <img 
+            id="blog-post-image"
             src={post.image} 
             alt={post.alt || post.title} 
             className="w-full h-full object-cover"

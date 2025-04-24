@@ -19,8 +19,19 @@ const BlogCard = ({ post }: BlogCardProps) => {
           width="640"
           height="360"
           onError={(e) => {
-            console.error(`Failed to load image: ${post.image}`);
-            e.currentTarget.src = '/placeholder.svg';
+            const target = e.currentTarget;
+            console.log(`Attempting to fix image path for: ${post.image}`);
+            
+            // Try with the full URL if it's a relative path
+            if (post.image.startsWith('/')) {
+              const fullUrl = window.location.origin + post.image;
+              console.log(`Trying with full URL: ${fullUrl}`);
+              target.src = fullUrl;
+            } else {
+              // If that fails, use placeholder
+              target.onerror = null; // Prevent infinite loop
+              target.src = '/placeholder.svg';
+            }
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

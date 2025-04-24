@@ -1,3 +1,4 @@
+
 export interface BlogPost {
   id: number;
   title: string;
@@ -18,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/be430602-21d7-4476-8e4c-09225196873c.png',
+    image: '/lovable-uploads/ee77bf94-1334-43c7-8c7f-3b5ec2645396.png',
     alt: 'Síťový kabel s optickým připojením PODA v Ostravě-Porubě, v pozadí silueta městské zástavby',
     content: `
       <h3>Dostupné ulice v Porubě:</h3>

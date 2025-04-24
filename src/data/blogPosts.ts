@@ -47,29 +47,6 @@ export const blogPosts: BlogPost[] = [
       </ul>
       
       <p>Pokrývání nových oblastí se stále rozšiřuje, takže pokud vaše město zatím není na seznamu, je možné, že se brzy dočkáte i vy.</p>
-      
-      <h3>Jaké technologie PODA využívá?</h3>
-      <p>PODA staví na dvou hlavních technologiích:</p>
-      
-      <ul>
-        <li><strong>Optický internet</strong> – Nejmodernější způsob připojení, který zaručuje extrémně vysoké rychlosti (až 2 Gb/s) a minimální odezvu. Ideální pro streamování, hraní online her i práci z domova.</li>
-        <li><strong>Bezdrátový internet</strong> – Skvělá alternativa tam, kde zatím není optická síť. Díky moderním technologiím nabízí vysokou rychlost a stabilitu připojení.</li>
-      </ul>
-      
-      <h3>Proč si vybrat PODA?</h3>
-      <ul>
-        <li><strong>Rychlost a stabilita</strong> – Internet bez výpadků a s dostatečnou rychlostí pro celou rodinu.</li>
-        <li><strong>Bez datových limitů</strong> – Můžete surfovat, stahovat i sledovat filmy bez omezení.</li>
-        <li><strong>Výhodné ceny</strong> – Férové tarify pro domácnosti i firmy.</li>
-        <li><strong>Možnost kombinace s televizí</strong> – Služba PODA TV přináší širokou nabídku programů a chytré funkce.</li>
-        <li><strong>Rychlá instalace a podpora</strong> – Tým zkušených techniků je připraven vyřešit jakýkoliv problém.</li>
-      </ul>
-      
-      <h3>Jak zjistit dostupnost a zajistit připojení PODA u vás doma?</h3>
-      <p>Pokud vás zajímá, zda je připojení PODA dostupné právě na vaší adrese, stačí navštívit stránku <strong>Popri.cz (PODA připojení)</strong> a vyplnit jednoduchý kontaktní formulář. Po odeslání formuláře se vám ozvu a sdělím, zda je služba dostupná i u vás doma. Pokud bude připojení možné, pomohu vám vše zařídit – od objednávky přes instalaci až po samotné spuštění internetu. Vše rychle, přehledně a bez zbytečné administrativy.</p>
-      
-      <h3>Závěr</h3>
-      <p>Pokud hledáte spolehlivý internet v některém z výše uvedených měst, PODA je skvělou volbou. Díky moderním technologiím, férovým cenám a osobnímu přístupu si získala důvěru tisíců domácností i firem po celé republice. Vyplňte kontaktní formulář na Popri.cz (PODA připojení) a zjistěte, jestli můžete mít rychlý internet PODA i vy!</p>
     `
   },
   {
@@ -416,3 +393,40 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Praha</strong></li>
         <li><strong>Brno</strong></li>
         <li><strong>Ostrava</strong></li>
+        <li><strong>Havířov</strong></li>
+        <li><strong>Karviná</strong></li>
+        <li><strong>Bohumín</strong></li>
+        <li><strong>Frýdek-Místek</strong></li>
+        <li><strong>Havlíčkův Brod</strong></li>
+        <li><strong>Horní Suchá</strong></li>
+        <li><strong>Letovice</strong></li>
+        <li><strong>Nové Město na Moravě</strong></li>
+        <li><strong>Svitavy</strong></li>
+        <li><strong>Vysoké Mýto</strong></li>
+        <li><strong>Žďár nad Sázavou</strong></li>
+        <li><strong>Orlová</strong></li>
+        <li><strong>Znojmo</strong></li>
+        <li><strong>Polička</strong></li>
+      </ul>
+      
+      <p>Pokrývání nových oblastí se stále rozšiřuje, takže pokud vaše město zatím není na seznamu, je možné, že se brzy dočkáte i vy.</p>
+      
+      <h3>Jaké technologie PODA využívá?</h3>
+      <p>PODA staví na dvou hlavních technologiích:</p>
+      
+      <ul>
+        <li><strong>Optický internet</strong> – Nejmodernější způsob připojení, který zaručuje extrémně vysoké rychlosti (až 2 Gb/s) a minimální odezvu. Ideální pro streamování, hraní online her i práci z domova.</li>
+        <li><strong>Bezdrátový internet</strong> – Skvělá alternativa tam, kde zatím není optická síť. Díky moderním technologiím nabízí vysokou rychlost a stabilitu připojení.</li>
+      </ul>
+      
+      <h3>Proč si vybrat PODA?</h3>
+      <ul>
+        <li><strong>Rychlost a stabilita</strong> – Internet bez výpadků a s dostatečnou rychlostí pro celou rodinu.</li>
+        <li><strong>Bez datových limitů</strong> – Můžete surfovat, stahovat i sledovat filmy bez omezení.</li>
+        <li><strong>Výhodné ceny</strong> – Férové tarify pro domácnosti i firmy.</li>
+        <li><strong>Možnost kombinace s televizí</strong> – Služba PODA TV přináší širokou nabídku programů a chytré funkce.</li>
+        <li><strong>Rychlá instalace a podpora</strong> – Tým zkušených techniků je připraven vyřešit jakýkoliv problém.</li>
+      </ul>
+      
+      <h3>Jak zjistit dostupnost a zajistit připojení PODA u vás doma?</h3>
+      <p>Pokud vás zajímá, zda je připojení PODA dostupné právě na vaší adrese, stačí navštívit stránku <strong>Popri.cz (PODA připojení)</strong> a vyplnit jednoduchý kontaktní

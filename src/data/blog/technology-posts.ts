@@ -1,4 +1,3 @@
-
 import type { BlogPost } from './types';
 
 export const technologyPosts: BlogPost[] = [
@@ -12,7 +11,7 @@ export const technologyPosts: BlogPost[] = [
     image: '/lovable-uploads/794ec1de-6ebd-4c0e-991a-bf48dce86900.png',
     alt: 'Vizualizácia 60 GHz internetového pripojenia v modernej bytovej zástavbe',
     content: `
-      <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti. Tento inovatívny systém ponúka výkon takmer porovnateľný s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>
+      <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 1 000 Mb/s, čo je porovnateľné s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>
       
       <h3>Výhody 60 GHz pripojenia</h3>
       <p>60 GHz internetové pripojenie prináša niekoľko významných výhod oproti tradičným bezdrôtovým technológiám:</p>

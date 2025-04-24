@@ -395,7 +395,7 @@ export const blogPosts: BlogPost[] = [
       <p>Pokud bydlíte v Ostravě-Porubě a hledáte spolehlivé internetové připojení, PODA nabízí kvalitní služby s vysokou rychlostí za konkurenceschopné ceny. Díky rozsáhlému pokrytí v mnoha ulicích Poruby je pravděpodobné, že jejich služby jsou dostupné i na vaší adrese.</p>
 
       <p>I když je výše uvedený seznam ulic rozsáhlý, nemusí být zcela vyčerpávající vzhledem k neustálému rozšiřování sítě. Pro zjištění konkrétní dostupnosti doporučuji navštívit webové stránky popri.cz nebo přímo kontaktovat obchodního zástupce pro oblast Poruba, pana Milana Terče na telefonním čísle 730 431 313, který vám poskytne aktuální a přesné informace o dostupnosti na vaší konkrétní adrese.</p>
-    `,
+    `
   },
   {
     id: 9,

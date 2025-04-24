@@ -32,7 +32,8 @@ export const servicesPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Tým PODA',
     category: 'Služby',
-    image: '/lovable-uploads/68ab4dfd-5524-40ae-9e83-61be56fb6d9a.png',
+    image: '/lovable-uploads/932a9f44-de8b-426c-9565-4637e2b1f8de.png',
     alt: 'Budova PODA v Porubě s optickým připojením vizualizovaným modrým světlem'
   }
 ];
+

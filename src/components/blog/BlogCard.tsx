@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blogPosts';
@@ -20,18 +19,25 @@ const BlogCard = ({ post }: BlogCardProps) => {
           height="360"
           onError={(e) => {
             const target = e.currentTarget;
-            console.log(`Attempting to fix image path for: ${post.image}`);
+            console.log(`Image load error for: ${post.image}`);
             
-            // Try with the full URL if it's a relative path
-            if (post.image.startsWith('/')) {
-              const fullUrl = window.location.origin + post.image;
-              console.log(`Trying with full URL: ${fullUrl}`);
-              target.src = fullUrl;
-            } else {
-              // If that fails, use placeholder
-              target.onerror = null; // Prevent infinite loop
+            if (!post.image.startsWith('/lovable-uploads/')) {
+              console.error('Invalid image path - must start with /lovable-uploads/');
+              target.onerror = null;
               target.src = '/placeholder.svg';
+              return;
             }
+
+            const fullUrl = window.location.origin + post.image;
+            console.log(`Trying with full URL: ${fullUrl}`);
+            target.src = fullUrl;
+            
+            // If that also fails, use placeholder
+            target.onerror = () => {
+              console.error('Failed to load image even with full URL');
+              target.onerror = null;
+              target.src = '/placeholder.svg';
+            };
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

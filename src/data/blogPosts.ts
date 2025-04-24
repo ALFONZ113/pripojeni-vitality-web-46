@@ -1,14 +1,4 @@
-export interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  date: string;
-  author: string;
-  category: string;
-  image: string;
-  alt?: string;
-}
+import type { BlogPost } from './blogPosts';
 
 export const blogPosts: BlogPost[] = [
   {
@@ -430,3 +420,9 @@ export const blogPosts: BlogPost[] = [
       
       <h3>Jak zjistit dostupnost a zajistit připojení PODA u vás doma?</h3>
       <p>Pokud vás zajímá, zda je připojení PODA dostupné právě na vaší adrese, stačí navštívit stránku <strong>Popri.cz (PODA připojení)</strong> a vyplnit jednoduchý kontaktní
+    `
+  }
+];
+
+// Add the export to ensure the type is correctly imported
+export type { BlogPost };

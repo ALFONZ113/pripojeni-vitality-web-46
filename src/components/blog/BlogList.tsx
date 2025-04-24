@@ -1,6 +1,7 @@
+
 import { Bookmark } from 'lucide-react';
 import BlogCard from './BlogCard';
-import type { BlogPost } from '../../data/blog';
+import type { BlogPost } from '../../data/blogPosts';
 
 interface BlogListProps {
   posts: BlogPost[];

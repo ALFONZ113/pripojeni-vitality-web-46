@@ -1,6 +1,7 @@
+
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../data/blog';
+import { blogPosts } from '../data/blogPosts';
 
 const BlogPreview = () => {
   // Get the 4 most recent blog posts

@@ -1,6 +1,7 @@
+
 import { Link } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
-import type { BlogPost } from '../../data/blog';
+import type { BlogPost } from '../../data/blogPosts';
 
 interface BlogPostSidebarProps {
   relatedPosts: BlogPost[];

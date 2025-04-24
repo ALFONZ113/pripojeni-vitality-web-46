@@ -1,5 +1,5 @@
 
-import { categories } from '../../data/blog';
+import { categories } from '../../data/blogPosts';
 
 interface BlogCategoriesProps {
   selectedCategory: string;

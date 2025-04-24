@@ -1,7 +1,6 @@
-
 import { Link } from 'react-router-dom';
 import { Share2, Bookmark, MessageSquare } from 'lucide-react';
-import type { BlogPost } from '../../data/blogPosts';
+import type { BlogPost } from '../../data/blog';
 
 interface BlogPostContentProps {
   post: BlogPost;

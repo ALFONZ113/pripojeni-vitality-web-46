@@ -1,7 +1,6 @@
-
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
-import type { BlogPost } from '../../data/blogPosts';
+import type { BlogPost } from '../../data/blog';
 
 interface BlogPostHeaderProps {
   post: BlogPost;

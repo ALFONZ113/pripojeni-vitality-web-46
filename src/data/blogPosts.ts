@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   id: number;
   title: string;
@@ -13,6 +12,36 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 10,
+    title: 'Internet PODA v Ostravě-Porubě: Kvalitní připojení na vaší ulici',
+    excerpt: 'Hledáte rychlý a stabilní internet v Ostravě-Porubě? PODA nabízí optické připojení až 1 Gb/s pro domácnosti i firmy ve většině porubských ulic. Instalace je zdarma a technici vám vše profesionálně zapojí až do bytu.',
+    date: '24. 4. 2025',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: '/lovable-uploads/113006bc-04e8-43be-9b1e-6f016f1059e9.png',
+    alt: 'Budova v Porubě s optickým připojením PODA vizualizovaným modrými světelnými paprsky',
+    content: `
+      <h3>Dostupné ulice v Porubě:</h3>
+      <p>Aloise Gavlase, Bohuslava Martinů, Bulharská, Čkalovova, Dětská, Dvorní, Francouzská, Generála Sochora, Gurťjevova, Havanská, Hlavní třída, Heyrovského, Ivana Sekaniny, Jana Šoupala, Jindřicha Plachty, Karla Pokorného, Komenského, Kosmická, Kubánská, Kyjevská, Liptaňského náměstí, Ludvíka Podéště, Marie Majerové, Matěje Kopeckého, Mongolská, Nálepkova, Náměstí Družby, Nezvalovo náměstí, Opavská, Podroužkova, Polská, Porubská, Příčná, Průběžná, Pustkovecká, Rabasova, Řecká, Resslova, Skautská, Školní, Slepá, Slavíkova, Sokolovská, Španielova, Spartakovců, Spojů, Stavební, Svojsíkova, Tř. 17. listopadu, U Oblouku, U Školky, U Soudu, U Sportoviště, U Vozovny, Ukrajinská, Urxova, Větrná, Vietnamská, Vincence Makovského, Vítězslava Nováka, Vřesinská, Záhumenní, Zdeňka Štěpánka, Zednická, Žilinská.</p>
+
+      <h3>Výhody připojení PODA:</h3>
+      <ul>
+        <li>Stabilní optický internet až 1 Gb/s</li>
+        <li>Bez datových limitů</li>
+        <li>Rychlá instalace zdarma</li>
+        <li>Výhodné balíčky s TV</li>
+      </ul>
+
+      <h3>Ověřte dostupnost na vaší adrese nebo si objednejte připojení:</h3>
+      <p><strong>Web:</strong> popri.cz</p>
+      <p><strong>Obchodní zástupce:</strong> Milan Terč<br>
+      <strong>Tel:</strong> 730 431 313<br>
+      <strong>E-mail:</strong> terc@obchod.poda.cz</p>
+
+      <p>Připojte se k internetu nové generace v Ostravě-Porubě a užívejte si rychlost bez kompromisů!</p>
+    `
+  },
+  {
     id: 9,
     title: 'Města s pokrytím PODA: Kde si můžete užívat rychlý internet?',
     excerpt: 'Společnost PODA pokrývá svými službami řadu měst po celé České republice. Zjistěte, kde všude můžete využívat stabilní a rychlé připojení.',
@@ -22,7 +51,7 @@ export const blogPosts: BlogPost[] = [
     image: '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
     alt: 'Vizualizace optického připojení v městské zástavbě s modrými světelnými efekty',
     content: `
-      <p>Společnost PODA patří mezi přední poskytovatele internetu v České republice a díky své moderní síti přináší rychlé a stabilní připojení nejen do velkých měst, ale i do menších obcí. Pokud hledáte spolehlivý internet pro domácnost nebo firmu, PODA je rozhodně možnost, kterou stojí za to zvážit. V tomto článku se dozvíte, kde všude je možné služby PODA využívat a jak si jednoduše ověřit dostupnost u vás doma.</p>
+      <p>Společnost PODA patří mezi přední poskytovatele internetu v České republice a díky své moderní síti přináší rychlé a stabilní připojení nejen do velkých měst, ale i do menších obcí. Pokud hledáte spolehlivý internet pro domácnost nebo firmu, PODA je rozhodně možnost, kterou stojí za to zvážit. V tomto článku se dozvíte, kde všude můžete služby PODA využívat a jak si jednoduše ověřit dostupnost u vás doma.</p>
       
       <h3>Kde je dostupné připojení PODA?</h3>
       <p>PODA nabízí své služby v celé řadě českých měst a jejich okolí. Mezi hlavní lokality, kde se můžete na rychlé připojení spolehnout, patří:</p>
@@ -234,7 +263,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 6,
     title: 'Rychlost internetu: Co je dostatečné pro různé typy uživatelů',
-    excerpt: 'Jaká rychlost internetu je optimální pro běžné prohlížení, streamování, hraní her nebo práci z domova? Poradíme vám.',
+    excerpt: 'Jaká rychlost internetového připojení je optimální pro běžné prohlížení, streamování, hraní her nebo práci z domova? Poradíme vám.',
     content: `
       <p>Rychlost internetového připojení je jedním z nejdůležitějších parametrů při výběru poskytovatele. Různé aktivity však vyžadují různé rychlosti, a ne každý potřebuje gigabitové připojení.</p>
       

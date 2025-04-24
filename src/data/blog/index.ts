@@ -1,5 +1,6 @@
 
-import { BlogPost, Category, categories } from './types';
+import type { BlogPost, Category } from './types';
+import { categories } from './types';
 import { technologyPosts } from './technology-posts';
 import { tipsPosts } from './tips-posts';
 import { servicesPosts } from './services-posts';
@@ -12,4 +13,5 @@ export const blogPosts: BlogPost[] = [
 ];
 
 // Export everything for easy import elsewhere
-export { categories, Category, BlogPost };
+export { categories };
+export type { BlogPost, Category };

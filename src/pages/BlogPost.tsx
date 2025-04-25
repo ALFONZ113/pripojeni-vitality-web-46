@@ -10,7 +10,7 @@ import BlogPostSidebar from '../components/blog/BlogPostSidebar';
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<typeof blogPosts[0] | null>(null);
-  const [imageUrl, setImageUrl] = useState<string>('');
+  const [imageError, setImageError] = useState(false);
   const navigate = useNavigate();
   
   const relatedPosts = post 
@@ -24,18 +24,8 @@ const BlogPost = () => {
     const foundPost = blogPosts.find(p => p.id === Number(id));
     if (foundPost) {
       setPost(foundPost);
-      
-      // Prepare image URL
-      if (foundPost.image) {
-        let imageSource = foundPost.image;
-        // If URL is relative, try to convert it to absolute
-        if (foundPost.image.startsWith('/')) {
-          imageSource = window.location.origin + foundPost.image;
-        }
-        setImageUrl(imageSource);
-      } else {
-        setImageUrl('/placeholder.svg');
-      }
+      // Reset error state when post changes
+      setImageError(false);
     } else {
       navigate('/blog');
     }
@@ -44,15 +34,13 @@ const BlogPost = () => {
       cleanupAnimation();
     };
   }, [id, navigate]);
-  
-  const handleImageError = () => {
-    console.error(`Failed to load image: ${imageUrl}`);
-    setImageUrl('/placeholder.svg');
-  };
 
   if (!post) {
     return null;
   }
+
+  // Ak došlo k chybe pri načítaní obrázka, zobrazí sa náhradný obrázok
+  const displayImage = imageError ? '/placeholder.svg' : post.image;
 
   return (
     <div className="min-h-screen pt-24">
@@ -61,10 +49,13 @@ const BlogPost = () => {
       <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
         <img 
           id="blog-post-image"
-          src={imageUrl} 
+          src={displayImage} 
           alt={post.alt || post.title} 
           className="w-full h-full object-cover"
-          onError={handleImageError}
+          onError={() => {
+            console.error(`Failed to load image: ${post.image}`);
+            setImageError(true);
+          }}
         />
       </div>
 

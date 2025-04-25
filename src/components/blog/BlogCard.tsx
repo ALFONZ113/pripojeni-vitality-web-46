@@ -2,47 +2,33 @@
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blogPosts';
+import { useState } from 'react';
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {
+  const [imgError, setImgError] = useState(false);
+  
+  // Bezpečná cesta k obrázku - ak zlyhá pôvodná URL, použije sa placeholder
+  const imageSrc = imgError ? '/placeholder.svg' : post.image;
+  
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation">
       <div className="relative h-48 overflow-hidden">
-        {post.image ? (
-          <img 
-            src={post.image} 
-            alt={post.alt || post.title} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-            width="640"
-            height="360"
-            onError={(e) => {
-              const target = e.currentTarget;
-              console.log(`Image load error for: ${post.image}`);
-              
-              // Try with full URL if it's a relative path
-              if (post.image.startsWith('/')) {
-                console.log(`Trying with full URL: ${window.location.origin}${post.image}`);
-                target.onerror = () => {
-                  console.error('Failed to load image even with full URL');
-                  target.onerror = null;
-                  target.src = '/placeholder.svg';
-                };
-                target.src = window.location.origin + post.image;
-              } else {
-                target.onerror = null;
-                target.src = '/placeholder.svg';
-              }
-            }}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <span className="text-gray-400">Obrázek není k dispozici</span>
-          </div>
-        )}
+        <img 
+          src={imageSrc} 
+          alt={post.alt || post.title} 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          width="640"
+          height="360"
+          onError={() => {
+            console.error(`Failed to load image: ${post.image}`);
+            setImgError(true);
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <div className="p-6">

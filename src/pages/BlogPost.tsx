@@ -10,7 +10,7 @@ import BlogPostSidebar from '../components/blog/BlogPostSidebar';
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<typeof blogPosts[0] | null>(null);
-  const [imageError, setImageError] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string>('');
   const navigate = useNavigate();
   
   const relatedPosts = post 
@@ -24,7 +24,18 @@ const BlogPost = () => {
     const foundPost = blogPosts.find(p => p.id === Number(id));
     if (foundPost) {
       setPost(foundPost);
-      setImageError(false); // Reset error state when post changes
+      
+      // Prepare image URL
+      if (foundPost.image) {
+        let imageSource = foundPost.image;
+        // If URL is relative, try to convert it to absolute
+        if (foundPost.image.startsWith('/')) {
+          imageSource = window.location.origin + foundPost.image;
+        }
+        setImageUrl(imageSource);
+      } else {
+        setImageUrl('/placeholder.svg');
+      }
     } else {
       navigate('/blog');
     }
@@ -34,46 +45,27 @@ const BlogPost = () => {
     };
   }, [id, navigate]);
   
+  const handleImageError = () => {
+    console.error(`Failed to load image: ${imageUrl}`);
+    setImageUrl('/placeholder.svg');
+  };
+
   if (!post) {
     return null;
   }
-
-  const handleImageError = () => {
-    console.error(`Failed to load image: ${post.image}`);
-    
-    // Try with the full URL if it's a relative path
-    if (!imageError && post.image.startsWith('/')) {
-      const fullUrl = window.location.origin + post.image;
-      console.log(`Trying with full URL: ${fullUrl}`);
-      
-      // We set this with a timeout to prevent infinite rendering loops
-      setTimeout(() => {
-        const img = document.getElementById('blog-post-image') as HTMLImageElement;
-        if (img) img.src = fullUrl;
-      }, 100);
-    } else {
-      setImageError(true);
-    }
-  };
 
   return (
     <div className="min-h-screen pt-24">
       <BlogPostHeader post={post} />
 
       <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
-        {imageError ? (
-          <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <p className="text-gray-500">Obrázek není k dispozici</p>
-          </div>
-        ) : (
-          <img 
-            id="blog-post-image"
-            src={post.image} 
-            alt={post.alt || post.title} 
-            className="w-full h-full object-cover"
-            onError={handleImageError}
-          />
-        )}
+        <img 
+          id="blog-post-image"
+          src={imageUrl} 
+          alt={post.alt || post.title} 
+          className="w-full h-full object-cover"
+          onError={handleImageError}
+        />
       </div>
 
       <section className="section-padding bg-white">

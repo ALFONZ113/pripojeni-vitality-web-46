@@ -11,36 +11,38 @@ const BlogCard = ({ post }: BlogCardProps) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation">
       <div className="relative h-48 overflow-hidden">
-        <img 
-          src={post.image} 
-          alt={post.alt || post.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          width="640"
-          height="360"
-          onError={(e) => {
-            const target = e.currentTarget;
-            console.log(`Image load error for: ${post.image}`);
-            
-            if (!post.image.startsWith('/lovable-uploads/')) {
-              console.error('Invalid image path - must start with /lovable-uploads/');
-              target.onerror = null;
-              target.src = '/placeholder.svg';
-              return;
-            }
-
-            const fullUrl = window.location.origin + post.image;
-            console.log(`Trying with full URL: ${fullUrl}`);
-            target.src = fullUrl;
-            
-            // If that also fails, use placeholder
-            target.onerror = () => {
-              console.error('Failed to load image even with full URL');
-              target.onerror = null;
-              target.src = '/placeholder.svg';
-            };
-          }}
-        />
+        {post.image ? (
+          <img 
+            src={post.image} 
+            alt={post.alt || post.title} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            width="640"
+            height="360"
+            onError={(e) => {
+              const target = e.currentTarget;
+              console.log(`Image load error for: ${post.image}`);
+              
+              // Try with full URL if it's a relative path
+              if (post.image.startsWith('/')) {
+                console.log(`Trying with full URL: ${window.location.origin}${post.image}`);
+                target.onerror = () => {
+                  console.error('Failed to load image even with full URL');
+                  target.onerror = null;
+                  target.src = '/placeholder.svg';
+                };
+                target.src = window.location.origin + post.image;
+              } else {
+                target.onerror = null;
+                target.src = '/placeholder.svg';
+              }
+            }}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <span className="text-gray-400">Obrázek není k dispozici</span>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <div className="p-6">

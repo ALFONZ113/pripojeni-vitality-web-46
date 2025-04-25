@@ -54,8 +54,7 @@ const Hero = () => {
               </span>
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Připojte se k nejmodernější optické síti PODA s garantovanou rychlostí až 1000 Mbps.
-              Vyzkoušejte stabilní připojení bez výpadků a užijte si neomezené sledování TV.
+              Zajistíme vám rychlé PODA připojení s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.
             </motion.p>
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">

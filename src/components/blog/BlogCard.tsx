@@ -2,42 +2,43 @@
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blogPosts';
-import { useState } from 'react';
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {
-  const [imgError, setImgError] = useState(false);
-  
-  // Properly handle image paths - ensure they start with "/" or are full URLs
-  const getProperImagePath = (path: string) => {
-    // If it's a full URL (starts with http or https), return as is
-    if (path.startsWith('http://') || path.startsWith('https://')) {
-      return path;
-    }
-    
-    // If it's a relative path, make sure it starts with "/"
-    return path.startsWith('/') ? path : `/${path}`;
-  };
-  
-  // Safe image path - use placeholder if original fails
-  const imageSrc = imgError ? '/placeholder.svg' : getProperImagePath(post.image);
-  
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation">
       <div className="relative h-48 overflow-hidden">
         <img 
-          src={imageSrc} 
+          src={post.image} 
           alt={post.alt || post.title} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
           width="640"
           height="360"
-          onError={() => {
-            console.error(`Failed to load image: ${post.image}`);
-            setImgError(true);
+          onError={(e) => {
+            const target = e.currentTarget;
+            console.log(`Image load error for: ${post.image}`);
+            
+            if (!post.image.startsWith('/lovable-uploads/')) {
+              console.error('Invalid image path - must start with /lovable-uploads/');
+              target.onerror = null;
+              target.src = '/placeholder.svg';
+              return;
+            }
+
+            const fullUrl = window.location.origin + post.image;
+            console.log(`Trying with full URL: ${fullUrl}`);
+            target.src = fullUrl;
+            
+            // If that also fails, use placeholder
+            target.onerror = () => {
+              console.error('Failed to load image even with full URL');
+              target.onerror = null;
+              target.src = '/placeholder.svg';
+            };
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

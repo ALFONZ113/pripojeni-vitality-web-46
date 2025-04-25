@@ -17,17 +17,6 @@ const BlogPost = () => {
     ? blogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 3) 
     : [];
   
-  // Properly handle image paths
-  const getProperImagePath = (path: string) => {
-    // If it's a full URL (starts with http or https), return as is
-    if (path.startsWith('http://') || path.startsWith('https://')) {
-      return path;
-    }
-    
-    // If it's a relative path, make sure it starts with "/"
-    return path.startsWith('/') ? path : `/${path}`;
-  };
-  
   useEffect(() => {
     const cleanupAnimation = initAnimations();
     window.scrollTo(0, 0);
@@ -35,8 +24,7 @@ const BlogPost = () => {
     const foundPost = blogPosts.find(p => p.id === Number(id));
     if (foundPost) {
       setPost(foundPost);
-      // Reset error state when post changes
-      setImageError(false);
+      setImageError(false); // Reset error state when post changes
     } else {
       navigate('/blog');
     }
@@ -45,29 +33,47 @@ const BlogPost = () => {
       cleanupAnimation();
     };
   }, [id, navigate]);
-
+  
   if (!post) {
     return null;
   }
 
-  // If image load fails, use a placeholder
-  const displayImage = imageError ? '/placeholder.svg' : getProperImagePath(post.image);
+  const handleImageError = () => {
+    console.error(`Failed to load image: ${post.image}`);
+    
+    // Try with the full URL if it's a relative path
+    if (!imageError && post.image.startsWith('/')) {
+      const fullUrl = window.location.origin + post.image;
+      console.log(`Trying with full URL: ${fullUrl}`);
+      
+      // We set this with a timeout to prevent infinite rendering loops
+      setTimeout(() => {
+        const img = document.getElementById('blog-post-image') as HTMLImageElement;
+        if (img) img.src = fullUrl;
+      }, 100);
+    } else {
+      setImageError(true);
+    }
+  };
 
   return (
     <div className="min-h-screen pt-24">
       <BlogPostHeader post={post} />
 
       <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
-        <img 
-          id="blog-post-image"
-          src={displayImage} 
-          alt={post.alt || post.title} 
-          className="w-full h-full object-cover"
-          onError={() => {
-            console.error(`Failed to load image: ${post.image}`);
-            setImageError(true);
-          }}
-        />
+        {imageError ? (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <p className="text-gray-500">Obrázek není k dispozici</p>
+          </div>
+        ) : (
+          <img 
+            id="blog-post-image"
+            src={post.image} 
+            alt={post.alt || post.title} 
+            className="w-full h-full object-cover"
+            onError={handleImageError}
+          />
+        )}
       </div>
 
       <section className="section-padding bg-white">

@@ -18,8 +18,8 @@ export const blogPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/d47a00b6-557e-4a38-bc08-cb585187676f.png',
-    alt: 'Síťový kabel s optickým připojením PODA v Ostravě-Porubě, v pozadí silueta městské zástavby',
+    image: '/lovable-uploads/de133fd6-27b8-47a5-aafa-b5248196f880.png',
+    alt: 'Vizualizácia optickej siete v meste s modrými svetelnými spojeniami symbolizujúcimi internetové pripojenie',
     content: `
       <h3>Dostupné ulice v Porubě:</h3>
       <p>Aloise Gavlase, Bohuslava Martinů, Bulharská, Čkalovova, Dětská, Dvorní, Francouzská, Generála Sochora, Gurťjevova, Havanská, Hlavní třída, Heyrovského, Ivana Sekaniny, Jana Šoupala, Jindřicha Plachty, Karla Pokorného, Komenského, Kosmická, Kubánská, Kyjevská, Liptaňského náměstí, Ludvíka Podéště, Marie Majerové, Matěje Kopeckého, Mongolská, Nálepkova, Náměstí Družby, Nezvalovo náměstí, Opavská, Podroužkova, Polská, Porubská, Příčná, Průběžná, Pustkovecká, Rabasova, Řecká, Resslova, Skautská, Školní, Slepá, Slavíkova, Sokolovská, Španielova, Spartakovců, Spojů, Stavební, Svojsíkova, Tř. 17. listopadu, U Oblouku, U Školky, U Soudu, U Sportoviště, U Vozovny, Ukrajinská, Urxova, Větrná, Vietnamská, Vincence Makovského, Vítězslava Nováka, Vřesinská, Záhumenní, Zdeňka Štěpánka, Zednická, Žilinská.</p>

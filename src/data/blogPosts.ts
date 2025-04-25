@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/9800a515-98b8-4035-b57b-ac3da863d190.png',
+    image: '/lovable-uploads/ae0c4303-146e-4bae-bfe6-c82013cd64d1.png',
     alt: 'Vizualizácia optickej siete v meste s modrými svetelnými spojeniami symbolizujúcimi internetové pripojenie',
     content: `
       <h3>Dostupné ulice v Porubě:</h3>

@@ -17,6 +17,17 @@ const BlogPost = () => {
     ? blogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 3) 
     : [];
   
+  // Properly handle image paths
+  const getProperImagePath = (path: string) => {
+    // If it's a full URL (starts with http or https), return as is
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path;
+    }
+    
+    // If it's a relative path, make sure it starts with "/"
+    return path.startsWith('/') ? path : `/${path}`;
+  };
+  
   useEffect(() => {
     const cleanupAnimation = initAnimations();
     window.scrollTo(0, 0);
@@ -39,8 +50,8 @@ const BlogPost = () => {
     return null;
   }
 
-  // Ak došlo k chybe pri načítaní obrázka, zobrazí sa náhradný obrázok
-  const displayImage = imageError ? '/placeholder.svg' : post.image;
+  // If image load fails, use a placeholder
+  const displayImage = imageError ? '/placeholder.svg' : getProperImagePath(post.image);
 
   return (
     <div className="min-h-screen pt-24">

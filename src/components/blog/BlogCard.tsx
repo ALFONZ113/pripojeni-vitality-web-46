@@ -11,8 +11,19 @@ interface BlogCardProps {
 const BlogCard = ({ post }: BlogCardProps) => {
   const [imgError, setImgError] = useState(false);
   
-  // Bezpečná cesta k obrázku - ak zlyhá pôvodná URL, použije sa placeholder
-  const imageSrc = imgError ? '/placeholder.svg' : post.image;
+  // Properly handle image paths - ensure they start with "/" or are full URLs
+  const getProperImagePath = (path: string) => {
+    // If it's a full URL (starts with http or https), return as is
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path;
+    }
+    
+    // If it's a relative path, make sure it starts with "/"
+    return path.startsWith('/') ? path : `/${path}`;
+  };
+  
+  // Safe image path - use placeholder if original fails
+  const imageSrc = imgError ? '/placeholder.svg' : getProperImagePath(post.image);
   
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation">

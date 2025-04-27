@@ -1,5 +1,5 @@
 
-# www.pripojeni-poda.cz robots.txt aktualizovaný 2025-04-21
+# www.popri.cz robots.txt aktualizovaný 2025-04-27
 # Všem robotům vyhledávačů je povoleno procházet všechny části webu
 User-agent: *
 Allow: /
@@ -47,4 +47,4 @@ User-agent: Googlebot
 Priority: 1
 
 # Mapa webu - přesné URL s https
-Sitemap: https://www.pripojeni-poda.cz/sitemap.xml
+Sitemap: https://www.popri.cz/sitemap.xml

@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
@@ -26,7 +27,7 @@ const Contact = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
               Kontakt
             </h1>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200 text-left">Máte zájem o naše služby nebo potřebujete poradit? Neváhejte nás kontaktovat.         Milan Terč vám rád zodpoví všechny vaše otázky a vytvoří pro vás objednávku</p>
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200 text-left">Máte zájem o naše služby nebo potřebujete poradit? Neváhejte nás kontaktovat.         Milan Terč vám rád zodpoví všechny vaše otázky a vytvoří pro vás objednávku</p>
           </div>
         </div>
       </section>

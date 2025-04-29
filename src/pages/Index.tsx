@@ -51,6 +51,7 @@ const Index = () => {
         <meta name="description" content="Potřebujete připojit PODA internet? ✓ Zařídíme rychlou instalaci ✓ Garantovaná rychlost až 1000 Mbps ✓ 100+ TV programů zdarma ✓ Non-stop podpora" />
         <link rel="canonical" href="https://www.popri.cz/" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        <meta name="format-detection" content="telephone=yes" />
       </Helmet>
       <Hero />
       <TariffSection />

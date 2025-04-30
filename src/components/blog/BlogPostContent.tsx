@@ -11,20 +11,6 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
   return (
     <div className="lg:col-span-8">
       <article className="prose prose-lg max-w-none">
-        {/* Pridaný obrázok v obsahu článku pre lepšiu viditeľnosť */}
-        {post.id === 10 && (
-          <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
-            <img 
-              src={post.image} 
-              alt={post.alt || post.title} 
-              className="w-full h-auto object-cover"
-              loading="eager"
-              width="800"
-              height="450"
-            />
-            <p className="text-sm text-gray-500 italic mt-2">{post.alt}</p>
-          </div>
-        )}
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
       

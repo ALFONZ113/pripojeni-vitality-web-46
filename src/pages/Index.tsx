@@ -54,6 +54,10 @@ const Index = () => {
         <meta name="format-detection" content="telephone=yes" />
         <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
         <meta name="keywords" content="PODA internet, připojení PODA, rychlá instalace internetu, internet s TV zdarma, optický internet PODA, gigabitový internet, PODA TV, internetové připojení Ostrava" />
+        <link rel="icon" href="/poda-favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png"/>
+        <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png"/>
+        <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png"/>
       </Helmet>
       <Hero />
       <TariffSection />

@@ -98,7 +98,7 @@ const Footer = () => {
           <section aria-label="Rychlý kontakt">
             <h2 className="text-lg font-semibold mb-5 text-poda-orange">Rychlý kontakt</h2>
             <Link to="/kontakt" className="bg-poda-orange hover:bg-poda-orange/90 text-white px-6 py-3 rounded-lg 
-              font-medium transition-all duration-300 inline-block mb-4">Kontakt Objednávky</Link>
+              font-medium transition-all duration-300 inline-block mb-4">Kontaktovat Milan Terč</Link>
             <p className="text-blue-100 mt-2">
               Máte otázky nebo potřebujete poradit s výběrem služby? 
               Neváhejte nás kontaktovat, rádi vám pomůžeme.

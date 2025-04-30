@@ -1,3 +1,4 @@
+
 export interface BlogPost {
   id: number;
   title: string;
@@ -18,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/d47a00b6-557e-4a38-bc08-cb585187676f.png',
+    image: '/placeholder.svg',
     alt: 'Síťový kabel s optickým připojením PODA v Ostravě-Porubě, v pozadí silueta městské zástavby',
     content: `
       <h3>Dostupné ulice v Porubě:</h3>
@@ -48,7 +49,7 @@ export const blogPosts: BlogPost[] = [
     date: '22. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
+    image: '/placeholder.svg',
     alt: 'Vizualizace optického připojení v městské zástavbě s modrými světelnými efekty',
     content: `
       <p>Společnost PODA patří mezi přední poskytovatele internetu v České republice a díky své moderní síti přináší rychlé a stabilní připojení nejen do velkých měst, ale i do menších obcí. Pokud hledáte spolehlivý internet pro domácnost nebo firmu, PODA je rozhodně možnost, kterou stojí za to zvážit. V tomto článku se dozvíte, kde všude můžete služby PODA využívat a jak si jednoduše ověřit dostupnost u vás doma.</p>
@@ -109,7 +110,7 @@ export const blogPosts: BlogPost[] = [
     date: '10. 4. 2025',
     author: 'Tým PODA',
     category: 'Technologie',
-    image: '/lovable-uploads/794ec1de-6ebd-4c0e-991a-bf48dce86900.png',
+    image: '/placeholder.svg',
     alt: 'Vizualizácia 60 GHz internetového pripojenia v modernej bytovej zástavbe',
     content: `
       <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti. Tento inovatívny systém ponúka výkon takmer porovnateľný s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>
@@ -168,7 +169,7 @@ export const blogPosts: BlogPost[] = [
     date: '15. 6. 2023',
     author: 'Milan Terč',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop'
+    image: '/placeholder.svg'
   },
   {
     id: 2,
@@ -190,7 +191,7 @@ export const blogPosts: BlogPost[] = [
     date: '2. 5. 2023',
     author: 'Tým PODA',
     category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop'
+    image: '/placeholder.svg'
   },
   {
     id: 3,
@@ -213,7 +214,7 @@ export const blogPosts: BlogPost[] = [
     date: '10. 4. 2023',
     author: 'Milan Terč',
     category: 'Služby',
-    image: 'https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?q=80&w=2070&auto=format&fit=crop'
+    image: '/placeholder.svg'
   },
   {
     id: 4,
@@ -235,7 +236,7 @@ export const blogPosts: BlogPost[] = [
     date: '20. 3. 2023',
     author: 'Tým PODA',
     category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?q=80&w=2070&auto=format&fit=crop'
+    image: '/placeholder.svg'
   },
   {
     id: 5,
@@ -258,7 +259,7 @@ export const blogPosts: BlogPost[] = [
     date: '5. 2. 2023',
     author: 'Milan Terč',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=2070&auto=format&fit=crop'
+    image: '/placeholder.svg'
   },
   {
     id: 6,
@@ -283,7 +284,7 @@ export const blogPosts: BlogPost[] = [
     date: '15. 1. 2023',
     author: 'Tým PODA',
     category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1627163439134-7a8c47e08208?q=80&w=2032&auto=format&fit=crop'
+    image: '/placeholder.svg'
   }
 ];
 

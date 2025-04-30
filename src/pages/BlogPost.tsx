@@ -7,6 +7,7 @@ import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
 import { toast } from 'sonner';
+import { Alert, AlertTitle, AlertDescription } from '../components/ui/alert';
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -46,6 +47,9 @@ const BlogPost = () => {
     });
     setImageError(true);
   };
+  
+  // Default placeholder image that's guaranteed to work
+  const placeholderImage = '/placeholder.svg';
 
   return (
     <div className="min-h-screen pt-24">
@@ -53,8 +57,13 @@ const BlogPost = () => {
 
       <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden shadow-md">
         {imageError ? (
-          <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <p className="text-gray-500">Obrázek není k dispozici</p>
+          <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center">
+            <img 
+              src={placeholderImage}
+              alt="Náhradní obrázek"
+              className="w-32 h-32 object-contain opacity-50"
+            />
+            <p className="text-gray-500 mt-4">Obrázek není k dispozici</p>
           </div>
         ) : (
           <img 

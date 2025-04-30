@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/1ec73b9a-bfce-43cc-a1eb-26399bbbd7be.png',
+    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=2070&auto=format&fit=crop',
     alt: 'Technik PODA pripája optický internet v bytovom dome, na balkóne sleduje rodina s deťmi',
     content: `
       <h3>Dostupné ulice v Porubě:</h3>

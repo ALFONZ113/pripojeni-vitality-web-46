@@ -6,6 +6,7 @@ import { initAnimations } from '../utils/animation';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
+import { toast } from 'sonner';
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,21 +39,27 @@ const BlogPost = () => {
     return null;
   }
 
+  // Improved image error handler with better fallback
   const handleImageError = () => {
     console.error(`Failed to load image: ${post.image}`);
+    setImageError(true);
     
-    // Try with the full URL if it's a relative path
-    if (!imageError && post.image.startsWith('/')) {
-      const fullUrl = window.location.origin + post.image;
-      console.log(`Trying with full URL: ${fullUrl}`);
-      
-      // We set this with a timeout to prevent infinite rendering loops
-      setTimeout(() => {
-        const img = document.getElementById('blog-post-image') as HTMLImageElement;
-        if (img) img.src = fullUrl;
-      }, 100);
-    } else {
-      setImageError(true);
+    // Show fallback notification to user
+    toast.error('Nepodařilo se načíst obrázek', {
+      description: 'Používáme náhradní obrázek',
+      duration: 3000
+    });
+  };
+
+  const getPlaceholderImage = () => {
+    // Return placeholder based on category
+    switch (post.category) {
+      case 'Technologie':
+        return '/placeholder.svg';
+      case 'Služby':
+        return '/placeholder.svg';
+      default:
+        return '/placeholder.svg';
     }
   };
 
@@ -63,12 +70,21 @@ const BlogPost = () => {
       <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
         {imageError ? (
           <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <p className="text-gray-500">Obrázek není k dispozici</p>
+            <img 
+              src={getPlaceholderImage()}
+              alt="Náhradní obrázek" 
+              className="w-full h-full object-cover opacity-70"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-gray-700 bg-white/70 px-4 py-2 rounded-lg">
+                {post.alt || 'Obrázek není k dispozici'}
+              </p>
+            </div>
           </div>
         ) : (
           <img 
             id="blog-post-image"
-            src={post.image} 
+            src={post.image.startsWith('http') ? post.image : `/placeholder.svg`} 
             alt={post.alt || post.title} 
             className="w-full h-full object-cover"
             onError={handleImageError}

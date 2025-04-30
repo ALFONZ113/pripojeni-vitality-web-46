@@ -6,8 +6,6 @@ import { initAnimations } from '../utils/animation';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
-import { toast } from 'sonner';
-import { Alert, AlertTitle, AlertDescription } from '../components/ui/alert';
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -42,28 +40,30 @@ const BlogPost = () => {
 
   const handleImageError = () => {
     console.error(`Failed to load image: ${post.image}`);
-    toast.error('Obrázek se nepodařilo načíst', {
-      description: 'Používáme náhradní obrázek'
-    });
-    setImageError(true);
+    
+    // Try with the full URL if it's a relative path
+    if (!imageError && post.image.startsWith('/')) {
+      const fullUrl = window.location.origin + post.image;
+      console.log(`Trying with full URL: ${fullUrl}`);
+      
+      // We set this with a timeout to prevent infinite rendering loops
+      setTimeout(() => {
+        const img = document.getElementById('blog-post-image') as HTMLImageElement;
+        if (img) img.src = fullUrl;
+      }, 100);
+    } else {
+      setImageError(true);
+    }
   };
-  
-  // Default placeholder image that's guaranteed to work
-  const placeholderImage = '/placeholder.svg';
 
   return (
     <div className="min-h-screen pt-24">
       <BlogPostHeader post={post} />
 
-      <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden shadow-md">
+      <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
         {imageError ? (
-          <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center">
-            <img 
-              src={placeholderImage}
-              alt="Náhradní obrázek"
-              className="w-32 h-32 object-contain opacity-50"
-            />
-            <p className="text-gray-500 mt-4">Obrázek není k dispozici</p>
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <p className="text-gray-500">Obrázek není k dispozici</p>
           </div>
         ) : (
           <img 

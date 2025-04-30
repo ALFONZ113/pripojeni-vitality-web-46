@@ -52,7 +52,7 @@ const Index = () => {
         <link rel="canonical" href="https://www.popri.cz/" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
         <meta name="format-detection" content="telephone=yes" />
-        <link rel="alternate" href="https://popri.cz/" hreflang="cs" />
+        <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
         <meta name="keywords" content="PODA internet, připojení PODA, rychlá instalace internetu, internet s TV zdarma, optický internet PODA, gigabitový internet, PODA TV, internetové připojení Ostrava" />
       </Helmet>
       <Hero />

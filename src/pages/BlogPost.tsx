@@ -6,6 +6,7 @@ import { initAnimations } from '../utils/animation';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
+import { Helmet } from 'react-helmet-async';
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -56,8 +57,25 @@ const BlogPost = () => {
     }
   };
 
+  const canonicalUrl = `https://www.popri.cz/blog/${post.id}`;
+
   return (
     <div className="min-h-screen pt-24">
+      <Helmet>
+        <title>{post.title} | Popri.cz</title>
+        <meta name="description" content={post.excerpt || post.title} />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" href={`https://popri.cz/blog/${post.id}`} hrefLang="cs" />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt || post.title} />
+        <meta property="og:url" content={canonicalUrl} />
+        {post.image && <meta property="og:image" content={post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`} />}
+        <meta property="og:type" content="article" />
+        <meta property="article:published_time" content={post.date} />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt || post.title} />
+      </Helmet>
+      
       <BlogPostHeader post={post} />
 
       <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">

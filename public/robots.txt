@@ -51,3 +51,4 @@ Priority: 1
 
 # Mapa webu - přesné URL s https a www
 Sitemap: https://www.popri.cz/sitemap.xml
+

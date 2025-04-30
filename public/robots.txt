@@ -4,7 +4,7 @@
 User-agent: *
 Allow: /
 
-# Preferovaná doména
+# Preferovaná doména - DŮLEŽITÉ! Toto pomáhá vyhledávačům pochopit, že www verze je preferovaná
 Host: https://www.popri.cz
 
 # Specifická povolení pro AI agenty
@@ -51,4 +51,3 @@ Priority: 1
 
 # Mapa webu - přesné URL s https a www
 Sitemap: https://www.popri.cz/sitemap.xml
-

@@ -6,6 +6,7 @@ import { initAnimations } from '../utils/animation';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
+import { toast } from 'sonner';
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,27 +41,17 @@ const BlogPost = () => {
 
   const handleImageError = () => {
     console.error(`Failed to load image: ${post.image}`);
-    
-    // Try with the full URL if it's a relative path
-    if (!imageError && post.image.startsWith('/')) {
-      const fullUrl = window.location.origin + post.image;
-      console.log(`Trying with full URL: ${fullUrl}`);
-      
-      // We set this with a timeout to prevent infinite rendering loops
-      setTimeout(() => {
-        const img = document.getElementById('blog-post-image') as HTMLImageElement;
-        if (img) img.src = fullUrl;
-      }, 100);
-    } else {
-      setImageError(true);
-    }
+    toast.error('Obrázek se nepodařilo načíst', {
+      description: 'Používáme náhradní obrázek'
+    });
+    setImageError(true);
   };
 
   return (
     <div className="min-h-screen pt-24">
       <BlogPostHeader post={post} />
 
-      <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
+      <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden shadow-md">
         {imageError ? (
           <div className="w-full h-full flex items-center justify-center bg-gray-100">
             <p className="text-gray-500">Obrázek není k dispozici</p>

@@ -57,7 +57,10 @@ const Index = () => {
         <link rel="icon" href="/poda-favicon.ico" type="image/x-icon"/>
         <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png"/>
         <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png"/>
+        <link rel="icon" href="/poda-favicon-48x48.png" sizes="48x48" type="image/png"/>
+        <link rel="icon" href="/poda-favicon-96x96.png" sizes="96x96" type="image/png"/>
         <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png"/>
+        <meta name="google" content="notranslate"/>
       </Helmet>
       <Hero />
       <TariffSection />

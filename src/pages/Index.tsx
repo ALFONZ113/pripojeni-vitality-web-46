@@ -48,7 +48,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>PODA Internet Připojení | Rychlá Instalace a TV Zdarma | Popri.cz</title>
-        <meta name="description" content="Potřebujete připojit PODA internet? ✓ Zařídíme rychlou instalaci ✓ Garantovaná rychlost až 1000 Mbps ✓ 100+ TV programů zdarma ✓ Non-stop podpora" />
+        <meta name="description" content="Potřebujete připojit PODA internet? ✓ Zařídíme rychlou instalaci ✓ Garantovaná rychlost až 1000 Mbps ✓ 100+ TV programů zdarma ✓ Non-stop podpora ✓ Bez závazků" />
         <link rel="canonical" href="https://www.popri.cz/" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
         <meta name="format-detection" content="telephone=yes" />

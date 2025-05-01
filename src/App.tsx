@@ -58,17 +58,20 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Redirection handler for non-www domain
+// Improved redirection handler for non-www and HTTP to HTTPS
 const RedirectNonWww = () => {
   const host = window.location.host;
+  const protocol = window.location.protocol;
   const isNonWww = host.indexOf('www.') !== 0 && host !== 'localhost' && !host.includes('127.0.0.1');
+  const isHttp = protocol === 'http:';
 
   useEffect(() => {
-    if (isNonWww && import.meta.env.PROD) {
-      const newUrl = `https://www.${host}${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if ((isNonWww || isHttp) && import.meta.env.PROD) {
+      const wwwHost = isNonWww ? `www.${host}` : host;
+      const newUrl = `https://${wwwHost}${window.location.pathname}${window.location.search}${window.location.hash}`;
       window.location.replace(newUrl);
     }
-  }, [host, isNonWww]);
+  }, [host, isNonWww, isHttp]);
 
   return null;
 };

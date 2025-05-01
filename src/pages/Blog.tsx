@@ -5,6 +5,7 @@ import BlogSearch from '../components/blog/BlogSearch';
 import BlogCategories from '../components/blog/BlogCategories';
 import BlogList from '../components/blog/BlogList';
 import { initAnimations } from '../utils/animation';
+import { Helmet } from 'react-helmet-async';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,15 +14,10 @@ const Blog = () => {
   
   useEffect(() => {
     const cleanupAnimation = initAnimations();
-    window.scrollTo(0, 0);
     return () => cleanupAnimation();
   }, []);
   
   useEffect(() => {
-    filterPosts();
-  }, [searchTerm, selectedCategory]);
-  
-  const filterPosts = () => {
     let filtered = blogPosts;
     
     if (selectedCategory !== 'all') {
@@ -39,7 +35,7 @@ const Blog = () => {
     }
     
     setFilteredPosts(filtered);
-  };
+  }, [searchTerm, selectedCategory]);
   
   const handleSearch = (value: string) => {
     setSearchTerm(value);
@@ -56,6 +52,14 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen pt-24">
+      <Helmet>
+        <title>Blog o internetu a technologiích | PODA | Popri.cz</title>
+        <meta name="description" content="Přečtěte si zajímavé články o technologiích, internetu a televizi. Tipy, návody a aktuality ze světa internetového připojení a PODA služeb." />
+        <link rel="canonical" href="https://www.popri.cz/blog" />
+        <meta name="keywords" content="blog PODA, technologické články, internet blog, TV služby, internetové technologie" />
+        <link rel="alternate" href="https://popri.cz/blog" hrefLang="cs" />
+      </Helmet>
+      
       <section className="section-padding bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto">

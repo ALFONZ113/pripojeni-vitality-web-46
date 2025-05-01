@@ -1,10 +1,19 @@
 
 import React from 'react';
 import { Cookie } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const Cookies = () => {
   return (
     <div className="py-24 min-h-screen bg-gray-50">
+      <Helmet>
+        <title>Zásady používání cookies | PODA Internet | Popri.cz</title>
+        <meta name="description" content="Přečtěte si informace o tom, jak používáme cookies na našem webu. Zásady ochrany soukromí a zpracování dat při využívání služeb PODA internetu." />
+        <link rel="canonical" href="https://www.popri.cz/cookies" />
+        <meta name="keywords" content="cookies, PODA cookies, ochrana dat, soukromí, GDPR, web cookies" />
+        <link rel="alternate" href="https://popri.cz/cookies" hrefLang="cs" />
+      </Helmet>
+      
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-8">

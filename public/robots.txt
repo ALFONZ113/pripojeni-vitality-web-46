@@ -1,11 +1,24 @@
 
-# www.popri.cz robots.txt aktualizovaný 2025-04-30
+# www.popri.cz robots.txt aktualizovaný 2025-05-01
 # Všem robotům vyhledávačů je povoleno procházet všechny části webu
 User-agent: *
 Allow: /
 
 # Preferovaná doména - DŮLEŽITÉ! Toto pomáhá vyhledávačům pochopit, že www verze je preferovaná
 Host: https://www.popri.cz
+
+# Zakázání indexace některých URL
+Disallow: /wp-admin/
+Disallow: /admin/
+Disallow: */admin
+Disallow: /api/*
+Disallow: /feed/
+
+# Neindexovat parametrizované URL
+Disallow: /*?utm_*
+Disallow: /*&utm_*
+Disallow: /*?fbclid=*
+Disallow: /*&fbclid=*
 
 # Specifická povolení pro AI agenty
 User-agent: GPTBot
@@ -49,5 +62,6 @@ Allow: /
 User-agent: Googlebot
 Priority: 1
 
-# Mapa webu - přesné URL s https a www
+# Mapy webu - přesné URL s https a www
 Sitemap: https://www.popri.cz/sitemap.xml
+Sitemap: https://www.popri.cz/sitemap-non-www.xml

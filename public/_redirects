@@ -1,0 +1,15 @@
+
+# 301 Redirects for Netlify - preferring www version
+http://popri.cz/* https://www.popri.cz/:splat 301!
+https://popri.cz/* https://www.popri.cz/:splat 301!
+
+# Force HTTPS for all connections
+http://www.popri.cz/* https://www.popri.cz/:splat 301!
+
+# Handle specific redirects
+/stary-clanek /blog/novy-clanek 301
+/akce /tarify 301
+/sluzby /internet-tv 301
+
+# Fallback rule - do not change
+/* /index.html 200

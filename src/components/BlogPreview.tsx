@@ -2,6 +2,7 @@
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
+import { responsiveImageProps } from '../utils/imageUtils';
 
 const BlogPreview = () => {
   // Get the 4 most recent blog posts
@@ -38,16 +39,8 @@ const BlogPreview = () => {
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={post.image} 
-                  alt={post.alt || post.title} 
+                  {...responsiveImageProps(post.image, post.alt || post.title, 640, 360)}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  width="640"
-                  height="360"
-                  onError={(e) => {
-                    console.error(`Failed to load image: ${post.image}`);
-                    e.currentTarget.src = '/placeholder.svg';
-                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
               </div>

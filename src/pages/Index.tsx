@@ -13,27 +13,39 @@ const Index = () => {
     // Initialize scroll animations
     const cleanupAnimation = initAnimations();
     
-    // Scroll to top on component mount
-    window.scrollTo(0, 0);
-    
-    // Simplified cache busting approach
+    // Cache management - selective approach
     const refreshLocalCache = () => {
+      // Only update cache if it's older than 24 hours or doesn't exist
+      const lastCacheUpdate = localStorage.getItem('lastCacheUpdate');
+      const now = Date.now();
+      const cacheAge = lastCacheUpdate ? now - parseInt(lastCacheUpdate, 10) : Infinity;
+      
+      // If cache is recent, skip the refresh
+      if (cacheAge < 24 * 60 * 60 * 1000) {
+        console.log('Cache is recent, skipping refresh');
+        return;
+      }
+      
       console.log('Cache refresh performed at: ' + new Date().toISOString());
       
-      // Force browser to refresh local resources without modifying URLs
+      // Only clear relevant caches, not all caches
       if ('caches' in window) {
         caches.keys().then(names => {
           names.forEach(name => {
-            caches.delete(name);
+            if (name.includes('popri-resources')) {
+              caches.delete(name);
+            }
           });
         });
       }
       
-      // Add a cache-version meta tag
+      // Update cache version meta tag and localStorage timestamp
       const metaCache = document.querySelector('meta[name="cache-version"]');
+      const versionTimestamp = now.toString();
       if (metaCache) {
-        metaCache.setAttribute('content', Date.now().toString());
+        metaCache.setAttribute('content', versionTimestamp);
       }
+      localStorage.setItem('lastCacheUpdate', versionTimestamp);
     };
     
     // Run cache refresh once on load

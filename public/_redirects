@@ -3,7 +3,7 @@
 http://popri.cz/* https://www.popri.cz/:splat 301!
 https://popri.cz/* https://www.popri.cz/:splat 301!
 
-# Force HTTPS for all connections (vylepšená pravidla)
+# Force HTTPS for all connections
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
 # Handle specific redirects

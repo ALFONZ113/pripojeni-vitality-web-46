@@ -4,12 +4,11 @@
 # Enable URL rewriting
 RewriteEngine On
 
-# Force HTTPS with improved rules
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# Force HTTPS - simplified and optimized rule
+RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirect non-www to www (improved rule)
+# Redirect non-www to www - simplified for better compatibility
 RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
 RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
 
@@ -54,7 +53,7 @@ RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
   Header set X-XSS-Protection "1; mode=block"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
-  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 
 # Disable directory listing

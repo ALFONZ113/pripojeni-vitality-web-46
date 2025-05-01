@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import TariffSection from '../components/TariffSection';
 import ChannelsSection from '../components/ChannelsSection';
@@ -7,54 +7,94 @@ import ContactSection from '../components/ContactSection';
 import BlogPreview from '../components/BlogPreview';
 import { initAnimations } from '../utils/animation';
 import { Helmet } from 'react-helmet-async';
+import { Loader2 } from 'lucide-react';
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     // Initialize scroll animations
-    const cleanupAnimation = initAnimations();
+    let cleanupAnimation: (() => void) | undefined;
     
-    // Cache management - selective approach
-    const refreshLocalCache = () => {
-      // Only update cache if it's older than 24 hours or doesn't exist
-      const lastCacheUpdate = localStorage.getItem('lastCacheUpdate');
-      const now = Date.now();
-      const cacheAge = lastCacheUpdate ? now - parseInt(lastCacheUpdate, 10) : Infinity;
+    try {
+      console.log('Initializing animations');
+      cleanupAnimation = initAnimations();
       
-      // If cache is recent, skip the refresh
-      if (cacheAge < 24 * 60 * 60 * 1000) {
-        console.log('Cache is recent, skipping refresh');
-        return;
-      }
+      // Simulate page loading or fetch critical data
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+        console.log('Page loaded successfully');
+      }, 500);
       
-      console.log('Cache refresh performed at: ' + new Date().toISOString());
-      
-      // Only clear relevant caches, not all caches
-      if ('caches' in window) {
-        caches.keys().then(names => {
-          names.forEach(name => {
-            if (name.includes('popri-resources')) {
-              caches.delete(name);
-            }
-          });
-        });
-      }
-      
-      // Update cache version meta tag and localStorage timestamp
-      const metaCache = document.querySelector('meta[name="cache-version"]');
-      const versionTimestamp = now.toString();
-      if (metaCache) {
-        metaCache.setAttribute('content', versionTimestamp);
-      }
-      localStorage.setItem('lastCacheUpdate', versionTimestamp);
-    };
-    
-    // Run cache refresh once on load
-    refreshLocalCache();
-    
-    return () => {
-      cleanupAnimation();
-    };
+      return () => {
+        if (cleanupAnimation) cleanupAnimation();
+        clearTimeout(timer);
+      };
+    } catch (e) {
+      console.error('Error initializing page:', e);
+      setError('Došlo k chybě při načítání stránky.');
+      setIsLoading(false);
+      return () => {
+        if (cleanupAnimation) cleanupAnimation();
+      };
+    }
   }, []);
+
+  // Optimized cache management function
+  useEffect(() => {
+    // Only update cache if it's older than 24 hours or doesn't exist
+    const lastCacheUpdate = localStorage.getItem('lastCacheUpdate');
+    const now = Date.now();
+    const cacheAge = lastCacheUpdate ? now - parseInt(lastCacheUpdate, 10) : Infinity;
+    
+    // If cache is recent, skip the refresh
+    if (cacheAge < 24 * 60 * 60 * 1000) {
+      console.log('Cache is recent, skipping refresh');
+      return;
+    }
+    
+    console.log('Cache refresh performed at: ' + new Date().toISOString());
+    
+    // Only clear relevant caches
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => {
+          if (name.includes('popri-resources')) {
+            caches.delete(name);
+          }
+        });
+      });
+    }
+    
+    // Update cache version
+    localStorage.setItem('lastCacheUpdate', now.toString());
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-12 h-12 text-poda-blue animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-4">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md text-center">
+          <h1 className="text-xl font-bold text-red-600 mb-4">Chyba při načítání</h1>
+          <p className="text-gray-700 mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="btn-primary"
+          >
+            Obnovit stránku
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">

@@ -3,33 +3,35 @@
   "version": 2,
   "routes": [
     {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "popri.cz"
-        }
-      ],
-      "destination": "https://www.popri.cz/$1",
-      "permanent": true
+      "src": "/(.*)",
+      "headers": {
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-xss-protection": "1; mode=block"
+      },
+      "continue": true
     },
     {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.popri.cz"
-        }
-      ],
-      "missing": [
-        {
-          "type": "header",
-          "key": "x-forwarded-proto",
-          "value": "https"
-        }
-      ],
-      "destination": "https://www.popri.cz/$1",
-      "permanent": true
+      "handle": "filesystem"
+    },
+    {
+      "src": "/stary-clanek",
+      "status": 301,
+      "headers": { "Location": "/blog/novy-clanek" }
+    },
+    {
+      "src": "/akce",
+      "status": 301,
+      "headers": { "Location": "/tarify" }
+    },
+    {
+      "src": "/sluzby",
+      "status": 301,
+      "headers": { "Location": "/internet-tv" }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ],
   "headers": [
@@ -54,7 +56,7 @@
         },
         {
           "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains; preload"
+          "value": "max-age=31536000; includeSubDomains"
         }
       ]
     },

@@ -116,6 +116,8 @@ const Index = () => {
         <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png"/>
         <meta name="google" content="notranslate"/>
         <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
+        <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       <Hero />
       <TariffSection />

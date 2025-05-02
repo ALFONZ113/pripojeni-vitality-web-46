@@ -6,6 +6,9 @@ https://popri.cz/* https://www.popri.cz/:splat 301!
 # Force HTTPS for all connections
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
+# Explicitly allow access to sitemap files from both domains
+/sitemap.xml /sitemap.xml 200
+
 # Handle specific redirects
 /stary-clanek /blog/novy-clanek 301
 /akce /tarify 301

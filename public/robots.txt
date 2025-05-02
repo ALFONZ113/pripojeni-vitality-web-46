@@ -1,5 +1,5 @@
 
-# www.popri.cz robots.txt aktualizovaný 2025-05-01
+# www.popri.cz robots.txt aktualizovaný 2025-05-02
 # Všem robotům vyhledávačů je povoleno procházet všechny části webu
 User-agent: *
 Allow: /
@@ -62,6 +62,7 @@ Allow: /
 User-agent: Googlebot
 Priority: 1
 
-# Mapy webu - přesné URL s https a www
+# Mapy webu - explicitní odkazy pro www i non-www verze
 Sitemap: https://www.popri.cz/sitemap.xml
-Sitemap: https://www.popri.cz/sitemap-non-www.xml
+Sitemap: https://popri.cz/sitemap.xml
+

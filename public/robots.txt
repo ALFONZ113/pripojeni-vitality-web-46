@@ -60,9 +60,8 @@ Allow: /
 
 # Explicitní pokyn pro Google indexovat stránku s vysokou prioritou
 User-agent: Googlebot
-Priority: 1
+Priority: 1.0
 
 # Mapy webu - explicitní odkazy pro www i non-www verze
 Sitemap: https://www.popri.cz/sitemap.xml
 Sitemap: https://popri.cz/sitemap.xml
-

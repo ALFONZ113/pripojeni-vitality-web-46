@@ -1,6 +1,9 @@
+
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import CallbackForm from './CallbackForm';
+
 const Hero = () => {
   const container = {
     hidden: {
@@ -68,6 +71,12 @@ const Hero = () => {
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
               Zajistíme vám rychlé PODA připojení s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.
             </motion.p>
+            
+            {/* Callback Form */}
+            <motion.div variants={item} className="mb-6">
+              <CallbackForm />
+            </motion.div>
+            
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">
                 Prozkoumat nabídku

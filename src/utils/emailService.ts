@@ -29,7 +29,9 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       },
       body: JSON.stringify({
         to: "junkert@seznam.cz",
-        subject: "Nový kontakt z pripojeni-poda.cz",
+        subject: formData.name.includes("Žádost o zpětné volání") 
+          ? "Žádost o zpětné volání - popri.cz" 
+          : "Nový kontakt z pripojeni-poda.cz",
         formData: formData
       })
     });

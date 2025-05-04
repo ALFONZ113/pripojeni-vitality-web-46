@@ -12,6 +12,16 @@
       "continue": true
     },
     {
+      "src": "/sitemap.xml",
+      "status": 200,
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/sitemap-popri.xml",
+      "status": 200,
+      "dest": "/sitemap-popri.xml"
+    },
+    {
       "handle": "filesystem"
     },
     {

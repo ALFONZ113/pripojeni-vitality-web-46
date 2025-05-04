@@ -58,6 +58,7 @@ const BlogPost = () => {
   };
 
   const canonicalUrl = `https://www.popri.cz/blog/${post.id}`;
+  const alternateUrl = `https://popri.cz/blog/${post.id}`;
 
   return (
     <div className="min-h-screen pt-24">
@@ -65,7 +66,7 @@ const BlogPost = () => {
         <title>{post.title} | Popri.cz</title>
         <meta name="description" content={post.excerpt || post.title} />
         <link rel="canonical" href={canonicalUrl} />
-        <link rel="alternate" href={`https://popri.cz/blog/${post.id}`} hrefLang="cs" />
+        <link rel="alternate" href={alternateUrl} hrefLang="cs" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt || post.title} />
         <meta property="og:url" content={canonicalUrl} />

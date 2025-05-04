@@ -6,7 +6,7 @@ https://popri.cz/* https://www.popri.cz/:splat 301!
 # Force HTTPS for all connections
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
-# Explicitly allow access to sitemap files from both domains
+# Explicitly allow access to sitemap files
 /sitemap.xml /sitemap.xml 200
 /sitemap-popri.xml /sitemap-popri.xml 200
 
@@ -15,5 +15,5 @@ http://www.popri.cz/* https://www.popri.cz/:splat 301!
 /akce /tarify 301
 /sluzby /internet-tv 301
 
-# Fallback rule - do not change
+# Fallback rule - SPA routing
 /* /index.html 200

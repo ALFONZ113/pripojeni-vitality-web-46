@@ -12,6 +12,10 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
 RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
 
+# Special handling for sitemap files
+RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
+RewriteRule ^sitemap-popri\.xml$ /sitemap-popri.xml [L]
+
 # Set proper MIME types
 <IfModule mod_mime.c>
   AddType application/javascript .js

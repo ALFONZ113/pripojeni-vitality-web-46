@@ -66,7 +66,7 @@ const CallbackForm = () => {
         <div className="flex items-center mb-2">
           <Phone className="h-5 w-5 text-poda-orange mr-2" />
           <h3 className="font-semibold text-poda-blue">
-            Zadejte číslo a ozveme se Vám
+            Potřebujete připojit? Zadejte číslo a ozveme se Vám
           </h3>
         </div>
         
@@ -99,7 +99,7 @@ const CallbackForm = () => {
                   Odesílání...
                 </>
               ) : (
-                'Získat hovor'
+                'Zavoláme Vám'
               )}
             </button>
           </form>

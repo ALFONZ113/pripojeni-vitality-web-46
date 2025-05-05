@@ -107,6 +107,8 @@ const Index = () => {
         <meta name="format-detection" content="telephone=yes" />
         <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
         <meta name="keywords" content="PODA internet, připojení PODA, rychlá instalace internetu, internet s TV zdarma, optický internet PODA, gigabitový internet, PODA TV, internetové připojení Ostrava" />
+        
+        {/* Updated favicon links */}
         <link rel="icon" href="/poda-favicon.ico" type="image/x-icon"/>
         <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png"/>
         <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png"/>
@@ -115,6 +117,7 @@ const Index = () => {
         <link rel="icon" href="/poda-favicon-192x192.png" sizes="192x192" type="image/png"/>
         <link rel="icon" href="/poda-favicon-512x512.png" sizes="512x512" type="image/png"/>
         <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png"/>
+        
         <meta name="google" content="notranslate"/>
         <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
         <meta name="author" content="Milan Terč - obchodní zástupce PODA" />

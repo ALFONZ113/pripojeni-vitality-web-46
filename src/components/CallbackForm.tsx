@@ -99,7 +99,7 @@ const CallbackForm = () => {
                   Odesílání...
                 </>
               ) : (
-                'Chci zavolat'
+                'Získat hovor'
               )}
             </button>
           </form>

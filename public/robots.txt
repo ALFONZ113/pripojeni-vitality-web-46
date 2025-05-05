@@ -4,9 +4,6 @@
 User-agent: *
 Allow: /
 
-# Preferovaná doména - DŮLEŽITÉ! Toto pomáhá vyhledávačům pochopit, že www verze je preferovaná
-Host: https://www.popri.cz
-
 # Zakázání indexace některých URL
 Disallow: /wp-admin/
 Disallow: /admin/

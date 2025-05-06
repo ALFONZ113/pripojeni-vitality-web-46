@@ -66,7 +66,7 @@ const Hero = () => {
                 {" "}s chytrou televizí zdarma
               </span>
             </motion.h1>
-            <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">S Popri.cz vám zajistíme rychle PODA služby,  připojení s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.</motion.p>
+            <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">S Popri.cz vám zajistíme rychle PODA  připojení s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.</motion.p>
             
             {/* Callback Form */}
             <motion.div variants={item} className="mb-6">

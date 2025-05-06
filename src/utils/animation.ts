@@ -16,12 +16,12 @@ export function initAnimations() {
   };
 
   // Collect elements to unobserve on cleanup
-  const observedElements = new Set();
+  const observedElements = new Set<Element>();
   
   // Create a single observer instance for all animations
   const observer = new IntersectionObserver((entries) => {
     // Batch DOM operations for better performance
-    const activateElements = [];
+    const activateElements: Element[] = [];
     
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -64,7 +64,12 @@ export function initAnimations() {
  * Helper function to add animations to dynamically added content
  * @param {HTMLElement} container - Container with new content to animate
  */
-export function refreshAnimations(container) {
+export function refreshAnimations(container: HTMLElement) {
+  if (!container || !(container instanceof HTMLElement)) {
+    console.warn('Invalid container provided to refreshAnimations');
+    return;
+  }
+  
   const newElements = container.querySelectorAll('.reveal-animation:not(.active)');
   
   if (newElements.length === 0) return;

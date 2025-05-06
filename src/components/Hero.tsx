@@ -1,9 +1,7 @@
-
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import CallbackForm from './CallbackForm';
-
 const Hero = () => {
   const container = {
     hidden: {
@@ -68,9 +66,7 @@ const Hero = () => {
                 {" "}s chytrou televizí zdarma
               </span>
             </motion.h1>
-            <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              S Popri.cz vám zajistíme rychlé PODA připojení s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.
-            </motion.p>
+            <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">S Popri.cz vám zajistíme rychle PODA služby,  připojení s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.</motion.p>
             
             {/* Callback Form */}
             <motion.div variants={item} className="mb-6">
@@ -142,7 +138,16 @@ const Hero = () => {
         </motion.div>
 
         {/* New section to explain Popri.cz */}
-        <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 0.8, delay: 0.3}} viewport={{once: true}} className="mt-20 mb-8 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-blue-50">
+        <motion.div initial={{
+        opacity: 0
+      }} whileInView={{
+        opacity: 1
+      }} transition={{
+        duration: 0.8,
+        delay: 0.3
+      }} viewport={{
+        once: true
+      }} className="mt-20 mb-8 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-blue-50">
           <h2 className="text-2xl md:text-3xl font-bold text-poda-blue mb-4 text-center">Proč právě Popri.cz?</h2>
           <p className="text-gray-600 text-lg mb-6 text-center">
             Jsme <span className="text-poda-blue font-semibold">popri</span> vám při každém kroku instalace <span className="text-poda-orange font-semibold">PODA</span> internetu. Naše jméno vyjadřuje naši filozofii – stát po vašem boku a zajistit nejlepší internetové připojení.

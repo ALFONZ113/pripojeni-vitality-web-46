@@ -4,13 +4,20 @@
 # Enable URL rewriting
 RewriteEngine On
 
-# Force HTTPS - simplified and optimized rule
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS - improved and simplified rule
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirect non-www to www - simplified for better compatibility
+# Redirect non-www to www - simplified and more robust
 RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
-RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
+RewriteRule ^ https://www.popri.cz%{REQUEST_URI} [L,R=301]
+
+# Special handling for asset files
+RewriteCond %{REQUEST_URI} ^/assets/
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_URI} ^/lovable-uploads/
+RewriteRule ^ - [L]
 
 # Special handling for sitemap files
 RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
@@ -25,11 +32,18 @@ RewriteRule ^sitemap-popri\.xml$ /sitemap-popri.xml [L]
   AddType application/font-woff2 .woff2
 </IfModule>
 
-# Caching rules
+# Enable CORS for fonts and other resources
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font\.css|css|js|png|jpg|jpeg|gif|webp|svg)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# Improved caching rules
 <IfModule mod_expires.c>
   ExpiresActive On
   
-  # Images
+  # Images - extended cache time
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
@@ -45,6 +59,12 @@ RewriteRule ^sitemap-popri\.xml$ /sitemap-popri.xml [L]
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
+  
+  # Fonts
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
   
   # Others
   ExpiresByType application/pdf "access plus 1 month"

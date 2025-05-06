@@ -14,7 +14,7 @@ const Index = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Initialize scroll animations
+    // Initialize scroll animations with reduced timeout
     let cleanupAnimation: (() => void) | undefined;
     
     try {
@@ -102,7 +102,10 @@ const Index = () => {
         <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap.xml" />
         <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap-popri.xml" />
         <meta name="format-detection" content="telephone=yes" />
-        <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
+        <meta name="google" content="notranslate"/>
+        <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
+        <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
+        <meta name="robots" content="index, follow" />
         <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava" />
         
         {/* Updated favicon links */}
@@ -114,11 +117,6 @@ const Index = () => {
         <link rel="icon" href="/poda-favicon-192x192.png" sizes="192x192" type="image/png"/>
         <link rel="icon" href="/poda-favicon-512x512.png" sizes="512x512" type="image/png"/>
         <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png"/>
-        
-        <meta name="google" content="notranslate"/>
-        <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
-        <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
-        <meta name="robots" content="index, follow" />
 
         {/* Structured data optimization */}
         <script type="application/ld+json">

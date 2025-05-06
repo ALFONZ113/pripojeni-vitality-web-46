@@ -10,7 +10,8 @@ const Tarify = () => {
         <meta name="description" content="Vyberte si z nabídky výhodných tarifů PODA internetu a televize od Popri.cz. Rychlost až 1000 Mbps, stabilní připojení bez výpadků a TV programy v ceně." />
         <link rel="canonical" href="https://www.popri.cz/tarify" />
         <meta name="keywords" content="popri tarify, PODA tarify, popri.cz internet, PODA ceník, TV balíčky, optický internet cena, gigabitový internet tarif" />
-        <link rel="alternate" href="https://popri.cz/tarify" hrefLang="cs" />
+        <meta name="robots" content="index, follow" />
+        <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap.xml" />
         
         {/* Structured data for tariffs page */}
         <script type="application/ld+json">

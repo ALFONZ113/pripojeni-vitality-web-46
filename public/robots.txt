@@ -17,14 +17,17 @@ Disallow: /*&utm_*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
 
-# Prioritní stránky pro vyhledávače
-# Klíčové stránky popri.cz a PODA služby
+# Explicitní povolení hlavních stránek pro vyhledávače
 Allow: /$
 Allow: /internet-tv$
 Allow: /tarify$
 Allow: /programy$
 Allow: /kontakt$
 Allow: /blog$
+Allow: /blog/*$
+Allow: /cookies$
+Allow: /obchodni-podminky$
+Allow: /ochrana-soukromi$
 
 # Specifická povolení pro AI agenty
 User-agent: GPTBot
@@ -69,4 +72,3 @@ Allow: /
 # Mapy webu - explicitní odkazy pro www i non-www verze
 Sitemap: https://www.popri.cz/sitemap.xml
 Sitemap: https://www.popri.cz/sitemap-popri.xml
-

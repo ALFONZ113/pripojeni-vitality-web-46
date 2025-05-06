@@ -6,13 +6,13 @@
  * - Implements passive event listeners for better scroll performance
  */
 export function initAnimations() {
-  // Use requestIdleCallback for non-critical operations if available
-  const scheduleTask = window.requestIdleCallback || window.requestAnimationFrame;
+  // Use requestAnimationFrame for better performance
+  const scheduleTask = window.requestAnimationFrame;
   
   // Performance optimized observer options
   const observerOptions = {
-    rootMargin: '0px 0px -100px 0px',
-    threshold: 0.15
+    rootMargin: '0px 0px -50px 0px', // Smaller threshold to load faster
+    threshold: 0.1 // Lower threshold to trigger earlier
   };
 
   // Collect elements to unobserve on cleanup
@@ -41,15 +41,15 @@ export function initAnimations() {
     }
   }, observerOptions);
   
-  // Delay non-critical observations to improve initial page load
-  scheduleTask(() => {
-    const animatedElements = document.querySelectorAll('.reveal-animation');
-    
+  // Immediate observation for better initial load
+  const animatedElements = document.querySelectorAll('.reveal-animation');
+  
+  if (animatedElements.length > 0) {
     animatedElements.forEach(el => {
       observer.observe(el);
       observedElements.add(el);
     });
-  });
+  }
   
   // Clean up function to prevent memory leaks
   return () => {
@@ -74,6 +74,7 @@ export function refreshAnimations(container: HTMLElement) {
   
   if (newElements.length === 0) return;
   
+  // Optimized observer options for faster animation
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -82,8 +83,8 @@ export function refreshAnimations(container: HTMLElement) {
       }
     });
   }, {
-    rootMargin: '0px 0px -100px 0px',
-    threshold: 0.15
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
   });
   
   newElements.forEach(el => {

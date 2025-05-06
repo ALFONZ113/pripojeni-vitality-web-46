@@ -8,72 +8,72 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://www.popri.cz/</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/"/>
   </url>
   <url>
     <loc>https://www.popri.cz/internet-tv</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/internet-tv"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/internet-tv"/>
   </url>
   <url>
     <loc>https://www.popri.cz/programy</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/programy"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/programy"/>
   </url>
   <url>
     <loc>https://www.popri.cz/blog</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/blog"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/blog"/>
   </url>
   <url>
     <loc>https://www.popri.cz/blog/9</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/blog/9"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/blog/9"/>
   </url>
   <url>
     <loc>https://www.popri.cz/kontakt</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/kontakt"/>
   </url>
   <url>
     <loc>https://www.popri.cz/ochrana-soukromi</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/ochrana-soukromi"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/ochrana-soukromi"/>
   </url>
   <url>
     <loc>https://www.popri.cz/obchodni-podminky</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/obchodni-podminky"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/obchodni-podminky"/>
   </url>
   <url>
     <loc>https://www.popri.cz/cookies</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/cookies"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/cookies"/>
   </url>
   <url>
     <loc>https://www.popri.cz/tarify</loc>
-    <lastmod>2025-05-04</lastmod>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://popri.cz/tarify"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.popri.cz/tarify"/>
   </url>
 </urlset>

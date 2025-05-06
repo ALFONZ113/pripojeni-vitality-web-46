@@ -1,14 +1,19 @@
 
-# 301 Redirects for Netlify - preferring www version
+# 301 Redirects for Netlify - preferring www version with force HTTPS
 http://popri.cz/* https://www.popri.cz/:splat 301!
 https://popri.cz/* https://www.popri.cz/:splat 301!
 
 # Force HTTPS for all connections
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
-# Explicitly allow access to sitemap files
+# Explicitly allow access to asset files
+/assets/* /assets/:splat 200
+/lovable-uploads/* /lovable-uploads/:splat 200
 /sitemap.xml /sitemap.xml 200
 /sitemap-popri.xml /sitemap-popri.xml 200
+/robots.txt /robots.txt 200
+/*.png /:splat 200
+/*.ico /:splat 200
 
 # Handle specific redirects
 /stary-clanek /blog/novy-clanek 301

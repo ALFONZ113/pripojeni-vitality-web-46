@@ -21,15 +21,12 @@ const Index = () => {
       console.log('Initializing animations');
       cleanupAnimation = initAnimations();
       
-      // Simulate page loading or fetch critical data
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        console.log('Page loaded successfully');
-      }, 500);
+      // Remove artificial delay and load immediately
+      setIsLoading(false);
+      console.log('Page loaded successfully');
       
       return () => {
         if (cleanupAnimation) cleanupAnimation();
-        clearTimeout(timer);
       };
     } catch (e) {
       console.error('Error initializing page:', e);
@@ -99,14 +96,14 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>PODA Internet Připojení | Rychlá Instalace a TV Zdarma | Popri.cz</title>
-        <meta name="description" content="Potřebujete připojit PODA internet? ✓ Zařídíme rychlou instalaci ✓ Garantovaná rychlost až 1000 Mbps ✓ 100+ TV programů zdarma ✓ Non-stop podpora ✓ Bez závazků" />
+        <title>Popri.cz – Rychlý PODA Internet s TV Zdarma | Gigabitové Připojení</title>
+        <meta name="description" content="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace do 24 hodin." />
         <link rel="canonical" href="https://www.popri.cz/" />
         <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap.xml" />
         <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap-popri.xml" />
         <meta name="format-detection" content="telephone=yes" />
         <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
-        <meta name="keywords" content="PODA internet, připojení PODA, rychlá instalace internetu, internet s TV zdarma, optický internet PODA, gigabitový internet, PODA TV, internetové připojení Ostrava" />
+        <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava" />
         
         {/* Updated favicon links */}
         <link rel="icon" href="/poda-favicon.ico" type="image/x-icon"/>
@@ -122,6 +119,23 @@ const Index = () => {
         <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
         <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
         <meta name="robots" content="index, follow" />
+
+        {/* Structured data optimization */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Popri.cz – PODA Internet",
+              "url": "https://www.popri.cz",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://www.popri.cz/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }
+          `}
+        </script>
       </Helmet>
       <Hero />
       <TariffSection />

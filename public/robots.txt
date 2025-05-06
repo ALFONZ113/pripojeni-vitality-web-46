@@ -1,5 +1,5 @@
 
-# www.popri.cz robots.txt aktualizovaný 2025-05-04
+# www.popri.cz robots.txt aktualizovaný 2025-05-06
 # Všem robotům vyhledávačů je povoleno procházet všechny části webu
 User-agent: *
 Allow: /
@@ -16,6 +16,15 @@ Disallow: /*?utm_*
 Disallow: /*&utm_*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
+
+# Prioritní stránky pro vyhledávače
+# Klíčové stránky popri.cz a PODA služby
+Allow: /$
+Allow: /internet-tv$
+Allow: /tarify$
+Allow: /programy$
+Allow: /kontakt$
+Allow: /blog$
 
 # Specifická povolení pro AI agenty
 User-agent: GPTBot
@@ -42,6 +51,8 @@ User-agent: ChatGPT-User
 Allow: /
 User-agent: ChatGPT
 Allow: /
+User-agent: SeznamBot
+Allow: /
 
 # Explicitní povolení pro všechny AI boty
 User-agent: *-ai
@@ -58,3 +69,4 @@ Allow: /
 # Mapy webu - explicitní odkazy pro www i non-www verze
 Sitemap: https://www.popri.cz/sitemap.xml
 Sitemap: https://www.popri.cz/sitemap-popri.xml
+

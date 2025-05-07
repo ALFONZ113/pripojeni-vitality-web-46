@@ -1,6 +1,6 @@
 
 // Service Worker pro Popri.cz
-const CACHE_NAME = 'popri-cache-v2';
+const CACHE_NAME = 'popri-cache-v3';
 
 // Seznam souborů pro cache
 const STATIC_CACHE_URLS = [

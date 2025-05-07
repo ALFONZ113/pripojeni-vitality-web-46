@@ -126,7 +126,7 @@
     @apply text-poda-blue;
   }
   
-  /* Speciální styly pro zvýraznění části textu v hlavním nadpisu */
+  /* Styly pro zvýraznění části textu v hlavním nadpisu */
   .text-highlight-poda .text-highlight-po,
   .text-highlight-pripojeni .text-highlight-pri {
     @apply text-poda-orange;

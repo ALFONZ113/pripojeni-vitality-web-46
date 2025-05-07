@@ -1,14 +1,18 @@
 
 // Service Worker pro Popri.cz
-const CACHE_NAME = 'popri-cache-v1';
+const CACHE_NAME = 'popri-cache-v2';
 
 // Seznam souborů pro cache
 const STATIC_CACHE_URLS = [
   '/',
   '/index.html',
   '/site.webmanifest',
-  '/poda-favicon.ico',
-  '/poda-apple-touch-icon.png',
+  '/favicon.ico',
+  '/favicon-16x16.png',
+  '/favicon-32x32.png',
+  '/apple-touch-icon.png',
+  '/android-chrome-192x192.png',
+  '/android-chrome-512x512.png',
   '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
   '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
 ];

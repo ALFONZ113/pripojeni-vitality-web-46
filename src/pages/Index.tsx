@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import TariffSection from '../components/TariffSection';
@@ -114,14 +113,11 @@ const Index = () => {
         <meta name="last-updated" content={currentDate} />
         
         {/* Updated favicon links */}
-        <link rel="icon" href="/poda-favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png" />
-        <link rel="icon" href="/poda-favicon-48x48.png" sizes="48x48" type="image/png" />
-        <link rel="icon" href="/poda-favicon-96x96.png" sizes="96x96" type="image/png" />
-        <link rel="icon" href="/poda-favicon-192x192.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/poda-favicon-512x512.png" sizes="512x512" type="image/png" />
-        <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         {/* Font preloading pro lepší výkon */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />

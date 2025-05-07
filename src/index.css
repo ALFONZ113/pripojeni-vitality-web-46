@@ -116,6 +116,21 @@
     @apply absolute top-0 right-0 bg-poda-orange text-white text-xs uppercase py-1 px-3 
            tracking-wider transform rotate-45 translate-x-[30%] translate-y-[-10%] shadow-md;
   }
+
+  /* Speciální styly pro zvýraznění textu jen v hlavním nadpisu */
+  .text-highlight-poda {
+    @apply text-poda-blue;
+  }
+  
+  .text-highlight-pripojeni {
+    @apply text-poda-blue;
+  }
+  
+  /* Speciální styly pro zvýraznění části textu v hlavním nadpisu */
+  .text-highlight-poda .text-highlight-po,
+  .text-highlight-pripojeni .text-highlight-pri {
+    @apply text-poda-orange;
+  }
 }
 
 /* Custom animations */

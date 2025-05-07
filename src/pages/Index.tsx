@@ -93,6 +93,9 @@ const Index = () => {
     );
   }
 
+  // Aktuální datum pro dynamickou aktualizaci metadat
+  const currentDate = new Date().toISOString().split('T')[0];
+
   return (
     <div className="min-h-screen">
       <Helmet>
@@ -106,17 +109,23 @@ const Index = () => {
         <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
         <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava" />
+        <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="last-updated" content={currentDate} />
         
         {/* Updated favicon links */}
-        <link rel="icon" href="/poda-favicon.ico" type="image/x-icon"/>
-        <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png"/>
-        <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png"/>
-        <link rel="icon" href="/poda-favicon-48x48.png" sizes="48x48" type="image/png"/>
-        <link rel="icon" href="/poda-favicon-96x96.png" sizes="96x96" type="image/png"/>
-        <link rel="icon" href="/poda-favicon-192x192.png" sizes="192x192" type="image/png"/>
-        <link rel="icon" href="/poda-favicon-512x512.png" sizes="512x512" type="image/png"/>
-        <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png"/>
+        <link rel="icon" href="/poda-favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/poda-favicon-48x48.png" sizes="48x48" type="image/png" />
+        <link rel="icon" href="/poda-favicon-96x96.png" sizes="96x96" type="image/png" />
+        <link rel="icon" href="/poda-favicon-192x192.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/poda-favicon-512x512.png" sizes="512x512" type="image/png" />
+        <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png" />
+
+        {/* Font preloading pro lepší výkon */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
         {/* Structured data optimization */}
         <script type="application/ld+json">

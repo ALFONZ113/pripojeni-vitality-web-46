@@ -1,3 +1,4 @@
+
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -66,7 +67,9 @@ const Hero = () => {
                 {" "}s chytrou televizí zdarma
               </span>
             </motion.h1>
-            <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">S Popri.cz vám zajistíme rychle PODA  připojení s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.</motion.p>
+            <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              S Popri.cz vám zajistíme rychle <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.
+            </motion.p>
             
             {/* Callback Form */}
             <motion.div variants={item} className="mb-6">
@@ -99,7 +102,7 @@ const Hero = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-xl text-poda-blue mb-2">Rychlý optický internet</h3>
-                    <p className="text-gray-600">PODA připojení od Popri.cz s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost.</p>
+                    <p className="text-gray-600"><span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> připojení od Popri.cz s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost.</p>
                   </div>
                 </div>
               </motion.article>
@@ -129,7 +132,7 @@ const Hero = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-xl text-poda-blue mb-2">Moderní technologie</h3>
-                    <p className="text-gray-600">Optická síť GPON od PODA zajišťuje maximální stabilitu a komfort bez kompromisů.</p>
+                    <p className="text-gray-600">Optická síť GPON od <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> zajišťuje maximální stabilitu a komfort bez kompromisů.</p>
                   </div>
                 </div>
               </motion.article>
@@ -150,20 +153,20 @@ const Hero = () => {
       }} className="mt-20 mb-8 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-blue-50">
           <h2 className="text-2xl md:text-3xl font-bold text-poda-blue mb-4 text-center">Proč právě Popri.cz?</h2>
           <p className="text-gray-600 text-lg mb-6 text-center">
-            Jsme <span className="text-poda-blue font-semibold">popri</span> vám při každém kroku instalace <span className="text-poda-orange font-semibold">PODA</span> internetu. Naše jméno vyjadřuje naši filozofii – stát po vašem boku a zajistit nejlepší internetové připojení.
+            Jsme <span className="text-poda-blue font-semibold">popri</span> vám při každém kroku instalace <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> internetu. Naše jméno vyjadřuje naši filozofii – stát po vašem boku a zajistit nejlepší internetové <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span>.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <h3 className="font-semibold text-lg text-poda-blue mb-2">Rychlost</h3>
-              <p className="text-gray-600">Jsme popri vás, když potřebujete rychlé PODA připojení bez čekání.</p>
+              <p className="text-gray-600">Jsme popri vás, když potřebujete rychlé <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> bez čekání.</p>
             </div>
             <div className="text-center">
               <h3 className="font-semibold text-lg text-poda-blue mb-2">Spolehlivost</h3>
-              <p className="text-gray-600">S Popri.cz získáte stabilní PODA internet, na který se můžete spolehnout.</p>
+              <p className="text-gray-600">S Popri.cz získáte stabilní <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> internet, na který se můžete spolehnout.</p>
             </div>
             <div className="text-center">
               <h3 className="font-semibold text-lg text-poda-blue mb-2">Podpora</h3>
-              <p className="text-gray-600">Jsme vždy popri vás, když potřebujete pomoc s vaším PODA internetem.</p>
+              <p className="text-gray-600">Jsme vždy popri vás, když potřebujete pomoc s vaším <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> internetem.</p>
             </div>
           </div>
         </motion.div>

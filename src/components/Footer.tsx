@@ -122,7 +122,7 @@ const Footer = () => {
           <div className="flex items-start mt-6 pt-6 border-t border-blue-800/50">
             <Info className="h-5 w-5 text-blue-300 mr-3 flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div className="text-xs text-blue-300">
-              <p className="mb-1">Tato webová stránka je provozována obchodním zástupcem společnosti PODA pod doménou Popri.cz, nikoliv samotnou společností PODA.</p>
+              <p className="mb-1">Tato webová stránka je provozována obchodním zástupcem společnosti <span className="text-poda-orange">PO</span>DA pod doménou Popri.cz, nikoliv samotnou společností <span className="text-poda-orange">PO</span>DA.</p>
               <p>Milan Terč | IČO: 75546230 | Sídlo: Porubská 944/5, 708 00, Ostrava - Poruba | Zapsán v živnostenském rejstříku</p>
             </div>
           </div>

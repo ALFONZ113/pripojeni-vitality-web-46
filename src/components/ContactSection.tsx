@@ -69,7 +69,7 @@ const ContactSection = () => {
               Proč zvolit naše služby
             </span>
             <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
-              Výhody připojení od PODA
+              Výhody <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> od <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span>
             </h2>
             <p className="text-gray-600 leading-relaxed mb-8">
               Nabízíme kvalitní internetové a televizní služby s důrazem na rychlost, stabilitu a zákaznickou podporu.
@@ -77,7 +77,7 @@ const ContactSection = () => {
             
             <div className="space-y-6">
               <article className="bg-gray-50 p-6 rounded-xl border border-gray-100">
-                <h3 className="text-xl font-semibold text-poda-blue mb-3">Vysokorychlostní připojení</h3>
+                <h3 className="text-xl font-semibold text-poda-blue mb-3">Vysokorychlostní <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span></h3>
                 <p className="text-gray-600">
                   Díky moderní GPON technologii dosahujeme rychlosti až 1000/1000 Mbps, což zajišťuje plynulé streamování, 
                   hraní online her i práci z domova bez jakýchkoli omezení.
@@ -88,7 +88,7 @@ const ContactSection = () => {
                 <h3 className="text-xl font-semibold text-poda-blue mb-3">Bohatá televizní nabídka</h3>
                 <p className="text-gray-600">
                   S více než 100 TV programy a možností výběru vlastních stanic si každý najde své oblíbené pořady. 
-                  Navíc služba PODA net.TV umožňuje sledování až na 4 zařízeních současně.
+                  Navíc služba <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> net.TV umožňuje sledování až na 4 zařízeních současně.
                 </p>
               </article>
               

@@ -16,8 +16,8 @@
     <!-- Cache control meta tags -->
     <meta http-equiv="Cache-Control" content="public, max-age=86400" />
     <meta http-equiv="Pragma" content="public" />
-    <meta name="version" content="1.3.3" />
-    <meta name="cache-version" content="1714732400000" />
+    <meta name="version" content="1.3.4" />
+    <meta name="cache-version" content="1746316800012" />
     
     <!-- Canonical URL - vždy směřuje na www verzi -->
     <link rel="canonical" href="https://www.popri.cz/" />
@@ -108,7 +108,7 @@
       }
     </script>
     
-    <!-- Google tag (gtag.js) - deferred loading -->
+    <!-- Google tag (gtag.js) - optimized deferred loading -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -137,11 +137,13 @@
     
     <!-- Alternate link for non-www version -->
     <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
+    
+    <!-- Cache control optimization with versioning -->
+    <meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate">
   </head>
 
   <body>
     <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Fallback for old browsers -->

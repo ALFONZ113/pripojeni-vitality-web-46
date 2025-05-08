@@ -13,6 +13,55 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 11,
+    title: 'Přechod od O2 k PODA po akvizici Nej.cz a Netboxu',
+    excerpt: 'Zjistěte, jak vás může ovlivnit akvizice Nej.cz a Netboxu společností O2 a proč je nyní vhodný čas zvážit přechod k poskytovateli PODA, který nabízí stabilní ceny a kvalitní optické připojení.',
+    date: '8. 5. 2025',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_Visual_Conce_2.webp',
+    alt: 'Futuristická vizualizace propojení telekomunikačních sítí, symbolizující změny na trhu poskytovatelů internetu',
+    content: `
+      <p>V telekomunikačním sektoru České republiky došlo k významným změnám. Společnost O2 dokončila akvizici poskytovatele internetu Nej.cz, přičemž zákaznická základna přešla pod O2, zatímco infrastrukturu převzal CETIN. Zároveň netbox, který poskytuje internetové připojení více než 40 tisícům zákazníků především v Brně a Jihlavě, se také stal součástí O2.</p>
+      
+      <h3>Změny cen po akvizici</h3>
+      <p>S přechodem pod O2 dochází k postupným změnám, které mohou ovlivnit vaši peněženku. Společnost O2 již začala upravovat nabídku služeb a cenovou politiku pro zákazníky získané akvizicí. Ačkoliv stávající zákazníci mohou zatím využívat své služby za původních podmínek, očekává se postupná migrace na tarify O2.</p>
+      
+      <h3>Proč zvážit přechod k PODA?</h3>
+      <p>PODA nabízí zákazníkům alternativu s několika významnými výhodami:</p>
+      <ul>
+        <li>Garantovaná rychlost internetu až 1000 Mbps bez výpadků a kolísání</li>
+        <li>Přes 100 televizních programů zdarma v základní nabídce</li>
+        <li>Stabilní ceny bez nečekaných navýšení</li>
+        <li>Non-stop zákaznická podpora a rychlé řešení případných problémů</li>
+        <li>Odborná instalace bez zbytečných starostí</li>
+      </ul>
+      
+      <h3>Jednoduchý přechod s Popri.cz</h3>
+      <p>Díky webu Popri.cz je změna poskytovatele internetu na PODA snadná a bezstresová.</p>
+      <p>Služba Popri.cz vám zajistí:</p>
+      <ul>
+        <li>Komplexní řešení přechodu bez administrativních překážek</li>
+        <li>Rychlou instalaci s garantovanou rychlostí</li>
+        <li>Odborné poradenství při výběru nejvhodnějšího tarifu</li>
+        <li>Žádné skryté poplatky nebo nevýhodné podmínky</li>
+      </ul>
+      
+      <h3>Výhody optického internetu od PODA</h3>
+      <p>PODA poskytuje kvalitní optické připojení, které vám umožní:</p>
+      <ul>
+        <li>Sledovat obsah ve vysokém rozlišení bez zpomalení</li>
+        <li>Hrát online hry bez nepříjemného laggování</li>
+        <li>Připojit všechna zařízení v domácnosti současně bez ztráty rychlosti</li>
+        <li>Pracovat z domova efektivně i při videokonferencích</li>
+      </ul>
+      
+      <p>V době, kdy O2 po akvizici Nej.cz přizpůsobuje portfolio svých služeb a upravuje ceny, je PODA stabilní volbou pro ty, kdo hledají spolehlivé internetové připojení za výhodných podmínek. S pomocí platformy Popri.cz je přechod jednoduchý jako "objednání šálky kávy" - bez zbytečného stresu a komplikací.</p>
+      
+      <p>Neváhejte a zjistěte více o možnostech připojení od PODA na webu Popri.cz, kde najdete všechny potřebné informace pro bezproblémový přechod k novému poskytovateli.</p>
+    `
+  },
+  {
     id: 10,
     title: 'Internet PODA v Ostravě-Porubě: Kvalitní připojení na vaší ulici',
     excerpt: 'Hledáte rychlý a stabilní internet v Ostravě-Porubě? PODA nabízí optické připojení až 1 Gb/s pro domácnosti i firmy ve většině porubských ulic. Instalace je zdarma a technici vám vše profesionálně zapojí až do bytu.',

@@ -20,25 +20,25 @@ const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
         </Link>
         
         <div className="max-w-4xl mx-auto">
-          <div className="mb-6 flex items-center gap-4">
+          <div className="mb-6 flex items-center gap-4 flex-wrap">
             <span className="bg-blue-100 text-poda-blue px-3 py-1 rounded-full text-sm font-medium">
               {post.category}
             </span>
             <div className="flex items-center text-gray-500 text-sm">
               <Calendar className="h-4 w-4 mr-1" />
-              {post.date}
+              <time dateTime={post.date.split('. ').reverse().join('-')}>{post.date}</time>
             </div>
             <div className="flex items-center text-gray-500 text-sm">
               <User className="h-4 w-4 mr-1" />
-              {post.author}
+              <span itemProp="author">{post.author}</span>
             </div>
           </div>
           
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-poda-blue mb-6 leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-poda-blue mb-6 leading-tight" itemProp="headline">
             {post.title}
           </h1>
           
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl text-gray-600 leading-relaxed" itemProp="description">
             {post.excerpt}
           </p>
         </div>

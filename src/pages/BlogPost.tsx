@@ -26,6 +26,9 @@ const BlogPost = () => {
     if (foundPost) {
       setPost(foundPost);
       setImageError(false); // Reset error state when post changes
+      
+      // Log the view for analytics (could be expanded)
+      console.log(`Blog post viewed: ${foundPost.title} (ID: ${foundPost.id})`);
     } else {
       navigate('/blog');
     }
@@ -57,8 +60,31 @@ const BlogPost = () => {
     }
   };
 
+  // SEO enhancements
   const canonicalUrl = `https://www.popri.cz/blog/${post.id}`;
   const alternateUrl = `https://popri.cz/blog/${post.id}`;
+  const postDate = post.date.split('. ').reverse().join('-');
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Popri.cz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.popri.cz/poda-logo.svg"
+      }
+    },
+    "datePublished": postDate,
+    "dateModified": postDate
+  };
 
   return (
     <div className="min-h-screen pt-24">
@@ -72,9 +98,13 @@ const BlogPost = () => {
         <meta property="og:url" content={canonicalUrl} />
         {post.image && <meta property="og:image" content={post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`} />}
         <meta property="og:type" content="article" />
-        <meta property="article:published_time" content={post.date} />
+        <meta property="article:published_time" content={postDate} />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.excerpt || post.title} />
+        <meta name="keywords" content={`${post.category}, ${post.title.toLowerCase()}, PODA, připojení k internetu, Popri.cz`} />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       </Helmet>
       
       <BlogPostHeader post={post} />

@@ -12,6 +12,7 @@ Allow: /programy$
 Allow: /kontakt$
 Allow: /blog$
 Allow: /blog/*$
+Allow: /blog/11$
 Allow: /cookies$
 Allow: /obchodni-podminky$
 Allow: /ochrana-soukromi$

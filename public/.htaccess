@@ -8,6 +8,10 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Redirect old domain to new domain with path preservation
+RewriteCond %{HTTP_HOST} ^(www\.)?pripojeni-poda\.cz$ [NC]
+RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
+
 # Redirect non-www to www - simplified and more robust
 RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
 RewriteRule ^ https://www.popri.cz%{REQUEST_URI} [L,R=301]
@@ -22,6 +26,7 @@ RewriteRule ^ - [L]
 # Special handling for sitemap files
 RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
 RewriteRule ^sitemap-popri\.xml$ /sitemap-popri.xml [L]
+RewriteRule ^robots\.txt$ /robots.txt [L]
 
 # Set proper MIME types
 <IfModule mod_mime.c>
@@ -78,6 +83,9 @@ RewriteRule ^sitemap-popri\.xml$ /sitemap-popri.xml [L]
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  
+  # Explicitly allow indexing for search engines
+  Header set X-Robots-Tag "index, follow"
 </IfModule>
 
 # Disable directory listing

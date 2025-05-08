@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import TariffSection from '../components/TariffSection';

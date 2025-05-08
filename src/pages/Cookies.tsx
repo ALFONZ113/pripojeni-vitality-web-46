@@ -4,6 +4,9 @@ import { Cookie } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
 const Cookies = () => {
+  // Aktuální datum pro dynamickou aktualizaci metadat
+  const currentDate = new Date().toISOString().split('T')[0];
+
   return (
     <div className="py-24 min-h-screen bg-gray-50">
       <Helmet>
@@ -12,6 +15,43 @@ const Cookies = () => {
         <link rel="canonical" href="https://www.popri.cz/cookies" />
         <meta name="keywords" content="cookies, PODA cookies, ochrana dat, soukromí, GDPR, web cookies" />
         <link rel="alternate" href="https://popri.cz/cookies" hrefLang="cs" />
+        <meta name="robots" content="index, follow" />
+        <meta name="last-updated" content={currentDate} />
+
+        {/* Structured data optimization */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "Zásady používání cookies | PODA Internet | Popri.cz",
+              "description": "Přečtěte si informace o tom, jak používáme cookies na našem webu. Zásady ochrany soukromí a zpracování dat při využívání služeb PODA internetu.",
+              "url": "https://www.popri.cz/cookies",
+              "isPartOf": {
+                "@type": "WebSite",
+                "name": "Popri.cz",
+                "url": "https://www.popri.cz"
+              },
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Úvod",
+                    "item": "https://www.popri.cz"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Cookies",
+                    "item": "https://www.popri.cz/cookies"
+                  }
+                ]
+              }
+            }
+          `}
+        </script>
       </Helmet>
       
       <div className="container-custom">

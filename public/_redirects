@@ -1,9 +1,12 @@
 
 # 301 Redirects for Netlify - preferring www version with force HTTPS
-http://popri.cz/* https://www.popri.cz/:splat 301!
-https://popri.cz/* https://www.popri.cz/:splat 301!
+http://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
+https://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
+http://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
+https://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 
 # Force HTTPS for all connections
+http://popri.cz/* https://www.popri.cz/:splat 301!
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
 # Explicitly allow access to asset files
@@ -15,10 +18,15 @@ http://www.popri.cz/* https://www.popri.cz/:splat 301!
 /*.png /:splat 200
 /*.ico /:splat 200
 
-# Handle specific redirects
-/stary-clanek /blog/novy-clanek 301
-/akce /tarify 301
-/sluzby /internet-tv 301
+# Specific redirects for migrated pages from old domain
+/ochrana-soukromi /ochrana-soukromi 301!
+/obchodni-podminky /obchodni-podminky 301!
+/cookies /cookies 301!
+/blog /blog 301!
+/kontakt /kontakt 301!
+/tarify /tarify 301!
+/programy /programy 301!
+/internet-tv /internet-tv 301!
 
 # Fallback rule - SPA routing
 /* /index.html 200

@@ -1,6 +1,14 @@
 
 {
   "version": 2,
+  "redirects": [
+    { "source": "https://pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
+    { "source": "https://www.pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
+    { "source": "http://pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
+    { "source": "http://www.pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
+    { "source": "http://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
+    { "source": "https://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true }
+  ],
   "routes": [
     {
       "src": "/(.*)",
@@ -8,7 +16,8 @@
         "x-content-type-options": "nosniff",
         "x-frame-options": "DENY",
         "x-xss-protection": "1; mode=block",
-        "access-control-allow-origin": "*"
+        "access-control-allow-origin": "*",
+        "x-robots-tag": "index, follow"
       },
       "continue": true
     },
@@ -76,6 +85,10 @@
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
         }
       ]
     },

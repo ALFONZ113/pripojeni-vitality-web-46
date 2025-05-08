@@ -1,8 +1,20 @@
 
-# www.popri.cz robots.txt aktualizovaný 2025-05-06
+# www.popri.cz robots.txt aktualizovaný 2025-05-08
 # Všem robotům vyhledávačů je povoleno procházet všechny části webu
 User-agent: *
 Allow: /
+
+# Explicitní povolení hlavních stránek pro vyhledávače
+Allow: /$
+Allow: /internet-tv$
+Allow: /tarify$
+Allow: /programy$
+Allow: /kontakt$
+Allow: /blog$
+Allow: /blog/*$
+Allow: /cookies$
+Allow: /obchodni-podminky$
+Allow: /ochrana-soukromi$
 
 # Zakázání indexace některých URL
 Disallow: /wp-admin/
@@ -17,57 +29,15 @@ Disallow: /*&utm_*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
 
-# Explicitní povolení hlavních stránek pro vyhledávače
-Allow: /$
-Allow: /internet-tv$
-Allow: /tarify$
-Allow: /programy$
-Allow: /kontakt$
-Allow: /blog$
-Allow: /blog/*$
-Allow: /cookies$
-Allow: /obchodni-podminky$
-Allow: /ochrana-soukromi$
-
-# Specifická povolení pro AI agenty
-User-agent: GPTBot
-Allow: /
-User-agent: Bingbot
-Allow: /
+# Specifické povolení pro Googlebot
 User-agent: Googlebot
 Allow: /
-User-agent: Baiduspider
-Allow: /
-User-agent: FacebookBot
-Allow: /
-User-agent: anthropic-ai
-Allow: /
-User-agent: CCBot
-Allow: /
-User-agent: Claude-Web
-Allow: /
-User-agent: Google-Extended
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: ChatGPT-User
-Allow: /
-User-agent: ChatGPT
-Allow: /
+Crawl-delay: 1
+
+# Specifické povolení pro Seznam.cz
 User-agent: SeznamBot
 Allow: /
-
-# Explicitní povolení pro všechny AI boty
-User-agent: *-ai
-Allow: /
-User-agent: *bot
-Allow: /
-User-agent: *Bot
-Allow: /
-User-agent: *crawler
-Allow: /
-User-agent: *Crawler
-Allow: /
+Crawl-delay: 1
 
 # Mapy webu - explicitní odkazy pro www i non-www verze
 Sitemap: https://www.popri.cz/sitemap.xml

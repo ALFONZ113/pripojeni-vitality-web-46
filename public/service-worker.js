@@ -1,6 +1,6 @@
 
 // Service Worker pro Popri.cz
-const CACHE_NAME = 'popri-cache-v3';
+const CACHE_NAME = 'popri-cache-v4';
 
 // Seznam souborů pro cache
 const STATIC_CACHE_URLS = [
@@ -51,6 +51,19 @@ self.addEventListener('fetch', event => {
   if (event.request.url.includes('google-analytics.com') || 
       event.request.url.includes('googletagmanager.com') ||
       event.request.url.includes('cloudflareinsights.com')) {
+    return;
+  }
+
+  // Speciální obsluha pro robots.txt a sitemap.xml - vždy z network
+  if (event.request.url.includes('robots.txt') || 
+      event.request.url.includes('sitemap.xml') ||
+      event.request.url.includes('sitemap-popri.xml')) {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
     return;
   }
 
@@ -112,5 +125,12 @@ self.addEventListener('fetch', event => {
           });
         })
     );
+  }
+});
+
+// Přidání posluchače pro zprávy
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
 });

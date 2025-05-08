@@ -16,8 +16,8 @@
     <!-- Cache control meta tags -->
     <meta http-equiv="Cache-Control" content="public, max-age=86400" />
     <meta http-equiv="Pragma" content="public" />
-    <meta name="version" content="1.3.7" />
-    <meta name="cache-version" content="1746523690012" />
+    <meta name="version" content="1.3.8" />
+    <meta name="cache-version" content="1747128009562" />
     
     <!-- Canonical URL - vždy směřuje na www verzi -->
     <link rel="canonical" href="https://www.popri.cz/" />
@@ -144,6 +144,9 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Přidání registrace service workeru pro lepší indexaci -->
+    <script src="/sw-register.js"></script>
     
     <!-- Fallback for old browsers -->
     <noscript>

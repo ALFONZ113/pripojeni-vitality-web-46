@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { Share2, Bookmark, MessageSquare } from 'lucide-react';
+import { toast } from '@/components/ui/use-toast';
 import type { BlogPost } from '../../data/blogPosts';
 
 interface BlogPostContentProps {
@@ -8,30 +9,37 @@ interface BlogPostContentProps {
 }
 
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: post.title,
-        text: post.excerpt,
-        url: window.location.href,
-      }).catch(err => {
-        console.error('Sdílení selhalo:', err);
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href)
-        .then(() => {
-          alert('URL zkopírována do schránky');
-        })
-        .catch(err => {
-          console.error('Kopírování do schránky selhalo:', err);
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: post.title,
+          text: post.excerpt,
+          url: window.location.href,
         });
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast({
+          description: 'URL zkopírována do schránky',
+          duration: 2000
+        });
+      }
+    } catch (err) {
+      console.error('Sdílení selhalo:', err);
+      toast({
+        variant: "destructive",
+        description: 'Sdílení selhalo',
+        duration: 2000
+      });
     }
   };
+
+  const formattedDate = post.date.split('. ').reverse().join('-');
 
   return (
     <div className="lg:col-span-8">
       <article className="prose prose-lg max-w-none" itemScope itemType="http://schema.org/BlogPosting">
-        <meta itemProp="datePublished" content={post.date.split('. ').reverse().join('-')} />
+        <meta itemProp="datePublished" content={formattedDate} />
         <meta itemProp="author" content={post.author} />
         <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>

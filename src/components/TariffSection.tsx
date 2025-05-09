@@ -4,17 +4,11 @@ import TariffTabs from './tariffs/TariffTabs';
 import TariffCard from './tariffs/TariffCard';
 import { tariffData } from './tariffs/tariffData';
 
-// Define the PromoInfoState interface here for consistency
-interface PromoInfoState {
-  bytyBasic: boolean;
-  bytyMych10: boolean;
-  domyBasic: boolean;
-  domyMych10: boolean;
-}
+// Define the PromoInfoState type for better type safety
+type PromoInfoState = Record<'bytyBasic' | 'bytyMych10' | 'domyBasic' | 'domyMych10', boolean>;
 
 const TariffSection = () => {
   const [activeTab, setActiveTab] = useState('byty');
-  
   const [openPromoInfo, setOpenPromoInfo] = useState<PromoInfoState>({
     bytyBasic: false,
     bytyMych10: false,
@@ -23,7 +17,7 @@ const TariffSection = () => {
   });
 
   const togglePromoInfo = (tariff: keyof PromoInfoState) => {
-    setOpenPromoInfo((prev) => ({
+    setOpenPromoInfo(prev => ({
       ...prev,
       [tariff]: !prev[tariff],
     }));
@@ -51,16 +45,10 @@ const TariffSection = () => {
           {tariffData[activeTab as keyof typeof tariffData].map((tariff) => (
             <TariffCard
               key={tariff.id}
-              title={tariff.title}
-              price={tariff.price}
-              priceNote={tariff.priceNote}
+              {...tariff}
               promoId={tariff.id as keyof PromoInfoState}
-              isPromo={tariff.isPromo}
-              isRecommended={tariff.isRecommended}
-              features={tariff.features}
               openPromoInfo={openPromoInfo}
               onPromoInfoToggle={togglePromoInfo}
-              promoInfoText={tariff.promoInfoText}
             />
           ))}
         </div>

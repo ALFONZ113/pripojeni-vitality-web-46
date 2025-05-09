@@ -1,10 +1,9 @@
 
-# www.popri.cz robots.txt aktualizovaný 2025-05-08
-# Všem robotům vyhledávačů je povoleno procházet všechny části webu
+# www.popri.cz robots.txt - Updated 2025-05-09
 User-agent: *
 Allow: /
 
-# Explicitní povolení hlavních stránek pro vyhledávače
+# Explicitly allow main pages
 Allow: /$
 Allow: /internet-tv$
 Allow: /tarify$
@@ -12,34 +11,32 @@ Allow: /programy$
 Allow: /kontakt$
 Allow: /blog$
 Allow: /blog/*$
-Allow: /blog/11$
 Allow: /cookies$
 Allow: /obchodni-podminky$
 Allow: /ochrana-soukromi$
 
-# Zakázání indexace některých URL
+# Disallow administrative and system URLs
 Disallow: /wp-admin/
 Disallow: /admin/
 Disallow: */admin
 Disallow: /api/*
 Disallow: /feed/
 
-# Neindexovat parametrizované URL
+# No indexing for parametrized URLs
 Disallow: /*?utm_*
 Disallow: /*&utm_*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
 
-# Specifické povolení pro Googlebot
+# Search engine specific rules
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
-# Specifické povolení pro Seznam.cz
 User-agent: SeznamBot
 Allow: /
 Crawl-delay: 1
 
-# Mapy webu - explicitní odkazy pro www i non-www verze
+# Sitemaps
 Sitemap: https://www.popri.cz/sitemap.xml
 Sitemap: https://www.popri.cz/sitemap-popri.xml

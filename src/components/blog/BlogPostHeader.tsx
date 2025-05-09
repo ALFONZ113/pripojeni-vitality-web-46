@@ -8,6 +8,9 @@ interface BlogPostHeaderProps {
 }
 
 const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
+  // Format date for datetime attribute
+  const formattedDate = post.date.split('. ').reverse().join('-');
+  
   return (
     <section className="section-padding pt-10 pb-12 bg-gradient-to-b from-white to-blue-50">
       <div className="container-custom">
@@ -26,7 +29,7 @@ const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
             </span>
             <div className="flex items-center text-gray-500 text-sm">
               <Calendar className="h-4 w-4 mr-1" />
-              <time dateTime={post.date.split('. ').reverse().join('-')}>{post.date}</time>
+              <time dateTime={formattedDate}>{post.date}</time>
             </div>
             <div className="flex items-center text-gray-500 text-sm">
               <User className="h-4 w-4 mr-1" />

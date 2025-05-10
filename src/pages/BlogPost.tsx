@@ -14,6 +14,7 @@ const BlogPost = () => {
   const [imageError, setImageError] = useState(false);
   const navigate = useNavigate();
   
+  // Najděme související články (ze stejné kategorie, max 3)
   const relatedPosts = post 
     ? blogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 3) 
     : [];
@@ -29,8 +30,15 @@ const BlogPost = () => {
       
       // Log the view for analytics (could be expanded)
       console.log(`Blog post viewed: ${foundPost.title} (ID: ${foundPost.id})`);
+
+      // Pokud má článek tagy, přidáme je do URL jako parametry pro lepší SEO
+      const url = new URL(window.location.href);
+      if (!url.searchParams.has('category') && foundPost.category) {
+        url.searchParams.set('category', foundPost.category);
+        window.history.replaceState({}, '', url.toString());
+      }
     } else {
-      navigate('/blog');
+      navigate('/blog', { replace: true });
     }
     
     return () => {
@@ -42,6 +50,7 @@ const BlogPost = () => {
     return null;
   }
 
+  // Funkce pro řešení chyb při načítání obrázků
   const handleImageError = () => {
     console.error(`Failed to load image: ${post.image}`);
     
@@ -60,16 +69,19 @@ const BlogPost = () => {
     }
   };
 
-  // SEO enhancements
+  // Vytvoříme správné URL a metadata pro SEO
   const canonicalUrl = `https://www.popri.cz/blog/${post.id}`;
   const alternateUrl = `https://popri.cz/blog/${post.id}`;
   const postDate = post.date.split('. ').reverse().join('-');
+  const postImage = post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`;
+  
+  // Strukturovaná data pro článek
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.excerpt,
-    "image": post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`,
+    "image": postImage,
     "author": {
       "@type": "Person",
       "name": post.author
@@ -83,25 +95,46 @@ const BlogPost = () => {
       }
     },
     "datePublished": postDate,
-    "dateModified": postDate
+    "dateModified": postDate,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "keywords": post.tags?.join(', ') || post.category
   };
+
+  // Nějlépe SEO optimalizovaná metadata
+  const metaKeywords = post.tags 
+    ? `${post.category}, ${post.tags.join(', ')}, PODA Internet, PODA TV, Popri.cz`
+    : `${post.category}, PODA Internet, PODA připojení, Popri.cz`;
 
   return (
     <div className="min-h-screen pt-24">
       <Helmet>
-        <title>{post.title} | Popri.cz</title>
+        <title>{post.title} | Blog Popri.cz</title>
         <meta name="description" content={post.excerpt || post.title} />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" href={alternateUrl} hrefLang="cs" />
-        <meta property="og:title" content={post.title} />
+        <meta property="og:title" content={`${post.title} | Blog Popri.cz`} />
         <meta property="og:description" content={post.excerpt || post.title} />
         <meta property="og:url" content={canonicalUrl} />
-        {post.image && <meta property="og:image" content={post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`} />}
+        <meta property="og:image" content={postImage} />
         <meta property="og:type" content="article" />
         <meta property="article:published_time" content={postDate} />
+        <meta property="article:author" content={post.author} />
+        <meta property="article:section" content={post.category} />
+        {post.tags?.map((tag, index) => (
+          <meta key={index} property="article:tag" content={tag} />
+        ))}
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.excerpt || post.title} />
-        <meta name="keywords" content={`${post.category}, ${post.title.toLowerCase()}, PODA, připojení k internetu, Popri.cz`} />
+        <meta name="twitter:image" content={postImage} />
+        <meta name="keywords" content={metaKeywords} />
+        <meta name="author" content={post.author} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="prev" href={`https://www.popri.cz/blog/${Number(id) - 1}`} />
+        <link rel="next" href={`https://www.popri.cz/blog/${Number(id) + 1}`} />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>

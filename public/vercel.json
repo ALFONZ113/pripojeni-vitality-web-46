@@ -41,11 +41,6 @@
       "dest": "/sitemap.xml"
     },
     {
-      "src": "/sitemap-popri.xml",
-      "status": 200,
-      "dest": "/sitemap-popri.xml"
-    },
-    {
       "src": "/robots.txt",
       "status": 200,
       "dest": "/robots.txt"
@@ -128,6 +123,32 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     }

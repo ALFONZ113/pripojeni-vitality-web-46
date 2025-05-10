@@ -1,9 +1,9 @@
 
-# www.popri.cz robots.txt - Updated 2025-05-09
+# www.popri.cz robots.txt - Updated 2025-05-10
 User-agent: *
 Allow: /
 
-# Explicitly allow main pages
+# Explicitly allow main pages with priority
 Allow: /$
 Allow: /internet-tv$
 Allow: /tarify$
@@ -22,7 +22,7 @@ Disallow: */admin
 Disallow: /api/*
 Disallow: /feed/
 
-# No indexing for parametrized URLs
+# No indexing for parametrized URLs with tracking parameters
 Disallow: /*?utm_*
 Disallow: /*&utm_*
 Disallow: /*?fbclid=*
@@ -37,6 +37,17 @@ User-agent: SeznamBot
 Allow: /
 Crawl-delay: 1
 
-# Sitemaps
+User-agent: Bingbot
+Allow: /
+
+# Mobile version
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Image indexing
+User-agent: Googlebot-Image
+Allow: /assets/*
+Allow: /lovable-uploads/*
+
+# Sitemap declarations - consolidated
 Sitemap: https://www.popri.cz/sitemap.xml
-Sitemap: https://www.popri.cz/sitemap-popri.xml

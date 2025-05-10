@@ -37,10 +37,22 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
   const formattedDate = post.date.split('. ').reverse().join('-');
 
   return (
-    <div className="lg:col-span-8">
-      <article className="prose prose-lg max-w-none" itemScope itemType="http://schema.org/BlogPosting">
-        <meta itemProp="datePublished" content={formattedDate} />
-        <meta itemProp="author" content={post.author} />
+    <div className="lg:col-span-8" itemScope itemType="http://schema.org/BlogPosting">
+      {/* Hidden schema.org metadata */}
+      <meta itemProp="datePublished" content={formattedDate} />
+      <meta itemProp="author" content={post.author} />
+      <meta itemProp="headline" content={post.title} />
+      <meta itemProp="description" content={post.excerpt || ''} />
+      {post.image && <meta itemProp="image" content={post.image} />}
+      <link itemProp="mainEntityOfPage" href={`https://www.popri.cz/blog/${post.id}`} />
+      <div itemProp="publisher" itemScope itemType="http://schema.org/Organization">
+        <meta itemProp="name" content="Popri.cz" />
+        <div itemProp="logo" itemScope itemType="http://schema.org/ImageObject">
+          <meta itemProp="url" content="https://www.popri.cz/poda-logo.svg" />
+        </div>
+      </div>
+      
+      <article className="prose prose-lg max-w-none">
         <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
       
@@ -70,6 +82,28 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
           <MessageSquare className="h-5 w-5 mr-2" />
           <span>Kontaktovat nás</span>
         </Link>
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span className="text-gray-600">Štítky:</span>
+            <div className="mt-2 flex flex-wrap gap-2">
+              <Link to={`/blog?category=${encodeURIComponent(post.category)}`} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-poda-blue hover:text-white transition-colors">
+                {post.category}
+              </Link>
+              {post.tags?.map((tag, index) => (
+                <Link key={index} to={`/blog?tag=${encodeURIComponent(tag)}`} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-poda-blue hover:text-white transition-colors">
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          </div>
+          
+          <div className="text-gray-600">
+            Publikováno: <time dateTime={formattedDate}>{post.date}</time>
+          </div>
+        </div>
       </div>
     </div>
   );

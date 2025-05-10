@@ -1,136 +1,135 @@
 
 // Service Worker pro Popri.cz
-const CACHE_NAME = 'popri-cache-v4';
+// Verze: 1.3.0 (2025-05-10)
 
-// Seznam souborů pro cache
-const STATIC_CACHE_URLS = [
+const CACHE_NAME = 'popri-cache-v1.3.0';
+const RUNTIME_CACHE = 'popri-runtime-v1';
+
+// Soubory, které budou přednostně uloženy do cache
+const PRECACHE_URLS = [
   '/',
   '/index.html',
-  '/site.webmanifest',
+  '/assets/index.js',
+  '/assets/index.css',
+  '/poda-logo.svg',
   '/favicon.ico',
   '/favicon-16x16.png',
   '/favicon-32x32.png',
   '/apple-touch-icon.png',
-  '/android-chrome-192x192.png',
-  '/android-chrome-512x512.png',
-  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
-  '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
+  '/site.webmanifest',
+  '/og-image.png'
 ];
 
-// Instalace Service Workeru
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Service Worker: Caching static assets');
-        return cache.addAll(STATIC_CACHE_URLS);
-      })
-      .then(() => self.skipWaiting())
-  );
-});
+// Funkce pro detekci vyhledávacích botů
+function isSearchBot(request) {
+  const userAgent = request.headers?.get('User-Agent')?.toLowerCase();
+  if (!userAgent) return false;
+  
+  const botPatterns = [
+    'googlebot', 'bingbot', 'yandexbot', 'slurp', 'duckduckbot', 'baiduspider', 
+    'seznam', 'facebookexternalhit', 'linkedinbot', 'twitterbot', 'applebot'
+  ];
+  
+  return botPatterns.some(bot => userAgent.includes(bot));
+}
 
-// Aktivace Service Workeru
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Service Worker: Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
-});
-
-// Obsluha požadavků
+// Vyhněte se cachování požadavků od vyhledávacích enginů
 self.addEventListener('fetch', event => {
-  // Ignorovat analytické požadavky
-  if (event.request.url.includes('google-analytics.com') || 
-      event.request.url.includes('googletagmanager.com') ||
-      event.request.url.includes('cloudflareinsights.com')) {
+  const requestUrl = new URL(event.request.url);
+  
+  // Kontrola zda se jedná o vyhledávací bot
+  if (isSearchBot(event.request)) {
+    // Pro vyhledávací boty necachuji, jdu přímo na síť
     return;
   }
-
-  // Speciální obsluha pro robots.txt a sitemap.xml - vždy z network
-  if (event.request.url.includes('robots.txt') || 
-      event.request.url.includes('sitemap.xml') ||
-      event.request.url.includes('sitemap-popri.xml')) {
+  
+  // Pro SEO důležité stránky a soubory nepoužívám cache pro zajištění aktuálnosti
+  if (
+    requestUrl.pathname === '/sitemap.xml' ||
+    requestUrl.pathname === '/robots.txt' ||
+    requestUrl.pathname.startsWith('/blog/')
+  ) {
     event.respondWith(
-      fetch(event.request)
-        .catch(() => {
-          return caches.match(event.request);
-        })
+      fetch(event.request).catch(() => {
+        return caches.match(event.request);
+      })
     );
     return;
   }
 
-  // Strategie Cache First s Network Fallback pro statické soubory
-  if (event.request.url.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf)$/)) {
-    event.respondWith(
-      caches.match(event.request).then(response => {
-        return response || fetch(event.request)
-          .then(fetchResponse => {
-            // Uložit do cache jen úspěšné odpovědi
-            if (fetchResponse && fetchResponse.status === 200) {
-              const responseToCache = fetchResponse.clone();
-              caches.open(CACHE_NAME).then(cache => {
+  // Pro ostatní požadavky používám strategii network-first
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        // Aktualizuji cache pro příští použití, ale vracím již cached verzi pro rychlost
+        const fetchPromise = fetch(event.request)
+          .then(response => {
+            // Ukládat do cache pouze pokud je response validní
+            if (response && response.status === 200 && response.type === 'basic') {
+              const responseToCache = response.clone();
+              caches.open(RUNTIME_CACHE).then(cache => {
                 cache.put(event.request, responseToCache);
               });
             }
-            return fetchResponse;
+            return response;
           })
           .catch(error => {
-            console.error('Service Worker fetch error:', error);
-            // Fallback pro obrázky
-            if (event.request.url.match(/\.(png|jpg|jpeg|gif|svg|webp)$/)) {
-              return caches.match('/placeholder.svg');
-            }
-            return new Response('Omlouváme se, došlo k chybě při načítání.', {
-              status: 408,
-              headers: {'Content-Type': 'text/plain'}
-            });
+            console.log('Fetch failed; returning cached response instead.', error);
           });
-      })
-    );
-  } else {
-    // Network First s Cache Fallback pro HTML stránky
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          // Pouze cache GET požadavky
-          if (event.request.method === 'GET') {
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, responseToCache);
-            });
-          }
+          
+        // Aktivace fetch pro aktualizaci cache, ale vrácení cached verze pro rychlost
+        fetchPromise.catch(() => {});
+        return cachedResponse;
+      }
+
+      // Cache miss - jdu na síť
+      return fetch(event.request).then(response => {
+        // Vrátit response, pokud není validní
+        if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
-        })
-        .catch(() => {
-          return caches.match(event.request).then(cachedResponse => {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-            // Fallback pro HTML stránky
-            if (event.request.headers.get('accept').includes('text/html')) {
-              return caches.match('/index.html');
-            }
-            return new Response('Omlouváme se, stránka není dostupná offline.', {
-              status: 503,
-              headers: {'Content-Type': 'text/plain'}
-            });
-          });
-        })
-    );
-  }
+        }
+
+        // Uložit do cache pro příští použití
+        const responseToCache = response.clone();
+        caches.open(RUNTIME_CACHE).then(cache => {
+          cache.put(event.request, responseToCache);
+        });
+
+        return response;
+      });
+    })
+  );
 });
 
-// Přidání posluchače pro zprávy
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
+// Instalace Service Workera a uložení precache souborů
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      console.log('Pre-caching important assets');
+      return cache.addAll(PRECACHE_URLS);
+    })
+  );
+  // Aktivace ihned bez čekání
+  self.skipWaiting();
+});
+
+// Aktivace nového service workera
+self.addEventListener('activate', event => {
+  const currentCaches = [CACHE_NAME, RUNTIME_CACHE];
+  
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(cacheName => !currentCaches.includes(cacheName))
+          .map(cacheName => {
+            console.log('Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
+          })
+      );
+    })
+  );
+  
+  // Převzetí kontroly nad klientskými stránkami ihned
+  self.clients.claim();
 });

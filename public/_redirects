@@ -13,10 +13,13 @@ http://www.popri.cz/* https://www.popri.cz/:splat 301!
 /assets/* /assets/:splat 200
 /lovable-uploads/* /lovable-uploads/:splat 200
 /sitemap.xml /sitemap.xml 200
-/sitemap-popri.xml /sitemap-popri.xml 200
 /robots.txt /robots.txt 200
 /*.png /:splat 200
 /*.ico /:splat 200
+/*.webp /:splat 200
+
+# Handle 404 pages properly (important for SEO)
+/404 /index.html 404
 
 # Specific redirects for migrated pages from old domain
 /ochrana-soukromi /ochrana-soukromi 301!

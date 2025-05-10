@@ -9,6 +9,7 @@ export interface BlogPost {
   category: string;
   image: string;
   alt?: string;
+  tags?: string[]; // Add optional tags property
 }
 
 export const blogPosts: BlogPost[] = [

@@ -12,9 +12,13 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^(www\.)?pripojeni-poda\.cz$ [NC]
 RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
 
-# Redirect non-www to www - simplified and more robust
+# Redirect non-www to www for popri.cz - simplified and more robust
 RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
 RewriteRule ^ https://www.popri.cz%{REQUEST_URI} [L,R=301]
+
+# Always force to the www subdomain of popri.cz for canonical URLs
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Special handling for asset files
 RewriteCond %{REQUEST_URI} ^/assets/
@@ -86,6 +90,9 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   
   # Explicitly allow indexing for search engines
   Header set X-Robots-Tag "index, follow"
+  
+  # Add Link header for canonical URL
+  Header always set Link "<https://www.popri.cz%{REQUEST_URI}>; rel=\"canonical\""
 </IfModule>
 
 # Disable directory listing

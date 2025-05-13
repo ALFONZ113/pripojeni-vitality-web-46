@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight, Zap } from 'lucide-react';
 import {
   Popover,
   PopoverContent,
@@ -71,6 +72,15 @@ const Navbar = () => {
           </Popover>
         </div>
 
+        {/* Nový gradient banner s výzvou k akci */}
+        <div className="hidden md:flex px-4 py-2 bg-gradient-to-r from-poda-orange/90 to-poda-blue/90 rounded-full shadow-md items-center text-white mr-4 animate-float">
+          <Zap className="mr-2 h-4 w-4" />
+          <span className="text-sm font-medium">Potřebujete rychle připojit internet? Zavolejte nám: </span>
+          <a href="tel:+420730431313" className="ml-1 font-bold hover:underline whitespace-nowrap">
+            +420 730 431 313
+          </a>
+        </div>
+
         <nav className="hidden lg:flex items-center space-x-8" aria-label="Hlavní navigace">
           <Link 
             to="/" 
@@ -126,6 +136,15 @@ const Navbar = () => {
         >
           {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
         </button>
+      </div>
+
+      {/* Banner pro mobilní zařízení */}
+      <div className="block md:hidden px-4 py-2 bg-gradient-to-r from-poda-orange/90 to-poda-blue/90 text-white text-center text-sm">
+        <a href="tel:+420730431313" className="flex items-center justify-center">
+          <Zap className="mr-1 h-4 w-4" />
+          <span>Potřebujete rychle připojit? </span>
+          <span className="font-bold ml-1">+420 730 431 313</span>
+        </a>
       </div>
 
       <div 

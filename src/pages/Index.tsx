@@ -122,13 +122,13 @@ const Index = () => {
         <meta name="twitter:image" content="https://www.popri.cz/og-image.png" />
         <meta name="last-updated" content={currentDate} />
         
-        {/* Favicon links */}
-        <link rel="icon" href="/file_00000000fa2061f687645b6ffd2e586a.ico" type="image/x-icon" />
-        <link rel="icon" href="/file_00000000fa2061f687645b6ffd2e586a.png" type="image/png" />
-        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        {/* Favicon links with version parameters */}
+        <link rel="icon" href="/file_00000000fa2061f687645b6ffd2e586a.ico?v=2.0" type="image/x-icon" />
+        <link rel="icon" href="/file_00000000fa2061f687645b6ffd2e586a.png?v=2.0" type="image/png" />
+        <link rel="icon" href="/favicon-32x32.png?v=2.0" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-16x16.png?v=2.0" sizes="16x16" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2.0" />
+        <link rel="manifest" href="/site.webmanifest?v=2.0" />
 
         {/* Font preloading pro lepší výkon */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />

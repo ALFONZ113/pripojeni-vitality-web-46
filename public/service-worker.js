@@ -1,9 +1,9 @@
 
 // Service Worker pro Popri.cz
-// Verze: 1.3.0 (2025-05-10)
+// Verze: 1.4.0 (2025-05-13)
 
-const CACHE_NAME = 'popri-cache-v1.3.0';
-const RUNTIME_CACHE = 'popri-runtime-v1';
+const CACHE_NAME = 'popri-cache-v1.4.0';
+const RUNTIME_CACHE = 'popri-runtime-v1.4.0';
 
 // Soubory, které budou přednostně uloženy do cache
 const PRECACHE_URLS = [
@@ -12,12 +12,12 @@ const PRECACHE_URLS = [
   '/assets/index.js',
   '/assets/index.css',
   '/poda-logo.svg',
-  '/file_00000000fa2061f687645b6ffd2e586a.ico',
-  '/file_00000000fa2061f687645b6ffd2e586a.png',
-  '/favicon-16x16.png',
-  '/favicon-32x32.png',
-  '/apple-touch-icon.png',
-  '/site.webmanifest',
+  '/file_00000000fa2061f687645b6ffd2e586a.ico?v=2.0',
+  '/file_00000000fa2061f687645b6ffd2e586a.png?v=2.0',
+  '/favicon-16x16.png?v=2.0',
+  '/favicon-32x32.png?v=2.0',
+  '/apple-touch-icon.png?v=2.0',
+  '/site.webmanifest?v=2.0',
   '/og-image.png'
 ];
 
@@ -48,7 +48,12 @@ self.addEventListener('fetch', event => {
   if (
     requestUrl.pathname === '/sitemap.xml' ||
     requestUrl.pathname === '/robots.txt' ||
-    requestUrl.pathname.startsWith('/blog/')
+    requestUrl.pathname.startsWith('/blog/') ||
+    // Přidáno: Nekešovat favicon soubory
+    requestUrl.pathname.includes('favicon') ||
+    requestUrl.pathname.includes('.ico') ||
+    requestUrl.pathname.includes('apple-touch-icon') ||
+    requestUrl.pathname.includes('site.webmanifest')
   ) {
     event.respondWith(
       fetch(event.request).catch(() => {

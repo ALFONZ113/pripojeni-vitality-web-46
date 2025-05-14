@@ -1,9 +1,10 @@
-
 // Service Worker pro Popri.cz
-// Verze: 1.4.0 (2025-05-13)
+// Verze: 1.5.0 (2025-05-14)
 
-const CACHE_NAME = 'popri-cache-v1.4.0';
-const RUNTIME_CACHE = 'popri-runtime-v1.4.0';
+const CACHE_NAME = 'popri-cache-v1.5.0';
+const RUNTIME_CACHE = 'popri-runtime-v1.5.0';
+const STATIC_CACHE = 'popri-static-v1.5.0';
+const IMG_CACHE = 'popri-images-v1.5.0';
 
 // Soubory, které budou přednostně uloženy do cache
 const PRECACHE_URLS = [
@@ -18,8 +19,18 @@ const PRECACHE_URLS = [
   '/favicon-32x32.png?v=2.0',
   '/apple-touch-icon.png?v=2.0',
   '/site.webmanifest?v=2.0',
-  '/og-image.png'
+  '/og-image.png',
+  '/placeholder.svg'
 ];
+
+// Critical CSS/JS files to cache separately with long expiry
+const STATIC_ASSETS = [
+  '/assets/index.css',
+  '/assets/index.js'
+];
+
+// Image files to cache with a different strategy
+const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif', '.ico'];
 
 // Funkce pro detekci vyhledávacích botů
 function isSearchBot(request) {
@@ -34,7 +45,34 @@ function isSearchBot(request) {
   return botPatterns.some(bot => userAgent.includes(bot));
 }
 
-// Vyhněte se cachování požadavků od vyhledávacích enginů
+// Determine cache strategy based on request type
+function getCacheStrategy(url) {
+  const pathname = new URL(url).pathname;
+  
+  // For SEO important files
+  if (
+    pathname === '/sitemap.xml' ||
+    pathname === '/robots.txt' ||
+    pathname.startsWith('/blog/')
+  ) {
+    return 'network-first';
+  }
+  
+  // For static assets (JS, CSS)
+  if (STATIC_ASSETS.some(asset => pathname.includes(asset))) {
+    return 'stale-while-revalidate';
+  }
+  
+  // For image files
+  if (IMAGE_EXTENSIONS.some(ext => pathname.endsWith(ext)) || pathname.includes('/lovable-uploads/')) {
+    return 'cache-first';
+  }
+  
+  // Default strategy
+  return 'network-first';
+}
+
+// Core fetch handling with improved strategies
 self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
   
@@ -44,84 +82,145 @@ self.addEventListener('fetch', event => {
     return;
   }
   
-  // Pro SEO důležité stránky a soubory nepoužívám cache pro zajištění aktuálnosti
+  // Favicon files need to be handled specially
   if (
-    requestUrl.pathname === '/sitemap.xml' ||
-    requestUrl.pathname === '/robots.txt' ||
-    requestUrl.pathname.startsWith('/blog/') ||
-    // Přidáno: Nekešovat favicon soubory
     requestUrl.pathname.includes('favicon') ||
     requestUrl.pathname.includes('.ico') ||
     requestUrl.pathname.includes('apple-touch-icon') ||
     requestUrl.pathname.includes('site.webmanifest')
   ) {
     event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(event.request);
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        return fetch(event.request).then(response => {
+          // Cache only successful responses
+          if (response && response.status === 200) {
+            const clonedResponse = response.clone();
+            caches.open(STATIC_CACHE).then(cache => {
+              cache.put(event.request, clonedResponse);
+            });
+          }
+          return response;
+        }).catch(() => {
+          // If network fails, try to return any cached version as fallback
+          return caches.match(event.request);
+        });
       })
     );
     return;
   }
-
-  // Pro ostatní požadavky používám strategii network-first
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        // Aktualizuji cache pro příští použití, ale vracím již cached verzi pro rychlost
+  
+  // Get strategy based on request type
+  const strategy = getCacheStrategy(event.request.url);
+  
+  if (strategy === 'stale-while-revalidate') {
+    // Stale-While-Revalidate: Use cache but update in background
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
         const fetchPromise = fetch(event.request)
-          .then(response => {
-            // Ukládat do cache pouze pokud je response validní
-            if (response && response.status === 200 && response.type === 'basic') {
-              const responseToCache = response.clone();
-              caches.open(RUNTIME_CACHE).then(cache => {
+          .then(networkResponse => {
+            // Cache the updated version
+            if (networkResponse && networkResponse.status === 200) {
+              const responseToCache = networkResponse.clone();
+              caches.open(STATIC_CACHE).then(cache => {
                 cache.put(event.request, responseToCache);
               });
             }
-            return response;
+            return networkResponse;
           })
           .catch(error => {
             console.log('Fetch failed; returning cached response instead.', error);
           });
           
-        // Aktivace fetch pro aktualizaci cache, ale vrácení cached verze pro rychlost
-        fetchPromise.catch(() => {});
-        return cachedResponse;
-      }
-
-      // Cache miss - jdu na síť
-      return fetch(event.request).then(response => {
-        // Vrátit response, pokud není validní
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+        // Return the cached response immediately if we have one
+        return cachedResponse || fetchPromise;
+      })
+    );
+  } else if (strategy === 'cache-first') {
+    // Cache-First: Prioritize cache for images and other static assets
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          // Return cached response immediately
+          // Refresh cache in background for next time
+          fetch(event.request)
+            .then(networkResponse => {
+              if (networkResponse && networkResponse.status === 200) {
+                const responseToCache = networkResponse.clone();
+                caches.open(IMG_CACHE).then(cache => {
+                  cache.put(event.request, responseToCache);
+                });
+              }
+            })
+            .catch(() => {});
+            
+          return cachedResponse;
         }
-
-        // Uložit do cache pro příští použití
-        const responseToCache = response.clone();
-        caches.open(RUNTIME_CACHE).then(cache => {
-          cache.put(event.request, responseToCache);
+        
+        // No cached version, get from network and cache
+        return fetch(event.request).then(networkResponse => {
+          if (!networkResponse || networkResponse.status !== 200) {
+            return networkResponse;
+          }
+          
+          const responseToCache = networkResponse.clone();
+          caches.open(IMG_CACHE).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+          
+          return networkResponse;
         });
-
-        return response;
-      });
-    })
-  );
+      })
+    );
+  } else {
+    // Network-first (default): Try network, fall back to cache
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          // Cache valid responses for future
+          if (response && response.status === 200 && response.type === 'basic') {
+            const responseToCache = response.clone();
+            caches.open(RUNTIME_CACHE).then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // On network failure, try cache
+          return caches.match(event.request);
+        })
+    );
+  }
 });
 
-// Instalace Service Workera a uložení precache souborů
+// Installer with improved cache handling
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      console.log('Pre-caching important assets');
-      return cache.addAll(PRECACHE_URLS);
-    })
+    Promise.all([
+      // Cache static assets
+      caches.open(STATIC_CACHE).then(cache => {
+        console.log('Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
+      }),
+      
+      // Cache core pages and assets
+      caches.open(CACHE_NAME).then(cache => {
+        console.log('Pre-caching important assets');
+        return cache.addAll(PRECACHE_URLS);
+      })
+    ])
   );
-  // Aktivace ihned bez čekání
+  
+  // Activate right away
   self.skipWaiting();
 });
 
-// Aktivace nového service workera
+// Activator with better cache cleanup
 self.addEventListener('activate', event => {
-  const currentCaches = [CACHE_NAME, RUNTIME_CACHE];
+  const currentCaches = [CACHE_NAME, RUNTIME_CACHE, STATIC_CACHE, IMG_CACHE];
   
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -133,9 +232,27 @@ self.addEventListener('activate', event => {
             return caches.delete(cacheName);
           })
       );
+    }).then(() => {
+      console.log('Service Worker now active with latest caches');
+      // Take control of clients immediately
+      return self.clients.claim();
     })
   );
-  
-  // Převzetí kontroly nad klientskými stránkami ihned
-  self.clients.claim();
+});
+
+// Add periodic cache cleanup for images (every 7 days)
+self.addEventListener('periodicsync', event => {
+  if (event.tag === 'cleanup-old-caches') {
+    event.waitUntil(
+      caches.open(IMG_CACHE).then(cache => {
+        cache.keys().then(requests => {
+          // Keep only the most recent 100 images
+          if (requests.length > 100) {
+            const toDelete = requests.slice(0, requests.length - 100);
+            Promise.all(toDelete.map(request => cache.delete(request)));
+          }
+        });
+      })
+    );
+  }
 });

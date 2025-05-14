@@ -1,31 +1,52 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
 import TariffSection from '../components/TariffSection';
-import ChannelsSection from '../components/ChannelsSection';
-import ContactSection from '../components/ContactSection';
-import BlogPreview from '../components/BlogPreview';
 import { initAnimations } from '../utils/animation';
 import { Helmet } from 'react-helmet-async';
 import { Loader2 } from 'lucide-react';
+import { preloadCriticalImages } from '../utils/imageUtils';
+
+// Lazy-loaded components for better initial loading
+const ChannelsSection = lazy(() => import('../components/ChannelsSection'));
+const ContactSection = lazy(() => import('../components/ContactSection'));
+const BlogPreview = lazy(() => import('../components/BlogPreview'));
+
+// Critical images that should be preloaded
+const CRITICAL_IMAGES = [
+  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
+  '/poda-logo.svg'
+];
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Mark hydration complete after React takes over
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
-    // Initialize scroll animations with reduced timeout
+    // Preload critical images for better LCP
+    preloadCriticalImages(CRITICAL_IMAGES);
+    
+    // Initialize scroll animations with optimized performance
     let cleanupAnimation: (() => void) | undefined;
     
     try {
       console.log('Initializing animations');
-      cleanupAnimation = initAnimations();
       
-      // Remove artificial delay and load immediately
-      setIsLoading(false);
-      console.log('Page loaded successfully');
+      // Delay non-critical initializations
+      const initTimer = setTimeout(() => {
+        cleanupAnimation = initAnimations();
+        setIsLoading(false);
+        console.log('Page loaded successfully');
+      }, 0); // Using minimal timeout to yield to main thread
       
       return () => {
+        clearTimeout(initTimer);
         if (cleanupAnimation) cleanupAnimation();
       };
     } catch (e) {
@@ -40,37 +61,45 @@ const Index = () => {
 
   // Optimalizovaná správa cache
   useEffect(() => {
-    // Only update cache if it's older than 24 hours or doesn't exist
-    const lastCacheUpdate = localStorage.getItem('lastCacheUpdate');
-    const now = Date.now();
-    const cacheAge = lastCacheUpdate ? now - parseInt(lastCacheUpdate, 10) : Infinity;
+    // Only run cache management after hydration is complete
+    if (!isHydrated) return;
     
-    // If cache is recent, skip the refresh
-    if (cacheAge < 24 * 60 * 60 * 1000) {
-      console.log('Cache is recent, skipping refresh');
-      return;
-    }
+    // Use requestIdleCallback for non-critical operations
+    const runWhenIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 100));
     
-    console.log('Cache refresh performed at: ' + new Date().toISOString());
-    
-    // Only clear relevant caches
-    if ('caches' in window) {
-      caches.keys().then(names => {
-        names.forEach(name => {
-          if (name.includes('popri-resources')) {
-            caches.delete(name);
-          }
+    runWhenIdle(() => {
+      // Only update cache if it's older than 24 hours or doesn't exist
+      const lastCacheUpdate = localStorage.getItem('lastCacheUpdate');
+      const now = Date.now();
+      const cacheAge = lastCacheUpdate ? now - parseInt(lastCacheUpdate, 10) : Infinity;
+      
+      // If cache is recent, skip the refresh
+      if (cacheAge < 24 * 60 * 60 * 1000) {
+        console.log('Cache is recent, skipping refresh');
+        return;
+      }
+      
+      console.log('Cache refresh performed at: ' + new Date().toISOString());
+      
+      // Only clear relevant caches
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          names.forEach(name => {
+            if (name.includes('popri-resources')) {
+              caches.delete(name);
+            }
+          });
         });
-      });
-    }
-    
-    // Update cache version
-    localStorage.setItem('lastCacheUpdate', now.toString());
-  }, []);
+      }
+      
+      // Update cache version
+      localStorage.setItem('lastCacheUpdate', now.toString());
+    });
+  }, [isHydrated]);
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" aria-busy="true" aria-live="polite">
         <Loader2 className="w-12 h-12 text-poda-blue animate-spin" />
       </div>
     );
@@ -78,7 +107,7 @@ const Index = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen flex flex-col items-center justify-center p-4" aria-live="assertive">
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md text-center">
           <h1 className="text-xl font-bold text-red-600 mb-4">Chyba při načítání</h1>
           <p className="text-gray-700 mb-4">{error}</p>
@@ -186,11 +215,23 @@ const Index = () => {
           `}
         </script>
       </Helmet>
+      
+      {/* LCP (Largest Contentful Paint) optimized components rendered immediately */}
       <Hero />
       <TariffSection />
-      <ChannelsSection />
-      <ContactSection />
-      <BlogPreview />
+      
+      {/* Non-critical components lazy loaded */}
+      <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader2 className="w-6 h-6 text-poda-blue animate-spin" /></div>}>
+        <ChannelsSection />
+      </Suspense>
+      
+      <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader2 className="w-6 h-6 text-poda-blue animate-spin" /></div>}>
+        <ContactSection />
+      </Suspense>
+      
+      <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader2 className="w-6 h-6 text-poda-blue animate-spin" /></div>}>
+        <BlogPreview />
+      </Suspense>
     </div>
   );
 };

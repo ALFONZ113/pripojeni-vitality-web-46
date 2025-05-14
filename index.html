@@ -13,7 +13,7 @@
     <!-- Seznam.cz verification tag -->
     <meta name="seznam-wmt" content="TZXj7ilgwfcAOewRproL3dFn9jTDd15R" />
     
-    <!-- Cache control meta tags -->
+    <!-- Cache control meta tags with improved values -->
     <meta http-equiv="Cache-Control" content="public, max-age=86400" />
     <meta http-equiv="Pragma" content="public" />
     <meta name="version" content="1.3.9" />
@@ -59,6 +59,10 @@
     
     <!-- Sitemap reference - consolidated -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
+    <!-- Preload critical CSS for non-JS users -->
+    <link rel="preload" href="/assets/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/index.css"></noscript>
     
     <!-- Schema.org markup using JSON-LD -->
     <script type="application/ld+json">
@@ -131,8 +135,8 @@
     </script>
     
     <!-- Preload critical resources for performance -->
-    <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high">
-    <link rel="preload" as="image" href="/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" fetchpriority="low">
+    <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" width="256" height="256">
+    <link rel="preload" as="image" href="/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" fetchpriority="low" width="512" height="512">
 
     <!-- Meta tag to enable native phone call handling -->
     <meta name="format-detection" content="telephone=yes">
@@ -142,6 +146,24 @@
     
     <!-- Cache control optimization with versioning -->
     <meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate">
+
+    <!-- Simple CSS for no-JS fallback -->
+    <style>
+      .noscript-container { font-family: 'Inter', sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+      .noscript-header { text-align: center; margin-bottom: 30px; }
+      .noscript-logo { max-width: 200px; height: auto; margin-bottom: 15px; }
+      .noscript-title { color: #0066cc; font-size: 24px; margin-bottom: 10px; }
+      .noscript-subtitle { color: #ff6600; font-size: 18px; margin-bottom: 20px; }
+      .noscript-section { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+      .noscript-tariff { border: 1px solid #ddd; border-radius: 10px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9; }
+      .noscript-tariff h3 { color: #0066cc; margin-top: 0; }
+      .noscript-tariff-price { color: #ff6600; font-weight: bold; font-size: 20px; }
+      .noscript-feature { display: flex; margin-bottom: 10px; }
+      .noscript-feature-check { color: #ff6600; margin-right: 10px; }
+      .noscript-contact { background-color: #f0f7ff; padding: 20px; border-radius: 10px; }
+      .noscript-phone { display: block; font-size: 22px; color: #0066cc; font-weight: bold; margin: 10px 0; }
+      .noscript-button { background-color: #ff6600; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+    </style>
   </head>
 
   <body>
@@ -151,12 +173,111 @@
     <!-- Přidání registrace service workeru pro lepší indexaci -->
     <script src="/sw-register.js"></script>
     
-    <!-- Fallback for old browsers -->
+    <!-- Enhanced fallback for users without JavaScript -->
     <noscript>
-      <div style="text-align: center; padding: 20px; font-family: sans-serif;">
-        <h1>Popri.cz - PODA Internet</h1>
-        <p>Pro správné zobrazení této stránky je nutné mít povolený JavaScript.</p>
-        <p>Kontaktujte nás na telefonním čísle: +420 730 431 313</p>
+      <div class="noscript-container">
+        <div class="noscript-header">
+          <img src="/poda-logo.svg" alt="PODA Logo" class="noscript-logo" width="150" height="70">
+          <h1 class="noscript-title">Popri.cz - PODA Internet</h1>
+          <p class="noscript-subtitle">Rychlý internet s TV zdarma</p>
+        </div>
+        
+        <div class="noscript-section">
+          <h2>Naše internetové tarify</h2>
+          
+          <h3>Pro byty:</h3>
+          <div class="noscript-tariff">
+            <h3>Internet + TV Basic</h3>
+            <p class="noscript-tariff-price">250 Kč měsíčně + 50 Kč za zařízení</p>
+            <div class="noscript-feature">
+              <span class="noscript-feature-check">✓</span>
+              <div>
+                <strong>Internet 1000/1000 Mbps</strong>
+                <p>Symetrická rychlost pomocí GPON technologie</p>
+              </div>
+            </div>
+            <div class="noscript-feature">
+              <span class="noscript-feature-check">✓</span>
+              <div>
+                <strong>Více než 85 TV programů</strong>
+                <p>Automaticky v ceně</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="noscript-tariff">
+            <h3>Internet + TV Mých 10</h3>
+            <p class="noscript-tariff-price">390 Kč měsíčně + 50 Kč za zařízení</p>
+            <div class="noscript-feature">
+              <span class="noscript-feature-check">✓</span>
+              <div>
+                <strong>Internet 1000/1000 Mbps</strong>
+                <p>Symetrická rychlost pomocí GPON technologie</p>
+              </div>
+            </div>
+            <div class="noscript-feature">
+              <span class="noscript-feature-check">✓</span>
+              <div>
+                <strong>Více než 100 TV programů</strong>
+                <p>Možnost výběru 10 vlastních stanic</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3>Pro domy:</h3>
+          <div class="noscript-tariff">
+            <h3>Internet + TV Basic</h3>
+            <p class="noscript-tariff-price">250 Kč měsíčně + 50 Kč za zařízení</p>
+            <div class="noscript-feature">
+              <span class="noscript-feature-check">✓</span>
+              <div>
+                <strong>Internet 500/200 Mbps</strong>
+                <p>Bezdrátový internet s rychlostí optického</p>
+              </div>
+            </div>
+            <div class="noscript-feature">
+              <span class="noscript-feature-check">✓</span>
+              <div>
+                <strong>Více než 85 TV programů</strong>
+                <p>Automaticky v ceně</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="noscript-section">
+          <h2>Proč zvolit internet od Popri.cz</h2>
+          <div class="noscript-feature">
+            <span class="noscript-feature-check">✓</span>
+            <div>
+              <strong>Rychlý optický internet</strong>
+              <p>PODA připojení od Popri.cz s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost</p>
+            </div>
+          </div>
+          <div class="noscript-feature">
+            <span class="noscript-feature-check">✓</span>
+            <div>
+              <strong>Chytrá televize</strong>
+              <p>S Popri.cz získáte více než 100 TV programů, sledování na všech zařízeních a vlastní výběr stanic</p>
+            </div>
+          </div>
+          <div class="noscript-feature">
+            <span class="noscript-feature-check">✓</span>
+            <div>
+              <strong>Moderní technologie</strong>
+              <p>Optická síť GPON od PODA zajišťuje maximální stabilitu a komfort bez kompromisů</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="noscript-contact">
+          <h2>Kontaktujte nás</h2>
+          <p>Pro objednání služeb nebo získání dalších informací nás neváhejte kontaktovat:</p>
+          <a href="tel:+420730431313" class="noscript-phone">+420 730 431 313</a>
+          <p><strong>Email:</strong> info@popri.cz</p>
+          <p><strong>Adresa:</strong> Ostrava - Poruba, Porubská 944/5, 708 00</p>
+          <p>Provozováno obchodním zástupcem společnosti PODA, Milan Terč, IČO: 75546230</p>
+        </div>
       </div>
     </noscript>
   </body>

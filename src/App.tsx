@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import BaseMetaTags from "./components/seo/BaseMetaTags";
 
 // Pages
 import Index from "./pages/Index";
@@ -67,6 +68,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
+        <BaseMetaTags />
         <TooltipProvider>
           <Toaster />
           <Sonner />

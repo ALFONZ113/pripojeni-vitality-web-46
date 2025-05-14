@@ -19,8 +19,18 @@ export function useIsMobile() {
     return () => mql.removeEventListener("change", onChange)
   }, [])
 
+  // For compatibility with components that expect just a boolean
+  if (typeof isMobile === 'boolean') {
+    return {
+      isMobile,
+      isReady,
+      // Add this to support backward compatibility with code that expects just a boolean
+      ...(typeof isMobile === 'boolean' && { valueOf: () => isMobile })
+    }
+  }
+
   return {
-    isMobile: !!isMobile,
-    isReady
+    isMobile: false,
+    isReady: false
   }
 }

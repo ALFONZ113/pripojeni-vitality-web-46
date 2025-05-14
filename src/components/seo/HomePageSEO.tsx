@@ -30,12 +30,16 @@ const HomePageSEO = () => {
       <meta name="twitter:image" content="https://www.popri.cz/og-image.png" />
       <meta name="last-updated" content={currentDate} />
       
-      {/* Favicon links updated with standard naming conventions for better Google recognition */}
+      {/* Favicon links updated with standardized naming for better Google recognition */}
       <link rel="icon" href="/poda-favicon.ico" type="image/x-icon" />
       <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png" />
       <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png" />
       <link rel="manifest" href="/site.webmanifest" />
+      <link rel="mask-icon" href="/poda-safari-pinned-tab.svg" color="#ff6600" />
+      <meta name="msapplication-TileImage" content="/poda-mstile-144x144.png" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" />
 
       {/* Font preloading pro lepší výkon */}
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />

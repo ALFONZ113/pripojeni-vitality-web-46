@@ -1,22 +1,30 @@
 
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { componentTagger } from "lovable-tagger";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
+import { getNoScriptContent } from './src/utils/renderToString'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: 8080,
-  },
+export default defineConfig({
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
-  ].filter(Boolean),
+    {
+      name: 'inject-noscript-content',
+      transformIndexHtml(html) {
+        // Generate the NoScriptFallback component content
+        const noScriptContent = getNoScriptContent();
+        
+        // Replace the noscript placeholder with the generated content
+        return html.replace(
+          /<noscript>\s*<!--\s*NoScript content will be injected here during the build process\s*-->\s*<\/noscript>/,
+          `<noscript>${noScriptContent}</noscript>`
+        );
+      },
+    },
+  ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': resolve(__dirname, './src'),
     },
   },
-}));
+})

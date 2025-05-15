@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080
   },
-  // Add esbuild options to ensure JSX is properly handled during build
+  // Explicitly configure esbuild to handle JSX during build
   esbuild: {
     jsx: 'automatic',
   }

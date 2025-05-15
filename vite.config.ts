@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+// Import with an explicit JSX handling for build time
 import { getNoScriptContent } from './src/utils/renderToString'
 
 // https://vitejs.dev/config/
@@ -29,5 +30,9 @@ export default defineConfig({
   },
   server: {
     port: 8080
+  },
+  // Add esbuild options to ensure JSX is properly handled during build
+  esbuild: {
+    jsx: 'automatic',
   }
 })

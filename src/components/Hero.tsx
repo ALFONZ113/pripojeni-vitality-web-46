@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import CallbackForm from './CallbackForm';
 import QuickContactModal from './QuickContactModal';
-import { useMediaQuery } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Hero = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useIsMobile();
   
   const container = {
     hidden: {

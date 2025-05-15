@@ -17,38 +17,37 @@ export const initMapySuggester = (
   onSuggestSelect: (suggestion: { label: string, data: any }) => void,
   options: { country?: string } = {}
 ): void => {
-  // Wait for Mapy.cz API to load
+  // Create a more reliable check for API loading
   const checkMapyLoaded = () => {
     if (window.SMap && window.SMap.Suggest) {
+      console.log("Mapy.cz API detected, initializing suggester");
       initSuggester();
     } else {
-      // If not loaded yet, check again after a short delay
-      setTimeout(checkMapyLoaded, 200);
+      console.log("Waiting for Mapy.cz API to load...");
+      setTimeout(checkMapyLoaded, 300);
     }
   };
 
   const initSuggester = () => {
     try {
-      if (!window.SMap) {
-        console.error("Mapy.cz API not loaded");
-        return;
-      }
-
-      console.log("Initializing Mapy.cz suggester");
+      console.log("Creating Mapy.cz suggester");
       
-      // Create the suggester
-      const suggester = new window.SMap.Suggest(inputElement, {
-        // Limit to Czech Republic by default unless specified otherwise
+      // Create the suggester with correct configuration
+      const suggester = new window.SMap.Suggest(inputElement);
+      
+      // Set bounds to Czech Republic or Slovakia based on options
+      suggester.setOptions({
         bounds: options.country === "sk" ? "sk" : "cz",
-        sugggestMapView: true,
-        maxItems: 5 // Maximum number of suggestions to show
+        suggestions: 5,
+        partial: true
       });
 
-      // Add listener for suggestions
+      // Add listener for suggestion selection with proper event name
       suggester.addListener("suggest", (suggestData: any) => {
-        console.log("Suggestion received:", suggestData);
-        if (suggestData && suggestData.data && suggestData.data.length > 0) {
-          // Extract the first suggestion
+        console.log("Suggestion selected:", suggestData);
+        
+        if (suggestData && suggestData.data) {
+          // Create a properly formatted suggestion object
           const suggestion = {
             label: suggestData.phrase,
             data: suggestData.data[0]
@@ -64,6 +63,7 @@ export const initMapySuggester = (
   };
 
   // Start checking if Mapy.cz is loaded
+  console.log("Starting Mapy.cz API check");
   checkMapyLoaded();
 };
 
@@ -78,6 +78,8 @@ export const parseAddressComponents = (suggestion: any): {
   zip: string;
 } => {
   try {
+    console.log("Parsing address components from:", suggestion);
+    
     const result = {
       street: "",
       city: "",
@@ -89,6 +91,7 @@ export const parseAddressComponents = (suggestion: any): {
     }
 
     const data = suggestion.data;
+    console.log("Raw suggestion data:", data);
 
     // Extract street (combine street name and house number if available)
     if (data.street) {
@@ -112,6 +115,7 @@ export const parseAddressComponents = (suggestion: any): {
       result.zip = data.zip;
     }
 
+    console.log("Parsed address components:", result);
     return result;
   } catch (error) {
     console.error("Error parsing address components:", error);

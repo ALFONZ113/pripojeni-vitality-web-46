@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' && componentTagger(),
     {
       name: 'inject-noscript-content',
-      transformIndexHtml(html) {
+      transformIndexHtml(html: string) {
         // Generate the NoScriptFallback component content
         const noScriptContent = getNoScriptContent();
         

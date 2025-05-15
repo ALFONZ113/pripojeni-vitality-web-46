@@ -103,16 +103,29 @@ export const parseAddressComponents = (suggestion: any): {
       result.street = data.address;
     }
 
-    // Extract city
+    // Enhanced city extraction logic
     if (data.municipality) {
       result.city = data.municipality;
     } else if (data.city) {
       result.city = data.city;
+    } else if (data.town) {
+      result.city = data.town;
+    } else if (data.village) {
+      result.city = data.village;
     }
 
-    // Extract ZIP code
+    // Enhanced ZIP code extraction logic
     if (data.zip) {
-      result.zip = data.zip;
+      // Format ZIP code as XXXXX (5 digits without space)
+      result.zip = data.zip.replace(/\s+/g, '');
+      
+      // If ZIP code doesn't have 5 digits, try to normalize it
+      if (result.zip.length !== 5 && result.zip.length > 0) {
+        // Add leading zeros if needed
+        result.zip = result.zip.padStart(5, '0');
+      }
+    } else if (data.postalCode) {
+      result.zip = data.postalCode.replace(/\s+/g, '').padStart(5, '0');
     }
 
     console.log("Parsed address components:", result);

@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Check, Phone, Loader2, AlertTriangle } from 'lucide-react';
+import { Check, Phone, Loader2 } from 'lucide-react';
 import { sendContactFormEmail } from '../utils/emailService';
 import { toast } from '@/hooks/use-toast';
 
@@ -64,7 +64,7 @@ const CallbackForm = () => {
     <div className="bg-white bg-opacity-90 backdrop-blur-md rounded-xl p-4 shadow-lg border border-gray-100">
       <div className="flex flex-col">
         <div className="flex items-center mb-2">
-          <Phone className="h-5 w-5 text-poda-orange mr-2" />
+          <Phone className="h-5 w-5 text-poda-orange mr-2 flex-shrink-0" />
           <h3 className="font-semibold text-poda-blue">
             Potřebujete připojit? Zadejte číslo a ozveme se Vám
           </h3>
@@ -72,7 +72,7 @@ const CallbackForm = () => {
         
         {isSuccess ? (
           <div className="flex items-center bg-green-50 p-3 rounded-lg">
-            <Check className="h-5 w-5 text-green-600 mr-2" />
+            <Check className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
             <p className="text-sm text-green-700">Děkujeme, brzy Vás budeme kontaktovat!</p>
           </div>
         ) : (

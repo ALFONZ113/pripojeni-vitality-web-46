@@ -1,4 +1,3 @@
-
 // Service Worker pro Popri.cz
 // Verze: 1.5.0 (2025-05-14)
 
@@ -14,11 +13,12 @@ const PRECACHE_URLS = [
   '/assets/index.js',
   '/assets/index.css',
   '/poda-logo.svg',
-  '/poda-favicon.ico',
-  '/poda-favicon-16x16.png',
-  '/poda-favicon-32x32.png',
-  '/poda-apple-touch-icon.png',
-  '/site.webmanifest',
+  '/file_00000000fa2061f687645b6ffd2e586a.ico?v=2.0',
+  '/file_00000000fa2061f687645b6ffd2e586a.png?v=2.0',
+  '/favicon-16x16.png?v=2.0',
+  '/favicon-32x32.png?v=2.0',
+  '/apple-touch-icon.png?v=2.0',
+  '/site.webmanifest?v=2.0',
   '/og-image.png',
   '/placeholder.svg'
 ];

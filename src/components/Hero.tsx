@@ -60,10 +60,10 @@ const Hero = () => {
               Popri.cz – Vaše cesta k nejlepšímu PODA internetu
             </motion.span>
             <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
-              Prémiové optické gigabitové připojení
+              Rychlý gigabitový internet
               <br className="block md:hidden" />
               <span className="text-poda-orange block md:inline">
-                {" "}a smart TV
+                {" "}s chytrou televizí zdarma
               </span>
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -139,6 +139,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
+        {/* New section to explain Popri.cz */}
         <motion.div initial={{
         opacity: 0
       }} whileInView={{
@@ -177,7 +178,7 @@ const Hero = () => {
         delay: 1.5,
         duration: 0.8
       }} className="mt-16 text-xs text-gray-400 text-center max-w-3xl mx-auto">
-          <p>Tato webová str��nka je provozována obchodním zástupcem společnosti PODA, nikoliv samotnou společností PODA.</p>
+          <p>Tato webová stránka je provozována obchodním zástupcem společnosti PODA, nikoliv samotnou společností PODA.</p>
           <p className="mt-1">Milan Terč | IČO: 75546230 | Sídlo:  Ostrava | Zapsán v živnostenském rejstříku</p>
         </motion.div>
       </div>

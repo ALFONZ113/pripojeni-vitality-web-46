@@ -3,8 +3,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { componentTagger } from 'lovable-tagger'
-// Import with an explicit JSX handling for build time
-import { getNoScriptContent } from './src/utils/renderToString'
+// Import the non-JSX version of the utility
+import { getNoScriptContent } from './src/utils/renderToStringUtil'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({

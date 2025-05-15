@@ -7,7 +7,7 @@ import { getNoScriptContent } from './src/utils/renderToString'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react(), // This properly handles JSX in the project
     {
       name: 'inject-noscript-content',
       transformIndexHtml(html) {
@@ -27,4 +27,7 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
+  server: {
+    port: 8080
+  }
 })

@@ -7,5 +7,10 @@ import NoScriptFallback from '../components/seo/NoScriptFallback';
  * Used during build time to inject content into index.html
  */
 export const getNoScriptContent = (): string => {
-  return renderToString(<NoScriptFallback />);
+  try {
+    return renderToString(<NoScriptFallback />);
+  } catch (error) {
+    console.error('Error rendering NoScriptFallback:', error);
+    return '<div>JavaScript is required to view this site properly.</div>';
+  }
 };

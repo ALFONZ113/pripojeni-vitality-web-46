@@ -60,7 +60,8 @@ const Hero = () => {
               Popri.cz – Vaše cesta k nejlepšímu PODA internetu
             </motion.span>
             <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
-              Prémiové optické gigabitové připojení a smart TV
+              Prémiové optické gigabitové 
+              <span className="text-poda-orange block md:inline"> připojení a smart TV</span>
             </motion.h1>
             <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
               S Popri.cz vám zajistíme rychle <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.
@@ -135,7 +136,6 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* New section to explain Popri.cz */}
         <motion.div initial={{
         opacity: 0
       }} whileInView={{

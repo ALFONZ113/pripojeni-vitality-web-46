@@ -1,8 +1,9 @@
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { sendContactFormEmail } from '../utils/emailService';
+import { initMapySuggester, parseAddressComponents } from '../utils/mapyService';
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -28,6 +29,42 @@ const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
     error: null as string | null,
     loading: false
   });
+
+  // Reference for the address input field
+  const addressInputRef = useRef<HTMLInputElement>(null);
+
+  // Initialize Mapy.cz suggester when component mounts
+  useEffect(() => {
+    if (addressInputRef.current) {
+      initMapySuggester(
+        addressInputRef.current,
+        (suggestion) => {
+          if (suggestion && suggestion.data) {
+            // Parse address components
+            const addressComponents = parseAddressComponents(suggestion);
+            
+            // Update form data with the parsed components
+            setFormData(prev => ({
+              ...prev,
+              address: addressComponents.street || prev.address,
+              city: addressComponents.city || prev.city,
+              zip: addressComponents.zip || prev.zip
+            }));
+            
+            // Show a success toast when address is selected
+            if (addressComponents.street && addressComponents.city) {
+              toast({
+                title: "Adresa byla doplněna",
+                description: "Adresa byla úspěšně doplněna z Mapy.cz",
+                variant: "default"
+              });
+            }
+          }
+        },
+        { country: "cz" } // Limit to Czech Republic
+      );
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -209,9 +246,11 @@ const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
                     type="text"
                     id="address"
                     name="address"
+                    ref={addressInputRef}
                     value={formData.address}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                    placeholder="Začněte psát pro našeptávání adresy..."
                     disabled={formState.loading}
                   />
                 </div>

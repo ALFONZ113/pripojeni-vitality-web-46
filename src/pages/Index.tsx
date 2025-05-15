@@ -5,6 +5,7 @@ import { initAnimations } from '../utils/animation';
 import { Helmet } from 'react-helmet-async';
 import { Loader2 } from 'lucide-react';
 import { preloadCriticalImages } from '../utils/imageUtils';
+import { Toaster } from '@/components/ui/toaster';
 
 // Lazy-loaded components for better initial loading
 const ChannelsSection = lazy(() => import('../components/ChannelsSection'));
@@ -230,6 +231,9 @@ const Index = () => {
       <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader2 className="w-6 h-6 text-poda-blue animate-spin" /></div>}>
         <BlogPreview />
       </Suspense>
+
+      {/* Toast notifications */}
+      <Toaster />
     </div>
   );
 };

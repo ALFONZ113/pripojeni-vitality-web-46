@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import { ArrowRight, Wifi, Tv, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import CallbackForm from './CallbackForm';
+import QuickContactModal from './QuickContactModal';
+import { useMediaQuery } from '@/hooks/use-mobile';
 
 const Hero = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  
   const container = {
     hidden: {
       opacity: 0
@@ -16,6 +22,7 @@ const Hero = () => {
       }
     }
   };
+  
   const item = {
     hidden: {
       opacity: 0,
@@ -30,6 +37,7 @@ const Hero = () => {
       }
     }
   };
+  
   const featureCardVariants = {
     offscreen: {
       y: 50,
@@ -46,7 +54,16 @@ const Hero = () => {
       }
     })
   };
-  return <section className="relative pt-20 sm:pt-32 pb-16 sm:pb-24 overflow-hidden" aria-labelledby="hero-title">
+  
+  const handleContactClick = (e: React.MouseEvent) => {
+    if (isMobile) {
+      e.preventDefault();
+      setIsContactModalOpen(true);
+    }
+  };
+  
+  return (
+    <section className="relative pt-20 sm:pt-32 pb-16 sm:pb-24 overflow-hidden" aria-labelledby="hero-title">
       <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-white"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iI0YwRjdGRiIgc3Ryb2tlLXdpZHRoPSIxIiBjeD0iMTAiIGN5PSIxMCIgcj0iMyIvPjwvZz48L3N2Zz4=')] opacity-40"></div>
@@ -78,7 +95,12 @@ const Hero = () => {
                 Prozkoumat nabídku
                 <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
-              <Link to="/kontakt" className="btn-outline hover:bg-poda-blue/10" aria-label="Kontaktní formulář">
+              <Link 
+                to="/kontakt" 
+                onClick={handleContactClick}
+                className="btn-outline hover:bg-poda-blue/10" 
+                aria-label="Kontaktní formulář"
+              >
                 Kontaktní formulář
               </Link>
             </motion.div>
@@ -206,6 +228,14 @@ const Hero = () => {
           <p className="mt-1">Milan Terč | IČO: 75546230 | Sídlo:  Ostrava | Zapsán v živnostenském rejstříku</p>
         </motion.div>
       </div>
-    </section>;
+      
+      {/* Quick Contact Modal */}
+      <QuickContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
+    </section>
+  );
 };
+
 export default Hero;

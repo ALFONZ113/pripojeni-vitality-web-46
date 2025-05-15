@@ -4,7 +4,12 @@ import { Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { sendContactFormEmail } from '../utils/emailService';
 
-const ContactForm = () => {
+interface ContactFormProps {
+  onSuccess?: () => void;
+  compact?: boolean;
+}
+
+const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -67,6 +72,19 @@ const ContactForm = () => {
           loading: false
         });
         
+        toast({
+          title: "Formulář odeslán",
+          description: "Děkujeme za váš zájem. Budeme vás kontaktovat co nejdříve.",
+          variant: "default"
+        });
+        
+        // Execute success callback if provided
+        if (onSuccess) {
+          setTimeout(() => {
+            onSuccess();
+          }, 1500);
+        }
+        
         // Reset form after successful submission
         setTimeout(() => {
           setFormState({
@@ -86,7 +104,7 @@ const ContactForm = () => {
             currentPrice: '',
             message: ''
           });
-        }, 5000);
+        }, 1500);
       } else {
         throw new Error("Nepodařilo se odeslat email");
       }
@@ -101,8 +119,13 @@ const ContactForm = () => {
     }
   };
 
+  // Compact styling for the modal version
+  const formWrapperClass = compact 
+    ? "bg-white rounded-lg p-4 border border-gray-100"
+    : "bg-white rounded-xl shadow-lg p-8 border border-gray-100";
+
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+    <div className={formWrapperClass}>
       {formState.submitted && formState.success ? (
         <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
           <div className="flex justify-center mb-4">
@@ -117,7 +140,7 @@ const ContactForm = () => {
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
-          <h3 className="text-2xl font-bold text-poda-blue mb-6">Kontaktní formulář</h3>
+          {!compact && <h3 className="text-2xl font-bold text-poda-blue mb-6">Kontaktní formulář</h3>}
           
           {formState.error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-start">
@@ -176,82 +199,86 @@ const ContactForm = () => {
             </div>
             
             {/* Additional form fields */}
-            <div>
-              <label className="block text-gray-700 font-medium mb-2" htmlFor="address">
-                Ulice a číslo popisné
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
-                disabled={formState.loading}
-              />
-            </div>
-            
-            <div>
-              <label className="block text-gray-700 font-medium mb-2" htmlFor="city">
-                Město
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
-                disabled={formState.loading}
-              />
-            </div>
-            
-            <div>
-              <label className="block text-gray-700 font-medium mb-2" htmlFor="zip">
-                PSČ
-              </label>
-              <input
-                type="text"
-                id="zip"
-                name="zip"
-                value={formData.zip}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
-                disabled={formState.loading}
-              />
-            </div>
-            
-            <div>
-              <label className="block text-gray-700 font-medium mb-2" htmlFor="currentProvider">
-                Aktuální poskytovatel internetu
-              </label>
-              <input
-                type="text"
-                id="currentProvider"
-                name="currentProvider"
-                value={formData.currentProvider}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
-                placeholder="např. O2, T-Mobile, UPC, ..."
-                disabled={formState.loading}
-              />
-            </div>
-            
-            <div>
-              <label className="block text-gray-700 font-medium mb-2" htmlFor="currentPrice">
-                Kolik platíte měsíčně za internet
-              </label>
-              <input
-                type="text"
-                id="currentPrice"
-                name="currentPrice"
-                value={formData.currentPrice}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
-                placeholder="např. 500 Kč"
-                disabled={formState.loading}
-              />
-            </div>
+            {!compact && (
+              <>
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="address">
+                    Ulice a číslo popisné
+                  </label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                    disabled={formState.loading}
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="city">
+                    Město
+                  </label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                    disabled={formState.loading}
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="zip">
+                    PSČ
+                  </label>
+                  <input
+                    type="text"
+                    id="zip"
+                    name="zip"
+                    value={formData.zip}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                    disabled={formState.loading}
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="currentProvider">
+                    Aktuální poskytovatel internetu
+                  </label>
+                  <input
+                    type="text"
+                    id="currentProvider"
+                    name="currentProvider"
+                    value={formData.currentProvider}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                    placeholder="např. O2, T-Mobile, UPC, ..."
+                    disabled={formState.loading}
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2" htmlFor="currentPrice">
+                    Kolik platíte měsíčně za internet
+                  </label>
+                  <input
+                    type="text"
+                    id="currentPrice"
+                    name="currentPrice"
+                    value={formData.currentPrice}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                    placeholder="např. 500 Kč"
+                    disabled={formState.loading}
+                  />
+                </div>
+              </>
+            )}
           </div>
           
           <div className="mb-6">
@@ -263,7 +290,7 @@ const ContactForm = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              rows={4}
+              rows={compact ? 3 : 4}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
               placeholder="Napište nám, pokud máte nějaké specifické požadavky nebo dotazy..."
               disabled={formState.loading}

@@ -1,6 +1,7 @@
 
 import { useRef, useEffect } from 'react';
-import { initMapySuggester } from '../../utils/mapyService';
+import { initMapySuggester, parseAddressComponents } from '../../utils/mapyService';
+import { toast } from '@/hooks/use-toast';
 
 interface FormFieldsProps {
   formData: {
@@ -27,12 +28,17 @@ const FormFields = ({ formData, handleChange, isLoading, compact = false, setFor
   // Initialize Mapy.cz suggester when component mounts
   useEffect(() => {
     if (addressInputRef.current) {
+      console.log("Setting up Mapy.cz suggester");
+      
       initMapySuggester(
         addressInputRef.current,
         (suggestion) => {
+          console.log("Suggestion selected:", suggestion);
+          
           if (suggestion && suggestion.data) {
-            // Parse address components from mapyService
+            // Parse address components
             const addressComponents = parseAddressComponents(suggestion);
+            console.log("Parsed address components:", addressComponents);
             
             // Update form data with the parsed components
             setFormData(prev => ({
@@ -55,6 +61,11 @@ const FormFields = ({ formData, handleChange, isLoading, compact = false, setFor
         { country: "cz" } // Limit to Czech Republic
       );
     }
+    
+    return () => {
+      // Cleanup if necessary
+      console.log("Cleaning up Mapy.cz suggester");
+    };
   }, [setFormData]);
 
   return (
@@ -211,9 +222,5 @@ const FormFields = ({ formData, handleChange, isLoading, compact = false, setFor
     </>
   );
 };
-
-// Import from mapyService.ts
-import { parseAddressComponents } from '../../utils/mapyService';
-import { toast } from '@/hooks/use-toast';
 
 export default FormFields;

@@ -2,6 +2,7 @@
 declare global {
   interface Window {
     SMap: any;
+    Loader: any;
   }
 }
 
@@ -18,7 +19,7 @@ export const initMapySuggester = (
 ): void => {
   // Wait for Mapy.cz API to load
   const checkMapyLoaded = () => {
-    if (window.SMap && window.SMap.Geocoder) {
+    if (window.SMap && window.SMap.Suggest) {
       initSuggester();
     } else {
       // If not loaded yet, check again after a short delay
@@ -33,16 +34,19 @@ export const initMapySuggester = (
         return;
       }
 
+      console.log("Initializing Mapy.cz suggester");
+      
       // Create the suggester
-      const suggester = new window.SMap.Geocoder.Suggest(inputElement, {
+      const suggester = new window.SMap.Suggest(inputElement, {
         // Limit to Czech Republic by default unless specified otherwise
         bounds: options.country === "sk" ? "sk" : "cz",
-        noRequest: true, // Don't send request immediately on initialization
+        sugggestMapView: true,
         maxItems: 5 // Maximum number of suggestions to show
       });
 
       // Add listener for suggestions
       suggester.addListener("suggest", (suggestData: any) => {
+        console.log("Suggestion received:", suggestData);
         if (suggestData && suggestData.data && suggestData.data.length > 0) {
           // Extract the first suggestion
           const suggestion = {

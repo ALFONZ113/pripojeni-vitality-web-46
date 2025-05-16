@@ -12,16 +12,60 @@
   <title>Popri.cz - Internetové připojení a televize</title>
   <meta name="description"
     content="Rychlé a stabilní internetové připojení od spolehlivého poskytovatele s vynikajícím zákaznickým servisem." />
-  <!-- Load Mapy.cz API with expanded parameters -->
-  <script type="text/javascript" src="//api.mapy.cz/loader.js"></script>
+  <!-- Improved Mapy.cz API loading -->
   <script type="text/javascript">
-    Loader.load(null, { 
-      suggest: true, 
-      poi: true, 
-      geocode: true, 
-      addr: true, 
-      base: true 
-    });
+    // Track API loading state
+    window.mapyApiLoaded = false;
+    window.mapyApiLoading = false;
+    
+    // Helper function to load API safely
+    function loadMapyAPI() {
+      if (window.mapyApiLoading) return;
+      
+      window.mapyApiLoading = true;
+      console.log("Loading Mapy.cz API...");
+      
+      // Create script element
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = '//api.mapy.cz/loader.js';
+      script.onerror = () => {
+        console.error("Failed to load Mapy.cz API");
+        window.mapyApiLoading = false;
+      };
+      script.onload = () => {
+        console.log("Mapy.cz loader script loaded, initializing API...");
+        
+        // Initialize with all needed features
+        if (window.Loader) {
+          window.Loader.load(null, { 
+            suggest: true,
+            poi: true,
+            geocode: true,
+            addr: true,
+            base: true,
+            api: '5.5.58' // Force specific API version for consistency
+          }, () => {
+            // API is now fully loaded
+            window.mapyApiLoaded = true;
+            console.log("Mapy.cz API fully loaded");
+          });
+        }
+      };
+      
+      // Add to document
+      document.head.appendChild(script);
+    }
+    
+    // Load API when page loads
+    window.addEventListener('load', loadMapyAPI);
+    
+    // Fallback - try to load after short timeout if not loaded yet
+    setTimeout(() => {
+      if (!window.mapyApiLoaded && !window.mapyApiLoading) {
+        loadMapyAPI();
+      }
+    }, 1000);
   </script>
   <style>
     /* Enhanced styling for Mapy.cz suggestions */
@@ -35,16 +79,23 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
       width: auto !important;
       min-width: 300px !important;
+      margin-top: 2px !important;
     }
     
     .smap-suggest div {
       padding: 8px 10px !important;
       cursor: pointer !important;
       white-space: nowrap !important;
+      transition: background-color 0.2s !important;
     }
     
     .smap-suggest div:hover {
       background: #f0f9ff !important;
+    }
+    
+    /* Add active suggestion highlighting */
+    .smap-suggest div.active {
+      background: #e6f3ff !important;
     }
   </style>
 </head>

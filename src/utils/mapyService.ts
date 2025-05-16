@@ -18,59 +18,120 @@ export const initMapySuggester = (
   onSuggestSelect: (suggestion: { label: string, data: any }) => void,
   options: { country?: string } = {}
 ): void => {
-  // Create a more reliable check for API loading
+  // Create a more reliable check for API loading with increased timeout
+  let attempts = 0;
+  const maxAttempts = 10;
+  
   const checkMapyLoaded = () => {
+    attempts++;
+    console.log(`Checking if Mapy.cz API is loaded (attempt ${attempts}/${maxAttempts})...`);
+    
     if (window.SMap && window.SMap.Suggest) {
-      console.log("Mapy.cz API detected, initializing suggester");
+      console.log("✅ Mapy.cz API detected, initializing suggester");
       initSuggester();
+    } else if (attempts < maxAttempts) {
+      console.log("⏳ Waiting for Mapy.cz API to load...");
+      setTimeout(checkMapyLoaded, 500); // Increased wait time between attempts
     } else {
-      console.log("Waiting for Mapy.cz API to load...");
-      setTimeout(checkMapyLoaded, 300);
+      console.error("❌ Mapy.cz API failed to load after multiple attempts");
     }
   };
 
   const initSuggester = () => {
     try {
-      console.log("Creating Mapy.cz suggester");
+      console.log("🔍 Creating Mapy.cz suggester for input:", inputElement);
       
-      // Fix: Using direct Suggest creation with source options
+      // Create the suggest instance with expanded options
       const suggest = new window.SMap.Suggest(inputElement, {
-        // Limit search to Czech Republic or Slovakia based on options
-        bounds: options.country === "sk" ? "sk" : "cz",
-        limit: 5,
-        // Enable extended address data needed for extracting city and postal code
-        enableAddressParams: true,
-        suggestMapCenter: false
+        bounds: options.country === "sk" ? "sk" : "cz", // Limit to Czech Republic by default
+        limit: 10, // Increased limit for more suggestions
+        enableAddressParams: true, // Enable detailed address info
+        suggestMapCenter: false, // Don't center map on suggestion
+        // Add any other options that might help
+        location: true, // Include location data
+        residence: true, // Include residence data
+        highlight: true // Highlight matching text
       });
       
-      // Log suggest object to inspect properties
-      console.log("Suggest object created:", suggest);
+      console.log("✅ Suggest instance created:", suggest);
       
-      // Add listener for suggestion selection
-      if (window.JAK) {
-        window.JAK.Events.addListener(suggest, "suggest", (event: any) => {
-          console.log("Raw suggestion event:", event);
+      // Use the native 'suggest' event rather than JAK event system
+      if (suggest && typeof suggest.addListener === 'function') {
+        suggest.addListener("suggest", (suggestData: any) => {
+          console.log("📍 Suggestion selected:", suggestData);
           
-          if (event.data) {
-            // Process the suggestion data
+          if (suggestData && suggestData.data) {
             const suggestion = {
-              label: event.data.phrase || event.data.text || "",
-              data: event.data
+              label: suggestData.phrase || suggestData.text || "",
+              data: suggestData
             };
             onSuggestSelect(suggestion);
           }
         });
-        console.log("Event listener attached successfully");
+        console.log("✅ Direct event listener attached successfully");
+      } else if (window.JAK && window.JAK.Events) {
+        // Fallback to JAK events system if direct approach doesn't work
+        try {
+          window.JAK.Events.addListener(suggest, "suggest", (suggestData: any) => {
+            console.log("📍 Suggestion selected (JAK events):", suggestData);
+            
+            if (suggestData && suggestData.data) {
+              const suggestion = {
+                label: suggestData.phrase || suggestData.data.text || "",
+                data: suggestData.data
+              };
+              onSuggestSelect(suggestion);
+            }
+          });
+          console.log("✅ JAK event listener attached successfully");
+        } catch (jakError) {
+          console.error("❌ Error attaching JAK event listener:", jakError);
+          
+          // Last resort: try to use DOM events directly
+          inputElement.addEventListener("change", () => {
+            console.log("Input value changed:", inputElement.value);
+            // This is a fallback that at least captures the selected text
+            // but won't have the rich data from the API
+            if (inputElement.value) {
+              onSuggestSelect({
+                label: inputElement.value,
+                data: { phrase: inputElement.value }
+              });
+            }
+          });
+        }
       }
 
-      console.log("Mapy.cz suggester initialized successfully");
+      console.log("✅ Mapy.cz suggester initialized successfully");
     } catch (error) {
-      console.error("Error initializing Mapy.cz suggester:", error);
+      console.error("❌ Error initializing Mapy.cz suggester:", error);
+      
+      // Add error details to help with debugging
+      if (error instanceof Error) {
+        console.error({
+          _type: "Error",
+          value: {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+          }
+        });
+      }
+      
+      // Setup a basic fallback for text input
+      inputElement.addEventListener("blur", () => {
+        if (inputElement.value) {
+          onSuggestSelect({
+            label: inputElement.value,
+            data: { phrase: inputElement.value }
+          });
+        }
+      });
     }
   };
 
   // Start checking if Mapy.cz is loaded
-  console.log("Starting Mapy.cz API check");
+  console.log("🔄 Starting Mapy.cz API check");
   checkMapyLoaded();
 };
 
@@ -85,7 +146,7 @@ export const parseAddressComponents = (suggestion: any): {
   zip: string;
 } => {
   try {
-    console.log("Parsing address components from:", suggestion);
+    console.log("🔍 Parsing address components from:", suggestion);
     
     const result = {
       street: "",
@@ -93,96 +154,123 @@ export const parseAddressComponents = (suggestion: any): {
       zip: ""
     };
 
-    if (!suggestion || !suggestion.data) {
+    if (!suggestion || (!suggestion.data && !suggestion.userData)) {
+      console.warn("⚠️ No valid suggestion data found");
       return result;
     }
 
-    // Extract the data based on the API structure
-    const data = suggestion.data;
-    console.log("Raw suggestion data:", data);
+    // Handle different data structures that might come from the API
+    const data = suggestion.data || suggestion;
+    const userData = data.userData || {};
+    
+    console.log("📋 Raw suggestion data:", data);
+    console.log("📋 User data:", userData);
 
-    // Extract street address
+    // Extract street address - try multiple sources
     if (data.phrase) {
-      // For typical address phrases, extract the street address
-      result.street = data.phrase.split(',')[0]?.trim() || "";
+      const parts = data.phrase.split(',');
+      result.street = parts[0]?.trim() || "";
     } else if (data.address) {
-      result.street = data.address.split(',')[0]?.trim() || "";
+      const parts = data.address.split(',');
+      result.street = parts[0]?.trim() || "";
+    } else if (userData.suggestFirstRow) {
+      result.street = userData.suggestFirstRow;
+    } else if (data.text) {
+      const parts = data.text.split(',');
+      result.street = parts[0]?.trim() || "";
     }
 
-    // Extract city - try multiple potential sources
-    // Mapy.cz API can return this in various fields
+    // Extract city - try multiple data paths
     if (data.municipality) {
       result.city = data.municipality;
     } else if (data.town) {
       result.city = data.town;
     } else if (data.city) {
       result.city = data.city;
+    } else if (userData.municipality) {
+      result.city = userData.municipality;
+    } else if (userData.suggestSecondRow && userData.suggestSecondRow.includes(',')) {
+      // Try to extract from the second line of suggestion
+      const parts = userData.suggestSecondRow.split(',');
+      if (parts.length > 0) {
+        result.city = parts[0].trim();
+      }
     } else if (data.phrase && data.phrase.includes(',')) {
+      // Last resort: try to extract from the phrase
       const parts = data.phrase.split(',');
       if (parts.length > 1) {
         result.city = parts[1].trim();
+        
+        // Sometimes the city includes the ZIP code
+        const cityParts = result.city.match(/^([A-Za-z\s\-.]+)\s+(\d{3}\s*\d{2}|\d{5})$/);
+        if (cityParts) {
+          result.city = cityParts[1].trim();
+          if (!result.zip) {
+            result.zip = cityParts[2].replace(/\s+/g, '');
+          }
+        }
       }
     }
 
-    // Extract ZIP code - try multiple potential sources
+    // Extract ZIP code - try multiple sources
     if (data.zip) {
-      // Format ZIP code as XXXXX (5 digits without space)
       result.zip = data.zip.replace(/\s+/g, '');
     } else if (data.postalCode) {
       result.zip = data.postalCode.replace(/\s+/g, '');
     } else if (data.postal) {
       result.zip = data.postal.replace(/\s+/g, '');
-    }
-
-    // If we have userData, it often has more detailed info
-    if (data.userData) {
-      const userData = data.userData;
-      
-      // Extract from userData if street is still empty
-      if (!result.street && userData.suggestFirstRow) {
-        result.street = userData.suggestFirstRow;
-      }
-      
-      // Extract city from userData if it's still empty
-      if (!result.city) {
-        if (userData.municipality) {
-          result.city = userData.municipality;
-        } else if (userData.town) {
-          result.city = userData.town;
-        } else if (userData.city) {
-          result.city = userData.city;
-        }
-      }
-      
-      // Extract ZIP from userData if it's still empty
-      if (!result.zip && userData.zip) {
-        result.zip = userData.zip.replace(/\s+/g, '');
-        
-        // If ZIP code doesn't have 5 digits, normalize it
-        if (result.zip.length !== 5 && result.zip.length > 0) {
-          // Add leading zeros if needed
-          result.zip = result.zip.padStart(5, '0');
-        }
-      }
-    }
-
-    // If we still don't have a ZIP code but have an id field,
-    // it might contain address components including a ZIP code
-    if (!result.zip && data.id && typeof data.id === 'string') {
-      // Look for postal code pattern in id (5 digits or XX XXX format)
-      const zipMatch = data.id.match(/\b(\d{5}|\d{2}\s\d{3})\b/);
+    } else if (userData.zip) {
+      result.zip = userData.zip.replace(/\s+/g, '');
+    } else if (userData.suggestSecondRow) {
+      // Try to extract ZIP from the second line if it exists
+      const zipMatch = userData.suggestSecondRow.match(/\b(\d{3}\s*\d{2}|\d{5})\b/);
       if (zipMatch) {
         result.zip = zipMatch[1].replace(/\s+/g, '');
       }
     }
 
-    // Last resort: if we have coordinates, we could try to do reverse geocoding
-    // But that would require additional API calls
+    // Try to parse address from label/phrase if still missing
+    if ((!result.city || !result.zip) && suggestion.label) {
+      console.log("🔍 Trying to parse from label:", suggestion.label);
+      const labelParts = suggestion.label.split(',');
+      
+      if (labelParts.length > 1) {
+        // If city is missing and we have a second part
+        if (!result.city && labelParts[1]) {
+          const cityPart = labelParts[1].trim();
+          // Check if the part has both city and zip
+          const cityZipMatch = cityPart.match(/^([A-Za-z\s\-.]+)\s+(\d{3}\s*\d{2}|\d{5})$/);
+          if (cityZipMatch) {
+            result.city = cityZipMatch[1].trim();
+            if (!result.zip) {
+              result.zip = cityZipMatch[2].replace(/\s+/g, '');
+            }
+          } else {
+            result.city = cityPart;
+          }
+        }
+        
+        // If we have a third part, it might contain the ZIP
+        if (!result.zip && labelParts[2]) {
+          const zipMatch = labelParts[2].trim().match(/\b(\d{3}\s*\d{2}|\d{5})\b/);
+          if (zipMatch) {
+            result.zip = zipMatch[1].replace(/\s+/g, '');
+          }
+        }
+      }
+    }
 
-    console.log("Final parsed address components:", result);
+    // Debug the final result
+    console.log("✅ Final parsed address components:", result);
+    
+    // Ensure ZIP code format is correct (5 digits)
+    if (result.zip && result.zip.length !== 5) {
+      result.zip = result.zip.padStart(5, '0').slice(0, 5);
+    }
+    
     return result;
   } catch (error) {
-    console.error("Error parsing address components:", error);
+    console.error("❌ Error parsing address components:", error);
     return {
       street: "",
       city: "",

@@ -126,17 +126,20 @@ const FormFields = ({ formData, handleChange, isLoading, compact = false, setFor
               <label className="block text-gray-700 font-medium mb-2" htmlFor="address">
                 Ulice a číslo popisné
               </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                ref={addressInputRef}
-                value={formData.address}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
-                placeholder="Začněte psát pro našeptávání adresy..."
-                disabled={isLoading}
-              />
+              <div className="relative">
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  ref={addressInputRef}
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                  placeholder="Začněte psát pro našeptávání adresy..."
+                  disabled={isLoading}
+                  autoComplete="off" // Prevent browser autocomplete from interfering
+                />
+              </div>
             </div>
             
             <div>
@@ -166,6 +169,7 @@ const FormFields = ({ formData, handleChange, isLoading, compact = false, setFor
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
                 disabled={isLoading}
+                maxLength={5} // Limit to 5 characters (Czech postal code format)
               />
             </div>
             

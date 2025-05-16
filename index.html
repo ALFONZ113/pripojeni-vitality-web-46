@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
   <head>
@@ -50,14 +51,14 @@
     <!-- Google Search Console preferred domain hint -->
     <link rel="canonical" href="https://www.popri.cz/" />
     
-    <!-- Mapy.cz API - Fixed loading method -->
+    <!-- Mapy.cz API - Fixed loading method with all necessary components -->
     <script>
       function initMapyCz() {
         console.log("Loading Mapy.cz API...");
-        // Load API with suggest capability explicitly enabled
+        // Load API with all needed capabilities
         Loader.async = true;
-        Loader.load(null, {suggest: true}, function() {
-          console.log("Mapy.cz API loaded successfully with suggest capability");
+        Loader.load(null, {suggest: true, poi: true, geocode: true}, function() {
+          console.log("Mapy.cz API loaded successfully with all required capabilities");
         });
       }
     </script>
@@ -176,7 +177,7 @@
       .noscript-button { background-color: #ff6600; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
       
       /* Improved Mapy.cz suggestion styles */
-      .smap-suggest {
+      .smap-suggest, .smap-suggest-div {
         position: absolute;
         z-index: 9999;
         background: white;
@@ -189,7 +190,7 @@
         margin-top: 2px;
       }
       
-      .smap-suggest-item {
+      .smap-suggest-item, .smap-suggest-item-text {
         padding: 12px 16px;
         cursor: pointer;
         border-bottom: 1px solid #f0f0f0;

@@ -2,6 +2,7 @@
 declare global {
   interface Window {
     SMap: any;
+    JAK: any;
     Loader: any;
   }
 }
@@ -33,28 +34,33 @@ export const initMapySuggester = (
       console.log("Creating Mapy.cz suggester");
       
       // Create the suggester with correct configuration
-      const suggester = new window.SMap.Suggest(inputElement);
-      
-      // Set bounds to Czech Republic or Slovakia based on options
-      suggester.setOptions({
+      // The new API uses a different initialization pattern
+      const suggesterProvider = new window.SMap.SuggestProvider({
         bounds: options.country === "sk" ? "sk" : "cz",
-        suggestions: 5,
-        partial: true
+        limit: 5
       });
-
-      // Add listener for suggestion selection with proper event name
-      suggester.addListener("suggest", (suggestData: any) => {
-        console.log("Suggestion selected:", suggestData);
+      
+      const suggest = new window.SMap.Suggest(inputElement);
+      suggest.addProvider(suggesterProvider);
+      
+      // Add listener for suggestion selection
+      const dataHandler = (event: any) => {
+        console.log("Suggestion selected:", event.data);
         
-        if (suggestData && suggestData.data) {
-          // Create a properly formatted suggestion object
+        if (event.data) {
+          // Process the suggestion data
           const suggestion = {
-            label: suggestData.phrase,
-            data: suggestData.data[0]
+            label: event.data.phrase || event.data.text || "",
+            data: event.data
           };
           onSuggestSelect(suggestion);
         }
-      });
+      };
+      
+      if (window.JAK) {
+        window.JAK.Events.addListener(suggest, "suggest", dataHandler);
+        console.log("Event listener attached successfully");
+      }
 
       console.log("Mapy.cz suggester initialized successfully");
     } catch (error) {
@@ -90,43 +96,78 @@ export const parseAddressComponents = (suggestion: any): {
       return result;
     }
 
+    // Extract the data based on the new API structure
     const data = suggestion.data;
     console.log("Raw suggestion data:", data);
 
-    // Extract street (combine street name and house number if available)
-    if (data.street) {
-      result.street = data.street;
-      if (data.number) {
-        result.street += " " + data.number;
-      }
-    } else if (data.address) {
-      result.street = data.address;
-    }
+    // New API might use different structure, handle both old and new formats
+    const items = data.items || [data];
+    
+    items.forEach((item: any) => {
+      // Extract address parts
+      if (item.userData) {
+        // Handle new API format
+        const userData = item.userData;
+        
+        // Street info
+        if (!result.street && userData.suggestFirstRow) {
+          result.street = userData.suggestFirstRow;
+        }
+        
+        // City info
+        if (!result.city) {
+          result.city = userData.municipality || userData.city || userData.town || userData.village || "";
+        }
+        
+        // Postal code
+        if (!result.zip && userData.zip) {
+          // Format ZIP code as XXXXX (5 digits without space)
+          result.zip = userData.zip.replace(/\s+/g, '');
+          
+          // If ZIP code doesn't have 5 digits, try to normalize it
+          if (result.zip.length !== 5 && result.zip.length > 0) {
+            // Add leading zeros if needed
+            result.zip = result.zip.padStart(5, '0');
+          }
+        }
+      } else {
+        // Handle legacy format
+        // Extract street (combine street name and house number if available)
+        if (item.street) {
+          result.street = item.street;
+          if (item.number) {
+            result.street += " " + item.number;
+          }
+        } else if (item.address) {
+          result.street = item.address;
+        }
 
-    // Enhanced city extraction logic
-    if (data.municipality) {
-      result.city = data.municipality;
-    } else if (data.city) {
-      result.city = data.city;
-    } else if (data.town) {
-      result.city = data.town;
-    } else if (data.village) {
-      result.city = data.village;
-    }
+        // Enhanced city extraction logic
+        if (item.municipality) {
+          result.city = item.municipality;
+        } else if (item.city) {
+          result.city = item.city;
+        } else if (item.town) {
+          result.city = item.town;
+        } else if (item.village) {
+          result.city = item.village;
+        }
 
-    // Enhanced ZIP code extraction logic
-    if (data.zip) {
-      // Format ZIP code as XXXXX (5 digits without space)
-      result.zip = data.zip.replace(/\s+/g, '');
-      
-      // If ZIP code doesn't have 5 digits, try to normalize it
-      if (result.zip.length !== 5 && result.zip.length > 0) {
-        // Add leading zeros if needed
-        result.zip = result.zip.padStart(5, '0');
+        // Enhanced ZIP code extraction logic
+        if (item.zip) {
+          // Format ZIP code as XXXXX (5 digits without space)
+          result.zip = item.zip.replace(/\s+/g, '');
+          
+          // If ZIP code doesn't have 5 digits, try to normalize it
+          if (result.zip.length !== 5 && result.zip.length > 0) {
+            // Add leading zeros if needed
+            result.zip = result.zip.padStart(5, '0');
+          }
+        } else if (item.postalCode) {
+          result.zip = item.postalCode.replace(/\s+/g, '').padStart(5, '0');
+        }
       }
-    } else if (data.postalCode) {
-      result.zip = data.postalCode.replace(/\s+/g, '').padStart(5, '0');
-    }
+    });
 
     console.log("Parsed address components:", result);
     return result;

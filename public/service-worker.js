@@ -1,10 +1,11 @@
-// Service Worker pro Popri.cz
-// Verze: 1.5.0 (2025-05-14)
 
-const CACHE_NAME = 'popri-cache-v1.5.0';
-const RUNTIME_CACHE = 'popri-runtime-v1.5.0';
-const STATIC_CACHE = 'popri-static-v1.5.0';
-const IMG_CACHE = 'popri-images-v1.5.0';
+// Service Worker pro Popri.cz
+// Verze: 1.5.1 (2025-05-16)
+
+const CACHE_NAME = 'popri-cache-v1.5.1';
+const RUNTIME_CACHE = 'popri-runtime-v1.5.1';
+const STATIC_CACHE = 'popri-static-v1.5.1';
+const IMG_CACHE = 'popri-images-v1.5.1';
 
 // Soubory, které budou přednostně uloženy do cache
 const PRECACHE_URLS = [
@@ -31,6 +32,13 @@ const STATIC_ASSETS = [
 
 // Image files to cache with a different strategy
 const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif', '.ico'];
+
+// Listen for skipWaiting message
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
 // Funkce pro detekci vyhledávacích botů
 function isSearchBot(request) {
@@ -72,13 +80,21 @@ function getCacheStrategy(url) {
   return 'network-first';
 }
 
-// Core fetch handling with improved strategies
+// Core fetch handling with improved strategies and error handling
 self.addEventListener('fetch', event => {
+  // Don't handle non-GET requests
+  if (event.request.method !== 'GET') return;
+  
   const requestUrl = new URL(event.request.url);
   
   // Kontrola zda se jedná o vyhledávací bot
   if (isSearchBot(event.request)) {
     // Pro vyhledávací boty necachuji, jdu přímo na síť
+    return;
+  }
+  
+  // Skip handling for external resources
+  if (requestUrl.origin !== location.origin) {
     return;
   }
   
@@ -112,6 +128,13 @@ self.addEventListener('fetch', event => {
     return;
   }
   
+  // Safety mechanism: time limit for the fetch operation
+  const timeoutPromise = new Promise(resolve => {
+    setTimeout(() => {
+      resolve(new Response('Timeout fetching resource.', { status: 408, statusText: 'Request Timeout' }));
+    }, 10000);
+  });
+  
   // Get strategy based on request type
   const strategy = getCacheStrategy(event.request.url);
   
@@ -119,20 +142,22 @@ self.addEventListener('fetch', event => {
     // Stale-While-Revalidate: Use cache but update in background
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
-        const fetchPromise = fetch(event.request)
-          .then(networkResponse => {
-            // Cache the updated version
-            if (networkResponse && networkResponse.status === 200) {
-              const responseToCache = networkResponse.clone();
-              caches.open(STATIC_CACHE).then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-            }
-            return networkResponse;
-          })
-          .catch(error => {
-            console.log('Fetch failed; returning cached response instead.', error);
-          });
+        const fetchPromise = Promise.race([
+          fetch(event.request), 
+          timeoutPromise
+        ]).then(networkResponse => {
+          // Cache the updated version
+          if (networkResponse && networkResponse.status === 200) {
+            const responseToCache = networkResponse.clone();
+            caches.open(STATIC_CACHE).then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return networkResponse;
+        }).catch(error => {
+          console.log('Fetch failed; returning cached response instead.', error);
+          return null;
+        });
           
         // Return the cached response immediately if we have one
         return cachedResponse || fetchPromise;
@@ -145,22 +170,26 @@ self.addEventListener('fetch', event => {
         if (cachedResponse) {
           // Return cached response immediately
           // Refresh cache in background for next time
-          fetch(event.request)
-            .then(networkResponse => {
-              if (networkResponse && networkResponse.status === 200) {
-                const responseToCache = networkResponse.clone();
-                caches.open(IMG_CACHE).then(cache => {
-                  cache.put(event.request, responseToCache);
-                });
-              }
-            })
-            .catch(() => {});
+          Promise.race([
+            fetch(event.request), 
+            timeoutPromise
+          ]).then(networkResponse => {
+            if (networkResponse && networkResponse.status === 200) {
+              const responseToCache = networkResponse.clone();
+              caches.open(IMG_CACHE).then(cache => {
+                cache.put(event.request, responseToCache);
+              });
+            }
+          }).catch(() => {});
             
           return cachedResponse;
         }
         
         // No cached version, get from network and cache
-        return fetch(event.request).then(networkResponse => {
+        return Promise.race([
+          fetch(event.request),
+          timeoutPromise
+        ]).then(networkResponse => {
           if (!networkResponse || networkResponse.status !== 200) {
             return networkResponse;
           }
@@ -171,62 +200,102 @@ self.addEventListener('fetch', event => {
           });
           
           return networkResponse;
+        }).catch(() => {
+          // If both cache and network fail, return the offline page for HTML requests
+          if (event.request.headers.get('accept').includes('text/html')) {
+            return caches.match('/');
+          }
+          return null;
         });
       })
     );
   } else {
     // Network-first (default): Try network, fall back to cache
     event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          // Cache valid responses for future
-          if (response && response.status === 200 && response.type === 'basic') {
-            const responseToCache = response.clone();
-            caches.open(RUNTIME_CACHE).then(cache => {
-              cache.put(event.request, responseToCache);
-            });
+      Promise.race([
+        fetch(event.request),
+        timeoutPromise
+      ]).then(response => {
+        // Cache valid responses for future
+        if (response && response.status === 200 && response.type === 'basic') {
+          const responseToCache = response.clone();
+          caches.open(RUNTIME_CACHE).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+        return response;
+      }).catch(() => {
+        // On network failure, try cache
+        return caches.match(event.request).then(cachedResponse => {
+          if (cachedResponse) {
+            return cachedResponse;
           }
-          return response;
-        })
-        .catch(() => {
-          // On network failure, try cache
-          return caches.match(event.request);
-        })
+          
+          // If it's an HTML request, serve the offline page
+          if (event.request.headers.get('accept').includes('text/html')) {
+            return caches.match('/');
+          }
+          
+          return null;
+        });
+      })
     );
   }
 });
 
-// Installer with improved cache handling
+// Installer with improved cache handling and robustness
 self.addEventListener('install', event => {
+  console.log('Service Worker installing');
+  
+  // Cancel the waiting phase and activate immediately
+  self.skipWaiting();
+  
   event.waitUntil(
     Promise.all([
       // Cache static assets
       caches.open(STATIC_CACHE).then(cache => {
         console.log('Caching static assets');
         return cache.addAll(STATIC_ASSETS);
+      }).catch(error => {
+        console.error('Failed to cache static assets:', error);
+        // Continue even if this fails
+        return Promise.resolve();
       }),
       
       // Cache core pages and assets
       caches.open(CACHE_NAME).then(cache => {
         console.log('Pre-caching important assets');
         return cache.addAll(PRECACHE_URLS);
+      }).catch(error => {
+        console.error('Failed to cache core assets:', error);
+        // Continue even if this fails
+        return Promise.resolve();
       })
-    ])
+    ]).catch(error => {
+      console.error('Install error, but continuing:', error);
+      // Always resolve to prevent install failure
+      return Promise.resolve();
+    })
   );
-  
-  // Activate right away
-  self.skipWaiting();
 });
 
 // Activator with better cache cleanup
 self.addEventListener('activate', event => {
   const currentCaches = [CACHE_NAME, RUNTIME_CACHE, STATIC_CACHE, IMG_CACHE];
   
+  console.log('Service Worker activating');
+  
+  // Take control of all clients immediately
+  self.clients.claim();
+  
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames
-          .filter(cacheName => !currentCaches.includes(cacheName))
+          .filter(cacheName => 
+            // Only delete our own caches that aren't current
+            (cacheName.startsWith('popri-') && !currentCaches.includes(cacheName))
+          )
           .map(cacheName => {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
@@ -234,8 +303,10 @@ self.addEventListener('activate', event => {
       );
     }).then(() => {
       console.log('Service Worker now active with latest caches');
-      // Take control of clients immediately
-      return self.clients.claim();
+    }).catch(error => {
+      console.error('Activation error, but continuing:', error);
+      // Always resolve to prevent activation failure
+      return Promise.resolve();
     })
   );
 });
@@ -255,4 +326,9 @@ self.addEventListener('periodicsync', event => {
       })
     );
   }
+});
+
+// Handle errors gracefully
+self.addEventListener('error', (event) => {
+  console.error('Service Worker error:', event.message);
 });

@@ -41,15 +41,20 @@ const FormFields = ({ formData, handleChange, isLoading, compact = false, setFor
             console.log("Parsed address components:", addressComponents);
             
             // Update form data with the parsed components
-            setFormData(prev => ({
-              ...prev,
-              address: addressComponents.street || prev.address,
-              city: addressComponents.city || prev.city,
-              zip: addressComponents.zip || prev.zip
-            }));
+            setFormData(prev => {
+              const updatedData = {
+                ...prev,
+                address: addressComponents.street || prev.address,
+                city: addressComponents.city || prev.city,
+                zip: addressComponents.zip || prev.zip
+              };
+              
+              console.log("Updated form data:", updatedData);
+              return updatedData;
+            });
             
             // Show a success toast when address is selected
-            if (addressComponents.street && addressComponents.city) {
+            if (addressComponents.street && (addressComponents.city || addressComponents.zip)) {
               toast({
                 title: "Adresa byla doplněna",
                 description: "Adresa byla úspěšně doplněna z Mapy.cz",

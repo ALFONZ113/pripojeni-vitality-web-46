@@ -33,32 +33,32 @@ export const initMapySuggester = (
     try {
       console.log("Creating Mapy.cz suggester");
       
-      // Create the suggester with correct configuration
-      // The new API uses a different initialization pattern
-      const suggesterProvider = new window.SMap.SuggestProvider({
+      // Fix: Using direct Suggest creation with source options
+      // The API expects options to be passed directly to Suggest constructor
+      const suggest = new window.SMap.Suggest(inputElement, {
+        // Limit search to Czech Republic or Slovakia based on options
         bounds: options.country === "sk" ? "sk" : "cz",
-        limit: 5
+        limit: 5,
+        // Enable extended address data needed for extracting city and postal code
+        enableAddressParams: true,
+        // Search addresses instead of general points of interest
+        suggestMapCenter: false
       });
       
-      const suggest = new window.SMap.Suggest(inputElement);
-      suggest.addProvider(suggesterProvider);
-      
       // Add listener for suggestion selection
-      const dataHandler = (event: any) => {
-        console.log("Suggestion selected:", event.data);
-        
-        if (event.data) {
-          // Process the suggestion data
-          const suggestion = {
-            label: event.data.phrase || event.data.text || "",
-            data: event.data
-          };
-          onSuggestSelect(suggestion);
-        }
-      };
-      
       if (window.JAK) {
-        window.JAK.Events.addListener(suggest, "suggest", dataHandler);
+        window.JAK.Events.addListener(suggest, "suggest", (event: any) => {
+          console.log("Suggestion selected:", event.data);
+          
+          if (event.data) {
+            // Process the suggestion data
+            const suggestion = {
+              label: event.data.phrase || event.data.text || "",
+              data: event.data
+            };
+            onSuggestSelect(suggestion);
+          }
+        });
         console.log("Event listener attached successfully");
       }
 
@@ -96,78 +96,67 @@ export const parseAddressComponents = (suggestion: any): {
       return result;
     }
 
-    // Extract the data based on the new API structure
+    // Extract the data based on the API structure
     const data = suggestion.data;
     console.log("Raw suggestion data:", data);
 
-    // New API might use different structure, handle both old and new formats
-    const items = data.items || [data];
-    
-    items.forEach((item: any) => {
-      // Extract address parts
-      if (item.userData) {
-        // Handle new API format
-        const userData = item.userData;
+    // Enhanced data extraction logic
+    // Directly use the address parts from the suggestion
+    if (data.mouse || data.address) {
+      // Street address extraction
+      const addressParts = data.address?.split(",") || [];
+      if (addressParts.length > 0) {
+        result.street = addressParts[0].trim();
+      }
+      
+      // City extraction - prefer municipality field over city field
+      if (data.municipality) {
+        result.city = data.municipality;
+      } else if (data.town) {
+        result.city = data.town;
+      } else if (data.city) {
+        result.city = data.city;
+      } else if (addressParts.length > 1) {
+        // Try to get city from the second part of address
+        result.city = addressParts[1].trim();
+      }
+      
+      // ZIP code extraction
+      if (data.zip) {
+        // Format ZIP code as XXXXX (5 digits without space)
+        result.zip = data.zip.replace(/\s+/g, '');
         
-        // Street info
-        if (!result.street && userData.suggestFirstRow) {
+        // If ZIP code doesn't have 5 digits, normalize it
+        if (result.zip.length !== 5 && result.zip.length > 0) {
+          // Add leading zeros if needed
+          result.zip = result.zip.padStart(5, '0');
+        }
+      }
+    }
+
+    // Fallback to traditional API format if needed
+    if (!result.street && !result.city && !result.zip) {
+      // Extract from the userData object if present (more reliable source)
+      if (data.userData) {
+        const userData = data.userData;
+        
+        if (userData.suggestFirstRow) {
           result.street = userData.suggestFirstRow;
         }
         
-        // City info
-        if (!result.city) {
-          result.city = userData.municipality || userData.city || userData.town || userData.village || "";
+        if (userData.municipality) {
+          result.city = userData.municipality;
+        } else if (userData.town) {
+          result.city = userData.town;
+        } else if (userData.city) {
+          result.city = userData.city;
         }
         
-        // Postal code
-        if (!result.zip && userData.zip) {
-          // Format ZIP code as XXXXX (5 digits without space)
-          result.zip = userData.zip.replace(/\s+/g, '');
-          
-          // If ZIP code doesn't have 5 digits, try to normalize it
-          if (result.zip.length !== 5 && result.zip.length > 0) {
-            // Add leading zeros if needed
-            result.zip = result.zip.padStart(5, '0');
-          }
-        }
-      } else {
-        // Handle legacy format
-        // Extract street (combine street name and house number if available)
-        if (item.street) {
-          result.street = item.street;
-          if (item.number) {
-            result.street += " " + item.number;
-          }
-        } else if (item.address) {
-          result.street = item.address;
-        }
-
-        // Enhanced city extraction logic
-        if (item.municipality) {
-          result.city = item.municipality;
-        } else if (item.city) {
-          result.city = item.city;
-        } else if (item.town) {
-          result.city = item.town;
-        } else if (item.village) {
-          result.city = item.village;
-        }
-
-        // Enhanced ZIP code extraction logic
-        if (item.zip) {
-          // Format ZIP code as XXXXX (5 digits without space)
-          result.zip = item.zip.replace(/\s+/g, '');
-          
-          // If ZIP code doesn't have 5 digits, try to normalize it
-          if (result.zip.length !== 5 && result.zip.length > 0) {
-            // Add leading zeros if needed
-            result.zip = result.zip.padStart(5, '0');
-          }
-        } else if (item.postalCode) {
-          result.zip = item.postalCode.replace(/\s+/g, '').padStart(5, '0');
+        if (userData.zip) {
+          result.zip = userData.zip.replace(/\s+/g, '').padStart(5, '0');
         }
       }
-    });
+    }
 
     console.log("Parsed address components:", result);
     return result;

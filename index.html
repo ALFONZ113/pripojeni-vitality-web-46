@@ -12,60 +12,112 @@
   <title>Popri.cz - Internetové připojení a televize</title>
   <meta name="description"
     content="Rychlé a stabilní internetové připojení od spolehlivého poskytovatele s vynikajícím zákaznickým servisem." />
-  <!-- Improved Mapy.cz API loading -->
+  <!-- Better Mapy.cz API loading with fallback -->
   <script type="text/javascript">
-    // Track API loading state
-    window.mapyApiLoaded = false;
-    window.mapyApiLoading = false;
+    // Global state for API
+    window.mapyApi = {
+      loaded: false,
+      loading: false,
+      failed: false,
+      retries: 0,
+      maxRetries: 3,
+      retryTimeout: null
+    };
     
-    // Helper function to load API safely
+    // Load API with better error handling and retry logic
     function loadMapyAPI() {
-      if (window.mapyApiLoading) return;
+      if (window.mapyApi.loading) return;
       
-      window.mapyApiLoading = true;
-      console.log("Loading Mapy.cz API...");
+      // Clear any existing retry timeouts
+      if (window.mapyApi.retryTimeout) {
+        clearTimeout(window.mapyApi.retryTimeout);
+      }
       
-      // Create script element
+      window.mapyApi.loading = true;
+      console.log(`Loading Mapy.cz API... (attempt ${window.mapyApi.retries + 1}/${window.mapyApi.maxRetries + 1})`);
+      
+      // Create script element with clear error handling
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = '//api.mapy.cz/loader.js';
+      
+      // Error handler with retry logic
       script.onerror = () => {
         console.error("Failed to load Mapy.cz API");
-        window.mapyApiLoading = false;
-      };
-      script.onload = () => {
-        console.log("Mapy.cz loader script loaded, initializing API...");
+        window.mapyApi.loading = false;
         
-        // Initialize with all needed features
-        if (window.Loader) {
-          window.Loader.load(null, { 
-            suggest: true,
-            poi: true,
-            geocode: true,
-            addr: true,
-            base: true,
-            api: '5.5.58' // Force specific API version for consistency
-          }, () => {
-            // API is now fully loaded
-            window.mapyApiLoaded = true;
-            console.log("Mapy.cz API fully loaded");
-          });
+        if (window.mapyApi.retries < window.mapyApi.maxRetries) {
+          window.mapyApi.retries++;
+          const delay = Math.pow(2, window.mapyApi.retries) * 1000; // Exponential backoff
+          console.log(`Retrying in ${delay/1000} seconds...`);
+          
+          window.mapyApi.retryTimeout = setTimeout(loadMapyAPI, delay);
+        } else {
+          window.mapyApi.failed = true;
+          console.error(`Mapy.cz API failed to load after ${window.mapyApi.maxRetries + 1} attempts.`);
+          // Dispatch an event that the app can listen for
+          document.dispatchEvent(new CustomEvent('mapyApiFailed'));
         }
       };
       
-      // Add to document
+      // Success handler
+      script.onload = () => {
+        console.log("Mapy.cz loader script loaded, initializing API...");
+        
+        try {
+          // Check if Loader is available
+          if (window.Loader) {
+            window.Loader.load(null, { 
+              suggest: true,
+              poi: true,
+              geocode: true,
+              addr: true,
+              base: true,
+              api: '5.5.58' // Force specific API version for consistency
+            }, () => {
+              // API is now fully loaded
+              window.mapyApi.loaded = true;
+              window.mapyApi.loading = false;
+              console.log("Mapy.cz API fully loaded");
+              
+              // Dispatch an event that components can listen for
+              document.dispatchEvent(new CustomEvent('mapyApiLoaded'));
+            });
+          } else {
+            throw new Error("Mapy.cz Loader not available");
+          }
+        } catch (e) {
+          console.error("Error initializing Mapy.cz API:", e);
+          script.onerror(); // Trigger the error handler for retry
+        }
+      };
+      
+      // Add to document with timeout safety
       document.head.appendChild(script);
+      
+      // Safety timeout - if the API callbacks don't fire for some reason
+      const safetyTimeout = setTimeout(() => {
+        if (!window.mapyApi.loaded && window.mapyApi.loading) {
+          console.error("Mapy.cz API load timeout");
+          window.mapyApi.loading = false;
+          script.onerror(); // Trigger the error handler for retry
+        }
+      }, 10000); // 10 second timeout
     }
     
-    // Load API when page loads
-    window.addEventListener('load', loadMapyAPI);
+    // Load API when page loads or after DOMContentLoaded
+    if (document.readyState === 'complete') {
+      loadMapyAPI();
+    } else {
+      window.addEventListener('load', loadMapyAPI);
+    }
     
     // Fallback - try to load after short timeout if not loaded yet
     setTimeout(() => {
-      if (!window.mapyApiLoaded && !window.mapyApiLoading) {
+      if (!window.mapyApi.loaded && !window.mapyApi.loading) {
         loadMapyAPI();
       }
-    }, 1000);
+    }, 2000);
   </script>
   <style>
     /* Enhanced styling for Mapy.cz suggestions */
@@ -97,7 +149,71 @@
     .smap-suggest div.active {
       background: #e6f3ff !important;
     }
+    
+    /* Add CSS for fallback during white screen */
+    .app-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    
+    .app-loading-spinner {
+      border: 4px solid rgba(0, 80, 160, 0.1);
+      border-left-color: #0050A0;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
+  <script>
+    // Add a loading indicator that will be removed once React mounts
+    document.addEventListener('DOMContentLoaded', function() {
+      var loadingEl = document.createElement('div');
+      loadingEl.className = 'app-loading';
+      loadingEl.id = 'initialLoadingIndicator';
+      
+      var spinner = document.createElement('div');
+      spinner.className = 'app-loading-spinner';
+      
+      var text = document.createElement('div');
+      text.textContent = 'Načítání aplikace...';
+      
+      loadingEl.appendChild(spinner);
+      loadingEl.appendChild(text);
+      
+      document.body.appendChild(loadingEl);
+      
+      // Remove the loading indicator after 30 seconds even if the app doesn't load
+      setTimeout(function() {
+        var el = document.getElementById('initialLoadingIndicator');
+        if (el) {
+          el.style.opacity = '0';
+          el.style.transition = 'opacity 0.5s ease';
+          setTimeout(function() {
+            if (el && el.parentNode) {
+              el.parentNode.removeChild(el);
+            }
+          }, 500);
+        }
+      }, 30000);
+    });
+  </script>
 </head>
 
 <body>

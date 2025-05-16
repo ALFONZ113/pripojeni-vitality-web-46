@@ -1,7 +1,8 @@
 
-import { useRef, useEffect } from 'react';
-import { initMapySuggester, parseAddressComponents } from '../../utils/mapyService';
+import { useRef, useEffect, useState } from 'react';
+import { initMapySuggester, parseAddressComponents, waitForMapyApi, isMapyApiAvailable } from '../../utils/mapyService';
 import { toast } from '@/hooks/use-toast';
+import { Loader2 } from 'lucide-react';
 
 interface AddressSuggesterProps {
   value: string;
@@ -12,6 +13,7 @@ interface AddressSuggesterProps {
 
 const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressSuggesterProps) => {
   const addressInputRef = useRef<HTMLInputElement>(null);
+  const [apiStatus, setApiStatus] = useState<'loading' | 'loaded' | 'failed'>('loading');
   
   useEffect(() => {
     if (!addressInputRef.current) {
@@ -20,6 +22,39 @@ const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressS
     }
     
     console.log("🔄 Setting up Mapy.cz suggester for address field");
+    
+    // Check if API is immediately available
+    if (isMapyApiAvailable()) {
+      setApiStatus('loaded');
+    }
+    
+    // Wait for API with timeout
+    waitForMapyApi(15, 300)
+      .then(() => {
+        setApiStatus('loaded');
+        setupSuggester();
+      })
+      .catch(() => {
+        console.warn("⚠️ Mapy.cz API failed to load, address suggestions will be unavailable");
+        setApiStatus('failed');
+        
+        // Show warning toast
+        toast({
+          title: "Omezená funkčnost",
+          description: "Našeptávač adres není dostupný. Adresu můžete zadat ručně.",
+          variant: "warning"
+        });
+      });
+    
+    // Setup cleanup
+    return () => {
+      console.log("🧹 Cleaning up Mapy.cz suggester");
+    };
+  }, []);
+  
+  // Setup suggester once API is available
+  const setupSuggester = () => {
+    if (!addressInputRef.current) return;
     
     // Setup the address suggester with better error handling
     try {
@@ -78,6 +113,7 @@ const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressS
       );
     } catch (error) {
       console.error("❌ Error setting up Mapy.cz suggester:", error);
+      setApiStatus('failed');
       
       // Show error toast to user
       toast({
@@ -86,31 +122,35 @@ const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressS
         variant: "destructive"
       });
     }
-    
-    // Cleanup function
-    return () => {
-      // Cleanup code if needed
-      console.log("🧹 Cleaning up Mapy.cz suggester");
-    };
-  }, [onChange, setFormData]);
+  };
 
   return (
     <div className="relative">
-      <input
-        type="text"
-        id="address"
-        name="address"
-        ref={addressInputRef}
-        value={value}
-        onChange={onChange}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
-        placeholder="Začněte psát pro našeptávání adresy..."
-        disabled={isDisabled}
-        autoComplete="off" // Prevent browser autocomplete from interfering
-        aria-label="Ulice a číslo popisné"
-      />
+      <div className="relative">
+        <input
+          type="text"
+          id="address"
+          name="address"
+          ref={addressInputRef}
+          value={value}
+          onChange={onChange}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+          placeholder={apiStatus === 'failed' ? "Zadejte adresu ručně..." : "Začněte psát pro našeptávání adresy..."}
+          disabled={isDisabled}
+          autoComplete="off" // Prevent browser autocomplete from interfering
+          aria-label="Ulice a číslo popisné"
+        />
+        {apiStatus === 'loading' && (
+          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+            <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
+          </div>
+        )}
+      </div>
+      
       <small className="text-gray-500 mt-1 block">
-        Začněte psát adresu a vyberte z našeptávače
+        {apiStatus === 'loaded' && "Začněte psát adresu a vyberte z našeptávače"}
+        {apiStatus === 'loading' && "Načítání našeptávače adres..."}
+        {apiStatus === 'failed' && "Našeptávač adres není dostupný. Zadejte adresu ručně."}
       </small>
     </div>
   );

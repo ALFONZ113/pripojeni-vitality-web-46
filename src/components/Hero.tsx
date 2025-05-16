@@ -9,11 +9,21 @@ import FeatureCardsDesktop from './hero/FeatureCardsDesktop';
 import MobileFeatureCards from './hero/MobileFeatureCards';
 import WhyPopriSection from './hero/WhyPopriSection';
 import DisclaimerText from './hero/DisclaimerText';
-import { container } from './hero/heroAnimations';
 
 const Hero = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isMobile = useIsMobile();
+  
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
   
   const handleContactClick = (e: React.MouseEvent) => {
     if (isMobile) {

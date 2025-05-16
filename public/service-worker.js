@@ -1,10 +1,10 @@
 // Service Worker pro Popri.cz
-// Verze: 1.5.1 (2025-05-16)
+// Verze: 1.5.0 (2025-05-14)
 
-const CACHE_NAME = 'popri-cache-v1.5.1';
-const RUNTIME_CACHE = 'popri-runtime-v1.5.1';
-const STATIC_CACHE = 'popri-static-v1.5.1';
-const IMG_CACHE = 'popri-images-v1.5.1';
+const CACHE_NAME = 'popri-cache-v1.5.0';
+const RUNTIME_CACHE = 'popri-runtime-v1.5.0';
+const STATIC_CACHE = 'popri-static-v1.5.0';
+const IMG_CACHE = 'popri-images-v1.5.0';
 
 // Soubory, které budou přednostně uloženy do cache
 const PRECACHE_URLS = [
@@ -13,10 +13,12 @@ const PRECACHE_URLS = [
   '/assets/index.js',
   '/assets/index.css',
   '/poda-logo.svg',
-  '/favicon-16x16.png',
-  '/favicon-32x32.png',
-  '/apple-touch-icon.png',
-  '/site.webmanifest',
+  '/file_00000000fa2061f687645b6ffd2e586a.ico?v=2.0',
+  '/file_00000000fa2061f687645b6ffd2e586a.png?v=2.0',
+  '/favicon-16x16.png?v=2.0',
+  '/favicon-32x32.png?v=2.0',
+  '/apple-touch-icon.png?v=2.0',
+  '/site.webmanifest?v=2.0',
   '/og-image.png',
   '/placeholder.svg'
 ];
@@ -43,35 +45,21 @@ function isSearchBot(request) {
   return botPatterns.some(bot => userAgent.includes(bot));
 }
 
-// New function to determine if we should bypass cache for critical resources
-function shouldBypassCache(url) {
-  // Always get fresh version of main JS and HTML
-  const criticalPaths = ['/index.html', '/assets/index.js'];
-  const path = new URL(url).pathname;
-  return criticalPaths.some(p => path.includes(p));
-}
-
 // Determine cache strategy based on request type
 function getCacheStrategy(url) {
-  // If it's a critical resource we need fresh, bypass cache
-  if (shouldBypassCache(url)) {
-    return 'network-first';
-  }
-  
   const pathname = new URL(url).pathname;
   
   // For SEO important files
   if (
     pathname === '/sitemap.xml' ||
     pathname === '/robots.txt' ||
-    pathname === '/service-worker.js' ||
     pathname.startsWith('/blog/')
   ) {
     return 'network-first';
   }
   
-  // For static assets (CSS)
-  if (pathname.includes('/assets/index.css')) {
+  // For static assets (JS, CSS)
+  if (STATIC_ASSETS.some(asset => pathname.includes(asset))) {
     return 'stale-while-revalidate';
   }
   
@@ -88,17 +76,9 @@ function getCacheStrategy(url) {
 self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
   
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
-  
-  // Skip third-party requests
-  if (!requestUrl.origin.includes(self.location.origin) && 
-      !requestUrl.origin.includes('lovable.app')) {
-    return;
-  }
-  
-  // For search bots or API requests, go straight to network
-  if (isSearchBot(event.request) || requestUrl.pathname.includes('/api/')) {
+  // Kontrola zda se jedná o vyhledávací bot
+  if (isSearchBot(event.request)) {
+    // Pro vyhledávací boty necachuji, jdu přímo na síť
     return;
   }
   
@@ -163,6 +143,19 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
         if (cachedResponse) {
+          // Return cached response immediately
+          // Refresh cache in background for next time
+          fetch(event.request)
+            .then(networkResponse => {
+              if (networkResponse && networkResponse.status === 200) {
+                const responseToCache = networkResponse.clone();
+                caches.open(IMG_CACHE).then(cache => {
+                  cache.put(event.request, responseToCache);
+                });
+              }
+            })
+            .catch(() => {});
+            
           return cachedResponse;
         }
         
@@ -197,12 +190,7 @@ self.addEventListener('fetch', event => {
         })
         .catch(() => {
           // On network failure, try cache
-          return caches.match(event.request).then(cachedResponse => {
-            return cachedResponse || new Response('Network error occurred', {
-              status: 408,
-              statusText: 'Network timeout'
-            });
-          });
+          return caches.match(event.request);
         })
     );
   }
@@ -210,9 +198,6 @@ self.addEventListener('fetch', event => {
 
 // Installer with improved cache handling
 self.addEventListener('install', event => {
-  // Skip waiting to activate immediately
-  self.skipWaiting();
-  
   event.waitUntil(
     Promise.all([
       // Cache static assets
@@ -228,6 +213,9 @@ self.addEventListener('install', event => {
       })
     ])
   );
+  
+  // Activate right away
+  self.skipWaiting();
 });
 
 // Activator with better cache cleanup
@@ -252,7 +240,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Handle periodic cache cleanup
+// Add periodic cache cleanup for images (every 7 days)
 self.addEventListener('periodicsync', event => {
   if (event.tag === 'cleanup-old-caches') {
     event.waitUntil(

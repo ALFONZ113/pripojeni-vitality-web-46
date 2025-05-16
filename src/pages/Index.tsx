@@ -5,7 +5,6 @@ import TariffSection from '../components/TariffSection';
 import { initAnimations } from '../utils/animation';
 import { preloadCriticalImages } from '../utils/imageUtils';
 import { Toaster } from '@/components/ui/toaster';
-import { toast } from '@/hooks/use-toast';
 
 // Import refactored components
 import MetaTags from '../components/index/MetaTags';
@@ -28,35 +27,12 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
-  const [renderTimeout, setRenderTimeout] = useState(false);
 
   // Mark hydration complete after React takes over
   useEffect(() => {
     setIsHydrated(true);
-    
-    // Remove loading indicator when app is mounted
-    const loadingIndicator = document.getElementById('initialLoadingIndicator');
-    if (loadingIndicator) {
-      loadingIndicator.style.opacity = '0';
-      loadingIndicator.style.transition = 'opacity 0.5s ease';
-      setTimeout(() => {
-        if (loadingIndicator.parentNode) {
-          loadingIndicator.parentNode.removeChild(loadingIndicator);
-        }
-      }, 500);
-    }
-    
-    // Add safety timeout - ensure we show something even if loading hangs
-    const timeoutId = setTimeout(() => {
-      setRenderTimeout(true);
-      setIsLoading(false);
-      console.log('🕒 Safety timeout triggered: forcing render');
-    }, 5000); // Show content after 5 seconds no matter what
-    
-    return () => clearTimeout(timeoutId);
   }, []);
 
-  // Handle app initialization
   useEffect(() => {
     // Preload critical images for better LCP
     preloadCriticalImages(CRITICAL_IMAGES);
@@ -69,16 +45,10 @@ const Index = () => {
       
       // Delay non-critical initializations
       const initTimer = setTimeout(() => {
-        try {
-          cleanupAnimation = initAnimations();
-          setIsLoading(false);
-          console.log('Page loaded successfully');
-        } catch (e) {
-          console.error('Animation initialization error:', e);
-          // Continue showing the page even if animations fail
-          setIsLoading(false);
-        }
-      }, 100); // Using minimal timeout to yield to main thread
+        cleanupAnimation = initAnimations();
+        setIsLoading(false);
+        console.log('Page loaded successfully');
+      }, 0); // Using minimal timeout to yield to main thread
       
       return () => {
         clearTimeout(initTimer);
@@ -88,34 +58,16 @@ const Index = () => {
       console.error('Error initializing page:', e);
       setError('Došlo k chybě při načítání stránky.');
       setIsLoading(false);
-      
-      // Show error toast
-      toast({
-        title: "Chyba při načítání",
-        description: "Aplikace se nepovedla správně načíst. Prosím, obnovte stránku.",
-        variant: "destructive"
-      });
-      
       return () => {
         if (cleanupAnimation) cleanupAnimation();
       };
     }
   }, []);
 
-  // Force render content if we're taking too long or hit an error
-  useEffect(() => {
-    if (renderTimeout && isLoading) {
-      setIsLoading(false);
-      console.log('🕒 Forcing page render due to timeout');
-    }
-  }, [renderTimeout, isLoading]);
-
-  // If still loading and no timeout yet, show loading state
-  if (isLoading && !renderTimeout) {
+  if (isLoading) {
     return <Loading />;
   }
 
-  // If we have an error, show error state
   if (error) {
     return <ErrorDisplay error={error} />;
   }

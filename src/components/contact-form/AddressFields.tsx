@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import AddressSuggester from './AddressSuggester';
 
 interface AddressFieldsProps {
@@ -14,6 +14,11 @@ interface AddressFieldsProps {
 }
 
 const AddressFields = ({ formData, handleChange, isLoading, setFormData }: AddressFieldsProps) => {
+  // Add effect to log when form data changes for debugging
+  useEffect(() => {
+    console.log("AddressFields - formData updated:", formData);
+  }, [formData]);
+
   return (
     <>
       <div>

@@ -27,11 +27,21 @@ const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressS
             const addressComponents = parseAddressComponents(suggestion);
             console.log("Parsed address components:", addressComponents);
             
-            // Update form data with the parsed components
+            // Create a synthetic event for the address field
+            const addressEvent = {
+              target: {
+                name: 'address',
+                value: addressComponents.street || ''
+              }
+            } as React.ChangeEvent<HTMLInputElement>;
+            
+            // Update the address field
+            onChange(addressEvent);
+            
+            // Update the city and zip directly
             setFormData(prev => {
               const updatedData = {
                 ...prev,
-                address: addressComponents.street || prev.address,
                 city: addressComponents.city || prev.city,
                 zip: addressComponents.zip || prev.zip
               };
@@ -58,7 +68,7 @@ const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressS
       // Cleanup if necessary
       console.log("Cleaning up Mapy.cz suggester");
     };
-  }, [setFormData]);
+  }, [onChange, setFormData]);
 
   return (
     <div className="relative">

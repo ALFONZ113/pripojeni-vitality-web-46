@@ -34,21 +34,22 @@ export const initMapySuggester = (
       console.log("Creating Mapy.cz suggester");
       
       // Fix: Using direct Suggest creation with source options
-      // The API expects options to be passed directly to Suggest constructor
       const suggest = new window.SMap.Suggest(inputElement, {
         // Limit search to Czech Republic or Slovakia based on options
         bounds: options.country === "sk" ? "sk" : "cz",
         limit: 5,
         // Enable extended address data needed for extracting city and postal code
         enableAddressParams: true,
-        // Search addresses instead of general points of interest
         suggestMapCenter: false
       });
+      
+      // Log suggest object to inspect properties
+      console.log("Suggest object created:", suggest);
       
       // Add listener for suggestion selection
       if (window.JAK) {
         window.JAK.Events.addListener(suggest, "suggest", (event: any) => {
-          console.log("Suggestion selected:", event.data);
+          console.log("Raw suggestion event:", event);
           
           if (event.data) {
             // Process the suggestion data
@@ -100,31 +101,62 @@ export const parseAddressComponents = (suggestion: any): {
     const data = suggestion.data;
     console.log("Raw suggestion data:", data);
 
-    // Enhanced data extraction logic
-    // Directly use the address parts from the suggestion
-    if (data.mouse || data.address) {
-      // Street address extraction
-      const addressParts = data.address?.split(",") || [];
-      if (addressParts.length > 0) {
-        result.street = addressParts[0].trim();
+    // Extract street address
+    if (data.phrase) {
+      // For typical address phrases, extract the street address
+      result.street = data.phrase.split(',')[0]?.trim() || "";
+    } else if (data.address) {
+      result.street = data.address.split(',')[0]?.trim() || "";
+    }
+
+    // Extract city - try multiple potential sources
+    // Mapy.cz API can return this in various fields
+    if (data.municipality) {
+      result.city = data.municipality;
+    } else if (data.town) {
+      result.city = data.town;
+    } else if (data.city) {
+      result.city = data.city;
+    } else if (data.phrase && data.phrase.includes(',')) {
+      const parts = data.phrase.split(',');
+      if (parts.length > 1) {
+        result.city = parts[1].trim();
+      }
+    }
+
+    // Extract ZIP code - try multiple potential sources
+    if (data.zip) {
+      // Format ZIP code as XXXXX (5 digits without space)
+      result.zip = data.zip.replace(/\s+/g, '');
+    } else if (data.postalCode) {
+      result.zip = data.postalCode.replace(/\s+/g, '');
+    } else if (data.postal) {
+      result.zip = data.postal.replace(/\s+/g, '');
+    }
+
+    // If we have userData, it often has more detailed info
+    if (data.userData) {
+      const userData = data.userData;
+      
+      // Extract from userData if street is still empty
+      if (!result.street && userData.suggestFirstRow) {
+        result.street = userData.suggestFirstRow;
       }
       
-      // City extraction - prefer municipality field over city field
-      if (data.municipality) {
-        result.city = data.municipality;
-      } else if (data.town) {
-        result.city = data.town;
-      } else if (data.city) {
-        result.city = data.city;
-      } else if (addressParts.length > 1) {
-        // Try to get city from the second part of address
-        result.city = addressParts[1].trim();
+      // Extract city from userData if it's still empty
+      if (!result.city) {
+        if (userData.municipality) {
+          result.city = userData.municipality;
+        } else if (userData.town) {
+          result.city = userData.town;
+        } else if (userData.city) {
+          result.city = userData.city;
+        }
       }
       
-      // ZIP code extraction
-      if (data.zip) {
-        // Format ZIP code as XXXXX (5 digits without space)
-        result.zip = data.zip.replace(/\s+/g, '');
+      // Extract ZIP from userData if it's still empty
+      if (!result.zip && userData.zip) {
+        result.zip = userData.zip.replace(/\s+/g, '');
         
         // If ZIP code doesn't have 5 digits, normalize it
         if (result.zip.length !== 5 && result.zip.length > 0) {
@@ -134,31 +166,20 @@ export const parseAddressComponents = (suggestion: any): {
       }
     }
 
-    // Fallback to traditional API format if needed
-    if (!result.street && !result.city && !result.zip) {
-      // Extract from the userData object if present (more reliable source)
-      if (data.userData) {
-        const userData = data.userData;
-        
-        if (userData.suggestFirstRow) {
-          result.street = userData.suggestFirstRow;
-        }
-        
-        if (userData.municipality) {
-          result.city = userData.municipality;
-        } else if (userData.town) {
-          result.city = userData.town;
-        } else if (userData.city) {
-          result.city = userData.city;
-        }
-        
-        if (userData.zip) {
-          result.zip = userData.zip.replace(/\s+/g, '').padStart(5, '0');
-        }
+    // If we still don't have a ZIP code but have an id field,
+    // it might contain address components including a ZIP code
+    if (!result.zip && data.id && typeof data.id === 'string') {
+      // Look for postal code pattern in id (5 digits or XX XXX format)
+      const zipMatch = data.id.match(/\b(\d{5}|\d{2}\s\d{3})\b/);
+      if (zipMatch) {
+        result.zip = zipMatch[1].replace(/\s+/g, '');
       }
     }
 
-    console.log("Parsed address components:", result);
+    // Last resort: if we have coordinates, we could try to do reverse geocoding
+    // But that would require additional API calls
+
+    console.log("Final parsed address components:", result);
     return result;
   } catch (error) {
     console.error("Error parsing address components:", error);

@@ -38,11 +38,11 @@ const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressS
         console.warn("⚠️ Mapy.cz API failed to load, address suggestions will be unavailable");
         setApiStatus('failed');
         
-        // Show warning toast
+        // Show warning toast - changing from "warning" to "default" to fix type error
         toast({
           title: "Omezená funkčnost",
           description: "Našeptávač adres není dostupný. Adresu můžete zadat ručně.",
-          variant: "warning"
+          variant: "default" // Changed from "warning" to "default"
         });
       });
     
@@ -115,11 +115,11 @@ const AddressSuggester = ({ value, onChange, isDisabled, setFormData }: AddressS
       console.error("❌ Error setting up Mapy.cz suggester:", error);
       setApiStatus('failed');
       
-      // Show error toast to user
+      // Show error toast to user - changing from "warning" to "destructive" to fix type error
       toast({
         title: "Chyba při inicializaci našeptávače",
         description: "Našeptávač adres se nepodařilo inicializovat. Můžete adresu zadat ručně.",
-        variant: "destructive"
+        variant: "destructive" // Changed from potentially "warning" to "destructive"
       });
     }
   };

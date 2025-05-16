@@ -3,6 +3,9 @@
  * Debug utilities for application troubleshooting
  */
 
+// Add proper React import
+import React from 'react';
+
 /**
  * Show an overlay with technical information
  * This can be activated by adding ?debug=true to the URL
@@ -103,6 +106,14 @@ const updateDebugInfo = (element: HTMLElement) => {
 declare global {
   interface Window {
     React: any;
+    mapyApi?: {
+      loaded: boolean;
+      loading: boolean;
+      failed: boolean;
+      retries?: number;
+      maxRetries?: number;
+      retryTimeout?: number | null;
+    };
   }
 }
 

@@ -26,7 +26,7 @@ const WhyPopriSection = () => {
         </div>
         <div className="text-center">
           <h3 className="font-semibold text-lg text-poda-blue mb-2">Podpora</h3>
-          <p className="text-gray-600">Jsme vždy popri vás, když potřebujete pomoc s vaším PODA internetem.</p>
+          <p className="text-gray-600">Jsme vždy popři vás, když potřebujete pomoc s vaším PODA internetem.</p>
         </div>
       </div>
     </motion.div>;

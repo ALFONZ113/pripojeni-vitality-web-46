@@ -1,10 +1,10 @@
 // Service Worker pro Popri.cz
-// Verze: 1.5.0 (2025-05-14)
+// Verze: 2.0.0 (2025-05-19)
 
-const CACHE_NAME = 'popri-cache-v1.5.0';
-const RUNTIME_CACHE = 'popri-runtime-v1.5.0';
-const STATIC_CACHE = 'popri-static-v1.5.0';
-const IMG_CACHE = 'popri-images-v1.5.0';
+const CACHE_NAME = 'popri-cache-v2.0.0';
+const RUNTIME_CACHE = 'popri-runtime-v2.0.0';
+const STATIC_CACHE = 'popri-static-v2.0.0';
+const IMG_CACHE = 'popri-images-v2.0.0';
 
 // Soubory, které budou přednostně uloženy do cache
 const PRECACHE_URLS = [
@@ -13,11 +13,13 @@ const PRECACHE_URLS = [
   '/assets/index.js',
   '/assets/index.css',
   '/poda-logo.svg',
-  '/file_00000000fa2061f687645b6ffd2e586a.ico?v=2.0',
-  '/file_00000000fa2061f687645b6ffd2e586a.png?v=2.0',
-  '/favicon-16x16.png?v=2.0',
-  '/favicon-32x32.png?v=2.0',
-  '/apple-touch-icon.png?v=2.0',
+  '/poda-favicon.ico?v=2.0',
+  '/poda-favicon-16x16.png?v=2.0',
+  '/poda-favicon-32x32.png?v=2.0',
+  '/poda-favicon-48x48.png?v=2.0',
+  '/poda-favicon-192x192.png?v=2.0',
+  '/poda-favicon-512x512.png?v=2.0',
+  '/poda-apple-touch-icon.png?v=2.0',
   '/site.webmanifest?v=2.0',
   '/og-image.png',
   '/placeholder.svg'
@@ -31,6 +33,22 @@ const STATIC_ASSETS = [
 
 // Image files to cache with a different strategy
 const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif', '.ico'];
+
+// Favicon files to never cache (always go to network)
+const FAVICON_FILES = [
+  '/poda-favicon.ico',
+  '/poda-favicon-16x16.png',
+  '/poda-favicon-32x32.png',
+  '/poda-favicon-48x48.png',
+  '/poda-favicon-192x192.png',
+  '/poda-favicon-512x512.png',
+  '/poda-apple-touch-icon.png',
+  '/site.webmanifest',
+  '/apple-touch-icon.png',
+  '/favicon.ico',
+  '/favicon-16x16.png',
+  '/favicon-32x32.png'
+];
 
 // Funkce pro detekci vyhledávacích botů
 function isSearchBot(request) {
@@ -48,6 +66,11 @@ function isSearchBot(request) {
 // Determine cache strategy based on request type
 function getCacheStrategy(url) {
   const pathname = new URL(url).pathname;
+  
+  // Nikdy necachovat favicon soubory - vždy jít na síť
+  if (FAVICON_FILES.some(file => pathname.includes(file))) {
+    return 'network-only';
+  }
   
   // For SEO important files
   if (
@@ -72,6 +95,50 @@ function getCacheStrategy(url) {
   return 'network-first';
 }
 
+// Instalace service workeru
+self.addEventListener('install', event => {
+  console.log('Service Worker installing...');
+
+  // Vynutit aktivaci ihned (bez čekání na reload)
+  self.skipWaiting();
+
+  event.waitUntil(
+    Promise.all([
+      // Cache static assets
+      caches.open(STATIC_CACHE).then(cache => {
+        console.log('Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
+      }),
+      
+      // Cache core pages and assets
+      caches.open(CACHE_NAME).then(cache => {
+        console.log('Pre-caching important assets');
+        return cache.addAll(PRECACHE_URLS);
+      }),
+      
+      // Vyčistit favicon cache ručně
+      caches.keys().then(names => {
+        return Promise.all(
+          names.map(name => {
+            return caches.open(name).then(cache => {
+              return Promise.all(
+                FAVICON_FILES.map(file => {
+                  return cache.delete(file).then(() => {
+                    return cache.delete(file + '?v=1.0').then(() => {
+                      console.log('Cleared old favicon: ' + file);
+                      return true;
+                    });
+                  });
+                })
+              );
+            });
+          })
+        );
+      })
+    ])
+  );
+});
+
 // Core fetch handling with improved strategies
 self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
@@ -82,32 +149,14 @@ self.addEventListener('fetch', event => {
     return;
   }
   
-  // Favicon files need to be handled specially
-  if (
-    requestUrl.pathname.includes('favicon') ||
-    requestUrl.pathname.includes('.ico') ||
-    requestUrl.pathname.includes('apple-touch-icon') ||
-    requestUrl.pathname.includes('site.webmanifest')
-  ) {
+  // Special handling for favicon files - direct network fetch without caching
+  const isFaviconRequest = FAVICON_FILES.some(file => requestUrl.pathname.includes(file));
+  if (isFaviconRequest) {
     event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        return fetch(event.request).then(response => {
-          // Cache only successful responses
-          if (response && response.status === 200) {
-            const clonedResponse = response.clone();
-            caches.open(STATIC_CACHE).then(cache => {
-              cache.put(event.request, clonedResponse);
-            });
-          }
-          return response;
-        }).catch(() => {
-          // If network fails, try to return any cached version as fallback
-          return caches.match(event.request);
-        });
-      })
+      fetch(event.request)
+        .catch(() => {
+          return new Response('Favicon not available', { status: 404 });
+        })
     );
     return;
   }
@@ -115,7 +164,14 @@ self.addEventListener('fetch', event => {
   // Get strategy based on request type
   const strategy = getCacheStrategy(event.request.url);
   
-  if (strategy === 'stale-while-revalidate') {
+  if (strategy === 'network-only') {
+    // Network-only: Always go to network, never cache
+    event.respondWith(
+      fetch(event.request).catch(() => {
+        return new Response('Resource unavailable', { status: 404 });
+      })
+    );
+  } else if (strategy === 'stale-while-revalidate') {
     // Stale-While-Revalidate: Use cache but update in background
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
@@ -144,18 +200,6 @@ self.addEventListener('fetch', event => {
       caches.match(event.request).then(cachedResponse => {
         if (cachedResponse) {
           // Return cached response immediately
-          // Refresh cache in background for next time
-          fetch(event.request)
-            .then(networkResponse => {
-              if (networkResponse && networkResponse.status === 200) {
-                const responseToCache = networkResponse.clone();
-                caches.open(IMG_CACHE).then(cache => {
-                  cache.put(event.request, responseToCache);
-                });
-              }
-            })
-            .catch(() => {});
-            
           return cachedResponse;
         }
         
@@ -196,63 +240,81 @@ self.addEventListener('fetch', event => {
   }
 });
 
-// Installer with improved cache handling
-self.addEventListener('install', event => {
-  event.waitUntil(
-    Promise.all([
-      // Cache static assets
-      caches.open(STATIC_CACHE).then(cache => {
-        console.log('Caching static assets');
-        return cache.addAll(STATIC_ASSETS);
-      }),
-      
-      // Cache core pages and assets
-      caches.open(CACHE_NAME).then(cache => {
-        console.log('Pre-caching important assets');
-        return cache.addAll(PRECACHE_URLS);
-      })
-    ])
-  );
-  
-  // Activate right away
-  self.skipWaiting();
-});
-
 // Activator with better cache cleanup
 self.addEventListener('activate', event => {
   const currentCaches = [CACHE_NAME, RUNTIME_CACHE, STATIC_CACHE, IMG_CACHE];
   
+  // Vynutit okamžité převzetí kontroly
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames
-          .filter(cacheName => !currentCaches.includes(cacheName))
-          .map(cacheName => {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
+    Promise.all([
+      // Vyčistit staré cache
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames
+            .filter(cacheName => !currentCaches.includes(cacheName))
+            .map(cacheName => {
+              console.log('Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            })
+        );
+      }),
+      
+      // Vyčistit favicon cache ručně
+      caches.keys().then(names => {
+        return Promise.all(
+          names.map(name => {
+            return caches.open(name).then(cache => {
+              return Promise.all(
+                FAVICON_FILES.map(file => {
+                  return cache.delete(file).then(() => {
+                    return cache.delete(file + '?v=1.0').then(() => {
+                      console.log('Cleared old favicon: ' + file);
+                    });
+                  });
+                })
+              );
+            });
           })
-      );
-    }).then(() => {
-      console.log('Service Worker now active with latest caches');
-      // Take control of clients immediately
-      return self.clients.claim();
-    })
-  );
+        );
+      }),
+      
+      // Převzít kontrolu nad všemi klienty
+      self.clients.claim()
+    ])
+  ).then(() => {
+    console.log('Service Worker now active with latest caches');
+  });
 });
 
 // Add periodic cache cleanup for images (every 7 days)
 self.addEventListener('periodicsync', event => {
   if (event.tag === 'cleanup-old-caches') {
     event.waitUntil(
-      caches.open(IMG_CACHE).then(cache => {
-        cache.keys().then(requests => {
-          // Keep only the most recent 100 images
-          if (requests.length > 100) {
-            const toDelete = requests.slice(0, requests.length - 100);
-            Promise.all(toDelete.map(request => cache.delete(request)));
-          }
-        });
-      })
+      Promise.all([
+        // Čištění image cache
+        caches.open(IMG_CACHE).then(cache => {
+          cache.keys().then(requests => {
+            // Keep only the most recent 100 images
+            if (requests.length > 100) {
+              const toDelete = requests.slice(0, requests.length - 100);
+              Promise.all(toDelete.map(request => cache.delete(request)));
+            }
+          });
+        }),
+        
+        // Vyčistit všechny favicon soubory pro jistotu
+        caches.keys().then(names => {
+          return Promise.all(
+            names.map(name => {
+              return caches.open(name).then(cache => {
+                return Promise.all(
+                  FAVICON_FILES.map(file => cache.delete(file))
+                );
+              });
+            })
+          );
+        })
+      ])
     );
   }
 });

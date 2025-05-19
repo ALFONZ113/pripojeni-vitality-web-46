@@ -28,19 +28,55 @@
     return;
   }
 
+  // Agresivní vyčištění Google cache pro favicon
+  if (supportsCaches) {
+    // Odstranit všechny cached favicon soubory
+    const faviconPaths = [
+      '/favicon.ico', 
+      '/poda-favicon.ico',
+      '/poda-favicon-16x16.png', 
+      '/poda-favicon-32x32.png',
+      '/poda-favicon-48x48.png',
+      '/poda-favicon-192x192.png',
+      '/poda-favicon-512x512.png',
+      '/apple-touch-icon.png',
+      '/poda-apple-touch-icon.png',
+      '/site.webmanifest'
+    ];
+    
+    // Pokus o přímé vyčištění favicon cache
+    caches.keys().then(names => {
+      for (const name of names) {
+        caches.open(name).then(cache => {
+          faviconPaths.forEach(path => {
+            cache.delete(path).then(() => {
+              cache.delete(path + '?v=1.0').then(() => {
+                console.log('Cleared cached favicon: ' + path);
+              });
+            });
+          });
+        });
+      }
+    }).catch(err => console.log('Error clearing cache:', err));
+  }
+
   // Use requestIdleCallback for non-critical registration
   const registerWhenIdle = window.requestIdleCallback || function(cb) {
     setTimeout(cb, 1);
   };
 
   registerWhenIdle(function() {
-    navigator.serviceWorker.register('/service-worker.js?v=1.5.0')
+    // Přidat časový otisk pro agresivní cache-busting
+    const timestamp = Date.now();
+    navigator.serviceWorker.register('/service-worker.js?v=2.0&t=' + timestamp)
       .then(function(registration) {
         console.log('Service Worker registered with scope: ' + registration.scope);
         
-        // Check if we should update the service worker
+        // Vynutit aktualizaci service workera (force update)
         if (registration.active) {
-          registration.update();
+          registration.update().then(() => {
+            console.log('Service worker updated');
+          });
         }
         
         // Set up periodic sync if available (for cache maintenance)
@@ -57,7 +93,7 @@
         console.log('Service Worker registration failed: ', err);
       });
       
-    // Clear old caches
+    // Vyčistit staré cache
     if (supportsCaches) {
       caches.keys().then(function(names) {
         const currentCacheVersions = [
@@ -68,11 +104,8 @@
         ];
         
         names.forEach(function(name) {
-          if (
-            (name.includes('popri-cache') || name.includes('popri-runtime') || 
-            name.includes('popri-static') || name.includes('popri-images')) && 
-            !currentCacheVersions.includes(name)
-          ) {
+          // Agresivnější čištění - odstranit všechny staré cache
+          if (!currentCacheVersions.includes(name)) {
             caches.delete(name).then(function() {
               console.log('Deleted old cache: ' + name);
             });
@@ -88,6 +121,21 @@
     const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
     phoneLinks.forEach(function(link) {
       link.setAttribute('rel', 'noopener');
+    });
+    
+    // Add meta tags to force favicon refresh
+    const metaRefresh = document.createElement('meta');
+    metaRefresh.setAttribute('http-equiv', 'expires');
+    metaRefresh.setAttribute('content', '0');
+    document.head.appendChild(metaRefresh);
+    
+    // Aktualizovat favicon odkazy v run-time
+    const faviconLinks = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]');
+    faviconLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && !href.includes('?')) {
+        link.setAttribute('href', href + '?v=2.0&t=' + Date.now());
+      }
     });
   });
 })();

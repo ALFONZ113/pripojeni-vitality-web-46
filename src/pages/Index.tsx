@@ -124,6 +124,9 @@ const Index = () => {
 
   // Aktuální datum pro dynamickou aktualizaci metadat
   const currentDate = new Date().toISOString().split('T')[0];
+  // Cache buster for favicons
+  const faviconVersion = "2.0";
+  const cacheBuster = Date.now().toString();
 
   return (
     <div className="min-h-screen">
@@ -151,12 +154,20 @@ const Index = () => {
         <meta name="twitter:image" content="https://www.popri.cz/og-image.png" />
         <meta name="last-updated" content={currentDate} />
         
-        {/* Favicon links updated with standard naming conventions for better Google recognition */}
-        <link rel="icon" href="/poda-favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="/poda-favicon-16x16.png" sizes="16x16" type="image/png" />
-        <link rel="icon" href="/poda-favicon-32x32.png" sizes="32x32" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        {/* Cache control for helping overcome Google's aggressive caching */}
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta name="version" content={faviconVersion} />
+        <meta name="cache-version" content={cacheBuster} />
+        
+        {/* Favicon links updated with cache-busting parameters */}
+        <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}&t=${cacheBuster}`} type="image/x-icon" />
+        <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}&t=${cacheBuster}`} sizes="16x16" type="image/png" />
+        <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}&t=${cacheBuster}`} sizes="32x32" type="image/png" />
+        <link rel="icon" href={`/poda-favicon-48x48.png?v=${faviconVersion}&t=${cacheBuster}`} sizes="48x48" type="image/png" />
+        <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}&t=${cacheBuster}`} />
+        <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}&t=${cacheBuster}`} />
 
         {/* Font preloading pro lepší výkon */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />

@@ -3,12 +3,22 @@ import { Link } from 'react-router-dom';
 import { Share2, Bookmark, MessageSquare } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import type { BlogPost } from '../../data/blogPosts';
+import { useEffect, useState } from 'react';
 
 interface BlogPostContentProps {
   post: BlogPost;
 }
 
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
+  const [imageSrc, setImageSrc] = useState<string>(post.image);
+  const [imageError, setImageError] = useState<boolean>(false);
+  
+  useEffect(() => {
+    // Reset image state when post changes
+    setImageSrc(post.image);
+    setImageError(false);
+  }, [post.image]);
+
   const handleShare = async () => {
     try {
       if (navigator.share) {
@@ -34,6 +44,19 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
     }
   };
 
+  const handleImageError = () => {
+    if (imageError) return; // Prevent infinite loop
+    
+    console.error(`Error loading image: ${post.image}`);
+    // Try with full URL if it's a relative path
+    if (post.image.startsWith('/')) {
+      const fullUrl = window.location.origin + post.image;
+      console.log(`Trying with full URL: ${fullUrl}`);
+      setImageSrc(fullUrl);
+    }
+    setImageError(true);
+  };
+
   const formattedDate = post.date.split('. ').reverse().join('-');
 
   return (
@@ -56,16 +79,11 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
       {post.image && (
         <div className="mb-8 rounded-lg overflow-hidden">
           <img 
-            src={post.image} 
+            src={imageSrc} 
             alt={post.alt || post.title} 
             className="w-full h-auto"
             loading="lazy"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              console.error(`Error loading image: ${post.image}`);
-              const fullUrl = window.location.origin + post.image;
-              target.src = fullUrl;
-            }}
+            onError={handleImageError}
           />
         </div>
       )}

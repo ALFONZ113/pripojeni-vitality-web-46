@@ -1,10 +1,10 @@
 // Service Worker pro Popri.cz
-// Verze: 1.5.0 (2025-05-14)
+// Verze: 1.5.1 (2025-05-19)
 
-const CACHE_NAME = 'popri-cache-v1.5.0';
-const RUNTIME_CACHE = 'popri-runtime-v1.5.0';
-const STATIC_CACHE = 'popri-static-v1.5.0';
-const IMG_CACHE = 'popri-images-v1.5.0';
+const CACHE_NAME = 'popri-cache-v1.5.1';
+const RUNTIME_CACHE = 'popri-runtime-v1.5.1';
+const STATIC_CACHE = 'popri-static-v1.5.1';
+const IMG_CACHE = 'popri-images-v1.5.1';
 
 // Soubory, které budou přednostně uloženy do cache
 const PRECACHE_URLS = [
@@ -20,7 +20,8 @@ const PRECACHE_URLS = [
   '/apple-touch-icon.png?v=2.0',
   '/site.webmanifest?v=2.0',
   '/og-image.png',
-  '/placeholder.svg'
+  '/placeholder.svg',
+  '/foto 60hz.webp'  // Pre-cache blog post image
 ];
 
 // Critical CSS/JS files to cache separately with long expiry
@@ -63,8 +64,10 @@ function getCacheStrategy(url) {
     return 'stale-while-revalidate';
   }
   
-  // For image files
-  if (IMAGE_EXTENSIONS.some(ext => pathname.endsWith(ext)) || pathname.includes('/lovable-uploads/')) {
+  // For image files - more aggressive caching
+  if (IMAGE_EXTENSIONS.some(ext => pathname.endsWith(ext)) || 
+      pathname.includes('/lovable-uploads/') ||
+      pathname === '/foto 60hz.webp') {  // Specifically cache this image
     return 'cache-first';
   }
   

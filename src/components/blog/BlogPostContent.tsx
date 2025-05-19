@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Share2, Bookmark, MessageSquare } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
+import { useEffect, useState } from 'react';
 import type { BlogPost } from '../../data/blogPosts';
 
 interface BlogPostContentProps {
@@ -9,6 +10,49 @@ interface BlogPostContentProps {
 }
 
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
+  const [imageSrc, setImageSrc] = useState(post.image);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [errorCount, setErrorCount] = useState(0);
+
+  // Pre-cache and optimize image loading
+  useEffect(() => {
+    // Only run for posts with images
+    if (!post.image) return;
+
+    const preloadImage = new Image();
+    preloadImage.src = post.image;
+    
+    preloadImage.onload = () => {
+      setImageLoaded(true);
+      console.log(`Successfully pre-loaded image: ${post.image}`);
+    };
+    
+    preloadImage.onerror = () => {
+      if (errorCount === 0 && post.image.startsWith('/')) {
+        console.warn(`Failed to pre-load: ${post.image}, trying with full URL`);
+        const fullUrl = window.location.origin + post.image;
+        preloadImage.src = fullUrl;
+        setImageSrc(fullUrl);
+        setErrorCount(1);
+      }
+    };
+
+    // Register image with service worker for caching
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      console.log('Asking service worker to cache blog image');
+      navigator.serviceWorker.controller.postMessage({
+        type: 'CACHE_BLOG_IMAGE',
+        url: post.image
+      });
+    }
+    
+    return () => {
+      // Cleanup
+      preloadImage.onload = null;
+      preloadImage.onerror = null;
+    };
+  }, [post.image]);
+
   const handleShare = async () => {
     try {
       if (navigator.share) {
@@ -34,6 +78,40 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
     }
   };
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.currentTarget;
+    console.warn(`Blog post image error: ${target.src}, attempt: ${errorCount + 1}`);
+    
+    // First attempt - try with full URL
+    if (errorCount === 0) {
+      const fullUrl = window.location.origin + post.image;
+      console.log(`Trying with full URL: ${fullUrl}`);
+      setImageSrc(fullUrl);
+      setErrorCount(1);
+      
+    // Second attempt - try with cache-busting
+    } else if (errorCount === 1) {
+      const cacheBustUrl = `${window.location.origin}${post.image}?t=${new Date().getTime()}`;
+      console.log(`Trying with cache-busting: ${cacheBustUrl}`);
+      setImageSrc(cacheBustUrl);
+      setErrorCount(2);
+      
+    // Final fallback - use placeholder
+    } else {
+      console.error('Failed to load image after multiple attempts');
+      target.onerror = null;
+      target.src = '/placeholder.svg';
+      setErrorCount(3);
+      
+      toast({
+        variant: "warning",
+        title: "Upozornění",
+        description: "Obrázek se nepodařilo načíst",
+        duration: 3000
+      });
+    }
+  };
+
   const formattedDate = post.date.split('. ').reverse().join('-');
 
   return (
@@ -52,21 +130,26 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         </div>
       </div>
       
-      {/* Main blog post image */}
+      {/* Main blog post image with enhanced error handling */}
       {post.image && (
         <div className="mb-8 rounded-lg overflow-hidden">
           <img 
-            src={post.image} 
+            src={imageSrc} 
             alt={post.alt || post.title} 
-            className="w-full h-auto"
-            loading="lazy"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              console.error(`Error loading image: ${post.image}`);
-              const fullUrl = window.location.origin + post.image;
-              target.src = fullUrl;
+            className={`w-full h-auto ${imageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+            loading="eager"
+            fetchPriority="high"
+            onError={handleImageError}
+            onLoad={() => {
+              console.log(`Blog post image loaded: ${post.title}`);
+              setImageLoaded(true);
             }}
           />
+          {!imageLoaded && (
+            <div className="w-full h-64 bg-gray-100 flex items-center justify-center">
+              <div className="animate-pulse">Načítání obrázku...</div>
+            </div>
+          )}
         </div>
       )}
       

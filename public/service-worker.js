@@ -1,10 +1,10 @@
 // Service Worker pro Popri.cz
-// Verze: 1.5.1 (2025-05-19)
+// Verze: 1.5.0 (2025-05-14)
 
-const CACHE_NAME = 'popri-cache-v1.5.1';
-const RUNTIME_CACHE = 'popri-runtime-v1.5.1';
-const STATIC_CACHE = 'popri-static-v1.5.1';
-const IMG_CACHE = 'popri-images-v1.5.1';
+const CACHE_NAME = 'popri-cache-v1.5.0';
+const RUNTIME_CACHE = 'popri-runtime-v1.5.0';
+const STATIC_CACHE = 'popri-static-v1.5.0';
+const IMG_CACHE = 'popri-images-v1.5.0';
 
 // Soubory, které budou přednostně uloženy do cache
 const PRECACHE_URLS = [
@@ -20,8 +20,7 @@ const PRECACHE_URLS = [
   '/apple-touch-icon.png?v=2.0',
   '/site.webmanifest?v=2.0',
   '/og-image.png',
-  '/placeholder.svg',
-  '/foto 60hz.webp' // Přidaný obrázek k předběžnému cachování
+  '/placeholder.svg'
 ];
 
 // Critical CSS/JS files to cache separately with long expiry
@@ -32,14 +31,6 @@ const STATIC_ASSETS = [
 
 // Image files to cache with a different strategy
 const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif', '.ico'];
-
-// Blog images to prioritize caching
-const BLOG_IMAGES = [
-  '/foto 60hz.webp',
-  '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
-  '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
-  '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_Visual_Conce_2.webp'
-];
 
 // Funkce pro detekci vyhledávacích botů
 function isSearchBot(request) {
@@ -67,11 +58,6 @@ function getCacheStrategy(url) {
     return 'network-first';
   }
   
-  // For blog images with highest priority
-  if (BLOG_IMAGES.some(img => pathname.includes(img))) {
-    return 'cache-first-aggressive';
-  }
-  
   // For static assets (JS, CSS)
   if (STATIC_ASSETS.some(asset => pathname.includes(asset))) {
     return 'stale-while-revalidate';
@@ -86,58 +72,6 @@ function getCacheStrategy(url) {
   return 'network-first';
 }
 
-// Cache a specific image immediately
-function cacheImage(imageUrl) {
-  caches.open(IMG_CACHE).then(cache => {
-    fetch(imageUrl, { cache: 'reload' })
-      .then(response => {
-        if (response.ok) {
-          cache.put(imageUrl, response);
-          console.log(`Service worker: Cached image ${imageUrl}`);
-        }
-      })
-      .catch(error => {
-        console.error(`Service worker: Failed to cache ${imageUrl}`, error);
-      });
-  });
-}
-
-// Immediately cache blog images
-self.addEventListener('install', event => {
-  event.waitUntil(
-    Promise.all([
-      // Cache static assets
-      caches.open(STATIC_CACHE).then(cache => {
-        console.log('Caching static assets');
-        return cache.addAll(STATIC_ASSETS);
-      }),
-      
-      // Cache core pages and assets
-      caches.open(CACHE_NAME).then(cache => {
-        console.log('Pre-caching important assets');
-        return cache.addAll(PRECACHE_URLS);
-      }),
-      
-      // Cache blog images separately with highest priority
-      caches.open(IMG_CACHE).then(cache => {
-        console.log('Pre-caching blog images');
-        
-        // Create array of URLs with both relative and absolute paths
-        const imageUrls = BLOG_IMAGES.flatMap(img => {
-          const url = new URL(self.location.origin);
-          url.pathname = img;
-          return [img, url.toString()];
-        });
-        
-        return cache.addAll(imageUrls);
-      })
-    ])
-  );
-  
-  // Activate right away
-  self.skipWaiting();
-});
-
 // Core fetch handling with improved strategies
 self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
@@ -145,35 +79,6 @@ self.addEventListener('fetch', event => {
   // Kontrola zda se jedná o vyhledávací bot
   if (isSearchBot(event.request)) {
     // Pro vyhledávací boty necachuji, jdu přímo na síť
-    return;
-  }
-  
-  // Special handling for blog images
-  if (BLOG_IMAGES.some(img => requestUrl.pathname.includes(img))) {
-    event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        // If we have it in cache, return immediately
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        
-        // Otherwise fetch from network, cache, and return
-        return fetch(event.request).then(networkResponse => {
-          if (networkResponse && networkResponse.status === 200) {
-            const responseToCache = networkResponse.clone();
-            caches.open(IMG_CACHE).then(cache => {
-              cache.put(event.request, responseToCache);
-              console.log(`Cached blog image: ${requestUrl.pathname}`);
-            });
-          }
-          return networkResponse;
-        }).catch(error => {
-          console.error(`Failed to fetch ${requestUrl.pathname}:`, error);
-          // If all else fails, try to return a placeholder
-          return caches.match('/placeholder.svg');
-        });
-      })
-    );
     return;
   }
   
@@ -210,36 +115,7 @@ self.addEventListener('fetch', event => {
   // Get strategy based on request type
   const strategy = getCacheStrategy(event.request.url);
   
-  if (strategy === 'cache-first-aggressive') {
-    // Extra aggressive caching for critical blog images
-    event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        if (cachedResponse) {
-          // Return cached response immediately
-          return cachedResponse;
-        }
-        
-        // If not in cache, try network then cache aggressively
-        return fetch(event.request).then(networkResponse => {
-          if (!networkResponse || networkResponse.status !== 200) {
-            return networkResponse;
-          }
-          
-          const responseToCache = networkResponse.clone();
-          caches.open(IMG_CACHE).then(cache => {
-            cache.put(event.request, responseToCache);
-            console.log(`Cached critical image: ${requestUrl.pathname}`);
-          });
-          
-          return networkResponse;
-        }).catch(() => {
-          console.error(`Failed to fetch ${requestUrl.pathname}`);
-          // Try to return placeholder as last resort
-          return caches.match('/placeholder.svg');
-        });
-      })
-    );
-  } else if (strategy === 'stale-while-revalidate') {
+  if (strategy === 'stale-while-revalidate') {
     // Stale-While-Revalidate: Use cache but update in background
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
@@ -320,24 +196,26 @@ self.addEventListener('fetch', event => {
   }
 });
 
-// Listen for messages from clients
-self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'CACHE_BLOG_IMAGE') {
-    const imageUrl = event.data.url;
-    console.log(`Service worker received request to cache: ${imageUrl}`);
-    
-    // If it's a relative URL, make it absolute
-    const absoluteUrl = imageUrl.startsWith('/') && !imageUrl.startsWith('//') 
-      ? self.location.origin + imageUrl 
-      : imageUrl;
+// Installer with improved cache handling
+self.addEventListener('install', event => {
+  event.waitUntil(
+    Promise.all([
+      // Cache static assets
+      caches.open(STATIC_CACHE).then(cache => {
+        console.log('Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
+      }),
       
-    cacheImage(absoluteUrl);
-    
-    // Also cache potential variations
-    if (imageUrl.startsWith('/')) {
-      cacheImage(imageUrl); // Cache relative URL too
-    }
-  }
+      // Cache core pages and assets
+      caches.open(CACHE_NAME).then(cache => {
+        console.log('Pre-caching important assets');
+        return cache.addAll(PRECACHE_URLS);
+      })
+    ])
+  );
+  
+  // Activate right away
+  self.skipWaiting();
 });
 
 // Activator with better cache cleanup

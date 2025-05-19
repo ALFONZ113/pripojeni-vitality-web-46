@@ -13,14 +13,6 @@ export const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>, fall
   const target = e.currentTarget;
   console.warn(`Failed to load image: ${target.src}`);
   
-  // Try with full URL if it's a relative path
-  if (target.src.startsWith(window.location.origin) === false && target.src.startsWith('/')) {
-    console.log(`Trying with full URL for ${target.src}`);
-    const fullUrl = window.location.origin + target.src;
-    target.src = fullUrl;
-    return;
-  }
-  
   // Set a tiny timeout to prevent error cascade and improve perceived performance
   setTimeout(() => {
     target.src = fallbackPath;
@@ -46,12 +38,8 @@ export const responsiveImageProps = (
   height?: number,
   priority: boolean = false
 ) => {
-  // For local static images, ensure proper path resolution
-  const imageSrc = src.startsWith('/') && !src.startsWith('//') ? 
-    `${window.location.origin}${src}` : src;
-    
   return {
-    src: imageSrc,
+    src,
     alt: alt || '',
     loading: priority ? 'eager' as const : 'lazy' as const,
     width: width ?? undefined,
@@ -74,36 +62,8 @@ export const preloadCriticalImages = (imagePaths: string[]) => {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
-    link.href = path.startsWith('/') ? window.location.origin + path : path;
+    link.href = path;
     link.fetchPriority = 'high';
     document.head.appendChild(link);
   });
-};
-
-/**
- * Ensures consistent image URL format across the application
- * @param path - The image path
- * @returns The properly formatted image URL
- */
-export const getImageUrl = (path: string): string => {
-  if (!path) return '/placeholder.svg';
-  
-  // External URL
-  if (path.startsWith('http')) return path;
-  
-  // Local path
-  return path.startsWith('/') ? path : `/${path}`;
-};
-
-/**
- * Register an image with the service worker for caching
- * @param imagePath - Path to the image
- */
-export const registerImageForCache = (imagePath: string): void => {
-  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage({
-      type: 'CACHE_IMAGE',
-      url: imagePath
-    });
-  }
 };

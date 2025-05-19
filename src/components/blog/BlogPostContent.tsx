@@ -104,7 +104,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
       setErrorCount(3);
       
       toast({
-        variant: "warning",
+        variant: "destructive",
         title: "Upozornění",
         description: "Obrázek se nepodařilo načíst",
         duration: 3000

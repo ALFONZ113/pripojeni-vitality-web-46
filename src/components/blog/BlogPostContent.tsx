@@ -52,6 +52,24 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         </div>
       </div>
       
+      {/* Main blog post image */}
+      {post.image && (
+        <div className="mb-8 rounded-lg overflow-hidden">
+          <img 
+            src={post.image} 
+            alt={post.alt || post.title} 
+            className="w-full h-auto"
+            loading="lazy"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              console.error(`Error loading image: ${post.image}`);
+              const fullUrl = window.location.origin + post.image;
+              target.src = fullUrl;
+            }}
+          />
+        </div>
+      )}
+      
       <article className="prose prose-lg max-w-none">
         <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>

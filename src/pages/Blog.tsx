@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { blogPosts } from '../data/blogPosts';
+import { blogPosts, categories } from '../data/blog';
 import BlogSearch from '../components/blog/BlogSearch';
 import BlogCategories from '../components/blog/BlogCategories';
 import BlogList from '../components/blog/BlogList';

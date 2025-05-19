@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
-import type { BlogPost } from '../../data/blogPosts';
+import type { BlogPost } from '../../data/blog/types';
 import { handleImageError } from '../../utils/imageUtils';
 
 interface BlogCardProps {

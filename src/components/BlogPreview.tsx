@@ -1,7 +1,7 @@
 
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../data/blogPosts';
+import { blogPosts } from '../data/blog';
 import { responsiveImageProps } from '../utils/imageUtils';
 
 const BlogPreview = () => {

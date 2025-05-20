@@ -33,6 +33,32 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
       });
     }
   };
+  
+  const handleSave = () => {
+    // Implementace funkcionaliy pro ukládání článků
+    const savedPosts = JSON.parse(localStorage.getItem('savedPosts') || '[]');
+    
+    // Zkontrolujeme, zda už článek není uložený
+    const isAlreadySaved = savedPosts.some((savedPost: number) => savedPost === post.id);
+    
+    if (isAlreadySaved) {
+      // Pokud je článek již uložen, odstraníme ho
+      const updatedSavedPosts = savedPosts.filter((savedPost: number) => savedPost !== post.id);
+      localStorage.setItem('savedPosts', JSON.stringify(updatedSavedPosts));
+      toast({
+        description: 'Článek byl odebrán z uložených',
+        duration: 2000
+      });
+    } else {
+      // Pokud není uložen, přidáme ho
+      savedPosts.push(post.id);
+      localStorage.setItem('savedPosts', JSON.stringify(savedPosts));
+      toast({
+        description: 'Článek byl uložen',
+        duration: 2000
+      });
+    }
+  };
 
   const formattedDate = post.date.split('. ').reverse().join('-');
 
@@ -52,7 +78,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         </div>
       </div>
       
-      <article className="prose prose-lg max-w-none">
+      <article className="prose prose-lg max-w-none prose-headings:text-poda-blue prose-img:rounded-lg prose-img:shadow-md prose-a:text-poda-blue hover:prose-a:text-poda-orange prose-blockquote:border-l-poda-blue prose-blockquote:text-gray-600 prose-blockquote:bg-blue-50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg">
         <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
       
@@ -68,6 +94,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
           </button>
           <button 
             className="inline-flex items-center text-gray-500 hover:text-poda-blue transition-colors"
+            onClick={handleSave}
             aria-label="Uložit článek"
           >
             <Bookmark className="h-5 w-5 mr-2" />

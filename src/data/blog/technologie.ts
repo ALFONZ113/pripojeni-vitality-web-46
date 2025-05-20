@@ -1,7 +1,98 @@
-
 import { BlogPost } from './types';
 
 export const technologiePosts: BlogPost[] = [
+  {
+    id: 101,
+    title: "Nejlepší internet v Ostravě: Spolehlivé a rychlé připojení pro rok 2025",
+    excerpt: "Hledáte kvalitní internetové připojení v Ostravě s optimálním poměrem ceny a výkonu? Ostrava nabízí různé možnosti od optického internetu až po bezdrátová řešení. Zjistěte, jaké jsou vaše možnosti a proč je portál Popri.cz tou nejlepší volbou pro zajištění špičkového připojení.",
+    content: `
+      <h2>Exkluzivní výhody internetu od Popri.cz</h2>
+      <p>Portál Popri.cz přináší obyvatelům Ostravy výjimečnou nabídku v podobě optického připojení od společnosti PODA s rychlostí až 1 Gb/s. Toto připojení nabízí:</p>
+      <ul>
+        <li>Garantovanou stabilitu i za nepříznivého počasí</li>
+        <li>Vysokorychlostní připojení bez datových limitů</li>
+        <li>Rychlou instalaci zdarma přímo do vašeho bytu nebo domu</li>
+        <li>Televizi s více než 160 kanály jako součást výhodných balíčků</li>
+      </ul>
+      <p>Podle recenzí zákazníků je internetové připojení přes portál Popri.cz vysoce spolehlivé a vyznačuje se vynikající stabilitou i při využití více zařízeními současně.</p>
+      <blockquote>
+        <p>"V novém bytě jsem zvolil internet od PODY a určitě nelituji. Stabilní a superrychlé připojení za dobrou cenu," uvádí jeden ze spokojených zákazníků.</p>
+      </blockquote>
+      
+      <div class="my-8">
+        <img src="/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png" alt="Nejlepší internet v Ostravě - 2000 mb/s" class="rounded-lg w-full shadow-lg" />
+        <p class="text-sm text-gray-500 mt-2 text-center">Nejrychlejší internetové připojení v Ostravě umožňuje efektivní práci z domova</p>
+      </div>
+      
+      <h2>Přehled dostupných technologií internetu v Ostravě</h2>
+      <p>V Ostravě máte na výběr z několika typů internetového připojení:</p>
+      
+      <h3>Optický internet</h3>
+      <ul>
+        <li>Rychlosti až 1000/1000 Mb/s</li>
+        <li>Ceny začínající na 249 Kč měsíčně</li>
+        <li>Ideální pro domácnosti s více připojenými zařízeními</li>
+      </ul>
+      
+      <h3>Bezdrátové připojení</h3>
+      <ul>
+        <li>Rychlosti až 300 Mb/s</li>
+        <li>Dostupné od 250 Kč měsíčně</li>
+        <li>Vhodné pro lokality bez kabelové infrastruktury</li>
+      </ul>
+      
+      <h3>DSL připojení</h3>
+      <ul>
+        <li>Připojení po telefonní lince</li>
+        <li>Od 199 Kč měsíčně</li>
+        <li>Široká dostupnost v celé Ostravě</li>
+      </ul>
+      
+      <h3>5G internet</h3>
+      <ul>
+        <li>Rychlosti srovnatelné s optickým připojením</li>
+        <li>Od 345 Kč měsíčně</li>
+        <li>Moderní technologie bez nutnosti kabeláže</li>
+      </ul>
+      
+      <h2>Srovnání internetových poskytovatelů v Ostravě</h2>
+      <p>Na trhu v Ostravě působí několik poskytovatelů internetu, přičemž portál Popri.cz nabízející služby PODA vyniká v několika klíčových aspektech:</p>
+      
+      <h3>Rychlost a stabilita:</h3>
+      <p>PODA přes portál Popri.cz poskytuje rychlosti až 1 Gb/s s minimálními výpadky i za nepříznivého počasí.</p>
+      
+      <h3>Zákaznická podpora:</h3>
+      <p>Zákazníci oceňují profesionální přístup při instalaci a řešení případných technických problémů.</p>
+      
+      <h3>Flexibilita služeb:</h3>
+      <p>Možnost volby mezi různými tarify a kombinace s televizními službami přes aplikaci PODA net.TV.</p>
+      
+      <p>T-Mobile nabízí rychlosti do 1000 Mb/s s cenou od 299 Kč po dobu prvních 6 měsíců, zatímco další poskytovatelé jako Avonet nabízejí připojení s rychlostí až 2000/1000 Mb/s.</p>
+      
+      <h2>Jak vybrat ideální internetové připojení v Ostravě</h2>
+      <p>Při výběru internetového připojení v Ostravě doporučujeme zohlednit několik faktorů:</p>
+      <ul>
+        <li>Ověřte dostupnost služeb na vaší konkrétní adrese - Popri.cz nabízí snadné ověření dostupnosti</li>
+        <li>Zvažte své požadavky na rychlost a stabilitu připojení</li>
+        <li>Porovnejte ceny různých poskytovatelů vzhledem k nabízeným službám</li>
+        <li>Prostudujte recenze zákazníků - PODA prostřednictvím Popri.cz má velmi pozitivní hodnocení</li>
+        <li>Informujte se o doplňkových službách jako je televizní vysílání nebo mobilní tarify</li>
+      </ul>
+      
+      <h2>Proč zvolit internet přes Popri.cz</h2>
+      <p>Portál Popri.cz nabízí exkluzivní přístup k špičkovému optickému připojení od společnosti PODA, které se vyznačuje mimořádnou stabilitou, vysokou rychlostí a příznivou cenou. Zákazníci oceňují především spolehlivost připojení i v případě náročnějšího využití, jako je streamování, hraní online her nebo práce z domova.</p>
+      
+      <p>Pro obyvatele Ostravy představuje Popri.cz ideální řešení, jak získat kvalitní internetové připojení s množstvím výhod včetně televizních služeb a možnosti výběru různých tarifů podle individuálních potřeb.</p>
+      
+      <p>Ověřte si dostupnost připojení na vaší adrese ještě dnes a připojte se k tisícům spokojených zákazníků využívajících vysoce kvalitní internetové služby v Ostravě.</p>
+    `,
+    date: "20. 5. 2025",
+    author: "Adam Otisk",
+    category: "Technologie",
+    image: "/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png",
+    alt: "Nejlepší internet v Ostravě - osoba pracující na počítači s dvěma monitory",
+    tags: ["Internet", "Ostrava", "PODA", "Optické připojení", "Rychlý internet"]
+  },
   {
     id: 8,
     title: '60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie',

@@ -1,0 +1,16 @@
+
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "PODA Internet od Popri.cz",
+  "serviceType": "Internet Service Provider",
+  "provider": {
+    "@type": "Organization",
+    "name": "Popri.cz"
+  },
+  "description": "Spolehlivé PODA připojení k internetu s rychlostí až 1000 Mbps a TV zdarma",
+  "offers": {
+    "@type": "Offer",
+    "description": "Gigabitový optický internet s rychlostí až 1000/1000 Mbps a chytrou TV zdarma"
+  }
+}

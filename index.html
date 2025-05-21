@@ -1,26 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Popri.cz – Rychlý PODA Internet s TV Zdarma | Gigabitové Připojení</title>
+    
+    <!-- Primary Meta Tags -->
     <meta name="description" content="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace." />
     <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava" />
     <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
     <meta name="robots" content="index, follow" />
-    
-    <!-- Seznam.cz verification tag -->
     <meta name="seznam-wmt" content="TZXj7ilgwfcAOewRproL3dFn9jTDd15R" />
+    <meta name="google" content="notranslate">
+    <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
+    <meta name="format-detection" content="telephone=yes">
     
-    <!-- Cache control meta tags with improved values -->
+    <!-- Cache control meta tags -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta name="version" content="1.4.0" />
     <meta name="cache-version" content="1747228116549" />
     
-    <!-- Canonical URL - vždy směřuje na www verzi -->
+    <!-- Canonical URLs -->
     <link rel="canonical" href="https://www.popri.cz/" />
+    <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     
     <!-- Open Graph Tags -->
     <meta property="og:type" content="website" />
@@ -37,7 +43,7 @@
     <meta name="twitter:description" content="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace." />
     <meta name="twitter:image" content="https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" />
     
-    <!-- Favicon configuration updated with versioned cache-busting -->
+    <!-- Favicon configuration -->
     <link rel="icon" href="/poda-favicon.ico?v=2.0" type="image/x-icon">
     <link rel="icon" href="/poda-favicon-16x16.png?v=2.0" sizes="16x16" type="image/png">
     <link rel="icon" href="/poda-favicon-32x32.png?v=2.0" sizes="32x32" type="image/png">
@@ -45,276 +51,57 @@
     <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png?v=2.0">
     <link rel="manifest" href="/site.webmanifest?v=2.0">
     
-    <!-- Google-specific verification tags -->
-    <meta name="google" content="notranslate">
-    <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
-    
-    <!-- Google Search Console preferred domain hint -->
-    <link rel="canonical" href="https://www.popri.cz/" />
-    
-    <!-- Mapy.cz API -->
-    <script src="https://api.mapy.cz/loader.js"></script>
-    <script>
-      window.addEventListener('load', function() {
-        Loader.load(null, {
-          apiKey: '99CljcS9lbvcstE5'
-        });
-      });
-    </script>
-    
-    <!-- Font preloading for better performance -->
+    <!-- Font preloading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap">
     
-    <!-- Sitemap reference - consolidated -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    
-    <!-- Preload critical CSS for non-JS users -->
+    <!-- Preload critical resources -->
     <link rel="preload" href="/assets/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/index.css"></noscript>
-    
-    <!-- Schema.org markup using JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Popri.cz - PODA Internet",
-        "url": "https://www.popri.cz",
-        "logo": "https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
-        "description": "Poskytovatel rychlého optického internetu PODA s garantovanou rychlostí až 1000 Mbps a TV zdarma",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+420730431313",
-          "contactType": "sales",
-          "availableLanguage": "Czech"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Ostrava - Poruba",
-          "postalCode": "708 00",
-          "streetAddress": "Porubská 944/5",
-          "addressCountry": "CZ"
-        },
-        "sameAs": [
-          "https://www.facebook.com/podacz/",
-          "https://www.instagram.com/poda.cz/",
-          "https://www.linkedin.com/company/poda-a-s-/"
-        ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "PODA Internet od Popri.cz",
-        "serviceType": "Internet Service Provider",
-        "provider": {
-          "@type": "Organization",
-          "name": "Popri.cz"
-        },
-        "description": "Spolehlivé PODA připojení k internetu s rychlostí až 1000 Mbps a TV zdarma",
-        "offers": {
-          "@type": "Offer",
-          "description": "Gigabitový optický internet s rychlostí až 1000/1000 Mbps a chytrou TV zdarma"
-        }
-      }
-    </script>
-    
-    <!-- Lovable script tag for new features -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    
-    <!-- Google tag (gtag.js) - optimized deferred loading -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-B56HVH7E5R', { 'send_page_view': false });
-      
-      // Delayed loading of analytics
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var script = document.createElement('script');
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-B56HVH7E5R';
-          script.async = true;
-          document.head.appendChild(script);
-          
-          gtag('event', 'page_view');
-        }, 1000);
-      });
-    </script>
-    
-    <!-- Preload critical resources for performance -->
     <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" width="256" height="256">
     <link rel="preload" as="image" href="/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" fetchpriority="low" width="512" height="512">
-
-    <!-- Meta tag to enable native phone call handling -->
-    <meta name="format-detection" content="telephone=yes">
     
-    <!-- Alternate link for non-www version -->
-    <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
+    <!-- NoScript CSS -->
+    <link rel="stylesheet" href="/css/noscript.css">
     
-    <!-- Cache control optimization with versioning -->
-    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-
-    <!-- Simple CSS for no-JS fallback -->
-    <style>
-      .noscript-container { font-family: 'Inter', sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
-      .noscript-header { text-align: center; margin-bottom: 30px; }
-      .noscript-logo { max-width: 200px; height: auto; margin-bottom: 15px; }
-      .noscript-title { color: #0066cc; font-size: 24px; margin-bottom: 10px; }
-      .noscript-subtitle { color: #ff6600; font-size: 18px; margin-bottom: 20px; }
-      .noscript-section { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-      .noscript-tariff { border: 1px solid #ddd; border-radius: 10px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9; }
-      .noscript-tariff h3 { color: #0066cc; margin-top: 0; }
-      .noscript-tariff-price { color: #ff6600; font-weight: bold; font-size: 20px; }
-      .noscript-feature { display: flex; margin-bottom: 10px; }
-      .noscript-feature-check { color: #ff6600; margin-right: 10px; }
-      .noscript-contact { background-color: #f0f7ff; padding: 20px; border-radius: 10px; }
-      .noscript-phone { display: block; font-size: 22px; color: #0066cc; font-weight: bold; margin: 10px 0; }
-      .noscript-button { background-color: #ff6600; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
-      
-      /* Styles for Mapy.cz suggestions */
-      .smap-suggest {
-        border: 1px solid #e2e8f0;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        background-color: white;
-        z-index: 100;
-        max-height: 250px;
-        overflow-y: auto;
-      }
-      
-      .smap-suggest-item {
-        padding: 0.75rem 1rem;
-        cursor: pointer;
-        border-bottom: 1px solid #f0f0f0;
-      }
-      
-      .smap-suggest-item:hover,
-      .smap-suggest-item:focus {
-        background-color: #f7fafc;
-      }
-      
-      .smap-suggest-item.active {
-        background-color: #ebf4ff;
-      }
-    </style>
+    <!-- External APIs -->
+    <script src="https://api.mapy.cz/loader.js"></script>
+    <script src="/js/mapy-loader.js"></script>
+    
+    <!-- Schema.org markup using JSON-LD -->
+    <script type="application/ld+json" src="/json/schema-organization.json"></script>
+    <script type="application/ld+json" src="/json/schema-service.json"></script>
+    
+    <!-- Lovable script tag -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <!-- Analytics (deferred) -->
+    <script src="/js/analytics.js"></script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Přidání registrace service workeru pro lepší indexaci -->
+    <!-- Service worker registration -->
     <script src="/sw-register.js?v=2.0"></script>
     
-    <!-- Enhanced fallback for users without JavaScript -->
+    <!-- NoScript fallback -->
     <noscript>
-      <div class="noscript-container">
-        <div class="noscript-header">
-          <img src="/poda-logo.svg" alt="PODA Logo" class="noscript-logo" width="150" height="70">
-          <h1 class="noscript-title">Popri.cz - PODA Internet</h1>
-          <p class="noscript-subtitle">Rychlý internet s TV zdarma</p>
-        </div>
-        
-        <div class="noscript-section">
-          <h2>Naše internetové tarify</h2>
-          
-          <h3>Pro byty:</h3>
-          <div class="noscript-tariff">
-            <h3>Internet + TV Basic</h3>
-            <p class="noscript-tariff-price">250 Kč měsíčně + 50 Kč za zařízení</p>
-            <div class="noscript-feature">
-              <span class="noscript-feature-check">✓</span>
-              <div>
-                <strong>Internet 1000/1000 Mbps</strong>
-                <p>Symetrická rychlost pomocí GPON technologie</p>
-              </div>
-            </div>
-            <div class="noscript-feature">
-              <span class="noscript-feature-check">✓</span>
-              <div>
-                <strong>Více než 85 TV programů</strong>
-                <p>Automaticky v ceně</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="noscript-tariff">
-            <h3>Internet + TV Mých 10</h3>
-            <p class="noscript-tariff-price">390 Kč měsíčně + 50 Kč za zařízení</p>
-            <div class="noscript-feature">
-              <span class="noscript-feature-check">✓</span>
-              <div>
-                <strong>Internet 1000/1000 Mbps</strong>
-                <p>Symetrická rychlost pomocí GPON technologie</p>
-              </div>
-            </div>
-            <div class="noscript-feature">
-              <span class="noscript-feature-check">✓</span>
-              <div>
-                <strong>Více než 100 TV programů</strong>
-                <p>Možnost výběru 10 vlastních stanic</p>
-              </div>
-            </div>
-          </div>
-          
-          <h3>Pro domy:</h3>
-          <div class="noscript-tariff">
-            <h3>Internet + TV Basic</h3>
-            <p class="noscript-tariff-price">250 Kč měsíčně + 50 Kč za zařízení</p>
-            <div class="noscript-feature">
-              <span class="noscript-feature-check">✓</span>
-              <div>
-                <strong>Internet 500/200 Mbps</strong>
-                <p>Bezdrátový internet s rychlostí optického</p>
-              </div>
-            </div>
-            <div class="noscript-feature">
-              <span class="noscript-feature-check">✓</span>
-              <div>
-                <strong>Více než 85 TV programů</strong>
-                <p>Automaticky v ceně</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="noscript-section">
-          <h2>Proč zvolit internet od Popri.cz</h2>
-          <div class="noscript-feature">
-            <span class="noscript-feature-check">✓</span>
-            <div>
-              <strong>Rychlý optický internet</strong>
-              <p>PODA připojení od Popri.cz s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost</p>
-            </div>
-          </div>
-          <div class="noscript-feature">
-            <span class="noscript-feature-check">✓</span>
-            <div>
-              <strong>Chytrá televize</strong>
-              <p>S Popri.cz získáte více než 100 TV programů, sledování na všech zařízeních a vlastní výběr stanic</p>
-            </div>
-          </div>
-          <div class="noscript-feature">
-            <span class="noscript-feature-check">✓</span>
-            <div>
-              <strong>Moderní technologie</strong>
-              <p>Optická síť GPON od PODA zajišťuje maximální stabilitu a komfort bez kompromisů</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="noscript-contact">
-          <h2>Kontaktujte nás</h2>
-          <p>Pro objednání služeb nebo získání dalších informací nás neváhejte kontaktovat:</p>
-          <a href="tel:+420730431313" class="noscript-phone">+420 730 431 313</a>
-          <p><strong>Email:</strong> info@popri.cz</p>
-          <p><strong>Adresa:</strong> Ostrava - Poruba, Porubská 944/5, 708 00</p>
-          <p>Provozováno obchodním zástupcem společnosti PODA, Milan Terč, IČO: 75546230</p>
-        </div>
-      </div>
+      <div id="noscript-content"></div>
+      <script>
+        // This won't execute if JavaScript is disabled, but it's good practice
+        document.addEventListener('DOMContentLoaded', function() {
+          fetch('/html/noscript.html')
+            .then(response => response.text())
+            .then(html => {
+              document.getElementById('noscript-content').innerHTML = html;
+            });
+        });
+      </script>
+      <!-- Fallback for the fallback -->
+      <iframe src="/html/noscript.html" style="width: 100%; height: 100vh; border: none;"></iframe>
     </noscript>
   </body>
 </html>

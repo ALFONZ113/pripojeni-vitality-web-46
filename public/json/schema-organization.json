@@ -1,0 +1,27 @@
+
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Popri.cz - PODA Internet",
+  "url": "https://www.popri.cz",
+  "logo": "https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+  "description": "Poskytovatel rychlého optického internetu PODA s garantovanou rychlostí až 1000 Mbps a TV zdarma",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+420730431313",
+    "contactType": "sales",
+    "availableLanguage": "Czech"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ostrava - Poruba",
+    "postalCode": "708 00",
+    "streetAddress": "Porubská 944/5",
+    "addressCountry": "CZ"
+  },
+  "sameAs": [
+    "https://www.facebook.com/podacz/",
+    "https://www.instagram.com/poda.cz/",
+    "https://www.linkedin.com/company/poda-a-s-/"
+  ]
+}

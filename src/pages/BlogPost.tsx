@@ -75,7 +75,7 @@ const BlogPost = () => {
   const postDate = post.date.split('. ').reverse().join('-');
   const postImage = post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`;
   
-  // Strukturovaná data pro článek
+  // Vylepšená strukturovaná data pro článek
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -91,8 +91,16 @@ const BlogPost = () => {
       "name": "Popri.cz",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.popri.cz/poda-logo.svg"
-      }
+        "url": "https://www.popri.cz/poda-logo.svg",
+        "width": "200",
+        "height": "70"
+      },
+      "url": "https://www.popri.cz",
+      "sameAs": [
+        "https://www.facebook.com/podacz/",
+        "https://www.instagram.com/poda.cz/",
+        "https://www.linkedin.com/company/poda-a-s-/"
+      ]
     },
     "datePublished": postDate,
     "dateModified": postDate,
@@ -100,7 +108,11 @@ const BlogPost = () => {
       "@type": "WebPage",
       "@id": canonicalUrl
     },
-    "keywords": post.tags?.join(', ') || post.category
+    "keywords": post.tags?.join(', ') || post.category,
+    "articleSection": post.category,
+    "inLanguage": "cs-CZ",
+    "copyrightYear": new Date(postDate).getFullYear(),
+    "isAccessibleForFree": "True"
   };
 
   // Nějlépe SEO optimalizovaná metadata

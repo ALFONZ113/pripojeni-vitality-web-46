@@ -10,22 +10,32 @@ interface BlogPostHeaderProps {
 const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
   // Format date for datetime attribute
   const formattedDate = post.date.split('. ').reverse().join('-');
+  const currentUrl = window.location.href;
+  const baseUrl = window.location.origin;
   
   return (
     <section className="section-padding pt-10 pb-12 bg-gradient-to-b from-white to-blue-50">
       <div className="container-custom">
-        <nav className="flex mb-6 text-sm text-gray-500" aria-label="Breadcrumb">
+        <nav className="flex mb-6 text-sm text-gray-500" aria-label="Breadcrumb" itemScope itemType="https://schema.org/BreadcrumbList">
           <ol className="inline-flex items-center space-x-1 md:space-x-2">
-            <li className="inline-flex items-center">
-              <Link to="/" className="hover:text-poda-blue">Úvod</Link>
+            <li className="inline-flex items-center" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <Link to="/" itemProp="item" className="hover:text-poda-blue">
+                <span itemProp="name">Úvod</span>
+              </Link>
+              <meta itemProp="position" content="1" />
             </li>
-            <li className="flex items-center">
+            <li className="flex items-center" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <span className="mx-1">/</span>
-              <Link to="/blog" className="hover:text-poda-blue">Blog</Link>
+              <Link to="/blog" itemProp="item" className="hover:text-poda-blue">
+                <span itemProp="name">Blog</span>
+              </Link>
+              <meta itemProp="position" content="2" />
             </li>
-            <li className="flex items-center">
+            <li className="flex items-center" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <span className="mx-1">/</span>
-              <span className="text-gray-700 truncate max-w-[200px]">{post.title}</span>
+              <span className="text-gray-700 truncate max-w-[200px]" itemProp="name">{post.title}</span>
+              <meta itemProp="position" content="3" />
+              <link itemProp="item" href={currentUrl} />
             </li>
           </ol>
         </nav>

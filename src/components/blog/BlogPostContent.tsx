@@ -3,12 +3,21 @@ import { Link } from 'react-router-dom';
 import { Share2, Bookmark, MessageSquare } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import type { BlogPost } from '../../data/blog/types';
+import { useState, useEffect } from 'react';
 
 interface BlogPostContentProps {
   post: BlogPost;
 }
 
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
+  const [isSaved, setIsSaved] = useState(false);
+  
+  // Zkontrolujeme, zda je článek uložen při načtení komponenty
+  useEffect(() => {
+    const savedPosts = JSON.parse(localStorage.getItem('savedPosts') || '[]');
+    setIsSaved(savedPosts.some((savedPost: number) => savedPost === post.id));
+  }, [post.id]);
+
   const handleShare = async () => {
     try {
       if (navigator.share) {
@@ -49,6 +58,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         description: 'Článek byl odebrán z uložených',
         duration: 2000
       });
+      setIsSaved(false);
     } else {
       // Pokud není uložen, přidáme ho
       savedPosts.push(post.id);
@@ -57,25 +67,40 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         description: 'Článek byl uložen',
         duration: 2000
       });
+      setIsSaved(true);
     }
   };
 
-  const formattedDate = post.date.split('. ').reverse().join('-');
+  // Formátujeme datum pro schema.org kompatibilitu
+  const formatDateForSchema = (dateStr: string) => {
+    // Předpokládáme formát "DD. MM. YYYY"
+    return dateStr.split('. ').reverse().join('-');
+  };
+
+  const formattedDate = formatDateForSchema(post.date);
+  const currentUrl = window.location.href;
+  const baseUrl = window.location.origin;
 
   return (
     <div className="lg:col-span-8" itemScope itemType="http://schema.org/BlogPosting">
-      {/* Hidden schema.org metadata */}
+      {/* Rozšířená schema.org metadata pro bohatší značky */}
       <meta itemProp="datePublished" content={formattedDate} />
+      <meta itemProp="dateModified" content={formattedDate} />
       <meta itemProp="author" content={post.author} />
       <meta itemProp="headline" content={post.title} />
       <meta itemProp="description" content={post.excerpt || ''} />
-      {post.image && <meta itemProp="image" content={post.image} />}
-      <link itemProp="mainEntityOfPage" href={`https://www.popri.cz/blog/${post.id}`} />
+      {post.image && <meta itemProp="image" content={post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`} />}
+      <link itemProp="mainEntityOfPage" href={currentUrl} />
       <div itemProp="publisher" itemScope itemType="http://schema.org/Organization">
         <meta itemProp="name" content="Popri.cz" />
+        <meta itemProp="url" content="https://www.popri.cz" />
         <div itemProp="logo" itemScope itemType="http://schema.org/ImageObject">
-          <meta itemProp="url" content="https://www.popri.cz/poda-logo.svg" />
+          <meta itemProp="url" content={`${baseUrl}/poda-logo.svg`} />
+          <meta itemProp="width" content="200" />
+          <meta itemProp="height" content="70" />
         </div>
+        <meta itemProp="sameAs" content="https://www.facebook.com/podacz/" />
+        <meta itemProp="sameAs" content="https://www.instagram.com/poda.cz/" />
       </div>
       
       <article className="prose prose-lg max-w-none prose-headings:text-poda-blue prose-img:rounded-lg prose-img:shadow-md prose-a:text-poda-blue hover:prose-a:text-poda-orange prose-blockquote:border-l-poda-blue prose-blockquote:text-gray-600 prose-blockquote:bg-blue-50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg">
@@ -93,12 +118,12 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
             <span>Sdílet</span>
           </button>
           <button 
-            className="inline-flex items-center text-gray-500 hover:text-poda-blue transition-colors"
+            className={`inline-flex items-center transition-colors ${isSaved ? 'text-poda-blue' : 'text-gray-500 hover:text-poda-blue'}`}
             onClick={handleSave}
             aria-label="Uložit článek"
           >
-            <Bookmark className="h-5 w-5 mr-2" />
-            <span>Uložit</span>
+            <Bookmark className={`h-5 w-5 mr-2 ${isSaved ? 'fill-poda-blue' : ''}`} />
+            <span>{isSaved ? 'Uloženo' : 'Uložit'}</span>
           </button>
         </div>
         

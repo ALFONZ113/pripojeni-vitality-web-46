@@ -22,6 +22,14 @@ Allow: /blog?search=*
 Allow: /blog/*?category=*
 Allow: /blog/*?tag=*
 
+# Allow indexing of specific technology tags
+Allow: /blog?tag=GPON
+Allow: /blog?tag=Optické+připojení
+Allow: /blog?tag=Vysokorychlostní+internet
+Allow: /blog?tag=Optická+vlákna
+Allow: /blog?tag=Gigabitové+připojení
+Allow: /blog?tag=Fiber+to+the+Home
+
 # Disallow administrative and system URLs
 Disallow: /wp-admin/
 Disallow: /admin/
@@ -58,3 +66,4 @@ Allow: /lovable-uploads/*
 
 # Sitemap declarations - consolidated
 Sitemap: https://www.popri.cz/sitemap.xml
+

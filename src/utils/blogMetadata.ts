@@ -26,6 +26,7 @@ export const createBlogPostStructuredData = (
     title: string;
     excerpt?: string;
     image: string;
+    alt?: string;
     author: string;
     date: string;
     category: string;
@@ -84,11 +85,47 @@ export const generateMetaKeywords = (
   category: string, 
   tags?: string[]
 ): string => {
-  const baseKeywords = `${category}, PODA Internet, PODA připojení, Popri.cz`;
-  
+  // Use all tags for better SEO if available
   if (tags && tags.length > 0) {
-    return `${tags.join(', ')}, ${baseKeywords}`;
+    return `${tags.join(', ')}, ${category}, PODA Internet, PODA připojení, Popri.cz`;
   }
   
-  return baseKeywords;
+  return `${category}, PODA Internet, PODA připojení, Popri.cz`;
+};
+
+/**
+ * Generate recommended tags for a blog post based on its content and category
+ */
+export const generateRecommendedTags = (content: string, category: string): string[] => {
+  // Extract key terms from content
+  const contentWords = content.toLowerCase()
+    .replace(/<\/?[^>]+(>|$)/g, "") // Remove HTML tags
+    .split(/\W+/) // Split by non-word characters
+    .filter(word => word.length > 4) // Only keep words longer than 4 characters
+    .reduce((acc, word) => {
+      acc[word] = (acc[word] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+  
+  // Sort by frequency
+  const topWords = Object.entries(contentWords)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([word]) => word);
+  
+  // Combine with category
+  return [...new Set([category, ...topWords.map(w => w.charAt(0).toUpperCase() + w.slice(1))])];
+};
+
+/**
+ * Enhance blog post structure with SEO optimized properties
+ */
+export const enhancePostForSeo = (post: any): any => {
+  return {
+    ...post,
+    tags: post.tags && post.tags.length > 0 
+      ? post.tags 
+      : generateRecommendedTags(post.content, post.category),
+    alt: post.alt || post.title
+  };
 };

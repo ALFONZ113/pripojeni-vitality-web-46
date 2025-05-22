@@ -21,9 +21,24 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   const structuredData = createBlogPostStructuredData(post, baseUrl, canonicalUrl);
   
   // Generate keywords - use all tags if available
-  const metaKeywords = post.tags && post.tags.length > 0 
-    ? post.tags.join(', ') + ', ' + post.category + ', PODA'
-    : generateMetaKeywords(post.category, post.tags);
+  const metaKeywords = generateMetaKeywords(post.category, post.tags);
+
+  // Add tag info to URL for better indexing
+  const addTagToUrl = () => {
+    if (post.tags && post.tags.length > 0) {
+      const url = new URL(window.location.href);
+      if (!url.searchParams.has('tag')) {
+        // Add primary tag to URL
+        url.searchParams.set('tag', post.tags[0]);
+        window.history.replaceState({}, '', url.toString());
+      }
+    }
+  };
+  
+  // Execute once on mount
+  if (typeof window !== 'undefined') {
+    setTimeout(addTagToUrl, 100);
+  }
 
   return (
     <Helmet>
@@ -50,6 +65,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <meta name="twitter:title" content={post.title} />
       <meta name="twitter:description" content={post.excerpt || post.title} />
       <meta name="twitter:image" content={postImage} />
+      {post.alt && <meta name="twitter:image:alt" content={post.alt} />}
       
       {/* Enhanced SEO metadata */}
       <meta name="keywords" content={metaKeywords} />

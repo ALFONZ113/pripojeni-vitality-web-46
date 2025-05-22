@@ -1,190 +1,126 @@
+
 import { BlogPost } from './types';
 
 export const technologiePosts: BlogPost[] = [
   {
-    id: 101,
-    title: "Nejlepší internet v Ostravě: Spolehlivé a rychlé připojení pro rok 2025",
-    excerpt: "Hledáte kvalitní internetové připojení v Ostravě s optimálním poměrem ceny a výkonu? Ostrava nabízí různé možnosti od optického internetu až po bezdrátová řešení. Zjistěte, jaké jsou vaše možnosti a proč je portál Popri.cz tou nejlepší volbou pro zajištění špičkového připojení.",
+    id: 1,
+    title: 'Jak vybrat nejlepší router pro domácí síť',
+    excerpt: 'Průvodce výběrem optimálního routeru pro stabilní, rychlé a bezpečné připojení celé vaší domácnosti k internetu.',
     content: `
-      <h2>Exkluzivní výhody internetu od Popri.cz</h2>
-      <p>Portál Popri.cz přináší obyvatelům Ostravy výjimečnou nabídku v podobě optického připojení od společnosti PODA s rychlostí až 1 Gb/s. Toto připojení nabízí:</p>
-      <ul>
-        <li>Garantovanou stabilitu i za nepříznivého počasí</li>
-        <li>Vysokorychlostní připojení bez datových limitů</li>
-        <li>Rychlou instalaci zdarma přímo do vašeho bytu nebo domu</li>
-        <li>Televizi s více než 160 kanály jako součást výhodných balíčků</li>
-      </ul>
-      <p>Podle recenzí zákazníků je internetové připojení přes portál Popri.cz vysoce spolehlivé a vyznačuje se vynikající stabilitou i při využití více zařízeními současně.</p>
-      <blockquote>
-        <p>"V novém bytě jsem zvolil internet od PODY a určitě nelituji. Stabilní a superrychlé připojení za dobrou cenu," uvádí jeden ze spokojených zákazníků.</p>
-      </blockquote>
+      <p>Správný výběr routeru může výrazně ovlivnit kvalitu vašeho internetového připojení. V tomto článku vám poradíme, na co se zaměřit při výběru routeru pro vaši domácnost.</p>
       
-      <div class="my-8">
-        <img src="/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png" alt="Nejlepší internet v Ostravě - 2000 mb/s" class="rounded-lg w-full shadow-lg" />
-        <p class="text-sm text-gray-500 mt-2 text-center">Nejrychlejší internetové připojení v Ostravě umožňuje efektivní práci z domova</p>
-      </div>
+      <h3>Co zohlednit při výběru routeru:</h3>
+      <ol>
+        <li><strong>Rychlost a standard Wi-Fi</strong> - Moderní routery podporují standard Wi-Fi 6 (802.11ax), který nabízí vyšší rychlost a lepší pokrytí než starší standardy.</li>
+        <li><strong>Dosah signálu</strong> - Pokud máte větší byt nebo dům, vybírejte routery s vyšším výkonem nebo zvažte mesh systém.</li>
+        <li><strong>Počet portů</strong> - Zkontrolujte, zda má router dostatek ethernetových portů pro vaše zařízení.</li>
+        <li><strong>Bezpečnostní funkce</strong> - Vybírejte router s pokročilými bezpečnostními funkcemi, jako je WPA3, rodičovská kontrola nebo možnost vytvořit oddělené sítě pro hosty.</li>
+        <li><strong>Možnost správy</strong> - Uživatelsky přívětivé rozhraní nebo mobilní aplikace pro správu routeru.</li>
+        <li><strong>Cena</strong> - Stanovte si rozpočet a hledejte router s nejlepším poměrem cena/výkon.</li>
+      </ol>
       
-      <h2>Přehled dostupných technologií internetu v Ostravě</h2>
-      <p>V Ostravě máte na výběr z několika typů internetového připojení:</p>
-      
-      <h3>Optický internet</h3>
-      <ul>
-        <li>Rychlosti až 1000/1000 Mb/s</li>
-        <li>Ceny začínající na 249 Kč měsíčně</li>
-        <li>Ideální pro domácnosti s více připojenými zařízeními</li>
-      </ul>
-      
-      <h3>Bezdrátové připojení</h3>
-      <ul>
-        <li>Rychlosti až 300 Mb/s</li>
-        <li>Dostupné od 250 Kč měsíčně</li>
-        <li>Vhodné pro lokality bez kabelové infrastruktury</li>
-      </ul>
-      
-      <h3>DSL připojení</h3>
-      <ul>
-        <li>Připojení po telefonní lince</li>
-        <li>Od 199 Kč měsíčně</li>
-        <li>Široká dostupnost v celé Ostravě</li>
-      </ul>
-      
-      <h3>5G internet</h3>
-      <ul>
-        <li>Rychlosti srovnatelné s optickým připojením</li>
-        <li>Od 345 Kč měsíčně</li>
-        <li>Moderní technologie bez nutnosti kabeláže</li>
-      </ul>
-      
-      <h2>Srovnání internetových poskytovatelů v Ostravě</h2>
-      <p>Na trhu v Ostravě působí několik poskytovatelů internetu, přičemž portál Popri.cz nabízející služby PODA vyniká v několika klíčových aspektech:</p>
-      
-      <h3>Rychlost a stabilita:</h3>
-      <p>PODA přes portál Popri.cz poskytuje rychlosti až 1 Gb/s s minimálními výpadky i za nepříznivého počasí.</p>
-      
-      <h3>Zákaznická podpora:</h3>
-      <p>Zákazníci oceňují profesionální přístup při instalaci a řešení případných technických problémů.</p>
-      
-      <h3>Flexibilita služeb:</h3>
-      <p>Možnost volby mezi různými tarify a kombinace s televizními službami přes aplikaci PODA net.TV.</p>
-      
-      <p>T-Mobile nabízí rychlosti do 1000 Mb/s s cenou od 299 Kč po dobu prvních 6 měsíců, zatímco další poskytovatelé jako Avonet nabízejí připojení s rychlostí až 2000/1000 Mb/s.</p>
-      
-      <h2>Jak vybrat ideální internetové připojení v Ostravě</h2>
-      <p>Při výběru internetového připojení v Ostravě doporučujeme zohlednit několik faktorů:</p>
-      <ul>
-        <li>Ověřte dostupnost služeb na vaší konkrétní adrese - Popri.cz nabízí snadné ověření dostupnosti</li>
-        <li>Zvažte své požadavky na rychlost a stabilitu připojení</li>
-        <li>Porovnejte ceny různých poskytovatelů vzhledem k nabízeným službám</li>
-        <li>Prostudujte recenze zákazníků - PODA prostřednictvím Popri.cz má velmi pozitivní hodnocení</li>
-        <li>Informujte se o doplňkových službách jako je televizní vysílání nebo mobilní tarify</li>
-      </ul>
-      
-      <h2>Proč zvolit internet přes Popri.cz</h2>
-      <p>Portál Popri.cz nabízí exkluzivní přístup k špičkovému optickému připojení od společnosti PODA, které se vyznačuje mimořádnou stabilitou, vysokou rychlostí a příznivou cenou. Zákazníci oceňují především spolehlivost připojení i v případě náročnějšího využití, jako je streamování, hraní online her nebo práce z domova.</p>
-      
-      <p>Pro obyvatele Ostravy představuje Popri.cz ideální řešení, jak získat kvalitní internetové připojení s množstvím výhod včetně televizních služeb a možnosti výběru různých tarifů podle individuálních potřeb.</p>
-      
-      <p>Ověřte si dostupnost připojení na vaší adrese ještě dnes a připojte se k tisícům spokojených zákazníků využívajících vysoce kvalitní internetové služby v Ostravě.</p>
+      <p>S internetovým připojením od společnosti PODA získáte kvalitní router, který splňuje všechny moderní požadavky na domácí síť, včetně podpory nejnovějších Wi-Fi standardů, vysokého dosahu signálu a pokročilých bezpečnostních funkcí.</p>
     `,
-    date: "20. 5. 2025",
-    author: "Adam Otisk",
-    category: "Technologie",
-    image: "/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png",
-    alt: "Nejlepší internet v Ostravě - osoba pracující na počítači s dvěma monitory",
-    tags: ["Internet", "Ostrava", "PODA", "Optické připojení", "Rychlý internet", "Připojení domácnosti", "Srovnání poskytovatelů"]
-  },
-  {
-    id: 8,
-    title: '60 GHz Internet PODA: Revolučná Technológia pre Vysokorýchlostné Pripojenie',
-    excerpt: 'Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti.',
-    date: '10. 4. 2025',
+    date: '10. 5. 2023',
     author: 'Tým PODA',
     category: 'Technologie',
-    image: '/lovable-uploads/2e16f35c-9b53-448d-a734-63863af4ed46.png',
-    alt: 'Parabolická anténa na streche budovy s mestským panorámatom v pozadí, vizualizácia 60 GHz internetového pripojenia',
-    tags: ['60 GHz', 'Bezdrôtové pripojenie', 'Vysokorýchlostný internet', 'PODA', 'Mesh Wi-Fi', 'Rodinné domy', 'Inovatívna technológia'],
-    content: `
-      <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti. Tento inovatívny systém ponúka výkon takmer porovnateľný s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>
-      
-      <h3>Výhody 60 GHz pripojenia</h3>
-      <p>60 GHz internetové pripojenie prináša niekoľko významných výhod oproti tradičným bezdrôtovým technológiám:</p>
-      
-      <ul>
-        <li><strong>Vysoká rychlost</strong>: Umožňuje prenosové rýchlosti až 1 000 Mb/s, čo je porovnateľné s optickým pripojením.</li>
-        <li><strong>Nízka latencia</strong>: Poskytuje veľmi nízku a stabilnú odozvu, čo ocenia najmä hráči.</li>
-        <li><strong>Menšie rušenie</strong>: V porovnaní s bežnými Wi-Fi sieťami (2,4 GHz a 5 GHz) dochádza k výrazne menšiemu vzájomnému rušeniu signálov.</li>
-        <li><strong>Bezpečnosť</strong>: Pásmo 60 GHz je považované za veľmi bezpečné a dlhodobo ho využíva aj armáda.</li>
-      </ul>
-      
-      <h3>Mesh Wi-Fi pre lepší signál</h3>
-      <p>Mesh Wi-Fi systémy predstavujú efektívne riešenie pre rozšírenie a zlepšenie pokrytia Wi-Fi signálom v domácnostiach. Na rozdiel od tradičných Wi-Fi extenderov vytvára mesh systém jednotnú sieť s plynulým prechodom medzi jednotlivými prístupovými bodmi. Hlavné výhody mesh Wi-Fi zahŕňajú:</p>
-      
-      <ul>
-        <li>Jednotná sieť s automatickým pripojením k najsilnejšiemu signálu</li>
-        <li>Stabilné a rýchle pripojenie vďaka dynamickej optimalizácii</li>
-        <li>Jednoduchá konfigurácia a správa cez mobilnú aplikáciu</li>
-        <li>Škálovateľnosť - možnosť pridania ďalších mesh jednotiek pre rozšírenie pokrytia</li>
-        <li>Samoopraviteľná sieť odolná voči výpadkom jednotlivých uzlov</li>
-      </ul>
-      
-      <h3>Porovnanie s optickým internetom</h3>
-      <p>Zatiaľ čo optické pripojenie zostáva špičkou v rýchlosti a stabilite, 60 GHz bezdrôtová technológia sa mu v mnohých ohľadoch približuje. Optika ponúka vyššie maximálne rýchlosti (až 100 Gb/s), ale 60 GHz pripojenie s rychlosťami až 1 Gb/s je pre väčšinu domácností viac než dostačujúce.</p>
-      
-      <ul>
-        <li><strong>Latencia</strong>: Obe technológie poskytujú veľmi nízku a stabilnú odozvu</li>
-        <li><strong>Stabilita</strong>: Optika je menej náchylná k rušeniu, 60 GHz však tiež vykazuje vysokú stabilitu</li>
-        <li><strong>Inštalácia</strong>: 60 GHz nevyžaduje nákladné pokládanie káblov, čo umožňuje rýchlejšie nasadenie</li>
-        <li><strong>Dosah</strong>: Optika nemá prakticky obmedzenia v dosahu, 60 GHz je limitované na stovky metrov</li>
-      </ul>
-      
-      <p>Pre koncových užívateľov predstavuje 60 GHz technológia výbornou alternatívu k optike, najmä v lokalitách, kde optické siete nie sú dostupné.</p>
-    `
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop',
+    tags: ['Router', 'Wi-Fi', 'Domácí síť', 'Internetové připojení', 'Bezpečnost', 'Mesh systém', 'Ethernet', 'Konektivita'],
   },
   {
-    id: 1,
-    title: 'Výhody technologie GPON pro domácí připojení',
-    excerpt: 'Objevte, proč je optické připojení GPON revoluční technologií pro stabilní a rychlý internet ve vašem bytě nebo domě.',
+    id: 3,
+    title: 'Konec problémů s Wi-Fi signálem: Mesh systémy jako řešení',
+    excerpt: 'Jak mesh Wi-Fi systémy řeší problémy s pokrytím internetu v domácnosti a proč jsou lepší volbou než běžné repeatery.',
     content: `
-      <p>Technologie GPON (Gigabit Passive Optical Network) představuje revoluci v oblasti domácího internetového připojení. Na rozdíl od tradičních metod připojení, jako jsou ADSL nebo kabelové připojení, GPON nabízí výrazně vyšší rychlosti a stabilitu.</p>
+      <p>Problémy s Wi-Fi pokrytím jsou běžné zejména ve větších domech nebo bytech s těžkými zdmi. Mesh Wi-Fi systémy představují moderní řešení, které zajistí stabilní připojení v každém koutě vašeho domova.</p>
       
-      <h3>Hlavní výhody GPON technologie:</h3>
+      <h3>Co je mesh Wi-Fi systém?</h3>
+      <p>Mesh Wi-Fi systém se skládá z hlavního routeru a několika satelitů (uzlů), které vytváří jednotnou síť s plným pokrytím. Na rozdíl od běžných repeaterů používají mesh systémy sofistikovanou technologii, která eliminuje ztrátu rychlosti a minimalizuje rušení.</p>
+      
+      <h3>Výhody mesh Wi-Fi systémů:</h3>
       <ul>
-        <li><strong>Vyšší rychlosti</strong> - GPON umožňuje symetrické rychlosti až 1000/1000 Mbps, což je ideální pro streamování, hraní her a práci z domova.</li>
-        <li><strong>Nížší latence</strong> - Optické připojení má výrazně nižší odezvu než jiné typy připojení, což oceníte zejména při online hrách nebo videokonferencích.</li>
-        <li><strong>Vysoká spolehlivost</strong> - Optická vlákno není ovlivněno elektromagnetickým rušením a nabízí stabilní připojení i při špatném počasí.</li>
-        <li><strong>Dlouhá životnost</strong> - Optická infrastruktura má dlouhou životnost a je připravena na budoucí technologické nároky.</li>
+        <li><strong>Bezešvé pokrytí</strong> - Plné pokrytí bez mrtvých zón i ve větších domech.</li>
+        <li><strong>Stabilní připojení</strong> - Automatické přepínání mezi uzly bez přerušení připojení.</li>
+        <li><strong>Jednoduchá správa</strong> - Celý systém se spravuje jako jedno zařízení, většinou přes mobilní aplikaci.</li>
+        <li><strong>Snadné rozšíření</strong> - V případě potřeby lze síť jednoduše rozšířit o další uzly.</li>
+        <li><strong>Moderní funkce</strong> - Podpora nejnovějších standardů Wi-Fi, zabezpečení a dalších pokročilých funkcí.</li>
       </ul>
       
-      <p>Díky těmto vlastnostem je GPON ideální volbou pro domácnosti, které vyžadují rychlé a spolehlivé připojení k internetu. Naše služby založené na GPON technologii vám přinášejí internet budoucnosti již dnes.</p>
+      <p>Naše služba PODA Internet se skvěle doplňuje s moderními mesh systémy. Díky vysoké rychlosti našeho připojení a kvalitnímu mesh systému si můžete užívat stabilní a rychlý internet v každém koutě vašeho domova.</p>
     `,
-    date: '15. 6. 2023',
-    author: 'Milan Terč',
+    date: '25. 3. 2023',
+    author: 'Tým PODA',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop',
-    tags: ['GPON', 'Optické připojení', 'Vysoká rychlost', 'Nízká latence', 'Stabilní internet', 'Technologie budoucnosti', 'Domácí připojení'],
+    image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2070&auto=format&fit=crop',
+    tags: ['Mesh Wi-Fi', 'Wi-Fi pokrytí', 'Domácí síť', 'Internetové připojení', 'Bezdrátová technologie', 'Smart home', 'Konektivita'],
   },
   {
     id: 5,
-    title: 'Co je to služba PODA net.TV a jak ji využít naplno',
-    excerpt: 'Podrobný průvodce funkcemi služby PODA net.TV, která vám umožní sledovat televizi kdykoliv a kdekoliv.',
+    title: 'Jak zvýšit bezpečnost vaší domácí Wi-Fi sítě',
+    excerpt: 'Praktické tipy pro zabezpečení vaší domácí Wi-Fi sítě před nežádoucími návštěvníky a kybernetickými hrozbami.',
     content: `
-      <p>Služba PODA net.TV přináší revoluci v tom, jak sledujeme televizi. Již nejste omezeni ani časem vysílání, ani místem, kde se nacházíte. V tomto článku vám představíme všechny možnosti, které tato služba nabízí.</p>
+      <p>Bezpečná domácí Wi-Fi síť je základem ochrany vašich osobních dat a zařízení. V tomto článku se dozvíte, jak svou domácí síť efektivně zabezpečit.</p>
       
-      <h3>Hlavní funkce PODA net.TV:</h3>
+      <h3>Tipy pro zabezpečení domácí Wi-Fi:</h3>
       <ol>
-        <li><strong>Zpětné přehrávání</strong> - Možnost vrátit se v programu až 7 dní zpět a přehrát si jakýkoliv pořad, který vás zajímá.</li>
-        <li><strong>Nahrávání pořadů</strong> - Naplánujte si nahrávání vašich oblíbených pořadů a sledujte je kdykoliv později.</li>
-        <li><strong>Sledování na 4 zařízeních</strong> - Službu můžete využívat současně až na 4 různých zařízeních.</li>
-        <li><strong>Pauza a přetáčení</strong> - Pozastavte nebo přetočte živé vysílání, když potřebujete.</li>
-        <li><strong>Mobilní aplikace</strong> - Sledujte televizi na vašem mobilním telefonu nebo tabletu, ať jste kdekoliv.</li>
+        <li><strong>Změňte výchozí přihlašovací údaje</strong> - Výchozí uživatelské jméno a heslo pro přístup do administrace routeru by měly být okamžitě změněny.</li>
+        <li><strong>Používejte silné heslo k Wi-Fi</strong> - Vytvořte komplexní heslo kombinující velká a malá písmena, čísla a speciální znaky.</li>
+        <li><strong>Aktivujte WPA3 šifrování</strong> - Pokud váš router podporuje standard WPA3, používejte ho místo starších verzí zabezpečení.</li>
+        <li><strong>Pravidelně aktualizujte firmware routeru</strong> - Aktualizace obsahují důležité bezpečnostní záplaty.</li>
+        <li><strong>Vytvořte síť pro hosty</strong> - Oddělená síť pro hosty omezí přístup návštěv k vašim zařízením a datům.</li>
+        <li><strong>Vypněte WPS</strong> - Funkce WPS (Wi-Fi Protected Setup) může představovat bezpečnostní riziko.</li>
+        <li><strong>Skryjte SSID</strong> - Skrytí názvu vaší sítě může poskytnout základní ochranu před náhodnými útočníky.</li>
       </ol>
       
-      <p>Služba PODA net.TV je automaticky součástí všech našich internetových a televizních balíčků, bez dodatečných poplatků. Stačí si pouze nainstalovat aplikaci na vaše zařízení a můžete začít využívat všechny její funkce.</p>
+      <p>Se službou PODA Internet získáte nejen rychlé připojení, ale také router s pokročilými bezpečnostními funkcemi, které vám pomohou ochránit vaši domácí síť. Naši technici vám navíc poradí, jak nastavit optimální zabezpečení pro vaše konkrétní potřeby.</p>
     `,
-    date: '5. 2. 2023',
-    author: 'Milan Terč',
+    date: '15. 2. 2023',
+    author: 'Tým PODA',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=2070&auto=format&fit=crop',
-    tags: ['PODA net.TV', 'Zpětné přehrávání', 'Sledování TV', 'Mobilní aplikace', 'Nahrávání pořadů', 'IPTV', 'TV na cestách'],
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop',
+    tags: ['Bezpečnost Wi-Fi', 'Kybernetická bezpečnost', 'Router', 'WPA3', 'Heslo', 'Firmware', 'SSID', 'Firewall', 'VPN', 'Síťová bezpečnost'],
+  },
+  {
+    id: 7,
+    title: 'Výhody technologie GPON pro domácí připojení',
+    excerpt: 'Jak technologie GPON (Gigabit Passive Optical Network) mění možnosti domácího internetového připojení a proč je budoucností rychlého internetu.',
+    content: `
+      <p>Technologie GPON (Gigabit Passive Optical Network) představuje moderní řešení pro vysokorychlostní internetové připojení domácností. V tomto článku vám představíme hlavní výhody této technologie a důvody, proč je považována za budoucnost domácího internetu.</p>
+      
+      <h3>Co je GPON?</h3>
+      <p>GPON je technologie optických sítí, která umožňuje přenos dat rychlostí až 2,5 Gbps pro download a 1,25 Gbps pro upload. Na rozdíl od tradičních metalických sítí využívá GPON optická vlákna, která přenášejí data pomocí světelných impulzů.</p>
+      
+      <h3>Hlavní výhody GPON pro domácnosti:</h3>
+      <ol>
+        <li><strong>Extrémně vysoká rychlost</strong> - Technologie GPON umožňuje dosáhnout rychlostí, které daleko převyšují možnosti běžných metalických sítí.</li>
+        <li><strong>Nízká latence</strong> - Rychlá odezva je klíčová nejen pro online hráče, ale i pro videokonference nebo streamování v nejvyšší kvalitě.</li>
+        <li><strong>Stabilita připojení</strong> - Optická vlákna jsou odolná vůči elektromagnetickému rušení, což zajišťuje stabilnější připojení.</li>
+        <li><strong>Symetrická rychlost</strong> - Na rozdíl od většiny běžných připojení nabízí GPON možnost symetrických rychlostí pro download i upload.</li>
+        <li><strong>Připojení více zařízení</strong> - Vysoká propustnost umožňuje současné připojení mnoha zařízení bez ztráty kvality.</li>
+        <li><strong>Budoucí kompatibilita</strong> - Optická infrastruktura je připravena na budoucí technologické nároky a snadno rozšiřitelná.</li>
+        <li><strong>Energetická účinnost</strong> - GPON sítě jsou energeticky úspornější než tradiční kabelové nebo DSL sítě.</li>
+        <li><strong>Větší dosah</strong> - Optická vlákna mohou přenášet signál na větší vzdálenosti bez ztráty kvality.</li>
+      </ol>
+      
+      <h3>Proč zvolit GPON připojení od PODA?</h3>
+      <p>PODA nabízí moderní GPON připojení, které využívá nejnovější technologie v oblasti optických sítí. Naše řešení je navrženo pro maximální spolehlivost a výkon, který uspokojí i ty nejnáročnější uživatele.</p>
+      
+      <p>S naším GPON připojením získáte:</p>
+      <ul>
+        <li>Garantované rychlosti až 1 Gbps</li>
+        <li>Stabilitu připojení i ve špičce</li>
+        <li>Profesionální instalaci a nastavení</li>
+        <li>Nepřetržitou technickou podporu</li>
+        <li>Možnost kombinovat s dalšími službami jako TV nebo VoIP telefonie</li>
+      </ul>
+      
+      <p>Technologie GPON představuje budoucnost domácího internetu a se službami PODA můžete tuto budoucnost zažít už dnes. Kontaktujte nás a zjistěte dostupnost GPON připojení ve vaší lokalitě.</p>
+    `,
+    date: '20. 5. 2023',
+    author: 'Tým PODA',
+    category: 'Technologie',
+    image: '/lovable-uploads/6f778a97-79bd-4698-b3f2-2a373893184b.png',
+    alt: 'Optické vlákno GPON technologie s červeným a modrým světlem',
+    tags: ['GPON', 'Optické připojení', 'Vysokorychlostní internet', 'Optická vlákna', 'Gigabitové připojení', 'Internetová infrastruktura', 'Síťové technologie', 'Optická síť', 'Fiber to the Home', 'Latence', 'Budoucnost internetu', 'Symetrické připojení'],
   }
 ];

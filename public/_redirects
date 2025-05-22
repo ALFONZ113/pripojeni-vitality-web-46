@@ -30,10 +30,13 @@ https://popri.cz/* https://www.popri.cz/:splat 301!
 /*.ico /:splat 200
 /*.webp /:splat 200
 
-# Support for blog URL parameters
+# Support for blog URL parameters with specific tech tags
 /blog/?category=* /blog/?category=:splat 200
 /blog/?tag=* /blog/?tag=:splat 200
 /blog/?search=* /blog/?search=:splat 200
+/blog/?tag=GPON /blog/?tag=GPON 200
+/blog/?tag=Optické+připojení /blog/?tag=Optické+připojení 200
+/blog/?tag=Vysokorychlostní+internet /blog/?tag=Vysokorychlostní+internet 200
 
 # Handle 404 pages properly (important for SEO)
 /404 /index.html 404

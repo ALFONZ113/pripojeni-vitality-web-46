@@ -1,23 +1,30 @@
 
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { blogPosts } from '../data/blog';
 import { initAnimations } from '../utils/animation';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
 import { Helmet } from 'react-helmet-async';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<typeof blogPosts[0] | null>(null);
   const [imageError, setImageError] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   
   // Najděme související články (ze stejné kategorie, max 3)
   const relatedPosts = post 
     ? blogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 3) 
     : [];
+  
+  // Najdeme předchozí a následující příspěvek pro navigaci
+  const currentIndex = post ? blogPosts.findIndex(p => p.id === post.id) : -1;
+  const prevPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
   
   useEffect(() => {
     const cleanupAnimation = initAnimations();
@@ -35,6 +42,12 @@ const BlogPost = () => {
       const url = new URL(window.location.href);
       if (!url.searchParams.has('category') && foundPost.category) {
         url.searchParams.set('category', foundPost.category);
+        window.history.replaceState({}, '', url.toString());
+      }
+      
+      // Pridáme súvisiaci tag do URL pre lepšie SEO
+      if (foundPost.tags && foundPost.tags.length > 0 && !url.searchParams.has('tag')) {
+        url.searchParams.set('tag', foundPost.tags[0]);
         window.history.replaceState({}, '', url.toString());
       }
     } else {
@@ -74,6 +87,11 @@ const BlogPost = () => {
   const alternateUrl = `https://popri.cz/blog/${post.id}`;
   const postDate = post.date.split('. ').reverse().join('-');
   const postImage = post.image.startsWith('http') ? post.image : `https://www.popri.cz${post.image}`;
+  
+  // Vytvoříme sledovací parametr pro URL
+  const getPageTrackingParams = () => {
+    return `?source=blog&post_id=${post.id}&category=${encodeURIComponent(post.category)}`;
+  };
   
   // Vylepšená strukturovaná data pro článek
   const structuredData = {
@@ -145,8 +163,8 @@ const BlogPost = () => {
         <meta name="keywords" content={metaKeywords} />
         <meta name="author" content={post.author} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="prev" href={`https://www.popri.cz/blog/${Number(id) - 1}`} />
-        <link rel="next" href={`https://www.popri.cz/blog/${Number(id) + 1}`} />
+        {prevPost && <link rel="prev" href={`https://www.popri.cz/blog/${prevPost.id}`} />}
+        {nextPost && <link rel="next" href={`https://www.popri.cz/blog/${nextPost.id}`} />}
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
@@ -176,6 +194,39 @@ const BlogPost = () => {
             <BlogPostContent post={post} />
             <BlogPostSidebar relatedPosts={relatedPosts} />
           </div>
+        </div>
+      </section>
+      
+      {/* Vylepšená navigácia medzi článkami - centralizovaná */}
+      <section className="section-padding pt-4 pb-12 bg-blue-50">
+        <div className="container-custom">
+          <Pagination>
+            <PaginationContent>
+              {prevPost && (
+                <PaginationItem>
+                  <PaginationPrevious 
+                    href={`/blog/${prevPost.id}${getPageTrackingParams()}`}
+                    aria-label={`Předchozí článek: ${prevPost.title}`}
+                  />
+                </PaginationItem>
+              )}
+              
+              <PaginationItem>
+                <PaginationLink href="/blog" aria-label="Všechny články">
+                  Všechny články
+                </PaginationLink>
+              </PaginationItem>
+              
+              {nextPost && (
+                <PaginationItem>
+                  <PaginationNext 
+                    href={`/blog/${nextPost.id}${getPageTrackingParams()}`}
+                    aria-label={`Další článek: ${nextPost.title}`}
+                  />
+                </PaginationItem>
+              )}
+            </PaginationContent>
+          </Pagination>
         </div>
       </section>
 

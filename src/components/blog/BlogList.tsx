@@ -2,6 +2,8 @@
 import { Bookmark } from 'lucide-react';
 import BlogCard from './BlogCard';
 import type { BlogPost } from '../../data/blog/types';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 interface BlogListProps {
   posts: BlogPost[];
@@ -9,7 +11,24 @@ interface BlogListProps {
 }
 
 const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
-  if (posts.length === 0) {
+  const [searchParams] = useSearchParams();
+  const [displayedPosts, setDisplayedPosts] = useState<BlogPost[]>(posts);
+  
+  // Sledujeme zmeny v parametroch URL - napr. ak niekto klikol na tag
+  useEffect(() => {
+    const tag = searchParams.get('tag');
+    if (tag) {
+      // Vyfiltrujeme príspevky podľa tagu
+      const filteredByTag = posts.filter(post => 
+        post.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
+      );
+      setDisplayedPosts(filteredByTag);
+    } else {
+      setDisplayedPosts(posts);
+    }
+  }, [searchParams, posts]);
+  
+  if (displayedPosts.length === 0) {
     return (
       <div className="text-center py-12">
         <Bookmark className="h-12 w-12 text-gray-300 mx-auto mb-4" />
@@ -29,7 +48,7 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post) => (
+      {displayedPosts.map((post) => (
         <BlogCard key={post.id} post={post} />
       ))}
     </div>

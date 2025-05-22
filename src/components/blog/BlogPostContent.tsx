@@ -1,9 +1,10 @@
 
 import { Link } from 'react-router-dom';
-import { Share2, Bookmark, MessageSquare } from 'lucide-react';
+import { Share2, Bookmark, MessageSquare, ArrowLeft, ArrowRight } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import type { BlogPost } from '../../data/blog/types';
 import { useState, useEffect } from 'react';
+import { blogPosts } from '../../data/blog';
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -11,9 +12,25 @@ interface BlogPostContentProps {
 
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
   const [isSaved, setIsSaved] = useState(false);
+  const [prevPost, setPrevPost] = useState<BlogPost | null>(null);
+  const [nextPost, setNextPost] = useState<BlogPost | null>(null);
   
-  // Zkontrolujeme, zda je článek uložen při načtení komponenty
+  // Vyhľadáme predchádzajúci a nasledujúci príspevok
   useEffect(() => {
+    const currentIndex = blogPosts.findIndex(p => p.id === post.id);
+    if (currentIndex > 0) {
+      setPrevPost(blogPosts[currentIndex - 1]);
+    } else {
+      setPrevPost(null);
+    }
+    
+    if (currentIndex < blogPosts.length - 1) {
+      setNextPost(blogPosts[currentIndex + 1]);
+    } else {
+      setNextPost(null);
+    }
+    
+    // Zkontrolujeme, zda je článek uložen při načtení komponenty
     const savedPosts = JSON.parse(localStorage.getItem('savedPosts') || '[]');
     setIsSaved(savedPosts.some((savedPost: number) => savedPost === post.id));
   }, [post.id]);
@@ -156,6 +173,39 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
             Publikováno: <time dateTime={formattedDate}>{post.date}</time>
           </div>
         </div>
+      </div>
+      
+      {/* Navigácia medzi príspevkami */}
+      <div className="mt-12 flex flex-col sm:flex-row justify-between gap-4">
+        {prevPost ? (
+          <Link 
+            to={`/blog/${prevPost.id}`} 
+            className="flex items-center text-poda-blue hover:text-poda-orange transition-colors group"
+          >
+            <ArrowLeft className="h-5 w-5 mr-2 transition-transform group-hover:-translate-x-1" />
+            <div>
+              <span className="block text-sm text-gray-500">Předchozí článek</span>
+              <span className="font-medium">{prevPost.title}</span>
+            </div>
+          </Link>
+        ) : (
+          <div></div>
+        )}
+        
+        {nextPost ? (
+          <Link 
+            to={`/blog/${nextPost.id}`} 
+            className="flex items-center text-poda-blue hover:text-poda-orange transition-colors group sm:ml-auto text-right"
+          >
+            <div>
+              <span className="block text-sm text-gray-500">Následující článek</span>
+              <span className="font-medium">{nextPost.title}</span>
+            </div>
+            <ArrowRight className="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1" />
+          </Link>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

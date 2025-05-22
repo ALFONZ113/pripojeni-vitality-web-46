@@ -15,7 +15,7 @@ Allow: /cookies$
 Allow: /obchodni-podminky$
 Allow: /ochrana-soukromi$
 
-# Explicitne povoliť indexovanie tagov a kategórií
+# Explicitly allow indexing of tags and categories
 Allow: /blog?category=*
 Allow: /blog?tag=*
 Allow: /blog?search=*

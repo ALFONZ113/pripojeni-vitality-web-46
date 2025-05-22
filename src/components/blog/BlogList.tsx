@@ -14,15 +14,23 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
   const [searchParams] = useSearchParams();
   const [displayedPosts, setDisplayedPosts] = useState<BlogPost[]>(posts);
   
-  // Sledujeme zmeny v parametroch URL - napr. ak niekto klikol na tag
+  // Watch for URL parameter changes - e.g., when someone clicks on a tag
   useEffect(() => {
     const tag = searchParams.get('tag');
+    const category = searchParams.get('category');
+    
     if (tag) {
-      // Vyfiltrujeme príspevky podľa tagu
+      // Filter posts by tag
       const filteredByTag = posts.filter(post => 
         post.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
       );
       setDisplayedPosts(filteredByTag);
+    } else if (category) {
+      // Filter posts by category
+      const filteredByCategory = posts.filter(post => 
+        post.category.toLowerCase() === category.toLowerCase()
+      );
+      setDisplayedPosts(filteredByCategory);
     } else {
       setDisplayedPosts(posts);
     }

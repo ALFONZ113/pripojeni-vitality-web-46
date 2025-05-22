@@ -30,7 +30,7 @@ https://popri.cz/* https://www.popri.cz/:splat 301!
 /*.ico /:splat 200
 /*.webp /:splat 200
 
-# Support pre URL parametre blogov
+# Support for blog URL parameters
 /blog/?category=* /blog/?category=:splat 200
 /blog/?tag=* /blog/?tag=:splat 200
 /blog/?search=* /blog/?search=:splat 200

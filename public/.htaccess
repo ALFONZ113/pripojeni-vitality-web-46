@@ -8,6 +8,11 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Special handling for favicon files - no redirection
+RewriteRule ^(poda-favicon.*)\.(ico|png)$ - [L]
+RewriteRule ^(site\.webmanifest)$ - [L]
+RewriteRule ^(apple-touch-icon\.png)$ - [L]
+
 # Redirect old domain to new domain with path preservation
 RewriteCond %{HTTP_HOST} ^(www\.)?pripojeni-poda\.cz$ [NC]
 RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
@@ -39,11 +44,25 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   AddType image/svg+xml .svg
   AddType application/font-woff .woff
   AddType application/font-woff2 .woff2
+  # Ensure correct MIME type for favicon
+  AddType image/x-icon .ico
+  AddType image/png .png
 </IfModule>
+
+# Disable caching for favicon files
+<FilesMatch "^(poda-favicon.*|site\.webmanifest|apple-touch-icon\.png)$">
+  FileETag None
+  <IfModule mod_headers.c>
+    Header unset ETag
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+  </IfModule>
+</FilesMatch>
 
 # Enable CORS for fonts and other resources
 <IfModule mod_headers.c>
-  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font\.css|css|js|png|jpg|jpeg|gif|webp|svg)$">
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font\.css|css|js|png|jpg|jpeg|gif|webp|svg|ico)$">
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
 </IfModule>
@@ -58,7 +77,8 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
+  # No caching for favicons
+  ExpiresByType image/x-icon "access plus 0 seconds"
   
   # Video
   ExpiresByType video/mp4 "access plus 1 year"

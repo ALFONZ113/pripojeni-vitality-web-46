@@ -8,15 +8,20 @@ interface PageMetadataProps {
   currentDate?: string;
   faviconVersion?: string;
   cacheBuster?: string;
+  domain?: string;
 }
 
 const PageMetadata = ({ 
   title, 
   description, 
   currentDate = new Date().toISOString().split('T')[0],
-  faviconVersion = "2.0",
-  cacheBuster = Date.now().toString()
+  faviconVersion = "3.0",
+  cacheBuster = Date.now().toString(),
+  domain = typeof window !== "undefined" ? window.location.hostname : "www.popri.cz"
 }: PageMetadataProps) => {
+  // Generate domain-specific cache busting parameter
+  const domainSpecificHash = domain.includes('poda') ? 'poda-' + cacheBuster : 'popri-' + cacheBuster;
+  
   return (
     <Helmet>
       <title>{title}</title>
@@ -42,20 +47,21 @@ const PageMetadata = ({
       <meta name="twitter:image" content="https://www.popri.cz/og-image.png" />
       <meta name="last-updated" content={currentDate} />
       
-      {/* Cache control for helping overcome Google's aggressive caching */}
+      {/* Enhanced cache control to force refreshing on both domains */}
       <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
       <meta http-equiv="Pragma" content="no-cache" />
       <meta http-equiv="Expires" content="0" />
       <meta name="version" content={faviconVersion} />
       <meta name="cache-version" content={cacheBuster} />
+      <meta name="domain-cache" content={domainSpecificHash} />
       
-      {/* Favicon links updated with cache-busting parameters */}
-      <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}&t=${cacheBuster}`} type="image/x-icon" />
-      <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}&t=${cacheBuster}`} sizes="16x16" type="image/png" />
-      <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}&t=${cacheBuster}`} sizes="32x32" type="image/png" />
-      <link rel="icon" href={`/poda-favicon-48x48.png?v=${faviconVersion}&t=${cacheBuster}`} sizes="48x48" type="image/png" />
-      <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}&t=${cacheBuster}`} />
-      <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}&t=${cacheBuster}`} />
+      {/* Favicon links updated with domain-specific cache-busting parameters */}
+      <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}&t=${domainSpecificHash}`} type="image/x-icon" />
+      <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}&t=${domainSpecificHash}`} sizes="16x16" type="image/png" />
+      <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}&t=${domainSpecificHash}`} sizes="32x32" type="image/png" />
+      <link rel="icon" href={`/poda-favicon-48x48.png?v=${faviconVersion}&t=${domainSpecificHash}`} sizes="48x48" type="image/png" />
+      <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}&t=${domainSpecificHash}`} />
+      <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}&t=${domainSpecificHash}`} />
 
       {/* Font preloading pro lepší výkon */}
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />

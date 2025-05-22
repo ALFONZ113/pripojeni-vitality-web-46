@@ -10,6 +10,17 @@ http://popri.cz/* https://www.popri.cz/:splat 301!
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 https://popri.cz/* https://www.popri.cz/:splat 301!
 
+# Special rules for favicon files - allow them to pass through directly
+/poda-favicon.ico /poda-favicon.ico 200
+/poda-favicon-16x16.png /poda-favicon-16x16.png 200
+/poda-favicon-32x32.png /poda-favicon-32x32.png 200
+/poda-favicon-48x48.png /poda-favicon-48x48.png 200
+/poda-favicon-96x96.png /poda-favicon-96x96.png 200
+/poda-favicon-192x192.png /poda-favicon-192x192.png 200
+/poda-favicon-512x512.png /poda-favicon-512x512.png 200
+/poda-apple-touch-icon.png /poda-apple-touch-icon.png 200
+/site.webmanifest /site.webmanifest 200
+
 # Explicitly allow access to asset files
 /assets/* /assets/:splat 200
 /lovable-uploads/* /lovable-uploads/:splat 200

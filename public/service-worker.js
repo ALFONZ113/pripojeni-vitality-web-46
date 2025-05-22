@@ -1,13 +1,14 @@
+
 // Service Worker pro Popri.cz
-// Verze: 2.0.1 (2025-05-19)
+// Verze: 3.0.0 (2025-05-22)
 
 // Cache names - consolidated into a config object
 const CACHE_CONFIG = {
-  MAIN: 'popri-cache-v2.0.1',
-  RUNTIME: 'popri-runtime-v2.0.1',
-  STATIC: 'popri-static-v2.0.1',
-  IMAGES: 'popri-images-v2.0.1',
-  VERSION: '2.0.1'
+  MAIN: 'popri-cache-v3.0.0',
+  RUNTIME: 'popri-runtime-v3.0.0',
+  STATIC: 'popri-static-v3.0.0',
+  IMAGES: 'popri-images-v3.0.0',
+  VERSION: '3.0.0'
 };
 
 // Resource configurations
@@ -35,6 +36,7 @@ const RESOURCES = {
     '/poda-favicon-16x16.png',
     '/poda-favicon-32x32.png',
     '/poda-favicon-48x48.png',
+    '/poda-favicon-96x96.png',
     '/poda-favicon-192x192.png',
     '/poda-favicon-512x512.png',
     '/poda-apple-touch-icon.png',
@@ -64,12 +66,25 @@ const helpers = {
     return botPatterns.some(bot => userAgent.includes(bot));
   },
   
+  // Check if URL is a favicon
+  isFavicon(url) {
+    const pathname = new URL(url).pathname;
+    return RESOURCES.FAVICON.some(file => pathname.includes(file)) || 
+           pathname.includes('favicon') || 
+           pathname.endsWith('.ico');
+  },
+  
+  // Get hostname from request
+  getHostname(request) {
+    return new URL(request.url).hostname;
+  },
+  
   // Determine best cache strategy based on request
   getCacheStrategy(url) {
     const pathname = new URL(url).pathname;
     
     // Never cache favicon files
-    if (RESOURCES.FAVICON.some(file => pathname.includes(file))) {
+    if (helpers.isFavicon(url)) {
       return 'network-only';
     }
     
@@ -96,7 +111,7 @@ const helpers = {
   }
 };
 
-// Clear favicon cache from all caches
+// Aggressively clear favicon cache from all caches
 async function clearFaviconCache() {
   try {
     const cacheNames = await caches.keys();
@@ -105,12 +120,27 @@ async function clearFaviconCache() {
       cacheNames.map(async (name) => {
         const cache = await caches.open(name);
         
+        // Get all cache keys
+        const requests = await cache.keys();
+        
+        // Filter favicon requests
+        const faviconRequests = requests.filter(
+          request => helpers.isFavicon(request.url)
+        );
+        
+        // Delete all favicon requests
+        await Promise.all(
+          faviconRequests.map(request => cache.delete(request))
+        );
+        
+        // Also explicitly delete known favicon paths with various version params
         await Promise.all(
           RESOURCES.FAVICON.map(async (file) => {
             await cache.delete(file);
             await cache.delete(file + '?v=1.0');
             await cache.delete(file + '?v=2.0');
-            console.log('Cleared old favicon: ' + file);
+            await cache.delete(file + '?v=3.0');
+            console.log('Cleared favicon from cache: ' + file);
           })
         );
       })
@@ -122,7 +152,7 @@ async function clearFaviconCache() {
 
 // Install event - cache core resources and clean favicon cache
 self.addEventListener('install', event => {
-  console.log('Service Worker installing...');
+  console.log('Service Worker installing version ' + CACHE_CONFIG.VERSION);
   self.skipWaiting(); // Force activation immediately
 
   event.waitUntil(
@@ -154,13 +184,18 @@ self.addEventListener('fetch', event => {
     return;
   }
   
-  // Special handling for favicon files
-  const isFaviconRequest = RESOURCES.FAVICON.some(file => requestUrl.pathname.includes(file));
-  if (isFaviconRequest) {
+  // Special handling for favicon files - always go to network
+  if (helpers.isFavicon(event.request.url)) {
     event.respondWith(
-      fetch(event.request).catch(() => {
-        return new Response('Favicon not available', { status: 404 });
-      })
+      fetch(event.request, { cache: 'no-store', mode: 'no-cors' })
+        .then(response => {
+          console.log('Fetched favicon from network:', requestUrl.pathname);
+          return response;
+        })
+        .catch(() => {
+          console.error('Failed to fetch favicon:', requestUrl.pathname);
+          return new Response('Favicon not available', { status: 404 });
+        })
     );
     return;
   }
@@ -266,15 +301,23 @@ self.addEventListener('activate', event => {
         );
       }),
       
-      // Clear favicon cache again
+      // Clear favicon cache again to be absolutely certain
       clearFaviconCache(),
       
       // Take control of all clients
       self.clients.claim()
     ])
   ).then(() => {
-    console.log('Service Worker now active with latest caches');
+    console.log('Service Worker now active with latest caches v' + CACHE_CONFIG.VERSION);
   });
+});
+
+// Message event - handle messages from clients
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'CLEAR_FAVICON_CACHE') {
+    console.log('Received request to clear favicon cache');
+    event.waitUntil(clearFaviconCache());
+  }
 });
 
 // Periodic cleanup
@@ -293,7 +336,7 @@ self.addEventListener('periodicsync', event => {
           });
         }),
         
-        // Clean favicon cache
+        // Clear favicon cache
         clearFaviconCache()
       ])
     );

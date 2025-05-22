@@ -20,8 +20,10 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   // Generate structured data
   const structuredData = createBlogPostStructuredData(post, baseUrl, canonicalUrl);
   
-  // Generate keywords
-  const metaKeywords = generateMetaKeywords(post.category, post.tags);
+  // Generate keywords - use all tags if available
+  const metaKeywords = post.tags && post.tags.length > 0 
+    ? post.tags.join(', ') + ', ' + post.category + ', PODA'
+    : generateMetaKeywords(post.category, post.tags);
 
   return (
     <Helmet>
@@ -29,6 +31,8 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <meta name="description" content={post.excerpt || post.title} />
       <link rel="canonical" href={canonicalUrl} />
       <link rel="alternate" href={alternateUrl} hrefLang="cs" />
+      
+      {/* Open Graph tags */}
       <meta property="og:title" content={`${post.title} | Blog Popri.cz`} />
       <meta property="og:description" content={post.excerpt || post.title} />
       <meta property="og:url" content={canonicalUrl} />
@@ -40,15 +44,23 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       {post.tags?.map((tag, index) => (
         <meta key={index} property="article:tag" content={tag} />
       ))}
+      
+      {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={post.title} />
       <meta name="twitter:description" content={post.excerpt || post.title} />
       <meta name="twitter:image" content={postImage} />
+      
+      {/* Enhanced SEO metadata */}
       <meta name="keywords" content={metaKeywords} />
       <meta name="author" content={post.author} />
       <meta name="robots" content="index, follow, max-image-preview:large" />
+      
+      {/* Blog navigation links for enhanced SEO */}
       {prevPost && <link rel="prev" href={`https://www.popri.cz/blog/${prevPost.id}`} />}
       {nextPost && <link rel="next" href={`https://www.popri.cz/blog/${nextPost.id}`} />}
+      
+      {/* Schema.org structured data */}
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
       </script>

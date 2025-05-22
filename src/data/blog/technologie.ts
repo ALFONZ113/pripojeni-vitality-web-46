@@ -91,7 +91,7 @@ export const technologiePosts: BlogPost[] = [
     category: "Technologie",
     image: "/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png",
     alt: "Nejlepší internet v Ostravě - osoba pracující na počítači s dvěma monitory",
-    tags: ["Internet", "Ostrava", "PODA", "Optické připojení", "Rychlý internet"]
+    tags: ["Internet", "Ostrava", "PODA", "Optické připojení", "Rychlý internet", "Připojení domácnosti", "Srovnání poskytovatelů"]
   },
   {
     id: 8,
@@ -102,6 +102,7 @@ export const technologiePosts: BlogPost[] = [
     category: 'Technologie',
     image: '/lovable-uploads/2e16f35c-9b53-448d-a734-63863af4ed46.png',
     alt: 'Parabolická anténa na streche budovy s mestským panorámatom v pozadí, vizualizácia 60 GHz internetového pripojenia',
+    tags: ['60 GHz', 'Bezdrôtové pripojenie', 'Vysokorýchlostný internet', 'PODA', 'Mesh Wi-Fi', 'Rodinné domy', 'Inovatívna technológia'],
     content: `
       <p>Spoločnosť PODA prináša revolučnú technológiu internetového pripojenia využívajúcu frekvenčné pásmo 60 GHz, ktorá umožňuje rýchlosti až 600 Mb/s pre rodinné domy bez prístupu k optickej sieti. Tento inovatívny systém ponúka výkon takmer porovnateľný s optickým pripojením a predstavuje významný pokrok v oblasti bezdrôtového internetu.</p>
       
@@ -127,7 +128,7 @@ export const technologiePosts: BlogPost[] = [
       </ul>
       
       <h3>Porovnanie s optickým internetom</h3>
-      <p>Zatiaľ čo optické pripojenie zostáva špičkou v rýchlosti a stabilite, 60 GHz bezdrôtová technológia sa mu v mnohých ohľadoch približuje. Optika ponúka vyššie maximálne rýchlosti (až 100 Gb/s), ale 60 GHz pripojenie s rýchlosťami až 1 Gb/s je pre väčšinu domácností viac než dostačujúce.</p>
+      <p>Zatiaľ čo optické pripojenie zostáva špičkou v rýchlosti a stabilite, 60 GHz bezdrôtová technológia sa mu v mnohých ohľadoch približuje. Optika ponúka vyššie maximálne rýchlosti (až 100 Gb/s), ale 60 GHz pripojenie s rychlosťami až 1 Gb/s je pre väčšinu domácností viac než dostačujúce.</p>
       
       <ul>
         <li><strong>Latencia</strong>: Obe technológie poskytujú veľmi nízku a stabilnú odozvu</li>
@@ -159,7 +160,8 @@ export const technologiePosts: BlogPost[] = [
     date: '15. 6. 2023',
     author: 'Milan Terč',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1539431001722-33ec2dbf8df1?q=80&w=2070&auto=format&fit=crop',
+    tags: ['GPON', 'Optické připojení', 'Vysoká rychlost', 'Nízká latence', 'Stabilní internet', 'Technologie budoucnosti', 'Domácí připojení'],
   },
   {
     id: 5,
@@ -182,6 +184,7 @@ export const technologiePosts: BlogPost[] = [
     date: '5. 2. 2023',
     author: 'Milan Terč',
     category: 'Technologie',
-    image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=2070&auto=format&fit=crop',
+    tags: ['PODA net.TV', 'Zpětné přehrávání', 'Sledování TV', 'Mobilní aplikace', 'Nahrávání pořadů', 'IPTV', 'TV na cestách'],
   }
 ];

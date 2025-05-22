@@ -19,6 +19,8 @@ Allow: /ochrana-soukromi$
 Allow: /blog?category=*
 Allow: /blog?tag=*
 Allow: /blog?search=*
+Allow: /blog/*?category=*
+Allow: /blog/*?tag=*
 
 # Disallow administrative and system URLs
 Disallow: /wp-admin/

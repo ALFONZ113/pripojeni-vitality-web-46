@@ -69,7 +69,7 @@ export const createBlogPostStructuredData = (
       "@type": "WebPage",
       "@id": canonicalUrl
     },
-    "keywords": post.tags?.join(', ') || post.category,
+    "keywords": post.tags && post.tags.length > 0 ? post.tags.join(', ') : post.category,
     "articleSection": post.category,
     "inLanguage": "cs-CZ",
     "copyrightYear": new Date(postDate).getFullYear(),
@@ -84,8 +84,11 @@ export const generateMetaKeywords = (
   category: string, 
   tags?: string[]
 ): string => {
-  return tags 
-    ? `${category}, ${tags.join(', ')}, PODA Internet, PODA TV, Popri.cz`
-    : `${category}, PODA Internet, PODA připojení, Popri.cz`;
+  const baseKeywords = `${category}, PODA Internet, PODA připojení, Popri.cz`;
+  
+  if (tags && tags.length > 0) {
+    return `${tags.join(', ')}, ${baseKeywords}`;
+  }
+  
+  return baseKeywords;
 };
-

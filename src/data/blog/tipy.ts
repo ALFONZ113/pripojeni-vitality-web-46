@@ -22,7 +22,8 @@ export const tipyPosts: BlogPost[] = [
     date: '2. 5. 2023',
     author: 'Tým PODA',
     category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop',
+    tags: ['Televizní balíčky', 'TV Mých 10', 'Rodinný balíček', 'PODA TV', 'Sportovní kanály', 'Filmové stanice', 'Dětské programy'],
   },
   {
     id: 4,
@@ -44,7 +45,8 @@ export const tipyPosts: BlogPost[] = [
     date: '20. 3. 2023',
     author: 'Tým PODA',
     category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?q=80&w=2070&auto=format&fit=crop',
+    tags: ['Sport', 'Televizní kanály', 'Sportovní přenosy', 'ČT Sport', 'Eurosport', 'Nova Sport', 'Arena Sport'],
   },
   {
     id: 6,
@@ -69,6 +71,7 @@ export const tipyPosts: BlogPost[] = [
     date: '15. 1. 2023',
     author: 'Tým PODA',
     category: 'Tipy a rady',
-    image: 'https://images.unsplash.com/photo-1627163439134-7a8c47e08208?q=80&w=2032&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1627163439134-7a8c47e08208?q=80&w=2032&auto=format&fit=crop',
+    tags: ['Rychlost internetu', 'Streamování', 'Online hry', 'Práce z domova', 'HD kvalita', '4K kvalita', 'PODA tarify'],
   }
 ];

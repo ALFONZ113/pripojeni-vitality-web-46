@@ -5,6 +5,7 @@ import { toast } from '@/components/ui/use-toast';
 import type { BlogPost } from '../../data/blog/types';
 import { useState, useEffect } from 'react';
 import { blogPosts } from '../../data/blog';
+import { Badge } from '@/components/ui/badge';
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -155,21 +156,25 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
 
       <div className="mt-8 pt-6 border-t border-gray-200">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <span className="text-gray-600">Štítky:</span>
-            <div className="mt-2 flex flex-wrap gap-2">
-              <Link to={`/blog?category=${encodeURIComponent(post.category)}`} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-poda-blue hover:text-white transition-colors">
+          <div className="w-full">
+            <h3 className="text-gray-700 font-medium mb-2">Štítky:</h3>
+            <div className="flex flex-wrap gap-2">
+              <Link to={`/blog?category=${encodeURIComponent(post.category)}`} className="bg-poda-blue text-white px-3 py-1 rounded-full text-sm hover:bg-poda-blue-dark transition-colors">
                 {post.category}
               </Link>
               {post.tags?.map((tag, index) => (
-                <Link key={index} to={`/blog?tag=${encodeURIComponent(tag)}`} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-poda-blue hover:text-white transition-colors">
+                <Link 
+                  key={index} 
+                  to={`/blog?tag=${encodeURIComponent(tag)}`} 
+                  className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-poda-blue hover:text-white transition-colors"
+                >
                   {tag}
                 </Link>
               ))}
             </div>
           </div>
           
-          <div className="text-gray-600">
+          <div className="text-gray-600 shrink-0">
             Publikováno: <time dateTime={formattedDate}>{post.date}</time>
           </div>
         </div>

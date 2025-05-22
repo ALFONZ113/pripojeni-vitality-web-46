@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const sluzbyPosts: BlogPost[] = [
@@ -11,6 +10,7 @@ export const sluzbyPosts: BlogPost[] = [
     category: 'Služby',
     image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_Visual_Conce_2.webp',
     alt: 'Futuristická vizualizace propojení telekomunikačních sítí, symbolizující změny na trhu poskytovatelů internetu',
+    tags: ['Přechod poskytovatele', 'O2', 'PODA', 'Nej.cz', 'Netbox', 'Optické připojení', 'Internet'],
     content: `
       <p>V telekomunikačním sektoru České republiky došlo k významným změnám. Společnost O2 dokončila akvizici poskytovatele internetu Nej.cz, přičemž zákaznická základna přešla pod O2, zatímco infrastrukturu převzal CETIN. Zároveň netbox, který poskytuje internetové připojení více než 40 tisícům zákazníků především v Brně a Jihlavě, se také stal součástí O2.</p>
       
@@ -60,6 +60,7 @@ export const sluzbyPosts: BlogPost[] = [
     category: 'Služby',
     image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
     alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě, futuristický vzhled připojení PODA',
+    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
     content: `
       <h3>Dostupné ulice v Porubě:</h3>
       <p>Aloise Gavlase, Bohuslava Martinů, Bulharská, Čkalovova, Dětská, Dvorní, Francouzská, Generála Sochora, Gurťjevova, Havanská, Hlavní třída, Heyrovského, Ivana Sekaniny, Jana Šoupala, Jindřicha Plachty, Karla Pokorného, Komenského, Kosmická, Kubánská, Kyjevská, Liptaňského náměstí, Ludvíka Podéště, Marie Majerové, Matěje Kopeckého, Mongolská, Nálepkova, Náměstí Družby, Nezvalovo náměstí, Opavská, Podroužkova, Polská, Porubská, Příčná, Průběžná, Pustkovecká, Rabasova, Řecká, Resslova, Skautská, Školní, Slepá, Slavíkova, Sokolovská, Španielova, Spartakovců, Spojů, Stavební, Svojsíkova, Tř. 17. listopadu, U Oblouku, U Školky, U Soudu, U Sportoviště, U Vozovny, Ukrajinská, Urxova, Větrná, Vietnamská, Vincence Makovského, Vítězslava Nováka, Vřesinská, Záhumenní, Zdeňka Štěpánka, Zednická, Žilinská.</p>
@@ -90,6 +91,7 @@ export const sluzbyPosts: BlogPost[] = [
     category: 'Služby',
     image: '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
     alt: 'Vizualizace optického připojení v městské zástavbě s modrými světelnými efekty',
+    tags: ['PODA', 'Pokrytí', 'Internet', 'Města', 'Optické připojení', 'Bezdrátový internet', 'Rychlé připojení'],
     content: `
       <p>Společnost PODA patří mezi přední poskytovatele internetu v České republice a díky své moderní síti přináší rychlé a stabilní připojení nejen do velkých měst, ale i do menších obcí. Pokud hledáte spolehlivý internet pro domácnost nebo firmu, PODA je rozhodně možnost, kterou stojí za to zvážit. V tomto článku se dozvíte, kde všude můžete služby PODA využívat a jak si jednoduše ověřit dostupnost u vás doma.</p>
       
@@ -163,6 +165,7 @@ export const sluzbyPosts: BlogPost[] = [
     date: '10. 4. 2023',
     author: 'Milan Terč',
     category: 'Služby',
-    image: 'https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?q=80&w=2070&auto=format&fit=crop',
+    tags: ['Změna poskytovatele', 'Přechod k PODA', 'Internet', 'Instalace', 'Pomoc s výpovědí', 'Milan Terč'],
   }
 ];

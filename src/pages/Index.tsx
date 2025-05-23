@@ -4,6 +4,7 @@ import PageMetadata from '../components/page/PageMetadata';
 import LoadingState from '../components/page/LoadingState';
 import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
+import PromotionPopup from '../components/PromotionPopup';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -32,6 +33,9 @@ const Index = () => {
       />
       
       <MainContent />
+
+      {/* Promotion popup */}
+      <PromotionPopup />
 
       {/* Toast notifications */}
       <Toaster />

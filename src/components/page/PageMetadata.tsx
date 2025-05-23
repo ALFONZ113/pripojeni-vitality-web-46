@@ -9,6 +9,7 @@ interface PageMetadataProps {
   faviconVersion?: string;
   cacheBuster?: string;
   domain?: string;
+  seznamVerification?: string;
 }
 
 const PageMetadata = ({ 
@@ -17,7 +18,8 @@ const PageMetadata = ({
   currentDate = new Date().toISOString().split('T')[0],
   faviconVersion = "3.0",
   cacheBuster = Date.now().toString(),
-  domain = typeof window !== "undefined" ? window.location.hostname : "www.popri.cz"
+  domain = typeof window !== "undefined" ? window.location.hostname : "www.popri.cz",
+  seznamVerification
 }: PageMetadataProps) => {
   // Generate domain-specific cache busting parameter
   const domainSpecificHash = domain.includes('poda') ? 'poda-' + cacheBuster : 'popri-' + cacheBuster;
@@ -31,6 +33,7 @@ const PageMetadata = ({
       <meta name="format-detection" content="telephone=yes" />
       <meta name="google" content="notranslate"/>
       <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
+      {seznamVerification && <meta name="seznam-wmt" content={seznamVerification} />}
       <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
       <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />

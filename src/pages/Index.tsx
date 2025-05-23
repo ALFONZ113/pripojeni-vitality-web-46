@@ -30,6 +30,7 @@ const Index = () => {
       <PageMetadata 
         title="Popri.cz – Rychlý PODA Internet s TV Zdarma | Gigabitové Připojení"
         description="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace."
+        seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       
       <MainContent />

@@ -13,6 +13,12 @@ export const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>, fall
   const target = e.currentTarget;
   console.warn(`Failed to load image: ${target.src}`);
   
+  // Prevent infinite error loops
+  if (target.src === fallbackPath) {
+    console.error('Fallback image also failed to load');
+    return;
+  }
+  
   // Set a tiny timeout to prevent error cascade and improve perceived performance
   setTimeout(() => {
     target.src = fallbackPath;
@@ -47,7 +53,9 @@ export const responsiveImageProps = (
     fetchPriority: priority ? 'high' as const : 'auto' as const,
     onError: (e: React.SyntheticEvent<HTMLImageElement>) => handleImageError(e),
     // Add decode attribute for better image rendering performance
-    decoding: priority ? 'sync' as const : 'async' as const
+    decoding: priority ? 'sync' as const : 'async' as const,
+    // Add crossorigin for better caching
+    crossOrigin: 'anonymous' as const
   };
 };
 
@@ -64,6 +72,27 @@ export const preloadCriticalImages = (imagePaths: string[]) => {
     link.as = 'image';
     link.href = path;
     link.fetchPriority = 'high';
+    link.crossOrigin = 'anonymous';
+    
+    // Add error handling for preloaded images
+    link.onerror = () => {
+      console.warn(`Failed to preload image: ${path}`);
+    };
+    
     document.head.appendChild(link);
+  });
+};
+
+/**
+ * Validates if an image URL is accessible
+ * @param src - The image source URL
+ * @returns Promise that resolves to true if image is accessible
+ */
+export const validateImageUrl = (src: string): Promise<boolean> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = src;
   });
 };

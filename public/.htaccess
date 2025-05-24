@@ -32,6 +32,11 @@ RewriteRule ^ - [L]
 RewriteCond %{REQUEST_URI} ^/lovable-uploads/
 RewriteRule ^ - [L]
 
+# Handle missing images gracefully - redirect to placeholder
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} \.(jpg|jpeg|gif|png|webp)$
+RewriteRule ^(.*)$ /placeholder.svg [L,R=302]
+
 # Special handling for sitemap files
 RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
 RewriteRule ^sitemap-popri\.xml$ /sitemap-popri.xml [L]
@@ -60,9 +65,23 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   </IfModule>
 </FilesMatch>
 
-# Enable CORS for fonts and other resources
+# Enhanced CORS for fonts and other resources
 <IfModule mod_headers.c>
+  # Special CORS headers for Google Fonts
+  <FilesMatch "\.(woff|woff2|ttf|eot)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+  </FilesMatch>
+  
+  # General CORS for other resources
   <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font\.css|css|js|png|jpg|jpeg|gif|webp|svg|ico)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+  
+  # Add proper headers for CSS files
+  <FilesMatch "\.css$">
+    Header set Content-Type "text/css; charset=utf-8"
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
 </IfModule>
@@ -94,10 +113,6 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   ExpiresByType application/font-woff2 "access plus 1 year"
   ExpiresByType font/ttf "access plus 1 year"
   ExpiresByType font/otf "access plus 1 year"
-  
-  # Others
-  ExpiresByType application/pdf "access plus 1 month"
-  ExpiresByType application/x-shockwave-flash "access plus 1 month"
 </IfModule>
 
 # Security headers

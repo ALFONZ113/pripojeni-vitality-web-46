@@ -18,6 +18,7 @@ const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
     zip: '',
     phone: '',
     email: '',
+    propertyType: 'byty', // Nové pole pre typ nehnuteľnosti
     currentProvider: '',
     currentPrice: '',
     message: ''
@@ -137,6 +138,7 @@ const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
             zip: '',
             phone: '',
             email: '',
+            propertyType: 'byty',
             currentProvider: '',
             currentPrice: '',
             message: ''
@@ -233,6 +235,24 @@ const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
                 required
                 disabled={formState.loading}
               />
+            </div>
+            
+            {/* Typ nehnuteľnosti */}
+            <div>
+              <label className="block text-gray-700 font-medium mb-2" htmlFor="propertyType">
+                Typ nehnuteľnosti
+              </label>
+              <select
+                id="propertyType"
+                name="propertyType"
+                value={formData.propertyType}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                disabled={formState.loading}
+              >
+                <option value="byty">Byt/bytovka</option>
+                <option value="domy">Rodinný dom</option>
+              </select>
             </div>
             
             {/* Additional form fields */}

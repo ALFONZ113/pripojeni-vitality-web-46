@@ -8,6 +8,7 @@ interface EmailFormData {
   address?: string;
   city?: string;
   zip?: string;
+  propertyType?: string;
   currentProvider?: string;
   currentPrice?: string;
   message?: string;
@@ -22,7 +23,8 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
     
     console.log("Making request to:", functionUrl);
     
-    const response = await fetch(functionUrl, {
+    // Send admin email
+    const adminResponse = await fetch(functionUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,20 +34,44 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
         subject: formData.name.includes("Žádost o zpětné volání") 
           ? "Žádost o zpětné volání - popri.cz" 
           : "Nový kontakt z pripojeni-poda.cz",
-        formData: formData
+        formData: formData,
+        emailType: "admin"
       })
     });
 
-    console.log("Response status:", response.status);
+    console.log("Admin email response status:", adminResponse.status);
     
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Email API error:", errorText);
-      throw new Error(`Failed to send email: ${response.status} - ${errorText}`);
+    if (!adminResponse.ok) {
+      const errorText = await adminResponse.text();
+      console.error("Admin email API error:", errorText);
+      throw new Error(`Failed to send admin email: ${adminResponse.status} - ${errorText}`);
     }
     
-    const result = await response.json();
-    console.log("Email sent successfully:", result);
+    // Send customer email
+    const customerResponse = await fetch(functionUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to: formData.email,
+        subject: "Děkujeme za váš zájem o PODA služby - Popri.cz",
+        formData: formData,
+        emailType: "customer"
+      })
+    });
+
+    console.log("Customer email response status:", customerResponse.status);
+    
+    if (!customerResponse.ok) {
+      const errorText = await customerResponse.text();
+      console.error("Customer email API error:", errorText);
+      // Don't throw error for customer email, admin email is more important
+      console.warn("Customer email failed but continuing...");
+    }
+    
+    const adminResult = await adminResponse.json();
+    console.log("Admin email sent successfully:", adminResult);
     
     toast({
       title: "Formulář odeslán",

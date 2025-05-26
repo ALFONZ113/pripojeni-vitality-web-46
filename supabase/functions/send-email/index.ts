@@ -1,4 +1,3 @@
-
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
@@ -31,7 +30,7 @@ interface EmailRequest {
   };
 }
 
-// Generate customer email HTML with modern design matching the website
+// Generate customer email HTML with clean, professional design matching the website
 const generateCustomerEmailHTML = (formData: any): string => {
   const propertyType = formData.propertyType || 'byty';
   const isApartment = propertyType === 'byty';
@@ -80,35 +79,39 @@ const generateCustomerEmailHTML = (formData: any): string => {
 
   const generateTariffCards = () => {
     return tariffs.map(tariff => `
-      <div style="border: 2px solid ${tariff.recommended ? '#0F4C81' : '#e5e7eb'}; border-radius: 16px; padding: 32px; margin-bottom: 24px; background: ${tariff.recommended ? 'linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%)' : 'white'}; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+      <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; background: white; ${tariff.recommended ? 'border-color: #0F4C81; border-width: 2px;' : ''}">
         ${tariff.recommended ? `
-        <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); color: white; padding: 8px 20px; border-radius: 24px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(255,107,53,0.3);">
-          DOPORUČUJEME
+        <div style="background: #0F4C81; color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; display: inline-block;">
+          Doporučujeme
         </div>` : ''}
-        <h3 style="color: #0F4C81; font-size: 24px; font-weight: 700; margin: ${tariff.recommended ? '16px 0 16px 0' : '0 0 16px 0'}; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;">${tariff.name}</h3>
-        <div style="display: flex; align-items: baseline; margin-bottom: 20px;">
-          <div style="font-size: 40px; font-weight: 700; color: #0F4C81; margin-right: 12px; font-family: 'SF Pro Display', sans-serif;">${tariff.price}</div>
-          <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${tariff.priceNote}</div>
-        </div>
-        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; border-left: 4px solid #0F4C81;">
-          <div style="margin-bottom: 12px; font-weight: 600; color: #374151;"><span style="color: #0F4C81;">🌐</span> <strong>Internet:</strong> ${tariff.speed}</div>
-          <div style="margin-bottom: 8px; color: #6b7280; font-size: 14px;">${tariff.technology}</div>
-          <div style="margin-bottom: 0; font-weight: 600; color: #374151;"><span style="color: #FF6B35;">📺</span> <strong>Televízia:</strong> ${tariff.tvChannels}</div>
-        </div>
+        <h3 style="color: #0F4C81; font-size: 20px; font-weight: 600; margin: ${tariff.recommended ? '0 0 16px 0' : '0 0 16px 0'}; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${tariff.name}</h3>
+        
         <div style="margin-bottom: 20px;">
+          <div style="font-size: 32px; font-weight: 700; color: #0F4C81; margin-bottom: 4px; font-family: 'Inter', sans-serif;">${tariff.price}</div>
+          <div style="color: #6b7280; font-size: 14px;">${tariff.priceNote}</div>
+        </div>
+        
+        <div style="background: #f8fafc; padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+          <div style="margin-bottom: 8px; font-weight: 500; color: #374151;"><strong>Internet:</strong> ${tariff.speed}</div>
+          <div style="margin-bottom: 8px; color: #6b7280; font-size: 14px;">${tariff.technology}</div>
+          <div style="margin-bottom: 0; font-weight: 500; color: #374151;"><strong>Televízia:</strong> ${tariff.tvChannels}</div>
+        </div>
+        
+        <div style="margin-bottom: 16px;">
           ${tariff.features.map(feature => `
-          <div style="display: flex; align-items: center; margin-bottom: 8px; padding: 8px 0;">
-            <div style="width: 20px; height: 20px; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
-              <span style="color: white; font-size: 12px; font-weight: bold;">✓</span>
+          <div style="display: flex; align-items: center; margin-bottom: 6px; padding: 4px 0;">
+            <div style="width: 16px; height: 16px; background: #0F4C81; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; flex-shrink: 0;">
+              <span style="color: white; font-size: 10px; font-weight: bold;">✓</span>
             </div>
-            <span style="color: #374151; font-weight: 500;">${feature}</span>
+            <span style="color: #374151; font-size: 14px;">${feature}</span>
           </div>
           `).join('')}
         </div>
+        
         ${tariff.recommended ? `
-        <div style="text-align: center; margin-top: 24px;">
-          <a href="tel:+420730431313" style="display: inline-block; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); color: white; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 4px 12px rgba(255,107,53,0.3); transition: all 0.3s ease;">
-            📞 Objednať teraz
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="tel:+420730431313" style="display: inline-block; background: #FF6B35; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;">
+            Objednať teraz
           </a>
         </div>` : ''}
       </div>
@@ -122,154 +125,135 @@ const generateCustomerEmailHTML = (formData: any): string => {
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Děkujeme za váš zájem - Popri.cz</title>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
-    <body style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; line-height: 1.6; color: #374151; max-width: 600px; margin: 0 auto; padding: 0; background-color: #f8fafc;">
+    <body style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #374151; max-width: 600px; margin: 0 auto; padding: 0; background-color: #f9fafb;">
       
-      <!-- Header with gradient -->
-      <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #0F4C81 0%, #3A7CA5 100%); border-radius: 0 0 24px 24px; margin-bottom: 32px; box-shadow: 0 8px 32px rgba(15,76,129,0.15);">
-        <h1 style="color: white; font-size: 36px; margin: 0 0 12px 0; font-family: 'SF Pro Display', sans-serif; font-weight: 700;">
+      <!-- Header -->
+      <div style="text-align: center; padding: 32px 20px; background: linear-gradient(135deg, #0F4C81 0%, #3A7CA5 100%); margin-bottom: 24px;">
+        <h1 style="color: white; font-size: 28px; margin: 0 0 8px 0; font-weight: 700;">
           <span style="color: #FF6B35;">Po</span><span style="color: white;">pri.cz</span>
         </h1>
-        <p style="color: #e6f3ff; margin: 0; font-size: 18px; font-weight: 500;">Váš partner pre <span style="color: #FF6B35; font-weight: 700;">PO</span><span style="color: white; font-weight: 700;">DA</span> internet a TV</p>
+        <p style="color: #e6f3ff; margin: 0; font-size: 16px; font-weight: 400;">Váš partner pre <span style="color: #FF6B35; font-weight: 600;">PO</span><span style="color: white; font-weight: 600;">DA</span> internet a TV</p>
       </div>
 
       <div style="padding: 0 20px;">
-        <!-- Personalized greeting -->
-        <div style="background: white; padding: 32px; border-radius: 16px; margin-bottom: 32px; border-left: 4px solid #0F4C81; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-          <h2 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 24px; font-family: 'SF Pro Display', sans-serif; font-weight: 700;">Dobrý deň ${formData.name}! 👋</h2>
+        <!-- Greeting -->
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #e5e7eb;">
+          <h2 style="color: #0F4C81; margin: 0 0 12px 0; font-size: 20px; font-weight: 600;">Dobrý deň ${formData.name}!</h2>
           <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #6b7280;">
             Ďakujeme za váš zájem o naše <span style="color: #FF6B35; font-weight: 600;">PO</span><span style="color: #0F4C81; font-weight: 600;">DA</span> služby. 
             Pripravili sme pre vás prehľad dostupných tarifov pre <strong style="color: #0F4C81;">${isApartment ? 'byty a bytovky' : 'rodinné domy'}</strong>.
           </p>
         </div>
 
-        <!-- Available services -->
-        <div style="margin-bottom: 32px;">
-          <h3 style="color: #0F4C81; font-size: 28px; margin-bottom: 24px; font-family: 'SF Pro Display', sans-serif; font-weight: 700; text-align: center;">Dostupné služby na vašej adrese</h3>
-          
-          ${formData.address || formData.city ? `
-          <div style="background: linear-gradient(135deg, #e6f3ff 0%, #f0f7ff 100%); padding: 20px; border-radius: 16px; margin-bottom: 32px; border: 2px solid #e6f3ff;">
-            <div style="display: flex; align-items: center; margin-bottom: 8px;">
-              <span style="font-size: 20px; margin-right: 8px;">📍</span>
-              <strong style="color: #0F4C81; font-size: 18px;">${formData.address ? formData.address + ', ' : ''}${formData.city || ''}</strong>
-            </div>
-            <p style="margin: 8px 0 0 28px; color: #6b7280; font-size: 14px;">
-              Typ nehnuteľnosti: <strong>${isApartment ? 'Byt/bytovka - GPON technológia' : 'Rodinný dom - Bezdrátový internet'}</strong>
-            </p>
+        <!-- Location info -->
+        ${formData.address || formData.city ? `
+        <div style="background: #f0f7ff; padding: 16px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid #0F4C81;">
+          <div style="font-weight: 600; color: #0F4C81; margin-bottom: 4px;">Vaša adresa:</div>
+          <div style="color: #374151;">${formData.address ? formData.address + ', ' : ''}${formData.city || ''}</div>
+          <div style="color: #6b7280; font-size: 14px; margin-top: 4px;">
+            Typ nehnuteľnosti: ${isApartment ? 'Byt/bytovka - GPON technológia' : 'Rodinný dom - Bezdrátový internet'}
           </div>
-          ` : ''}
-          
+        </div>
+        ` : ''}
+        
+        <!-- Tariffs -->
+        <div style="margin-bottom: 24px;">
+          <h3 style="color: #0F4C81; font-size: 22px; margin-bottom: 20px; font-weight: 600; text-align: center;">Dostupné služby</h3>
           ${generateTariffCards()}
         </div>
 
-        <!-- Key benefits -->
-        <div style="background: white; padding: 32px; border-radius: 16px; margin-bottom: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-          <h3 style="color: #0F4C81; margin: 0 0 24px 0; font-size: 24px; font-family: 'SF Pro Display', sans-serif; font-weight: 700; text-align: center;">
+        <!-- Benefits -->
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #e5e7eb;">
+          <h3 style="color: #0F4C81; margin: 0 0 20px 0; font-size: 20px; font-weight: 600; text-align: center;">
             Prečo si vybrať <span style="color: #FF6B35;">PO</span><span style="color: #0F4C81;">DA</span> služby?
           </h3>
-          <div style="display: grid; gap: 16px;">
-            <div style="display: flex; align-items: center; padding: 16px; background: #f8fafc; border-radius: 12px;">
-              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;">
-                <span style="font-size: 20px;">🚀</span>
-              </div>
+          <div style="display: grid; gap: 12px;">
+            <div style="display: flex; align-items: center; padding: 12px; background: #f8fafc; border-radius: 8px;">
+              <div style="width: 8px; height: 8px; background: #FF6B35; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></div>
               <div>
-                <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-weight: 600;">Garantovaná rýchlosť</h4>
-                <p style="margin: 0; color: #6b7280; font-size: 14px;">Bez obmedzení a spomalení</p>
+                <strong style="color: #0F4C81;">Garantovaná rýchlosť</strong> - bez obmedzení a spomalení
               </div>
             </div>
             
-            <div style="display: flex; align-items: center; padding: 16px; background: #f8fafc; border-radius: 12px;">
-              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;">
-                <span style="font-size: 20px;">📺</span>
-              </div>
+            <div style="display: flex; align-items: center; padding: 12px; background: #f8fafc; border-radius: 8px;">
+              <div style="width: 8px; height: 8px; background: #FF6B35; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></div>
               <div>
-                <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-weight: 600;">TV automaticky v cene</h4>
-                <p style="margin: 0; color: #6b7280; font-size: 14px;">Žiadne extra poplatky</p>
+                <strong style="color: #0F4C81;">TV automaticky v cene</strong> - žiadne extra poplatky
               </div>
             </div>
             
-            <div style="display: flex; align-items: center; padding: 16px; background: #f8fafc; border-radius: 12px;">
-              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;">
-                <span style="font-size: 20px;">⚡</span>
-              </div>
+            <div style="display: flex; align-items: center; padding: 12px; background: #f8fafc; border-radius: 8px;">
+              <div style="width: 8px; height: 8px; background: #FF6B35; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></div>
               <div>
-                <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-weight: 600;">Rýchla inštalácia</h4>
-                <p style="margin: 0; color: #6b7280; font-size: 14px;">Do 7 pracovných dní</p>
+                <strong style="color: #0F4C81;">Rýchla inštalácia</strong> - do 7 pracovných dní
               </div>
             </div>
             
-            <div style="display: flex; align-items: center; padding: 16px; background: #f8fafc; border-radius: 12px;">
-              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;">
-                <span style="font-size: 20px;">🔧</span>
-              </div>
+            <div style="display: flex; align-items: center; padding: 12px; background: #f8fafc; border-radius: 8px;">
+              <div style="width: 8px; height: 8px; background: #FF6B35; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></div>
               <div>
-                <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-weight: 600;">Non-stop technická podpora</h4>
-                <p style="margin: 0; color: #6b7280; font-size: 14px;">24/7 dostupnosť</p>
+                <strong style="color: #0F4C81;">Non-stop technická podpora</strong> - 24/7 dostupnosť
               </div>
             </div>
             
-            <div style="display: flex; align-items: center; padding: 16px; background: #f8fafc; border-radius: 12px;">
-              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;">
-                <span style="font-size: 20px;">💰</span>
-              </div>
+            <div style="display: flex; align-items: center; padding: 12px; background: #f8fafc; border-radius: 8px;">
+              <div style="width: 8px; height: 8px; background: #FF6B35; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></div>
               <div>
-                <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-weight: 600;">Bez skrytých poplatkov</h4>
-                <p style="margin: 0; color: #6b7280; font-size: 14px;">Transparentné ceny</p>
+                <strong style="color: #0F4C81;">Bez skrytých poplatkov</strong> - transparentné ceny
               </div>
             </div>
           </div>
         </div>
 
         <!-- Next steps -->
-        <div style="background: linear-gradient(135deg, #0F4C81 0%, #3A7CA5 100%); color: white; padding: 32px; border-radius: 16px; margin-bottom: 32px; box-shadow: 0 8px 32px rgba(15,76,129,0.2);">
-          <h3 style="margin: 0 0 20px 0; color: white; font-size: 24px; font-family: 'SF Pro Display', sans-serif; font-weight: 700;">Ďalšie kroky 📋</h3>
-          <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6;">Milan Terč, váš obchodný zástupca, vás bude kontaktovať do <strong>24 hodín</strong> na:</p>
-          <div style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px);">
-            <div style="display: flex; align-items: center; margin-bottom: 12px;">
-              <span style="font-size: 18px; margin-right: 12px;">📞</span>
-              <a href="tel:${formData.phone}" style="color: white; text-decoration: none; font-weight: 600; font-size: 18px;">${formData.phone}</a>
+        <div style="background: linear-gradient(135deg, #0F4C81 0%, #3A7CA5 100%); color: white; padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+          <h3 style="margin: 0 0 16px 0; color: white; font-size: 20px; font-weight: 600;">Ďalšie kroky</h3>
+          <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.5;">Milan Terč, váš obchodný zástupca, vás bude kontaktovať do <strong>24 hodín</strong> na:</p>
+          <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+            <div style="margin-bottom: 8px;">
+              <strong>Telefón:</strong> <a href="tel:${formData.phone}" style="color: white; text-decoration: none;">${formData.phone}</a>
             </div>
-            <div style="display: flex; align-items: center;">
-              <span style="font-size: 18px; margin-right: 12px;">📧</span>
-              <a href="mailto:${formData.email}" style="color: white; text-decoration: none; font-weight: 600; font-size: 18px;">${formData.email}</a>
+            <div>
+              <strong>Email:</strong> <a href="mailto:${formData.email}" style="color: white; text-decoration: none;">${formData.email}</a>
             </div>
           </div>
           
-          <div style="text-align: center; margin-top: 24px;">
-            <a href="tel:+420730431313" style="display: inline-block; background: linear-gradient(135deg, #FF6B35 0%, #FF9E6B 100%); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px; box-shadow: 0 4px 16px rgba(255,107,53,0.4); transition: all 0.3s ease;">
-              📞 Zavolať teraz: +420 730 431 313
+          <div style="text-align: center;">
+            <a href="tel:+420730431313" style="display: inline-block; background: #FF6B35; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+              Zavolať teraz: +420 730 431 313
             </a>
           </div>
         </div>
 
         <!-- Contact info -->
-        <div style="background: white; padding: 32px; border-radius: 16px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-          <h3 style="color: #0F4C81; margin: 0 0 20px 0; font-size: 24px; font-family: 'SF Pro Display', sans-serif; font-weight: 700;">Kontaktné údaje</h3>
-          <div style="background: linear-gradient(135deg, #f8fafc 0%, #e6f3ff 100%); padding: 24px; border-radius: 12px; margin-bottom: 20px;">
-            <div style="margin-bottom: 16px;">
-              <h4 style="margin: 0 0 8px 0; color: #0F4C81; font-size: 20px; font-weight: 700;">Milan Terč</h4>
-              <p style="margin: 0; color: #6b7280; font-weight: 500;">Obchodný zástupca PODA</p>
-            </div>
+        <div style="background: white; padding: 24px; border-radius: 12px; text-align: center; border: 1px solid #e5e7eb;">
+          <h3 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Kontaktné údaje</h3>
+          <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 16px;">
             <div style="margin-bottom: 12px;">
-              <a href="tel:+420730431313" style="color: #0F4C81; text-decoration: none; font-weight: 600; font-size: 16px;">📞 +420 730 431 313</a>
+              <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-size: 16px; font-weight: 600;">Milan Terč</h4>
+              <p style="margin: 0; color: #6b7280; font-size: 14px;">Obchodný zástupca PODA</p>
+            </div>
+            <div style="margin-bottom: 8px;">
+              <a href="tel:+420730431313" style="color: #0F4C81; text-decoration: none; font-weight: 500;">+420 730 431 313</a>
             </div>
             <div>
-              <a href="mailto:terc@obchod.poda.cz" style="color: #0F4C81; text-decoration: none; font-weight: 600; font-size: 16px;">📧 terc@obchod.poda.cz</a>
+              <a href="mailto:terc@obchod.poda.cz" style="color: #0F4C81; text-decoration: none; font-weight: 500;">terc@obchod.poda.cz</a>
             </div>
           </div>
-          <p style="margin: 0; color: #6b7280; font-size: 14px; line-height: 1.6;">
+          <p style="margin: 0; color: #6b7280; font-size: 14px; line-height: 1.5;">
             Máte otázky? Neváhajte nás kontaktovať!<br>
-            Tešíme sa na spoluprácu s vami. 🤝
+            Tešíme sa na spoluprácu s vami.
           </p>
         </div>
       </div>
 
       <!-- Footer -->
-      <div style="text-align: center; padding: 32px 20px 20px; color: #9ca3af; font-size: 14px;">
-        <p style="margin: 0 0 8px 0;">Tento email bol automaticky vygenerovaný z webu</p>
+      <div style="text-align: center; padding: 24px 20px 16px; color: #9ca3af; font-size: 13px;">
+        <p style="margin: 0 0 4px 0;">Tento email bol automaticky vygenerovaný z webu</p>
         <p style="margin: 0;">
-          <a href="https://www.popri.cz" style="color: #0F4C81; text-decoration: none; font-weight: 600;">
+          <a href="https://www.popri.cz" style="color: #0F4C81; text-decoration: none; font-weight: 500;">
             <span style="color: #FF6B35;">Po</span><span style="color: #0F4C81;">pri.cz</span>
           </a>
         </p>

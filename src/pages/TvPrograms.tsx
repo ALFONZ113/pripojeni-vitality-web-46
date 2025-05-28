@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, Tv, Film, Bookmark, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { initAnimations } from '../utils/animation';
+import ChannelLogo from '../components/tv/ChannelLogo';
+
 const TvPrograms = () => {
   const [activeCategory, setActiveCategory] = useState('vsechny');
+  
   useEffect(() => {
     // Initialize scroll animations
     const cleanupAnimation = initAnimations();
@@ -14,6 +17,7 @@ const TvPrograms = () => {
       cleanupAnimation();
     };
   }, []);
+
   const categories = [{
     id: 'vsechny',
     name: 'Všechny programy'
@@ -278,6 +282,7 @@ const TvPrograms = () => {
     logo: 'https://via.placeholder.com/50x30?text=18+'
   }];
   const filteredChannels = activeCategory === 'vsechny' ? channels : activeCategory === 'premium' ? channels.filter(channel => channel.premium) : channels.filter(channel => channel.category === activeCategory);
+  
   return <div className="min-h-screen pt-24">
       {/* Hero section */}
       <section className="section-padding bg-gradient-to-b from-white to-blue-50">
@@ -334,11 +339,9 @@ const TvPrograms = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 reveal-animation">
             {filteredChannels.map(channel => <div key={channel.id} className="bg-white rounded-lg border border-gray-100 p-4 flex items-center shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-12 h-8 bg-gray-100 rounded flex items-center justify-center mr-3">
-                  <div className="text-xs font-medium text-gray-500">Logo</div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-medium text-poda-blue">
+                <ChannelLogo channelName={channel.name} className="w-12 h-8 mr-3 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-medium text-poda-blue truncate">
                     {channel.name} {channel.hd && <span className="text-xs text-blue-500 font-bold">HD</span>}
                   </h3>
                   {channel.premium ? <span className="inline-block text-xs bg-poda-orange/10 text-poda-orange px-2 py-0.5 rounded-full">
@@ -463,4 +466,5 @@ const TvPrograms = () => {
       </section>
     </div>;
 };
+
 export default TvPrograms;

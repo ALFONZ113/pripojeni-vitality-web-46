@@ -17,12 +17,13 @@ RewriteRule ^(apple-touch-icon\.png)$ - [L]
 RewriteCond %{HTTP_HOST} ^(www\.)?pripojeni-poda\.cz$ [NC]
 RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
 
-# Redirect non-www to www for popri.cz - simplified and more robust
+# FIXED: Redirect non-www popri.cz to www.popri.cz
 RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
 RewriteRule ^ https://www.popri.cz%{REQUEST_URI} [L,R=301]
 
 # Always force to the www subdomain of popri.cz for canonical URLs
 RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
 RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Special handling for asset files
@@ -39,7 +40,6 @@ RewriteRule ^(.*)$ /placeholder.svg [L,R=302]
 
 # Special handling for sitemap files
 RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
-RewriteRule ^sitemap-popri\.xml$ /sitemap-popri.xml [L]
 RewriteRule ^robots\.txt$ /robots.txt [L]
 
 # Set proper MIME types
@@ -126,7 +126,7 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   # Explicitly allow indexing for search engines
   Header set X-Robots-Tag "index, follow"
   
-  # Add Link header for canonical URL
+  # Add Link header for canonical URL - ENHANCED
   Header always set Link "<https://www.popri.cz%{REQUEST_URI}>; rel=\"canonical\""
 </IfModule>
 

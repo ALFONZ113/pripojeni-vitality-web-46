@@ -10,6 +10,7 @@ interface PageMetadataProps {
   cacheBuster?: string;
   domain?: string;
   seznamVerification?: string;
+  canonicalUrl?: string;
 }
 
 const PageMetadata = ({ 
@@ -19,7 +20,8 @@ const PageMetadata = ({
   faviconVersion = "3.0",
   cacheBuster = Date.now().toString(),
   domain = typeof window !== "undefined" ? window.location.hostname : "www.popri.cz",
-  seznamVerification
+  seznamVerification,
+  canonicalUrl = "https://www.popri.cz/"
 }: PageMetadataProps) => {
   // Generate domain-specific cache busting parameter
   const domainSpecificHash = domain.includes('poda') ? 'poda-' + cacheBuster : 'popri-' + cacheBuster;
@@ -28,7 +30,7 @@ const PageMetadata = ({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href="https://www.popri.cz/" />
+      <link rel="canonical" href={canonicalUrl} />
       <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap.xml" />
       <meta name="format-detection" content="telephone=yes" />
       <meta name="google" content="notranslate"/>
@@ -40,7 +42,7 @@ const PageMetadata = ({
       <meta name="revisit-after" content="7 days" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content="https://www.popri.cz/" />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content="Popri.cz" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://www.popri.cz/og-image.png" />
@@ -70,14 +72,14 @@ const PageMetadata = ({
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
-      {/* Structured data optimization */}
+      {/* Enhanced structured data */}
       <script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Popri.cz – PODA Internet",
-            "url": "https://www.popri.cz",
+            "url": "${canonicalUrl}",
             "potentialAction": {
               "@type": "SearchAction",
               "target": "https://www.popri.cz/search?q={search_term_string}",
@@ -115,7 +117,7 @@ const PageMetadata = ({
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Úvod",
-                "item": "https://www.popri.cz"
+                "item": "${canonicalUrl}"
               }
             ]
           }

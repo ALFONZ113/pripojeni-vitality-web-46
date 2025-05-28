@@ -27,7 +27,8 @@
         "x-frame-options": "DENY",
         "x-xss-protection": "1; mode=block",
         "access-control-allow-origin": "*",
-        "x-robots-tag": "index, follow"
+        "x-robots-tag": "index, follow",
+        "link": "<https://www.popri.cz>; rel=\"canonical\""
       },
       "continue": true
     },

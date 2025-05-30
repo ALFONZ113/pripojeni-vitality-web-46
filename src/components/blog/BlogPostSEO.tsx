@@ -1,7 +1,17 @@
 
 import { Helmet } from 'react-helmet-async';
 import type { BlogPost } from '../../data/blog/types';
-import { formatDateForSchema, createBlogPostStructuredData, generateMetaKeywords } from '../../utils/blogMetadata';
+import { 
+  formatDateForSchema, 
+  generateMetaKeywords 
+} from '../../utils/blogMetadata';
+import { 
+  createEnhancedArticleSchema, 
+  createBreadcrumbSchema, 
+  createFAQSchema,
+  extractFAQsFromContent,
+  calculateReadingTime
+} from '../../utils/structuredData';
 
 interface BlogPostSEOProps {
   post: BlogPost;
@@ -17,8 +27,29 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   const baseUrl = window.location.origin;
   const postImage = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
   
-  // Generate structured data
-  const structuredData = createBlogPostStructuredData(post, baseUrl, canonicalUrl);
+  // Extract FAQs from content and calculate reading time
+  const faqs = extractFAQsFromContent(post.content);
+  const readingTime = calculateReadingTime(post.content);
+  
+  // Generate enhanced structured data
+  const articleSchema = createEnhancedArticleSchema(
+    post, 
+    baseUrl, 
+    canonicalUrl, 
+    faqs.length > 0 ? faqs : undefined,
+    readingTime
+  );
+  
+  // Create breadcrumb schema
+  const breadcrumbSchema = createBreadcrumbSchema([
+    { name: "Úvod", url: baseUrl },
+    { name: "Blog", url: `${baseUrl}/blog` },
+    { name: post.category, url: `${baseUrl}/blog?category=${encodeURIComponent(post.category)}` },
+    { name: post.title, url: canonicalUrl }
+  ]);
+  
+  // Create FAQ schema if FAQs exist
+  const faqSchema = faqs.length > 0 ? createFAQSchema(faqs) : null;
   
   // Generate keywords - use all tags if available
   const metaKeywords = generateMetaKeywords(post.category, post.tags);
@@ -56,6 +87,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <meta property="article:published_time" content={postDate} />
       <meta property="article:author" content={post.author} />
       <meta property="article:section" content={post.category} />
+      <meta property="article:reading_time" content={readingTime.replace('PT', '').replace('M', '')} />
       {post.tags?.map((tag, index) => (
         <meta key={index} property="article:tag" content={tag} />
       ))}
@@ -70,16 +102,29 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       {/* Enhanced SEO metadata */}
       <meta name="keywords" content={metaKeywords} />
       <meta name="author" content={post.author} />
-      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      <meta name="reading-time" content={readingTime.replace('PT', '').replace('M', '')} />
       
       {/* Blog navigation links for enhanced SEO */}
       {prevPost && <link rel="prev" href={`https://www.popri.cz/blog/${prevPost.id}`} />}
       {nextPost && <link rel="next" href={`https://www.popri.cz/blog/${nextPost.id}`} />}
       
-      {/* Schema.org structured data */}
+      {/* Enhanced Schema.org structured data */}
       <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
+        {JSON.stringify(articleSchema)}
       </script>
+      
+      {/* Breadcrumb structured data */}
+      <script type="application/ld+json">
+        {JSON.stringify(breadcrumbSchema)}
+      </script>
+      
+      {/* FAQ structured data if available */}
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
     </Helmet>
   );
 };

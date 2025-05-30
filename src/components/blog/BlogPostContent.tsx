@@ -1,11 +1,12 @@
-
 import { Link } from 'react-router-dom';
 import { Share2, Bookmark, MessageSquare, ArrowLeft, ArrowRight } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import type { BlogPost } from '../../data/blog/types';
 import { useState, useEffect } from 'react';
 import { blogPosts } from '../../data/blog';
-import { Badge } from '@/components/ui/badge';
+import BlogFAQ from './BlogFAQ';
+import QuickAnswerBox from './QuickAnswerBox';
+import { extractFAQsFromContent } from '../../utils/structuredData';
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -15,6 +16,9 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
   const [isSaved, setIsSaved] = useState(false);
   const [prevPost, setPrevPost] = useState<BlogPost | null>(null);
   const [nextPost, setNextPost] = useState<BlogPost | null>(null);
+  
+  // Extract FAQs from post content
+  const faqs = extractFAQsFromContent(post.content);
   
   // Vyhľadáme predchádzajúci a nasledujúci príspevok
   useEffect(() => {
@@ -121,9 +125,41 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         <meta itemProp="sameAs" content="https://www.instagram.com/poda.cz/" />
       </div>
       
+      {/* Quick Answer Box for key information */}
+      {post.category === 'Služby' && (
+        <QuickAnswerBox
+          type="info"
+          title="Rychlá odpoveď"
+          content="PODA poskytuje optické pripojenie až 1 Gb/s s TV zadarmo. Inštalácia je bezplatná a služby sú dostupné vo väčšine miest ČR."
+        />
+      )}
+
+      {post.category === 'Technologie' && (
+        <QuickAnswerBox
+          type="tip"
+          title="Technický tip"
+          content="Pre optimálny výkon domácej siete odporúčame používať najnovšie Wi-Fi 6 routery a pravidelne aktualizovať firmware."
+        />
+      )}
+      
       <article className="prose prose-lg max-w-none prose-headings:text-poda-blue prose-img:rounded-lg prose-img:shadow-md prose-a:text-poda-blue hover:prose-a:text-poda-orange prose-blockquote:border-l-poda-blue prose-blockquote:text-gray-600 prose-blockquote:bg-blue-50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg">
         <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
+      
+      {/* FAQ Section */}
+      {faqs.length > 0 && (
+        <BlogFAQ 
+          faqs={faqs} 
+          title="Často kladené otázky k tomuto tématu" 
+        />
+      )}
+      
+      {/* Call to action box */}
+      <QuickAnswerBox
+        type="success"
+        title="Potrebujete pomoc s pripojením?"
+        content="Náš obchodný zástupca Milan Terč vám rád poradí a pomôže s výberom najvhodnejšieho tarifu. Kontaktujte nás bez záväzkov!"
+      />
       
       <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-200">
         <div className="flex items-center space-x-4">

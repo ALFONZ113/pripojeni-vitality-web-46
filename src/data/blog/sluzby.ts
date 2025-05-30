@@ -28,8 +28,8 @@ export const sluzbyPosts: BlogPost[] = [
     date: "15. 4. 2024",
     author: "Milan Terč",
     category: "Služby",
-    image: "/lovable-uploads/2beac376-2c22-47d7-bf3e-a9bb280fa7bb.png",
-    alt: "GPON optická technologie",
+    image: "/lovable-uploads/56ebeef3-04d0-42a6-ac4f-f47224a075fb.png",
+    alt: "Optický kabel s modrým světelným efektem znázorňujícím GPON technologii",
     tags: ["GPON", "Optické připojení", "Vysokorychlostní internet"]
   },
   {

@@ -1,5 +1,5 @@
 
-# www.popri.cz robots.txt - Updated 2025-05-28
+# www.popri.cz robots.txt - Updated 2025-05-30
 User-agent: *
 Allow: /
 
@@ -16,6 +16,7 @@ Allow: /obchodni-podminky$
 Allow: /ochrana-soukromi$
 
 # Explicitly allow indexing of blog posts
+Allow: /blog/10$
 Allow: /blog/gpon-technologie$
 Allow: /blog/fiber-to-home$
 Allow: /blog/opticky-internet-vyhody$
@@ -33,13 +34,17 @@ Allow: /blog?search=*
 Allow: /blog/*?category=*
 Allow: /blog/*?tag=*
 
-# Allow indexing of specific technology tags
+# Allow indexing of specific technology tags and locations
 Allow: /blog?tag=GPON
 Allow: /blog?tag=Optické+připojení
 Allow: /blog?tag=Vysokorychlostní+internet
 Allow: /blog?tag=Optická+vlákna
 Allow: /blog?tag=Gigabitové+připojení
 Allow: /blog?tag=Fiber+to+the+Home
+Allow: /blog?tag=Karviná
+Allow: /blog?tag=PODA+internet
+Allow: /blog?tag=Moravskoslezský+kraj
+Allow: /blog?tag=Popri.cz
 
 # Disallow administrative and system URLs
 Disallow: /wp-admin/

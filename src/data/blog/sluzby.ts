@@ -1,6 +1,37 @@
 import { BlogPost } from './types';
+import { karvinaPost } from './karvina';
 
 export const sluzbyPosts: BlogPost[] = [
+  karvinaPost,
+  {
+    id: 1,
+    title: "GPON technologie: Budoucnost optického internetu",
+    excerpt: "Objevte výhody GPON technologie a proč je považována za standard budoucnosti pro domácí internetové připojení.",
+    content: `
+      <h2>Co je GPON technologie?</h2>
+      <p>GPON (Gigabit Passive Optical Network) představuje nejmodernější technologii pro dodávání vysokorychlostního internetu přímo do domácností. Tato technologie využívá optická vlákna pro přenos dat rychlostí až 2,5 Gbps downstream a 1,25 Gbps upstream.</p>
+      
+      <h3>Hlavní výhody GPON</h3>
+      <ul>
+        <li><strong>Vysoká rychlost:</strong> Gigabitové rychlosti pro domácnosti</li>
+        <li><strong>Stabilita:</strong> Minimální latence a výpadky</li>
+        <li><strong>Škálovatelnost:</strong> Snadné rozšíření kapacity</li>
+        <li><strong>Budoucnost:</strong> Technologie připravená na další desetiletí</li>
+      </ul>
+
+      <h3>Jak GPON funguje?</h3>
+      <p>GPON síť využívá pasivní optické prvky, které nevyžadují elektrické napájení. Jeden optický terminál (OLT) může obsluhovat až 64 domácností prostřednictvím optických splitterů.</p>
+
+      <h3>PODA a GPON technologie</h3>
+      <p>Společnost PODA využívá nejmodernější GPON infrastrukturu pro dodávání spolehlivého a rychlého internetového připojení. Naše síť je navržena s ohledem na budoucí potřeby a umožňuje snadné zvyšování rychlostí.</p>
+    `,
+    date: "15. 4. 2024",
+    author: "Milan Terč",
+    category: "Služby",
+    image: "/lovable-uploads/2beac376-2c22-47d7-bf3e-a9bb280fa7bb.png",
+    alt: "GPON optická technologie",
+    tags: ["GPON", "Optické připojení", "Vysokorychlostní internet"]
+  },
   {
     id: 11,
     title: 'Přechod od O2 k PODA po akvizici Nej.cz a Netboxu',
@@ -147,7 +178,7 @@ export const sluzbyPosts: BlogPost[] = [
   {
     id: 3,
     title: 'Snadný přechod k nám od stávajícího poskytovatele',
-    excerpt: 'Přechod k novému poskytovateli internetu nemusí být komplikovaný. Přečtěte si, jak vám s tím pomůžeme krok za krokem.',
+    excerpt: 'Přechod k novému poskytovatele internetu nemusí být komplikovaný. Přečtěte si, jak vám s tím pomůžeme krok za krokem.',
     content: `
       <p>Mnoho lidí zůstává u svého stávajícího poskytovatele internetu a TV služeb, i když nejsou spokojeni, protože se obávají komplikací spojených s přechodem. Pravdou je, že přechod může být velmi jednoduchý, zejména s naší asistencí.</p>
       

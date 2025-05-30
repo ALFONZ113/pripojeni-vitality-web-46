@@ -16,3 +16,4 @@ export * from './types';
 export * from './technologie';
 export * from './sluzby';
 export * from './tipy';
+export * from './karvina';

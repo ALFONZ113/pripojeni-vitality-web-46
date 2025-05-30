@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -65,6 +64,7 @@ export default {
 				},
 				poda: {
 					blue: '#0F4C81',
+					'blue-dark': '#0A3A66',
 					'blue-light': '#3A7CA5',
 					orange: '#FF6B35',
 					'orange-light': '#FF9E6B',

@@ -2,62 +2,95 @@
 import { useState, useEffect } from 'react';
 import { preloadCriticalImages } from '../utils/imageUtils';
 import { initAnimations } from '../utils/animation';
+import { createImageLazyLoader, preloadCriticalResources } from '../utils/lazyLoading';
+import usePerformanceMonitor from './use-performance-monitor';
 
 interface UsePageInitializationProps {
   criticalImages: string[];
+  criticalResources?: string[];
+  enablePerformanceMonitoring?: boolean;
 }
 
-const usePageInitialization = ({ criticalImages }: UsePageInitializationProps) => {
+const usePageInitialization = ({ 
+  criticalImages, 
+  criticalResources = [],
+  enablePerformanceMonitoring = true 
+}: UsePageInitializationProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+
+  // Monitor performance metrics
+  const performanceMetrics = usePerformanceMonitor({
+    enableReporting: enablePerformanceMonitoring,
+    reportInterval: 5000
+  });
 
   // Mark hydration complete after React takes over
   useEffect(() => {
     setIsHydrated(true);
+    setLoadingProgress(20);
   }, []);
 
   useEffect(() => {
-    // Preload critical images for better LCP
-    preloadCriticalImages(criticalImages);
-    
-    // Initialize scroll animations with optimized performance
     let cleanupAnimation: (() => void) | undefined;
+    let imageObserver: IntersectionObserver | undefined;
     
-    try {
-      console.log('Initializing animations');
-      
-      // Delay non-critical initializations
-      const initTimer = setTimeout(() => {
-        cleanupAnimation = initAnimations();
+    const initializeApp = async () => {
+      try {
+        setLoadingProgress(30);
+        
+        // Preload critical resources
+        preloadCriticalResources([...criticalImages, ...criticalResources]);
+        setLoadingProgress(50);
+        
+        // Preload critical images for better LCP
+        preloadCriticalImages(criticalImages);
+        setLoadingProgress(70);
+        
+        // Initialize lazy loading for images
+        imageObserver = createImageLazyLoader();
+        setLoadingProgress(85);
+        
+        // Initialize scroll animations with optimized performance
+        await new Promise(resolve => {
+          const initTimer = setTimeout(() => {
+            cleanupAnimation = initAnimations();
+            setLoadingProgress(100);
+            resolve(undefined);
+          }, 100); // Minimal delay for better perceived performance
+          
+          return () => clearTimeout(initTimer);
+        });
+        
         setIsLoading(false);
-        console.log('Page loaded successfully');
-      }, 0); // Using minimal timeout to yield to main thread
-      
-      return () => {
-        clearTimeout(initTimer);
-        if (cleanupAnimation) cleanupAnimation();
-      };
-    } catch (e) {
-      console.error('Error initializing page:', e);
-      setError('Došlo k chybě při načítání stránky.');
-      setIsLoading(false);
-      return () => {
-        if (cleanupAnimation) cleanupAnimation();
-      };
+        console.log('Page loaded successfully with performance metrics:', performanceMetrics);
+        
+      } catch (e) {
+        console.error('Error initializing page:', e);
+        setError('Došlo k chybě při načítání stránky.');
+        setIsLoading(false);
+      }
+    };
+
+    if (isHydrated) {
+      initializeApp();
     }
-  }, [criticalImages]);
+
+    return () => {
+      if (cleanupAnimation) cleanupAnimation();
+      if (imageObserver) imageObserver.disconnect();
+    };
+  }, [criticalImages, criticalResources, isHydrated, performanceMetrics]);
 
   // Optimalizovaná správa cache
   useEffect(() => {
-    // Only run cache management after hydration is complete
     if (!isHydrated) return;
     
-    // Use requestIdleCallback for non-critical operations
     const runWhenIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 100));
     
     runWhenIdle(() => {
-      // Only update cache if it's older than 24 hours or doesn't exist
       const lastCacheUpdate = localStorage.getItem('lastCacheUpdate');
       const now = Date.now();
       const cacheAge = lastCacheUpdate ? now - parseInt(lastCacheUpdate, 10) : Infinity;
@@ -81,12 +114,16 @@ const usePageInitialization = ({ criticalImages }: UsePageInitializationProps) =
         });
       }
       
-      // Update cache version
       localStorage.setItem('lastCacheUpdate', now.toString());
     });
   }, [isHydrated]);
 
-  return { isLoading, error };
+  return { 
+    isLoading, 
+    error, 
+    loadingProgress,
+    performanceMetrics
+  };
 };
 
 export default usePageInitialization;

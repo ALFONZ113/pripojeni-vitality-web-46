@@ -5,6 +5,7 @@ import LoadingState from '../components/page/LoadingState';
 import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
 import PromotionPopup from '../components/PromotionPopup';
+import ProgressIndicator from '../components/ui/progress-indicator';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -14,12 +15,23 @@ const CRITICAL_IMAGES = [
   '/poda-logo.svg'
 ];
 
-const Index = () => {
-  const { isLoading, error } = usePageInitialization({ criticalImages: CRITICAL_IMAGES });
+// Critical resources for better loading
+const CRITICAL_RESOURCES = [
+  '/assets/index.css',
+  '/assets/index.js'
+];
 
-  if (isLoading) {
-    return <LoadingState />;
-  }
+const Index = () => {
+  const { 
+    isLoading, 
+    error, 
+    loadingProgress, 
+    performanceMetrics 
+  } = usePageInitialization({ 
+    criticalImages: CRITICAL_IMAGES,
+    criticalResources: CRITICAL_RESOURCES,
+    enablePerformanceMonitoring: true
+  });
 
   if (error) {
     return <ErrorState error={error} />;
@@ -33,13 +45,37 @@ const Index = () => {
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       
-      <MainContent />
+      {/* Enhanced loading with progress indicator */}
+      {isLoading && (
+        <>
+          <LoadingState />
+          <ProgressIndicator 
+            isLoading={isLoading} 
+            variant="linear"
+            size="sm"
+          />
+        </>
+      )}
+      
+      {/* Main content with fade-in when loaded */}
+      <div className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+        <MainContent />
+      </div>
 
-      {/* Promotion popup */}
-      <PromotionPopup />
+      {/* Promotion popup - only show when fully loaded */}
+      {!isLoading && <PromotionPopup />}
 
       {/* Toast notifications */}
       <Toaster />
+      
+      {/* Performance metrics in development */}
+      {process.env.NODE_ENV === 'development' && performanceMetrics.lcp && (
+        <div className="fixed bottom-4 right-4 bg-black/80 text-white p-2 text-xs rounded z-50">
+          <div>LCP: {Math.round(performanceMetrics.lcp)}ms</div>
+          <div>FCP: {performanceMetrics.fcp ? Math.round(performanceMetrics.fcp) : 'N/A'}ms</div>
+          <div>CLS: {performanceMetrics.cls ? performanceMetrics.cls.toFixed(3) : 'N/A'}</div>
+        </div>
+      )}
     </div>
   );
 };

@@ -19,4 +19,63 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor chunk for React and core libraries
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          
+          // UI chunk for component libraries
+          ui: [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tabs',
+            'lucide-react'
+          ],
+          
+          // Utils chunk for utilities
+          utils: [
+            'clsx',
+            'tailwind-merge',
+            'class-variance-authority',
+            'date-fns'
+          ],
+          
+          // Animation and interaction chunk
+          animations: ['framer-motion'],
+          
+          // Charts chunk (if used)
+          charts: ['recharts']
+        },
+      },
+    },
+    // Optimize chunk size
+    chunkSizeWarningLimit: 1000,
+    
+    // Enable source maps in production for debugging
+    sourcemap: false,
+    
+    // Minimize CSS and JS
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+        drop_debugger: mode === 'production',
+      },
+    },
+  },
+  
+  // Optimize dependencies
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      'lucide-react'
+    ],
+  },
 }));

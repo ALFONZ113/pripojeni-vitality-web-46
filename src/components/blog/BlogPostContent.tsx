@@ -8,6 +8,7 @@ import BlogPostActions from './BlogPostActions';
 import BlogPostNavigation from './BlogPostNavigation';
 import BlogPostTags from './BlogPostTags';
 import BlogPostMetadata from './BlogPostMetadata';
+import ReadingProgressCTA from './ReadingProgressCTA';
 import { extractFAQsFromContent } from '../../utils/structuredData';
 
 interface BlogPostContentProps {
@@ -47,12 +48,14 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         image={post.image}
       />
       
-      {/* Quick Answer Box for key information */}
+      {/* Enhanced Quick Answer Boxes with contextual CTAs */}
       {post.category === 'Služby' && (
         <QuickAnswerBox
           type="info"
-          title="Rychlá odpoveď"
+          title="Rýchla odpoveď"
           content="PODA poskytuje optické pripojenie až 1 Gb/s s TV zadarmo. Inštalácia je bezplatná a služby sú dostupné vo väčšine miest ČR."
+          showContactCTA={true}
+          category={post.category}
         />
       )}
 
@@ -61,6 +64,8 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
           type="tip"
           title="Technický tip"
           content="Pre optimálny výkon domácej siete odporúčame používať najnovšie Wi-Fi 6 routery a pravidelne aktualizovať firmware."
+          showContactCTA={true}
+          category={post.category}
         />
       )}
       
@@ -68,7 +73,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
       
-      {/* FAQ Section */}
+      {/* FAQ Section with enhanced contact opportunities */}
       {faqs.length > 0 && (
         <BlogFAQ 
           faqs={faqs} 
@@ -76,11 +81,13 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         />
       )}
       
-      {/* Call to action box */}
+      {/* Enhanced call to action box */}
       <QuickAnswerBox
         type="success"
         title="Potrebujete pomoc s pripojením?"
         content="Náš obchodný zástupca Milan Terč vám rád poradí a pomôže s výberom najvhodnejšieho tarifu. Kontaktujte nás bez záväzkov!"
+        showContactCTA={true}
+        category={post.category}
       />
       
       <BlogPostActions 
@@ -98,6 +105,12 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
       <BlogPostNavigation 
         prevPost={prevPost}
         nextPost={nextPost}
+      />
+
+      {/* Reading progress CTA */}
+      <ReadingProgressCTA 
+        postTitle={post.title}
+        category={post.category}
       />
     </div>
   );

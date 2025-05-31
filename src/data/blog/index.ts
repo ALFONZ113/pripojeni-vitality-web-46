@@ -5,12 +5,18 @@ import { sluzbyPosts } from './sluzby';
 import { tipyPosts } from './tipy';
 import { karvinaPost } from './karvina';
 
+// Combine all posts from different categories, but filter out any duplicate Karviná posts
+const filteredTipyPosts = tipyPosts.filter(post => 
+  !post.title.toLowerCase().includes('karvin') && 
+  !post.content.toLowerCase().includes('karvin')
+);
+
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
   karvinaPost,
   ...sluzbyPosts,
   ...technologiePosts,
-  ...tipyPosts
+  ...filteredTipyPosts
 ];
 
 // Export everything

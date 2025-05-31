@@ -5,7 +5,8 @@ import { toast } from '@/components/ui/use-toast';
 import type { BlogPost } from '../../data/blog/types';
 import { useState, useEffect } from 'react';
 import { blogPosts } from '../../data/blog';
-import { Badge } from '@/components/ui/badge';
+import BlogCTA from './BlogCTA';
+import BlogPostMeta from './BlogPostMeta';
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -16,7 +17,14 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
   const [prevPost, setPrevPost] = useState<BlogPost | null>(null);
   const [nextPost, setNextPost] = useState<BlogPost | null>(null);
   
-  // Vyhľadáme predchádzajúci a nasledujúci príspevok
+  // Extract location from post for geo-optimization
+  const extractLocation = (text: string): string | null => {
+    const locations = ['Ostrava', 'Karviná', 'Bohumín', 'Frýdek-Místek', 'Havířov', 'Poruba', 'Orlová'];
+    return locations.find(loc => text.includes(loc)) || null;
+  };
+  
+  const location = extractLocation(`${post.title} ${post.content}`);
+  
   useEffect(() => {
     const currentIndex = blogPosts.findIndex(p => p.id === post.id);
     if (currentIndex > 0) {
@@ -31,7 +39,6 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
       setNextPost(null);
     }
     
-    // Zkontrolujeme, zda je článek uložen při načtení komponenty
     const savedPosts = JSON.parse(localStorage.getItem('savedPosts') || '[]');
     setIsSaved(savedPosts.some((savedPost: number) => savedPost === post.id));
   }, [post.id]);
@@ -62,14 +69,10 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
   };
   
   const handleSave = () => {
-    // Implementace funkcionaliy pro ukládání článků
     const savedPosts = JSON.parse(localStorage.getItem('savedPosts') || '[]');
-    
-    // Zkontrolujeme, zda už článek není uložený
     const isAlreadySaved = savedPosts.some((savedPost: number) => savedPost === post.id);
     
     if (isAlreadySaved) {
-      // Pokud je článek již uložen, odstraníme ho
       const updatedSavedPosts = savedPosts.filter((savedPost: number) => savedPost !== post.id);
       localStorage.setItem('savedPosts', JSON.stringify(updatedSavedPosts));
       toast({
@@ -78,7 +81,6 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
       });
       setIsSaved(false);
     } else {
-      // Pokud není uložen, přidáme ho
       savedPosts.push(post.id);
       localStorage.setItem('savedPosts', JSON.stringify(savedPosts));
       toast({
@@ -89,40 +91,47 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
     }
   };
 
-  // Formátujeme datum pro schema.org kompatibilitu
-  const formatDateForSchema = (dateStr: string) => {
-    // Předpokládáme formát "DD. MM. YYYY"
-    return dateStr.split('. ').reverse().join('-');
+  // Process content to add CTA elements
+  const processContentWithCTA = (content: string): string => {
+    // Insert CTA after first paragraph
+    const paragraphs = content.split('</p>');
+    if (paragraphs.length > 1) {
+      paragraphs[0] += '</p><div class="inline-cta-placeholder"></div>';
+      return paragraphs.join('</p>');
+    }
+    return content;
   };
 
-  const formattedDate = formatDateForSchema(post.date);
-  const currentUrl = window.location.href;
-  const baseUrl = window.location.origin;
+  const processedContent = processContentWithCTA(post.content);
 
   return (
     <div className="lg:col-span-8" itemScope itemType="http://schema.org/BlogPosting">
-      {/* Rozšířená schema.org metadata pro bohatší značky */}
-      <meta itemProp="datePublished" content={formattedDate} />
-      <meta itemProp="dateModified" content={formattedDate} />
-      <meta itemProp="author" content={post.author} />
-      <meta itemProp="headline" content={post.title} />
-      <meta itemProp="description" content={post.excerpt || ''} />
-      {post.image && <meta itemProp="image" content={post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`} />}
-      <link itemProp="mainEntityOfPage" href={currentUrl} />
-      <div itemProp="publisher" itemScope itemType="http://schema.org/Organization">
-        <meta itemProp="name" content="Popri.cz" />
-        <meta itemProp="url" content="https://www.popri.cz" />
-        <div itemProp="logo" itemScope itemType="http://schema.org/ImageObject">
-          <meta itemProp="url" content={`${baseUrl}/poda-logo.svg`} />
-          <meta itemProp="width" content="200" />
-          <meta itemProp="height" content="70" />
-        </div>
-        <meta itemProp="sameAs" content="https://www.facebook.com/podacz/" />
-        <meta itemProp="sameAs" content="https://www.instagram.com/poda.cz/" />
-      </div>
+      {/* Enhanced meta information */}
+      <BlogPostMeta post={post} />
       
       <article className="prose prose-lg max-w-none prose-headings:text-poda-blue prose-img:rounded-lg prose-img:shadow-md prose-a:text-poda-blue hover:prose-a:text-poda-orange prose-blockquote:border-l-poda-blue prose-blockquote:text-gray-600 prose-blockquote:bg-blue-50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg">
-        <div itemProp="articleBody" dangerouslySetInnerHTML={{ __html: post.content }} />
+        {/* Display full content */}
+        <div 
+          itemProp="articleBody" 
+          dangerouslySetInnerHTML={{ __html: processedContent }}
+        />
+        
+        {/* Inline CTA after first section */}
+        <BlogCTA location={location} variant="inline" />
+        
+        {/* Additional geo-optimized content */}
+        {location && (
+          <div className="bg-gradient-to-r from-blue-50 to-orange-50 p-6 rounded-lg my-8 border-l-4 border-poda-blue">
+            <h4 className="text-lg font-semibold text-poda-blue mb-2">
+              Služby PODA v {location}
+            </h4>
+            <p className="text-gray-700 mb-4">
+              Hľadáte spoľahlivé internetové pripojenie v {location}? PODA poskytuje rýchly optický internet 
+              s garantovanými rýchlosťami a bezplatnou inštaláciou. 
+              <BlogCTA variant="inline" compact location={location} />
+            </p>
+          </div>
+        )}
       </article>
       
       <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-200">
@@ -173,14 +182,13 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
               ))}
             </div>
           </div>
-          
-          <div className="text-gray-600 shrink-0">
-            Publikováno: <time dateTime={formattedDate}>{post.date}</time>
-          </div>
         </div>
       </div>
       
-      {/* Navigácia medzi príspevkami */}
+      {/* Footer CTA */}
+      <BlogCTA location={location} variant="footer" />
+      
+      {/* Navigation between posts */}
       <div className="mt-12 flex flex-col sm:flex-row justify-between gap-4">
         {prevPost ? (
           <Link 
@@ -212,6 +220,9 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
           <div></div>
         )}
       </div>
+      
+      {/* Floating CTA for mobile */}
+      <BlogCTA variant="floating" />
     </div>
   );
 };

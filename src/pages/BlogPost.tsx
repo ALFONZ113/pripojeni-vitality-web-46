@@ -31,21 +31,36 @@ const BlogPostPage = () => {
     const cleanupAnimation = initAnimations();
     window.scrollTo(0, 0);
     
-    const foundPost = blogPosts.find(p => p.id === Number(id));
+    // Support both old numeric IDs and new slug-based URLs
+    let foundPost: BlogPost | undefined;
+    
+    if (id) {
+      // Try to find by ID first (backwards compatibility)
+      foundPost = blogPosts.find(p => p.id === Number(id));
+      
+      // If not found by ID, try to extract ID from slug
+      if (!foundPost) {
+        const match = id.match(/-(\d+)$/);
+        if (match) {
+          const extractedId = parseInt(match[1], 10);
+          foundPost = blogPosts.find(p => p.id === extractedId);
+        }
+      }
+    }
+    
     if (foundPost) {
       setPost(foundPost);
       
       // Log the view for analytics
       console.log(`Blog post viewed: ${foundPost.title} (ID: ${foundPost.id})`);
 
-      // Add category and tag to URL for better SEO
+      // Update URL parameters for better SEO
       const url = new URL(window.location.href);
       if (!url.searchParams.has('category') && foundPost.category) {
         url.searchParams.set('category', foundPost.category);
         window.history.replaceState({}, '', url.toString());
       }
       
-      // Add related tag to URL for better SEO
       if (foundPost.tags && foundPost.tags.length > 0 && !url.searchParams.has('tag')) {
         url.searchParams.set('tag', foundPost.tags[0]);
         window.history.replaceState({}, '', url.toString());
@@ -60,12 +75,19 @@ const BlogPostPage = () => {
   }, [id, navigate]);
   
   if (!post) {
-    return null;
+    return (
+      <div className="min-h-screen pt-24 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-poda-blue mx-auto mb-4"></div>
+          <p className="text-gray-600">Načítavanie článku...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen pt-24">
-      {/* SEO metadata */}
+      {/* Enhanced SEO metadata */}
       <BlogPostSEO post={post} prevPost={prevPost} nextPost={nextPost} />
       
       {/* Blog header with title, author, date */}

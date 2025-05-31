@@ -1,4 +1,5 @@
 
+
 import { BlogPost } from './types';
 import { karvinaPost } from './karvina';
 
@@ -84,7 +85,7 @@ export const sluzbyPosts: BlogPost[] = [
     `
   },
   {
-    id: 10,
+    id: 100,
     title: 'Internet PODA v Ostravě-Porubě: Kvalitní připojení na vaší ulici',
     excerpt: 'Hledáte rychlý a stabilní internet v Ostravě-Porubě? PODA nabízí optické připojení až 1 Gb/s pro domácnosti i firmy ve většině porubských ulic. Instalace je zdarma a technici vám vše profesionálně zapojí až do bytu.',
     date: '24. 4. 2025',

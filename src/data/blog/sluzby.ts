@@ -114,6 +114,45 @@ export const sluzbyPosts: BlogPost[] = [
     `
   },
   {
+    id: 12,
+    title: 'Internet PODA v Púchove: Rychlé pripojenie pre váš domov',
+    excerpt: 'Hľadáte kvalitný internet v Púchove? PODA ponúka optické pripojenie až do 1 Gb/s pre domácnosti i firmy. Inštalácia zadarmo a technici vám všetko profesionálne zapoja.',
+    date: '20. 4. 2025',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
+    alt: 'Vizualizácia optického pripojenia v Púchove',
+    tags: ['Internet', 'Púchov', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rýchly internet'],
+    content: `
+      <h3>Internet PODA v Púchove</h3>
+      <p>Spoločnosť PODA prináša do Púchova najmodernejšie optické pripojenie, ktoré zabezpečí vašej domácnosti či firme rýchly a stabilný internet. Naša infraštruktúra pokrýva väčšinu mestských častí a neustále rozširujeme dostupnosť našich služieb.</p>
+      
+      <h3>Výhody pripojenia PODA v Púchove:</h3>
+      <ul>
+        <li>Optický internet až 1 Gb/s s garantovanou rýchlosťou</li>
+        <li>Bez dátových limitov - neobmedzené surfovanie</li>
+        <li>Profesionálna inštalácia zadarmo</li>
+        <li>Možnosť kombinovania s TV službami</li>
+        <li>Nonstop technická podpora</li>
+        <li>Stabilné ceny bez skrytých poplatkov</li>
+      </ul>
+
+      <h3>Prečo si vybrať PODA?</h3>
+      <p>PODA je moderný poskytovateľ internetových služieb, ktorý sa zameriava na kvalitu a spokojenosť zákazníkov. Naše optické pripojenie využíva najnovšie technológie GPON, ktoré zaručujú vysokú rýchlosť a stabilitu pripojenia.</p>
+
+      <h3>Dostupnosť v Púchove</h3>
+      <p>Naše služby sú dostupné vo väčšine mestských častí Púchova. Pokrytie neustále rozširujeme, takže ak vaša adresa zatiaľ nie je pokrytá, môžete sa zaregistrovať na zoznam čakateľov a budeme vás informovať o možnosti pripojenia.</p>
+
+      <h3>Ověrte dostupnosť alebo si objednajte pripojenie:</h3>
+      <p><strong>Web:</strong> popri.cz</p>
+      <p><strong>Obchodný zástupca:</strong> Milan Terč<br>
+      <strong>Tel:</strong> 730 431 313<br>
+      <strong>E-mail:</strong> terc@obchod.poda.cz</p>
+
+      <p>Pripojte sa k internetu novej generácie v Púchove a užívajte si rýchlosť bez kompromisov!</p>
+    `
+  },
+  {
     id: 9,
     title: 'Města s pokrytím PODA: Kde si můžete užívat rychlý internet?',
     excerpt: 'Společnost PODA pokrývá svými službami řadu měst po celé České republice. Zjistěte, kde všude můžete využívat stabilní a rychlé připojení.',

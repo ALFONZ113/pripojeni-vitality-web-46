@@ -123,14 +123,6 @@ export const karvinaPost: BlogPost = {
         <li><strong>Seniorům:</strong> Jednoduché využívání komunikačních technologií</li>
       </ul>
 
-      <div class="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-8 rounded-lg text-center my-8">
-        <h2 class="text-white mb-4">Výzva k akci: Objednejte si PODA internet ještě dnes</h2>
-        <p class="mb-6">Pokud hledáte spolehlivé internetové připojení v Karviné, které kombinuje vysokou rychlost, dostupnou cenu a lokální podporu, PODA představuje optimální řešení.</p>
-        <a href="/kontakt" class="inline-block bg-white text-poda-blue px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors">
-          👉 Objednejte si připojení na popri.cz
-        </a>
-      </div>
-
       <div class="bg-gray-50 p-6 rounded-lg my-8">
         <h3>Proč objednávat právě přes popri.cz?</h3>
         <ul class="space-y-2 mt-4">

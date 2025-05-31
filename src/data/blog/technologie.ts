@@ -4,15 +4,15 @@ import { BlogPost } from './types';
 export const technologiePosts: BlogPost[] = [
   {
     id: 1,
-    title: 'Ako vybrať najlepší router pre domácu sieť v Ostrave a okolí',
+    title: 'Ako vybrať najlepší router pre domácu sieť v Karvinej a okolí',
     excerpt: 'Komplexný sprievodca výberom optimálneho routeru pre stabilné, rýchle a bezpečné pripojenie celej vašej domácnosti k internetu PODA v Moravskoslezskom kraji.',
     content: `
       <div class="prose-content">
         <h2>Úvod: Prečo je správny router kľúčový pre váš internet PODA</h2>
-        <p>V Moravskoslezskom regióne, kde PODA poskytuje kvalitné optické pripojenie v mestách ako Ostrava, Karviná a Bohumín, správny výber routeru môže výrazne ovplyvniť kvalitu vašeho internetového pripojenia. V tomto článku vám poradíme, na čo sa zamerať pri výbere routeru pre vašu domácnosť.</p>
+        <p>V Moravskoslezskom regióne, kde PODA poskytuje kvalitné optické pripojenie v mestách ako Ostrava, Karviná a Havířov, správny výber routeru môže výrazne ovplyvniť kvalitu vašeho internetového pripojenia. V tomto článku vám poradíme, na čo sa zamerať pri výbere routeru pre vašu domácnosť.</p>
 
         <h2>Geografické pokrytie: Kde je router najdôležitejší</h2>
-        <p>V mestách ako Ostrava-Poruba, Havířov či Frýdek-Místek s hustou zástavbou panelovými domami je kvalitný router nevyhnutný pre:</p>
+        <p>V mestách ako Karviná, Havířov a Ostrava s hustou zástavbou panelovými domami je kvalitný router nevyhnutný pre:</p>
         <ul>
           <li><strong>Prekonanie hrubých betónových stien</strong> - typických pre panelové domy v regióne</li>
           <li><strong>Pokrytie viacpodlažných budov</strong> - bežných v moravskoslezských sídliskách</li>
@@ -43,11 +43,11 @@ export const technologiePosts: BlogPost[] = [
           </div>
         </div>
 
-        <h2>Prípadová štúdia: Riešenie pokrytia v panelovom dome</h2>
+        <h2>Prípadová štúdia: Riešenie pokrytia v panelovom dome v Karvinej</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
-          <p>"Bývame v panelovom dome na sídlisku Fifejdy v Ostrave. Pôvodný router od predchádzajúceho poskytovateľa nepokryl ani polovicu bytu. Po prechode na PODA a výmene za mesh systém máme stabilný signál v každej miestnosti, vrátane balkóna."</p>
+          <p>"Bývame v panelovom dome v Karvinej-Ráj. Pôvodný router od predchádzajúceho poskytovateľa nepokryl ani polovicu bytu. Po prechode na PODA a výmene za mesh systém máme stabilný signál v každej miestnosti, vrátane balkóna."</p>
           <footer class="mt-2 text-sm text-gray-600">
-            <strong>Pavel Svoboda, Ostrava-Fifejdy</strong><br>
+            <strong>Pavel Svoboda, Karviná-Ráj</strong><br>
             4-izbový byt, 85 m²
           </footer>
         </blockquote>
@@ -63,7 +63,7 @@ export const technologiePosts: BlogPost[] = [
         </ul>
 
         <h3>Rodinné domy v okrajových častiach</h3>
-        <p>Pre oblasti ako Ostrava-Martinov, Havířov-Bludovice alebo okrajové časti Karvinej platí:</p>
+        <p>Pre oblasti ako Havířov-Šumbark, Karviná-Hranice alebo okrajové časti Ostravy platí:</p>
         <ul>
           <li><strong>Väčší dosah</strong> - pre pokrytie záhrady a garáže</li>
           <li><strong>Outdoor access pointy</strong> - pre vonkajšie priestory</li>
@@ -129,44 +129,42 @@ export const technologiePosts: BlogPost[] = [
         </ul>
 
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Kontakt pre konzultáciu:</h3>
-          <p><strong>Obchodný zástupca:</strong> Milan Terč<br>
-          <strong>Tel:</strong> 730 431 313<br>
-          <strong>E-mail:</strong> terc@obchod.poda.cz<br>
+          <h3>Objednajte si bezplatnú konzultáciu cez popri.cz:</h3>
+          <p><strong>Telefón:</strong> 730 431 313<br>
           <strong>Web:</strong> popri.cz</p>
         </div>
 
         <p class="text-center mt-8 font-medium">Vyžiadajte si bezplatnú konzultáciu a zistite, aký router je najlepší pre vašu domácnosť v Moravskoslezskom regióne.</p>
       </div>
     `,
-    date: '10. 5. 2023',
-    author: 'Milan Terč',
+    date: '10. 5. 2025',
+    author: 'Redakcia PODA',
     category: 'Technologie',
     image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop',
-    tags: ['Router', 'Wi-Fi', 'Domáca sieť', 'Internetové pripojenie', 'Bezpečnosť', 'Mesh systém', 'Ostrava', 'Karviná', 'PODA', 'Panelové domy'],
+    tags: ['Router', 'Wi-Fi', 'Domáca sieť', 'Internetové pripojenie', 'Bezpečnosť', 'Mesh systém', 'Karviná', 'PODA', 'Panelové domy'],
   },
   {
     id: 3,
-    title: 'Koniec problémov s Wi-Fi signálom v Ostrave: Mesh systémy ako revolučné riešenie',
+    title: 'Koniec problémov s Wi-Fi signálom v Karvinej: Mesh systémy ako revolučné riešenie',
     excerpt: 'Ako mesh Wi-Fi systémy riešia problémy s pokrytím internetu v domácnostiach Moravskoslezského regiónu a prečo sú lepšou volbou než bežné repeatery pre PODA pripojenie.',
     content: `
       <div class="prose-content">
         <h2>Úvod: Wi-Fi revolúcia v Moravskoslezskom regióne</h2>
-        <p>Problémy s Wi-Fi pokrytím sú bežné najmä v hustej zástavbe Ostravy, Karvinej a Havířova. Panelové domy s hrubými betónovými stenami a rodinné domy s viacerými podlažiami predstavujú výzvu pre tradičné routery. Mesh Wi-Fi systémy predstavují moderné riešenie, ktoré zaistí stabilné pripojenie v každom kúte vášho domova.</p>
+        <p>Problémy s Wi-Fi pokrytím sú bežné najmä v hustej zástavbe Karvinej, Ostravy a Havířova. Panelové domy s hrubými betónovými stenami a rodinné domy s viacerými podlažiami predstavujú výzvu pre tradičné routery. Mesh Wi-Fi systémy predstavuje moderné riešenie, ktoré zaistí stabilné pripojenie v každom kúte vášho domova.</p>
 
         <h2>Geografické pokrytie: Kde sú mesh systémy najefektívnejšie</h2>
-        <h3>Panelové sídliská v Ostrave</h3>
+        <h3>Panelové sídliská v Karvinej</h3>
         <ul>
-          <li><strong>Poruba:</strong> Sídliská Fifejdy, Poruba-sever s typickými 4-izbovými bytmi</li>
-          <li><strong>Ostrava-Jih:</strong> Zábreh, Zábřeh-VŠB s hustou panelovou zástavbou</li>
-          <li><strong>Moravská Ostrava:</strong> Starší panelové domy s hrubšími stenami</li>
-          <li><strong>Výška:</strong> Vysoké panelové domy vyžadujúce pokrytie viacerých podlaží</li>
+          <li><strong>Karviná-Ráj:</strong> Sídliská s typickými 3-4 izbovými bytmi</li>
+          <li><strong>Karviná-Hranice:</strong> Panelové domy s hustou zástavbou</li>
+          <li><strong>Karviná-Mizerov:</strong> Starší panelové domy s hrubšími stenami</li>
+          <li><strong>Karviná-centrum:</strong> Vysoké panelové domy vyžadujúce pokrytie viacerých podlaží</li>
         </ul>
 
         <h3>Rodinné domy v širšom regióne</h3>
         <ul>
-          <li><strong>Havířov:</strong> Rodinné domy v Šumbarku a Životiciach</li>
-          <li><strong>Karviná:</strong> Individuálna výstavba v Ráji a Hraniciach</li>
+          <li><strong>Havířov:</strong> Rodinné domy v Šumbarku a priľahlých častiach</li>
+          <li><strong>Ostrava:</strong> Individuálna výstavba v okrajových častiach</li>
           <li><strong>Bohumín:</strong> Rozľahlé rodinné domy s veľkými pozemkami</li>
         </ul>
 
@@ -184,11 +182,11 @@ export const technologiePosts: BlogPost[] = [
           </ul>
         </div>
 
-        <h2>Prípadová štúdia: Transformácia panelového bytu v Porube</h2>
+        <h2>Prípadová štúdia: Transformácia panelového bytu v Karvinej</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
-          <p>"Náš 4-izbový byt na 8. poschodí v Porube mal vážne problémy s pokrytím. V detskej izbe a na balkóne sme mali slabý signál, videohovory sa prerušovali. Po inštalácii mesh systému s PODA internetom máme perfektný signál všade. Deti môžu bez problémov študovať online aj z balkóna."</p>
+          <p>"Náš 4-izbový byt na 6. poschodí v Karvinej-Ráj mal vážne problémy s pokrytím. V detskej izbe a na balkóne sme mali slabý signál, videohovory sa prerušovali. Po inštalácii mesh systému s PODA internetom máme perfektný signál všade. Deti môžu bez problémov študovať online aj z balkóna."</p>
           <footer class="mt-2 text-sm text-gray-600">
-            <strong>Jana Svobodová, Ostrava-Poruba</strong><br>
+            <strong>Jana Svobodová, Karviná-Ráj</strong><br>
             Učiteľka, matka dvoch detí, byt 92 m²
           </footer>
         </blockquote>
@@ -260,7 +258,7 @@ export const technologiePosts: BlogPost[] = [
         </div>
 
         <h2>Špecifické riešenia pre moravskoslezské mestá</h2>
-        <h3>Ostrava - Panelové sídliská</h3>
+        <h3>Karviná - Panelové sídliská</h3>
         <p>Pre typické panelové byty 70-90 m² odporúčame:</p>
         <ul>
           <li><strong>2-uzlový systém:</strong> Postačujúci pre väčšinu bytov</li>
@@ -268,7 +266,7 @@ export const technologiePosts: BlogPost[] = [
           <li><strong>Wi-Fi 6 podpora:</strong> Budúcnosť bez obmedzení</li>
         </ul>
 
-        <h3>Karviná/Havířov - Rodinné domy</h3>
+        <h3>Havířov/Ostrava - Rodinné domy</h3>
         <p>Pre rodinné domy 150-250 m² odporúčame:</p>
         <ul>
           <li><strong>3-4 uzlový systém:</strong> Pokrytie všetkých podlaží</li>
@@ -308,7 +306,7 @@ export const technologiePosts: BlogPost[] = [
         </div>
 
         <h2>Záver: Budúcnosť domáceho internetu</h2>
-        <p>Mesh Wi-Fi systémy predstavujú budúcnosť domácieho internetu v Moravskoslezskom regióne. V kombinácii s kvalitným PODA pripojením získate:</p>
+        <p>Mesh Wi-Fi systémy predstavujú budúcnosť domáceho internetu v Moravskoslezskom regióne. V kombinácii s kvalitným PODA pripojením získate:</p>
 
         <ul>
           <li><strong>Perfektné pokrytie</strong> bez mŕtvych zón v celom dome</li>
@@ -318,49 +316,47 @@ export const technologiePosts: BlogPost[] = [
         </ul>
 
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Objednajte si bezplatnú konzultáciu:</h3>
-          <p><strong>Web:</strong> popri.cz<br>
-          <strong>Obchodný zástupca:</strong> Milan Terč<br>
-          <strong>Tel:</strong> 730 431 313<br>
-          <strong>E-mail:</strong> terc@obchod.poda.cz</p>
+          <h3>Objednajte si bezplatnú konzultáciu cez popri.cz:</h3>
+          <p><strong>Telefón:</strong> 730 431 313<br>
+          <strong>Web:</strong> popri.cz</p>
         </div>
 
         <p class="text-center mt-8 font-medium">Zistite, ako mesh systém zmení váš domáci internet v Moravskoslezskom regióne.</p>
       </div>
     `,
-    date: '25. 3. 2023',
-    author: 'Milan Terč',
+    date: '25. 3. 2025',
+    author: 'Redakcia PODA',
     category: 'Technologie',
     image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2070&auto=format&fit=crop',
-    tags: ['Mesh Wi-Fi', 'Wi-Fi pokrytie', 'Domáca sieť', 'Internetové pripojenie', 'Ostrava', 'Karviná', 'Panelové domy', 'PODA', 'Smart home'],
+    tags: ['Mesh Wi-Fi', 'Wi-Fi pokrytie', 'Domáca sieť', 'Internetové pripojenie', 'Karviná', 'Panelové domy', 'PODA', 'Smart home'],
   },
   {
     id: 5,
-    title: 'Ako zvýšiť bezpečnosť vašej domácej Wi-Fi siete v Moravskoslezskom regióne',
+    title: 'Ako zvýšiť bezpečnosť vašej domácej Wi-Fi siete v Karvinej a okolí',
     excerpt: 'Praktické tipy pre zabezpečenie vašej domácej Wi-Fi siete pred nežiadúcimi návštevníkmi a kybernetickými hrozbami, špeciálne pre používateľov PODA internetu.',
     content: `
       <div class="prose-content">
         <h2>Úvod: Kybernetická bezpečnosť v Moravskoslezskom regióne</h2>
-        <p>Bezpečná domáca Wi-Fi síť je základom ochrany vašich osobných údajov a zariadení v digitálnej dobe. V hustej zástavbe miest ako Ostrava, Karviná či Havířov, kde sa nachádza množstvo Wi-Fi sietí v blízkosti, je správne zabezpečenie ešte dôležitejšie. V tomto článku sa dozviete, ako svoju domácu sieť efektívne zabezpečiť.</p>
+        <p>Bezpečná domáca Wi-Fi síť je základom ochrany vašich osobných údajov a zariadení v digitálnej dobe. V hustej zástavbe miest ako Karviná, Ostrava či Havířov, kde sa nachádza množstvo Wi-Fi sietí v blízkosti, je správne zabezpečenie ešte dôležitejšie. V tomto článku sa dozviete, ako svoju domácu sieť efektívne zabezpečiť.</p>
 
         <h2>Geografické rizikové faktory v regióne</h2>
         <h3>Panelové sídliská - vysoké riziko</h3>
         <ul>
-          <li><strong>Ostrava-Poruba:</strong> Vysoká koncentrácia Wi-Fi sietí na sídliskách Fifejdy</li>
+          <li><strong>Karviná-Ráj:</strong> Vysoká koncentrácia Wi-Fi sietí na sídliskách</li>
           <li><strong>Havířov-Město:</strong> Panelové domy s blízkym susedstvom</li>
-          <li><strong>Karviná-Hranice:</strong> Hustá zástavba vyžadujúca extra bezpečnosť</li>
+          <li><strong>Ostrava-centrum:</strong> Hustá zástavba vyžadujúca extra bezpečnosť</li>
         </ul>
 
         <h3>Rodinné domy - stredné riziko</h3>
         <ul>
-          <li><strong>Ostrava-Martinov:</strong> Novšie zástavby s vyšším štandardom</li>
+          <li><strong>Karviná-Hranice:</strong> Novšie zástavby s vyšším štandardom</li>
           <li><strong>Bohumín:</strong> Rozptýlenejšia zástavba, nižšie riziko</li>
-          <li><strong>Frýdek-Místek:</strong> Kombinácia panelových a rodinných domov</li>
+          <li><strong>Havířov-Šumbark:</strong> Kombinácia panelových a rodinných domov</li>
         </ul>
 
         <h2>Aktuálne bezpečnostné hrozby v ČR</h2>
         <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-8">
-          <h3>Najčastejšie kybernetické útoky 2024:</h3>
+          <h3>Najčastejšie kybernetické útoky 2025:</h3>
           <ul class="space-y-2 mt-4">
             <li>🚨 <strong>Krádež Wi-Fi:</strong> Neoprávnené používanie pripojenia susedmi</li>
             <li>🚨 <strong>Man-in-the-middle:</strong> Odpočúvanie komunikácie</li>
@@ -370,11 +366,11 @@ export const technologiePosts: BlogPost[] = [
           </ul>
         </div>
 
-        <h2>Prípadová štúdia: Kybernetický útok v Ostrave</h2>
+        <h2>Prípadová štúdia: Kybernetický útok v Karvinej</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
           <p>"Zistili sme, že niekto používa naše pripojenie PODA na sťahovanie nelegálneho obsahu. Router mal ešte pôvodné heslo 'admin123'. Po zmene na silné heslo a aktivácii WPA3 šifrovania sa problémy vyriešili. Technická podpora PODA nám pomohla so zabezpečením celej siete."</p>
           <footer class="mt-2 text-sm text-gray-600">
-            <strong>Tomáš Novák, Ostrava-Jih</strong><br>
+            <strong>Tomáš Novák, Karviná-Ráj</strong><br>
             IT špecialista, panelový byt
           </footer>
         </blockquote>
@@ -411,7 +407,7 @@ export const technologiePosts: BlogPost[] = [
               <li>✗ <strong>Postupnosti (123456)</strong></li>
               <li>✗ <strong>Osobné údaje</strong></li>
               <li>✗ <strong>Názvy ulíc z okolia</strong></li>
-              <li>✗ <strong>Názvy miest (Ostrava123)</strong></li>
+              <li>✗ <strong>Názvy miest (Karvina123)</strong></li>
             </ul>
           </div>
         </div>
@@ -437,7 +433,7 @@ export const technologiePosts: BlogPost[] = [
         </div>
 
         <h2>Špecifické riešenia pre rôzne typy domácností</h2>
-        <h3>Panelové byty v Ostrave a Karvinej</h3>
+        <h3>Panelové byty v Karvinej a Havířove</h3>
         <div class="bg-orange-50 p-6 rounded-lg my-6">
           <h4>Extra bezpečnostné opatrenia:</h4>
           <ul class="space-y-1">
@@ -469,27 +465,6 @@ export const technologiePosts: BlogPost[] = [
           <li><strong>Test penetrácie</strong> - overenie zabezpečenia</li>
         </ol>
 
-        <h3>Nástroje pre monitoring bezpečnosti</h3>
-        <div class="grid md:grid-cols-2 gap-6 my-8">
-          <div class="bg-green-50 p-6 rounded-lg">
-            <h4>Mobilné aplikácie</h4>
-            <ul class="space-y-1">
-              <li><strong>WiFi Analyzer:</strong> Skennovanie okolitých sietí</li>
-              <li><strong>Fing:</strong> Zistenie pripojených zariadení</li>
-              <li><strong>Router Admin:</strong> Vzdialená správa routeru</li>
-            </ul>
-          </div>
-          <div class="bg-orange-50 p-6 rounded-lg">
-            <h4>Počítačové nástroje</h4>
-            <ul class="space-y-1">
-              <li><strong>Wireshark:</strong> Analýza sieťovej prevádzky</li>
-              <li><strong>Nmap:</strong> Skennovanie portov</li>
-              <li><strong>Aircrack-ng:</strong> Test bezpečnosti Wi-Fi</li>
-            </ul>
-          </div>
-        </div>
-
-        <h2>Podpora PODA pre bezpečnosť</h2>
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
           <h3 class="text-white mb-4">Bezpečnostné služby PODA:</h3>
           <ul class="space-y-2">
@@ -513,37 +488,35 @@ export const technologiePosts: BlogPost[] = [
         </ul>
 
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Objednajte si bezpečnostnú konzultáciu:</h3>
-          <p><strong>Web:</strong> popri.cz<br>
-          <strong>Bezpečnostný špecialista:</strong> Milan Terč<br>
-          <strong>Tel:</strong> 730 431 313<br>
-          <strong>E-mail:</strong> terc@obchod.poda.cz</p>
+          <h3>Objednajte si bezpečnostnú konzultáciu cez popri.cz:</h3>
+          <p><strong>Telefón:</strong> 730 431 313<br>
+          <strong>Web:</strong> popri.cz</p>
         </div>
 
         <p class="text-center mt-8 font-medium">Chráňte svoju digitálnu budúcnosť s bezpečnými riešeniami PODA v Moravskoslezskom regióne.</p>
       </div>
     `,
-    date: '15. 2. 2023',
-    author: 'Milan Terč',
+    date: '15. 2. 2025',
+    author: 'Redakcia PODA',
     category: 'Technologie',
     image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop',
-    tags: ['Bezpečnosť Wi-Fi', 'Kybernetická bezpečnosť', 'Router', 'WPA3', 'Heslo', 'Ostrava', 'Karviná', 'PODA', 'Panelové domy', 'Firewall'],
+    tags: ['Bezpečnosť Wi-Fi', 'Kybernetická bezpečnosť', 'Router', 'WPA3', 'Heslo', 'Karviná', 'PODA', 'Panelové domy', 'Firewall'],
   },
   {
     id: 7,
-    title: 'Výhody technológie GPON pre domáce pripojenie v Moravskoslezskom regióne',
-    excerpt: 'Ako technológia GPON (Gigabit Passive Optical Network) mení možnosti domácieho internetového pripojenia v Ostrave, Karvinej a okolí a prečo je budúcnosťou rýchleho internetu.',
+    title: 'Výhody technológie GPON pre domáce pripojenie v Karvinej a Moravskoslezskom regióne',
+    excerpt: 'Ako technológia GPON (Gigabit Passive Optical Network) mení možnosti domácieho internetového pripojenia v Karvinej, Ostrave a okolí a prečo je budúcnosťou rýchleho internetu.',
     content: `
       <div class="prose-content">
         <h2>Úvod: GPON revolúcia v Moravskoslezskom regióne</h2>
-        <p>Technológia GPON (Gigabit Passive Optical Network) predstavuje modernú revolúciu pre vysokorýchlostné internetové pripojenie domácností v Moravskoslezskom regióne. Mesta ako Ostrava, Karviná, Havířov a Bohumín sa postupne transformujú na digitálne centrá vďaka tejto pokročilej optickej infraštruktúre. V tomto článku vám predstavíme hlavné výhody tejto technológie a dôvody, prečo je považovaná za budúcnosť domácieho internetu.</p>
+        <p>Technológia GPON (Gigabit Passive Optical Network) predstavuje modernú revolúciu pre vysokorýchlostné internetové pripojenie domácností v Moravskoslezskom regióne. Mesta ako Karviná, Ostrava, Havířov a Bohumín sa postupne transformujú na digitálne centrá vďaka tejto pokročilej optickej infraštruktúre. V tomto článku vám predstavíme hlavné výhody tejto technológie a dôvody, prečo je považovaná za budúcnosť domácieho internetu.</p>
 
         <h2>Geografické pokrytie GPON v regióne</h2>
         <h3>Mestá s plným GPON pokrytím</h3>
         <ul>
-          <li><strong>Ostrava:</strong> Kompletné pokrytie všetkých mestských častí vrátane Poruby, Vítkovic a Ostravy-Jih</li>
           <li><strong>Karviná:</strong> Optická sieť pokrýva Ráj, Hranice, Mizerov aj centrum</li>
-          <li><strong>Havířov:</strong> Plné pokrytie mesta a priľahlých obcí</li>
+          <li><strong>Ostrava:</strong> Rozširujúce sa pokrytie vybraných mestských častí</li>
+          <li><strong>Havířov:</strong> Postupné pokrytie mesta a priľahlých obcí</li>
           <li><strong>Bohumín:</strong> Strategické umiestnenie optickej infraštruktúry</li>
         </ul>
 
@@ -551,7 +524,7 @@ export const technologiePosts: BlogPost[] = [
         <ul>
           <li><strong>Frýdek-Místek:</strong> Prioritné oblasti s vysokou koncentráciou obyvateľstva</li>
           <li><strong>Orlová:</strong> Rozširovanie optickej siete do rodinných domov</li>
-          <li><strong>Český Těšín:</strong> Plánované pokrytie na rok 2024</li>
+          <li><strong>Český Těšín:</strong> Plánované pokrytie na rok 2025</li>
         </ul>
 
         <h2>Čo je GPON technológia?</h2>
@@ -560,19 +533,19 @@ export const technologiePosts: BlogPost[] = [
         <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
           <h3>Technické parametre GPON pre PODA:</h3>
           <ul class="space-y-2 mt-4">
-            <li>✓ <strong>Downstream rýchlosť:</strong> až 2,5 Gbps</li>
-            <li>✓ <strong>Upstream rýchlosť:</strong> až 1,25 Gbps</li>
+            <li>✓ <strong>Downstream rýchlosť:</strong> až 1 Gbps (garantovaná)</li>
+            <li>✓ <strong>Upstream rýchlosť:</strong> až 1 Gbps (garantovaná)</li>
             <li>✓ <strong>Dosah:</strong> až 20 km bez zosilňovačov</li>
-            <li>✓ <strong>Splitting ratio:</strong> 1:64 (jeden port pre 64 zákazníkov)</li>
+            <li>✓ <strong>Splitting ratio:</strong> 1:32 (jeden port pre 32 zákazníkov)</li>
             <li>✓ <strong>Latencia:</strong> < 2 ms</li>
           </ul>
         </div>
 
-        <h2>Prípadová štúdia: Transformácia rodinného domu v Havířove</h2>
+        <h2>Prípadová štúdia: Transformácia rodinného domu v Karvinej</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
           <p>"Predtým sme mali 50 Mbps DSL pripojenie s častými výpadkami. Synovia hrali online hry, manželka pracovala z domu a ja som streamoval 4K filmy. Starý internet nezvládal záťaž. Po prechode na GPON od PODA máme garantovaných 1000 Mbps symetricky. Celá rodina môže používať internet súčasne bez akýchkoľvek obmedzení."</p>
           <footer class="mt-2 text-sm text-gray-600">
-            <strong>Petr Dvořák, Havířov-Šumbark</strong><br>
+            <strong>Petr Dvořák, Karviná-Hranice</strong><br>
             IT manažér, rodinný dom, 4-členná rodina
           </footer>
         </blockquote>
@@ -630,7 +603,7 @@ export const technologiePosts: BlogPost[] = [
         </ul>
 
         <h2>Technické špecifikácie pre rôzne typy zástavby</h2>
-        <h3>Panelové domy (Ostrava, Karviná)</h3>
+        <h3>Panelové domy (Karviná, Havířov)</h3>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
           <h4>GPON inštalácia v panelákoch:</h4>
           <ul class="space-y-2 mt-4">
@@ -638,11 +611,11 @@ export const technologiePosts: BlogPost[] = [
             <li><strong>Distribúcia po bytoch:</strong> Optické káble v pôvodnej kabeláži</li>
             <li><strong>Zakončenie:</strong> ONT modem priamo v byte</li>
             <li><strong>Rýchlosť:</strong> Plných 1000 Mbps symetricky</li>
-            <li><strong>Súčasné pripojenie:</strong> Až 64 bytov z jedného splitteru</li>
+            <li><strong>Súčasné pripojenie:</strong> Až 32 bytov z jedného splitteru</li>
           </ul>
         </div>
 
-        <h3>Rodinné domy (Havířov, Bohumín, okrajové časti)</h3>
+        <h3>Rodinné domy (Karviná-Hranice, okrajové časti)</h3>
         <div class="bg-green-50 p-6 rounded-lg my-8">
           <h4>FTTH inštalácia pre domy:</h4>
           <ul class="space-y-2 mt-4">
@@ -665,55 +638,42 @@ export const technologiePosts: BlogPost[] = [
 
         <h2>Ekonomická analýza GPON vs. alternatívy</h2>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>5-ročné náklady na internetové pripojenie:</h3>
+          <h3>Porovnanie nákladov na internetové pripojenie (250 Kč/mesiac):</h3>
           <table class="w-full mt-4 text-sm">
             <thead>
               <tr class="border-b">
                 <th class="text-left py-2">Technológia</th>
                 <th class="text-left py-2">Mesačne</th>
-                <th class="text-left py-2">Ročne</th>
-                <th class="text-left py-2">5 rokov</th>
                 <th class="text-left py-2">Rýchlosť</th>
+                <th class="text-left py-2">Latencia</th>
               </tr>
             </thead>
             <tbody>
               <tr class="border-b">
                 <td class="py-2">GPON (PODA)</td>
                 <td class="py-2 text-green-600">250 Kč</td>
-                <td class="py-2">3 000 Kč</td>
-                <td class="py-2">15 000 Kč</td>
                 <td class="py-2">1000/1000 Mbps</td>
+                <td class="py-2">< 2 ms</td>
               </tr>
               <tr class="border-b">
-                <td class="py-2">Kábel (UPC)</td>
-                <td class="py-2 text-orange-600">399 Kč</td>
-                <td class="py-2">4 788 Kč</td>
-                <td class="py-2">23 940 Kč</td>
+                <td class="py-2">Kábel (konkurencia)</td>
+                <td class="py-2 text-orange-600">399+ Kč</td>
                 <td class="py-2">500/50 Mbps</td>
+                <td class="py-2">15-30 ms</td>
               </tr>
               <tr>
-                <td class="py-2">DSL (O2)</td>
-                <td class="py-2 text-red-600">699 Kč</td>
-                <td class="py-2">8 388 Kč</td>
-                <td class="py-2">41 940 Kč</td>
+                <td class="py-2">DSL (konkurencia)</td>
+                <td class="py-2 text-red-600">699+ Kč</td>
                 <td class="py-2">100/20 Mbps</td>
+                <td class="py-2">20-50 ms</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <h2>Budúcnosť GPON technológie</h2>
-        <h3>Pripravovaní vylepšenia (2024-2026)</h3>
-        <ul>
-          <li><strong>XGS-PON:</strong> 10 Gbps symetrické pripojenie</li>
-          <li><strong>25G-PON:</strong> 25 Gbps pre najnáročnejších používateľov</li>
-          <li><strong>Time-sensitive networking:</strong> Garantované latency pre priemysel</li>
-          <li><strong>5G backhaul:</strong> GPON ako pátež pre mobilné siete</li>
-        </ul>
-
         <h2>Inštalačný proces GPON v Moravskoslezskom regióne</h2>
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-          <h3 class="text-white mb-4">Proces aktivácie GPON pripojenia:</h3>
+          <h3 class="text-white mb-4">Proces aktivácie GPON pripojenia cez popri.cz:</h3>
           <ol class="space-y-2">
             <li><strong>1. Objednávka cez popri.cz</strong> - jednoduchý online formulár</li>
             <li><strong>2. Technická prehliadka</strong> - overenie možností pripojenia</li>
@@ -743,36 +703,10 @@ export const technologiePosts: BlogPost[] = [
           <li><strong>IoT aplikácie</strong> - internet vecí bez obmedzení</li>
         </ul>
 
-        <h3>Prečo zvoliť GPON od PODA?</h3>
-        <div class="grid md:grid-cols-2 gap-6 my-8">
-          <div class="bg-green-50 p-6 rounded-lg">
-            <h4>Technické výhody</h4>
-            <ul class="space-y-1">
-              <li>✓ Najnovšia GPON infraštruktúra</li>
-              <li>✓ Garantované rýchlosti</li>
-              <li>✓ Symetrické pripojenie</li>
-              <li>✓ Minimálna latencia</li>
-              <li>✓ 99,9% dostupnosť</li>
-            </ul>
-          </div>
-          <div class="bg-blue-50 p-6 rounded-lg">
-            <h4>Servisné výhody</h4>
-            <ul class="space-y-1">
-              <li>✓ Lokálna technická podpora</li>
-              <li>✓ Bezplatná inštalácia</li>
-              <li>✓ 24/7 monitoring siete</li>
-              <li>✓ Rýchla reakcia na poruchy</li>
-              <li>✓ Transparentné ceny</li>
-            </ul>
-          </div>
-        </div>
-
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Objednajte si GPON pripojenie:</h3>
-          <p><strong>Web:</strong> popri.cz<br>
-          <strong>GPON špecialista:</strong> Milan Terč<br>
-          <strong>Tel:</strong> 730 431 313<br>
-          <strong>E-mail:</strong> terc@obchod.poda.cz</p>
+          <h3>Objednajte si GPON pripojenie cez popri.cz:</h3>
+          <p><strong>Telefón:</strong> 730 431 313<br>
+          <strong>Web:</strong> popri.cz</p>
           <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia a overenie dostupnosti GPON technológie na vašej adrese.</p>
         </div>
 
@@ -781,11 +715,11 @@ export const technologiePosts: BlogPost[] = [
         <p class="text-sm text-gray-500 mt-8 italic">Technológia GPON od PODA - váš vstup do gigabitovej éry internetového pripojenia.</p>
       </div>
     `,
-    date: '20. 5. 2023',
-    author: 'Milan Terč',
+    date: '20. 5. 2025',
+    author: 'Redakcia PODA',
     category: 'Technologie',
     image: '/lovable-uploads/6f778a97-79bd-4698-b3f2-2a373893184b.png',
     alt: 'Optické vlákno GPON technológie s červeným a modrým svetlom',
-    tags: ['GPON', 'Optické pripojenie', 'Vysokorýchlostný internet', 'Optické vlákna', 'Gigabitové pripojenie', 'Ostrava', 'Karviná', 'Havířov', 'PODA', 'FTTH'],
+    tags: ['GPON', 'Optické pripojenie', 'Vysokorýchlostný internet', 'Optické vlákna', 'Gigabitové pripojenie', 'Karviná', 'Havířov', 'PODA', 'FTTH'],
   }
 ];

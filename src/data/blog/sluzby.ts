@@ -1,6 +1,7 @@
+
 import type { BlogPost } from './types';
 
-export const sluzbaPosts: BlogPost[] = [
+export const sluzbyPosts: BlogPost[] = [
   {
     id: 15,
     title: "Ako prejsť od konkurencie k PODA - Kompletný sprievodca prevodom",
@@ -13,9 +14,9 @@ export const sluzbaPosts: BlogPost[] = [
       <div class="bg-gradient-to-r from-blue-50 to-orange-50 p-6 rounded-lg my-6 border-l-4 border-poda-blue">
         <h3 class="text-lg font-semibold text-poda-blue mb-3">Proces prechodu v 5 krokoch</h3>
         <ol class="list-decimal list-inside space-y-3 text-gray-700">
-          <li><strong>Konzultácia s naším špeciaistom Milanom:</strong> Zavolajte na 596 112 112 alebo navštívte popri.cz pre bezplatnú konzultáciu</li>
-          <li><strong>Výber tarifu a podpis zmluvy:</strong> Podpíšeme zmluvu hneď podľa vašich potrieb</li>
-          <li><strong>Inštalácia PODA služieb:</strong> Profesionálna inštalácia optického pripojenia do 5 dní</li>
+          <li><strong>Konzultácia s naším konzultantom Milanom:</strong> Zavolajte na 596 112 112 alebo navštívte popri.cz pre bezplatnú konzultáciu</li>
+          <li><strong>Výber tarifu a okamžitý podpis zmluvy:</strong> Podpíšeme zmluvu hneď podľa vašich potrieb</li>
+          <li><strong>Inštalácia PODA služieb:</strong> Profesionálna inštalácia optického pripojenia v byte do 5 dní</li>
           <li><strong>Testovanie a školenie:</strong> Overíme funkčnosť a naučíme vás používať nové služby</li>
           <li><strong>Výpoveď starého poskytovateľa:</strong> Podáme výpoveď vášmu súčasnému poskytovateľovi až po úspešnej inštalácii</li>
         </ol>

@@ -138,7 +138,7 @@ export const sluzbyPosts: BlogPost[] = [
       </ul>
 
       <h3>Prečo si vybrať PODA?</h3>
-      <p>PODA je moderný poskytovateľ internetových služieb, ktorý sa zameriava na kvalitu a spokojenosť zákazníkov. Naše optické pripojenie využíva najnovšie technológie GPON, ktoré zaručujú vysokú rýchlosť a stabilitu pripojenia.</p>
+      <p>PODA je moderný poskytovateľ internetových služieb, ktorý sa zameriava na kvalitu a spokojenosť zákazníkov. Naše optické pripojenie využíva najnovšie technológie GPON, ktoré zaručujú vysokú rychlosť a stabilitu pripojenia.</p>
 
       <h3>Dostupnosť v Púchove</h3>
       <p>Naše služby sú dostupné vo väčšine mestských častí Púchova. Pokrytie neustále rozširujeme, takže ak vaša adresa zatiaľ nie je pokrytá, môžete sa zaregistrovať na zoznam čakateľov a budeme vás informovať o možnosti pripojenia.</p>
@@ -188,7 +188,7 @@ export const sluzbyPosts: BlogPost[] = [
         <li><strong>Polička</strong></li>
       </ul>
       
-      <p>Pokrývání nových oblastí se stále rozšiřuje, takže pokud vaše město zatím není na seznamu, je možné, že se brzy dočkáte i vy.</p>
+      <p>Pokrytí neustále rozšiřuje, takže pokud vaše město zatím není na seznamu, je možné, že se brzy dočkáte i vy.</p>
       
       <h3>Jaké technologie PODA využívá?</h3>
       <p>PODA staví na dvou hlavních technologiích:</p>

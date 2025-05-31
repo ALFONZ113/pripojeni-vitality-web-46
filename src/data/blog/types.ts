@@ -7,12 +7,9 @@ export interface BlogPost {
   date: string;
   author: string;
   category: string;
-  image?: string;
-  imageUrl?: string;
+  image: string;
   alt?: string;
   tags?: string[];
-  readTime?: number;
-  featured?: boolean;
 }
 
 export interface BlogCategory {

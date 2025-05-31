@@ -31,10 +31,6 @@ export const generateBlogPostMeta = (post: BlogPost, baseUrl: string) => {
   const readingTime = calculateReadingTime(post.content);
   const wordCount = countWords(post.content);
   
-  // Handle image URL - use imageUrl or image, with fallback
-  const imageUrl = post.imageUrl || post.image || '/og-image.png';
-  const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
-  
   // Generate geo-specific keywords
   const geoKeywords = [
     'PODA internet',
@@ -57,7 +53,7 @@ export const generateBlogPostMeta = (post: BlogPost, baseUrl: string) => {
     description: excerpt,
     keywords: allKeywords,
     canonicalUrl,
-    ogImage: fullImageUrl,
+    ogImage: post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`,
     readingTime,
     wordCount,
     structuredData: {
@@ -65,7 +61,7 @@ export const generateBlogPostMeta = (post: BlogPost, baseUrl: string) => {
       "@type": "BlogPosting",
       "headline": post.title,
       "description": excerpt,
-      "image": fullImageUrl,
+      "image": post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`,
       "datePublished": formatDateForSchema(post.date),
       "dateModified": formatDateForSchema(post.date),
       "author": {

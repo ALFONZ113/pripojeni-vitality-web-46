@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const tipyPosts: BlogPost[] = [
@@ -16,7 +15,7 @@ export const tipyPosts: BlogPost[] = [
         <ul>
           <li><strong>1-2 osoby:</strong> základní tarify 50-100 Mbit/s</li>
           <li><strong>3-4 osoby:</strong> střední tarify 100-300 Mbit/s</li>
-          <li><strong>5+ osob:</strong> vysokorychlostní tarify 300+ Mbit/s</li>
+          <li><strong>5+ osoby:</strong> vysokorychlostní tarify 300+ Mbit/s</li>
         </ul>
 
         <h3>Typ využití internetu</h3>

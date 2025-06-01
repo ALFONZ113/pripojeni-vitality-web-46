@@ -14,6 +14,7 @@ const Blog = () => {
   const [filteredPosts, setFilteredPosts] = useState(blogPosts);
   const [selectedCategory, setSelectedCategory] = useState('all');
   
+  // Načítame parametre z URL - kategória a tag
   useEffect(() => {
     const category = searchParams.get('category');
     const tag = searchParams.get('tag');
@@ -22,6 +23,7 @@ const Blog = () => {
       setSelectedCategory(category);
     }
     
+    // Ak máme tag, nastavíme ho ako vyhľadávací výraz
     if (tag) {
       setSearchTerm(tag);
     }
@@ -35,10 +37,12 @@ const Blog = () => {
   useEffect(() => {
     let filtered = blogPosts;
     
+    // Filtrovanie podľa kategórie
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(post => post.category === selectedCategory);
     }
     
+    // Filtrovanie podľa vyhľadávacieho výrazu alebo tagu
     if (searchTerm.trim() !== '') {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(post => 
@@ -52,6 +56,7 @@ const Blog = () => {
     
     setFilteredPosts(filtered);
     
+    // Aktualizujeme URL parametre pre lepšiu SEO a zdieľanie
     const newParams = new URLSearchParams();
     if (selectedCategory !== 'all') newParams.set('category', selectedCategory);
     if (searchTerm.trim() !== '') newParams.set('search', searchTerm);
@@ -73,7 +78,7 @@ const Blog = () => {
     setSearchParams({}, { replace: true });
   };
   
-  // Get all unique tags and locations for SEO
+  // Získame všetky unikátne tagy pre meta tagy
   const getAllTags = () => {
     const allTags = new Set<string>();
     blogPosts.forEach(post => {
@@ -84,85 +89,34 @@ const Blog = () => {
     return Array.from(allTags);
   };
   
-  const getAllLocations = () => {
-    const locations = ['Ostrava', 'Karviná', 'Bohumín', 'Frýdek-Místek', 'Havířov', 'Poruba', 'Orlová'];
-    return locations.filter(location => 
-      blogPosts.some(post => 
-        post.title.includes(location) || post.content.includes(location)
-      )
-    );
-  };
-  
   const allTags = getAllTags();
-  const locations = getAllLocations();
-  
-  // Generate enhanced meta description
-  const generateMetaDescription = () => {
-    const baseDescription = "Blog o internetových službách PODA - články o technológiách, tipoch pre lepšie využitie internetu a televízie";
-    if (selectedCategory !== 'all') {
-      return `${baseDescription}. Kategória: ${selectedCategory}`;
-    }
-    if (searchTerm) {
-      return `${baseDescription}. Hľadanie: ${searchTerm}`;
-    }
-    return `${baseDescription}. Aktuálne ${blogPosts.length} článkov.`;
-  };
 
   return (
     <div className="min-h-screen pt-24">
       <Helmet>
-        <title>Blog o internete a technológiách | PODA | Popri.cz</title>
-        <meta name="description" content={generateMetaDescription()} />
+        <title>Blog o internetu a technologiích | PODA | Popri.cz</title>
+        <meta name="description" content="Přečtěte si zajímavé články o technologiích, internetu a televizi. Tipy, návody a aktuality ze světa internetového připojení a PODA služeb." />
         <link rel="canonical" href="https://www.popri.cz/blog" />
-        <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, internetové technologie, ${allTags.join(', ')}, ${locations.join(', ')}`} />
+        <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, internetové technologie, ${allTags.join(', ')}`} />
         <link rel="alternate" href="https://popri.cz/blog" hrefLang="cs" />
         
-        {/* Enhanced Open Graph */}
-        <meta property="og:title" content="Blog PODA | Internetové služby a technológie" />
-        <meta property="og:description" content={generateMetaDescription()} />
-        <meta property="og:url" content="https://www.popri.cz/blog" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.popri.cz/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" />
-        
-        {/* Geographic meta tags */}
-        <meta name="geo.region" content="CZ" />
-        <meta name="geo.placename" content="Česká republika" />
-        <meta name="ICBM" content="49.8175, 18.2624" />
-        
-        {/* Twitter Cards */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Blog PODA | Internetové služby" />
-        <meta name="twitter:description" content={generateMetaDescription()} />
-        
-        {/* Enhanced structured data for blog */}
+        {/* Přidáme strukturovaná data pro blog */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
             "name": "Blog Popri.cz",
             "url": "https://www.popri.cz/blog",
-            "description": generateMetaDescription(),
-            "inLanguage": "cs-CZ",
-            "about": {
-              "@type": "Thing",
-              "name": "Internet a telekomunikačné služby"
-            },
+            "description": "Blog o internetu, technologiích a PODA službách",
             "publisher": {
               "@type": "Organization",
-              "name": "PODA",
+              "name": "Popri.cz",
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://www.popri.cz/poda-logo.svg"
-              },
-              "url": "https://www.popri.cz",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+420730431313",
-                "contactType": "customer service",
-                "areaServed": locations
               }
             },
-            "blogPost": blogPosts.slice(0, 10).map(post => ({
+            "blogPosts": blogPosts.slice(0, 10).map(post => ({
               "@type": "BlogPosting",
               "headline": post.title,
               "datePublished": post.date.split('. ').reverse().join('-'),
@@ -171,50 +125,17 @@ const Blog = () => {
                 "name": post.author
               },
               "url": `https://www.popri.cz/blog/${post.id}`,
-              "keywords": post.tags?.join(', ') || post.category,
-              "about": {
-                "@type": "Thing",
-                "name": post.category
-              }
+              "keywords": post.tags?.join(', ') || post.category
             }))
           })}
         </script>
         
-        {/* Breadcrumb structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Úvod",
-                "item": "https://www.popri.cz"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Blog",
-                "item": "https://www.popri.cz/blog"
-              }
-            ]
-          })}
-        </script>
+        {/* Info pre vyhľadávače o všetkých kategóriách */}
+        <meta name="article:tag" content={categories.map(cat => cat.name).join(', ')} />
         
-        {/* Categories meta */}
-        {categories.map((cat, index) => (
-          <meta key={index} name="article:section" content={cat.name} />
-        ))}
-        
-        {/* Tags meta */}
+        {/* Info pre vyhľadávače o všetkých tagoch */}
         {allTags.map((tag, index) => (
           <meta key={index} name="article:tag" content={tag} />
-        ))}
-        
-        {/* Location meta for geo SEO */}
-        {locations.map((location, index) => (
-          <meta key={index} name="geo.placename" content={`${location}, Česká republika`} />
         ))}
       </Helmet>
       
@@ -225,11 +146,11 @@ const Blog = () => {
               Blog a novinky
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
-              Články o internete a technológiách
+              Zajímavé články a informace
             </h1>
             <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200">
-              Prečítajte si najnovšie články o technológiách, tipoch pre lepšie využitie vašeho internetu 
-              a televízie. Všetko o službách PODA v {locations.join(', ')} a ďalších mestách.
+              Přečtěte si nejnovější články o technologiích, tipech pro lepší využití vašeho internetu 
+              a televize, a mnoho dalšího.
             </p>
             
             <BlogSearch searchTerm={searchTerm} onSearch={handleSearch} />
@@ -249,33 +170,6 @@ const Blog = () => {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <BlogList posts={filteredPosts} onResetFilters={resetFilters} />
-          
-          {/* Enhanced CTA for blog page */}
-          <div className="mt-16 text-center">
-            <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-8 rounded-xl shadow-lg">
-              <h2 className="text-2xl font-bold mb-4">
-                Hľadáte rýchle internetové pripojenie?
-              </h2>
-              <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                PODA poskytuje spoľahlivé optické pripojenie v {locations.slice(0, 3).join(', ')} 
-                a ďalších mestách. Kontaktujte nás pre bezplatnú konzultáciu.
-              </p>
-              <div className="flex gap-4 justify-center flex-wrap">
-                <a
-                  href="tel:+420730431313"
-                  className="bg-white text-poda-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-                >
-                  📞 730 431 313
-                </a>
-                <a
-                  href="/kontakt"
-                  className="bg-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors"
-                >
-                  Kontaktný formulár
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>

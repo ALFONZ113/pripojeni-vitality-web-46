@@ -44,7 +44,7 @@ const useEnhancedPerformance = () => {
           console.log('Navigation timing:', {
             domContentLoaded: entry.domContentLoadedEventEnd - entry.domContentLoadedEventStart,
             loadComplete: entry.loadEventEnd - entry.loadEventStart,
-            totalTime: entry.loadEventEnd - entry.fetchStart
+            totalTime: entry.loadEventEnd - entry.navigationStart
           });
         }
       }

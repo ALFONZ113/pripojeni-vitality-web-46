@@ -1,169 +1,202 @@
-
 import { BlogPost } from './types';
+import { karvinaPost } from './karvina';
 
 export const sluzbyPosts: BlogPost[] = [
+  karvinaPost,
   {
-    id: 2,
-    title: "PODA televize: Kompletní průvodce funkcemi a možnostmi",
-    excerpt: "Objevte všechny funkce PODA televize - od základního ovládání až po pokročilé možnosti nahrávání a streamování. Praktický návod pro maximální využití vaší televize.",
+    id: 1,
+    title: "GPON technologie: Budoucnost optického internetu",
+    excerpt: "Objevte výhody GPON technologie a proč je považována za standard budoucnosti pro domácí internetové připojení.",
     content: `
-      <div class="prose-content">
-        <h2>Úvod do PODA televize</h2>
-        <p>PODA televize představuje moderní způsob sledování televizního obsahu s pokročilými funkcemi, které výrazně zlepšují zážitek ze sledování. V tomto článku se dozvíte, jak využít všechny možnosti vaší PODA televize.</p>
+      <h2>Co je GPON technologie?</h2>
+      <p>GPON (Gigabit Passive Optical Network) představuje nejmodernější technologii pro dodávání vysokorychlostního internetu přímo do domácností. Tato technologie využívá optická vlákna pro přenos dat rychlostí až 2,5 Gbps downstream a 1,25 Gbps upstream.</p>
+      
+      <h3>Hlavní výhody GPON</h3>
+      <ul>
+        <li><strong>Vysoká rychlost:</strong> Gigabitové rychlosti pro domácnosti</li>
+        <li><strong>Stabilita:</strong> Minimální latence a výpadky</li>
+        <li><strong>Škálovatelnost:</strong> Snadné rozšíření kapacity</li>
+        <li><strong>Budoucnost:</strong> Technologie připravená na další desetiletí</li>
+      </ul>
 
-        <h2>Základní ovládání PODA televize</h2>
-        <h3>Dálkové ovládání</h3>
-        <p>PODA televize je vybavena intuitivním dálkovým ovládáním s ergonomickým designem. Hlavní tlačítka zahrnují:</p>
-        <ul>
-          <li><strong>Power:</strong> Zapnutí/vypnutí televize</li>
-          <li><strong>Home:</strong> Návrat na hlavní obrazovku</li>
-          <li><strong>Navigační křížek:</strong> Pohyb v menu</li>
-          <li><strong>OK:</strong> Potvrzení výběru</li>
-          <li><strong>Back:</strong> Návrat zpět</li>
-          <li><strong>Volume +/-:</strong> Ovládání hlasitosti</li>
-        </ul>
+      <h3>Jak GPON funguje?</h3>
+      <p>GPON síť využívá pasivní optické prvky, které nevyžadují elektrické napájení. Jeden optický terminál (OLT) může obsluhovat až 64 domácností prostřednictvím optických splitterů.</p>
 
-        <h3>Hlavní menu</h3>
-        <p>Po zapnutí se zobrazí přehledné hlavní menu s následujícími sekcemi:</p>
-        <div class="bg-blue-50 p-4 rounded-lg my-6">
-          <ul>
-            <li>📺 <strong>Živé vysílání:</strong> Aktuální televizní programy</li>
-            <li>🎬 <strong>Video knihovna:</strong> Filmy a seriály na vyžádání</li>
-            <li>📅 <strong>TV program:</strong> Elektronický programový průvodce</li>
-            <li>⚙️ <strong>Nastavení:</strong> Konfigurace televize</li>
-            <li>📊 <strong>Statistiky:</strong> Přehled sledovaného obsahu</li>
-          </ul>
-        </div>
-
-        <h2>Pokročilé funkce</h2>
-        <h3>Nahrávání pořadů</h3>
-        <p>PODA televize umožňuje nahrávání oblíbených pořadů pomocí cloudového úložiště:</p>
-        <ol>
-          <li>Vyberte pořad v TV programu</li>
-          <li>Stiskněte tlačítko "REC" na dálkovém ovládání</li>
-          <li>Potvrzení nahrávání se zobrazí na obrazovce</li>
-          <li>Nahrávky najdete v sekci "Moje nahrávky"</li>
-        </ol>
-
-        <h3>Funkce TimeShift</h3>
-        <p>TimeShift umožňuje pozastavit živé vysílání a pokračovat ve sledování později:</p>
-        <ul>
-          <li>Stiskněte tlačítko "Pause" během sledování</li>
-          <li>Pořad se pozastaví a začne se ukládat</li>
-          <li>Můžete se vrátit až o 2 hodiny zpět</li>
-          <li>Použijte tlačítka "Rewind" a "Forward" pro navigaci</li>
-        </ul>
-
-        <h2>Videobook - Půjčovna filmů</h2>
-        <h3>Jak půjčit film</h3>
-        <p>Videobook nabízí širokou škálu filmů a seriálů k půjčení:</p>
-        <ol>
-          <li>Vstupte do sekce "Video knihovna"</li>
-          <li>Procházejte kategorie nebo použijte vyhledávání</li>
-          <li>Vyberte film a stiskněte "OK"</li>
-          <li>Zvolte kvalitu (HD/4K) a potvrďte půjčení</li>
-          <li>Film se začne stahovat a můžete začít sledovat</li>
-        </ol>
-
-        <h3>Ceny půjčení</h3>
-        <table class="w-full border-collapse border border-gray-300 my-6">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 p-2">Typ obsahu</th>
-              <th class="border border-gray-300 p-2">HD kvalita</th>
-              <th class="border border-gray-300 p-2">4K kvalita</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 p-2">Novinky</td>
-              <td class="border border-gray-300 p-2">89 Kč</td>
-              <td class="border border-gray-300 p-2">119 Kč</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 p-2">Katalogové filmy</td>
-              <td class="border border-gray-300 p-2">49 Kč</td>
-              <td class="border border-gray-300 p-2">69 Kč</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 p-2">Seriály (epizoda)</td>
-              <td class="border border-gray-300 p-2">29 Kč</td>
-              <td class="border border-gray-300 p-2">39 Kč</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2>Nastavení a konfigurace</h2>
-        <h3>Obrazové nastavení</h3>
-        <ul>
-          <li><strong>Jas a kontrast:</strong> Přizpůsobení podle prostředí</li>
-          <li><strong>Režim obrazu:</strong> Cinema, Sport, Vivid</li>
-          <li><strong>Rozlišení:</strong> Automatické nebo manuální nastavení</li>
-        </ul>
-
-        <h3>Zvukové nastavení</h3>
-        <ul>
-          <li><strong>Ekvalizér:</strong> Přizpůsobení zvuku podle preference</li>
-          <li><strong>Surround sound:</strong> Prostorový zvuk pro domácí kino</li>
-          <li><strong>Noční režim:</strong> Snížení dynamiky pro večerní sledování</li>
-        </ul>
-
-        <h2>Mobilní aplikace PODA TV</h2>
-        <h3>Funkce mobilní aplikace</h3>
-        <div class="bg-green-50 border-l-4 border-green-400 p-4 my-6">
-          <ul class="text-green-700 space-y-1">
-            <li>✓ Sledování živého vysílání na mobilu</li>
-            <li>✓ Přístup k nahrávkám odkudkoliv</li>
-            <li>✓ Plánování nahrávek na dálku</li>
-            <li>✓ Synchronizace s televizí</li>
-            <li>✓ Offline sledování stažených filmů</li>
-          </ul>
-        </div>
-
-        <h3>Instalace a přihlášení</h3>
-        <ol>
-          <li>Stáhněte aplikaci "PODA TV" z App Store nebo Google Play</li>
-          <li>Přihlaste se pomocí údajů od PODA</li>
-          <li>Aplikace se automaticky synchronizuje s vaší televizí</li>
-        </ol>
-
-        <h2>Řešení běžných problémů</h2>
-        <h3>Problémy s připojením</h3>
-        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
-          <h4 class="text-yellow-800 font-semibold mb-2">Pokud televize nejde:</h4>
-          <ol class="text-yellow-700 space-y-1">
-            <li>1. Zkontrolujte připojení internetového kabelu</li>
-            <li>2. Restartujte set-top box vypnutím a zapnutím</li>
-            <li>3. Zkontrolujte stav internetového připojení</li>
-            <li>4. Kontaktujte podporu na 730 431 313</li>
-          </ol>
-        </div>
-
-        <h3>Problémy s kvalitou obrazu</h3>
-        <ul>
-          <li><strong>Rozmazaný obraz:</strong> Zkontrolujte HDMI kabel a nastavení rozlišení</li>
-          <li><strong>Sekání videa:</strong> Nedostatečná rychlost internetu</li>
-          <li><strong>Chybí zvuk:</strong> Zkontrolujte audio výstup v nastavení</li>
-        </ul>
-
-        <h2>Tipy pro lepší zážitek</h2>
-        <ol class="space-y-2">
-          <li><strong>Plánujte nahrávky:</strong> Nastavte oblíbené pořady pro automatické nahrávání</li>
-          <li><strong>Využívejte vyhledávání:</strong> Rychle najděte konkrétní obsah</li>
-          <li><strong>Vytvořte profily:</strong> Různé profily pro různé členy rodiny</li>
-          <li><strong>Správa úložiště:</strong> Pravidelně mažte staré nahrávky</li>
-          <li><strong>Optimalizujte internet:</strong> Pro 4K obsah doporučujeme 25+ Mbit/s</li>
-        </ol>
-
-        <h2>Závěr</h2>
-        <p>PODA televize nabízí komplexní televizní zážitek s moderními funkcemi. Osvojení těchto funkcí vám umožní maximálně využít potenciál vaší televize a užít si sledování podle vašich představ.</p>
-      </div>
+      <h3>PODA a GPON technologie</h3>
+      <p>Společnost PODA využívá nejmodernější GPON infrastrukturu pro dodávání spolehlivého a rychlého internetového připojení. Naše síť je navržena s ohledem na budoucí potřeby a umožňuje snadné zvyšování rychlostí.</p>
     `,
-    date: "30. 5. 2025",
-    author: "Ing. Pavel Procházka",
-    category: "Služby", 
-    image: "/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png",
-    alt: "PODA televize set-top box s dálkovým ovládáním na moderním stolku",
-    tags: ["PODA televize", "návod", "nahrávání", "videobook", "streaming", "set-top box"]
+    date: "15. 4. 2024",
+    author: "Milan Terč",
+    category: "Služby",
+    image: "/lovable-uploads/56ebeef3-04d0-42a6-ac4f-f47224a075fb.png",
+    alt: "Optický kabel s modrým světelným efektem znázorňujícím GPON technologii",
+    tags: ["GPON", "Optické připojení", "Vysokorychlostní internet"]
+  },
+  {
+    id: 11,
+    title: 'Přechod od O2 k PODA po akvizici Nej.cz a Netboxu',
+    excerpt: 'Zjistěte, jak vás může ovlivnit akvizice Nej.cz a Netboxu společností O2 a proč je nyní vhodný čas zvážit přechod k poskytovateli PODA, který nabízí stabilní ceny a kvalitní optické připojení.',
+    date: '8. 5. 2025',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_Visual_Conce_2.webp',
+    alt: 'Futuristická vizualizace propojení telekomunikačních sítí, symbolizující změny na trhu poskytovatelů internetu',
+    tags: ['Přechod poskytovatele', 'O2', 'PODA', 'Nej.cz', 'Netbox', 'Optické připojení', 'Internet'],
+    content: `
+      <p>V telekomunikačním sektoru České republiky došlo k významným změnám. Společnost O2 dokončila akvizici poskytovatele internetu Nej.cz, přičemž zákaznická základna přešla pod O2, zatímco infrastrukturu převzal CETIN. Zároveň netbox, který poskytuje internetové připojení více než 40 tisícům zákazníků především v Brně a Jihlavě, se také stal součástí O2.</p>
+      
+      <h3>Změny cen po akvizici</h3>
+      <p>S přechodem pod O2 dochází k postupným změnám, které mohou ovlivnit vaši peněženku. Společnost O2 již začala upravovat nabídku služeb a cenovou politiku pro zákazníky získané akvizicí. Ačkoliv stávající zákazníci mohou zatím využívat své služby za původních podmínek, očekává se postupná migrace na tarify O2.</p>
+      
+      <h3>Proč zvážit přechod k PODA?</h3>
+      <p>PODA nabízí zákazníkům alternativu s několika významnými výhodami:</p>
+      <ul>
+        <li>Garantovaná rychlost internetu až 1000 Mbps bez výpadků a kolísání</li>
+        <li>Přes 100 televizních programů zdarma v základní nabídce</li>
+        <li>Stabilní ceny bez nečekaných navýšení</li>
+        <li>Non-stop zákaznická podpora a rychlé řešení případných problémů</li>
+        <li>Odborná instalace bez zbytečných starostí</li>
+      </ul>
+      
+      <h3>Jednoduchý přechod s Popri.cz</h3>
+      <p>Díky webu Popri.cz je změna poskytovatele internetu na PODA snadná a bezstresová.</p>
+      <p>Služba Popri.cz vám zajistí:</p>
+      <ul>
+        <li>Komplexní řešení přechodu bez administrativních překážek</li>
+        <li>Rychlou instalaci s garantovanou rychlostí</li>
+        <li>Odborné poradenství při výběru nejvhodnějšího tarifu</li>
+        <li>Žádné skryté poplatky nebo nevýhodné podmínky</li>
+      </ul>
+      
+      <h3>Výhody optického internetu od PODA</h3>
+      <p>PODA poskytuje kvalitní optické připojení, které vám umožní:</p>
+      <ul>
+        <li>Sledovat obsah ve vysokém rozlišení bez zpomalení</li>
+        <li>Hrát online hry bez nepříjemného laggování</li>
+        <li>Připojit všechna zařízení v domácnosti současně bez ztráty rychlosti</li>
+        <li>Pracovat z domova efektivně i při videokonferencích</li>
+      </ul>
+      
+      <p>V době, kdy O2 po akvizici Nej.cz přizpůsobuje portfolio svých služeb a upravuje ceny, je PODA stabilní volbou pro ty, kdo hledají spolehlivé internetové připojení za výhodných podmínek. S pomocí platformy Popri.cz je přechod jednoduchý jako "objednání šálky kávy" - bez zbytečného stresu a komplikací.</p>
+      
+      <p>Neváhejte a zjistěte více o možnostech připojení od PODA na webu Popri.cz, kde najdete všechny potřebné informace pro bezproblémový přechod k novému poskytovateli.</p>
+    `
+  },
+  {
+    id: 10,
+    title: 'Internet PODA v Ostravě-Porubě: Kvalitní připojení na vaší ulici',
+    excerpt: 'Hledáte rychlý a stabilní internet v Ostravě-Porubě? PODA nabízí optické připojení až 1 Gb/s pro domácnosti i firmy ve většině porubských ulic. Instalace je zdarma a technici vám vše profesionálně zapojí až do bytu.',
+    date: '24. 4. 2025',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
+    alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě, futuristický vzhled připojení PODA',
+    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
+    content: `
+      <h3>Dostupné ulice v Porubě:</h3>
+      <p>Aloise Gavlase, Bohuslava Martinů, Bulharská, Čkalovova, Dětská, Dvorní, Francouzská, Generála Sochora, Gurťjevova, Havanská, Hlavní třída, Heyrovského, Ivana Sekaniny, Jana Šoupala, Jindřicha Plachty, Karla Pokorného, Komenského, Kosmická, Kubánská, Kyjevská, Liptaňského náměstí, Ludvíka Podéště, Marie Majerové, Matěje Kopeckého, Mongolská, Nálepkova, Náměstí Družby, Nezvalovo náměstí, Opavská, Podroužkova, Polská, Porubská, Příčná, Průběžná, Pustkovecká, Rabasova, Řecká, Resslova, Skautská, Školní, Slepá, Slavíkova, Sokolovská, Španielova, Spartakovců, Spojů, Stavební, Svojsíkova, Tř. 17. listopadu, U Oblouku, U Školky, U Soudu, U Sportoviště, U Vozovny, Ukrajinská, Urxova, Větrná, Vietnamská, Vincence Makovského, Vítězslava Nováka, Vřesinská, Záhumenní, Zdeňka Štěpánka, Zednická, Žilinská.</p>
+
+      <h3>Výhody připojení PODA:</h3>
+      <ul>
+        <li>Stabilní optický internet až 1 Gb/s</li>
+        <li>Bez datových limitů</li>
+        <li>Rychlá instalace zdarma</li>
+        <li>Výhodné balíčky s TV</li>
+      </ul>
+
+      <h3>Ověřte dostupnost na vaší adrese nebo si objednejte připojení:</h3>
+      <p><strong>Web:</strong> popri.cz</p>
+      <p><strong>Obchodní zástupce:</strong> Milan Terč<br>
+      <strong>Tel:</strong> 730 431 313<br>
+      <strong>E-mail:</strong> terc@obchod.poda.cz</p>
+
+      <p>Připojte se k internetu nové generace v Ostravě-Porubě a užívejte si rychlost bez kompromisů!</p>
+    `
+  },
+  {
+    id: 9,
+    title: 'Města s pokrytím PODA: Kde si můžete užívat rychlý internet?',
+    excerpt: 'Společnost PODA pokrývá svými službami řadu měst po celé České republice. Zjistěte, kde všude můžete využívat stabilní a rychlé připojení.',
+    date: '22. 4. 2025',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png',
+    alt: 'Vizualizace optického připojení v městské zástavbě s modrými světelnými efekty',
+    tags: ['PODA', 'Pokrytí', 'Internet', 'Města', 'Optické připojení', 'Bezdrátový internet', 'Rychlé připojení'],
+    content: `
+      <p>Společnost PODA patří mezi přední poskytovatele internetu v České republice a díky své moderní síti přináší rychlé a stabilní připojení nejen do velkých měst, ale i do menších obcí. Pokud hledáte spolehlivý internet pro domácnost nebo firmu, PODA je rozhodně možnost, kterou stojí za to zvážit. V tomto článku se dozvíte, kde všude můžete služby PODA využívat a jak si jednoduše ověřit dostupnost u vás doma.</p>
+      
+      <h3>Kde je dostupné připojení PODA?</h3>
+      <p>PODA nabízí své služby v celé řadě českých měst a jejich okolí. Mezi hlavní lokality, kde se můžete na rychlé připojení spolehnout, patří:</p>
+      
+      <ul>
+        <li><strong>Praha</strong></li>
+        <li><strong>Brno</strong></li>
+        <li><strong>Ostrava</strong></li>
+        <li><strong>Havířov</strong></li>
+        <li><strong>Karviná</strong></li>
+        <li><strong>Bohumín</strong></li>
+        <li><strong>Frýdek-Místek</strong></li>
+        <li><strong>Havlíčkův Brod</strong></li>
+        <li><strong>Horní Suchá</strong></li>
+        <li><strong>Letovice</strong></li>
+        <li><strong>Nové Město na Moravě</strong></li>
+        <li><strong>Svitavy</strong></li>
+        <li><strong>Vysoké Mýto</strong></li>
+        <li><strong>Žďár nad Sázavou</strong></li>
+        <li><strong>Orlová</strong></li>
+        <li><strong>Znojmo</strong></li>
+        <li><strong>Polička</strong></li>
+      </ul>
+      
+      <p>Pokrývání nových oblastí se stále rozšiřuje, takže pokud vaše město zatím není na seznamu, je možné, že se brzy dočkáte i vy.</p>
+      
+      <h3>Jaké technologie PODA využívá?</h3>
+      <p>PODA staví na dvou hlavních technologiích:</p>
+      
+      <ul>
+        <li><strong>Optický internet</strong> – Nejmodernější způsob připojení, který zaručuje extrémně vysoké rychlosti (až 2 Gb/s) a minimální odezvu. Ideální pro streamování, hraní online her i práci z domova.</li>
+        <li><strong>Bezdrátový internet</strong> – Skvělá alternativa tam, kde zatím není optická síť. Díky moderním technologiím nabízí vysokou rychlost a stabilitu připojení.</li>
+      </ul>
+      
+      <h3>Proč si vybrat PODA?</h3>
+      <ul>
+        <li><strong>Rychlost a stabilita</strong> – Internet bez výpadků a s dostatečnou rychlostí pro celou rodinu.</li>
+        <li><strong>Bez datových limitů</strong> – Můžete surfovat, stahovat i sledovat filmy bez omezení.</li>
+        <li><strong>Výhodné ceny</strong> – Férové tarify pro domácnosti i firmy.</li>
+        <li><strong>Možnost kombinace s televizí</strong> – Služba PODA TV přináší širokou nabídku programů a chytré funkce.</li>
+        <li><strong>Rychlá instalace a podpora</strong> – Tým zkušených techniků je připraven vyřešit jakýkoliv problém.</li>
+      </ul>
+      
+      <h3>Jak zjistit dostupnost a zajistit připojení PODA u vás doma?</h3>
+      <p>Pokud vás zajímá, zda je připojení PODA dostupné právě na vaší adrese, stačí navštívit stránku <strong>Popri.cz (PODA připojení)</strong> a vyplnit jednoduchý kontaktní formulář. Po odeslání formuláře se vám ozvu a sdělím, zda je služba dostupná i u vás doma. Pokud bude připojení možné, pomohu vám vše zařídit – od objednávky přes instalaci až po samotné spuštění internetu. Vše rychle, přehledně a bez zbytečné administrativy.</p>
+      
+      <h3>Závěr</h3>
+      <p>Pokud hledáte spolehlivý internet v některém z výše uvedených měst, PODA je skvělou volbou. Díky moderním technologiím, férovým cenám a osobnímu přístupu si získala důvěru tisíců domácností i firem po celé republice. Vyplňte kontaktní formulář na Popri.cz (PODA připojení) a zjistěte, jestli můžete mít rychlý internet PODA i vy!</p>
+    `
+  },
+  {
+    id: 3,
+    title: 'Snadný přechod k nám od stávajícího poskytovatele',
+    excerpt: 'Přechod k novému poskytovatele internetu nemusí být komplikovaný. Přečtěte si, jak vám s tím pomůžeme krok za krokem.',
+    content: `
+      <p>Mnoho lidí zůstává u svého stávajícího poskytovatele internetu a TV služeb, i když nejsou spokojeni, protože se obávají komplikací spojených s přechodem. Pravdou je, že přechod může být velmi jednoduchý, zejména s naší asistencí.</p>
+      
+      <h3>Jak probíhá přechod k našim službám:</h3>
+      <ol>
+        <li><strong>Nezávazná konzultace</strong> - Náš obchodní zástupce Milan Terč vás navštíví a představí vám naše služby a možnosti připojení ve vaší lokalitě.</li>
+        <li><strong>Výběr vhodného tarifu</strong> - Společně vybereme tarif, který nejlépe odpovídá vašim potřebám a rozpočtu.</li>
+        <li><strong>Pomoc s výpovědí</strong> - Poskytneme vám vzor výpovědi a poradíme, jak správně ukončit smlouvu se stávajícím poskytovatelem.</li>
+        <li><strong>Instalace bez výpadku</strong> - Nové připojení nainstalujeme tak, aby nedošlo k výpadku služeb mezi odpojením od stávajícího poskytovatele a připojením k našim službám.</li>
+        <li><strong>Nastavení všech zařízení</strong> - Pomůžeme vám s nastavením všech vašich zařízení, včetně televizí, počítačů, tabletů a mobilních telefonů.</li>
+      </ol>
+      
+      <p>Celý proces přechodu je navržen tak, aby byl pro vás co nejjednodušší. Nemusíte se obávat technických komplikací ani výpadku služeb. O vše se postaráme za vás.</p>
+    `,
+    date: '10. 4. 2023',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: 'https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?q=80&w=2070&auto=format&fit=crop',
+    tags: ['Změna poskytovatele', 'Přechod k PODA', 'Internet', 'Instalace', 'Pomoc s výpovědí', 'Milan Terč'],
   }
 ];

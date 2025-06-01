@@ -21,7 +21,7 @@ export const karvinaPost: BlogPost = {
         <li><strong>Karviná-centrum:</strong> Historické jádro města s moderní infrastrukturou</li>
       </ul>
 
-      <p>Bez ohledu na to, zda žijete v panelovém domě na sídlišti nebo v rodinném domě v klidnější části města, optická síť PODA zajišťuje jednotnou kvalitu služeb.</p>
+      <p>Bez ohledu na to, zda žijete v panelovém domě na sídlišti Majakovského nebo v rodinném domě v klidnější části Ráje, optická síť PODA zajišťuje jednotnou kvalitu služeb.</p>
 
       <h2>Cenová politika: Transparentnost bez skrytých nákladů</h2>
       <h3>Základní internetové balíčky</h3>

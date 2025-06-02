@@ -1,16 +1,15 @@
 
+
 import { BlogPost, categories } from './types';
 import { technologiePosts } from './technologie';
 import { sluzbyPosts } from './sluzby';
 import { tipyPosts } from './tipy';
-import { karvinaPost } from './karvina';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
   ...sluzbyPosts,
   ...technologiePosts,
-  ...tipyPosts,
-  karvinaPost
+  ...tipyPosts
 ];
 
 // Export everything
@@ -19,3 +18,4 @@ export * from './technologie';
 export * from './sluzby';
 export * from './tipy';
 export * from './karvina';
+

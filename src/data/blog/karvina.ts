@@ -12,13 +12,13 @@ export const karvinaPosts: BlogPost[] = [
       <p>PODA poskytuje kvalitné optické internetové pripojenie vo všetkých častiach Poruby:</p>
 
       <ul>
-        <li><strong>Poruba 1</strong>, ktorá zahŕňa oblasť okolo hlavného námestia</li>
-        <li><strong>Poruba 2</strong>, kde nájdeme napríklad Oblastnú nemocnicu</li>
-        <li><strong>Poruba 3</strong>, ktorá sa rozprestiera v blízkosti Vysokej školy banskej</li>
-        <li><strong>Poruba 8</strong>, kde sa nachádzajú prevažne panelové sídliská</li>
+        <li><strong>Poruba 1</strong>, která zahrnuje oblast kolem hlavního náměstí</li>
+        <li><strong>Poruba 2</strong>, kde najdeme například Oblastní nemocnici</li>
+        <li><strong>Poruba 3</strong>, která se rozkládá v blízkosti Vysoké školy báňské</li>
+        <li><strong>Poruba 8</strong>, kde se nacházejí převážně panelová sídliště</li>
       </ul>
 
-      <p>Toto sú niektoré z častí, na ktoré sa Poruba delí a kde poskytujeme naše služby.</p>
+      <p>Toto jsou některé z částí, na které se Poruba dělí a kde poskytujeme naše služby.</p>
 
       <h3>Výhody internetového pripojenia PODA v Porube</h3>
       
@@ -33,7 +33,7 @@ export const karvinaPosts: BlogPost[] = [
 
       <h3>Profesionálna inštalácia PODA v Porube</h3>
       
-      <p>Objednávka internetového pripojenia je jednoduchá - stačí nás kontaktovať cez popri.cz alebo zavolať na číslo 737 267 267. Naši technici zabezpečia profesionálnu inštaláciu v celej Porube a okolí.</p>
+      <p>Objednávka internetového pripojenia je jednoduchá - stačí nás kontaktovať cez <a href="https://popri.cz">popri.cz</a> alebo zavolať na číslo 737 267 267. Naši technici zabezpečia profesionálnu inštaláciu v celej Porube a okolí.</p>
 
       <p>Internet PODA v Porube je ideálnou voľbou pre domácnosti aj firmy, ktoré potrebujú spoľahlivé a rýchle pripojenie v tejto dynamicky sa rozvíjajúcej časti Ostravy.</p>
     `,

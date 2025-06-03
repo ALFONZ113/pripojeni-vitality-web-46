@@ -1,14 +1,10 @@
-
 import TariffSection from '../components/TariffSection';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-
 const Tarify = () => {
   // Aktuální datum pro dynamickou aktualizaci metadat
   const currentDate = new Date().toISOString().split('T')[0];
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Popri.cz – Internetové a TV tarify PODA | Nejlepší ceny</title>
         <meta name="description" content="Vyberte si z nabídky výhodných tarifů PODA internetu a televize od Popri.cz. Rychlost až 1000 Mbps, stabilní připojení bez výpadků a TV programy v ceně." />
@@ -113,17 +109,12 @@ const Tarify = () => {
           
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-4">Internetové a TV tarify PODA</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Vyberte si z naší nabídky výhodných tarifů PODA internetu s garantovanou rychlostí a stabilitou.
-              Všechny tarify zahrnují TV programy zdarma.
-            </p>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Vyberte si z naší nabídky výhodných tarifů PODA internetu s garantovanou rychlostí a stabilitou. Všechny tarify zahrnují TV programy .</p>
           </div>
         </div>
       </div>
       
       <TariffSection />
-    </div>
-  );
+    </div>;
 };
-
 export default Tarify;

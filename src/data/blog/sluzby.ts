@@ -391,256 +391,92 @@ export const sluzbyPosts: BlogPost[] = [
   },
   {
     id: 100,
-    title: 'Internet PODA v Ostrave-Porubě: Revolúcia pripojenia v najväčšej mestskej časti',
-    excerpt: 'Kompletný sprievodca vysokorýchlostným internetom PODA v Ostrave-Porubě. Zistite dostupnosť optického pripojenia až 1 Gb/s pre domácnosti i firmy vo väčšine porubských ulíc s bezplatnou inštaláciou.',
-    date: '24. 4. 2025',
-    author: 'Milan Terč',
-    category: 'Služby',
-    image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
-    alt: 'Moderný bytový komplex v Ostrave-Porubě s vizualizáciou optickej siete, futuristický vzhľad pripojenia PODA',
-    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rýchly internet'],
+    title: "Internet od PODA - služby, inštalácia a pokrytie v regióne",
+    excerpt: "Kompletný sprievodca službami PODA internetu. Zistite všetko o inštalácii, pokrytí a výhodách optického pripojenia v našom regióne.",
     content: `
-      <div class="prose-content">
-        <h2>Úvod: Poruba vstupuje do gigabitovej éry</h2>
-        <p>Ostrava-Poruba, najväčšia mestská časť Ostravy s viac ako 67 000 obyvateľmi, sa stáva digitálnym centrom Moravskoslezského regiónu vďaka modernej optickej infraštruktúre PODA. Od historických panelových sídlisk ako Fifejdy až po novú zástavbu v severnej časti, Poruba ponúka komplexné pokrytie vysokorýchlostným internetom.</p>
+      <h2>PODA internet - váš spoľahlivý partner</h2>
+      <p>PODA internet predstavuje moderné riešenie pre domácnosti a firmy, ktoré potrebujú rýchle a stabilné pripojenie. Naša služba je založená na najmodernejších technológiách a poskytuje garantované rýchlosti bez obmedzení.</p>
 
-        <h2>Geografické pokrytie: Komplexná mapa dostupnosti</h2>
-        <h3>Úplný zoznam pokrytých ulíc v Porube</h3>
-        <div class="bg-blue-50 p-6 rounded-lg my-6">
-          <h4>Pokryté lokality (abecedne):</h4>
-          <p class="text-sm mt-2">Aloise Gavlase, Bohuslava Martinů, Bulharská, Čkalovova, Dětská, Dvorní, Francouzská, Generála Sochora, Gurťjevova, Havanská, Hlavní třída, Heyrovského, Ivana Sekaniny, Jana Šoupala, Jindřicha Plachty, Karla Pokorného, Komenského, Kosmická, Kubánská, Kyjevská, Liptaňského náměstí, Ludvíka Podéště, Marie Majerové, Matěje Kopeckého, Mongolská, Nálepkova, Náměstí Družby, Nezvalovo náměstí, Opavská, Podroužkova, Polská, Porubská, Příčná, Průběžná, Pustkovecká, Rabasova, Řecká, Resslova, Skautská, Školní, Slepá, Slavíkova, Sokolovská, Španielova, Spartakovců, Spojů, Stavební, Svojsíkova, Tř. 17. listopadu, U Oblouku, U Školky, U Soudu, U Sportoviště, U Vozovny, Ukrajinská, Urxova, Větrná, Vietnamská, Vincence Makovského, Vítězslava Nováka, Vřesinská, Záhumenní, Zdeňka Štěpánka, Zednická, Žilinská.</p>
-        </div>
+      <h3>Pokrytie PODA internetom</h3>
+      <p>PODA internet je dostupný vo viacerých mestách a obciach nášho regiónu. Medzi hlavné oblasti pokrytia patria:</p>
+      <ul>
+        <li><strong>Ostrava</strong> - centrum a všetky mestské časti</li>
+        <li><strong>Karviná</strong> - kompletné pokrytie mesta</li>
+        <li><strong>Bohumín</strong> - centrum a priľahlé oblasti</li>
+        <li><strong>Frýdek-Místek</strong> - hlavné mestské časti</li>
+        <li><strong>Havířov</strong> - rozsiahle pokrytie</li>
+      </ul>
 
-        <h3>Špeciálne zóny s prioritným pokrytím</h3>
-        <ul>
-          <li><strong>Sídlisko Fifejdy:</strong> Kompletné pokrytie všetkých panelových domov</li>
-          <li><strong>Sídlisko Poruba-centrum:</strong> Plná dostupnosť v komerčnej zóne</li>
-          <li><strong>Poruba-sever:</strong> Novšie sídliskové domy a rodinné domy</li>
-          <li><strong>Priemyselná zóna:</strong> Špecializované firemné riešenia</li>
-        </ul>
+      <h3>Technické parametre PODA internetu</h3>
+      <p>PODA internet využíva najmodernejšie optické technológie, ktoré zabezpečujú:</p>
+      <ul>
+        <li>Rýchlosti od 100 Mbps až po 1000 Mbps</li>
+        <li>Symetrické pripojenie (rovnaká rýchlosť downloadu aj uploadu)</li>
+        <li>Nízka latencia ideálna pre gaming a video hovory</li>
+        <li>99,9% dostupnosť služby</li>
+        <li>Bez datových limitov</li>
+      </ul>
 
-        <h2>Prípadová štúdia: Digitálna transformácia rodiny na sídlisku Fifejdy</h2>
-        <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
-          <p>"Bývame v panelovom dome na Fifejdách v 4-izbovom byte. Predtým sme mali DSL s rýchlosťou 25 Mbps od O2, ale to vôbec nestačilo pre našu rodinu. Otec pracuje z domova ako programátor, syn študuje na VŠB-TUO online, dcéra streamuje filmy a ja vedem videokonferencie pre prácu. Po prechode na PODA s optickým internetom 1000 Mbps sa náš digitálny život úplne zmenil - každý môže robiť čo potrebuje súčasne."</p>
-          <footer class="mt-2 text-sm text-gray-600">
-            <strong>Ing. Jana Svobodová, Ostrava-Poruba</strong><br>
-            Projektová manažérka, 4-členná rodina, byt 92 m²
-          </footer>
-        </blockquote>
-
-        <h3>Konkrétne dopad na každodenný život:</h3>
-        <div class="grid md:grid-cols-2 gap-6 my-8">
-          <div class="bg-red-50 p-6 rounded-lg">
-            <h4>Pred PODA (25 Mbps DSL)</h4>
-            <ul class="space-y-1">
-              <li>🔴 Nemožnosť súčasnej práce z domu</li>
-              <li>🔴 Prerušované video hovory</li>
-              <li>🔴 Pomalé sťahovanie študijných materiálov</li>
-              <li>🔴 Problémy s online hrami</li>
-              <li>🔴 Čakanie na upload fotiek do cloudu</li>
-            </ul>
-          </div>
-          <div class="bg-green-50 p-6 rounded-lg">
-            <h4>Po PODA (1000 Mbps optika)</h4>
-            <ul class="space-y-1">
-              <li>✅ Plynulá práca z domu všetkých členov</li>
-              <li>✅ 4K video hovory bez prerušení</li>
-              <li>✅ Okamžité sťahovanie (1 GB za 8 sekúnd)</li>
-              <li>✅ Gaming bez lagov (ping < 3 ms)</li>
-              <li>✅ Automatické zálohovanie do cloudu</li>
-            </ul>
-          </div>
-        </div>
-
-        <h2>Technické špecifikácie pre porubské domácnosti</h2>
-        <h3>Riešenia pre panelové domy</h3>
-        <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h4>FTTH inštalácia v panelákoch:</h4>
-          <ul class="space-y-2 mt-4">
-            <li><strong>Vstup do budovy:</strong> Optický kábel cez existujúce šachty</li>
-            <li><strong>Distribúcia po poschodiach:</strong> Rozvádzače na každom podlaží</li>
-            <li><strong>Pripojenie do bytu:</strong> Individuálne optické vlákno</li>
-            <li><strong>Zakončenie:</strong> ONT modem v byte + Wi-Fi 6 router</li>
-            <li><strong>Rýchlosť:</strong> Garantovaných 1000/1000 Mbps</li>
-          </ul>
-        </div>
-
-        <h3>Riešenia pre rodinné domy</h3>
-        <div class="bg-blue-50 p-6 rounded-lg my-8">
-          <h4>Priame optické pripojenie:</h4>
-          <ul class="space-y-2 mt-4">
-            <li><strong>Vedenie optiky:</strong> Podzemné alebo vzdušné vedenie</li>
-            <li><strong>Vnútorná inštalácia:</strong> Profesionálne zakončenie v dome</li>
-            <li><strong>Pokrytie celého domu:</strong> Mesh systém alebo káblový rozvod</li>
-            <li><strong>Smart home ready:</strong> Pripravenosť pre IoT zariadenia</li>
-          </ul>
-        </div>
-
-        <h2>Cenová analýza a porovnanie s konkurenciou</h2>
-        <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Mesačné náklady v Porube (včítane DPH):</h3>
-          <table class="w-full mt-4 text-sm">
-            <thead>
-              <tr class="border-b">
-                <th class="text-left py-2">Poskytovateľ</th>
-                <th class="text-left py-2">Rýchlosť</th>
-                <th class="text-left py-2">Cena/mesiac</th>
-                <th class="text-left py-2">Aktivácia</th>
-                <th class="text-left py-2">Závazok</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b bg-green-50">
-                <td class="py-2 font-semibold">PODA</td>
-                <td class="py-2">1000/1000 Mbps</td>
-                <td class="py-2 text-green-600">250 Kč</td>
-                <td class="py-2 text-green-600">Zadarmo</td>
-                <td class="py-2 text-green-600">Bez závazku</td>
-              </tr>
-              <tr class="border-b">
-                <td class="py-2">UPC (Liberty)</td>
-                <td class="py-2">500/50 Mbps</td>
-                <td class="py-2 text-red-600">899 Kč</td>
-                <td class="py-2 text-red-600">990 Kč</td>
-                <td class="py-2 text-red-600">24 mesiacov</td>
-              </tr>
-              <tr class="border-b">
-                <td class="py-2">O2</td>
-                <td class="py-2">100/20 Mbps</td>
-                <td class="py-2 text-orange-600">699 Kč</td>
-                <td class="py-2 text-orange-600">500 Kč</td>
-                <td class="py-2 text-orange-600">24 mesiacov</td>
-              </tr>
-              <tr>
-                <td class="py-2">T-Mobile</td>
-                <td class="py-2">50/10 Mbps</td>
-                <td class="py-2 text-red-600">799 Kč</td>
-                <td class="py-2 text-red-600">800 Kč</td>
-                <td class="py-2 text-red-600">24 mesiacov</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Ročná úspora oproti konkurencii</h3>
-        <ul>
-          <li><strong>Oproti UPC:</strong> 7 788 Kč ročne + dvojnásobok rýchlosti</li>
-          <li><strong>Oproti O2:</strong> 5 388 Kč ročne + 10x vyššia rýchlosť</li>
-          <li><strong>Oproti T-Mobile:</strong> 6 588 Kč ročne + 20x vyššia rýchlosť</li>
-          <li><strong>Celková úspora za 2 roky:</strong> 10 000 - 15 000 Kč</li>
-        </ul>
-
-        <h2>Špecializované služby pre Porubu</h2>
-        <h3>Riešenia pre študentov VŠB-TUO</h3>
-        <div class="bg-orange-50 p-6 rounded-lg my-6">
-          <h4>Študentské potreby:</h4>
-          <ul class="space-y-1">
-            <li><strong>Online výučba:</strong> Stabilné pripojenie pre e-learning</li>
-            <li><strong>Výskumné projekty:</strong> Rýchly prístup k databázam</li>
-            <li><strong>Kolaborácia:</strong> Zdieľanie veľkých súborov</li>
-            <li><strong>Gaming a zábava:</strong> Voľný čas bez obmedzení</li>
-          </ul>
-        </div>
-
-        <h3>Firemné riešenia v priemyselnej zóne</h3>
-        <div class="bg-blue-50 p-6 rounded-lg my-6">
-          <h4>Biznis služby PODA:</h4>
-          <ul class="space-y-1">
-            <li><strong>Dedikované pripojenie:</strong> Garantovaná rýchlosť 24/7</li>
-            <li><strong>SLA garancie:</strong> 99,9% dostupnosť s kompenzáciami</li>
-            <li><strong>Statické IP adresy:</strong> Pre servery a aplikácie</li>
-            <li><strong>VPN riešenia:</strong> Bezpečné prepojenie pobočiek</li>
-          </ul>
-        </div>
-
-        <h2>Inštalačný proces v Porube</h2>
-        <h3>Typická doba realizácie</h3>
-        <ul>
-          <li><strong>Panelové domy s optikou:</strong> 1-3 dni</li>
-          <li><strong>Panelové domy bez optiky:</strong> 1-2 týždne</li>
-          <li><strong>Rodinné domy:</strong> 3-7 dní</li>
-          <li><strong>Nové budovy:</strong> Koordinácia s developmentom</li>
-        </ul>
-
-        <h3>Proces inštalácie krok za krokom</h3>
-        <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-          <h3 class="text-white mb-4">Profesionálna inštalácia PODA v Porube:</h3>
-          <ol class="space-y-2">
-            <li><strong>1. Objednávka cez popri.cz</strong> - overenie dostupnosti na adrese</li>
-            <li><strong>2. Technická prehliadka</strong> - návrh optimálneho riešenia</li>
-            <li><strong>3. Koordinácia s bytovým družstvom</strong> - získanie súhlasov</li>
-            <li><strong>4. Inštalácia optiky</strong> - vedenie káblov do bytu/domu</li>
-            <li><strong>5. Nastavenie zariadení</strong> - konfigurácia modemu a routeru</li>
-            <li><strong>6. Testovanie výkonu</strong> - overenie rýchlosti a stability</li>
-            <li><strong>7. Zaškolenie zákazníka</strong> - vysvetlenie ovládania</li>
-          </ol>
-        </div>
-
-        <h2>Smart home riešenia pre Porubu</h2>
-        <h3>IoT aplikácie podporované PODA internetom</h3>
-        <ul>
-          <li><strong>Bezpečnostné systémy:</strong> HD kamery s cloudovým úložiskom</li>
-          <li><strong>Klimatizácia a kúrenie:</strong> Inteligentné termoregulatory</li>
-          <li><strong>Osvetlenie:</strong> Automatické riadenie osvetlenia</li>
-          <li><strong>Domáce spotrebiče:</strong> Pripojené práčky, chladničky, atď.</li>
-          <li><strong>Energia:</strong> Monitoring spotreby v reálnom čase</li>
-        </ul>
-
-        <h2>Zákaznícka podpora špecifická pre Porubu</h2>
-        <h3>Lokálne servisné centrum</h3>
-        <div class="bg-green-50 p-6 rounded-lg my-6">
-          <h4>Technická podpora v regióne:</h4>
-          <ul class="space-y-1">
-            <li><strong>Poloha:</strong> Servisné centrum v Ostrave-centre</li>
-            <li><strong>Doba reakcie:</strong> Do 4 hodín v pracovné dni</li>
-            <li><strong>Víkendový servis:</strong> Dostupný pre kritické prípady</li>
-            <li><strong>Preventívna údržba:</strong> Pravidelné kontroly siete</li>
-          </ul>
-        </div>
-
-        <h3>Digitálna podpora</h3>
-        <ul>
-          <li><strong>Mobilná aplikácia:</strong> Správa služieb z telefónu</li>
-          <li><strong>Online chat:</strong> Okamžitá pomoc 24/7</li>
-          <li><strong>Vzdialeá diagnostika:</strong> Riešenie problémov na diaľku</li>
-          <li><strong>Selfcare portál:</strong> Samostatná správa účtu</li>
-        </ul>
-
-        <h2>Budúcnosť internetového pripojenia v Porube</h2>
-        <h3>Plánované vylepšenia infraštruktúry</h3>
-        <ul>
-          <li><strong>5G integrácia:</strong> PODA optika ako backhaul pre 5G siete</li>
-          <li><strong>10G pripojenie:</strong> Príprava na 10 Gbps pre najnáročnejších</li>
-          <li><strong>Smart city projekty:</strong> Spolupráca s mestom na digitalizácii</li>
-          <li><strong>Rozšírenie pokrytia:</strong> Dostavba infraštruktúry v okrajových častiach</li>
-        </ul>
-
-        <h2>Záver: Poruba ako digitálne centrum Moravskoslezského regiónu</h2>
-        <p>Internet PODA v Ostrave-Porube predstavuje komplexné riešenie pre moderné digitálne potreby najväčšej mestskej časti. Od študentov VŠB-TUO až po rodiny na sídliskách Fifejdy - každý nájde optimálne riešenie pre svoje potreby.</p>
-
-        <h3>Prečo si vybrať PODA v Porube:</h3>
-        <ul>
-          <li><strong>Najlepší pomer cena/výkon:</strong> Najrýchlejší internet za najnižšiu cenu</li>
-          <li><strong>Lokálna podpora:</strong> Technici z regiónu, ktorí poznajú špecifiká</li>
-          <li><strong>Flexibilita:</strong> Bez závazkov s možnosťou zmien</li>
-          <li><strong>Moderná technológia:</strong> GPON optika pripravená na budúcnosť</li>
-          <li><strong>Komplexné pokrytie:</strong> Dostupnosť vo väčšine porubských ulíc</li>
-        </ul>
-
-        <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Overenie dostupnosti a objednávka:</h3>
-          <p><strong>Web:</strong> popri.cz<br>
-          <strong>Porubský špecialista:</strong> Milan Terč<br>
-          <strong>Tel:</strong> 730 431 313<br>
-          <strong>E-mail:</strong> terc@obchod.poda.cz</p>
-          <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia a overenie dostupnosti PODA internetu na vašej konkrétnej adrese v Porube.</p>
-        </div>
-
-        <p class="text-center mt-8 font-medium">Pripojte sa k tisíckam spokojných zákazníkov v Ostrave-Porube a získajte internet bez kompromisov!</p>
-
-        <p class="text-sm text-gray-500 mt-8 italic">PODA v Porube - váš vstup do gigabitovej budúcnosti.</p>
+      <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+        <h4 style="color: white; margin-bottom: 1rem;">Profesionálna inštalácia PODA v Porube:</h4>
+        <ol style="margin: 0; padding-left: 1.5rem;">
+          <li style="margin-bottom: 0.5rem;">Objednávka cez popri.cz alebo telefón 730 431 313 - obchodný zástupca Milan Terč</li>
+          <li style="margin-bottom: 0.5rem;">Kontakt a dohodnutie objednávky - telefonicky alebo pri osobnej návšteve</li>
+          <li style="margin-bottom: 0.5rem;">Vytvorenie objednávky a koordinácia s bytovým družstvom</li>
+          <li style="margin-bottom: 0.5rem;">Dohodnutie termínu inštalácie - profesionálne vedenie optiky</li>
+          <li style="margin-bottom: 0.5rem;">Inštalácia technikom a spustenie služieb - testovanie a zaškolenie</li>
+        </ol>
+        <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
+          <strong>Pokrytie v Porube:</strong> Poskytujeme služby vo všetkých častiach Poruby vrátane Poruby 1 (okolie hlavného námestia), 
+          Poruby 2 (okolie Oblastnej nemocnice), Poruby 3 (blízkosť Vysokej školy báňskej) a Poruby 8 (panelové sídliská).
+        </p>
       </div>
-    `
+
+      <h3>Výhody PODA internetu</h3>
+      <p>Výber PODA internetu vám prináša množstvo výhod:</p>
+      <ul>
+        <li><strong>Stabilita:</strong> Optické pripojenie je menej náchylné na výpadky</li>
+        <li><strong>Rýchlosť:</strong> Garantované rýchlosti bez spomalenia</li>
+        <li><strong>Podpora:</strong> Lokálna technická podpora v slovenskom jazyku</li>
+        <li><strong>Cena:</strong> Konkurencieschopné ceny s transparentným ceníkom</li>
+        <li><strong>Flexibilita:</strong> Možnosť zmeny tarifu podľa potrieb</li>
+      </ul>
+
+      <h3>Proces pripojenia</h3>
+      <p>Pripojenie k PODA internetu je jednoduché a rýchle:</p>
+      <ol>
+        <li>Zadajte objednávku cez náš formulár na popri.cz</li>
+        <li>Náš technik vás kontaktuje do 24 hodín</li>
+        <li>Dohodneme si termín technickej prehliadky</li>
+        <li>Vykonáme inštaláciu a nastavenie</li>
+        <li>Môžete začať používať internet</li>
+      </ol>
+
+      <h3>Technická podpora</h3>
+      <p>PODA internet poskytuje kompletnú technickú podporu:</p>
+      <ul>
+        <li>24/7 monitoring siete</li>
+        <li>Rýchla odozva na poruchy</li>
+        <li>Bezplatná diagnostika problémov</li>
+        <li>Aktualizácie a údržba zariadení</li>
+        <li>Poradenstvo pri nastavení</li>
+      </ul>
+
+      <h3>Kontakt a objednávky</h3>
+      <p>Pre objednávku alebo viac informácií nás kontaktujte:</p>
+      <ul>
+        <li>Webový formulár: popri.cz</li>
+        <li>Telefón: 730 431 313</li>
+        <li>Email: info@popri.cz</li>
+        <li>Osobne: v našich pobočkách</li>
+      </ul>
+    `,
+    date: "2024-12-15",
+    author: "PODA tím",
+    category: "Služby",
+    image: "/lovable-uploads/2beac376-2c22-47d7-bf3e-a9bb280fa7bb.png",
+    alt: "PODA internet inštalácia",
+    tags: ["Internet", "PODA", "Inštalácia", "Poruba"]
   },
   {
     id: 9,

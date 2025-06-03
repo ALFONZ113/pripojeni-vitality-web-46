@@ -29,9 +29,9 @@ const BlogPostImage = ({ post }: BlogPostImageProps) => {
   };
 
   return (
-    <div className="w-full h-[30vh] md:h-[40vh] lg:h-[50vh] relative overflow-hidden">
+    <div className="w-full max-w-4xl mx-auto my-8">
       {imageError ? (
-        <div className="w-full h-full flex items-center justify-center bg-gray-100">
+        <div className="w-full h-64 flex items-center justify-center bg-gray-100 rounded-lg">
           <p className="text-gray-500">Obrázek není k dispozici</p>
         </div>
       ) : (
@@ -39,7 +39,7 @@ const BlogPostImage = ({ post }: BlogPostImageProps) => {
           id="blog-post-image"
           src={post.image} 
           alt={post.alt || post.title} 
-          className="w-full h-full object-cover"
+          className="w-full h-auto rounded-lg shadow-lg"
           onError={handleImageError}
         />
       )}

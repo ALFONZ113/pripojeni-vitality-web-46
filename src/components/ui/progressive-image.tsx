@@ -12,6 +12,7 @@ interface ProgressiveImageProps extends React.ImgHTMLAttributes<HTMLImageElement
   onLoad?: () => void;
   onError?: () => void;
   skeletonClassName?: string;
+  maintainAspectRatio?: boolean;
 }
 
 const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
@@ -24,6 +25,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
   onLoad,
   onError,
   skeletonClassName,
+  maintainAspectRatio = true,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -64,6 +66,10 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
     onError?.();
   };
 
+  const imageClasses = maintainAspectRatio 
+    ? "w-full h-auto" 
+    : "w-full h-full object-cover";
+
   return (
     <div className={cn("relative overflow-hidden", className)}>
       {/* Loading skeleton */}
@@ -79,7 +85,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
         <img
           src={blurDataURL}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover filter blur-sm scale-110"
+          className={cn("absolute inset-0", imageClasses, "filter blur-sm scale-110")}
           aria-hidden="true"
         />
       )}
@@ -90,7 +96,8 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
         src={isInView ? (isError ? placeholder : src) : placeholder}
         alt={alt}
         className={cn(
-          "w-full h-full object-cover transition-opacity duration-300",
+          imageClasses,
+          "transition-opacity duration-300",
           isLoaded ? "opacity-100" : "opacity-0"
         )}
         onLoad={handleLoad}

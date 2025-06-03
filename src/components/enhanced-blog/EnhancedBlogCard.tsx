@@ -40,6 +40,7 @@ const EnhancedBlogCard: React.FC<EnhancedBlogCardProps> = ({ post, featured = fa
           alt={post.alt || post.title}
           className="w-full h-full"
           priority={featured}
+          maintainAspectRatio={false}
         />
         
         <div className="absolute top-4 left-4">

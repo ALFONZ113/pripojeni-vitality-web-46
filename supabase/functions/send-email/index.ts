@@ -73,7 +73,7 @@ serve(async (req) => {
     
     try {
       const emailResponse = await resend.emails.send({
-        from: "Popri.cz <onboarding@resend.dev>",
+        from: "Popri.cz <noreply@popri.cz>",
         to: [to],
         subject: subject,
         html: htmlContent,

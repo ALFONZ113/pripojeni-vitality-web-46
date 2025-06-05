@@ -1,3 +1,4 @@
+
 import type { BlogPost } from './types';
 
 export const karvinaBlogPosts: BlogPost[] = [
@@ -56,7 +57,7 @@ export const karvinaBlogPosts: BlogPost[] = [
     category: "Internet a TV",
     tags: ["Karviná", "internet", "televize", "PODA", "instalace"],
     author: "PODA tým",
-    publishedAt: "2024-01-15",
+    date: "15. 1. 2024",
     readTime: 4,
     image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
     featured: true
@@ -115,7 +116,7 @@ export const karvinaBlogPosts: BlogPost[] = [
     category: "Internet a TV",
     tags: ["Poruba", "internet", "televize", "PODA", "instalace"],
     author: "PODA tým",
-    publishedAt: "2024-01-20",
+    date: "20. 1. 2024",
     readTime: 4,
     image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
     featured: true
@@ -175,7 +176,7 @@ export const karvinaBlogPosts: BlogPost[] = [
     category: "Internet a TV",
     tags: ["Bohumín", "internet", "televize", "PODA", "instalace"],
     author: "PODA tým",
-    publishedAt: "2024-01-25",
+    date: "25. 1. 2024",
     readTime: 4,
     image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
     featured: true
@@ -235,7 +236,7 @@ export const karvinaBlogPosts: BlogPost[] = [
     category: "Internet a TV",
     tags: ["Frýdek-Místek", "internet", "televize", "PODA", "instalace"],
     author: "PODA tým",
-    publishedAt: "2024-02-01",
+    date: "1. 2. 2024",
     readTime: 4,
     image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
     featured: true
@@ -296,7 +297,7 @@ export const karvinaBlogPosts: BlogPost[] = [
     category: "Internet a TV",
     tags: ["Havířov", "internet", "televize", "PODA", "instalace"],
     author: "PODA tým",
-    publishedAt: "2024-02-05",
+    date: "5. 2. 2024",
     readTime: 4,
     image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
     featured: true
@@ -355,7 +356,7 @@ export const karvinaBlogPosts: BlogPost[] = [
     category: "Internet a TV",
     tags: ["Orlová", "internet", "televize", "PODA", "instalace"],
     author: "PODA tým",
-    publishedAt: "2024-02-10",
+    date: "10. 2. 2024",
     readTime: 4,
     image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
     featured: true

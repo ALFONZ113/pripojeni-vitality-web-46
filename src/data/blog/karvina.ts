@@ -1,158 +1,370 @@
 
-import { BlogPost } from './types';
+import type { BlogPost } from './types';
 
-export const karvinaPost: BlogPost = {
-  id: 10,
-  title: "Rychlý internet v Karviné: Revoluce v připojení domácností díky PODA",
-  excerpt: "Karviná vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny. Objevte kompletní pokrytí města a výhody objednání přes popri.cz.",
-  content: `
-    <div class="prose-content">
-      <h2>Úvod: Nová éra internetového připojení v Karviné</h2>
-      <p>Moravskoslezský region dlouho čekal na skutečnou revoluci v oblasti internetového připojení. Karviná, město s bohatou průmyslovou historií, nyní vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny.</p>
-
-      <h2>Geografické pokrytí: Celá Karviná v dosahu optiky</h2>
-      <h3>Kompletní infrastrukturní pokrytí městských částí</h3>
-      <p>PODA internet systematicky pokrývá všechny klíčové lokality Karviné:</p>
+export const karvinaBlogPosts: BlogPost[] = [
+  {
+    id: 1,
+    title: "Internet a televize PODA v Karviné",
+    slug: "internet-televize-poda-karvina-1", 
+    excerpt: "Objevte moderní internet a televizní služby PODA v Karviné. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
+    content: `
+      <h2>Proč zvolit PODA v Karviné?</h2>
+      <p>Karviná si zaslouží nejlepší internetové a televizní služby. PODA přináší do tohoto krásného města moderní technologie, které změní váš způsob sledování televize a používání internetu.</p>
       
+      <h2>Naše služby v Karviné</h2>
+      <p>Nabízíme kompletní balíčky služeb přizpůsobené potřebám obyvatel Karviné:</p>
       <ul>
-        <li><strong>Karviná-Ráj:</strong> Plná dostupnost optických sítí pro rodinné i bytové domy</li>
-        <li><strong>Karviná-Hranice:</strong> Stabilní připojení napříč sídlištní i individuální zástavbou</li>
-        <li><strong>Karviná-Mizerov:</strong> Podnikatelské i rezidenční zóny s garantovanou rychlostí</li>
-        <li><strong>Karviná-centrum:</strong> Historické jádro města s moderní infrastrukturou</li>
+        <li><strong>Vysokorychlostní internet</strong> - až 1000 Mbps pro bezproblémové streamování</li>
+        <li><strong>Digitální televize</strong> - přes 100 programů v HD kvalitě</li>
+        <li><strong>Kombinované balíčky</strong> - internet + TV za výhodné ceny</li>
       </ul>
-
-      <p>Bez ohledu na to, zda žijete v panelovém domě na sídlišti Majakovského nebo v rodinném domě v klidnější části Ráje, optická síť PODA zajišťuje jednotnou kvalitu služeb.</p>
-
-      <h2>Cenová politika: Transparentnost bez skrytých nákladů</h2>
-      <h3>Základní internetové balíčky</h3>
-      <ul>
-        <li><strong>Optický internet 1 Gbit/s:</strong> 250 Kč/měsíc</li>
-        <li><strong>Kombinovaný balíček internet + TV:</strong> 390 Kč/měsíc (160 kanálů)</li>
-      </ul>
-
-      <h3>Výhody cenového modelu PODA</h3>
-      <div class="bg-green-50 p-4 rounded-lg my-6">
-        <ul class="space-y-2">
-          <li>✅ <strong>Bez závazků:</strong> Možnost ukončení kdykoliv bez sankcí</li>
-          <li>✅ <strong>Transparentní ceník:</strong> Žádné skryté poplatky či navýšení</li>
-          <li>✅ <strong>Lokální podpora:</strong> Technická asistence z regionu</li>
-        </ul>
-      </div>
-
-      <h2>Případová studie: Reálná zkušenost zákazníka</h2>
-      <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
-        <p>"Předchozí poskytovatel nás zklamal opakovanými výpadky během home office. Videokonference se přerušovaly, děti nemohly využívat online vzdělávací platformy. Přechod na PODA znamenal kvalitativní skok - stabilní připojení, rychlá odezva technické podpory a především spolehlivost, na kterou se můžeme spolehnout."</p>
-        <footer class="mt-2 text-sm text-gray-600">
-          <strong>Lenka Nováková, Karviná-Hranice</strong><br>
-          Účetní specialistka, matka dvou dětí
-        </footer>
-      </blockquote>
-
-      <h2>Technické specifikace a služby</h2>
-      <div class="grid md:grid-cols-2 gap-6 my-8">
-        <div class="bg-blue-50 p-6 rounded-lg">
-          <h3>Internetové připojení</h3>
-          <ul class="space-y-1">
-            <li><strong>Technologie:</strong> FTTH (Fiber to the Home)</li>
-            <li><strong>Rychlost downloadu:</strong> až 1 000 Mbit/s</li>
-            <li><strong>Rychlost uploadu:</strong> až 1 000 Mbit/s</li>
-            <li><strong>Latence:</strong> < 5 ms</li>
-            <li><strong>Dostupnost:</strong> 99,9% ročně</li>
-          </ul>
-        </div>
-        <div class="bg-orange-50 p-6 rounded-lg">
-          <h3>Televizní služby</h3>
-          <ul class="space-y-1">
-            <li><strong>Počet kanálů:</strong> 160+ programů</li>
-            <li><strong>HD kvalita:</strong> Standardní součást balíčku</li>
-            <li><strong>Sportovní kanály:</strong> Bez příplatků</li>
-            <li><strong>Dětské programy:</strong> Rozšířená nabídka</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2>Lokální výhody: Proč zvolit regionálního poskytovatele</h2>
-      <h3>Geografická blízkost technické podpory</h3>
-      <p>Na rozdíl od nadnárodních operátorů disponuje PODA technickými týmy v Havířově a Ostravě. Tato proximita zajišťuje:</p>
       
+      <h2>Pokrytí v Karviné</h2>
+      <p>Naše služby jsou dostupné v těchto částech Karviné:</p>
       <ul>
-        <li>Rychlou reakci na technické problémy</li>
-        <li>Znalost místních specifik infrastruktury</li>
-        <li>Personalizovanou zákaznickou podporu</li>
-        <li>Eliminaci call center robotizace</li>
+        <li>Karviná-Město</li>
+        <li>Karviná-Nové Město</li>
+        <li>Karviná-Ráj</li>
+        <li>Karviná-Hranice</li>
+        <li>Karviná-Darkov</li>
+        <li>Karviná-Louky</li>
       </ul>
-
-      <h3>Flexibilita smluvních podmínek</h3>
-      <p>Optický internet v Karviné bez závazků představuje paradigmatickou změnu v přístupu k telekomunikačním službám. Zákazníci získávají:</p>
       
-      <ul>
-        <li>Svobodu volby bez dlouhodobých závazků</li>
-        <li>Možnost změny balíčku podle aktuálních potřeb</li>
-        <li>Ukončení služby bez finančních sankcí</li>
-      </ul>
-
-      <h2>Objednání přes popri.cz: Nejjednodušší cesta k rychlému internetu</h2>
-      <p>Portál popri.cz je preferovaným způsobem objednání PODA internetu v Karviné.</p>
-
-      <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-        <h3 class="text-white mb-4">Exkluzivní výhody při objednání přes popri.cz:</h3>
-        <ul class="space-y-2">
-          <li>• <strong>Prioritní zpracování objednávky</strong> - rychlejší instalace</li>
-          <li>• <strong>Online podpora</strong> - okamžitá pomoc při problémech</li>
-          <li>• <strong>Transparentní proces</strong> - sledování stavu objednávky v reálném čase</li>
-          <li>• <strong>Nejlepší ceny</strong> - garantované nejnižší tarify pro region</li>
-        </ul>
-      </div>
-
-      <h3>Proces objednání přes popri.cz:</h3>
-      <ol class="space-y-2">
-        <li><strong>Zadání adresy</strong> - okamžité ověření pokrytí</li>
-        <li><strong>Výběr balíčku</strong> - přehledné porovnání možností</li>
-        <li><strong>Online objednávka</strong> - bezpečný formulář</li>
-        <li><strong>Potvrzení termínu</strong> - flexibilní plánování instalace</li>
-        <li><strong>Profesionální instalace</strong> - obvykle do 48 hodin</li>
+      <h2>Profesionální instalace PODA v Karviné</h2>
+      <p>Naše instalace probíhá v 5 jednoduchých krocích:</p>
+      <ol>
+        <li><strong>Konzultace a objednávka</strong> - Kontaktujte nás a domluvíme si termín instalace</li>
+        <li><strong>Technická prohlídka</strong> - Náš technik zkontroluje možnosti připojení</li>
+        <li><strong>Instalace zařízení</strong> - Profesionální instalace modemu a set-top boxu</li>
+        <li><strong>Nastavení služeb</strong> - Aktivace internetu a televizních programů</li>
+        <li><strong>Testování a předání</strong> - Ověření funkčnosti a instruktáž k používání</li>
       </ol>
-
-      <h2>Závěr: Digitální transformace Karviné</h2>
-      <p>Příchod PODA do Karviné představuje více než jen nového poskytovatele internetových služeb. Jde o katalyzátor digitální transformace regionu, který umožňuje:</p>
-
+      
+      <h2>Výhody PODA v Karviné</h2>
+      <p>Proč si obyvatelé Karviné vybírají právě nás:</p>
       <ul>
-        <li><strong>Rodinám:</strong> Bezproblémové využívání moderních online služeb</li>
-        <li><strong>Podnikatelům:</strong> Spolehlivé připojení pro digitální ekonomiku</li>
-        <li><strong>Studentům:</strong> Přístup k vzdělávacím platformám bez omezení</li>
-        <li><strong>Seniorům:</strong> Jednoduché využívání komunikačních technologií</li>
+        <li>Rychlá a spolehlivá síť</li>
+        <li>Bezplatná instalace</li>
+        <li>24/7 technická podpora</li>
+        <li>Výhodné ceny pro rodiny</li>
+        <li>Bez skrytých poplatků</li>
       </ul>
-
-      <div class="bg-gray-50 p-6 rounded-lg my-8">
-        <h3>Proč objednávat právě přes popri.cz?</h3>
-        <ul class="space-y-2 mt-4">
-          <li>✓ Nejrychlejší způsob získání PODA internetu</li>
-          <li>✓ Prioritní zpracování všech objednávek</li>
-          <li>✓ Nejlepší ceny a podmínky pro zákazníky z Karviné</li>
-          <li>✓ Kompletní online podpora během celého procesu</li>
-        </ul>
-      </div>
-
-      <p class="text-center mt-8 font-medium">Připojte se k rostoucí komunitě spokojených zákazníků v Karviné a využijte výhod objednání přes popri.cz.</p>
-
-      <p class="text-sm text-gray-500 mt-8 italic">Tento článek byl vytvořen s důrazem na poskytnutí objektivních informací o dostupných internetových službách v regionu Karviná.</p>
-    </div>
-  `,
-  date: "31. 5. 2025",
-  author: "Martin Bartoš",
-  category: "Služby",
-  image: "/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png",
-  alt: "Vstupní tabule města Karviná při západu slunce s typickou moravskou zástavbou v pozadí",
-  tags: [
-    "Karviná",
-    "PODA internet",
-    "Optické připojení",
-    "Gigabitový internet",
-    "Moravskoslezský kraj",
-    "Rychlý internet",
-    "Lokální poskytovatel",
-    "Fiber to the Home",
-    "Popri.cz",
-    "Internet bez závazků"
-  ]
-};
+      
+      <h2>Jak objednat PODA v Karviné</h2>
+      <p>Objednání našich služeb je velmi jednoduché. Stačí nás kontaktovat telefonicky nebo vyplnit formulář na našich webových stránkách. Náš tým vám rád pomůže vybrat nejlepší balíček pro vaše potřeby.</p>
+      
+      <p>Připojte se k tisícům spokojených zákazníků v Karviné a užívejte si moderní internet a televizi s PODA!</p>
+    `,
+    category: "Internet a TV",
+    tags: ["Karviná", "internet", "televize", "PODA", "instalace"],
+    author: "PODA tým",
+    publishedAt: "2024-01-15",
+    readTime: 4,
+    image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Internet a televize PODA v Porubě",
+    slug: "internet-televize-poda-poruba-2",
+    excerpt: "Objevte moderní internet a televizní služby PODA v Porubě. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
+    content: `
+      <h2>Proč zvolit PODA v Porubě?</h2>
+      <p>Poruba, jedna z největších městských částí Ostravy, si zaslouží nejlepší internetové a televizní služby. PODA přináší do této dynamické části města moderní technologie, které změní váš způsob sledování televize a používání internetu.</p>
+      
+      <h2>Naše služby v Porubě</h2>
+      <p>Nabízíme kompletní balíčky služeb přizpůsobené potřebám obyvatel Poruby:</p>
+      <ul>
+        <li><strong>Vysokorychlostní internet</strong> - až 1000 Mbps pro bezproblémové streamování</li>
+        <li><strong>Digitální televize</strong> - přes 100 programů v HD kvalitě</li>
+        <li><strong>Kombinované balíčky</strong> - internet + TV za výhodné ceny</li>
+      </ul>
+      
+      <h2>Pokrytí v Porubě</h2>
+      <p>Poruba se dělí na několik menších částí, které se nazývají porubské obvody. Mezi ně patří například:</p>
+      <ul>
+        <li><strong>Poruba 1</strong>, která zahrnuje oblast kolem hlavního náměstí</li>
+        <li><strong>Poruba 2</strong>, kde najdeme například Oblastní nemocnici</li>
+        <li><strong>Poruba 3</strong>, která se rozkládá v blízkosti Vysoké školy báňské</li>
+        <li><strong>Poruba 8</strong>, kde se nacházejí převážně panelová sídliště</li>
+      </ul>
+      <p>Toto jsou některé z částí, na které se Poruba dělí.</p>
+      
+      <h2>Profesionální instalace PODA v Porubě</h2>
+      <p>Naše instalace probíhá v 5 jednoduchých krocích:</p>
+      <ol>
+        <li><strong>Konzultace a objednávka</strong> - Kontaktujte nás a domluvíme si termín instalace</li>
+        <li><strong>Technická prohlídka</strong> - Náš technik zkontroluje možnosti připojení</li>
+        <li><strong>Instalace zařízení</strong> - Profesionální instalace modemu a set-top boxu</li>
+        <li><strong>Nastavení služeb</strong> - Aktivace internetu a televizních programů</li>
+        <li><strong>Testování a předání</strong> - Ověření funkčnosti a instruktáž k používání</li>
+      </ol>
+      
+      <h2>Výhody PODA v Porubě</h2>
+      <p>Proč si obyvatelé Poruby vybírají právě nás:</p>
+      <ul>
+        <li>Rychlá a spolehlivá síť</li>
+        <li>Bezplatná instalace</li>
+        <li>24/7 technická podpora</li>
+        <li>Výhodné ceny pro rodiny</li>
+        <li>Bez skrytých poplatků</li>
+      </ul>
+      
+      <h2>Jak objednat PODA v Porubě</h2>
+      <p>Objednání našich služeb je velmi jednoduché. Stačí nás kontaktovat telefonicky nebo vyplnit formulář na našich webových stránkách. Náš tým vám rád pomůže vybrat nejlepší balíček pro vaše potřeby.</p>
+      
+      <p>Připojte se k tisícům spokojených zákazníků v Porubě a užívejte si moderní internet a televizi s PODA!</p>
+    `,
+    category: "Internet a TV",
+    tags: ["Poruba", "internet", "televize", "PODA", "instalace"],
+    author: "PODA tým",
+    publishedAt: "2024-01-20",
+    readTime: 4,
+    image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+    featured: true
+  },
+  {
+    id: 3,
+    title: "Internet a televize PODA v Bohumíně",
+    slug: "internet-televize-poda-bohumin-3",
+    excerpt: "Objevte moderní internet a televizní služby PODA v Bohumíně. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
+    content: `
+      <h2>Proč zvolit PODA v Bohumíně?</h2>
+      <p>Bohumín, strategicky umístěné město na trojmezí České republiky, Polska a Slovenska, si zaslouží nejlepší internetové a televizní služby. PODA přináší do tohoto důležitého dopravního uzlu moderní technologie, které změní váš způsob sledování televize a používání internetu.</p>
+      
+      <h2>Naše služby v Bohumíně</h2>
+      <p>Nabízíme kompletní balíčky služeb přizpůsobené potřebám obyvatel Bohumína:</p>
+      <ul>
+        <li><strong>Vysokorychlostní internet</strong> - až 1000 Mbps pro bezproblémové streamování</li>
+        <li><strong>Digitální televize</strong> - přes 100 programů v HD kvalitě</li>
+        <li><strong>Kombinované balíčky</strong> - internet + TV za výhodné ceny</li>
+      </ul>
+      
+      <h2>Pokrytí v Bohumíně</h2>
+      <p>Naše služby jsou dostupné v těchto částech Bohumína:</p>
+      <ul>
+        <li>Bohumín-centrum</li>
+        <li>Skřečoň</li>
+        <li>Pudlov</li>
+        <li>Šunychl</li>
+        <li>Vrbice</li>
+        <li>Záblatí</li>
+      </ul>
+      
+      <h2>Profesionální instalace PODA v Bohumíně</h2>
+      <p>Naše instalace probíhá v 5 jednoduchých krocích:</p>
+      <ol>
+        <li><strong>Konzultace a objednávka</strong> - Kontaktujte nás a domluvíme si termín instalace</li>
+        <li><strong>Technická prohlídka</strong> - Náš technik zkontroluje možnosti připojení</li>
+        <li><strong>Instalace zařízení</strong> - Profesionální instalace modemu a set-top boxu</li>
+        <li><strong>Nastavení služeb</strong> - Aktivace internetu a televizních programů</li>
+        <li><strong>Testování a předání</strong> - Ověření funkčnosti a instruktáž k používání</li>
+      </ol>
+      
+      <h2>Výhody PODA v Bohumíně</h2>
+      <p>Proč si obyvatelé Bohumína vybírají právě nás:</p>
+      <ul>
+        <li>Rychlá a spolehlivá síť</li>
+        <li>Bezplatná instalace</li>
+        <li>24/7 technická podpora</li>
+        <li>Výhodné ceny pro rodiny</li>
+        <li>Bez skrytých poplatků</li>
+      </ul>
+      
+      <h2>Jak objednat PODA v Bohumíně</h2>
+      <p>Objednání našich služeb je velmi jednoduché. Stačí nás kontaktovat telefonicky nebo vyplnit formulář na našich webových stránkách. Náš tým vám rád pomůže vybrat nejlepší balíček pro vaše potřeby.</p>
+      
+      <p>Připojte se k tisícům spokojených zákazníků v Bohumíně a užívejte si moderní internet a televizi s PODA!</p>
+    `,
+    category: "Internet a TV",
+    tags: ["Bohumín", "internet", "televize", "PODA", "instalace"],
+    author: "PODA tým",
+    publishedAt: "2024-01-25",
+    readTime: 4,
+    image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+    featured: true
+  },
+  {
+    id: 4,
+    title: "Internet a televize PODA ve Frýdku-Místku",
+    slug: "internet-televize-poda-frydek-mistek-4",
+    excerpt: "Objevte moderní internet a televizní služby PODA ve Frýdku-Místku. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
+    content: `
+      <h2>Proč zvolit PODA ve Frýdku-Místku?</h2>
+      <p>Frýdek-Místek, významné město Moravskoslezského kraje s bohatou historií, si zaslouží nejlepší internetové a televizní služby. PODA přináší do tohoto krásného města u podhůří Beskyd moderní technologie, které změní váš způsob sledování televize a používání internetu.</p>
+      
+      <h2>Naše služby ve Frýdku-Místku</h2>
+      <p>Nabízíme kompletní balíčky služeb přizpůsobené potřebám obyvatel Frýdku-Místku:</p>
+      <ul>
+        <li><strong>Vysokorychlostní internet</strong> - až 1000 Mbps pro bezproblémové streamování</li>
+        <li><strong>Digitální televize</strong> - přes 100 programů v HD kvalitě</li>
+        <li><strong>Kombinované balíčky</strong> - internet + TV za výhodné ceny</li>
+      </ul>
+      
+      <h2>Pokrytí ve Frýdku-Místku</h2>
+      <p>Naše služby jsou dostupné v těchto částech Frýdku-Místku:</p>
+      <ul>
+        <li>Frýdek</li>
+        <li>Místek</li>
+        <li>Lískovec</li>
+        <li>Chlebovice</li>
+        <li>Zelinkovice</li>
+        <li>Skalice</li>
+      </ul>
+      
+      <h2>Profesionální instalace PODA ve Frýdku-Místku</h2>
+      <p>Naše instalace probíhá v 5 jednoduchých krocích:</p>
+      <ol>
+        <li><strong>Konzultace a objednávka</strong> - Kontaktujte nás a domluvíme si termín instalace</li>
+        <li><strong>Technická prohlídka</strong> - Náš technik zkontroluje možnosti připojení</li>
+        <li><strong>Instalace zařízení</strong> - Profesionální instalace modemu a set-top boxu</li>
+        <li><strong>Nastavení služeb</strong> - Aktivace internetu a televizních programů</li>
+        <li><strong>Testování a předání</strong> - Ověření funkčnosti a instruktáž k používání</li>
+      </ol>
+      
+      <h2>Výhody PODA ve Frýdku-Místku</h2>
+      <p>Proč si obyvatelé Frýdku-Místku vybírají právě nás:</p>
+      <ul>
+        <li>Rychlá a spolehlivá síť</li>
+        <li>Bezplatná instalace</li>
+        <li>24/7 technická podpora</li>
+        <li>Výhodné ceny pro rodiny</li>
+        <li>Bez skrytých poplatků</li>
+      </ul>
+      
+      <h2>Jak objednat PODA ve Frýdku-Místku</h2>
+      <p>Objednání našich služeb je velmi jednoduché. Stačí nás kontaktovat telefonicky nebo vyplnit formulář na našich webových stránkách. Náš tým vám rád pomůže vybrat nejlepší balíček pro vaše potřeby.</p>
+      
+      <p>Připojte se k tisícům spokojených zákazníků ve Frýdku-Místku a užívejte si moderní internet a televizi s PODA!</p>
+    `,
+    category: "Internet a TV",
+    tags: ["Frýdek-Místek", "internet", "televize", "PODA", "instalace"],
+    author: "PODA tým",
+    publishedAt: "2024-02-01",
+    readTime: 4,
+    image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+    featured: true
+  },
+  {
+    id: 5,
+    title: "Internet a televize PODA v Havířově",
+    slug: "internet-televize-poda-havirov-5",
+    excerpt: "Objevte moderní internet a televizní služby PODA v Havířově. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
+    content: `
+      <h2>Proč zvolit PODA v Havířově?</h2>
+      <p>Havířov, třetí největší město Moravskoslezského kraje, si zaslouží nejlepší internetové a televizní služby. PODA přináší do tohoto moderního města s bohatou hornickou tradicí pokrokové technologie, které změní váš způsob sledování televize a používání internetu.</p>
+      
+      <h2>Naše služby v Havířově</h2>
+      <p>Nabízíme kompletní balíčky služeb přizpůsobené potřebám obyvatel Havířova:</p>
+      <ul>
+        <li><strong>Vysokorychlostní internet</strong> - až 1000 Mbps pro bezproblémové streamování</li>
+        <li><strong>Digitální televize</strong> - přes 100 programů v HD kvalitě</li>
+        <li><strong>Kombinované balíčky</strong> - internet + TV za výhodné ceny</li>
+      </ul>
+      
+      <h2>Pokrytí v Havířově</h2>
+      <p>Naše služby jsou dostupné v těchto částech Havířova:</p>
+      <ul>
+        <li>Město</li>
+        <li>Podlesí</li>
+        <li>Prostřední Suchá</li>
+        <li>Havířov-Šumbark</li>
+        <li>Dolní Datyně</li>
+        <li>Životice</li>
+        <li>Bludovice</li>
+      </ul>
+      
+      <h2>Profesionální instalace PODA v Havířově</h2>
+      <p>Naše instalace probíhá v 5 jednoduchých krocích:</p>
+      <ol>
+        <li><strong>Konzultace a objednávka</strong> - Kontaktujte nás a domluvíme si termín instalace</li>
+        <li><strong>Technická prohlídka</strong> - Náš technik zkontroluje možnosti připojení</li>
+        <li><strong>Instalace zařízení</strong> - Profesionální instalace modemu a set-top boxu</li>
+        <li><strong>Nastavení služeb</strong> - Aktivace internetu a televizních programů</li>
+        <li><strong>Testování a předání</strong> - Ověření funkčnosti a instruktáž k používání</li>
+      </ol>
+      
+      <h2>Výhody PODA v Havířově</h2>
+      <p>Proč si obyvatelé Havířova vybírají právě nás:</p>
+      <ul>
+        <li>Rychlá a spolehlivá síť</li>
+        <li>Bezplatná instalace</li>
+        <li>24/7 technická podpora</li>
+        <li>Výhodné ceny pro rodiny</li>
+        <li>Bez skrytých poplatků</li>
+      </ul>
+      
+      <h2>Jak objednat PODA v Havířově</h2>
+      <p>Objednání našich služeb je velmi jednoduché. Stačí nás kontaktovat telefonicky nebo vyplnit formulář na našich webových stránkách. Náš tým vám rád pomůže vybrat nejlepší balíček pro vaše potřeby.</p>
+      
+      <p>Připojte se k tisícům spokojených zákazníků v Havířově a užívejte si moderní internet a televizi s PODA!</p>
+    `,
+    category: "Internet a TV",
+    tags: ["Havířov", "internet", "televize", "PODA", "instalace"],
+    author: "PODA tým",
+    publishedAt: "2024-02-05",
+    readTime: 4,
+    image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+    featured: true
+  },
+  {
+    id: 6,
+    title: "Internet a televize PODA v Orlové",
+    slug: "internet-televize-poda-orlova-6",
+    excerpt: "Objevte moderní internet a televizní služby PODA v Orlové. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
+    content: `
+      <h2>Proč zvolit PODA v Orlové?</h2>
+      <p>Orlová, město s bohatou hornickou minulostí a moderní budoucností, si zaslouží nejlepší internetové a televizní služby. PODA přináší do tohoto dynamického města pokrokové technologie, které změní váš způsob sledování televize a používání internetu.</p>
+      
+      <h2>Naše služby v Orlové</h2>
+      <p>Nabízíme kompletní balíčky služeb přizpůsobené potřebám obyvatel Orlové:</p>
+      <ul>
+        <li><strong>Vysokorychlostní internet</strong> - až 1000 Mbps pro bezproblémové streamování</li>
+        <li><strong>Digitální televize</strong> - přes 100 programů v HD kvalitě</li>
+        <li><strong>Kombinované balíčky</strong> - internet + TV za výhodné ceny</li>
+      </ul>
+      
+      <h2>Pokrytí v Orlové</h2>
+      <p>Naše služby jsou dostupné v těchto částech Orlové:</p>
+      <ul>
+        <li>Orlová-Město</li>
+        <li>Orlová-Poruba</li>
+        <li>Orlová-Lutyně</li>
+        <li>Lazy</li>
+        <li>Doubravy</li>
+      </ul>
+      
+      <h2>Profesionální instalace PODA v Orlové</h2>
+      <p>Naše instalace probíhá v 5 jednoduchých krocích:</p>
+      <ol>
+        <li><strong>Konzultace a objednávka</strong> - Kontaktujte nás a domluvíme si termín instalace</li>
+        <li><strong>Technická prohlídka</strong> - Náš technik zkontroluje možnosti připojení</li>
+        <li><strong>Instalace zařízení</strong> - Profesionální instalace modemu a set-top boxu</li>
+        <li><strong>Nastavení služeb</strong> - Aktivace internetu a televizních programů</li>
+        <li><strong>Testování a předání</strong> - Ověření funkčnosti a instruktáž k používání</li>
+      </ol>
+      
+      <h2>Výhody PODA v Orlové</h2>
+      <p>Proč si obyvatelé Orlové vybírají právě nás:</p>
+      <ul>
+        <li>Rychlá a spolehlivá síť</li>
+        <li>Bezplatná instalace</li>
+        <li>24/7 technická podpora</li>
+        <li>Výhodné ceny pro rodiny</li>
+        <li>Bez skrytých poplatků</li>
+      </ul>
+      
+      <h2>Jak objednat PODA v Orlové</h2>
+      <p>Objednání našich služeb je velmi jednoduché. Stačí nás kontaktovat telefonicky nebo vyplnit formulář na našich webových stránkách. Náš tým vám rád pomůže vybrat nejlepší balíček pro vaše potřeby.</p>
+      
+      <p>Připojte se k tisícům spokojených zákazníků v Orlové a užívejte si moderní internet a televizi s PODA!</p>
+    `,
+    category: "Internet a TV",
+    tags: ["Orlová", "internet", "televize", "PODA", "instalace"],
+    author: "PODA tým",
+    publishedAt: "2024-02-10",
+    readTime: 4,
+    image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+    featured: true
+  }
+];

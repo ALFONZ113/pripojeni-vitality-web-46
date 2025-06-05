@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 import { karvinaPost } from './karvina';
 

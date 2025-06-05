@@ -1,8 +1,6 @@
 import { BlogPost } from './types';
-import { karvinaPost } from './karvina';
 
 export const sluzbyPosts: BlogPost[] = [
-  karvinaPost,
   {
     id: 2,
     title: "GPON technologie v Moravskoslezském regionu: Revoluce optického internetu",
@@ -256,22 +254,8 @@ export const sluzbyPosts: BlogPost[] = [
         <p class="text-center mt-8 font-medium">Vstupte do éry gigabitového internetu s GPON technologií od PODA.</p>
 
         <p class="text-sm text-gray-500 mt-8 italic">GPON od PODA - technologie budoucnosti již dnes ve vašem domě.</p>
-      </div>
-    `,
-    date: '24. 4. 2025',
-    author: 'Milan Terč',
-    category: 'Služby',
-    image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
-    alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě, futuristický vzhled připojení PODA',
-    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
-  },
-  {
-    id: 100,
-    title: "Internet PODA v Ostravě-Porubě: Gigabitové připojení pro největší městskou část",
-    excerpt: "Kompletní průvodce optickým internetem PODA v Ostravě-Porubě. Zjistěte, proč je PODA nejlepší volbou pro vaši domácnost či firmu a jak získat nejrychlejší internet v regionu za nejnižší cenu.",
-    content: `
-      <div class="prose-content">
-        <h2>Úvod: Poruba vstupuje do gigabitové éry</h2>
+
+        <h2>Internet PODA v Ostravě-Porubě: Gigabitové připojení pro největší městskou část</h2>
         <p>Ostrava-Poruba, největší městská část Ostravy s více než 67 000 obyvateli, se stává digitálním centrem Moravskoslezského regionu díky moderní optické infrastruktuře PODA. Poruba se dělí na několik menších částí, které se nazývají porubské obvody. Mezi ně patří například: 
 Poruba 1, která zahrnuje oblast kolem hlavního náměstí. 
 Poruba 2, kde najdeme například Oblastní nemocnici. 

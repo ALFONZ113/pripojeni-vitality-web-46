@@ -3,7 +3,7 @@ import { BlogPost, categories } from './types';
 import { technologiePosts } from './technologie';
 import { sluzbyPosts } from './sluzby';
 import { tipyPosts } from './tipy';
-import { karvinaPost } from './karvina';
+import { karvinaBlogPosts } from './karvina';
 import { novinyPosts } from './noviny';
 import { recenziePosts } from './recenzie';
 
@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
   ...sluzbyPosts,
   ...technologiePosts,
   ...tipyPosts,
-  karvinaPost,
+  ...karvinaBlogPosts,
   ...novinyPosts,
   ...recenziePosts
 ];

@@ -1,11 +1,9 @@
-
 import type { BlogPost } from './types';
 
 export const karvinaBlogPosts: BlogPost[] = [
   {
     id: 1,
     title: "Internet a televize PODA v Karviné",
-    slug: "internet-televize-poda-karvina-1", 
     excerpt: "Objevte moderní internet a televizní služby PODA v Karviné. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
     content: `
       <h2>Proč zvolit PODA v Karviné?</h2>
@@ -66,7 +64,6 @@ export const karvinaBlogPosts: BlogPost[] = [
   {
     id: 2,
     title: "Internet a televize PODA v Porubě",
-    slug: "internet-televize-poda-poruba-2",
     excerpt: "Objevte moderní internet a televizní služby PODA v Porubě. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
     content: `
       <h2>Proč zvolit PODA v Porubě?</h2>
@@ -126,7 +123,6 @@ export const karvinaBlogPosts: BlogPost[] = [
   {
     id: 3,
     title: "Internet a televize PODA v Bohumíně",
-    slug: "internet-televize-poda-bohumin-3",
     excerpt: "Objevte moderní internet a televizní služby PODA v Bohumíně. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
     content: `
       <h2>Proč zvolit PODA v Bohumíně?</h2>
@@ -187,7 +183,6 @@ export const karvinaBlogPosts: BlogPost[] = [
   {
     id: 4,
     title: "Internet a televize PODA ve Frýdku-Místku",
-    slug: "internet-televize-poda-frydek-mistek-4",
     excerpt: "Objevte moderní internet a televizní služby PODA ve Frýdku-Místku. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
     content: `
       <h2>Proč zvolit PODA ve Frýdku-Místku?</h2>
@@ -248,7 +243,6 @@ export const karvinaBlogPosts: BlogPost[] = [
   {
     id: 5,
     title: "Internet a televize PODA v Havířově",
-    slug: "internet-televize-poda-havirov-5",
     excerpt: "Objevte moderní internet a televizní služby PODA v Havířově. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
     content: `
       <h2>Proč zvolit PODA v Havířově?</h2>
@@ -310,7 +304,6 @@ export const karvinaBlogPosts: BlogPost[] = [
   {
     id: 6,
     title: "Internet a televize PODA v Orlové",
-    slug: "internet-televize-poda-orlova-6",
     excerpt: "Objevte moderní internet a televizní služby PODA v Orlové. Rychlé připojení, kvalitní obraz a spolehlivá služba pro váš domov.",
     content: `
       <h2>Proč zvolit PODA v Orlové?</h2>
@@ -368,3 +361,6 @@ export const karvinaBlogPosts: BlogPost[] = [
     featured: true
   }
 ];
+
+// Export a single post for backwards compatibility
+export const karvinaPost = karvinaBlogPosts[0];

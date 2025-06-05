@@ -1,144 +1,145 @@
+
 import { BlogPost } from './types';
 import { karvinaPost } from './karvina';
 
 export const sluzbyPosts: BlogPost[] = [
   karvinaPost,
   {
-    id: 1,
-    title: "GPON technológia v Moravskoslezskom regióne: Revolúcia optického internetu",
-    excerpt: "Komplexný prehľad GPON technológie a jej výhod pre domácnosti v Ostrave, Karvinej a okolí. Prečo je považovaná za štandard budúcnosti pre domáce internetové pripojenie.",
+    id: 2,
+    title: "GPON technologie v Moravskoslezském regionu: Revoluce optického internetu",
+    excerpt: "Komplexní přehled GPON technologie a jejích výhod pro domácnosti v Ostravě, Karviné a okolí. Proč je považována za standard budoucnosti pro domácí internetové připojení.",
     content: `
       <div class="prose-content">
-        <h2>Úvod: Digitálna revolúcia v Moravskoslezskom regióne</h2>
-        <p>GPON (Gigabit Passive Optical Network) predstavuje najmodernějšiu technológiu pre dodávanie vysokorýchlostného internetu priamo do domácností v Moravskoslezskom regióne. Táto technológia využíva optické vlákna pre prenos dát rýchlosťou až 2,5 Gbps downstream a 1,25 Gbps upstream, čo mení spôsob, akým obyvatelia Ostravy, Karvinej a okolia využívajú internet.</p>
+        <h2>Úvod: Digitální revoluce v Moravskoslezském regionu</h2>
+        <p>GPON (Gigabit Passive Optical Network) představuje nejmodernější technologii pro dodávání vysokorychlostního internetu přímo do domácností v Moravskoslezském regionu. Tato technologie využívá optická vlákna pro přenos dat rychlostí až 2,5 Gbps downstream a 1,25 Gbps upstream, což mění způsob, jakým obyvatelé Ostravy, Karviné a okolí využívají internet.</p>
 
-        <h2>Geografické pokrytie GPON v regióne</h2>
-        <h3>Mestá s plnou GPON infraštruktúrou</h3>
+        <h2>Geografické pokrytí GPON v regionu</h2>
+        <h3>Města s plnou GPON infrastrukturou</h3>
         <ul>
-          <li><strong>Ostrava a okolie:</strong> Kompletné pokrytie všetkých mestských častí</li>
-          <li><strong>Karviná:</strong> Plné pokrytie Ráje, Hraníc, Mizerova</li>
-          <li><strong>Havířov:</strong> Celé mesto vrátane okrajových častí</li>
-          <li><strong>Bohumín:</strong> Strategické pokrytie centra a sídlisk</li>
-          <li><strong>Frýdek-Místek:</strong> Postupné rozširovanie optickej siete</li>
+          <li><strong>Ostrava a okolí:</strong> Kompletní pokrytí všech městských částí</li>
+          <li><strong>Karviná:</strong> Plné pokrytí Ráje, Hranic, Mizerova</li>
+          <li><strong>Havířov:</strong> Celé město včetně okrajových částí</li>
+          <li><strong>Bohumín:</strong> Strategické pokrytí centra a sídlišť</li>
+          <li><strong>Frýdek-Místek:</strong> Postupné rozšiřování optické sítě</li>
         </ul>
 
-        <h2>Čo je GPON technológia?</h2>
-        <p>GPON je technológia optických sietí, ktorá umožňuje prenos dát rýchlosťou až 2,5 Gbps downstream a 1,25 Gbps upstream. Na rozdiel od tradičných metalických sietí využíva GPON optické vlákna, ktoré prenášajú dáta pomocou svetelných impulzov s minimálnymi stratami a maximálnou stabilitou.</p>
+        <h2>Co je GPON technologie?</h2>
+        <p>GPON je technologie optických sítí, která umožňuje přenos dat rychlostí až 2,5 Gbps downstream a 1,25 Gbps upstream. Na rozdíl od tradičních metalických sítí využívá GPON optická vlákna, která přenášejí data pomocí světelných impulzů s minimálními ztrátami a maximální stabilitou.</p>
 
         <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 my-8">
-          <h3>Technické špecifikácie GPON siete PODA:</h3>
+          <h3>Technické specifikace GPON sítě PODA:</h3>
           <ul class="space-y-2 mt-4">
-            <li>✓ <strong>Downstream rýchlosť:</strong> až 2,5 Gbps zdieľané</li>
-            <li>✓ <strong>Upstream rýchlosť:</strong> až 1,25 Gbps zdieľané</li>
-            <li>✓ <strong>Dosah bez zosilnenia:</strong> až 20 km</li>
+            <li>✓ <strong>Downstream rychlost:</strong> až 2,5 Gbps sdílené</li>
+            <li>✓ <strong>Upstream rychlost:</strong> až 1,25 Gbps sdílené</li>
+            <li>✓ <strong>Dosah bez zesílení:</strong> až 20 km</li>
             <li>✓ <strong>Splitting ratio:</strong> 1:32 až 1:64</li>
-            <li>✓ <strong>Latencia:</strong> < 2 ms</li>
-            <li>✓ <strong>Životnosť infraštruktúry:</strong> 25+ rokov</li>
+            <li>✓ <strong>Latence:</strong> < 2 ms</li>
+            <li>✓ <strong>Životnost infrastruktury:</strong> 25+ let</li>
           </ul>
         </div>
 
-        <h2>Prípadová štúdia: Transformácia rodinného domu v Havířove</h2>
+        <h2>Případová studie: Transformace rodinného domu v Havířově</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
-          <p>"Náš rodinný dom v Havířove-Šumbarku mal vážne problémy s internetom. Starý DSL s rýchlosťou 25 Mbps nezvládal potreby našej 5-člennej rodiny. Dvaja synovia hrali online hry, dcéra študovala online na VŠB-TUO a my s manželkou sme pracovali z domova. Po prechode na GPON od PODA s 1000 Mbps symetricky sa náš digitálny život úplne zmenil. Každý môže robiť čo potrebuje bez obmedzení."</p>
+          <p>"Náš rodinný dům v Havířově-Šumbarku měl vážné problémy s internetem. Starý DSL s rychlostí 25 Mbps nezvládal potřeby naší 5-členné rodiny. Dva synové hráli online hry, dcera studovala online na VŠB-TUO a my s manželkou jsme pracovali z domova. Po přechodu na GPON od PODA s 1000 Mbps symetricky se náš digitální život úplně změnil. Každý může dělat co potřebuje bez omezení."</p>
           <footer class="mt-2 text-sm text-gray-600">
             <strong>Ing. Pavel Dvořák, Havířov-Šumbark</strong><br>
-            IT manažér, 5-členná rodina, rodinný dom 180 m²
+            IT manažer, 5-členná rodina, rodinný dům 180 m²
           </footer>
         </blockquote>
 
-        <h3>Konkrétne benefity po prechode na GPON:</h3>
+        <h3>Konkrétní benefity po přechodu na GPON:</h3>
         <div class="grid md:grid-cols-2 gap-6 my-8">
           <div class="bg-red-50 p-6 rounded-lg">
-            <h4>Pred GPON (25 Mbps DSL)</h4>
+            <h4>Před GPON (25 Mbps DSL)</h4>
             <ul class="space-y-1">
-              <li>🔴 Časté výpadky v špičkách</li>
-              <li>🔴 Nemožnosť 4K streamovania</li>
-              <li>🔴 Problémy s video konferenciami</li>
-              <li>🔴 Pomalé nahrávanie do cloudu</li>
+              <li>🔴 Časté výpadky ve špičkách</li>
+              <li>🔴 Nemožnost 4K streamování</li>
+              <li>🔴 Problémy s video konferencemi</li>
+              <li>🔴 Pomalé nahrávání do cloudu</li>
               <li>🔴 Lagy v online hrách</li>
-              <li>🔴 Limitované súčasné používanie</li>
+              <li>🔴 Limitované současné používání</li>
             </ul>
           </div>
           <div class="bg-green-50 p-6 rounded-lg">
             <h4>Po GPON (1000 Mbps symetricky)</h4>
             <ul class="space-y-1">
-              <li>✅ Stabilné pripojenie 24/7</li>
-              <li>✅ Viacero 4K streamov súčasne</li>
+              <li>✅ Stabilní připojení 24/7</li>
+              <li>✅ Více 4K streamů současně</li>
               <li>✅ Bezproblémové home office</li>
-              <li>✅ Rýchle zálohovanie (1 GB za 8 sekúnd)</li>
-              <li>✅ Ping < 3 ms pre gaming</li>
-              <li>✅ Neobmedzené súčasné používanie</li>
+              <li>✅ Rychlé zálohování (1 GB za 8 sekund)</li>
+              <li>✅ Ping < 3 ms pro gaming</li>
+              <li>✅ Neomezené současné používání</li>
             </ul>
           </div>
         </div>
 
-        <h2>Hlavné výhody GPON technológie</h2>
-        <h3>1. Extrémne vysoká rýchlosť a kapacita</h3>
-        <p>GPON technológia umožňuje dosiahnuť rýchlosti, ktoré ďaleko prevyšujú možnosti bežných metalických sietí:</p>
+        <h2>Hlavní výhody GPON technologie</h2>
+        <h3>1. Extrémně vysoká rychlost a kapacita</h3>
+        <p>GPON technologie umožňuje dosáhnout rychlosti, které daleko převyšují možnosti běžných metalických sítí:</p>
         <ul>
-          <li><strong>Garantované rýchlosti:</strong> Skutočné, nie "až" rýchlosti</li>
-          <li><strong>Symetrické pripojenie:</strong> Rovnaká rýchlosť download aj upload</li>
-          <li><strong>Škálovateľnosť:</strong> Jednoduché zvyšovanie rýchlostí</li>
-          <li><strong>Bezlimitná prevádzka:</strong> Žiadne FUP obmedzenia</li>
+          <li><strong>Garantované rychlosti:</strong> Skutečné, ne "až" rychlosti</li>
+          <li><strong>Symetrické připojení:</strong> Stejná rychlost download i upload</li>
+          <li><strong>Škálovatelnost:</strong> Jednoduché zvyšování rychlosti</li>
+          <li><strong>Bezlimitní provoz:</strong> Žádná FUP omezení</li>
         </ul>
 
-        <h3>2. Minimálna latencia pre náročné aplikácie</h3>
+        <h3>2. Minimální latence pro náročné aplikace</h3>
         <div class="bg-orange-50 p-6 rounded-lg my-6">
-          <h4>Porovnanie latencií rôznych technológií:</h4>
+          <h4>Porovnání latencí různých technologií:</h4>
           <ul class="space-y-1 mt-2">
-            <li><strong>GPON (PODA):</strong> 1-3 ms - ideálne pre gaming a VoIP</li>
-            <li><strong>Coaxial (UPC):</strong> 15-25 ms - vyhovujúce</li>
-            <li><strong>DSL (O2):</strong> 25-50 ms - obmedzujúce</li>
+            <li><strong>GPON (PODA):</strong> 1-3 ms - ideální pro gaming a VoIP</li>
+            <li><strong>Coaxial (UPC):</strong> 15-25 ms - vyhovující</li>
+            <li><strong>DSL (O2):</strong> 25-50 ms - omezující</li>
             <li><strong>LTE (T-Mobile):</strong> 30-80 ms - problematické</li>
-            <li><strong>Satelit:</strong> 600+ ms - nepoužiteľné pre real-time</li>
+            <li><strong>Satelit:</strong> 600+ ms - nepoužitelné pro real-time</li>
           </ul>
         </div>
 
-        <h3>3. Bezkonkurenčná stabilita pripojenia</h3>
-        <p>Optické vlákna sú odolné voči elektromagnetickému rušeniu, čo zaistí stabilnejšie pripojenie:</p>
+        <h3>3. Bezkonkurenční stabilita připojení</h3>
+        <p>Optická vlákna jsou odolná vůči elektromagnetickému rušení, což zajistí stabilnější připojení:</p>
         <ul>
-          <li><strong>Odolnosť voči počasiu:</strong> Žiadne výpadky počas búrok</li>
-          <li><strong>Bez elektromagnetického rušenia:</strong> Stabilný signál</li>
-          <li><strong>Nízka chybovosť:</strong> 99,9% dostupnosť služby</li>
-          <li><strong>Dlhodobá spoľahlivosť:</strong> Infraštruktúra s životnosťou 25+ rokov</li>
+          <li><strong>Odolnost vůči počasí:</strong> Žádné výpadky během bouřek</li>
+          <li><strong>Bez elektromagnetického rušení:</strong> Stabilní signál</li>
+          <li><strong>Nízká chybovost:</strong> 99,9% dostupnost služby</li>
+          <li><strong>Dlouhodobá spolehlivost:</strong> Infrastruktura s životností 25+ let</li>
         </ul>
 
-        <h2>Technická implementácia GPON v rôznych typoch zástavby</h2>
+        <h2>Technická implementace GPON v různých typech zástavby</h2>
         <h3>Panelové domy (Ostrava, Karviná)</h3>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h4>FTTH (Fiber to the Home) v panelákoch:</h4>
+          <h4>FTTH (Fiber to the Home) v panelácích:</h4>
           <ul class="space-y-2 mt-4">
-            <li><strong>Privedenie optiky:</strong> Hlavná šachta → rozvádzač na poschodí</li>
-            <li><strong>Distribúcia po bytoch:</strong> Individuálne optické vlákna</li>
-            <li><strong>ONT inštalácia:</strong> Optický modem priamo v byte</li>
-            <li><strong>Pripojenie k TV/routeru:</strong> Ethernet kábel</li>
-            <li><strong>Kapacita:</strong> Až 64 bytov z jedného splitteru</li>
-            <li><strong>Rýchlosť pre byt:</strong> Garantovaných 1000/1000 Mbps</li>
+            <li><strong>Přivedení optiky:</strong> Hlavní šachta → rozvaděč na patře</li>
+            <li><strong>Distribuce po bytech:</strong> Individuální optická vlákna</li>
+            <li><strong>ONT instalace:</strong> Optický modem přímo v bytě</li>
+            <li><strong>Připojení k TV/routeru:</strong> Ethernet kabel</li>
+            <li><strong>Kapacita:</strong> Až 64 bytů z jednoho splitteru</li>
+            <li><strong>Rychlost pro byt:</strong> Garantovaných 1000/1000 Mbps</li>
           </ul>
         </div>
 
         <h3>Rodinné domy (Havířov, Bohumín)</h3>
         <div class="bg-green-50 p-6 rounded-lg my-8">
-          <h4>Priame optické pripojenie:</h4>
+          <h4>Přímé optické připojení:</h4>
           <ul class="space-y-2 mt-4">
-            <li><strong>Vedenie optiky:</strong> Od distribučného bodu priamo k domu</li>
-            <li><strong>Vnútorná inštalácia:</strong> ONT v technickej miestnosti/predsieni</li>
-            <li><strong>Rozvodenie po dome:</strong> Cat6 Ethernet alebo Wi-Fi 6</li>
-            <li><strong>Možnosť rozšírenia:</strong> Viacero optických zakončení</li>
-            <li><strong>Budúcnosť:</strong> Pripravenosť na 10G služby</li>
+            <li><strong>Vedení optiky:</strong> Od distribučního bodu přímo k domu</li>
+            <li><strong>Vnitřní instalace:</strong> ONT v technické místnosti/předsíni</li>
+            <li><strong>Rozvedení po domě:</strong> Cat6 Ethernet nebo Wi-Fi 6</li>
+            <li><strong>Možnost rozšíření:</strong> Více optických zakončení</li>
+            <li><strong>Budoucnost:</strong> Připravenost na 10G služby</li>
           </ul>
         </div>
 
-        <h2>Ekonomická analýza GPON vs. alternatívne technológie</h2>
+        <h2>Ekonomická analýza GPON vs. alternativní technologie</h2>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Celkové náklady vlastníctva (TCO) za 5 rokov:</h3>
+          <h3>Celkové náklady vlastnictví (TCO) za 5 let:</h3>
           <table class="w-full mt-4 text-sm">
             <thead>
               <tr class="border-b">
-                <th class="text-left py-2">Technológia</th>
-                <th class="text-left py-2">Mesačne</th>
-                <th class="text-left py-2">5 rokov</th>
-                <th class="text-left py-2">Skutočná rýchlosť</th>
+                <th class="text-left py-2">Technologie</th>
+                <th class="text-left py-2">Měsíčně</th>
+                <th class="text-left py-2">5 let</th>
+                <th class="text-left py-2">Skutečná rychlost</th>
                 <th class="text-left py-2">Stabilita</th>
               </tr>
             </thead>
@@ -168,119 +169,129 @@ export const sluzbyPosts: BlogPost[] = [
           </table>
         </div>
 
-        <h2>Environmentálne a energetické výhody GPON</h2>
-        <h3>Udržateľnosť a ekologickosť</h3>
+        <h2>Environmentální a energetické výhody GPON</h2>
+        <h3>Udržitelnost a ekologičnost</h3>
         <ul>
-          <li><strong>Nižšia spotreba energie:</strong> 60% úspora oproti DSL infraštruktúre</li>
-          <li><strong>Dlhšia životnosť:</strong> Menej elektronického odpadu</li>
-          <li><strong>Pasívne komponenty:</strong> Optické splittery nepotrebujú elektrinu</li>
-          <li><strong>Centralizované napájanie:</strong> Efektívnejšie riadenie spotreby</li>
-          <li><strong>Recyklovateľné materiály:</strong> Optické vlákna sú 100% recyklovateľné</li>
+          <li><strong>Nižší spotřeba energie:</strong> 60% úspora oproti DSL infrastruktuře</li>
+          <li><strong>Delší životnost:</strong> Méně elektronického odpadu</li>
+          <li><strong>Pasivní komponenty:</strong> Optické splittery nepotřebují elektřinu</li>
+          <li><strong>Centralizované napájení:</strong> Efektivnější řízení spotřeby</li>
+          <li><strong>Recyklovatelné materiály:</strong> Optická vlákna jsou 100% recyklovatelná</li>
         </ul>
 
-        <h2>Budúcnosť GPON technológie a jej rozšírenia</h2>
-        <h3>Plánované inovácie (2024-2027)</h3>
+        <h2>Budoucnost GPON technologie a její rozšíření</h2>
+        <h3>Plánované inovace (2024-2027)</h3>
         <div class="bg-blue-50 p-6 rounded-lg my-6">
-          <h4>Technologické vylepšenia:</h4>
+          <h4>Technologická vylepšení:</h4>
           <ul class="space-y-1">
-            <li><strong>XGS-PON:</strong> 10 Gbps symetrické pripojenie</li>
-            <li><strong>25G-PON:</strong> 25 Gbps pre extrémne náročných používateľov</li>
-            <li><strong>50G-PON:</strong> Budúcnosť pre smart cities</li>
-            <li><strong>Wavelength division:</strong> Viacero služieb na jednom vlákne</li>
-            <li><strong>Time-sensitive networking:</strong> Garantovaná latencia pre IoT</li>
+            <li><strong>XGS-PON:</strong> 10 Gbps symetrické připojení</li>
+            <li><strong>25G-PON:</strong> 25 Gbps pro extrémně náročné uživatele</li>
+            <li><strong>50G-PON:</strong> Budoucnost pro smart cities</li>
+            <li><strong>Wavelength division:</strong> Více služeb na jednom vlákně</li>
+            <li><strong>Time-sensitive networking:</strong> Garantovaná latence pro IoT</li>
           </ul>
         </div>
 
-        <h2>Inštalačný proces GPON v Moravskoslezskom regióne</h2>
+        <h2>Instalační proces GPON v Moravskoslezském regionu</h2>
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-          <h3 class="text-white mb-4">Kompletný proces aktivácie GPON:</h3>
+          <h3 class="text-white mb-4">Kompletní proces aktivace GPON:</h3>
           <ol class="space-y-2">
-            <li><strong>1. Objednávka cez popri.cz</strong> - jednoduchý online formulár</li>
-            <li><strong>2. Technická prehliadka</strong> - overenie trasovanie optiky</li>
-            <li><strong>3. Projektová dokumentácia</strong> - návrh optimálneho riešenia</li>
-            <li><strong>4. Výkopové práce</strong> - profesionálne vedenie káblov</li>
-            <li><strong>5. Inštalácia ONT</strong> - optický modem vo vašej domácnosti</li>
-            <li><strong>6. Konfigurácia a testovanie</strong> - overenie všetkých parametrov</li>
-            <li><strong>7. Zaškolenie zákazníka</strong> - vysvetlenie funkcií a ovládania</li>
-            <li><strong>8. Dokumentácia</strong> - odovzdanie záručných listov</li>
+            <li><strong>1. Objednávka přes popri.cz</strong> - jednoduchý online formulář</li>
+            <li><strong>2. Technická prohlídka</strong> - ověření trasování optiky</li>
+            <li><strong>3. Projektová dokumentace</strong> - návrh optimálního řešení</li>
+            <li><strong>4. Výkopové práce</strong> - profesionální vedení kabelů</li>
+            <li><strong>5. Instalace ONT</strong> - optický modem ve vaší domácnosti</li>
+            <li><strong>6. Konfigurace a testování</strong> - ověření všech parametrů</li>
+            <li><strong>7. Zaškolení zákazníka</strong> - vysvětlení funkcí a ovládání</li>
+            <li><strong>8. Dokumentace</strong> - předání záručních listů</li>
           </ol>
         </div>
 
-        <h3>Doba realizácie podľa typu nehnuteľnosti</h3>
+        <h3>Doba realizace podle typu nemovitosti</h3>
         <ul>
-          <li><strong>Panelové domy s optikou:</strong> 2-5 dní</li>
-          <li><strong>Rodinné domy v pokrytých oblastiach:</strong> 1-2 týždne</li>
-          <li><strong>Nové lokality vyžadujúce infraštruktúru:</strong> 4-8 týždňov</li>
-          <li><strong>Komplexné projekty:</strong> Individuálne posúdenie</li>
+          <li><strong>Panelové domy s optikou:</strong> 2-5 dnů</li>
+          <li><strong>Rodinné domy v pokrytých oblastech:</strong> 1-2 týdny</li>
+          <li><strong>Nové lokality vyžadující infrastrukturu:</strong> 4-8 týdnů</li>
+          <li><strong>Komplexní projekty:</strong> Individuální posouzení</li>
         </ul>
 
-        <h2>Špecializované GPON aplikácie</h2>
-        <h3>Smart Home integrácia</h3>
+        <h2>Specializované GPON aplikace</h2>
+        <h3>Smart Home integrace</h3>
         <ul>
-          <li><strong>IoT zariadenia:</strong> Stovky pripojených zariadení bez problémov</li>
-          <li><strong>4K/8K streaming:</strong> Viacero streamov súčasne</li>
-          <li><strong>Domáce bezpečnostné systémy:</strong> HD kamery s cloudovým úložiskom</li>
-          <li><strong>Automatizácia domácnosti:</strong> Real-time riadenie všetkých systémov</li>
+          <li><strong>IoT zařízení:</strong> Stovky připojených zařízení bez problémů</li>
+          <li><strong>4K/8K streaming:</strong> Více streamů současně</li>
+          <li><strong>Domácí bezpečnostní systémy:</strong> HD kamery s cloudovým úložištěm</li>
+          <li><strong>Automatizace domácnosti:</strong> Real-time řízení všech systémů</li>
         </ul>
 
-        <h3>Profesionálne home office</h3>
+        <h3>Profesionální home office</h3>
         <ul>
-          <li><strong>Video konferencie 4K:</strong> Profesionálna kvalita komunikácie</li>
-          <li><strong>Cloud synchronizácia:</strong> Okamžité zálohovanie práce</li>
-          <li><strong>VPN pripojenia:</strong> Bezpečný prístup do firemných sietí</li>
-          <li><strong>Collaboration tools:</strong> Real-time spolupráca na projektoch</li>
+          <li><strong>Video konference 4K:</strong> Profesionální kvalita komunikace</li>
+          <li><strong>Cloud synchronizace:</strong> Okamžité zálohování práce</li>
+          <li><strong>VPN připojení:</strong> Bezpečný přístup do firemních sítí</li>
+          <li><strong>Collaboration tools:</strong> Real-time spolupráce na projektech</li>
         </ul>
 
-        <h2>Záver: GPON ako investícia do digitálnej budúcnosti</h2>
-        <p>GPON technológia v Moravskoslezskom regióne predstavuje viac než len rýchlejší internet. Je to kompletná digitálna transformácia, ktorá umožňuje plne využiť potenciál moderných technológií a pripravuje vašu domácnosť na budúcnosť.</p>
+        <h2>Závěr: GPON jako investice do digitální budoucnosti</h2>
+        <p>GPON technologie v Moravskoslezském regionu představuje více než jen rychlejší internet. Je to kompletní digitální transformace, která umožňuje plně využít potenciál moderních technologií a připravuje vaši domácnost na budoucnost.</p>
 
-        <h3>Kľúčové benefity GPON od PODA:</h3>
+        <h3>Klíčové benefity GPON od PODA:</h3>
         <ul>
-          <li><strong>Garantované rýchlosti:</strong> Skutočných 1000 Mbps symetricky</li>
-          <li><strong>Minimálna latencia:</strong> Ideálne pre gaming a VoIP</li>
-          <li><strong>Maximálna stabilita:</strong> 99,9% dostupnosť služby</li>
-          <li><strong>Budúcnosť bez obmedzení:</strong> Pripravenosť na 10G+ technológie</li>
-          <li><strong>Lokálna podpora:</strong> Technickí špecialisti v regióne</li>
-          <li><strong>Transparentné ceny:</strong> Bez skrytých poplatkov</li>
+          <li><strong>Garantované rychlosti:</strong> Skutečných 1000 Mbps symetricky</li>
+          <li><strong>Minimální latence:</strong> Ideální pro gaming a VoIP</li>
+          <li><strong>Maximální stabilita:</strong> 99,9% dostupnost služby</li>
+          <li><strong>Budoucnost bez omezení:</strong> Připravenost na 10G+ technologie</li>
+          <li><strong>Lokální podpora:</strong> Techničtí specialisté v regionu</li>
+          <li><strong>Transparentní ceny:</strong> Bez skrytých poplatků</li>
         </ul>
 
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Objednajte si GPON pripojenie:</h3>
+          <h3>Objednejte si GPON připojení:</h3>
           <p><strong>Web:</strong> popri.cz<br>
-          <strong>GPON špecialista:</strong> Milan Terč<br>
+          <strong>GPON specialista:</strong> Milan Terč<br>
           <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
-          <p class="mt-4 text-sm text-gray-600">Bezplatná technická konzultácia a overenie dostupnosti GPON technológie na vašej adrese v Moravskoslezskom regióne.</p>
+          <p class="mt-4 text-sm text-gray-600">Bezplatná technická konzultace a ověření dostupnosti GPON technologie na vaší adrese v Moravskoslezském regionu.</p>
         </div>
 
-        <p class="text-center mt-8 font-medium">Vstúpte do éry gigabitového internetu s GPON technológiou od PODA.</p>
+        <p class="text-center mt-8 font-medium">Vstupte do éry gigabitového internetu s GPON technologií od PODA.</p>
 
-        <p class="text-sm text-gray-500 mt-8 italic">GPON od PODA - technológia budúcnosti už dnes vo vašom dome.</p>
+        <p class="text-sm text-gray-500 mt-8 italic">GPON od PODA - technologie budoucnosti již dnes ve vašem domě.</p>
       </div>
     `,
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
     image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
-    alt: 'Moderný bytový komplex v Ostrave-Porubě s vizualizáciou optickej siete, futuristický vzhľad pripojenia PODA',
-    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rýchly internet'],
+    alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě, futuristický vzhled připojení PODA',
+    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
+  },
+  {
+    id: 100,
+    title: "Internet PODA v Ostravě-Porubě: Gigabitové připojení pro největší městskou část",
+    excerpt: "Kompletní průvodce optickým internetem PODA v Ostravě-Porubě. Zjistěte, proč je PODA nejlepší volbou pro vaši domácnost či firmu a jak získat nejrychlejší internet v regionu za nejnižší cenu.",
     content: `
       <div class="prose-content">
-        <h2>Úvod: Poruba vstupuje do gigabitovej éry</h2>
-        <p>Ostrava-Poruba, najväčšia mestská časť Ostravy s viac ako 67 000 obyvateľmi, sa stáva digitálnym centrom Moravskoslezského regiónu vďaka modernej optickej infraštruktúre PODA. Poruba sa dělí na několik menších částí, které se nazývají porubské obvody. Mezi ně patří například: Poruba 1, která zahrnuje oblast kolem hlavního náměstí. Poruba 2, kde najdeme například Oblastní nemocnici. Poruba 3, která se rozkládá v blízkosti Vysoké školy báňské. Poruba 8, kde se nacházejí převážně panelová sídliště. Toto jsou některé z částí, na které se Poruba dělí.</p>
+        <h2>Úvod: Poruba vstupuje do gigabitové éry</h2>
+        <p>Ostrava-Poruba, největší městská část Ostravy s více než 67 000 obyvateli, se stává digitálním centrem Moravskoslezského regionu díky moderní optické infrastruktuře PODA. Poruba se dělí na několik menších částí, které se nazývají porubské obvody. Mezi ně patří například: 
+Poruba 1, která zahrnuje oblast kolem hlavního náměstí. 
+Poruba 2, kde najdeme například Oblastní nemocnici. 
+Poruba 3, která se rozkládá v blízkosti Vysoké školy báňské. 
+Poruba 8, kde se nacházejí převážně panelová sídliště. 
+Toto jsou některé z částí, na které se Poruba dělí.</p>
 
-        <h2>Geografické pokrytie: Komplexná mapa dostupnosti</h2>
-        <h3>Úplný zoznam pokrytých ulíc v Porube</h3>
+        <h2>Geografické pokrytí: Komplexní mapa dostupnosti</h2>
+        <h3>Úplný seznam pokrytých ulic v Porubě</h3>
         <div class="bg-blue-50 p-6 rounded-lg my-6">
-          <h4>Pokryté lokality (abecedne):</h4>
+          <h4>Pokryté lokality (abecedně):</h4>
           <p class="text-sm mt-2">Aloise Gavlase, Bohuslava Martinů, Bulharská, Čkalovova, Dětská, Dvorní, Francouzská, Generála Sochora, Gurťjevova, Havanská, Hlavní třída, Heyrovského, Ivana Sekaniny, Jana Šoupala, Jindřicha Plachty, Karla Pokorného, Komenského, Kosmická, Kubánská, Kyjevská, Liptaňského náměstí, Ludvíka Podéště, Marie Majerové, Matěje Kopeckého, Mongolská, Nálepkova, Náměstí Družby, Nezvalovo náměstí, Opavská, Podroužkova, Polská, Porubská, Příčná, Průběžná, Pustkovecká, Rabasova, Řecká, Resslova, Skautská, Školní, Slepá, Slavíkova, Sokolovská, Španielova, Spartakovců, Spojů, Stavební, Svojsíkova, Tř. 17. listopadu, U Oblouku, U Školky, U Soudu, U Sportoviště, U Vozovny, Ukrajinská, Urxova, Větrná, Vietnamská, Vincence Makovského, Vítězslava Nováka, Vřesinská, Záhumenní, Zdeňka Štěpánka, Zednická, Žilinská.</p>
         </div>
 
-        <h3>Špeciálne zóny s prioritným pokrytím</h3>
+        <h3>Speciální zóny s prioritním pokrytím</h3>
         <ul>
-          <li><strong>Sídlisko porubské obvody:</strong> Kompletné pokrytie všetkých panelových domov</li>
-          <li><strong>Poruba-centrum:</strong> Plná dostupnosť v komerčnej zóne</li>
-          <li><strong>Poruba-sever:</strong> Novšie sídlištní domy a rodinné domy</li>
+          <li><strong>Sídliště porubské obvody:</strong> Kompletní pokrytí všech panelových domů</li>
+          <li><strong>Poruba-centrum:</strong> Plná dostupnost v komerční zóně</li>
+          <li><strong>Poruba-sever:</strong> Novější sídlištní domy a rodinné domy</li>
           <li><strong>Průmyslová zóna:</strong> Specializovaná firemní řešení</li>
         </ul>
 
@@ -503,6 +514,12 @@ export const sluzbyPosts: BlogPost[] = [
 
         <p class="text-sm text-gray-500 mt-8 italic">PODA v Porubě - váš vstup do gigabitové budoucnosti.</p>
       </div>
-    `
-  },
+    `,
+    date: '24. 4. 2025',
+    author: 'Milan Terč',
+    category: 'Služby',
+    image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
+    alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě, futuristický vzhled připojení PODA',
+    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
+  }
 ];

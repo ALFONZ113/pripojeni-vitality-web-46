@@ -9,8 +9,12 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {
+  // Přidáme zvýraznění pro blog o Porubě
+  const isPorubaPost = post.id === 100 || (post.title && post.title.includes('Poruba'));
+  const cardClasses = `bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation ${isPorubaPost ? 'ring-2 ring-poda-blue' : ''}`;
+
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation">
+    <div className={cardClasses}>
       <div className="relative h-48 overflow-hidden">
         <img 
           src={post.image} 
@@ -22,6 +26,13 @@ const BlogCard = ({ post }: BlogCardProps) => {
           onError={(e) => handleImageError(e)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {/* Zvýraznění pro blog o Porubě */}
+        {isPorubaPost && (
+          <div className="absolute top-2 right-2 bg-poda-blue text-white px-2 py-1 rounded text-xs font-semibold">
+            Nový
+          </div>
+        )}
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-3 text-sm text-gray-500">

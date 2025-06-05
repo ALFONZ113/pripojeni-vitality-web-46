@@ -14,6 +14,20 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
   const [searchParams] = useSearchParams();
   const [displayedPosts, setDisplayedPosts] = useState<BlogPost[]>(posts);
   
+  // Kontrolní výpis v useEffectu
+  useEffect(() => {
+    console.log("BlogList - Total posts:", posts.length);
+    console.log("BlogList - Posts IDs:", posts.map(p => p.id));
+    
+    // Specific check for Poruba post
+    const porubaPost = posts.find(p => p.id === 100);
+    if (porubaPost) {
+      console.log("Found Poruba post in BlogList:", porubaPost.title);
+    } else {
+      console.log("Poruba post NOT found in BlogList posts");
+    }
+  }, [posts]);
+  
   // Watch for URL parameter changes - e.g., when someone clicks on a tag
   useEffect(() => {
     const tag = searchParams.get('tag');
@@ -54,9 +68,22 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
     );
   }
 
+  // Seřadíme posty tak, aby Poruba byla první
+  const sortedPosts = [...displayedPosts].sort((a, b) => {
+    if (a.id === 100) return -1;
+    if (b.id === 100) return 1;
+    
+    // Pokud je v názvu "Poruba", dáme na začátek
+    if (a.title.includes('Poruba') && !b.title.includes('Poruba')) return -1;
+    if (!a.title.includes('Poruba') && b.title.includes('Poruba')) return 1;
+    
+    // Pro ostatní posty zachováme původní pořadí
+    return 0;
+  });
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {displayedPosts.map((post) => (
+      {sortedPosts.map((post) => (
         <BlogCard key={post.id} post={post} />
       ))}
     </div>

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { blogPosts, categories } from '../data/blog';
@@ -13,9 +14,11 @@ const Blog = () => {
   const [filteredPosts, setFilteredPosts] = useState(blogPosts);
   const [selectedCategory, setSelectedCategory] = useState('all');
   
+  // Zvýraznění pro Porubu - přidání parametru pro automatické hledání Poruby
   useEffect(() => {
     const category = searchParams.get('category');
     const tag = searchParams.get('tag');
+    const location = searchParams.get('location');
     
     if (category) {
       setSelectedCategory(category);
@@ -23,6 +26,11 @@ const Blog = () => {
     
     if (tag) {
       setSearchTerm(tag);
+    }
+    
+    // Automatické vyhledávání lokality
+    if (location === 'poruba') {
+      setSearchTerm('Poruba');
     }
   }, [searchParams]);
   
@@ -32,6 +40,13 @@ const Blog = () => {
   }, []);
   
   useEffect(() => {
+    // Získáme všechny posty a zkontrolujeme existenci postu s ID 100
+    const porubaPost = blogPosts.find(post => post.id === 100);
+    console.log("Poruba post exists:", !!porubaPost);
+    if (porubaPost) {
+      console.log("Poruba post title:", porubaPost.title);
+    }
+    
     let filtered = blogPosts;
     
     if (selectedCategory !== 'all') {
@@ -45,8 +60,15 @@ const Blog = () => {
         post.excerpt.toLowerCase().includes(term) ||
         post.author.toLowerCase().includes(term) ||
         post.category.toLowerCase().includes(term) ||
+        (post.content && post.content.toLowerCase().includes(term)) ||
         (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
       );
+    }
+    
+    // Kontrolní výpis
+    console.log(`Filtred posts count: ${filtered.length}`);
+    if (searchTerm.toLowerCase().includes('poruba')) {
+      console.log("Posts containing Poruba:", filtered.map(p => p.id));
     }
     
     setFilteredPosts(filtered);
@@ -87,7 +109,7 @@ const Blog = () => {
     const locations = ['Ostrava', 'Karviná', 'Bohumín', 'Frýdek-Místek', 'Havířov', 'Poruba', 'Orlová'];
     return locations.filter(location => 
       blogPosts.some(post => 
-        post.title.includes(location) || post.content.includes(location)
+        post.title.includes(location) || (post.content && post.content.includes(location))
       )
     );
   };
@@ -105,6 +127,11 @@ const Blog = () => {
       return `${baseDescription}. Hledání: ${searchTerm}`;
     }
     return `${baseDescription}. Aktuálně ${blogPosts.length} článků.`;
+  };
+
+  // Tlačítko pro rychlý přístup k blogu o Porubě
+  const showPorubaPost = () => {
+    setSearchTerm("Poruba");
   };
 
   return (
@@ -232,6 +259,17 @@ const Blog = () => {
             </p>
             
             <BlogSearch searchTerm={searchTerm} onSearch={handleSearch} />
+            
+            {/* Promo banner pro článek o Porubě */}
+            <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-100 inline-block">
+              <button 
+                onClick={showPorubaPost} 
+                className="flex items-center text-poda-blue hover:text-poda-orange transition-colors font-semibold"
+              >
+                <span className="bg-poda-blue text-white rounded-full px-2 py-1 text-xs mr-2">NOVÉ</span>
+                Přečtěte si o novém připojení v Ostravě-Porubě
+              </button>
+            </div>
           </div>
         </div>
       </section>

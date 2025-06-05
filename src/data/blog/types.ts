@@ -23,5 +23,5 @@ export const categories: BlogCategory[] = [
   { id: 'Tipy a rady', name: 'Tipy a rady' },
   { id: 'Služby', name: 'Služby' },
   { id: 'Novinky', name: 'Novinky' },
-  { id: 'Recenzie', name: 'Recenzie' }
+  { id: 'Recenze', name: 'Recenze' }
 ];

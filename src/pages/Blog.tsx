@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { blogPosts, categories } from '../data/blog';
@@ -98,27 +97,27 @@ const Blog = () => {
   
   // Generate enhanced meta description
   const generateMetaDescription = () => {
-    const baseDescription = "Blog o internetových službách PODA - články o technológiách, tipoch pre lepšie využitie internetu a televízie";
+    const baseDescription = "Blog o internetových službách PODA - články o technologiích, tipy pro lepší využití internetu a televize";
     if (selectedCategory !== 'all') {
-      return `${baseDescription}. Kategória: ${selectedCategory}`;
+      return `${baseDescription}. Kategorie: ${selectedCategory}`;
     }
     if (searchTerm) {
-      return `${baseDescription}. Hľadanie: ${searchTerm}`;
+      return `${baseDescription}. Hledání: ${searchTerm}`;
     }
-    return `${baseDescription}. Aktuálne ${blogPosts.length} článkov.`;
+    return `${baseDescription}. Aktuálně ${blogPosts.length} článků.`;
   };
 
   return (
     <div className="min-h-screen pt-24">
       <Helmet>
-        <title>Blog o internete a technológiách | PODA | Popri.cz</title>
+        <title>Blog o internetu a technologiích | PODA | Popri.cz</title>
         <meta name="description" content={generateMetaDescription()} />
         <link rel="canonical" href="https://www.popri.cz/blog" />
         <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, internetové technologie, ${allTags.join(', ')}, ${locations.join(', ')}`} />
         <link rel="alternate" href="https://popri.cz/blog" hrefLang="cs" />
         
         {/* Enhanced Open Graph */}
-        <meta property="og:title" content="Blog PODA | Internetové služby a technológie" />
+        <meta property="og:title" content="Blog PODA | Internetové služby a technologie" />
         <meta property="og:description" content={generateMetaDescription()} />
         <meta property="og:url" content="https://www.popri.cz/blog" />
         <meta property="og:type" content="website" />
@@ -145,7 +144,7 @@ const Blog = () => {
             "inLanguage": "cs-CZ",
             "about": {
               "@type": "Thing",
-              "name": "Internet a telekomunikačné služby"
+              "name": "Internet a telekomunikační služby"
             },
             "publisher": {
               "@type": "Organization",
@@ -225,11 +224,11 @@ const Blog = () => {
               Blog a novinky
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
-              Články o internete a technológiách
+              Články o internetu a technologiích
             </h1>
             <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200">
-              Prečítajte si najnovšie články o technológiách, tipoch pre lepšie využitie vašeho internetu 
-              a televízie. Všetko o službách PODA v {locations.join(', ')} a ďalších mestách.
+              Přečtěte si nejnovější články o technologiích, tipy pro lepší využití vašeho internetu 
+              a televize. Vše o službách PODA v {locations.join(', ')} a dalších městech.
             </p>
             
             <BlogSearch searchTerm={searchTerm} onSearch={handleSearch} />
@@ -254,11 +253,11 @@ const Blog = () => {
           <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-8 rounded-xl shadow-lg">
               <h2 className="text-2xl font-bold mb-4">
-                Hľadáte rýchle internetové pripojenie?
+                Hledáte rychlé internetové připojení?
               </h2>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                PODA poskytuje spoľahlivé optické pripojenie v {locations.slice(0, 3).join(', ')} 
-                a ďalších mestách. Kontaktujte nás pre bezplatnú konzultáciu.
+                PODA poskytuje spolehlivé optické připojení v {locations.slice(0, 3).join(', ')} 
+                a dalších městech. Kontaktujte nás pro bezplatnou konzultaci.
               </p>
               <div className="flex gap-4 justify-center flex-wrap">
                 <a
@@ -271,7 +270,7 @@ const Blog = () => {
                   href="/kontakt"
                   className="bg-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors"
                 >
-                  Kontaktný formulár
+                  Kontaktní formulář
                 </a>
               </div>
             </div>

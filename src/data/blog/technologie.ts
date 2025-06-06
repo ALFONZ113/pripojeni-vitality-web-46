@@ -4,7 +4,7 @@ import { BlogPost } from './types';
 export const technologiePosts: BlogPost[] = [
   {
     id: 3,
-    title: "Jak vybrat správný router pro váš domov: Kompletní průvodce 2024",
+    title: "Jak vybrat správný router pro váš domov: Kompletní průvodce 2025",
     excerpt: "Vše, co potřebujete vědět o výběru routeru pro domácí použití. Porovnání funkcí, výkonu a cen nejlepších modelů na trhu.",
     content: `
       <div class="prose-content">
@@ -58,8 +58,8 @@ export const technologiePosts: BlogPost[] = [
     date: "20. 5. 2025",
     author: "Tomáš Novák",
     category: "Technologie",
-    image: "/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
-    alt: "Moderní Wi-Fi router s anténami",
+    image: "/lovable-uploads/77099393-c42f-4da8-8d98-a7a65e08a093.png",
+    alt: "Moderní Wi-Fi router s futuristickým dizajnom a technologickými prvkami",
     tags: ["Router", "Wi-Fi", "Domácí síť", "Wi-Fi 6", "Technologie"]
   },
   {

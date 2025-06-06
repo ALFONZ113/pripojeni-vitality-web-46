@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const sluzbyPosts: BlogPost[] = [
@@ -343,7 +342,7 @@ export const sluzbyPosts: BlogPost[] = [
                 <td class="py-2">T-Mobile</td>
                 <td class="py-2">50/10 Mbps</td>
                 <td class="py-2 text-red-600">799 Kč</td>
-                <td class="py-2 text-red-600">800 Kč</td>
+                <td class-2 text-red-600">800 Kč</td>
                 <td class="py-2 text-red-600">24 mesiacov</td>
               </tr>
             </tbody>
@@ -411,8 +410,8 @@ export const sluzbyPosts: BlogPost[] = [
     date: '1. 6. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png',
+    image: '/blog poruba ibternet.webp',
     alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě a připojení PODA',
-    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rýchly internet'],
+    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rychlý internet'],
   }
 ];

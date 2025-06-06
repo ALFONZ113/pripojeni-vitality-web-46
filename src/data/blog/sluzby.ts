@@ -104,7 +104,7 @@ export const sluzbyPosts: BlogPost[] = [
         <h2>Technická implementace GPON v různých typech zástavby</h2>
         <h3>Panelové domy (Ostrava, Karviná)</h3>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h4>FTTH (Fiber to the Home) v panelácích:</h4>
+          <h4>FTTH (Fiber to the Home) v panelákoch:</h4>
           <ul class="space-y-2 mt-4">
             <li><strong>Přivedení optiky:</strong> Hlavní šachta → rozvaděč na patře</li>
             <li><strong>Distribuce po bytech:</strong> Individuální optická vlákna</li>
@@ -353,22 +353,19 @@ export const sluzbyPosts: BlogPost[] = [
         <h3>Typická doba realizácie</h3>
         <ul>
           <li><strong>Panelové domy s optikou:</strong> 1-3 dni</li>
-          <li><strong>Panelové domy bez optiky:</strong> 1-2 týždne</li>
+          <li><strong>Panelové domy bez optiky:</strong> 1-2 týdne</li>
           <li><strong>Rodinné domy:</strong> 3-7 dní</li>
           <li><strong>Nové budovy:</strong> Koordinácia s developerom</li>
         </ul>
 
-        <h3>Proces inštalácie krok za krokom</h3>
-        <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-          <h3 class="text-white mb-4">Profesionálna inštalácia PODA v Porube (5 bodov):</h3>
-          <ol class="space-y-2">
-            <li><strong>1. Objednávka cez popri.cz</strong> - overenie dostupnosti na adrese</li>
-            <li><strong>2. Technická prehliadka</strong> - návrh optimálneho riešenia</li>
-            <li><strong>3. Koordinácia s bytovým družstvom</strong> - získanie súhlasov</li>
-            <li><strong>4. Inštalácia optiky</strong> - vedenie káblov do bytu/domu</li>
-            <li><strong>5. Nastavenie zariadení</strong> - konfigurácia modemu a routera</li>
-          </ol>
-        </div>
+        <h3>Profesionálna inštalácia PODA v Porube (5 bodov):</h3>
+        <ol class="space-y-2">
+          <li><strong>1. Objednávka kontaktu</strong> - spojení prostřednictvím Milana Terče na tel. 730 431 313 nebo online přes popri.cz</li>
+          <li><strong>2. Osobní konzultace</strong> - Milan Terč vás navštíví pro detailní zmapování požadavků a sepsání objednávky</li>
+          <li><strong>3. Koordinácia termínu</strong> - zavoláme vám a dohodneme si nejoptimálnější termín instalace dle vašich možností</li>
+          <li><strong>4. Technická realizace</strong> - kvalifikovaný technik provede kompletní instalaci všech potřebných služeb a zařízení</li>
+          <li><strong>5. Plně funkční služby</strong> - po dokončení instalace jsou všechny služby ihned připraveny k používání</li>
+        </ol>
 
         <h2>Zákaznícka podpora</h2>
         <h3>Lokálne servisné centrum</h3>

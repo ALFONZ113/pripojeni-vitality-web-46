@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const technologiePosts: BlogPost[] = [
@@ -59,7 +58,7 @@ export const technologiePosts: BlogPost[] = [
     author: "Tomáš Novák",
     category: "Technologie",
     image: "/lovable-uploads/77099393-c42f-4da8-8d98-a7a65e08a093.png",
-    alt: "Moderní Wi-Fi router s futuristickým dizajnom a technologickými prvkami",
+    alt: "Moderní Wi-Fi router s futuristickým dizajnem a technologickými prvkami",
     tags: ["Router", "Wi-Fi", "Domácí síť", "Wi-Fi 6", "Technologie"]
   },
   {
@@ -429,7 +428,7 @@ export const technologiePosts: BlogPost[] = [
     date: "8. 5. 2025",
     author: "Milan Terč",
     category: "Technologie",
-    image: "/lovable-uploads/c6595b21-b123-40f5-9ec0-6986badb9d6d.png",
+    image: "/lovable-uploads/9ce3244c-96d6-4078-9808-3edc99d0e01b.png",
     alt: "Futuristická vizualizácia prepojenia telekomunikačných sietí, symbolizujúca zmeny na trhu poskytovateľov internetu",
     tags: ["O2", "Nej.cz", "Netbox", "PODA", "Migrácia", "Ostrava", "Akvizícia", "Telekomunikácie"]
   }

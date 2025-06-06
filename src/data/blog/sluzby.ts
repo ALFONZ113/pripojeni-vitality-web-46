@@ -1,5 +1,3 @@
-
-
 import { BlogPost } from './types';
 
 export const sluzbyPosts: BlogPost[] = [
@@ -37,7 +35,6 @@ export const sluzbyPosts: BlogPost[] = [
           </ul>
         </div>
 
-        <h2>Případová studie: Transformace rodinného domu v Havířově</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
           <p>"Náš rodinný dům v Havířově-Šumbarku měl vážné problémy s internetem. Starý DSL s rychlostí 25 Mbps nezvládal potřeby naší 5-členné rodiny. Dva synové hráli online hry, dcera studovala online na VŠB-TUO a my s manželkou jsme pracovali z domova. Po přechodu na GPON od PODA s 1000 Mbps symetricky se náš digitální život úplně změnil. Každý může dělat co potřebuje bez omezení."</p>
           <footer class="mt-2 text-sm text-gray-600">
@@ -261,7 +258,7 @@ export const sluzbyPosts: BlogPost[] = [
     date: '24. 4. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg',
+    image: '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
     alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě, futuristický vzhled připojení PODA',
     tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
   },
@@ -411,9 +408,8 @@ export const sluzbyPosts: BlogPost[] = [
     date: '1. 6. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/blog poruba ibternet.webp',
+    image: '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
     alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě a připojení PODA',
     tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rychlý internet'],
   }
 ];
-

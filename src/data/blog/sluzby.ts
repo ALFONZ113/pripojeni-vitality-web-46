@@ -1,3 +1,4 @@
+
 import { BlogPost } from './types';
 
 export const sluzbyPosts: BlogPost[] = [
@@ -265,7 +266,7 @@ export const sluzbyPosts: BlogPost[] = [
   },
   {
     id: 100,
-    title: "Internet PODA v Ostravě-Porubě: Gigabitové připojení pre najväčšiu mestskú časť",
+    title: "Internet PODA v Ostravě-Porubě: Gigabitové pripojenie pre najväčšiu mestskú časť",
     excerpt: "Kompletné informácie o optickom pripojení PODA v Ostrave-Porube. Pokrytie, inštalácia, ceny a výhody oproti konkurencii.",
     content: `
       <div class="prose-content">
@@ -410,8 +411,8 @@ export const sluzbyPosts: BlogPost[] = [
     date: '1. 6. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png',
-    alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě',
+    image: '/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png',
+    alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě a připojení PODA',
     tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rýchly internet'],
   }
 ];

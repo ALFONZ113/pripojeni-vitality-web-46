@@ -1,3 +1,4 @@
+
 import { BlogPost } from './types';
 
 export const sluzbyPosts: BlogPost[] = [
@@ -342,7 +343,7 @@ export const sluzbyPosts: BlogPost[] = [
                 <td class="py-2">T-Mobile</td>
                 <td class="py-2">50/10 Mbps</td>
                 <td class="py-2 text-red-600">799 Kč</td>
-                <td class-2 text-red-600">800 Kč</td>
+                <td class="py-2 text-red-600">800 Kč</td>
                 <td class="py-2 text-red-600">24 mesiacov</td>
               </tr>
             </tbody>
@@ -358,14 +359,16 @@ export const sluzbyPosts: BlogPost[] = [
           <li><strong>Nové budovy:</strong> Koordinácia s developerom</li>
         </ul>
 
-        <h3>Profesionálna inštalácia PODA v Porube (5 bodov):</h3>
-        <ol class="space-y-2">
-          <li><strong>1. Objednávka kontaktu</strong> - spojení prostřednictvím Milana Terče na tel. 730 431 313 nebo online přes popri.cz</li>
-          <li><strong>2. Osobní konzultace</strong> - Milan Terč vás navštíví pro detailní zmapování požadavků a sepsání objednávky</li>
-          <li><strong>3. Koordinácia termínu</strong> - zavoláme vám a dohodneme si nejoptimálnější termín instalace dle vašich možností</li>
-          <li><strong>4. Technická realizace</strong> - kvalifikovaný technik provede kompletní instalaci všech potřebných služeb a zařízení</li>
-          <li><strong>5. Plně funkční služby</strong> - po dokončení instalace jsou všechny služby ihned připraveny k používání</li>
-        </ol>
+        <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
+          <h3 class="text-white mb-4">Profesionálna inštalácia PODA v Porube:</h3>
+          <ol class="space-y-3">
+            <li><strong>1. Objednávka kontaktu</strong> - spojení prostřednictvím Milana Terče na tel. 730 431 313 nebo online přes popri.cz</li>
+            <li><strong>2. Osobní konzultace</strong> - Milan Terč vás navštíví pro detailní zmapování požadavků a sepsání objednávky</li>
+            <li><strong>3. Koordinácia termínu</strong> - zavoláme vám a dohodneme si nejoptimálnější termín instalace dle vašich možností</li>
+            <li><strong>4. Technická realizace</strong> - kvalifikovaný technik provede kompletní instalaci všech potřebných služeb a zařízení</li>
+            <li><strong>5. Plně funkční služby</strong> - po dokončení instalace jsou všechny služby ihned připraveny k používání</li>
+          </ol>
+        </div>
 
         <h2>Zákaznícka podpora</h2>
         <h3>Lokálne servisné centrum</h3>

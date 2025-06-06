@@ -1,4 +1,5 @@
 
+
 import { BlogPost } from './types';
 
 export const sluzbyPosts: BlogPost[] = [
@@ -86,7 +87,7 @@ export const sluzbyPosts: BlogPost[] = [
           <h4>Porovnání latencí různých technologií:</h4>
           <ul class="space-y-1 mt-2">
             <li><strong>GPON (PODA):</strong> 1-3 ms - ideální pro gaming a VoIP</li>
-            <li><strong>Coaxial (UPC):</strong> 15-25 ms - vyhovující</li>
+            <li><strong>Coaxial (Vodafone):</strong> 15-25 ms - vyhovující</li>
             <li><strong>DSL (O2):</strong> 25-50 ms - omezující</li>
             <li><strong>LTE (T-Mobile):</strong> 30-80 ms - problematické</li>
             <li><strong>Satelit:</strong> 600+ ms - nepoužitelné pro real-time</li>
@@ -150,7 +151,7 @@ export const sluzbyPosts: BlogPost[] = [
                 <td class="py-2 text-green-600">99,9%</td>
               </tr>
               <tr class="border-b">
-                <td class="py-2">Coaxial (UPC)</td>
+                <td class="py-2">Coaxial (Vodafone)</td>
                 <td class="py-2 text-orange-600">699 Kč</td>
                 <td class="py-2">41 940 Kč</td>
                 <td class="py-2">300/30 Mbps</td>
@@ -326,7 +327,7 @@ export const sluzbyPosts: BlogPost[] = [
                 <td class="py-2 text-green-600">Bez záväzku</td>
               </tr>
               <tr class="border-b">
-                <td class="py-2">UPC (Liberty)</td>
+                <td class="py-2">Vodafone (Liberty)</td>
                 <td class="py-2">500/50 Mbps</td>
                 <td class="py-2 text-red-600">899 Kč</td>
                 <td class="py-2 text-red-600">990 Kč</td>
@@ -415,3 +416,4 @@ export const sluzbyPosts: BlogPost[] = [
     tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rychlý internet'],
   }
 ];
+

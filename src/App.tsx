@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,6 +21,7 @@ import OchranaSoukromi from "./pages/OchranaSoukromi";
 import ObchodniPodminky from "./pages/ObchodniPodminky";
 import Cookies from "./pages/Cookies";
 import Tarify from "./pages/Tarify";
+import IPTV from "./pages/IPTV";
 
 // Create a centralized query client with optimized settings
 const queryClient = new QueryClient({
@@ -85,6 +85,7 @@ const App = () => {
                 <Route path="/obchodni-podminky" element={<ObchodniPodminky />} />
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/tarify" element={<Tarify />} />
+                <Route path="/iptv" element={<IPTV />} />
                 
                 {/* Legacy URL redirects */}
                 <Route path="/stary-clanek" element={<Navigate to="/blog/novy-clanek" replace />} />

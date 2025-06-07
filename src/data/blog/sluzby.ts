@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const sluzbyPosts: BlogPost[] = [
@@ -409,7 +408,7 @@ export const sluzbyPosts: BlogPost[] = [
     date: '1. 6. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/blog poruba ibternet.webp',
+    image: '/lovable-uploads/8160a571-1dff-406c-bd7a-09dfb7c9e6f2.png',
     alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě a připojení PODA',
     tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rychlý internet'],
   }

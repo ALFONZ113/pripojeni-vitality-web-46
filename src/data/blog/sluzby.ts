@@ -408,8 +408,8 @@ export const sluzbyPosts: BlogPost[] = [
     date: '1. 6. 2025',
     author: 'Milan Terč',
     category: 'Služby',
-    image: '/lovable-uploads/8160a571-1dff-406c-bd7a-09dfb7c9e6f2.png',
-    alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě a připojení PODA',
+    image: '/lovable-uploads/fedd23c9-5c8e-46f4-9d2e-02b0d64208cf.png',
+    alt: 'Moderná ulica v Ostrave-Porube s vizualizáciou optických pripojení a svetelných efektov symbolizujúcich rýchly internet PODA',
     tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rychlý internet'],
   }
 ];

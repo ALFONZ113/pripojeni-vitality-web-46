@@ -1,11 +1,12 @@
 
-# www.popri.cz robots.txt - Updated 2025-05-30
+# www.popri.cz robots.txt - Updated 2025-06-08
 User-agent: *
 Allow: /
 
 # Explicitly allow main pages with priority
 Allow: /$
 Allow: /internet-tv$
+Allow: /iptv$
 Allow: /tarify$
 Allow: /programy$
 Allow: /kontakt$
@@ -15,8 +16,27 @@ Allow: /cookies$
 Allow: /obchodni-podminky$
 Allow: /ochrana-soukromi$
 
-# Explicitly allow indexing of blog posts
+# Local geo-specific pages
+Allow: /internet-ostrava$
+Allow: /internet-karvina$
+Allow: /internet-bohumin$
+Allow: /internet-havirov$
+
+# Explicitly allow indexing of blog posts by ID
+Allow: /blog/1$
+Allow: /blog/2$
+Allow: /blog/3$
+Allow: /blog/4$
+Allow: /blog/5$
+Allow: /blog/6$
+Allow: /blog/7$
+Allow: /blog/8$
+Allow: /blog/9$
 Allow: /blog/10$
+Allow: /blog/11$
+Allow: /blog/100$
+
+# Legacy blog URLs that might exist
 Allow: /blog/gpon-technologie$
 Allow: /blog/fiber-to-home$
 Allow: /blog/opticky-internet-vyhody$
@@ -27,7 +47,7 @@ Allow: /blog/domaci-sit-nastaveni$
 Allow: /blog/streaming-optimalizace$
 Allow: /blog/internet-rychlost-testovani$
 
-# Explicitly allow indexing of tags and categories
+# Allow indexing of tags and categories
 Allow: /blog?category=*
 Allow: /blog?tag=*
 Allow: /blog?search=*
@@ -42,6 +62,10 @@ Allow: /blog?tag=Optická+vlákna
 Allow: /blog?tag=Gigabitové+připojení
 Allow: /blog?tag=Fiber+to+the+Home
 Allow: /blog?tag=Karviná
+Allow: /blog?tag=Ostrava
+Allow: /blog?tag=Poruba
+Allow: /blog?tag=Havířov
+Allow: /blog?tag=Bohumín
 Allow: /blog?tag=PODA+internet
 Allow: /blog?tag=Moravskoslezský+kraj
 Allow: /blog?tag=Popri.cz
@@ -80,5 +104,5 @@ User-agent: Googlebot-Image
 Allow: /assets/*
 Allow: /lovable-uploads/*
 
-# Sitemap declarations - consolidated
+# Sitemap declarations
 Sitemap: https://www.popri.cz/sitemap.xml

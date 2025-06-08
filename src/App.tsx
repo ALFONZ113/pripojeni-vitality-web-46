@@ -23,6 +23,13 @@ import Cookies from "./pages/Cookies";
 import Tarify from "./pages/Tarify";
 import IPTV from "./pages/IPTV";
 
+// Geo-specific pages
+import InternetOstrava from "./pages/InternetOstrava";
+import InternetHavirov from "./pages/InternetHavirov";
+import InternetKarvina from "./pages/InternetKarvina";
+import InternetBohumin from "./pages/InternetBohumin";
+import InternetPoruba from "./pages/InternetPoruba";
+
 // Create a centralized query client with optimized settings
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -86,6 +93,13 @@ const App = () => {
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/tarify" element={<Tarify />} />
                 <Route path="/iptv" element={<IPTV />} />
+                
+                {/* Geo-specific pages */}
+                <Route path="/internet-ostrava" element={<InternetOstrava />} />
+                <Route path="/internet-havirov" element={<InternetHavirov />} />
+                <Route path="/internet-karvina" element={<InternetKarvina />} />
+                <Route path="/internet-bohumin" element={<InternetBohumin />} />
+                <Route path="/internet-poruba" element={<InternetPoruba />} />
                 
                 {/* Legacy URL redirects */}
                 <Route path="/stary-clanek" element={<Navigate to="/blog/novy-clanek" replace />} />

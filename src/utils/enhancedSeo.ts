@@ -1,7 +1,61 @@
-
 import { blogPosts } from '../data/blog';
 import type { BlogPost } from '../data/blog/types';
 import { generateLocalBusinessStructuredData, extractSEOKeywords } from './sitemapGenerator';
+
+/**
+ * Rozšírený zoznam lokálnych kľúčových fráz pre lepšie SEO
+ */
+export const EXTENDED_LOCAL_KEYWORDS = {
+  // Hlavné mestá
+  ostrava: [
+    'internet Ostrava', 'PODA Ostrava', 'optické pripojenie Ostrava', 'gigabitový internet Ostrava',
+    'rýchly internet Ostrava', 'GPON Ostrava', 'pripojenie internetu Ostrava', 'optická vlákna Ostrava',
+    'vysokorýchlostný internet Ostrava', 'fiber internet Ostrava', 'internet poskytovateľ Ostrava',
+    'internetové služby Ostrava', 'optika Ostrava', 'FTTH Ostrava', 'wifi Ostrava'
+  ],
+  karvina: [
+    'internet Karviná', 'PODA Karviná', 'optické pripojenie Karviná', 'gigabitový internet Karviná',
+    'rýchly internet Karviná', 'GPON Karviná', 'pripojenie internetu Karviná', 'optická vlákna Karviná',
+    'vysokorýchlostný internet Karviná', 'fiber internet Karviná', 'internet poskytovateľ Karviná',
+    'internetové služby Karviná', 'optika Karviná', 'FTTH Karviná'
+  ],
+  havirov: [
+    'internet Havířov', 'PODA Havířov', 'optické pripojenie Havířov', 'gigabitový internet Havířov',
+    'rýchly internet Havířov', 'GPON Havířov', 'pripojenie internetu Havířov', 'optická vlákna Havířov',
+    'vysokorýchlostný internet Havířov', 'fiber internet Havířov', 'internet poskytovateľ Havířov',
+    'internetové služby Havířov', 'optika Havířov', 'FTTH Havířov'
+  ],
+  bohumin: [
+    'internet Bohumín', 'PODA Bohumín', 'optické pripojenie Bohumín', 'gigabitový internet Bohumín',
+    'rýchly internet Bohumín', 'GPON Bohumín', 'pripojenie internetu Bohumín', 'optická vlákna Bohumín',
+    'vysokorýchlostný internet Bohumín', 'fiber internet Bohumín', 'internet poskytovateľ Bohumín',
+    'internetové služby Bohumín', 'optika Bohumín', 'FTTH Bohumín'
+  ],
+  poruba: [
+    'internet Poruba', 'PODA Poruba', 'optické pripojenie Poruba', 'gigabitový internet Poruba',
+    'rýchly internet Poruba', 'GPON Poruba', 'internet Ostrava-Poruba', 'pripojenie internetu Poruba',
+    'optická vlákna Poruba', 'vysokorýchlostný internet Poruba', 'fiber internet Poruba',
+    'internet poskytovateľ Poruba', 'internetové služby Poruba', 'optika Poruba', 'FTTH Poruba',
+    'Ostrava Poruba internet'
+  ],
+  
+  // Všeobecné regionálne frázy
+  general: [
+    'pripojenie internetu', 'internetové pripojenie', 'rýchly internet', 'gigabitový internet',
+    'optické pripojenie', 'GPON technológia', 'fiber to the home', 'FTTH', 'optická vlákna',
+    'vysokorýchlostný internet', 'internet poskytovateľ', 'internetové služby', 'optika',
+    'wifi pripojenie', 'bezdrôtový internet', 'fiber internet', 'optické internet',
+    'internet Moravskoslezský kraj', 'PODA internet', 'popri.cz', 'gigabit internet'
+  ],
+  
+  // Špeciálne kombinácie
+  combinations: [
+    'internet + TV', 'optické pripojenie + televízia', 'GPON + IPTV', 'gigabitový internet + TV',
+    'fiber internet + streaming', 'rychlý internet pre domácnosť', 'firemný internet',
+    'internet pre podnikanie', 'bezplatná inštalácia internetu', 'internet bez viazanosti',
+    'internet na objednávku', '24/7 internet podpora', 'lokálny internet poskytovateľ'
+  ]
+};
 
 /**
  * Generate comprehensive meta tags for geo-specific pages
@@ -11,48 +65,61 @@ export const generateGeoPageMeta = (city: string, baseUrl: string) => {
     'ostrava': {
       name: 'Ostrava',
       population: '285 000',
-      districts: ['Poruba', 'Vítkovice', 'Mariánské Hory', 'Moravská Ostrava'],
-      description: 'Třetí největší město ČR s moderní optickou infrastrukturou'
+      districts: ['Poruba', 'Vítkovice', 'Mariánské Hory', 'Moravská Ostrava', 'Ostrava-Jih', 'Slezská Ostrava'],
+      description: 'Třetí největší město ČR s moderní optickou infrastrukturou a kompletním GPON pokrytím',
+      specialties: ['Najväčší trh v regióne', 'Kompletné pokrytie všetkých MČ', 'Priemyselné centrum']
     },
     'karvina': {
       name: 'Karviná', 
       population: '52 000',
       districts: ['Ráj', 'Hranice', 'Mizerova', 'Nové Město'],
-      description: 'Město na polských hranicích s plným pokrytím GPON'
+      description: 'Mesto na polských hranicích s plným pokrytím GPON a medzinárodným pripojením',
+      specialties: ['Pohraničná poloha', 'Medzinárodné pripojenie', 'Strategická lokácia']
     },
     'bohumin': {
       name: 'Bohumín',
       population: '21 000', 
       districts: ['Starý Bohumín', 'Nový Bohumín', 'Skřečoň'],
-      description: 'Strategické město na hranici s Polskem a Slovenskem'
+      description: 'Strategické mesto na hranici s Polskom a Slovenskom s trojkrajinným optickým pripojením',
+      specialties: ['Trojnásobné pripojenie', 'Najnižšie latencie', 'Express inštalácia']
     },
     'havirov': {
       name: 'Havířov',
       population: '70 000',
       districts: ['Šumbark', 'Město', 'Podlesí', 'Prostřední Suchá'],
-      description: 'Mladé město s moderní infrastrukturou a kompletním optickým pokrytím'
+      description: 'Mladé mesto s modernou infraštruktúrou a kompletným optickým pokrytím GPON',
+      specialties: ['Mladé mesto', 'Moderná infraštruktúra', 'Vysoká penetrácia']
+    },
+    'poruba': {
+      name: 'Poruba',
+      population: '67 000',
+      districts: ['Ostrava-Poruba'],
+      description: 'Najväčšia mestská časť Ostravy s najhustejšou optickou sieťou v regióne',
+      specialties: ['Najväčšia MČ', 'Študentské zľavy', 'Same-day inštalácia']
     }
   };
 
   const info = cityData[city as keyof typeof cityData];
   if (!info) return null;
 
-  const title = `Internet PODA ${info.name} | Gigabitové optické pripojenie | Popri.cz`;
-  const description = `Rýchly internet PODA v ${info.name} s optickou technológiou GPON. Rýchlosť až 1000 Mbps, bezplatná inštalácia. Pokrytie: ${info.districts.join(', ')}. Tel: 730 431 313`;
+  // Získaj relevantné kľúčové slová
+  const cityKeywords = EXTENDED_LOCAL_KEYWORDS[city as keyof typeof EXTENDED_LOCAL_KEYWORDS] || [];
+  const generalKeywords = EXTENDED_LOCAL_KEYWORDS.general;
+  const combinationKeywords = EXTENDED_LOCAL_KEYWORDS.combinations;
+
+  const title = `Internet PODA ${info.name} | Gigabitové optické pripojenie | Tel: 730 431 313`;
+  const description = `Najrýchlejší internet PODA v ${info.name} s optickou technológiou GPON. Rýchlosť až 1000 Mbps, bezplatná inštalácia. Pokrytie: ${info.districts.join(', ')}. ${info.description}`;
   
   return {
     title,
     description,
     keywords: [
-      `internet ${info.name}`,
-      `PODA ${info.name}`,
-      `optické pripojenie ${info.name}`,
-      'GPON',
-      'gigabitový internet',
-      'rýchly internet',
-      ...info.districts.map(d => `internet ${d}`),
+      ...cityKeywords.slice(0, 10), // Top 10 lokálnych
+      ...generalKeywords.slice(0, 8), // Top 8 všeobecných
+      ...combinationKeywords.slice(0, 5), // Top 5 kombinácií
       'Moravskoslezský kraj',
-      'optická vlákna'
+      'PODA internet',
+      'popri.cz'
     ].join(', '),
     structuredData: generateLocalBusinessStructuredData(info.name, baseUrl),
     breadcrumbs: [
@@ -66,7 +133,8 @@ export const generateGeoPageMeta = (city: string, baseUrl: string) => {
       'geo.position': getCoordinates(info.name),
       'ICBM': getCoordinates(info.name),
       'DC.title': `Internet PODA ${info.name}`
-    }
+    },
+    cityInfo: info // Pridané pre použitie v komponentoch
   };
 };
 
@@ -78,7 +146,8 @@ const getCoordinates = (city: string): string => {
     'Ostrava': '49.8175,18.2624',
     'Karviná': '49.8557,18.5370', 
     'Bohumín': '49.9043,18.3570',
-    'Havířov': '49.7794,18.4437'
+    'Havířov': '49.7794,18.4437',
+    'Poruba': '49.8175,18.2624' // Rovnaké ako Ostrava
   };
   
   return coords[city as keyof typeof coords] || coords['Ostrava'];

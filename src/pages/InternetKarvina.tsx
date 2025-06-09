@@ -1,15 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Phone, Wifi, Clock, CheckCircle, MapPin, Star } from 'lucide-react';
+import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const InternetKarvina = () => {
+  const [openPromoInfo, setOpenPromoInfo] = useState(false);
+
   return (
     <div className="min-h-screen">
       <Helmet>
         <title>Internet PODA Karviná | Gigabitové optické pripojenie | Tel: 730 431 313</title>
-        <meta name="description" content="Najrýchlejší internet PODA v Karviné s optickou technológiou GPON. Rýchlosť až 1000 Mbps, bezplatná inštalácia. Pokrytie: Ráj, Hranice, Mizerova, Nové Město." />
+        <meta name="description" content="Najrýchlejší internet PODA v Karviné s optickou technológiou GPON. Rýchlosť až 2000 Mbps, bezplatná inštalácia. Pokrytie: Ráj, Hranice, Mizerova, Nové Město." />
         <meta name="keywords" content="internet Karviná, PODA Karviná, optické pripojenie Karviná, gigabitový internet Karviná, rýchly internet Karviná, GPON Karviná, internet Ráj Karviná, internet Hranice Karviná, pripojenie internetu Karviná, optická vlákna Karviná, vysokorýchlostný internet Karviná" />
         <link rel="canonical" href="https://www.popri.cz/internet-karvina" />
         
@@ -41,7 +44,7 @@ const InternetKarvina = () => {
                 "Karviná-Nové Město"
               ],
               "serviceType": ["Gigabitový internet", "Optické pripojenie", "GPON", "TV služby"],
-              "priceRange": "250-899 CZK"
+              "priceRange": "250-520 CZK"
             }
           `}
         </script>
@@ -165,15 +168,35 @@ const InternetKarvina = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span>Internet 300 Mbps</span>
-                    <span className="font-bold">299 Kč/mes</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Internet 500 Mbps</span>
-                    <span className="font-bold">399 Kč/mes</span>
+                    <span className="font-bold">340 Kč/mes</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span>Internet 1000 Mbps</span>
-                    <span className="font-bold">599 Kč/mes</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-gray-300 line-through text-sm">440 Kč</span>
+                      <span className="font-bold text-poda-orange">250 Kč/mes</span>
+                    </div>
+                  </div>
+                  <Collapsible
+                    open={openPromoInfo}
+                    onOpenChange={setOpenPromoInfo}
+                    className="mt-1"
+                  >
+                    <CollapsibleTrigger className="flex items-center justify-start text-white/70 hover:text-white transition-colors">
+                      <Info className="h-3.5 w-3.5 mr-1" />
+                      <span className="text-xs">Více o ceně</span>
+                      <ChevronDown 
+                        className="h-3 w-3 ml-1 transition-transform duration-200" 
+                        style={{ transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)' }} 
+                      />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-2 text-xs text-white/80 bg-white/10 p-2 rounded-md">
+                      Promo cena 250 Kč/mes platí prvých 12 mesiacov. Od 13. mesiaca štandardná cena 440 Kč/mes. Bez viazanosti.
+                    </CollapsibleContent>
+                  </Collapsible>
+                  <div className="flex justify-between items-center">
+                    <span>Internet 2000 Mbps</span>
+                    <span className="font-bold">520 Kč/mes</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
                     <div className="text-sm opacity-90">✓ Bezplatná inštalácia do 24h</div>

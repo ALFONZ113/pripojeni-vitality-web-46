@@ -1,3 +1,4 @@
+
 import { BlogPost } from './types';
 
 export const technologiePosts: BlogPost[] = [
@@ -215,7 +216,7 @@ export const technologiePosts: BlogPost[] = [
     date: "15. 5. 2025",
     author: "Petr Krejčí",
     category: "Technologie", 
-    image: "/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png",
+    image: "/lovable-uploads/64d06bad-71f3-4777-b62e-b49b4ca94abe.png",
     alt: "Zabezpečená domácí Wi-Fi síť s ikonami zabezpečení",
     tags: ["Bezpečnost", "Wi-Fi", "Kybernetická bezpečnost", "Router", "Ochrana dat"]
   },

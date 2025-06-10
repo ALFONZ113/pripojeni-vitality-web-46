@@ -126,8 +126,8 @@ export const technologiePosts: BlogPost[] = [
     date: "18. 5. 2025",
     author: "Jana Svobodová",
     category: "Technologie",
-    image: "/lovable-uploads/2e16f35c-9b53-448d-a734-63863af4ed46.png",
-    alt: "Mesh Wi-Fi systém rozmístěný v moderním domě",
+    image: "/lovable-uploads/aa92ab29-4de6-409a-8e8b-89b0fe7555b0.png",
+    alt: "Futuristický mesh router systém s modrými světelnými kabely symbolizujícími síťové pripojení",
     tags: ["Mesh", "Wi-Fi", "Router", "Domácí síť", "Pokrytí"]
   },
   {

@@ -1,3 +1,4 @@
+
 import { BlogPost } from './types';
 
 export const technologiePosts: BlogPost[] = [
@@ -491,7 +492,7 @@ export const technologiePosts: BlogPost[] = [
             <li><strong>2. Zavolejte na 730 431 313</strong><br>
                Preferujete osobní kontakt? Ochotný personál popri.cz vám rád poradí a pomůže s výběrem toho nejlepšího řešení pro vaše potřeby.</li>
             <li><strong>3. Profesionální instalace</strong><br>
-               Naši technici se postarajít o rychlou a bezproblémovou instalaci přímo u vás doma.</li>
+               Naši technici se postarají o rychlou a bezproblémovou instalaci přímo u vás doma.</li>
           </ol>
         </div>
 
@@ -557,8 +558,8 @@ export const technologiePosts: BlogPost[] = [
     date: "12. 5. 2025",
     author: "Martin Svoboda",
     category: "Technologie",
-    image: "/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png",
-    alt: "Futuristická anténa s technologickými prvky symbolizujúca 60 GHz bezdrôtovú technológiu",
+    image: "/lovable-uploads/554dd844-e407-4fe8-959e-f088025a108c.png",
+    alt: "Futuristická satelitná anténa s modrými svetelnými vlnami symbolizujúca 60 GHz bezdrôtovú technológiu",
     tags: ["60 GHz", "PODA", "Bezdrátový internet", "Technologie", "Vysokorýchlostní internet"]
   }
 ];

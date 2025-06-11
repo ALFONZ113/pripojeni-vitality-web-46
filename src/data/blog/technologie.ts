@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const technologiePosts: BlogPost[] = [
@@ -432,5 +431,134 @@ export const technologiePosts: BlogPost[] = [
     image: "/lovable-uploads/9ce3244c-96d6-4078-9808-3edc99d0e01b.png",
     alt: "Futuristická vizualizácia prepojenia telekomunikačných sietí, symbolizujúca zmeny na trhu poskytovateľov internetu",
     tags: ["O2", "Nej.cz", "Netbox", "PODA", "Migrácia", "Ostrava", "Akvizícia", "Telekomunikácie"]
+  },
+  {
+    id: 102,
+    title: "Bleskový internet bez drátů? Poznejte 60 GHz technologii a nabídku PODA!",
+    excerpt: "Představte si připojení tak rychlé, že můžete streamovat 4K video bez zadrhnutí a stahovat gigabajtové soubory v průběhu sekund. Objevte budoucnost internetu s 60 GHz technologií od PODA.",
+    content: `
+      <div class="prose-content">
+        <h2>Úvod: Internet budoucnosti už dnes</h2>
+        <p>Už vás nebaví pomalý internet, věčné výpadky a kabely, které se motají všude kolem? Představte si připojení, které je tak rychlé, že můžete streamovat 4K video bez jediného zadrhnutí, stahovat gigabajtové soubory v průběhu sekund a hrát online hry s téměř nulovou odezvou. Zní to jako sci-fi? Není! Vítejte ve světě 60 GHz technologie a objevte, jak vám PODA, ve spolupráci s popri.cz, může přinést budoucnost internetu už dnes.</p>
+
+        <h2>Co je 60 GHz technologie a proč je tak převratná?</h2>
+        <p>Technologie 60 GHz (milimetrové vlny) využívá frekvenční pásmo, které je mnohem vyšší než to, na které jsme zvyklí u běžného Wi-Fi připojení. A právě tady spočívá její kouzlo! Vyšší frekvence umožňují přenos obrovského množství dat, což se projevuje v neuvěřitelných rychlostech a extrémně nízké latenci.</p>
+
+        <h2>Klíčové výhody 60 GHz technologie</h2>
+        <div class="bg-blue-50 p-6 rounded-lg my-8">
+          <h3>Proč je 60 GHz technologie tak výjimečná:</h3>
+          <ul class="space-y-3 mt-4">
+            <li><strong>🚀 Bleskové rychlosti:</strong> Už žádné čekání! Stahování, streamování a procházení internetu je okamžité.</li>
+            <li><strong>📡 Minimální rušení:</strong> Díky specifickým vlastnostem 60 GHz pásma je tato technologie méně náchylná k rušení od jiných bezdrátových sítí. To znamená stabilní a spolehlivé připojení i v hustě osídlených oblastech.</li>
+            <li><strong>⚡ Nízká latence:</strong> Pro hráče, profesionály pracující s citlivými daty a všechny, kdo potřebují okamžitou odezvu, je nízká latence klíčová. 60 GHz technologie ji přináší v plné kráse.</li>
+            <li><strong>🔒 Bezpečné připojení:</strong> Díky úzkým svazkům signálu je připojení obtížněji odposlouchávatelné, což zvyšuje vaši bezpečnost.</li>
+          </ul>
+        </div>
+
+        <h2>PODA a 60 GHz: Vaše cesta k internetu budoucnosti</h2>
+        <p>Firma PODA, známá svou inovativností a spolehlivostí, aktivně implementuje 60 GHz technologii do své sítě, aby svým zákazníkům přinesla to nejlepší, co současný trh nabízí. A proč byste si měli vybrat právě PODA?</p>
+
+        <div class="grid md:grid-cols-2 gap-6 my-8">
+          <div class="bg-green-50 p-6 rounded-lg">
+            <h3>Výhody PODA s 60 GHz</h3>
+            <ul class="space-y-2">
+              <li>✅ <strong>Garance výkonu:</strong> Garantovaná špičková rychlost</li>
+              <li>✅ <strong>Spolehlivost:</strong> Stabilní a nepřerušované připojení</li>
+              <li>✅ <strong>Profesionální instalace:</strong> Bezproblémová instalace a podpora</li>
+              <li>✅ <strong>Férové ceny:</strong> Špičková technologie za dostupné ceny</li>
+            </ul>
+          </div>
+          <div class="bg-orange-50 p-6 rounded-lg">
+            <h3>Co získáte s PODA 60 GHz</h3>
+            <ul class="space-y-2">
+              <li>🎮 <strong>Gaming bez kompromisů:</strong> Nulová latence pro dokonalý herní zážitek</li>
+              <li>📺 <strong>4K streaming:</strong> Bez bufferingu a přerušení</li>
+              <li>💼 <strong>Profesionální práce:</strong> Rychlé nahrávání velkých souborů</li>
+              <li>👨‍👩‍👧‍👦 <strong>Pro celou rodinu:</strong> Všichni online současně bez problémů</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Objednejte si bleskový internet od PODA už dnes!</h2>
+        <p>Chcete zažít internet, který překoná vaše očekávání? Neváhejte! Využijte jedinečnou příležitost a přejděte na internet budoucnosti s PODA a 60 GHz technologií.</p>
+
+        <h3>Objednání je jednoduché a rychlé</h3>
+        <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
+          <h4 class="text-white mb-4">Jak si objednat PODA internet s 60 GHz technologií:</h4>
+          <ol class="space-y-3">
+            <li><strong>1. Navštivte web popri.cz</strong><br>
+               Prohlédněte si aktuální nabídku služeb PODA s 60 GHz technologií.</li>
+            <li><strong>2. Zavolejte na 730 431 313</strong><br>
+               Preferujete osobní kontakt? Ochotný personál popri.cz vám rád poradí a pomůže s výběrem toho nejlepšího řešení pro vaše potřeby.</li>
+            <li><strong>3. Profesionální instalace</strong><br>
+               Naši technici se postarajít o rychlou a bezproblémovou instalaci přímo u vás doma.</li>
+          </ol>
+        </div>
+
+        <h2>Technické parametry 60 GHz připojení</h2>
+        <div class="bg-gray-50 p-6 rounded-lg my-8">
+          <h3>Srovnání technologií:</h3>
+          <table class="w-full mt-4 text-sm">
+            <thead>
+              <tr class="border-b">
+                <th class="text-left py-2">Technologie</th>
+                <th class="text-left py-2">Maximální rychlost</th>
+                <th class="text-left py-2">Latence</th>
+                <th class="text-left py-2">Rušení</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b bg-green-50">
+                <td class="py-2 font-semibold">60 GHz PODA</td>
+                <td class="py-2 text-green-600">až 10 Gbps</td>
+                <td class="py-2 text-green-600">&lt; 1 ms</td>
+                <td class="py-2 text-green-600">Minimální</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-2">5 GHz Wi-Fi</td>
+                <td class="py-2">až 1 Gbps</td>
+                <td class="py-2">5-10 ms</td>
+                <td class="py-2">Střední</td>
+              </tr>
+              <tr>
+                <td class="py-2">2.4 GHz Wi-Fi</td>
+                <td class="py-2">až 150 Mbps</td>
+                <td class="py-2">10-20 ms</td>
+                <td class="py-2">Vysoké</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Záver: Budoucnost je tu</h2>
+        <p>Nepropásněte tuto příležitost! Získejte nejrychlejší a nejspolehlivější internet od PODA, objednaný přes popri.cz, a užívejte si digitální svět naplno a bez omezení!</p>
+
+        <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
+          <p>"S 60 GHz technologií od PODA jsme konečně doma skutečně připojeni k budoucnosti. Stahování, streaming, práce z domova - vše funguje perfektně bez jediného výpadku."</p>
+          <footer class="mt-2 text-sm text-gray-600">
+            <strong>Petr Novák, Ostrava</strong><br>
+            Spokojený zákazník PODA
+          </footer>
+        </blockquote>
+
+        <div class="bg-green-50 p-6 rounded-lg my-8">
+          <h3>Kontaktní informace:</h3>
+          <ul class="space-y-2">
+            <li><strong>Web:</strong> popri.cz</li>
+            <li><strong>Telefon:</strong> 730 431 313</li>
+            <li><strong>E-mail:</strong> info@popri.cz</li>
+            <li><strong>Konzultace:</strong> Bezplatná konzultace a návrh řešení</li>
+          </ul>
+        </div>
+
+        <p class="text-center mt-8 font-medium">60 GHz technologie s PODA - internet bez kompromisů pro váš domov!</p>
+      </div>
+    `,
+    date: "12. 5. 2025",
+    author: "Martin Svoboda",
+    category: "Technologie",
+    image: "/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png",
+    alt: "Futuristická anténa s technologickými prvky symbolizujúca 60 GHz bezdrôtovú technológiu",
+    tags: ["60 GHz", "PODA", "Bezdrátový internet", "Technologie", "Vysokorýchlostní internet"]
   }
 ];

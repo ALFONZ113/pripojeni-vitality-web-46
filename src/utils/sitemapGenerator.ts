@@ -1,3 +1,4 @@
+
 import { blogPosts } from '../data/blog';
 import type { BlogPost } from '../data/blog/types';
 
@@ -21,7 +22,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     { url: '/cookies', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Geo-specific pages
+  // Geo-specific pages - FIXED: All routes that actually exist
   const geoPages = [
     { url: '/internet-ostrava', priority: '0.8', changefreq: 'monthly' },
     { url: '/internet-karvina', priority: '0.8', changefreq: 'monthly' },
@@ -31,38 +32,33 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
   ];
 
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `;
 
   // Add static pages
   staticPages.forEach(page => {
     const fullUrl = page.url === '' ? baseUrl : `${baseUrl}${page.url}`;
-    sitemap += `
-  <url>
+    sitemap += `  <url>
     <loc>${fullUrl}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`;
+  </url>
+`;
   });
 
   // Add geo-specific pages
   geoPages.forEach(page => {
-    sitemap += `
-  <url>
+    sitemap += `  <url>
     <loc>${baseUrl}${page.url}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`;
+  </url>
+`;
   });
 
-  // Add blog posts - only valid ones
+  // Add blog posts - only valid ones with proper URLs
   const validBlogPosts = blogPosts.filter(post => 
     post.id && 
     post.title && 
@@ -72,30 +68,17 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
 
   validBlogPosts.forEach((post: BlogPost) => {
     const postUrl = `${baseUrl}/blog/${post.id}`;
-    const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
     
-    sitemap += `
-  <url>
+    sitemap += `  <url>
     <loc>${postUrl}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>`;
-    
-    if (post.image && imageUrl) {
-      sitemap += `
-    <image:image>
-      <image:loc>${imageUrl}</image:loc>
-      <image:title>${post.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</image:title>
-      <image:caption>${(post.alt || post.excerpt || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</image:caption>
-    </image:image>`;
-    }
-    
-    sitemap += `
-  </url>`;
+    <priority>0.6</priority>
+  </url>
+`;
   });
 
-  sitemap += `
-</urlset>`;
+  sitemap += `</urlset>`;
 
   return sitemap;
 };
@@ -108,7 +91,8 @@ export const generateLocalBusinessStructuredData = (location: string, baseUrl: s
     'Ostrava': { lat: '49.8175', lng: '18.2624' },
     'Karviná': { lat: '49.8557', lng: '18.5370' },
     'Bohumín': { lat: '49.9043', lng: '18.3570' },
-    'Havířov': { lat: '49.7794', lng: '18.4437' }
+    'Havířov': { lat: '49.7794', lng: '18.4437' },
+    'Poruba': { lat: '49.8297', lng: '18.1667' }
   };
 
   const coords = cityCoordinates[location as keyof typeof cityCoordinates] || cityCoordinates['Ostrava'];

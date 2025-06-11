@@ -10,7 +10,7 @@ interface BlogPostSEOProps {
 }
 
 const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
-  const baseUrl = window.location.origin;
+  const baseUrl = 'https://www.popri.cz'; // FIXED: Use static canonical domain
   const meta = generateBlogPostMeta(post, baseUrl);
   const geoMeta = generateGeoMeta();
   const localBusinessData = generateLocalBusinessData(baseUrl);
@@ -77,7 +77,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <meta name="twitter:image" content={meta.ogImage} />
       {post.alt && <meta name="twitter:image:alt" content={post.alt} />}
       
-      {/* Navigation links for SEO */}
+      {/* Navigation links for SEO - FIXED: Use canonical URLs */}
       {prevPost && <link rel="prev" href={`${baseUrl}/blog/${prevPost.id}`} />}
       {nextPost && <link rel="next" href={`${baseUrl}/blog/${nextPost.id}`} />}
       

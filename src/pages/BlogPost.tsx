@@ -31,7 +31,7 @@ const BlogPostPage = () => {
     const cleanupAnimation = initAnimations();
     window.scrollTo(0, 0);
     
-    // Support both old numeric IDs and new slug-based URLs
+    // Support both numeric IDs and slug-based URLs
     let foundPost: BlogPost | undefined;
     
     if (id) {
@@ -54,6 +54,20 @@ const BlogPostPage = () => {
       // Log the view for analytics
       console.log(`Blog post viewed: ${foundPost.title} (ID: ${foundPost.id})`);
 
+      // FIXED: Update canonical URL to use clean numeric ID format
+      const canonicalUrl = `https://www.popri.cz/blog/${foundPost.id}`;
+      
+      // Update meta tags for better SEO
+      const linkElement = document.querySelector('link[rel="canonical"]');
+      if (linkElement) {
+        linkElement.setAttribute('href', canonicalUrl);
+      } else {
+        const newCanonical = document.createElement('link');
+        newCanonical.rel = 'canonical';
+        newCanonical.href = canonicalUrl;
+        document.head.appendChild(newCanonical);
+      }
+      
       // Update URL parameters for better SEO
       const url = new URL(window.location.href);
       if (!url.searchParams.has('category') && foundPost.category) {

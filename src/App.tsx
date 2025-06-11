@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -94,12 +95,27 @@ const App = () => {
                 <Route path="/tarify" element={<Tarify />} />
                 <Route path="/iptv" element={<IPTV />} />
                 
-                {/* Geo-specific pages */}
+                {/* Geo-specific pages - FIXED: Added missing /internet-poruba */}
                 <Route path="/internet-ostrava" element={<InternetOstrava />} />
                 <Route path="/internet-havirov" element={<InternetHavirov />} />
                 <Route path="/internet-karvina" element={<InternetKarvina />} />
                 <Route path="/internet-bohumin" element={<InternetBohumin />} />
                 <Route path="/internet-poruba" element={<InternetPoruba />} />
+                
+                {/* Blog post redirects for slug-based URLs */}
+                <Route path="/blog/opticke-pripojenie-poda-budurnost-internetu" element={<Navigate to="/blog/1" replace />} />
+                <Route path="/blog/gpon-technologie-moravskoslezsky-region" element={<Navigate to="/blog/2" replace />} />
+                <Route path="/blog/fiber-to-home-ftth-budurnost-opticka" element={<Navigate to="/blog/3" replace />} />
+                <Route path="/blog/7-klucovych-vyhod-optickeho-internetu-poda" element={<Navigate to="/blog/4" replace />} />
+                <Route path="/blog/router-mercusys-nastavenie-wifi-siete" element={<Navigate to="/blog/5" replace />} />
+                <Route path="/blog/optimalizacia-wifi-12-tipov-lepsi-signal" element={<Navigate to="/blog/6" replace />} />
+                <Route path="/blog/online-bezpernost-kompletny-sprievodca" element={<Navigate to="/blog/7" replace />} />
+                <Route path="/blog/domaca-siet-navod-nastavenie-optimalizacia" element={<Navigate to="/blog/8" replace />} />
+                <Route path="/blog/streaming-gaming-optimalizacia-internetu" element={<Navigate to="/blog/9" replace />} />
+                <Route path="/blog/rychly-internet-karvina-poda-revolucia" element={<Navigate to="/blog/10" replace />} />
+                <Route path="/blog/testovanie-rychlosti-internetu-sprievodca" element={<Navigate to="/blog/11" replace />} />
+                <Route path="/blog/internet-poda-ostrava-poruba-gigabitove" element={<Navigate to="/blog/100" replace />} />
+                <Route path="/blog/60-ghz-technologia-revolucia-bezdrôtovom" element={<Navigate to="/blog/12" replace />} />
                 
                 {/* Legacy URL redirects */}
                 <Route path="/stary-clanek" element={<Navigate to="/blog/novy-clanek" replace />} />

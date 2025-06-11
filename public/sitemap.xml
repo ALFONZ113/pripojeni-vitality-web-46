@@ -1,278 +1,172 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.popri.cz</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Main service pages -->
   <url>
     <loc>https://www.popri.cz/internet-tv</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
   <url>
     <loc>https://www.popri.cz/iptv</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
     <loc>https://www.popri.cz/tarify</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
     <loc>https://www.popri.cz/programy</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Contact and support pages -->
   <url>
     <loc>https://www.popri.cz/kontakt</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Blog section -->
   <url>
     <loc>https://www.popri.cz/blog</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Blog posts -->
-  <url>
-    <loc>https://www.popri.cz/blog/1</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/77099393-c42f-4da8-8d98-a7a65e08a093.png</image:loc>
-      <image:title>Optické pripojenie PODA: Budúcnosť internetu v Moravskoslezskom regióne</image:title>
-      <image:caption>Moderný dom v Karviné s vizualizáciou optickej siete PODA</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/2</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/3f530f22-64ab-45d8-9db3-0280fa731f62.png</image:loc>
-      <image:title>GPON technologie v Moravskoslezském regionu: Revoluce optického internetu</image:title>
-      <image:caption>Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě PODA</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/3</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png</image:loc>
-      <image:title>Fiber-to-the-Home (FTTH): Prečo je budúcnosť internetu optická</image:title>
-      <image:caption>3D vizualizácia optických káblov vedúcich k domám v Moravskoslezskom regióne</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/4</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/56ebeef3-04d0-42a6-ac4f-f47224a075fb.png</image:loc>
-      <image:title>7 kľúčových výhod optického internetu PODA oproti DSL a Wi-Fi</image:title>
-      <image:caption>Porovnanie rýchlostí - optické vs DSL vs Wi-Fi pripojenie v grafe</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/5</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/6f778a97-79bd-4698-b3f2-2a373893184b.png</image:loc>
-      <image:title>Router Mercusys: Ako nastaviť optimálnu Wi-Fi sieť v dome</image:title>
-      <image:caption>Moderný router Mercusys s Wi-Fi signálom pokrývajúcim celý dom</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/6</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png</image:loc>
-      <image:title>Optimalizácia Wi-Fi: 12 tipov pre lepší signál a rýchlosť</image:title>
-      <image:caption>Dom s optimálne umiestnenými Wi-Fi zariadeniami a silným signálom</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/7</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/9ce3244c-96d6-4078-9808-3edc99d0e01b.png</image:loc>
-      <image:title>Online bezpečnosť: Kompletný sprievodca ochranou na internete</image:title>
-      <image:caption>Digitálny štít chrániacii zariadenia pred kybernetickými hrozbami</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/8</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png</image:loc>
-      <image:title>Domáca sieť: Návod na nastavenie a optimalizáciu</image:title>
-      <image:caption>Sieťová topológia modernej domácnosti s pripojnými zariadeniami</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/9</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/c6595b21-b123-40f5-9ec0-6986badb9d6d.png</image:loc>
-      <image:title>Streaming a gaming: Optimalizácia internetu pre zábavu</image:title>
-      <image:caption>Gaming setup s 4K monitormi a rýchlym internetom PODA</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/10</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png</image:loc>
-      <image:title>Rychlý internet v Karviné: Revoluce v připojení domácností díky PODA</image:title>
-      <image:caption>Vstupní tabule města Karviná při západu slunce s typickou moravskou zástavbou v pozadí</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/11</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/2e16f35c-9b53-448d-a734-63863af4ed46.png</image:loc>
-      <image:title>Testovanie rýchlosti internetu: Komplexný sprievodca merania výkonu</image:title>
-      <image:caption>Speedtest rozhranie zobrazujúce vysoké rýchlosti PODA internetu</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/100</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/fedd23c9-5c8e-46f4-9d2e-02b0d64208cf.png</image:loc>
-      <image:title>Internet PODA v Ostravě-Porubě: Gigabitové pripojenie pre najväčšiu mestskú časť</image:title>
-      <image:caption>Moderná ulica v Ostrave-Porube s vizualizáciou optických pripojení a svetelných efektov symbolizujúcich rýchly internet PODA</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/blog/12</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/554dd844-e407-4fe8-959e-f088025a108c.png</image:loc>
-      <image:title>60 GHz technológia: Revolúcia v bezdrôtovom internete budúcnosti</image:title>
-      <image:caption>Futuristická satelitná anténa s modrými svetelnými vlnami symbolizujúca 60 GHz bezdrôtovú technológiu</image:caption>
-    </image:image>
-  </url>
-  
-  <!-- Local geo-specific pages -->
-  <url>
-    <loc>https://www.popri.cz/internet-ostrava</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/internet-karvina</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/internet-bohumin</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/internet-havirov</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.popri.cz/internet-poruba</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Legal pages -->
   <url>
     <loc>https://www.popri.cz/ochrana-soukromi</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
   <url>
     <loc>https://www.popri.cz/obchodni-podminky</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
   <url>
     <loc>https://www.popri.cz/cookies</loc>
     <lastmod>2025-06-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
+  <url>
+    <loc>https://www.popri.cz/internet-ostrava</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/internet-karvina</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/internet-bohumin</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/internet-havirov</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/internet-poruba</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/1</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/2</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/3</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/4</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/5</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/6</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/7</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/8</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/9</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/10</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/11</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/100</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/12</loc>
+    <lastmod>2025-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

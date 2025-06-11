@@ -1,4 +1,3 @@
-
 import { blogPosts } from '../data/blog';
 import type { BlogPost } from '../data/blog/types';
 
@@ -10,7 +9,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
   
   // Static pages with their priorities and change frequencies
   const staticPages = [
-    { url: '/', priority: '1.0', changefreq: 'daily' },
+    { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage without trailing slash
     { url: '/internet-tv', priority: '0.9', changefreq: 'weekly' },
     { url: '/iptv', priority: '0.8', changefreq: 'weekly' },
     { url: '/tarify', priority: '0.8', changefreq: 'weekly' },
@@ -28,13 +27,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     { url: '/internet-karvina', priority: '0.8', changefreq: 'monthly' },
     { url: '/internet-bohumin', priority: '0.8', changefreq: 'monthly' },
     { url: '/internet-havirov', priority: '0.8', changefreq: 'monthly' },
-  ];
-
-  // Blog categories and tags
-  const blogCategories = ['Služby', 'Technológie', 'Tipy', 'Recenzie', 'Novinky'];
-  const blogTags = [
-    'GPON', 'Optické pripojenie', 'Karviná', 'Ostrava', 'Poruba', 'Havířov', 
-    'Bohumín', 'PODA internet', 'Moravskoslezský kraj', 'Vysokorychlostní internet'
+    { url: '/internet-poruba', priority: '0.8', changefreq: 'monthly' },
   ];
 
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -42,21 +35,19 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 `;
 
   // Add static pages
   staticPages.forEach(page => {
+    const fullUrl = page.url === '' ? baseUrl : `${baseUrl}${page.url}`;
     sitemap += `
   <url>
-    <loc>${baseUrl}${page.url}</loc>
+    <loc>${fullUrl}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="${baseUrl}${page.url}"/>
-    <xhtml:link rel="alternate" hreflang="sk" href="${baseUrl}${page.url}"/>
   </url>`;
   });
 
@@ -68,71 +59,38 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="${baseUrl}${page.url}"/>
-    <geo:geo>
-      <geo:format>kml</geo:format>
-    </geo:geo>
   </url>`;
   });
 
-  // Add blog posts
-  blogPosts.forEach((post: BlogPost) => {
-    const postUrl = `/blog/${post.id}`;
+  // Add blog posts - only valid ones
+  const validBlogPosts = blogPosts.filter(post => 
+    post.id && 
+    post.title && 
+    post.content && 
+    post.image
+  );
+
+  validBlogPosts.forEach((post: BlogPost) => {
+    const postUrl = `${baseUrl}/blog/${post.id}`;
     const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
-    
-    // Extract location from post content for geo-tagging
-    const locations = ['Ostrava', 'Karviná', 'Bohumín', 'Havířov', 'Poruba'];
-    const postLocation = locations.find(loc => 
-      post.title.includes(loc) || post.content.includes(loc) || post.tags?.includes(loc)
-    );
     
     sitemap += `
   <url>
-    <loc>${baseUrl}${postUrl}</loc>
+    <loc>${postUrl}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="${baseUrl}${postUrl}"/>`;
+    <priority>0.6</priority>`;
     
-    if (post.image) {
+    if (post.image && imageUrl) {
       sitemap += `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
-      <image:title>${post.title}</image:title>
-      <image:caption>${post.alt || post.excerpt}</image:caption>`;
-      
-      if (postLocation) {
-        sitemap += `
-      <image:geo_location>${postLocation}, Czech Republic</image:geo_location>`;
-      }
-      
-      sitemap += `
+      <image:title>${post.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</image:title>
+      <image:caption>${(post.alt || post.excerpt || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</image:caption>
     </image:image>`;
     }
     
     sitemap += `
-  </url>`;
-  });
-
-  // Add blog categories
-  blogCategories.forEach(category => {
-    sitemap += `
-  <url>
-    <loc>${baseUrl}/blog?category=${encodeURIComponent(category)}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>`;
-  });
-
-  // Add blog tags
-  blogTags.forEach(tag => {
-    sitemap += `
-  <url>
-    <loc>${baseUrl}/blog?tag=${encodeURIComponent(tag)}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>`;
   });
 

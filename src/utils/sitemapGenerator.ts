@@ -10,7 +10,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
   
   // Static pages with their priorities and change frequencies
   const staticPages = [
-    { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage without trailing slash
+    { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage
     { url: '/internet-tv', priority: '0.9', changefreq: 'weekly' },
     { url: '/iptv', priority: '0.8', changefreq: 'weekly' },
     { url: '/tarify', priority: '0.8', changefreq: 'weekly' },
@@ -22,7 +22,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     { url: '/cookies', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Geo-specific pages - FIXED: All routes that actually exist
+  // Geo-specific pages
   const geoPages = [
     { url: '/internet-ostrava', priority: '0.8', changefreq: 'monthly' },
     { url: '/internet-karvina', priority: '0.8', changefreq: 'monthly' },
@@ -153,4 +153,21 @@ export const extractSEOKeywords = (post: BlogPost): string[] => {
     ...foundLocations,
     post.category
   ].filter(Boolean);
+};
+
+/**
+ * Get current sitemap stats for monitoring
+ */
+export const getSitemapStats = () => {
+  const validBlogPosts = blogPosts.filter(post => 
+    post.id && post.title && post.content && post.image
+  );
+  
+  return {
+    totalUrls: 10 + 5 + validBlogPosts.length, // static + geo + blog posts
+    staticPages: 10,
+    geoPages: 5,
+    blogPosts: validBlogPosts.length,
+    lastGenerated: new Date().toISOString()
+  };
 };

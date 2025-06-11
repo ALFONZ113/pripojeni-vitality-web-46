@@ -5,7 +5,7 @@ https://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 http://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 https://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 
-# Force HTTPS and www for popri.cz domain - FIXED MISSING REDIRECT
+# Force HTTPS and www for popri.cz domain
 http://popri.cz/* https://www.popri.cz/:splat 301!
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 https://popri.cz/* https://www.popri.cz/:splat 301!
@@ -34,8 +34,6 @@ https://popri.cz/* https://www.popri.cz/:splat 301!
 # Explicitly allow access to asset files
 /assets/* /assets/:splat 200
 /lovable-uploads/* /lovable-uploads/:splat 200
-/sitemap.xml /sitemap.xml 200
-/robots.txt /robots.txt 200
 
 # Support for blog URL parameters with specific tech tags
 /blog/?category=* /blog/?category=:splat 200

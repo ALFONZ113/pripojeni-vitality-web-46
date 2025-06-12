@@ -1,10 +1,12 @@
+
 import { blogPosts } from '../data/blog';
 import type { BlogPost } from '../data/blog/types';
 
 /**
- * Escape XML special characters
+ * Escape XML special characters properly
  */
 const escapeXml = (text: string): string => {
+  if (!text) return '';
   return text
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -14,11 +16,27 @@ const escapeXml = (text: string): string => {
 };
 
 /**
+ * Remove invalid XML characters and clean content
+ */
+const sanitizeForXml = (text: string): string => {
+  if (!text) return '';
+  // Remove control characters except tab, newline, and carriage return
+  return text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+};
+
+/**
  * Sanitize and validate URL
  */
 const sanitizeUrl = (url: string): string => {
-  // Remove any invalid characters and ensure proper encoding
-  return encodeURI(url.replace(/[^\w\-._~:/?#[\]@!$&'()*+,;=%]/g, ''));
+  if (!url) return '';
+  try {
+    // Remove invalid characters and ensure proper encoding
+    const cleanUrl = url.replace(/[^\w\-._~:/?#[\]@!$&'()*+,;=%]/g, '');
+    return encodeURI(cleanUrl);
+  } catch (error) {
+    console.warn('URL sanitization failed:', error);
+    return '';
+  }
 };
 
 /**
@@ -29,11 +47,9 @@ const isValidBlogPost = (post: BlogPost): boolean => {
     post.id &&
     post.title &&
     post.content &&
-    post.image &&
     typeof post.id === 'number' &&
-    post.title.trim().length > 0 &&
-    post.content.trim().length > 0 &&
-    post.image.trim().length > 0
+    sanitizeForXml(post.title).trim().length > 0 &&
+    sanitizeForXml(post.content).trim().length > 0
   );
 };
 
@@ -42,6 +58,10 @@ const isValidBlogPost = (post: BlogPost): boolean => {
  */
 const formatDateISO = (dateStr: string): string => {
   try {
+    if (!dateStr) {
+      return new Date().toISOString().split('T')[0];
+    }
+    
     // Handle Czech date format (dd. mm. yyyy)
     if (dateStr.includes('. ')) {
       const parts = dateStr.split('. ');
@@ -62,10 +82,10 @@ const formatDateISO = (dateStr: string): string => {
 };
 
 /**
- * Generate dynamic sitemap content based on current blog posts and pages
+ * Generate clean XML sitemap content
  */
 export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): string => {
-  const currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+  const currentDate = new Date().toISOString().split('T')[0];
   
   // Static pages with their priorities and change frequencies
   const staticPages = [
@@ -90,39 +110,39 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     { url: '/internet-poruba', priority: '0.8', changefreq: 'monthly' },
   ];
 
-  // Start XML with proper declaration and encoding
-  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-`;
+  // Start with clean XML declaration
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
   // Add static pages
   staticPages.forEach(page => {
     const fullUrl = page.url === '' ? baseUrl : `${baseUrl}${page.url}`;
     const sanitizedUrl = sanitizeUrl(fullUrl);
     
-    sitemap += `  <url>
-    <loc>${escapeXml(sanitizedUrl)}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>
-`;
+    if (sanitizedUrl) {
+      sitemap += `  <url>\n`;
+      sitemap += `    <loc>${escapeXml(sanitizedUrl)}</loc>\n`;
+      sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
+      sitemap += `    <changefreq>${page.changefreq}</changefreq>\n`;
+      sitemap += `    <priority>${page.priority}</priority>\n`;
+      sitemap += `  </url>\n`;
+    }
   });
 
   // Add geo-specific pages
   geoPages.forEach(page => {
     const sanitizedUrl = sanitizeUrl(`${baseUrl}${page.url}`);
     
-    sitemap += `  <url>
-    <loc>${escapeXml(sanitizedUrl)}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>
-`;
+    if (sanitizedUrl) {
+      sitemap += `  <url>\n`;
+      sitemap += `    <loc>${escapeXml(sanitizedUrl)}</loc>\n`;
+      sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
+      sitemap += `    <changefreq>${page.changefreq}</changefreq>\n`;
+      sitemap += `    <priority>${page.priority}</priority>\n`;
+      sitemap += `  </url>\n`;
+    }
   });
 
-  // Add blog posts - only valid ones with proper validation
+  // Add blog posts - only valid ones
   const validBlogPosts = blogPosts.filter(isValidBlogPost);
 
   validBlogPosts.forEach((post: BlogPost) => {
@@ -131,13 +151,14 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
       const sanitizedUrl = sanitizeUrl(postUrl);
       const postDate = post.date ? formatDateISO(post.date) : currentDate;
       
-      sitemap += `  <url>
-    <loc>${escapeXml(sanitizedUrl)}</loc>
-    <lastmod>${postDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-`;
+      if (sanitizedUrl) {
+        sitemap += `  <url>\n`;
+        sitemap += `    <loc>${escapeXml(sanitizedUrl)}</loc>\n`;
+        sitemap += `    <lastmod>${postDate}</lastmod>\n`;
+        sitemap += `    <changefreq>monthly</changefreq>\n`;
+        sitemap += `    <priority>0.6</priority>\n`;
+        sitemap += `  </url>\n`;
+      }
     } catch (error) {
       console.warn(`Skipping blog post ${post.id} due to error:`, error);
     }
@@ -149,10 +170,25 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
 };
 
 /**
- * Validate sitemap XML format
+ * Validate sitemap XML format strictly
  */
 export const validateSitemapXML = (sitemapContent: string): boolean => {
   try {
+    // Check for basic XML structure
+    if (!sitemapContent.includes('<?xml') || !sitemapContent.includes('<urlset')) {
+      console.error('Missing XML declaration or urlset');
+      return false;
+    }
+
+    // Check for HTML contamination
+    const htmlTags = ['<html', '<head', '<body', '<meta', '<script', '<style', '<div', '<span'];
+    for (const tag of htmlTags) {
+      if (sitemapContent.toLowerCase().includes(tag)) {
+        console.error(`HTML contamination detected: ${tag}`);
+        return false;
+      }
+    }
+
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(sitemapContent, 'application/xml');
     const parseError = xmlDoc.querySelector('parsererror');
@@ -165,7 +201,6 @@ export const validateSitemapXML = (sitemapContent: string): boolean => {
     const urlElements = xmlDoc.querySelectorAll('url');
     const locElements = xmlDoc.querySelectorAll('loc');
     
-    // Check that we have valid URLs
     if (urlElements.length === 0 || locElements.length === 0) {
       console.error('Sitemap has no valid URLs');
       return false;

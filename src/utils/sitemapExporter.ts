@@ -1,12 +1,18 @@
 
-import { generateSitemap } from './sitemapGenerator';
+import { generateSitemap, validateSitemapXML } from './sitemapGenerator';
 
 /**
- * Export sitemap as downloadable file
+ * Export sitemap as downloadable file with validation
  */
 export const downloadSitemap = (baseUrl: string = 'https://www.popri.cz') => {
   const sitemapContent = generateSitemap(baseUrl);
-  const blob = new Blob([sitemapContent], { type: 'application/xml' });
+  
+  // Validate before download
+  if (!validateSitemapXML(sitemapContent)) {
+    console.error('Warning: Generated sitemap has validation errors');
+  }
+  
+  const blob = new Blob([sitemapContent], { type: 'application/xml;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   
   const link = document.createElement('a');
@@ -16,16 +22,25 @@ export const downloadSitemap = (baseUrl: string = 'https://www.popri.cz') => {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+  
+  console.log('Sitemap downloaded successfully');
 };
 
 /**
- * Generate sitemap and copy to clipboard
+ * Generate sitemap and copy to clipboard with validation
  */
 export const copySitemapToClipboard = async (baseUrl: string = 'https://www.popri.cz') => {
   const sitemapContent = generateSitemap(baseUrl);
   
+  // Validate before copying
+  if (!validateSitemapXML(sitemapContent)) {
+    console.error('Warning: Generated sitemap has validation errors');
+    return false;
+  }
+  
   try {
     await navigator.clipboard.writeText(sitemapContent);
+    console.log('Sitemap copied to clipboard successfully');
     return true;
   } catch (err) {
     console.error('Failed to copy sitemap to clipboard:', err);
@@ -34,14 +49,26 @@ export const copySitemapToClipboard = async (baseUrl: string = 'https://www.popr
 };
 
 /**
- * Log sitemap to console for easy copying
+ * Log sitemap to console for easy copying with validation
  */
 export const logSitemapToConsole = (baseUrl: string = 'https://www.popri.cz') => {
   const sitemapContent = generateSitemap(baseUrl);
+  
+  // Validate before logging
+  const isValid = validateSitemapXML(sitemapContent);
+  
   console.log('=== SITEMAP.XML PRE GOOGLE SEARCH CONSOLE ===');
+  console.log(`Validation status: ${isValid ? '✅ VALID' : '❌ INVALID'}`);
+  console.log('');
   console.log(sitemapContent);
+  console.log('');
   console.log('=== KONIEC SITEMAP.XML ===');
   console.log('Skopírujte obsah medzi === značkami a vložte do Google Search Console');
+  
+  if (!isValid) {
+    console.warn('⚠️ UPOZORNENIE: Sitemap obsahuje chyby. Skontrolujte obsah pred použitím.');
+  }
+  
   return sitemapContent;
 };
 

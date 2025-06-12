@@ -1,6 +1,65 @@
-
 import { blogPosts } from '../data/blog';
 import type { BlogPost } from '../data/blog/types';
+
+/**
+ * Escape XML special characters
+ */
+const escapeXml = (text: string): string => {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+};
+
+/**
+ * Sanitize and validate URL
+ */
+const sanitizeUrl = (url: string): string => {
+  // Remove any invalid characters and ensure proper encoding
+  return encodeURI(url.replace(/[^\w\-._~:/?#[\]@!$&'()*+,;=%]/g, ''));
+};
+
+/**
+ * Validate blog post for sitemap inclusion
+ */
+const isValidBlogPost = (post: BlogPost): boolean => {
+  return Boolean(
+    post.id &&
+    post.title &&
+    post.content &&
+    post.image &&
+    typeof post.id === 'number' &&
+    post.title.trim().length > 0 &&
+    post.content.trim().length > 0 &&
+    post.image.trim().length > 0
+  );
+};
+
+/**
+ * Format date to ISO 8601 format (YYYY-MM-DD)
+ */
+const formatDateISO = (dateStr: string): string => {
+  try {
+    // Handle Czech date format (dd. mm. yyyy)
+    if (dateStr.includes('. ')) {
+      const parts = dateStr.split('. ');
+      if (parts.length === 3) {
+        const day = parts[0].padStart(2, '0');
+        const month = parts[1].padStart(2, '0');
+        const year = parts[2];
+        return `${year}-${month}-${day}`;
+      }
+    }
+    
+    // Fallback to current date if parsing fails
+    return new Date().toISOString().split('T')[0];
+  } catch (error) {
+    console.warn('Date parsing error:', error);
+    return new Date().toISOString().split('T')[0];
+  }
+};
 
 /**
  * Generate dynamic sitemap content based on current blog posts and pages
@@ -31,6 +90,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     { url: '/internet-poruba', priority: '0.8', changefreq: 'monthly' },
   ];
 
+  // Start XML with proper declaration and encoding
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `;
@@ -38,8 +98,10 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
   // Add static pages
   staticPages.forEach(page => {
     const fullUrl = page.url === '' ? baseUrl : `${baseUrl}${page.url}`;
+    const sanitizedUrl = sanitizeUrl(fullUrl);
+    
     sitemap += `  <url>
-    <loc>${fullUrl}</loc>
+    <loc>${escapeXml(sanitizedUrl)}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
@@ -49,8 +111,10 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
 
   // Add geo-specific pages
   geoPages.forEach(page => {
+    const sanitizedUrl = sanitizeUrl(`${baseUrl}${page.url}`);
+    
     sitemap += `  <url>
-    <loc>${baseUrl}${page.url}</loc>
+    <loc>${escapeXml(sanitizedUrl)}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
@@ -58,29 +122,61 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
 `;
   });
 
-  // Add blog posts - only valid ones with proper URLs
-  const validBlogPosts = blogPosts.filter(post => 
-    post.id && 
-    post.title && 
-    post.content && 
-    post.image
-  );
+  // Add blog posts - only valid ones with proper validation
+  const validBlogPosts = blogPosts.filter(isValidBlogPost);
 
   validBlogPosts.forEach((post: BlogPost) => {
-    const postUrl = `${baseUrl}/blog/${post.id}`;
-    
-    sitemap += `  <url>
-    <loc>${postUrl}</loc>
-    <lastmod>${currentDate}</lastmod>
+    try {
+      const postUrl = `${baseUrl}/blog/${post.id}`;
+      const sanitizedUrl = sanitizeUrl(postUrl);
+      const postDate = post.date ? formatDateISO(post.date) : currentDate;
+      
+      sitemap += `  <url>
+    <loc>${escapeXml(sanitizedUrl)}</loc>
+    <lastmod>${postDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 `;
+    } catch (error) {
+      console.warn(`Skipping blog post ${post.id} due to error:`, error);
+    }
   });
 
   sitemap += `</urlset>`;
 
   return sitemap;
+};
+
+/**
+ * Validate sitemap XML format
+ */
+export const validateSitemapXML = (sitemapContent: string): boolean => {
+  try {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(sitemapContent, 'application/xml');
+    const parseError = xmlDoc.querySelector('parsererror');
+    
+    if (parseError) {
+      console.error('Sitemap XML validation error:', parseError.textContent);
+      return false;
+    }
+    
+    const urlElements = xmlDoc.querySelectorAll('url');
+    const locElements = xmlDoc.querySelectorAll('loc');
+    
+    // Check that we have valid URLs
+    if (urlElements.length === 0 || locElements.length === 0) {
+      console.error('Sitemap has no valid URLs');
+      return false;
+    }
+    
+    console.log(`Sitemap validation passed: ${urlElements.length} URLs found`);
+    return true;
+  } catch (error) {
+    console.error('Sitemap validation failed:', error);
+    return false;
+  }
 };
 
 /**

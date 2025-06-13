@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const tipyPosts: BlogPost[] = [
@@ -113,9 +112,9 @@ export const tipyPosts: BlogPost[] = [
     date: "10. 5. 2025",
     author: "Marie Dvořáková",
     category: "Tipy",
-    image: "/lovable-uploads/2beac376-2c22-47d7-bf3e-a9bb280fa7bb.png",
-    alt: "Rodina sledující televizi v obývacím pokoji",
-    tags: ["Televizní balíčky", "PODA TV", "Úspora peněz", "Rodina", "Zábava"]
+    image: "/lovable-uploads/5daa6fb6-9d90-41e9-bb84-0e836eb8965f.png",
+    alt: "Rodina sledující televizi v obývacím pokoji s moderním smart TV",
+    tags: ["Televizní balíčky", "PODA TV", "Úspora peněz", "Rodina", "Zábrava"]
   },
   {
     id: 7,
@@ -358,7 +357,7 @@ export const tipyPosts: BlogPost[] = [
           <li>Rychlost je trvale pod 80% slíbené hodnoty</li>
           <li>Máte časté výpadky připojení</li>
           <li>Ping je trvale vysoký (> 100 ms)</li>
-          <li>Problém trvá déle než 24 hodin</li>
+          <li>Problém trvá děle než 24 hodin</li>
         </ul>
 
         <h2>Výhody PODA připojení</h2>

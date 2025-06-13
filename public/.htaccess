@@ -8,6 +8,9 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Special handling for sitemap.xml - serve directly
+RewriteRule ^sitemap\.xml$ - [L]
+
 # Special handling for favicon files - no redirection
 RewriteRule ^(poda-favicon.*)\.(ico|png)$ - [L]
 RewriteRule ^(site\.webmanifest)$ - [L]
@@ -38,10 +41,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} \.(jpg|jpeg|gif|png|webp)$
 RewriteRule ^(.*)$ /placeholder.svg [L,R=302]
 
-# Special handling for sitemap files
-RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
-RewriteRule ^robots\.txt$ /robots.txt [L]
-
 # Set proper MIME types
 <IfModule mod_mime.c>
   AddType application/javascript .js
@@ -52,6 +51,8 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   # Ensure correct MIME type for favicon
   AddType image/x-icon .ico
   AddType image/png .png
+  # Proper MIME type for sitemap
+  AddType application/xml .xml
 </IfModule>
 
 # Disable caching for favicon files
@@ -62,6 +63,14 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
     Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
     Header set Pragma "no-cache"
     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+  </IfModule>
+</FilesMatch>
+
+# Special headers for sitemap.xml
+<FilesMatch "^sitemap\.xml$">
+  <IfModule mod_headers.c>
+    Header set Content-Type "application/xml; charset=utf-8"
+    Header set Cache-Control "public, max-age=3600"
   </IfModule>
 </FilesMatch>
 
@@ -99,6 +108,9 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
   # No caching for favicons
   ExpiresByType image/x-icon "access plus 0 seconds"
   
+  # Sitemap caching
+  ExpiresByType application/xml "access plus 1 hour"
+  
   # Video
   ExpiresByType video/mp4 "access plus 1 year"
   ExpiresByType video/mpeg "access plus 1 year"
@@ -133,10 +145,11 @@ RewriteRule ^robots\.txt$ /robots.txt [L]
 # Disable directory listing
 Options -Indexes
 
-# Handle SPA routing - redirect all routes to index.html
+# Handle SPA routing - redirect all routes to index.html except sitemap
 <IfModule mod_rewrite.c>
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
+  RewriteRule ^sitemap\.xml$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]

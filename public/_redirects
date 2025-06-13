@@ -10,6 +10,9 @@ http://popri.cz/* https://www.popri.cz/:splat 301!
 http://www.popri.cz/* https://www.popri.cz/:splat 301!
 https://popri.cz/* https://www.popri.cz/:splat 301!
 
+# Special handling for sitemap.xml - serve directly
+/sitemap.xml /sitemap.xml 200
+
 # Special rules for favicon files - allow them to pass through directly
 /poda-favicon.ico /poda-favicon.ico 200
 /poda-favicon-16x16.png /poda-favicon-16x16.png 200

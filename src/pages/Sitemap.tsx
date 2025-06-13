@@ -1,9 +1,14 @@
 
-import SitemapXML from '../components/SitemapXML';
+import { useEffect } from 'react';
 
 const Sitemap = () => {
-  // This component only serves to render clean XML
-  return <SitemapXML />;
+  useEffect(() => {
+    // Redirect to static sitemap.xml file
+    window.location.replace('/sitemap.xml');
+  }, []);
+
+  // Return null as this component only redirects
+  return null;
 };
 
 export default Sitemap;

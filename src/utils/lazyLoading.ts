@@ -1,10 +1,10 @@
 
 /**
- * Lazy loading utilities for improved performance
+ * Optimized lazy loading utilities for improved performance
  */
 
 /**
- * Intersection Observer based lazy loading for images
+ * Simplified intersection observer for lazy loading
  */
 export const createImageLazyLoader = () => {
   if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
@@ -16,29 +16,23 @@ export const createImageLazyLoader = () => {
       if (entry.isIntersecting) {
         const img = entry.target as HTMLImageElement;
         const src = img.dataset.src;
-        const srcset = img.dataset.srcset;
         
         if (src) {
           img.src = src;
           img.removeAttribute('data-src');
+          img.classList.remove('lazy');
+          img.classList.add('lazy-loaded');
         }
         
-        if (srcset) {
-          img.srcset = srcset;
-          img.removeAttribute('data-srcset');
-        }
-        
-        img.classList.remove('lazy');
-        img.classList.add('lazy-loaded');
         imageObserver.unobserve(img);
       }
     });
   }, {
-    rootMargin: '50px 0px',
+    rootMargin: '100px 0px', // Zvýšený margin pre rýchlejšie načítanie
     threshold: 0.01
   });
 
-  // Observe all lazy images
+  // Observe lazy images
   document.querySelectorAll('img[data-src]').forEach(img => {
     imageObserver.observe(img);
   });
@@ -47,12 +41,13 @@ export const createImageLazyLoader = () => {
 };
 
 /**
- * Preload critical resources
+ * Preload only essential resources
  */
 export const preloadCriticalResources = (resources: string[]) => {
   if (typeof document === 'undefined') return;
 
-  resources.forEach(resource => {
+  // Preload len prvé 3 najdôležitejšie zdroje
+  resources.slice(0, 3).forEach(resource => {
     const link = document.createElement('link');
     link.rel = 'preload';
     
@@ -65,12 +60,13 @@ export const preloadCriticalResources = (resources: string[]) => {
     }
     
     link.href = resource;
+    link.fetchPriority = 'high';
     document.head.appendChild(link);
   });
 };
 
 /**
- * Debounce function for performance optimization
+ * Optimized debounce function
  */
 export const debounce = <T extends (...args: any[]) => any>(
   func: T,
@@ -85,7 +81,7 @@ export const debounce = <T extends (...args: any[]) => any>(
 };
 
 /**
- * Throttle function for scroll events
+ * Simplified throttle function
  */
 export const throttle = <T extends (...args: any[]) => any>(
   func: T,

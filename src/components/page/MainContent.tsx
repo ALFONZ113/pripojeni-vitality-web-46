@@ -1,33 +1,22 @@
 
-import React, { lazy, Suspense } from 'react';
-import { Loader2 } from 'lucide-react';
+import React from 'react';
 import Hero from '../Hero';
 import TariffSection from '../TariffSection';
-
-// Lazy-loaded components for better initial loading
-const ChannelsSection = lazy(() => import('../ChannelsSection'));
-const ContactSection = lazy(() => import('../ContactSection'));
-const BlogPreview = lazy(() => import('../BlogPreview'));
+import ChannelsSection from '../ChannelsSection';
+import ContactSection from '../ContactSection';
+import BlogPreview from '../BlogPreview';
 
 const MainContent = () => {
   return (
     <div className="min-h-screen">
-      {/* LCP (Largest Contentful Paint) optimized components rendered immediately */}
+      {/* Kritické komponenty - načítané hneď */}
       <Hero />
       <TariffSection />
+      <ChannelsSection />
       
-      {/* Non-critical components lazy loaded */}
-      <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader2 className="w-6 h-6 text-poda-blue animate-spin" /></div>}>
-        <ChannelsSection />
-      </Suspense>
-      
-      <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader2 className="w-6 h-6 text-poda-blue animate-spin" /></div>}>
-        <ContactSection />
-      </Suspense>
-      
-      <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader2 className="w-6 h-6 text-poda-blue animate-spin" /></div>}>
-        <BlogPreview />
-      </Suspense>
+      {/* Menej kritické komponenty - môžu byť načítané normálne */}
+      <ContactSection />
+      <BlogPreview />
     </div>
   );
 };

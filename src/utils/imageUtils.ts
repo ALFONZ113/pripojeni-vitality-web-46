@@ -50,7 +50,7 @@ export const responsiveImageProps = (
     loading: priority ? 'eager' as const : 'lazy' as const,
     width: width ?? undefined,
     height: height ?? undefined,
-    fetchPriority: priority ? 'high' as const : 'auto' as const,
+    fetchpriority: priority ? 'high' as const : 'auto' as const,
     onError: (e: React.SyntheticEvent<HTMLImageElement>) => handleImageError(e),
     // Add decode attribute for better image rendering performance
     decoding: priority ? 'sync' as const : 'async' as const,

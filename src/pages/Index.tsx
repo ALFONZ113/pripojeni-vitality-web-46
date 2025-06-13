@@ -10,30 +10,20 @@ import usePageInitialization from '../hooks/use-page-initialization';
 import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
-import PerformanceDebugger from '../components/development/PerformanceDebugger';
 
-// Critical images that should be preloaded
+// Len najkritickejšie obrázky
 const CRITICAL_IMAGES = [
-  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
-  '/poda-logo.svg'
-];
-
-// Critical resources for better loading
-const CRITICAL_RESOURCES = [
-  '/assets/index.css',
-  '/assets/index.js'
+  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png'
 ];
 
 const Index = () => {
   const { 
     isLoading, 
     error, 
-    loadingProgress, 
-    performanceMetrics 
+    loadingProgress
   } = usePageInitialization({ 
     criticalImages: CRITICAL_IMAGES,
-    criticalResources: CRITICAL_RESOURCES,
-    enablePerformanceMonitoring: true
+    enablePerformanceMonitoring: false // Vypnuté pre rýchlosť
   });
 
   if (error) {
@@ -48,37 +38,28 @@ const Index = () => {
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       
-      {/* Enhanced loading with progress indicator */}
+      {/* Zjednodušený loading */}
       {isLoading && (
-        <>
-          <LoadingState />
+        <div className="fixed top-0 left-0 w-full z-50">
           <ProgressIndicator 
             isLoading={isLoading} 
             variant="linear"
             size="sm"
           />
-        </>
+        </div>
       )}
       
-      {/* Main content with fade-in when loaded */}
-      <div className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+      {/* Main content - zobrazuje sa aj počas načítania */}
+      <div className={`transition-opacity duration-300 ${isLoading ? 'opacity-60' : 'opacity-100'}`}>
         <MainContent />
-        
-        {/* Local SEO section */}
-        {!isLoading && <LocalSEOSection />}
-        
-        {/* IPTV section */}
-        {!isLoading && <IPTVSection />}
+        <LocalSEOSection />
+        <IPTVSection />
       </div>
 
-      {/* Promotion popup - only show when fully loaded */}
+      {/* Popup len keď je načítané */}
       {!isLoading && <PromotionPopup />}
 
-      {/* Toast notifications */}
       <Toaster />
-      
-      {/* Performance metrics in development */}
-      <PerformanceDebugger performanceMetrics={performanceMetrics} />
     </div>
   );
 };

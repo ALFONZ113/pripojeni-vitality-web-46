@@ -1,29 +1,25 @@
 
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
-import LoadingState from '../components/page/LoadingState';
 import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
 import PromotionPopup from '../components/PromotionPopup';
-import ProgressIndicator from '../components/ui/progress-indicator';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
 
-// Len najkritickejšie obrázky
+// Len najkritickejší obrázok
 const CRITICAL_IMAGES = [
   '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png'
 ];
 
 const Index = () => {
   const { 
-    isLoading, 
-    error, 
-    loadingProgress
+    error
   } = usePageInitialization({ 
     criticalImages: CRITICAL_IMAGES,
-    enablePerformanceMonitoring: false // Vypnuté pre rýchlosť
+    enablePerformanceMonitoring: false
   });
 
   if (error) {
@@ -38,26 +34,13 @@ const Index = () => {
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       
-      {/* Zjednodušený loading */}
-      {isLoading && (
-        <div className="fixed top-0 left-0 w-full z-50">
-          <ProgressIndicator 
-            isLoading={isLoading} 
-            variant="linear"
-            size="sm"
-          />
-        </div>
-      )}
-      
-      {/* Main content - zobrazuje sa aj počas načítania */}
-      <div className={`transition-opacity duration-300 ${isLoading ? 'opacity-60' : 'opacity-100'}`}>
-        <MainContent />
-        <LocalSEOSection />
-        <IPTVSection />
-      </div>
+      {/* Main content - zobrazuje sa okamžite */}
+      <MainContent />
+      <LocalSEOSection />
+      <IPTVSection />
 
-      {/* Popup len keď je načítané */}
-      {!isLoading && <PromotionPopup />}
+      {/* Popup - načíta sa asynchrónne */}
+      <PromotionPopup />
 
       <Toaster />
     </div>

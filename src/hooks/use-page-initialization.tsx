@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { preloadCriticalImages } from '../utils/imageUtils';
 import { initAnimations } from '../utils/animation';
-import usePerformanceMonitor from './use-performance-monitor';
 
 interface UsePageInitializationProps {
   criticalImages: string[];
@@ -13,37 +12,29 @@ interface UsePageInitializationProps {
 const usePageInitialization = ({ 
   criticalImages, 
   criticalResources = [],
-  enablePerformanceMonitoring = false // Vypnuté v produkcii pre rýchlosť
+  enablePerformanceMonitoring = false
 }: UsePageInitializationProps) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Začíname s false pre rýchlejšie zobrazenie
   const [error, setError] = useState<string | null>(null);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-
-  // Monitor performance metrics len ak je povolené
-  const performanceMetrics = usePerformanceMonitor({
-    enableReporting: enablePerformanceMonitoring,
-    reportInterval: 10000
-  });
+  const [loadingProgress, setLoadingProgress] = useState(100); // Začíname na 100%
 
   useEffect(() => {
     let cleanupAnimation: (() => void) | undefined;
     
     const initializeApp = async () => {
       try {
-        setLoadingProgress(50);
+        // Preload len najkritickejší obrázok (hero image)
+        if (criticalImages.length > 0) {
+          preloadCriticalImages([criticalImages[0]]); // Len prvý obrázok
+        }
         
-        // Preload len najkritickejšie images
-        preloadCriticalImages(criticalImages.slice(0, 2)); // Len prvé 2 obrázky
-        setLoadingProgress(80);
+        // Initialize animations asynchrónne (neblokuje rendering)
+        requestIdleCallback(() => {
+          cleanupAnimation = initAnimations();
+        });
         
-        // Initialize animations s minimálnym delay
-        cleanupAnimation = initAnimations();
-        setLoadingProgress(100);
-        
-        // Krátky delay pre smooth transition
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 200);
+        // Hned označiť ako načítané
+        setIsLoading(false);
         
       } catch (e) {
         console.error('Error initializing page:', e);
@@ -52,7 +43,7 @@ const usePageInitialization = ({
       }
     };
 
-    // Spustiť inicializáciu hneď
+    // Spustiť inicializáciu okamžite
     initializeApp();
 
     return () => {
@@ -64,7 +55,7 @@ const usePageInitialization = ({
     isLoading, 
     error, 
     loadingProgress,
-    performanceMetrics
+    performanceMetrics: null // Vypnuté pre performance
   };
 };
 

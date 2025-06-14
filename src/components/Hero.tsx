@@ -1,8 +1,8 @@
 
-import HeroSection from './hero/HeroSection';
+import HeroSectionOptimized from './hero/HeroSectionOptimized';
 
 const Hero = () => {
-  return <HeroSection />;
+  return <HeroSectionOptimized />;
 };
 
 export default Hero;

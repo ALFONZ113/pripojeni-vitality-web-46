@@ -12,14 +12,13 @@ interface UsePageInitializationProps {
 
 const usePageInitialization = ({ 
   criticalImages, 
-  criticalResources = [],
-  enablePerformanceMonitoring = false // Vypnuté v produkcii pre rýchlosť
+  // criticalResources = [], // Not used currently, can be removed if not planned
+  enablePerformanceMonitoring = false
 }: UsePageInitializationProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [loadingProgress, setLoadingProgress] = useState(0);
+  // loadingProgress is removed as per plan
 
-  // Monitor performance metrics len ak je povolené
   const performanceMetrics = usePerformanceMonitor({
     enableReporting: enablePerformanceMonitoring,
     reportInterval: 10000
@@ -30,40 +29,33 @@ const usePageInitialization = ({
     
     const initializeApp = async () => {
       try {
-        setLoadingProgress(50);
-        
-        // Preload len najkritickejšie images
-        preloadCriticalImages(criticalImages.slice(0, 2)); // Len prvé 2 obrázky
-        setLoadingProgress(80);
-        
-        // Initialize animations s minimálnym delay
+        // Preload only the most critical images
+        // preloadCriticalImages(criticalImages.slice(0, 2)); // Assuming this is fast enough
+
+        // Initialize animations with minimal delay
         cleanupAnimation = initAnimations();
-        setLoadingProgress(100);
         
-        // Krátky delay pre smooth transition
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 200);
+        // Set loading to false immediately after critical tasks
+        setIsLoading(false);
         
       } catch (e) {
         console.error('Error initializing page:', e);
         setError('Došlo k chybě při načítání stránky.');
-        setIsLoading(false);
+        setIsLoading(false); // Also set to false in case of error
       }
     };
 
-    // Spustiť inicializáciu hneď
     initializeApp();
 
     return () => {
       if (cleanupAnimation) cleanupAnimation();
     };
-  }, [criticalImages]);
+  }, [criticalImages]); // criticalImages dependency is kept
 
   return { 
     isLoading, 
     error, 
-    loadingProgress,
+    // loadingProgress removed
     performanceMetrics
   };
 };

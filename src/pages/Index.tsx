@@ -1,11 +1,8 @@
-
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
-import LoadingState from '../components/page/LoadingState';
 import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
 import PromotionPopup from '../components/PromotionPopup';
-import ProgressIndicator from '../components/ui/progress-indicator';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
@@ -19,16 +16,20 @@ const CRITICAL_IMAGES = [
 const Index = () => {
   const { 
     isLoading, 
-    error, 
-    loadingProgress
+    error
   } = usePageInitialization({ 
     criticalImages: CRITICAL_IMAGES,
-    enablePerformanceMonitoring: false // Vypnuté pre rýchlosť
+    enablePerformanceMonitoring: false
   });
 
   if (error) {
     return <ErrorState error={error} />;
   }
+
+  // If isLoading is true for a very short flicker, consider if this is desired
+  // or if MainContent should always be rendered. For now, keeping the logic.
+  // If isLoading is almost always false immediately, the conditional rendering of PromotionPopup
+  // will show it almost instantly.
 
   return (
     <div className="min-h-screen">
@@ -38,25 +39,16 @@ const Index = () => {
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       
-      {/* Zjednodušený loading */}
-      {isLoading && (
-        <div className="fixed top-0 left-0 w-full z-50">
-          <ProgressIndicator 
-            isLoading={isLoading} 
-            variant="linear"
-            size="sm"
-          />
-        </div>
-      )}
+      {/* Loading indicator removed */}
       
-      {/* Main content - zobrazuje sa aj počas načítania */}
-      <div className={`transition-opacity duration-300 ${isLoading ? 'opacity-60' : 'opacity-100'}`}>
+      {/* Main content - always full opacity */}
+      <div className={`transition-opacity duration-300 opacity-100`}>
         <MainContent />
         <LocalSEOSection />
         <IPTVSection />
       </div>
 
-      {/* Popup len keď je načítané */}
+      {/* Popup will show once isLoading is false (which should be very quick) */}
       {!isLoading && <PromotionPopup />}
 
       <Toaster />

@@ -9,6 +9,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoadingState from "./components/page/LoadingState";
+import ScrollToTop from "./components/ui/scroll-to-top";
 
 // Hlavnú stránku načítame hneď, aby sa nezobrazoval spinner
 import Index from "./pages/Index";
@@ -42,6 +43,7 @@ function App() {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <div className="min-h-screen flex flex-col">
               <Navbar />
               <main className="flex-1">

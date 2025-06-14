@@ -10,8 +10,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoadingState from "./components/page/LoadingState";
 
-// Lazy load components for better performance
-const Index = lazy(() => import("./pages/Index"));
+// Hlavnú stránku načítame hneď, aby sa nezobrazoval spinner
+import Index from "./pages/Index";
+
+// Ostatné stránky načítavame "lazy" pre lepšiu výkonnosť
 const InternetTV = lazy(() => import("./pages/InternetTV"));
 const IPTV = lazy(() => import("./pages/IPTV"));
 const Tarify = lazy(() => import("./pages/Tarify"));

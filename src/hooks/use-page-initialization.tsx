@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { preloadCriticalImages } from '../utils/imageUtils';
 import { initAnimations } from '../utils/animation';
 import usePerformanceMonitor from './use-performance-monitor';
 
@@ -12,12 +11,10 @@ interface UsePageInitializationProps {
 
 const usePageInitialization = ({ 
   criticalImages, 
-  // criticalResources = [], // Not used currently, can be removed if not planned
   enablePerformanceMonitoring = false
 }: UsePageInitializationProps) => {
-  const [isLoading, setIsLoading] = useState(true);
+  // Stav isLoading bol odstránený, aby sa predišlo preblikávaniu obsahu.
   const [error, setError] = useState<string | null>(null);
-  // loadingProgress is removed as per plan
 
   const performanceMetrics = usePerformanceMonitor({
     enableReporting: enablePerformanceMonitoring,
@@ -29,19 +26,12 @@ const usePageInitialization = ({
     
     const initializeApp = async () => {
       try {
-        // Preload only the most critical images
-        // preloadCriticalImages(criticalImages.slice(0, 2)); // Assuming this is fast enough
-
-        // Initialize animations with minimal delay
+        // Inicializácia animácií a ďalšie úlohy na pozadí
         cleanupAnimation = initAnimations();
-        
-        // Set loading to false immediately after critical tasks
-        setIsLoading(false);
         
       } catch (e) {
         console.error('Error initializing page:', e);
         setError('Došlo k chybě při načítání stránky.');
-        setIsLoading(false); // Also set to false in case of error
       }
     };
 
@@ -50,12 +40,11 @@ const usePageInitialization = ({
     return () => {
       if (cleanupAnimation) cleanupAnimation();
     };
-  }, [criticalImages]); // criticalImages dependency is kept
+  }, [criticalImages]);
 
   return { 
-    isLoading, 
+    isLoading: false, // Vždy vrátime false, obsah sa zobrazí okamžite
     error, 
-    // loadingProgress removed
     performanceMetrics
   };
 };

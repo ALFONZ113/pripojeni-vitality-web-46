@@ -1,4 +1,3 @@
-
 import type { BlogPost } from './types';
 
 export const ostravaPost: BlogPost = {
@@ -93,11 +92,11 @@ export const ostravaPost: BlogPost = {
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          <tr><td class="px-6 py-4 whitespace-nowrap">Ostrava</td><td class="px-6 py-4 whitespace-nowrap">250 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">500/250 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">+ TV zdarma</td></tr>
-          <tr><td class="px-6 py-4 whitespace-nowrap">Karviná</td><td class="px-6 py-4 whitespace-nowrap">280 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">1000/500 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">+ premium TV</td></tr>
-          <tr><td class="px-6 py-4 whitespace-nowrap">Havířov</td><td class="px-6 py-4 whitespace-nowrap">220 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">300/150 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">sleva pro rodiny</td></tr>
-          <tr><td class="px-6 py-4 whitespace-nowrap">Bohumín</td><td class="px-6 py-4 whitespace-nowrap">350 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">1000/1000 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">business tarif</td></tr>
-          <tr><td class="px-6 py-4 whitespace-nowrap">Orlová</td><td class="px-6 py-4 whitespace-nowrap">200 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">200/100 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">úvodní cena 6 měsíců</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap">Ostrava</td><td class="px-6 py-4 whitespace-nowrap">150 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">1000/1000 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">TV zdarma (bez Nová a Prima)</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap">Karviná</td><td class="px-6 py-4 whitespace-nowrap">320 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">150/150 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">TV zdarma (důchodcovský tarif)</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap">Havířov</td><td class="px-6 py-4 whitespace-nowrap">250 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">1000/1000 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">možnost 10% slevy</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap">Bohumín</td><td class="px-6 py-4 whitespace-nowrap">230 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">150/150 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">důchodcovský tarif</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap">Orlová</td><td class="px-6 py-4 whitespace-nowrap">250 Kč/měsíc</td><td class="px-6 py-4 whitespace-nowrap">1000/1000 Mb/s</td><td class="px-6 py-4 whitespace-nowrap">TV zdarma</td></tr>
         </tbody>
       </table>
     </div>

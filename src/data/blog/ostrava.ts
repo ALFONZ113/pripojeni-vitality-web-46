@@ -226,10 +226,10 @@ export const ostravaPost: BlogPost = {
 
     <h2>Recenze zákazníků z Moravskoslezského kraje</h2>
     <h3>Reálné zkušenosti z regionu</h3>
-    <blockquote><p>Pavel K., Ostrava-Poruba, IT specialista:<br>"Jako programátor potřebujem stabilní připojení s nízkou latencí. PODA přes Popri.cz splnilo všechna očekávání. Za 250 Kč mám to, za co jsem u O2 platil 900 Kč. Doporučuji všem v Ostravě."</p></blockquote>
-    <blockquote><p>Marie S., Karviná-Fryštát, účetní:<br>"Pracuji z domova a potřebovala jsem rychlý upload pro odesílání velkých souborů. PODA nabízí symetrické rychlosti, což konkurence neumí. Navíc místní podpora vždy rychle pomůže."</p></blockquote>
-    <blockquote><p>Tomáš V., Havířov, majitel e-shopu:<br>"Provozuji online obchod a každá minuta výpadku mě stojí peníze. PODA má stabilitu 99,8%, což je nejlepší v regionu. Cena je navíc neporazitelná."</p></blockquote>
-    <blockquote><p>Jana P., Bohumín, logistická firma:<br>"Naše firma potřebuje připojení do Polska s nízkou latencí. PODA v Bohumíně nabízí speciální tarify pro mezinárodní firmy. Jsme velmi spokojeni."</p></blockquote>
+    <blockquote><p>Pavel K., Ostrava-Poruba, IT specialista:<br>"Ako programátor potrebujem stabilné pripojenie s nízkou latenciou. PODA cez Popri.cz splnilo všetky očakávania. Za 250 Kč mám to, za čo som u O2 platil 900 Kč. Odporúčam všetkým v Ostrave."</p></blockquote>
+    <blockquote><p>Marie S., Karviná-Fryštát, účetní:<br>"Pracujem z domova a potrebovala som rýchly upload pre odosielanie veľkých súborov. PODA ponúka symetrické rýchlosti, čo konkurencia nevie. Navyše miestna podpora vždy rýchlo pomôže."</p></blockquote>
+    <blockquote><p>Tomáš V., Havířov, majitel e-shopu:<br>"Prevádzkujem online obchod a každá minúta výpadku ma stojí peniaze. PODA má stabilitu 99,8%, čo je najlepšie v regióne. Cena je navyše neporaziteľná."</p></blockquote>
+    <blockquote><p>Jana P., Bohumín, logistická firma:<br>"Naša firma potrebuje pripojenie do Poľska s nízkou latenciou. PODA v Bohumíne ponúka špeciálne tarify pre medzinárodné firmy. Sme veľmi spokojní."</p></blockquote>
 
     <h2>Budoucnost internetu v Moravskoslezském kraji</h2>
     <h3>Plány rozvoje PODA 2025-2026</h3>

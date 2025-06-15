@@ -1,3 +1,4 @@
+
 import { BlogPost } from './types';
 
 export const tipyPosts: BlogPost[] = [
@@ -223,8 +224,8 @@ export const tipyPosts: BlogPost[] = [
     date: "8. 5. 2025",
     author: "Jan Procházka",
     category: "Tipy",
-    image: "/foto 60hz.webp",
-    alt: "Sportovní přenos na velkoplošné televizi",
+    image: "/lovable-uploads/235022db-f6c5-4a2f-8970-681e7c476589.png",
+    alt: "Skupina přátel sledující sportovní přenos v obývacím pokoji",
     tags: ["Sport", "Streaming", "Televizní přenos", "Online sledování", "PODA TV"]
   },
   {

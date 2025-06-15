@@ -1,7 +1,13 @@
 
 import { Helmet } from 'react-helmet-async';
 import type { BlogPost } from '../../data/blog/types';
-import { generateBlogPostMeta, generateGeoMeta, generateLocalBusinessData } from '../../utils/blogSeo';
+import { 
+  generateBlogPostMeta, 
+  generateGeoMeta, 
+  generateLocalBusinessData,
+  generateFaqSchema,
+  generateReviewSchema
+} from '../../utils/blogSeo';
 
 interface BlogPostSEOProps {
   post: BlogPost;
@@ -23,6 +29,23 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   
   const location = extractLocation(`${post.title} ${post.content}`);
   const locationGeoMeta = location ? generateGeoMeta(location) : geoMeta;
+
+  // Generate structured data
+  const faqSchema = generateFaqSchema(post.content);
+  const { reviews, aggregateRating } = post.id === 13 
+    ? generateReviewSchema(post.content, { "@type": "Organization", "name": "PODA", "url": baseUrl }) 
+    : { reviews: [], aggregateRating: null };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Úvod", "item": baseUrl },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${baseUrl}/blog` },
+      { "@type": "ListItem", "position": 3, "name": post.category, "item": `${baseUrl}/blog?category=${encodeURIComponent(post.category)}` },
+      { "@type": "ListItem", "position": 4, "name": post.title, "item": meta.canonicalUrl }
+    ]
+  };
 
   return (
     <Helmet>
@@ -99,21 +122,29 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
         {JSON.stringify(localBusinessData)}
       </script>
       
-      {/* FAQ structured data if content contains Q&A */}
-      {post.content.includes('<h3>') && (
+      {/* Breadcrumb structured data */}
+      <script type="application/ld+json">
+        {JSON.stringify(breadcrumbSchema)}
+      </script>
+
+      {/* FAQ structured data (dynamic) */}
+      {faqSchema && (
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [{
-              "@type": "Question",
-              "name": "Ako získať rýchle internetové pripojenie?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Kontaktujte PODA na čísle 730 431 313 alebo vyplňte kontaktný formulár na popri.cz"
-              }
-            }]
-          })}
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
+
+      {/* Aggregate Rating structured data */}
+      {aggregateRating && (
+         <script type="application/ld+json">
+          {JSON.stringify(aggregateRating)}
+        </script>
+      )}
+
+      {/* Individual Reviews structured data */}
+      {reviews.length > 0 && (
+        <script type="application/ld+json">
+          {JSON.stringify(reviews)}
         </script>
       )}
     </Helmet>

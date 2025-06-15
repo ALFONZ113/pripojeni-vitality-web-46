@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const tipyPosts: BlogPost[] = [
@@ -375,7 +374,7 @@ export const tipyPosts: BlogPost[] = [
     date: "5. 5. 2025",
     author: "Pavel Novotný",
     category: "Tipy",
-    image: "/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_Visual_Conce_2.webp",
+    image: "/lovable-uploads/35179673-7e72-4282-8609-a46686328aa0.png",
     alt: "Test rychlosti internetu na počítači",
     tags: ["Test rychlosti", "Internet", "Diagnostika", "Rychlost připojení", "PODA"]
   }

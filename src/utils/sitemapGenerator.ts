@@ -82,7 +82,7 @@ const formatDateISO = (dateStr: string): string => {
 };
 
 /**
- * Generate clean XML sitemap content
+ * Generate clean XML sitemap content with automatic blog post detection
  */
 export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): string => {
   const currentDate = new Date().toISOString().split('T')[0];
@@ -142,8 +142,9 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     }
   });
 
-  // Add blog posts - only valid ones
+  // Add blog posts - AUTOMATIC DETECTION of all valid posts
   const validBlogPosts = blogPosts.filter(isValidBlogPost);
+  console.log(`Sitemap generator found ${validBlogPosts.length} valid blog posts:`, validBlogPosts.map(p => p.id));
 
   validBlogPosts.forEach((post: BlogPost) => {
     try {
@@ -166,6 +167,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
 
   sitemap += `</urlset>`;
 
+  console.log(`Generated sitemap with ${staticPages.length + geoPages.length + validBlogPosts.length} URLs`);
   return sitemap;
 };
 

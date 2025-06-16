@@ -1,4 +1,5 @@
 
+
 # www.popri.cz robots.txt - Migrácia z pripojeni-poda.cz - Updated 2025-06-16
 User-agent: *
 Allow: /
@@ -40,8 +41,9 @@ Allow: /blog/8$
 Allow: /blog/9$
 Allow: /blog/10$
 Allow: /blog/11$
-Allow: /blog/100$
 Allow: /blog/12$
+Allow: /blog/13$
+Allow: /blog/100$
 
 # Allow indexing of tags and categories
 Allow: /blog?category=*
@@ -108,3 +110,4 @@ Allow: /lovable-uploads/*
 
 # Sitemap declarations - HLAVNÁ DOMÉNA
 Sitemap: https://www.popri.cz/sitemap.xml
+

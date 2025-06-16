@@ -8,6 +8,7 @@ import {
   generateFaqSchema,
   generateReviewSchema
 } from '../../utils/blogSeo';
+import { generateCanonicalUrl, generateHreflangTags } from '../../utils/domainMigration';
 
 interface BlogPostSEOProps {
   post: BlogPost;
@@ -20,6 +21,10 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   const meta = generateBlogPostMeta(post, baseUrl);
   const geoMeta = generateGeoMeta();
   const localBusinessData = generateLocalBusinessData(baseUrl);
+  
+  // Generate migration-safe canonical URL
+  const canonicalUrl = generateCanonicalUrl(`/blog/${post.id}`);
+  const hreflangTags = generateHreflangTags(`/blog/${post.id}`);
   
   // Extract location for geo-specific optimization
   const extractLocation = (text: string): string | null => {
@@ -43,7 +48,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       { "@type": "ListItem", "position": 1, "name": "Úvod", "item": baseUrl },
       { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${baseUrl}/blog` },
       { "@type": "ListItem", "position": 3, "name": post.category, "item": `${baseUrl}/blog?category=${encodeURIComponent(post.category)}` },
-      { "@type": "ListItem", "position": 4, "name": post.title, "item": meta.canonicalUrl }
+      { "@type": "ListItem", "position": 4, "name": post.title, "item": canonicalUrl }
     ]
   };
 
@@ -52,13 +57,18 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <title>{meta.title}</title>
       <meta name="description" content={meta.description} />
       <meta name="keywords" content={meta.keywords} />
-      <link rel="canonical" href={meta.canonicalUrl} />
+      <link rel="canonical" href={canonicalUrl} />
       
       {/* Enhanced meta tags */}
       <meta name="author" content={post.author} />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
       <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
       <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      
+      {/* Domain migration signals */}
+      <meta name="migration-date" content="2025-06-16" />
+      <meta name="original-domain" content="pripojeni-poda.cz" />
+      <meta name="preferred-domain" content="www.popri.cz" />
       
       {/* Reading time and word count */}
       <meta name="twitter:label1" content="Čas čítania" />
@@ -74,7 +84,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       {/* Open Graph tags */}
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
-      <meta property="og:url" content={meta.canonicalUrl} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={meta.ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
@@ -100,21 +110,26 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <meta name="twitter:image" content={meta.ogImage} />
       {post.alt && <meta name="twitter:image:alt" content={post.alt} />}
       
+      {/* Hreflang tags for domain migration */}
+      {hreflangTags.map((tag, index) => (
+        <link key={index} rel="alternate" href={tag.href} hrefLang={tag.hreflang} />
+      ))}
+      
       {/* Navigation links for SEO - FIXED: Use canonical URLs */}
-      {prevPost && <link rel="prev" href={`${baseUrl}/blog/${prevPost.id}`} />}
-      {nextPost && <link rel="next" href={`${baseUrl}/blog/${nextPost.id}`} />}
+      {prevPost && <link rel="prev" href={generateCanonicalUrl(`/blog/${prevPost.id}`)} />}
+      {nextPost && <link rel="next" href={generateCanonicalUrl(`/blog/${nextPost.id}`)} />}
       
       {/* Preconnect to external domains */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
       
-      {/* Language alternatives */}
-      <link rel="alternate" href={meta.canonicalUrl} hrefLang="cs" />
-      <link rel="alternate" href={meta.canonicalUrl} hrefLang="sk" />
-      
       {/* Structured data */}
       <script type="application/ld+json">
-        {JSON.stringify(meta.structuredData)}
+        {JSON.stringify({
+          ...meta.structuredData,
+          mainEntityOfPage: canonicalUrl,
+          url: canonicalUrl
+        })}
       </script>
       
       {/* Local business structured data */}

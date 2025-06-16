@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { generateCanonicalUrl, generateHreflangTags } from '../../utils/domainMigration';
 
 interface PageMetadataProps {
   title: string;
@@ -11,6 +12,7 @@ interface PageMetadataProps {
   domain?: string;
   seznamVerification?: string;
   canonicalUrl?: string;
+  currentPath?: string;
 }
 
 const PageMetadata = ({ 
@@ -21,16 +23,21 @@ const PageMetadata = ({
   cacheBuster = Date.now().toString(),
   domain = typeof window !== "undefined" ? window.location.hostname : "www.popri.cz",
   seznamVerification,
-  canonicalUrl = "https://www.popri.cz/"
+  canonicalUrl,
+  currentPath = ""
 }: PageMetadataProps) => {
   // Generate domain-specific cache busting parameter
   const domainSpecificHash = domain.includes('poda') ? 'poda-' + cacheBuster : 'popri-' + cacheBuster;
+  
+  // Generate migration-safe canonical URL
+  const migrationSafeCanonicalUrl = canonicalUrl || generateCanonicalUrl(currentPath);
+  const hreflangTags = generateHreflangTags(currentPath);
   
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="canonical" href={migrationSafeCanonicalUrl} />
       <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap.xml" />
       <meta name="format-detection" content="telephone=yes" />
       <meta name="google" content="notranslate"/>
@@ -40,17 +47,31 @@ const PageMetadata = ({
       <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
       <meta name="revisit-after" content="7 days" />
+      
+      {/* Domain migration signals */}
+      <meta name="migration-date" content="2025-06-16" />
+      <meta name="original-domain" content="pripojeni-poda.cz" />
+      <meta name="preferred-domain" content="www.popri.cz" />
+      
+      {/* Open Graph tags */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:url" content={migrationSafeCanonicalUrl} />
       <meta property="og:site_name" content="Popri.cz" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://www.popri.cz/og-image.png" />
+      
+      {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content="https://www.popri.cz/og-image.png" />
       <meta name="last-updated" content={currentDate} />
+      
+      {/* Hreflang tags for domain migration */}
+      {hreflangTags.map((tag, index) => (
+        <link key={index} rel="alternate" href={tag.href} hrefLang={tag.hreflang} />
+      ))}
       
       {/* Enhanced cache control to force refreshing on both domains */}
       <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -72,14 +93,14 @@ const PageMetadata = ({
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
-      {/* Enhanced structured data */}
+      {/* Enhanced structured data with migration signals */}
       <script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Popri.cz – PODA Internet",
-            "url": "${canonicalUrl}",
+            "url": "${migrationSafeCanonicalUrl}",
             "potentialAction": {
               "@type": "SearchAction",
               "target": "https://www.popri.cz/search?q={search_term_string}",
@@ -117,7 +138,7 @@ const PageMetadata = ({
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Úvod",
-                "item": "${canonicalUrl}"
+                "item": "${migrationSafeCanonicalUrl}"
               }
             ]
           }

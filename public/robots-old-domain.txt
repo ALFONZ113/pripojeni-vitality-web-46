@@ -1,0 +1,17 @@
+
+# robots.txt pre pripojeni-poda.cz - STARÁ DOMÉNA
+# Presmerováva všetok traffic na www.popri.cz
+
+User-agent: *
+# Zakázať indexovanie starej domény
+Disallow: /
+
+# Informovať botov o novej doméne
+# Nová doména: https://www.popri.cz
+
+# Sitemap na novej doméne
+Sitemap: https://www.popri.cz/sitemap.xml
+
+# Poznámka pre administrátorov:
+# Tento robots.txt by mal byť nahraný na pripojeni-poda.cz
+# aby zabránil indexovaniu starej domény

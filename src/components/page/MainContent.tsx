@@ -1,10 +1,8 @@
 
 import React from 'react';
-import HeroSection from '../sections/HeroSection';
-import FeaturesSection from '../sections/FeaturesSection';
-import TariffsSection from '../sections/TariffsSection';
-import TestimonialsSection from '../sections/TestimonialsSection';
-import CTASection from '../sections/CTASection';
+import HeroSection from '../hero/HeroSection';
+import TariffSection from '../TariffSection';
+import ContactSection from '../ContactSection';
 import IndexingHelper from '../seo/IndexingHelper';
 
 const MainContent = () => {
@@ -15,9 +13,8 @@ const MainContent = () => {
   return (
     <>
       <HeroSection />
-      <FeaturesSection />
-      <TariffsSection />
-      <TestimonialsSection />
+      <TariffSection />
+      <ContactSection />
       
       {/* SEO Indexing Helper - only for development/admin */}
       {showIndexingHelper && (
@@ -29,8 +26,6 @@ const MainContent = () => {
           </div>
         </section>
       )}
-      
-      <CTASection />
     </>
   );
 };

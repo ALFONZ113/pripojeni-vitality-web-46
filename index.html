@@ -15,19 +15,13 @@
     <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
     <meta name="format-detection" content="telephone=yes">
     
-    <!-- Dark mode prevention for Xiaomi and other aggressive dark mode browsers -->
-    <meta name="color-scheme" content="light only">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="msapplication-navbutton-color" content="#ffffff">
-    <meta name="apple-mobile-web-app-status-bar-style" content="light-content">
-    
     <!-- Cache control meta tags -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <meta name="version" content="3.1" />
+    <meta name="version" content="3.0" />
     <meta name="cache-version" content="1747228116549" />
-    <meta name="domain-cache" content="dual-domain-3.1" />
+    <meta name="domain-cache" content="dual-domain-3.0" />
     
     <!-- Canonical URLs -->
     <link rel="canonical" href="https://www.popri.cz/" />
@@ -50,12 +44,12 @@
     <meta name="twitter:image" content="https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" />
     
     <!-- Favicon configuration -->
-    <link rel="icon" href="/poda-favicon.ico?v=3.1" type="image/x-icon">
-    <link rel="icon" href="/poda-favicon-16x16.png?v=3.1" sizes="16x16" type="image/png">
-    <link rel="icon" href="/poda-favicon-32x32.png?v=3.1" sizes="32x32" type="image/png">
-    <link rel="icon" href="/poda-favicon-48x48.png?v=3.1" sizes="48x48" type="image/png">
-    <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png?v=3.1">
-    <link rel="manifest" href="/site.webmanifest?v=3.1">
+    <link rel="icon" href="/poda-favicon.ico?v=3.0" type="image/x-icon">
+    <link rel="icon" href="/poda-favicon-16x16.png?v=3.0" sizes="16x16" type="image/png">
+    <link rel="icon" href="/poda-favicon-32x32.png?v=3.0" sizes="32x32" type="image/png">
+    <link rel="icon" href="/poda-favicon-48x48.png?v=3.0" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png?v=3.0">
+    <link rel="manifest" href="/site.webmanifest?v=3.0">
     
     <!-- Enhanced font preloading with CORS support -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -92,41 +86,14 @@
     
     <!-- Analytics (deferred) -->
     <script src="/js/analytics.js"></script>
-    
-    <!-- Prevent dark mode inversion on aggressive browsers -->
-    <style>
-      /* Force light mode globally */
-      html {
-        color-scheme: light !important;
-        background-color: #ffffff !important;
-      }
-      
-      body {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-      }
-      
-      /* Prevent any dark mode auto-inversion */
-      * {
-        color-scheme: light !important;
-      }
-      
-      /* Override any dark mode media queries */
-      @media (prefers-color-scheme: dark) {
-        html, body {
-          background-color: #ffffff !important;
-          color: #000000 !important;
-        }
-      }
-    </style>
   </head>
 
-  <body style="background-color: #ffffff !important; color: #000000 !important;">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Service worker registration with updated version -->
-    <script src="/sw-register.js?v=3.1"></script>
+    <script src="/sw-register.js?v=3.0"></script>
     
     <!-- Enhanced resource error handling -->
     <script>

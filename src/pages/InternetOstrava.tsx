@@ -154,7 +154,7 @@ const InternetOstrava = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Rychlá instalace</h3>
-                    <p className="text-gray-600">Bezplatná instalace do 48 hodin ve všech městských částech.</p>
+                    <p className="text-gray-600">Bezplatná a rychlá instalace ve všech městských částech.</p>
                   </div>
                 </div>
                 <div className="flex items-start">

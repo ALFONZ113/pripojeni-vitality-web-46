@@ -82,14 +82,14 @@ const CityInteractiveCard = ({
             <div className="text-center">
               <div className="flex items-center justify-center mb-1">
                 <Wifi className="h-4 w-4 mr-1" />
-                <span className="text-sm font-medium">Pokrytie</span>
+                <span className="text-sm font-medium">Pokrytí</span>
               </div>
               <div className="text-lg font-bold text-green-600">{coverage}</div>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-1">
                 <Star className="h-4 w-4 mr-1" />
-                <span className="text-sm font-medium">Rýchlosť</span>
+                <span className="text-sm font-medium">Rychlost</span>
               </div>
               <div className="text-lg font-bold text-poda-blue">{speed}</div>
             </div>
@@ -115,13 +115,13 @@ const CityInteractiveCard = ({
           <div className="flex gap-2">
             <Link to="/kontakt" className="flex-1">
               <EnhancedButton className={`w-full ${colors.button} text-white`} size="sm">
-                💬 Získať ponuku
+                💬 Získat nabídku
               </EnhancedButton>
             </Link>
             <a href="tel:+420730431313" className="flex-1">
               <EnhancedButton variant="outline" className="w-full" size="sm">
                 <Phone className="h-4 w-4 mr-1" />
-                Zavolať
+                Zavolat
               </EnhancedButton>
             </a>
           </div>

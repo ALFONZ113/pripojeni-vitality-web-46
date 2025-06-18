@@ -43,47 +43,45 @@ const LocalSEOSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-br from-poda-blue/5 via-blue-50/50 to-purple-50/30 premium-overlay">
+    <section className="section-padding bg-gradient-to-r from-poda-blue/10 to-blue-50">
       <div className="container-custom">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 section-divider">
-            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-poda-blue to-blue-600 mb-8 premium-text-shadow">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
               Gigabitový Internet PODA vo všetkých mestách regiónu
             </h2>
-            <p className="text-gray-600 text-xl max-w-4xl mx-auto leading-relaxed font-medium">
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
               Vyberte si svoje mesto a zistite, prečo si tisíce zákazníkov vybrali najrýchlejší optický internet PODA
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {locations.map((location, index) => (
               <Link 
                 key={index}
                 to={location.url}
-                className="glass-card rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 group premium-glow"
+                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group"
               >
-                <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-br from-poda-orange/10 to-orange-100/50 p-3 rounded-2xl mr-4 shadow-lg">
-                    <MapPin className="h-6 w-6 text-poda-orange" />
-                  </div>
-                  <h3 className="font-bold text-2xl text-poda-blue group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-poda-orange group-hover:to-orange-500 transition-all duration-300 premium-text-shadow">
+                <div className="flex items-center mb-4">
+                  <MapPin className="h-6 w-6 text-poda-orange mr-3" />
+                  <h3 className="font-bold text-xl text-poda-blue group-hover:text-poda-orange transition-colors">
                     {location.city}
                   </h3>
                 </div>
-                <div className="space-y-4 mb-6">
+                <div className="space-y-2 mb-4">
                   <div className="flex justify-between text-sm text-gray-600">
-                    <span className="font-medium">Obyvatelia:</span>
-                    <span className="font-bold text-poda-blue">{location.population}</span>
+                    <span>Obyvatelia:</span>
+                    <span className="font-medium">{location.population}</span>
                   </div>
-                  <div className="text-sm text-gray-600 leading-relaxed">
+                  <div className="text-sm text-gray-600">
                     <span className="font-medium">Pokrytie:</span> {location.districts}
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-poda-orange/10 to-orange-100/50 text-poda-orange px-4 py-2 rounded-full text-sm font-bold mb-6 inline-block shadow-lg">
+                <div className="bg-poda-orange/10 text-poda-orange px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
                   {location.highlight}
                 </div>
-                <div className="flex items-center text-poda-blue font-semibold group-hover:text-poda-orange transition-colors duration-300">
-                  Zistiť viac <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <div className="flex items-center text-poda-blue font-medium group-hover:text-poda-orange transition-colors">
+                  Zistiť viac <ArrowRight className="ml-2 h-4 w-4" />
                 </div>
               </Link>
             ))}

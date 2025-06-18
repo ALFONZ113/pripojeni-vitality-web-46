@@ -1,15 +1,11 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-
 const InternetBohumin = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Internet PODA Bohumín | Gigabitové optické připojení | Tel: 730 431 313</title>
         <meta name="description" content="Nejrychlejší internet PODA v Bohumíně s optickou technologií GPON. Rychlost až 2000 Mbps, bezplatná instalace. Pokrytí: Starý Bohumín, Nový Bohumín, Skřečoň." />
@@ -102,12 +98,22 @@ const InternetBohumin = () => {
               Kompletní pokrytí všech částí Bohumína
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { name: 'Starý Bohumín', residents: '8 000', coverage: '100%', note: 'Historické centrum města' },
-                { name: 'Nový Bohumín', residents: '10 000', coverage: '100%', note: 'Moderní obytná zástavba' },
-                { name: 'Skřečoň', residents: '3 000', coverage: '100%', note: 'Přírodní lokalita u řeky' }
-              ].map((district, index) => (
-                <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+              {[{
+              name: 'Starý Bohumín',
+              residents: '8 000',
+              coverage: '100%',
+              note: 'Historické centrum města'
+            }, {
+              name: 'Nový Bohumín',
+              residents: '10 000',
+              coverage: '100%',
+              note: 'Moderní obytná zástavba'
+            }, {
+              name: 'Skřečoň',
+              residents: '3 000',
+              coverage: '100%',
+              note: 'Přírodní lokalita u řeky'
+            }].map((district, index) => <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mr-3" />
                     <h3 className="font-bold text-lg">{district.name}</h3>
@@ -123,8 +129,7 @@ const InternetBohumin = () => {
                     </div>
                     <div className="text-sm text-poda-blue font-medium">{district.note}</div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -150,7 +155,7 @@ const InternetBohumin = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Express instalace</h3>
-                    <p className="text-gray-600">Malé město = velká rychlost. Instalace do 12 hodin od objednání.</p>
+                    <p className="text-gray-600">Malé město = velká rychlost. Instalace zdarma.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -175,18 +180,13 @@ const InternetBohumin = () => {
                       <span className="font-bold text-poda-orange">250 Kč/měs</span>
                     </div>
                   </div>
-                  <Collapsible
-                    open={openPromoInfo}
-                    onOpenChange={setOpenPromoInfo}
-                    className="mt-1"
-                  >
+                  <Collapsible open={openPromoInfo} onOpenChange={setOpenPromoInfo} className="mt-1">
                     <CollapsibleTrigger className="flex items-center justify-start text-white/70 hover:text-white transition-colors">
                       <Info className="h-3.5 w-3.5 mr-1" />
                       <span className="text-xs">Více o ceně</span>
-                      <ChevronDown 
-                        className="h-3 w-3 ml-1 transition-transform duration-200" 
-                        style={{ transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)' }} 
-                      />
+                      <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" style={{
+                      transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)'
+                    }} />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-2 text-xs text-white/80 bg-white/10 p-2 rounded-md">
                       Promo cena 250 Kč/měs platí prvních 12 měsíců. Od 13. měsíce standardní cena 440 Kč/měs. Bez závaznosti.
@@ -232,8 +232,6 @@ const InternetBohumin = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default InternetBohumin;

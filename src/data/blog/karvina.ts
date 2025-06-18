@@ -8,7 +8,7 @@ export const karvinaPost: BlogPost = {
   content: `
     <div class="prose-content">
       <h2>Úvod: Nová éra internetového připojení v Karviné</h2>
-      <p>Moravskoslezský region dlouho čekal na skutečnou revoluci v oblasti internetového připojení. Karviná, město s bohatou průmyslovou historií, nyní vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny.</p>
+      <p>Moravskoslezský region dlouho čekal na skutečnou revoluci v oblasti internetového připojení. Karviná, město s bohatou průmyslovou historií na hranicích s Polskem, nyní vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny.</p>
 
       <h2>Geografické pokrytí: Celá Karviná v dosahu optiky</h2>
       <h3>Kompletní infrastrukturní pokrytí městských částí</h3>
@@ -17,11 +17,11 @@ export const karvinaPost: BlogPost = {
       <ul>
         <li><strong>Karviná-Ráj:</strong> Plná dostupnost optických sítí pro rodinné i bytové domy</li>
         <li><strong>Karviná-Hranice:</strong> Stabilní připojení napříč sídlištní i individuální zástavbou</li>
-        <li><strong>Karviná-Mizerov:</strong> Podnikatelské i rezidenční zóny s garantovanou rychlostí</li>
-        <li><strong>Karviná-centrum:</strong> Historické jádro města s moderní infrastrukturou</li>
+        <li><strong>Karviná-Mizerova:</strong> Podnikatelské i rezidenční zóny s garantovanou rychlostí</li>
+        <li><strong>Karviná-Nové Město:</strong> Rychle se rozvíjející oblast s moderní infrastrukturou</li>
       </ul>
 
-      <p>Bez ohledu na to, zda žijete v panelovém domě na sídlišti Majakovského nebo v rodinném domě v klidnější části Ráje, optická síť PODA zajišťuje jednotnou kvalitu služeb.</p>
+      <p>Bez ohledu na to, zda žijete v panelovém domě na sídlišti nebo v rodinném domě v klidnější části města, optická síť PODA zajišťuje jednotnou kvalitu služeb po celé Karviné.</p>
 
       <h2>Cenová politika: Transparentnost bez skrytých nákladů</h2>
       <h3>Základní internetové balíčky</h3>

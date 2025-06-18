@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
+import { Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import PhoneLink from '../components/ui/phone-link';
+
 const InternetBohumin = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
   return <div className="min-h-screen">
@@ -60,10 +62,15 @@ const InternetBohumin = () => {
               Železniční uzel s nejrychlejším optickým připojením až 1000 Mbps
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="tel:+420730431313" className="btn-primary bg-poda-orange hover:bg-orange-600 inline-flex items-center justify-center">
-                <Phone className="mr-2 h-5 w-5" />
+              <PhoneLink 
+                phoneNumber="+420730431313"
+                className="btn-primary bg-poda-orange hover:bg-orange-600 inline-flex items-center justify-center"
+              >
+                <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
                 730 431 313
-              </a>
+              </PhoneLink>
               <Link to="/kontakt" className="btn-outline border-white text-white hover:bg-white hover:text-poda-blue">
                 Nezávazná nabídka
               </Link>
@@ -202,10 +209,15 @@ const InternetBohumin = () => {
                     <div className="text-sm opacity-90">✓ Latence pod 5ms</div>
                   </div>
                 </div>
-                <a href="tel:+420730431313" className="btn-primary bg-poda-orange hover:bg-orange-600 w-full mt-6 inline-flex items-center justify-center">
-                  <Phone className="mr-2 h-5 w-5" />
+                <PhoneLink 
+                  phoneNumber="+420730431313"
+                  className="btn-primary bg-poda-orange hover:bg-orange-600 w-full mt-6 inline-flex items-center justify-center"
+                >
+                  <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
                   Objednat nyní
-                </a>
+                </PhoneLink>
               </div>
             </div>
           </div>
@@ -222,10 +234,15 @@ const InternetBohumin = () => {
             Strategická poloha + gigabitový internet = neomezené možnosti!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+420730431313" className="btn-primary bg-white text-poda-orange hover:bg-gray-100 inline-flex items-center justify-center">
-              <Phone className="mr-2 h-5 w-5" />
+            <PhoneLink 
+              phoneNumber="+420730431313"
+              className="btn-primary bg-white text-poda-orange hover:bg-gray-100 inline-flex items-center justify-center"
+            >
+              <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
               730 431 313
-            </a>
+            </PhoneLink>
             <Link to="/kontakt" className="btn-outline border-white text-white hover:bg-white hover:text-poda-orange">
               Online objednávka
             </Link>
@@ -234,4 +251,5 @@ const InternetBohumin = () => {
       </section>
     </div>;
 };
+
 export default InternetBohumin;

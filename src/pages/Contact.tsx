@@ -1,8 +1,9 @@
 
 import { useEffect } from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { initAnimations } from '../utils/animation';
+import PhoneLink from '../components/ui/phone-link';
 
 const Contact = () => {
   useEffect(() => {
@@ -52,13 +53,17 @@ const Contact = () => {
                   <div className="space-y-5 mb-8">
                     <div className="flex items-center">
                       <div className="bg-white/20 p-3 rounded-full mr-4">
-                        <Phone className="h-5 w-5 text-white" />
+                        <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
                       </div>
                       <div>
                         <p className="text-sm text-blue-100">Telefon</p>
-                        <a href="tel:+420730431313" className="text-xl font-medium hover:text-poda-orange transition-colors">
-                          +420 730 431 313
-                        </a>
+                        <PhoneLink 
+                          phoneNumber="+420730431313"
+                          className="text-xl font-medium hover:text-poda-orange transition-colors"
+                          displayNumber="+420 730 431 313"
+                        />
                       </div>
                     </div>
                     

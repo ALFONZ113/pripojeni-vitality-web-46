@@ -1,6 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -164,4 +162,39 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Phone link optimizations for mobile devices */
+.phone-link {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.phone-link:active {
+  transform: scale(0.95);
+}
+
+/* Prevent zoom on input focus for mobile */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  .phone-link {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Additional mobile touch optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .phone-link:hover {
+    background-color: transparent;
+  }
 }

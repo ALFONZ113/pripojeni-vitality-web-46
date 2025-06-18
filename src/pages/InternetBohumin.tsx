@@ -61,7 +61,7 @@ const InternetBohumin = () => {
               Gigabitový Internet PODA v <span className="text-poda-orange">Bohumíně</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Jedinečné trojmezí s nejrychlejším optickým připojením až 1000 Mbps
+              Železniční uzel s nejrychlejším optickým připojením až 1000 Mbps
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <a href="tel:+420730431313" className="btn-primary bg-poda-orange hover:bg-orange-600 inline-flex items-center justify-center">
@@ -82,8 +82,8 @@ const InternetBohumin = () => {
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">3</div>
-                <div className="text-sm opacity-80">země</div>
+                <div className="font-bold text-2xl">24/7</div>
+                <div className="text-sm opacity-80">stabilita</div>
               </div>
               <div>
                 <div className="font-bold text-2xl">0 Kč</div>
@@ -142,8 +142,8 @@ const InternetBohumin = () => {
                 <div className="flex items-start">
                   <Wifi className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Trojzemní spojení</h3>
-                    <p className="text-gray-600">Jediné město v regionu s přímým optickým připojením do 3 zemí (Česko, Polsko, Slovensko).</p>
+                    <h3 className="font-bold text-lg mb-2">Železniční uzel s gigabitovým internetem</h3>
+                    <p className="text-gray-600">Strategické dopravní spojení s nejrychlejší optickou sítí až 1000 Mbps pro celé město.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -156,8 +156,8 @@ const InternetBohumin = () => {
                 <div className="flex items-start">
                   <Star className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Mezinárodní kvalita</h3>
-                    <p className="text-gray-600">Latence do Evropy pod 5ms díky strategické poloze na trojmezí.</p>
+                    <h3 className="font-bold text-lg mb-2">Maximální stabilita</h3>
+                    <p className="text-gray-600">Výjimečná síťová stabilita díky robustní infrastruktuře s latencí pod 5ms.</p>
                   </div>
                 </div>
               </div>
@@ -198,7 +198,7 @@ const InternetBohumin = () => {
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
                     <div className="text-sm opacity-90">✓ Express instalace do 12h</div>
-                    <div className="text-sm opacity-90">✓ Trojzemní připojení</div>
+                    <div className="text-sm opacity-90">✓ Maximální stabilita</div>
                     <div className="text-sm opacity-90">✓ Latence pod 5ms</div>
                   </div>
                 </div>
@@ -216,7 +216,7 @@ const InternetBohumin = () => {
       <section className="py-16 bg-poda-orange text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Bohumín - Brána do Evropy s nejrychlejším internetem
+            Bohumín - Železniční uzel s nejrychlejším internetem
           </h2>
           <p className="text-xl mb-8 opacity-90">
             Strategická poloha + gigabitový internet = neomezené možnosti!

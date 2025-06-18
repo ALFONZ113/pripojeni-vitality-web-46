@@ -38,7 +38,7 @@ const LocalSEOSection = () => {
       url: '/internet-bohumin', 
       population: '21k', 
       districts: 'Starý Bohumín, Nový Bohumín',
-      highlight: 'Trojmezí'
+      highlight: 'Železniční uzel'
     }
   ];
 

@@ -5,7 +5,7 @@ import { cn } from '../../lib/utils';
 
 interface PhoneLinkProps {
   phoneNumber: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
   className?: string;
   displayNumber?: string;
 }

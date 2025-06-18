@@ -1,15 +1,11 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Users, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-
 const InternetPoruba = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Internet PODA Poruba | Gigabitové optické připojení | Tel: 730 431 313</title>
         <meta name="description" content="Nejrychlejší internet PODA v Porubě (Ostrava) s optickou technologií GPON. Rychlost až 2000 Mbps, bezplatná instalace v největší městské části Ostravy." />
@@ -158,7 +154,7 @@ const InternetPoruba = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Instalace v den objednání</h3>
-                    <p className="text-gray-600">Díky hustotě infrastruktury dokážeme připojovat zákazníky ještě týž den.</p>
+                    <p className="text-gray-600">Díky hustotě infrastruktury dokážeme připojovat zákazníky rychle.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -183,18 +179,13 @@ const InternetPoruba = () => {
                       <span className="font-bold text-poda-orange">250 Kč/měs</span>
                     </div>
                   </div>
-                  <Collapsible
-                    open={openPromoInfo}
-                    onOpenChange={setOpenPromoInfo}
-                    className="mt-1"
-                  >
+                  <Collapsible open={openPromoInfo} onOpenChange={setOpenPromoInfo} className="mt-1">
                     <CollapsibleTrigger className="flex items-center justify-start text-white/70 hover:text-white transition-colors">
                       <Info className="h-3.5 w-3.5 mr-1" />
                       <span className="text-xs">Více o ceně</span>
-                      <ChevronDown 
-                        className="h-3 w-3 ml-1 transition-transform duration-200" 
-                        style={{ transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)' }} 
-                      />
+                      <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" style={{
+                      transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)'
+                    }} />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-2 text-xs text-white/80 bg-white/10 p-2 rounded-md">
                       Promo cena 250 Kč/měs platí prvních 12 měsíců. Od 13. měsíce standardní cena 440 Kč/měs. Bez závaznosti.
@@ -240,8 +231,6 @@ const InternetPoruba = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default InternetPoruba;

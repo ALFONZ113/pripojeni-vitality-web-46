@@ -36,6 +36,11 @@
     --ring: 210 50% 28%;
 
     --radius: 0.75rem;
+    
+    /* Premium shadows and effects */
+    --shadow-premium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-premium-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --blur-premium: blur(20px);
   }
 
   * {
@@ -49,36 +54,64 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'SF Pro Display', 'Inter', sans-serif;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.2;
   }
 }
 
 @layer components {
   .hero-gradient {
-    @apply bg-gradient-to-b from-white to-blue-50;
+    @apply bg-gradient-to-br from-white via-blue-50/50 to-purple-50/30;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.04) 0%, transparent 50%);
   }
   
   .card-glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-white/90 backdrop-blur-xl border border-white/30 shadow-xl;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.7) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.05) inset;
   }
   
   .promo-tag {
-    @apply text-xs uppercase tracking-wider bg-poda-orange text-white px-2 py-0.5 rounded-full font-medium;
+    @apply text-xs uppercase tracking-widest bg-gradient-to-r from-poda-orange to-orange-500 text-white px-4 py-2 rounded-full font-semibold shadow-lg;
   }
   
   .section-padding {
-    @apply py-16 px-4 sm:px-8 md:px-16 lg:px-24;
+    @apply py-24 px-6 sm:px-8 md:px-16 lg:px-32;
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-8xl mx-auto px-6 sm:px-8 lg:px-12;
   }
   
   .animate-on-scroll {
-    @apply opacity-0 transition-all duration-700 ease-out;
+    @apply opacity-0 transition-all duration-1000 ease-out;
   }
   
   .animate-on-scroll.animated {
@@ -86,58 +119,81 @@
   }
   
   .btn-primary {
-    @apply bg-poda-blue hover:bg-poda-blue/90 text-white px-6 py-3 rounded-lg 
-           font-medium transition-all duration-300 transform hover:translate-y-[-2px]
-           hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-poda-blue/50;
+    @apply bg-gradient-to-r from-poda-blue to-blue-600 hover:from-poda-blue/90 hover:to-blue-700 
+           text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 
+           transform hover:translate-y-[-3px] hover:shadow-2xl focus:outline-none 
+           focus:ring-4 focus:ring-poda-blue/30 shadow-lg;
   }
   
   .btn-secondary {
-    @apply bg-poda-orange hover:bg-poda-orange/90 text-white px-6 py-3 rounded-lg 
-           font-medium transition-all duration-300 transform hover:translate-y-[-2px]
-           hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-poda-orange/50;
+    @apply bg-gradient-to-r from-poda-orange to-orange-500 hover:from-poda-orange/90 hover:to-orange-600 
+           text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 
+           transform hover:translate-y-[-3px] hover:shadow-2xl focus:outline-none 
+           focus:ring-4 focus:ring-poda-orange/30 shadow-lg;
   }
   
   .btn-outline {
-    @apply border border-poda-blue text-poda-blue hover:bg-poda-blue/10 px-6 py-3 
-           rounded-lg font-medium transition-all duration-300 focus:outline-none 
-           focus:ring-2 focus:ring-poda-blue/50;
+    @apply border-2 border-poda-blue text-poda-blue hover:bg-poda-blue hover:text-white 
+           px-8 py-4 rounded-xl font-semibold transition-all duration-300 
+           focus:outline-none focus:ring-4 focus:ring-poda-blue/30 backdrop-blur-sm
+           hover:shadow-lg hover:border-poda-blue/80;
   }
 
   .tariff-card {
-    @apply relative overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-300 
-           hover:shadow-xl border border-gray-100;
+    @apply relative overflow-hidden bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl 
+           transition-all duration-500 hover:shadow-2xl border border-gray-100/50
+           hover:-translate-y-2 hover:scale-[1.02];
   }
   
   .tariff-header {
-    @apply px-6 py-4 bg-gradient-to-r from-poda-blue to-poda-blue-light text-white;
+    @apply px-8 py-6 bg-gradient-to-br from-poda-blue via-blue-600 to-blue-700 text-white;
   }
   
   .recommended-badge {
-    @apply absolute top-0 right-0 bg-poda-orange text-white text-xs uppercase py-1 px-3 
-           tracking-wider transform rotate-45 translate-x-[30%] translate-y-[-10%] shadow-md;
+    @apply absolute -top-4 right-6 bg-gradient-to-r from-poda-orange to-orange-500 
+           text-white text-sm uppercase py-2 px-6 tracking-wider transform rotate-2 
+           shadow-lg rounded-lg font-bold;
   }
 
-  /* Speciální styly pro zvýraznění textu jen v hlavním nadpisu */
+  /* Enhanced text highlights */
   .text-highlight-poda {
-    @apply text-poda-blue;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-poda-blue to-blue-600;
   }
   
   .text-highlight-pripojeni {
-    @apply text-poda-blue;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-poda-blue to-blue-600;
   }
   
-  /* Styly pro zvýraznění části textu v hlavním nadpisu */
   .text-highlight-poda .text-highlight-po,
   .text-highlight-pripojeni .text-highlight-pri {
-    @apply text-poda-orange;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-poda-orange to-orange-500;
+  }
+
+  /* Premium interactive elements */
+  .premium-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .premium-glow {
+    @apply relative;
+  }
+
+  .premium-glow::before {
+    content: '';
+    @apply absolute -inset-1 bg-gradient-to-r from-poda-blue to-poda-orange rounded-lg blur opacity-0 transition-opacity duration-300;
+  }
+
+  .premium-glow:hover::before {
+    @apply opacity-20;
   }
 }
 
-/* Custom animations */
+/* Premium animations */
 .reveal-animation {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-animation.active {
@@ -145,23 +201,47 @@
   transform: translateY(0);
 }
 
-/* Staggered animations delay classes */
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
+/* Staggered animations with premium timing */
+.delay-100 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 300ms; }
+.delay-300 { transition-delay: 450ms; }
+.delay-400 { transition-delay: 600ms; }
+.delay-500 { transition-delay: 750ms; }
 
-/* Radial gradient for hero */
+/* Premium radial gradient */
 .radial-gradient {
-  background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(240,249,255,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, rgba(240,249,255,1) 100%);
 }
 
-/* Glass card effect */
+/* Enhanced glass card effect */
 .glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Premium gradient overlays */
+.premium-overlay {
+  background: linear-gradient(135deg, 
+    rgba(15, 76, 129, 0.05) 0%, 
+    rgba(255, 107, 53, 0.03) 100%);
+}
+
+/* Enhanced section dividers */
+.section-divider {
+  @apply relative;
+}
+
+.section-divider::before {
+  content: '';
+  @apply absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-poda-blue to-poda-orange rounded-full;
+}
+
+/* Premium text shadows for headings */
+.premium-text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

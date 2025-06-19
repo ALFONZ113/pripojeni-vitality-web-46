@@ -4,30 +4,31 @@ import { Toaster } from 'sonner';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import ScrollToTop from './components/common/ScrollToTop';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ui/scroll-to-top';
 
 // Lazy load components for better performance
-const Home = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import('./pages/Index'));
 const InternetTV = lazy(() => import('./pages/InternetTV'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
-const InternetOstrava = lazy(() => import('./pages/geo/InternetOstrava'));
-const InternetKarvina = lazy(() => import('./pages/geo/InternetKarvina'));
-const InternetBohumin = lazy(() => import('./pages/geo/InternetBohumin'));
-const InternetHavirov = lazy(() => import('./pages/geo/InternetHavirov'));
-const InternetPoruba = lazy(() => import('./pages/geo/InternetPoruba'));
+const InternetOstrava = lazy(() => import('./pages/InternetOstrava'));
+const InternetKarvina = lazy(() => import('./pages/InternetKarvina'));
+const InternetBohumin = lazy(() => import('./pages/InternetBohumin'));
+const InternetHavirov = lazy(() => import('./pages/InternetHavirov'));
+const InternetPoruba = lazy(() => import('./pages/InternetPoruba'));
 const Tarify = lazy(() => import('./pages/Tarify'));
-const Programy = lazy(() => import('./pages/Programy'));
+const Programy = lazy(() => import('./pages/TvPrograms'));
 const IPTV = lazy(() => import('./pages/IPTV'));
-const PrivacyPolicy = lazy(() => import('./pages/legal/PrivacyPolicy'));
-const TermsOfService = lazy(() => import('./pages/legal/TermsOfService'));
-const CookiePolicy = lazy(() => import('./pages/legal/CookiePolicy'));
+const PrivacyPolicy = lazy(() => import('./pages/OchranaSoukromi'));
+const TermsOfService = lazy(() => import('./pages/ObchodniPodminky'));
+const CookiePolicy = lazy(() => import('./pages/Cookies'));
 const MigrationMonitor = lazy(() => import('./pages/MigrationMonitor'));
 const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
 const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -78,6 +79,9 @@ function App() {
                   <Route path="/migration-monitor" element={<MigrationMonitor />} />
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
+                  
+                  {/* 404 fallback */}
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
             </main>

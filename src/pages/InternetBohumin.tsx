@@ -59,7 +59,7 @@ const InternetBohumin = () => {
               Gigabitový Internet PODA v <span className="text-poda-orange">Bohumíně</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Železniční uzel s nejrychlejším optickým připojením až 1000 Mbps
+              Moderní město s nejrychlejším optickým připojením až 1000 Mbps
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <PhoneLink 
@@ -154,8 +154,8 @@ const InternetBohumin = () => {
                 <div className="flex items-start">
                   <Wifi className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Železniční uzel s gigabitovým internetem</h3>
-                    <p className="text-gray-600">Strategické dopravní spojení s nejrychlejší optickou sítí až 1000 Mbps pro celé město.</p>
+                    <h3 className="font-bold text-lg mb-2">Moderní město s gigabitovým internetem</h3>
+                    <p className="text-gray-600">Strategická poloha s nejrychlejší optickou sítí až 1000 Mbps pro celé město.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -228,7 +228,7 @@ const InternetBohumin = () => {
       <section className="py-16 bg-poda-orange text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Bohumín - Železniční uzel s nejrychlejším internetem
+            Bohumín - Moderní město s nejrychlejším internetem
           </h2>
           <p className="text-xl mb-8 opacity-90">
             Strategická poloha + gigabitový internet = neomezené možnosti!

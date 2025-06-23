@@ -50,7 +50,7 @@ function App() {
             <main className="flex-grow">
               <Suspense fallback={
                 <div className="min-h-screen flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-poda-blue"></div>
+                  <div className="text-poda-blue">Načítava...</div>
                 </div>
               }>
                 <Routes>

@@ -4,29 +4,11 @@ import PageMetadata from '../components/page/PageMetadata';
 import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
 import PromotionPopup from '../components/PromotionPopup';
-import useOptimizedPageInit from '../hooks/use-optimized-page-init';
 import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
 
-// Only the most critical image
-const CRITICAL_IMAGES = [
-  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png'
-];
-
 const Index = () => {
-  const { 
-    isLoading, 
-    error
-  } = useOptimizedPageInit({ 
-    criticalImages: CRITICAL_IMAGES,
-    enablePerformanceMonitoring: false
-  });
-
-  if (error) {
-    return <ErrorState error={error} />;
-  }
-
   return (
     <div className="min-h-screen">
       <PageMetadata 
@@ -41,7 +23,7 @@ const Index = () => {
         <IPTVSection />
       </div>
 
-      {!isLoading && <PromotionPopup />}
+      <PromotionPopup />
 
       <Toaster />
     </div>

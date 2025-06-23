@@ -3,10 +3,13 @@ import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import Breadcrumb from '../components/common/Breadcrumb';
 import SEOAudit from '../components/migration/SEOAudit';
+import SmartIndexingDashboard from '../components/indexing/SmartIndexingDashboard';
+import SubmissionTracker from '../components/indexing/SubmissionTracker';
 import { blogPosts } from '../data/blog';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { BarChart3, Search, Globe } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { BarChart3, Search, Globe, Zap } from 'lucide-react';
 
 const IndexingDashboard = () => {
   const totalPosts = blogPosts.length;
@@ -20,8 +23,8 @@ const IndexingDashboard = () => {
   return (
     <div className="min-h-screen pt-24 bg-gray-50">
       <PageMetadata 
-        title="Indexing Dashboard | SEO Optimalizácia | Popri.cz"
-        description="Dashboard pre monitoring a optimalizáciu indexovania stránok v Google Search Console"
+        title="Smart Indexing Dashboard | SEO Optimalizácia | Popri.cz"
+        description="Inteligentný dashboard pre monitoring a optimalizáciu indexovania stránok v Google Search Console"
         currentPath="/indexing-dashboard"
       />
       
@@ -29,22 +32,23 @@ const IndexingDashboard = () => {
         <Breadcrumb 
           items={[
             { title: 'Úvod', href: '/' },
-            { title: 'Indexing Dashboard' }
+            { title: 'Smart Indexing Dashboard' }
           ]}
           className="mb-8"
         />
         
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              SEO Indexing Dashboard
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+              <Zap className="w-8 h-8 text-blue-600" />
+              Smart Indexing Dashboard
             </h1>
             <p className="text-gray-600 text-lg">
-              Nástroje a akcie pre zlepšenie indexovania stránok v Google Search Console
+              Inteligentný systém pre automatickú detekciu, správu a optimalizáciu indexovania stránok
             </p>
           </div>
 
-          {/* Stats cards */}
+          {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <Card>
               <CardContent className="p-6">
@@ -83,15 +87,33 @@ const IndexingDashboard = () => {
             </Card>
           </div>
 
-          {/* Only SEO Audit remains */}
-          <div className="max-w-4xl mx-auto">
-            <SEOAudit />
-          </div>
+          {/* Main Dashboard with Tabs */}
+          <Tabs defaultValue="smart-indexing" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="smart-indexing">Smart Indexing</TabsTrigger>
+              <TabsTrigger value="submission-tracker">Submission Tracker</TabsTrigger>
+              <TabsTrigger value="seo-audit">SEO Audit</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="smart-indexing" className="mt-6">
+              <SmartIndexingDashboard />
+            </TabsContent>
+            
+            <TabsContent value="submission-tracker" className="mt-6">
+              <SubmissionTracker />
+            </TabsContent>
+            
+            <TabsContent value="seo-audit" className="mt-6">
+              <div className="max-w-4xl mx-auto">
+                <SEOAudit />
+              </div>
+            </TabsContent>
+          </Tabs>
 
-          {/* Recent blog posts that need indexing */}
+          {/* Recent blog posts section */}
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>Články na indexovanie</CardTitle>
+              <CardTitle>Posledné články na indexovanie</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">

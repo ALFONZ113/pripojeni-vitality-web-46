@@ -1,3 +1,4 @@
+
 import { BlogPost, categories } from './types';
 import { technologiePosts } from './technologie';
 import { sluzbyPosts } from './sluzby';
@@ -6,16 +7,18 @@ import { karvinaPost } from './karvina';
 import { novinyPosts } from './noviny';
 import { recenziePosts } from './recenzie';
 import { ostravaPost } from './ostrava';
+import { internetGuidePost } from './internet-guide';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
+  internetGuidePost, // Pridanie nového článku na začiatok
   ...sluzbyPosts,
   ...technologiePosts,
   ...tipyPosts,
   karvinaPost,
   ...novinyPosts,
   ...recenziePosts,
-  ostravaPost, // Pridanie nového článku
+  ostravaPost,
 ];
 
 // Export everything
@@ -26,4 +29,5 @@ export * from './tipy';
 export * from './karvina';
 export * from './noviny';
 export * from './recenzie';
-export * from './ostrava'; // Export nového článku
+export * from './ostrava';
+export * from './internet-guide'; // Export nového článku

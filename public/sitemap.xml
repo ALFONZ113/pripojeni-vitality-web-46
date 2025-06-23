@@ -92,6 +92,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.popri.cz/blog/101</loc>
+    <lastmod>2025-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.popri.cz/blog/1</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>

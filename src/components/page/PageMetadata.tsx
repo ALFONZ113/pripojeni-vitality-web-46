@@ -19,17 +19,14 @@ const PageMetadata = ({
   title, 
   description, 
   currentDate = new Date().toISOString().split('T')[0],
-  faviconVersion = "3.0",
+  faviconVersion = "3.1",
   cacheBuster = Date.now().toString(),
-  domain = typeof window !== "undefined" ? window.location.hostname : "www.popri.cz",
+  domain = "www.popri.cz",
   seznamVerification,
   canonicalUrl,
   currentPath = ""
 }: PageMetadataProps) => {
-  // Generate domain-specific cache busting parameter
-  const domainSpecificHash = domain.includes('poda') ? 'poda-' + cacheBuster : 'popri-' + cacheBuster;
-  
-  // Generate migration-safe canonical URL
+  // FIXED: Always use www.popri.cz as canonical domain
   const migrationSafeCanonicalUrl = canonicalUrl || generateCanonicalUrl(currentPath);
   const hreflangTags = generateHreflangTags(currentPath);
   
@@ -38,6 +35,11 @@ const PageMetadata = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={migrationSafeCanonicalUrl} />
+      
+      {/* Force preferred domain for all pages */}
+      <meta name="preferred-domain" content="www.popri.cz" />
+      <meta name="canonical-domain" content="www.popri.cz" />
+      
       <link rel="sitemap" type="application/xml" href="https://www.popri.cz/sitemap.xml" />
       <meta name="format-detection" content="telephone=yes" />
       <meta name="google" content="notranslate"/>
@@ -48,12 +50,13 @@ const PageMetadata = ({
       <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
       <meta name="revisit-after" content="7 days" />
       
-      {/* Domain migration signals */}
-      <meta name="migration-date" content="2025-06-16" />
+      {/* Enhanced domain migration signals */}
+      <meta name="migration-date" content="2025-06-23" />
       <meta name="original-domain" content="pripojeni-poda.cz" />
       <meta name="preferred-domain" content="www.popri.cz" />
+      <meta name="migration-status" content="completed" />
       
-      {/* Open Graph tags */}
+      {/* Open Graph tags with canonical URLs */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={migrationSafeCanonicalUrl} />
@@ -73,23 +76,17 @@ const PageMetadata = ({
         <link key={index} rel="alternate" href={tag.href} hrefLang={tag.hreflang} />
       ))}
       
-      {/* Enhanced cache control to force refreshing on both domains */}
-      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-      <meta http-equiv="Pragma" content="no-cache" />
-      <meta http-equiv="Expires" content="0" />
+      {/* Remove cache control to prevent caching issues */}
       <meta name="version" content={faviconVersion} />
-      <meta name="cache-version" content={cacheBuster} />
-      <meta name="domain-cache" content={domainSpecificHash} />
       
-      {/* Favicon links updated with domain-specific cache-busting parameters */}
-      <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}&t=${domainSpecificHash}`} type="image/x-icon" />
-      <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}&t=${domainSpecificHash}`} sizes="16x16" type="image/png" />
-      <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}&t=${domainSpecificHash}`} sizes="32x32" type="image/png" />
-      <link rel="icon" href={`/poda-favicon-48x48.png?v=${faviconVersion}&t=${domainSpecificHash}`} sizes="48x48" type="image/png" />
-      <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}&t=${domainSpecificHash}`} />
-      <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}&t=${domainSpecificHash}`} />
+      {/* Favicon links */}
+      <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}`} type="image/x-icon" />
+      <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}`} sizes="16x16" type="image/png" />
+      <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}`} sizes="32x32" type="image/png" />
+      <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}`} />
+      <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}`} />
 
-      {/* Font preloading pro lepší výkon */}
+      {/* Font preloading */}
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
@@ -128,23 +125,6 @@ const PageMetadata = ({
           }
         `}
       </script>
-      <script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Úvod",
-                "item": "${migrationSafeCanonicalUrl}"
-              }
-            ]
-          }
-        `}
-      </script>
-      <script type="application/ld+json" src="/json/schema-service.json"></script>
     </Helmet>
   );
 };

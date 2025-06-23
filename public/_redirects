@@ -1,63 +1,44 @@
 
-# 301 Redirects for Netlify - preferring www version with force HTTPS
+# Netlify redirects - FIXED FOR PROPER DOMAIN MIGRATION
+
+# CRITICAL: Old domain redirects with proper 301 status
 http://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 https://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 http://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 https://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 
-# Force HTTPS and www for popri.cz domain
+# CRITICAL: Force www for popri.cz domain
 http://popri.cz/* https://www.popri.cz/:splat 301!
-http://www.popri.cz/* https://www.popri.cz/:splat 301!
 https://popri.cz/* https://www.popri.cz/:splat 301!
+http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
-# Special handling for sitemap.xml - serve directly
+# Direct file access - highest priority
 /sitemap.xml /sitemap.xml 200
+/robots.txt /robots.txt 200
 
-# Special rules for favicon files - allow them to pass through directly
+# Favicon files
 /poda-favicon.ico /poda-favicon.ico 200
 /poda-favicon-16x16.png /poda-favicon-16x16.png 200
 /poda-favicon-32x32.png /poda-favicon-32x32.png 200
-/poda-favicon-48x48.png /poda-favicon-48x48.png 200
-/poda-favicon-96x96.png /poda-favicon-96x96.png 200
-/poda-favicon-192x192.png /poda-favicon-192x192.png 200
-/poda-favicon-512x512.png /poda-favicon-512x512.png 200
 /poda-apple-touch-icon.png /poda-apple-touch-icon.png 200
 /site.webmanifest /site.webmanifest 200
 
-# Handle missing images gracefully
-/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.jpg /placeholder.svg 302
-/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_Visual_Conce_2.webp /placeholder.svg 302
+# Asset files
+/assets/* /assets/:splat 200
+/lovable-uploads/* /lovable-uploads/:splat 200
 
-# Fallback for any missing images
+# Handle missing images
 /*.jpg /placeholder.svg 302
 /*.jpeg /placeholder.svg 302
 /*.png /placeholder.svg 302
 /*.webp /placeholder.svg 302
 
-# Explicitly allow access to asset files
-/assets/* /assets/:splat 200
-/lovable-uploads/* /lovable-uploads/:splat 200
+# Blog URL handling
+/blog/:id /blog/:id 200
+/blog?* /blog 200
 
-# Support for blog URL parameters with specific tech tags
-/blog/?category=* /blog/?category=:splat 200
-/blog/?tag=* /blog/?tag=:splat 200
-/blog/?search=* /blog/?search=:splat 200
-/blog/?tag=GPON /blog/?tag=GPON 200
-/blog/?tag=Optické+připojení /blog/?tag=Optické+připojení 200
-/blog/?tag=Vysokorychlostní+internet /blog/?tag=Vysokorychlostní+internet 200
-
-# Handle 404 pages properly (important for SEO)
+# 404 handling
 /404 /index.html 404
 
-# Specific redirects for migrated pages from old domain
-/ochrana-soukromi /ochrana-soukromi 301!
-/obchodni-podminky /obchodni-podminky 301!
-/cookies /cookies 301!
-/blog /blog 301!
-/kontakt /kontakt 301!
-/tarify /tarify 301!
-/programy /programy 301!
-/internet-tv /internet-tv 301!
-
-# Fallback rule - SPA routing
+# SPA fallback - lowest priority
 /* /index.html 200

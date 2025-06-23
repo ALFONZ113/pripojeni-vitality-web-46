@@ -1,42 +1,32 @@
 
-# Apache .htaccess configuration
+# Apache .htaccess configuration - FIXED FOR PROPER DOMAIN MIGRATION
 
 # Enable URL rewriting
 RewriteEngine On
 
-# Force HTTPS - improved and simplified rule
+# CRITICAL: Force HTTPS first, then handle domain redirects
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Special handling for sitemap.xml - serve directly
-RewriteRule ^sitemap\.xml$ - [L]
-
-# Special handling for favicon files - no redirection
-RewriteRule ^(poda-favicon.*)\.(ico|png)$ - [L]
-RewriteRule ^(site\.webmanifest)$ - [L]
-RewriteRule ^(apple-touch-icon\.png)$ - [L]
-
-# Redirect old domain to new domain with path preservation
+# CRITICAL: Redirect old domain to new domain BEFORE www handling
 RewriteCond %{HTTP_HOST} ^(www\.)?pripojeni-poda\.cz$ [NC]
 RewriteRule ^(.*)$ https://www.popri.cz/$1 [L,R=301]
 
-# FIXED: Redirect non-www popri.cz to www.popri.cz
+# CRITICAL: Force www for popri.cz (after old domain redirect)
 RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
-RewriteRule ^ https://www.popri.cz%{REQUEST_URI} [L,R=301]
+RewriteRule ^(.*)$ https://www.popri.cz$1 [L,R=301]
 
-# Always force to the www subdomain of popri.cz for canonical URLs
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteCond %{HTTP_HOST} ^popri\.cz$ [NC]
-RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Special handling for direct file access
+RewriteRule ^sitemap\.xml$ - [L]
+RewriteRule ^robots\.txt$ - [L]
+RewriteRule ^(poda-favicon.*)\.(ico|png)$ - [L]
+RewriteRule ^(site\.webmanifest|apple-touch-icon\.png)$ - [L]
 
-# Special handling for asset files
-RewriteCond %{REQUEST_URI} ^/assets/
+# Handle asset files
+RewriteCond %{REQUEST_URI} ^/(assets|lovable-uploads)/
 RewriteRule ^ - [L]
 
-RewriteCond %{REQUEST_URI} ^/lovable-uploads/
-RewriteRule ^ - [L]
-
-# Handle missing images gracefully - redirect to placeholder
+# Handle missing images gracefully
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} \.(jpg|jpeg|gif|png|webp)$
 RewriteRule ^(.*)$ /placeholder.svg [L,R=302]
@@ -48,108 +38,54 @@ RewriteRule ^(.*)$ /placeholder.svg [L,R=302]
   AddType image/svg+xml .svg
   AddType application/font-woff .woff
   AddType application/font-woff2 .woff2
-  # Ensure correct MIME type for favicon
   AddType image/x-icon .ico
   AddType image/png .png
-  # Proper MIME type for sitemap
   AddType application/xml .xml
 </IfModule>
 
-# Disable caching for favicon files
-<FilesMatch "^(poda-favicon.*|site\.webmanifest|apple-touch-icon\.png)$">
-  FileETag None
-  <IfModule mod_headers.c>
-    Header unset ETag
-    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-    Header set Pragma "no-cache"
-    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
-  </IfModule>
-</FilesMatch>
-
-# Special headers for sitemap.xml
-<FilesMatch "^sitemap\.xml$">
-  <IfModule mod_headers.c>
-    Header set Content-Type "application/xml; charset=utf-8"
-    Header set Cache-Control "public, max-age=3600"
-  </IfModule>
-</FilesMatch>
-
-# Enhanced CORS for fonts and other resources
-<IfModule mod_headers.c>
-  # Special CORS headers for Google Fonts
-  <FilesMatch "\.(woff|woff2|ttf|eot)$">
-    Header set Access-Control-Allow-Origin "*"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
-  </FilesMatch>
-  
-  # General CORS for other resources
-  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font\.css|css|js|png|jpg|jpeg|gif|webp|svg|ico)$">
-    Header set Access-Control-Allow-Origin "*"
-  </FilesMatch>
-  
-  # Add proper headers for CSS files
-  <FilesMatch "\.css$">
-    Header set Content-Type "text/css; charset=utf-8"
-    Header set Access-Control-Allow-Origin "*"
-  </FilesMatch>
-</IfModule>
-
-# Improved caching rules
+# Enhanced caching rules
 <IfModule mod_expires.c>
   ExpiresActive On
-  
-  # Images - extended cache time
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
-  # No caching for favicons
-  ExpiresByType image/x-icon "access plus 0 seconds"
-  
-  # Sitemap caching
+  ExpiresByType image/x-icon "access plus 1 hour"
   ExpiresByType application/xml "access plus 1 hour"
-  
-  # Video
-  ExpiresByType video/mp4 "access plus 1 year"
-  ExpiresByType video/mpeg "access plus 1 year"
-  
-  # CSS, JavaScript
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
-  
-  # Fonts
   ExpiresByType application/font-woff "access plus 1 year"
   ExpiresByType application/font-woff2 "access plus 1 year"
-  ExpiresByType font/ttf "access plus 1 year"
-  ExpiresByType font/otf "access plus 1 year"
 </IfModule>
 
-# Security headers
+# Enhanced security headers
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set X-XSS-Protection "1; mode=block"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-  
-  # Explicitly allow indexing for search engines
   Header set X-Robots-Tag "index, follow"
   
-  # Add Link header for canonical URL - ENHANCED
+  # CRITICAL: Enhanced canonical URL headers
   Header always set Link "<https://www.popri.cz%{REQUEST_URI}>; rel=\"canonical\""
+  
+  # Enhanced CORS for assets
+  <FilesMatch "\.(woff|woff2|ttf|eot|css|js|png|jpg|jpeg|gif|webp|svg|ico)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
 </IfModule>
 
 # Disable directory listing
 Options -Indexes
 
-# Handle SPA routing - redirect all routes to index.html except sitemap
+# SPA routing - handle all non-file requests
 <IfModule mod_rewrite.c>
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
-  RewriteRule ^sitemap\.xml$ - [L]
+  RewriteRule ^(sitemap\.xml|robots\.txt)$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]

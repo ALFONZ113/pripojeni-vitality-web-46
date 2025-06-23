@@ -1,15 +1,14 @@
 
-
-# www.popri.cz robots.txt - Migrácia z pripojeni-poda.cz - Updated 2025-06-16
+# www.popri.cz robots.txt - FIXED FOR PROPER DOMAIN MIGRATION - Updated 2025-06-23
 User-agent: *
 Allow: /
 
-# MIGRAČNÉ POZNÁMKY:
-# Stará doména: pripojeni-poda.cz -> DEPRECATED
-# Nová doména: www.popri.cz -> PREFERRED
-# Všetky URL presmerované cez 301 redirect
+# CRITICAL DOMAIN MIGRATION INFORMATION
+# Old domain: pripojeni-poda.cz -> DEPRECATED (301 redirects to www.popri.cz)
+# New domain: www.popri.cz -> PREFERRED CANONICAL DOMAIN
+# Migration completed: 2025-06-23
 
-# Explicitly allow main pages with priority
+# Explicitly allow main pages
 Allow: /$
 Allow: /internet-tv$
 Allow: /iptv$
@@ -22,14 +21,14 @@ Allow: /cookies$
 Allow: /obchodni-podminky$
 Allow: /ochrana-soukromi$
 
-# Local geo-specific pages - FIXED: Added missing /internet-poruba
+# Local geo-specific pages
 Allow: /internet-ostrava$
 Allow: /internet-karvina$
 Allow: /internet-bohumin$
 Allow: /internet-havirov$
 Allow: /internet-poruba$
 
-# Explicitly allow indexing of blog posts by ID - UPDATED with all current posts
+# Explicitly allow all current blog posts
 Allow: /blog/1$
 Allow: /blog/2$
 Allow: /blog/3$
@@ -45,38 +44,19 @@ Allow: /blog/12$
 Allow: /blog/13$
 Allow: /blog/100$
 
-# Allow indexing of tags and categories
+# Allow blog categories and tags
 Allow: /blog?category=*
 Allow: /blog?tag=*
 Allow: /blog?search=*
-Allow: /blog/*?category=*
-Allow: /blog/*?tag=*
 
-# Allow indexing of specific technology tags and locations
-Allow: /blog?tag=GPON
-Allow: /blog?tag=Optické+připojení
-Allow: /blog?tag=Vysokorychlostní+internet
-Allow: /blog?tag=Optická+vlákna
-Allow: /blog?tag=Gigabitové+připojení
-Allow: /blog?tag=Fiber+to+the+Home
-Allow: /blog?tag=Karviná
-Allow: /blog?tag=Ostrava
-Allow: /blog?tag=Poruba
-Allow: /blog?tag=Havířov
-Allow: /blog?tag=Bohumín
-Allow: /blog?tag=PODA+internet
-Allow: /blog?tag=Moravskoslezský+kraj
-Allow: /blog?tag=Popri.cz
-Allow: /blog?tag=60+GHz
-
-# Disallow administrative and system URLs
+# Disallow administrative URLs
 Disallow: /wp-admin/
 Disallow: /admin/
 Disallow: */admin
 Disallow: /api/*
 Disallow: /feed/
 
-# No indexing for parametrized URLs with tracking parameters
+# No tracking parameters
 Disallow: /*?utm_*
 Disallow: /*&utm_*
 Disallow: /*?fbclid=*
@@ -94,20 +74,12 @@ Crawl-delay: 1
 User-agent: Bingbot
 Allow: /
 
-# Mobile version
 User-agent: Googlebot-Mobile
 Allow: /
 
-# Image indexing
 User-agent: Googlebot-Image
 Allow: /assets/*
 Allow: /lovable-uploads/*
 
-# MIGRAČNÉ INFORMÁCIE PRE SEARCH ENGINY:
-# Preferred domain: www.popri.cz
-# Migration date: 2025-06-16
-# Old domain redirects: pripojeni-poda.cz -> www.popri.cz (301)
-
-# Sitemap declarations - HLAVNÁ DOMÉNA
+# CANONICAL SITEMAP - ONLY www.popri.cz
 Sitemap: https://www.popri.cz/sitemap.xml
-

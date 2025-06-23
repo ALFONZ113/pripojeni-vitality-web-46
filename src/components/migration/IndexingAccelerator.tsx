@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Copy, ExternalLink, Zap, CheckCircle } from 'lucide-react';
+import { Copy, ExternalLink, Zap, CheckCircle, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
 import { blogPosts } from '../../data/blog';
 
@@ -13,15 +13,16 @@ interface IndexingAction {
   description: string;
   urls: string[];
   completed: boolean;
+  priority: 'high' | 'medium' | 'low';
   action: () => void;
 }
 
 const IndexingAccelerator = () => {
   const [actions, setActions] = useState<IndexingAction[]>([
     {
-      id: 'main-pages',
-      title: 'Hlavné stránky',
-      description: 'Indexovať kľúčové landing pages',
+      id: 'critical-pages',
+      title: 'KRITICKÉ stránky (PRIORITA 1)',
+      description: 'Hlavné landing pages - MUSIA byť indexované',
       urls: [
         'https://www.popri.cz/',
         'https://www.popri.cz/kontakt',
@@ -29,28 +30,17 @@ const IndexingAccelerator = () => {
         'https://www.popri.cz/internet-tv'
       ],
       completed: false,
+      priority: 'high',
       action: function() {
         navigator.clipboard.writeText(this.urls.join('\n'));
-        toast.success(`${this.urls.length} URL skopírovaných. Použite URL Inspection v GSC.`);
+        toast.success(`${this.urls.length} kritických URL skopírovaných. NAJSKÔR tieto!`);
         setActions(prev => prev.map(a => a.id === this.id ? { ...a, completed: true } : a));
       }
     },
     {
-      id: 'blog-posts',
-      title: 'Blog články',
-      description: 'Indexovať všetky blog posty',
-      urls: blogPosts.map(post => `https://www.popri.cz/blog/${post.id}`),
-      completed: false,
-      action: function() {
-        navigator.clipboard.writeText(this.urls.join('\n'));
-        toast.success(`${this.urls.length} blog URL skopírovaných. Použite URL Inspection v GSC.`);
-        setActions(prev => prev.map(a => a.id === this.id ? { ...a, completed: true } : a));
-      }
-    },
-    {
-      id: 'local-pages',
-      title: 'Lokálne stránky',
-      description: 'Indexovať geo-specific stránky',
+      id: 'geo-pages',
+      title: 'Geo-lokálne stránky (PRIORITA 2)',
+      description: 'Lokálne stránky pre SEO',
       urls: [
         'https://www.popri.cz/internet-ostrava',
         'https://www.popri.cz/internet-karvina',
@@ -59,9 +49,23 @@ const IndexingAccelerator = () => {
         'https://www.popri.cz/internet-poruba'
       ],
       completed: false,
+      priority: 'medium',
       action: function() {
         navigator.clipboard.writeText(this.urls.join('\n'));
-        toast.success(`${this.urls.length} lokálnych URL skopírovaných. Použite URL Inspection v GSC.`);
+        toast.success(`${this.urls.length} geo URL skopírovaných.`);
+        setActions(prev => prev.map(a => a.id === this.id ? { ...a, completed: true } : a));
+      }
+    },
+    {
+      id: 'blog-posts',
+      title: 'Blog články (PRIORITA 3)',
+      description: 'Všetky blog posty pre content marketing',
+      urls: blogPosts.map(post => `https://www.popri.cz/blog/${post.id}`),
+      completed: false,
+      priority: 'low',
+      action: function() {
+        navigator.clipboard.writeText(this.urls.join('\n'));
+        toast.success(`${this.urls.length} blog URL skopírovaných.`);
         setActions(prev => prev.map(a => a.id === this.id ? { ...a, completed: true } : a));
       }
     }
@@ -71,25 +75,37 @@ const IndexingAccelerator = () => {
     window.open('https://search.google.com/search-console/inspect?resource_id=sc-domain%3Apopri.cz', '_blank');
   };
 
-  const generateSitemapUrls = () => {
+  const openGSCSubmitSitemap = () => {
+    window.open('https://search.google.com/search-console/sitemaps?resource_id=sc-domain%3Apopri.cz', '_blank');
+  };
+
+  const copyAllUrls = () => {
     const allUrls = actions.flatMap(action => action.urls);
-    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls.map(url => `  <url>
-    <loc>${url}</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join('\n')}
-</urlset>`;
-    
-    navigator.clipboard.writeText(sitemapContent);
-    toast.success('Sitemap XML skopírovaný do schránky');
+    navigator.clipboard.writeText(allUrls.join('\n'));
+    toast.success(`Všetkých ${allUrls.length} URL skopírovaných naraz!`);
   };
 
   const completedActions = actions.filter(a => a.completed).length;
   const totalActions = actions.length;
   const totalUrls = actions.reduce((sum, action) => sum + action.urls.length, 0);
+  const highPriorityCompleted = actions.filter(a => a.priority === 'high' && a.completed).length;
+  const highPriorityTotal = actions.filter(a => a.priority === 'high').length;
+
+  const getPriorityIcon = (priority: string) => {
+    switch (priority) {
+      case 'high': return <AlertTriangle className="w-4 h-4 text-red-500" />;
+      case 'medium': return <Zap className="w-4 h-4 text-orange-500" />;
+      default: return <CheckCircle className="w-4 h-4 text-blue-500" />;
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'high': return 'bg-red-50 border-red-200';
+      case 'medium': return 'bg-orange-50 border-orange-200';
+      default: return 'bg-blue-50 border-blue-200';
+    }
+  };
 
   return (
     <Card>
@@ -97,16 +113,24 @@ ${allUrls.map(url => `  <url>
         <CardTitle className="flex items-center justify-between">
           <span className="flex items-center">
             <Zap className="w-5 h-5 mr-2" />
-            Indexing Accelerator
+            FIXNÚŤ INDEXOVANIE - Akcelerované riešenie
           </span>
           <div className="flex items-center space-x-2">
             <Button 
               variant="outline" 
               size="sm" 
-              onClick={generateSitemapUrls}
+              onClick={copyAllUrls}
             >
               <Copy className="w-4 h-4 mr-1" />
-              Sitemap XML
+              Všetky URL
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={openGSCSubmitSitemap}
+            >
+              <ExternalLink className="w-4 h-4 mr-1" />
+              Submit Sitemap
             </Button>
             <Button 
               variant="outline" 
@@ -114,13 +138,13 @@ ${allUrls.map(url => `  <url>
               onClick={openGSCInspection}
             >
               <ExternalLink className="w-4 h-4 mr-1" />
-              Open GSC
+              URL Inspection
             </Button>
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-3 gap-4 mb-6 text-center">
+        <div className="grid grid-cols-4 gap-4 mb-6 text-center">
           <div className="p-4 bg-blue-50 rounded-lg">
             <div className="text-2xl font-bold text-blue-600">{totalUrls}</div>
             <div className="text-sm text-gray-600">Celkom URL</div>
@@ -129,15 +153,29 @@ ${allUrls.map(url => `  <url>
             <div className="text-2xl font-bold text-green-600">{completedActions}</div>
             <div className="text-sm text-gray-600">Hotové skupiny</div>
           </div>
+          <div className="p-4 bg-red-50 rounded-lg">
+            <div className="text-2xl font-bold text-red-600">{highPriorityCompleted}/{highPriorityTotal}</div>
+            <div className="text-sm text-gray-600">Kritické hotové</div>
+          </div>
           <div className="p-4 bg-orange-50 rounded-lg">
             <div className="text-2xl font-bold text-orange-600">{totalActions - completedActions}</div>
             <div className="text-sm text-gray-600">Zostáva</div>
           </div>
         </div>
 
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <h3 className="font-semibold text-red-800 mb-2 flex items-center">
+            <AlertTriangle className="w-5 h-5 mr-2" />
+            KRITICKÉ: Začnite s PRIORITA 1!
+          </h3>
+          <p className="text-sm text-red-700">
+            Najskôr indexujte kritické stránky (homepage, kontakt, tarify). Až potom pokračujte s ostatnými.
+          </p>
+        </div>
+
         <div className="space-y-4">
           {actions.map((action) => (
-            <div key={action.id} className="border rounded-lg p-4">
+            <div key={action.id} className={`border rounded-lg p-4 ${getPriorityColor(action.priority)}`}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
@@ -148,11 +186,13 @@ ${allUrls.map(url => `  <url>
                     {action.completed ? (
                       <CheckCircle className="w-4 h-4" />
                     ) : (
-                      <span className="text-xs">{action.urls.length}</span>
+                      getPriorityIcon(action.priority)
                     )}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">{action.title}</h3>
+                    <h3 className="font-semibold text-gray-900 flex items-center">
+                      {action.title}
+                    </h3>
                     <p className="text-sm text-gray-600">{action.description}</p>
                   </div>
                 </div>
@@ -164,13 +204,14 @@ ${allUrls.map(url => `  <url>
                     onClick={action.action.bind(action)}
                     disabled={action.completed}
                     size="sm"
+                    variant={action.priority === 'high' ? 'default' : 'outline'}
                   >
-                    {action.completed ? 'Hotovo' : 'Copy URLs'}
+                    {action.completed ? 'Hotovo ✓' : 'Copy URLs'}
                   </Button>
                 </div>
               </div>
               
-              <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded max-h-20 overflow-y-auto">
+              <div className="text-xs text-gray-500 bg-white p-2 rounded max-h-20 overflow-y-auto">
                 {action.urls.slice(0, 3).map((url, idx) => (
                   <div key={idx}>{url}</div>
                 ))}
@@ -183,13 +224,13 @@ ${allUrls.map(url => `  <url>
         </div>
 
         <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <h4 className="font-semibold text-yellow-800 mb-2">Postup:</h4>
+          <h4 className="font-semibold text-yellow-800 mb-2">POSTUP PRE RÝCHLE RIEŠENIE:</h4>
           <ol className="text-sm text-yellow-700 space-y-1">
-            <li>1. Kliknite "Copy URLs" pre skupinu URL</li>
-            <li>2. Otvorte Google Search Console</li>
-            <li>3. Použite "URL Inspection" tool</li>
-            <li>4. Pre každú URL: Paste → Test Live URL → Request Indexing</li>
-            <li>5. Opakujte pre všetky skupiny</li>
+            <li>1. <strong>NAJSKÔR:</strong> Copy "KRITICKÉ stránky" URL a indexuj ich v GSC</li>
+            <li>2. <strong>Submit sitemap:</strong> Klik na "Submit Sitemap" tlačidlo</li>
+            <li>3. <strong>URL Inspection:</strong> Pre každú URL: Paste → Test Live URL → Request Indexing</li>
+            <li>4. <strong>Potom:</strong> Pokračuj s geo stránkami a nakonec blog</li>
+            <li>5. <strong>Kontrola:</strong> Za 24-48h skontroluj Index Coverage v GSC</li>
           </ol>
         </div>
       </CardContent>

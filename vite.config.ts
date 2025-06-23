@@ -24,55 +24,76 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    modulePreload: true, // Ensure module preloading is enabled
+    modulePreload: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          // Vendor chunk for React and core libraries
-          vendor: ['react', 'react-dom', 'react-router-dom'],
+          // Core React chunk
+          'react-core': ['react', 'react-dom'],
           
-          // UI chunk for component libraries
-          ui: [
+          // Router chunk
+          'react-router': ['react-router-dom'],
+          
+          // UI framework chunk
+          'ui-framework': [
             '@radix-ui/react-dialog',
             '@radix-ui/react-dropdown-menu',
             '@radix-ui/react-toast',
             '@radix-ui/react-tabs',
-            'lucide-react'
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-select'
           ],
           
-          // Utils chunk for utilities
-          utils: [
+          // Icons and visual elements
+          'icons-visual': ['lucide-react'],
+          
+          // Utilities
+          'utils': [
             'clsx',
             'tailwind-merge',
-            'class-variance-authority',
-            'date-fns'
+            'class-variance-authority'
           ],
           
-          // Animation and interaction chunk
-          animations: ['framer-motion'],
+          // Date and time utilities
+          'date-utils': ['date-fns'],
           
-          // Charts chunk (if used)
-          charts: ['recharts']
+          // Animation library
+          'animations': ['framer-motion'],
+          
+          // Charts (if used)
+          'charts': ['recharts'],
+          
+          // Query management
+          'query': ['@tanstack/react-query'],
+          
+          // Blog content (separate chunk for better caching)
+          'blog-content': [
+            './src/data/blog/index.ts',
+            './src/data/blog/types.ts'
+          ]
         },
       },
     },
-    // Optimize chunk size
-    chunkSizeWarningLimit: 1000,
     
-    // Enable source maps in production for debugging
+    // Optimize chunk size warnings
+    chunkSizeWarningLimit: 800,
+    
+    // Production optimizations
     sourcemap: false,
-    
-    // Minimize CSS and JS - only use terser in production
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.warn'],
+      },
+      mangle: {
+        safari10: true,
       },
     } : undefined,
   },
   
-  // Optimize dependencies
+  // Enhanced optimization
   optimizeDeps: {
     include: [
       'react',
@@ -80,7 +101,19 @@ export default defineConfig(({ mode }) => ({
       'react-router-dom',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
-      'lucide-react'
+      'lucide-react',
+      '@tanstack/react-query'
     ],
+    exclude: ['@vite/client', '@vite/env']
   },
+  
+  // Enable experimental features for better performance
+  experimental: {
+    renderBuiltUrl(filename, { hostId, hostType, type }) {
+      if (type === 'asset' && /\.(png|jpg|jpeg|gif|svg|webp)$/.test(filename)) {
+        return `/${filename}`;
+      }
+      return { relative: true };
+    }
+  }
 }));

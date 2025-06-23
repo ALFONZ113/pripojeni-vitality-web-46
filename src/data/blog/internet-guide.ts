@@ -1,4 +1,3 @@
-
 import type { BlogPost } from './types';
 
 export const internetGuidePost: BlogPost = {
@@ -47,7 +46,7 @@ export const internetGuidePost: BlogPost = {
         </ul>
         <div class="bg-poda-blue text-white p-4 rounded">
           <p class="font-semibold">Chcete se dozvědět více o PODA v Ostravě?</p>
-          <p>Navštivte <a href="https://www.popri.cz" class="underline text-poda-orange">www.popri.cz</a> nebo volejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
+          <p>Objednejte si na <a href="https://www.popri.cz" class="underline text-poda-orange">www.popri.cz</a> nebo volejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
         </div>
       </div>
 

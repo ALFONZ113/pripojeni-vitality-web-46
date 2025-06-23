@@ -2,7 +2,6 @@
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import Breadcrumb from '../components/common/Breadcrumb';
-import IndexingHelper from '../components/seo/IndexingHelper';
 import SEOAudit from '../components/migration/SEOAudit';
 import { blogPosts } from '../data/blog';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -84,9 +83,8 @@ const IndexingDashboard = () => {
             </Card>
           </div>
 
-          {/* Indexing actions */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <IndexingHelper />
+          {/* Only SEO Audit remains */}
+          <div className="max-w-4xl mx-auto">
             <SEOAudit />
           </div>
 

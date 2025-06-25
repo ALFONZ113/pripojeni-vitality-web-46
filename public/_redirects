@@ -1,4 +1,5 @@
 
+
 # Netlify redirects - FIXED FOR PROPER DOMAIN MIGRATION
 
 # CRITICAL: Old domain redirects with proper 301 status
@@ -7,10 +8,8 @@ https://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 http://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 https://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
 
-# CRITICAL: Force www for popri.cz domain
-http://popri.cz/* https://www.popri.cz/:splat 301!
+# CRITICAL: Force www for popri.cz domain - FIXED
 https://popri.cz/* https://www.popri.cz/:splat 301!
-http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
 # Direct file access - highest priority
 /sitemap.xml /sitemap.xml 200
@@ -42,3 +41,4 @@ http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
 # SPA fallback - lowest priority
 /* /index.html 200
+

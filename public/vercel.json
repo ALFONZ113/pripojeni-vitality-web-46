@@ -6,9 +6,7 @@
     { "source": "https://www.pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
     { "source": "http://pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
     { "source": "http://www.pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
-    { "source": "http://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
-    { "source": "https://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
-    { "source": "http://www.popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true }
+    { "source": "https://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true }
   ],
   "routes": [
     {

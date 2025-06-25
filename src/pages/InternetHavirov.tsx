@@ -171,7 +171,7 @@ const InternetHavirov = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Express instalace</h3>
-                    <p className="text-gray-600">Díky kompaktnosti města zajistíme rychlou  instalaci.</p>
+                    <p className="text-gray-600">Díky kompaktnosti města zajistíme bezplatnou rychlou instalaci.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -213,7 +213,7 @@ const InternetHavirov = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Bezplatná express instalace</div>
+                    <div className="text-sm opacity-90">✓ Bezplatná rychlá instalace</div>
                     <div className="text-sm opacity-90">✓ Wi-Fi 6 router zdarma</div>
                     <div className="text-sm opacity-90">✓ Místní servis v Havířově</div>
                   </div>

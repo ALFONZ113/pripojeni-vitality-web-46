@@ -170,7 +170,7 @@ const InternetBohumin = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Express instalace</h3>
-                    <p className="text-gray-600">Malé město = velká rychlost. Instalace zdarma.</p>
+                    <p className="text-gray-600">Malé město = velká rychlost. Bezplatná rychlá instalace.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -212,7 +212,7 @@ const InternetBohumin = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Express instalace</div>
+                    <div className="text-sm opacity-90">✓ Bezplatná rychlá instalace</div>
                     <div className="text-sm opacity-90">✓ Maximální stabilita</div>
                     <div className="text-sm opacity-90">✓ Latence pod 5ms</div>
                   </div>

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
@@ -154,7 +153,7 @@ const InternetOstrava = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Rychlá instalace</h3>
-                    <p className="text-gray-600">Bezplatná a rychlá instalace ve všech městských částech.</p>
+                    <p className="text-gray-600">Bezplatná rychlá instalace ve všech městských částech.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -201,7 +200,7 @@ const InternetOstrava = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Bezplatná instalace</div>
+                    <div className="text-sm opacity-90">✓ Bezplatná rychlá instalace</div>
                     <div className="text-sm opacity-90">✓ Wi-Fi router zdarma</div>
                     <div className="text-sm opacity-90">✓ 24/7 podpora</div>
                   </div>

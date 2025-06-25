@@ -199,7 +199,7 @@ const InternetPoruba = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Instalace v den objednání</div>
+                    <div className="text-sm opacity-90">✓ Bezplatná rychlá instalace</div>
                     <div className="text-sm opacity-90">✓ Studentské slevy</div>
                     <div className="text-sm opacity-90">✓ Nejhustší síť</div>
                   </div>

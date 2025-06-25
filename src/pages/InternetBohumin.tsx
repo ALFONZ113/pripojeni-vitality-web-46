@@ -7,7 +7,9 @@ import PhoneLink from '../components/ui/phone-link';
 
 const InternetBohumin = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
-  return <div className="min-h-screen">
+
+  return (
+    <div className="min-h-screen">
       <Helmet>
         <title>Internet PODA Bohumín | Gigabitové optické připojení | Tel: 730 431 313</title>
         <meta name="description" content="Nejrychlejší internet PODA v Bohumíně s optickou technologií GPON. Rychlost až 2000 Mbps, bezplatná instalace. Pokrytí: Starý Bohumín, Nový Bohumín, Skřečoň." />
@@ -105,22 +107,27 @@ const InternetBohumin = () => {
               Kompletní pokrytí všech částí Bohumína
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[{
-              name: 'Starý Bohumín',
-              residents: '8 000',
-              coverage: '100%',
-              note: 'Historické centrum města'
-            }, {
-              name: 'Nový Bohumín',
-              residents: '10 000',
-              coverage: '100%',
-              note: 'Moderní obytná zástavba'
-            }, {
-              name: 'Skřečoň',
-              residents: '3 000',
-              coverage: '100%',
-              note: 'Přírodní lokalita u řeky'
-            }].map((district, index) => <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+              {[
+                {
+                  name: 'Starý Bohumín',
+                  residents: '8 000',
+                  coverage: '96%',
+                  note: 'Historické centrum města'
+                },
+                {
+                  name: 'Nový Bohumín',
+                  residents: '10 000',
+                  coverage: '98%',
+                  note: 'Moderní obytná zástavba'
+                },
+                {
+                  name: 'Skřečoň',
+                  residents: '3 000',
+                  coverage: '89%',
+                  note: 'Přírodní lokalita u řeky'
+                }
+              ].map((district, index) => (
+                <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mr-3" />
                     <h3 className="font-bold text-lg">{district.name}</h3>
@@ -136,7 +143,8 @@ const InternetBohumin = () => {
                     </div>
                     <div className="text-sm text-poda-blue font-medium">{district.note}</div>
                   </div>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -249,7 +257,8 @@ const InternetBohumin = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
 
 export default InternetBohumin;

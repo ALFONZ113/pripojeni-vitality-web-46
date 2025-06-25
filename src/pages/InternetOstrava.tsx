@@ -80,7 +80,7 @@ const InternetOstrava = () => {
                 <div className="text-sm opacity-80">obyvatel</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">100%</div>
+                <div className="font-bold text-2xl">96%</div>
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
@@ -105,12 +105,12 @@ const InternetOstrava = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { name: 'Ostrava-Poruba', residents: '67 000', coverage: '100%' },
-                { name: 'Ostrava-Vítkovice', residents: '22 000', coverage: '100%' },
-                { name: 'Moravská Ostrava', residents: '36 000', coverage: '100%' },
-                { name: 'Ostrava-Jih', residents: '94 000', coverage: '100%' },
-                { name: 'Mariánské Hory', residents: '15 000', coverage: '100%' },
-                { name: 'Slezská Ostrava', residents: '18 000', coverage: '100%' }
+                { name: 'Ostrava-Poruba', residents: '67 000', coverage: '97%' },
+                { name: 'Ostrava-Vítkovice', residents: '22 000', coverage: '95%' },
+                { name: 'Moravská Ostrava', residents: '36 000', coverage: '98%' },
+                { name: 'Ostrava-Jih', residents: '94 000', coverage: '94%' },
+                { name: 'Mariánské Hory', residents: '15 000', coverage: '96%' },
+                { name: 'Slezská Ostrava', residents: '18 000', coverage: '93%' }
               ].map((district, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-4">

@@ -1,4 +1,3 @@
-
 export const tariffData = {
   byty: [
     {
@@ -56,7 +55,7 @@ export const tariffData = {
       isPromo: true,
       features: [
         {
-          title: 'Internet 500/200 Mbps',
+          title: 'Internet 1000/200 Mbps',
           description: 'Bezdrátový internet s rychlostí optického'
         },
         {
@@ -79,7 +78,7 @@ export const tariffData = {
       isRecommended: true,
       features: [
         {
-          title: 'Internet 500/200 Mbps',
+          title: 'Internet 1000/200 Mbps',
           description: 'Bezdrátový internet s rychlostí optického'
         },
         {

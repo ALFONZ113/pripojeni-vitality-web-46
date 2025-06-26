@@ -3,12 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-
 const InternetHavirov = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Internet PODA Havířov | Gigabitové optické připojení | Tel: 730 431 313</title>
         <meta name="description" content="Nejrychlejší internet PODA v Havířově s optickou technologií GPON. Rychlost až 2000 Mbps, bezplatná instalace. Pokrytí: Šumbark, Město, Podlesí, Prostřední Suchá." />
@@ -78,7 +75,7 @@ const InternetHavirov = () => {
                 <div className="text-sm opacity-80">obyvatel</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">100%</div>
+                <div className="font-bold text-2xl">97%</div>
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
@@ -102,33 +99,27 @@ const InternetHavirov = () => {
               Kompletní pokrytí všech částí Havířova
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  name: 'Havířov-Šumbark',
-                  residents: '25 000',
-                  coverage: '96%',
-                  note: 'Největší část'
-                },
-                {
-                  name: 'Havířov-Město',
-                  residents: '20 000',
-                  coverage: '97%',
-                  note: 'Centrum města'
-                },
-                {
-                  name: 'Havířov-Podlesí',
-                  residents: '15 000',
-                  coverage: '94%',
-                  note: 'Rezidenční zóna'
-                },
-                {
-                  name: 'Prostřední Suchá',
-                  residents: '10 000',
-                  coverage: '92%',
-                  note: 'Průmyslová část'
-                }
-              ].map((district, index) => (
-                <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+              {[{
+              name: 'Havířov-Šumbark',
+              residents: '25 000',
+              coverage: '96%',
+              note: 'Největší část'
+            }, {
+              name: 'Havířov-Město',
+              residents: '20 000',
+              coverage: '97%',
+              note: 'Centrum města'
+            }, {
+              name: 'Havířov-Podlesí',
+              residents: '15 000',
+              coverage: '94%',
+              note: 'Rezidenční zóna'
+            }, {
+              name: 'Prostřední Suchá',
+              residents: '10 000',
+              coverage: '92%',
+              note: 'Průmyslová část'
+            }].map((district, index) => <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mr-3" />
                     <h3 className="font-bold text-lg">{district.name}</h3>
@@ -144,8 +135,7 @@ const InternetHavirov = () => {
                     </div>
                     <div className="text-sm text-poda-blue font-medium">{district.note}</div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -248,8 +238,6 @@ const InternetHavirov = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default InternetHavirov;

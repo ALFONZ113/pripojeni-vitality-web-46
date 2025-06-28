@@ -1,3 +1,4 @@
+
 import { Suspense, lazy } from 'react';
 import { Toaster } from 'sonner';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -79,6 +80,9 @@ function App() {
                   <Route path="/migration-monitor" element={<MigrationMonitor />} />
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
+                  
+                  {/* Flyer page */}
+                  <Route path="/flyer" element={<Flyer />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

@@ -7,7 +7,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
-import Flyer from './pages/Flyer';
 
 // Lazy load components for better performance
 const Home = lazy(() => import('./pages/Index'));
@@ -80,9 +79,6 @@ function App() {
                   <Route path="/migration-monitor" element={<MigrationMonitor />} />
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
-                  
-                  {/* Flyer page */}
-                  <Route path="/flyer" element={<Flyer />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

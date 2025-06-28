@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -129,6 +130,24 @@
   .text-highlight-pripojeni .text-highlight-pri {
     @apply text-poda-orange;
   }
+
+  /* A4 Flyer Styles */
+  .a4-flyer {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .print-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
 }
 
 /* Custom animations */
@@ -196,5 +215,75 @@
 @media (hover: none) and (pointer: coarse) {
   .phone-link:hover {
     background-color: transparent;
+  }
+}
+
+/* Print Styles for A4 Flyer */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .a4-flyer, .a4-flyer * {
+    visibility: visible;
+  }
+
+  .a4-flyer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    height: 297mm !important;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-container {
+    padding: 0;
+  }
+
+  /* Hide web-only elements */
+  button, .no-print {
+    display: none !important;
+  }
+
+  /* Optimize colors for print */
+  .bg-gradient-to-r,
+  .bg-gradient-to-br,
+  .bg-gradient-to-b {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  /* Ensure text is print-friendly */
+  * {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+/* Screen-only styles */
+@media screen {
+  .a4-flyer {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 210/297;
+  }
+
+  @media (max-width: 768px) {
+    .a4-flyer {
+      width: 100%;
+      margin: 0;
+    }
+
+    .print-container {
+      padding: 10px;
+    }
   }
 }

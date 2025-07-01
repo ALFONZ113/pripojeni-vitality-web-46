@@ -28,49 +28,9 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Core React chunk
-          'react-core': ['react', 'react-dom'],
-          
-          // Router chunk
-          'react-router': ['react-router-dom'],
-          
-          // UI framework chunk
-          'ui-framework': [
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-toast',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-select'
-          ],
-          
-          // Icons and visual elements
-          'icons-visual': ['lucide-react'],
-          
-          // Utilities
-          'utils': [
-            'clsx',
-            'tailwind-merge',
-            'class-variance-authority'
-          ],
-          
-          // Date and time utilities
-          'date-utils': ['date-fns'],
-          
-          // Animation library
-          'animations': ['framer-motion'],
-          
-          // Charts (if used)
-          'charts': ['recharts'],
-          
-          // Query management
-          'query': ['@tanstack/react-query'],
-          
-          // Blog content (separate chunk for better caching)
-          'blog-content': [
-            './src/data/blog/index.ts',
-            './src/data/blog/types.ts'
-          ]
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', 'lucide-react'],
+          utils: ['clsx', 'tailwind-merge', '@tanstack/react-query']
         },
       },
     },

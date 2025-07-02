@@ -8,10 +8,12 @@ import { novinyPosts } from './noviny';
 import { recenziePosts } from './recenzie';
 import { ostravaPost } from './ostrava';
 import { internetGuidePost } from './internet-guide';
+import { slowInternetFixPost } from './slow-internet-fix';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  internetGuidePost, // Pridanie nového článku na začiatok
+  slowInternetFixPost, // Najnovší článok
+  internetGuidePost,
   ...sluzbyPosts,
   ...technologiePosts,
   ...tipyPosts,
@@ -30,4 +32,5 @@ export * from './karvina';
 export * from './noviny';
 export * from './recenzie';
 export * from './ostrava';
-export * from './internet-guide'; // Export nového článku
+export * from './internet-guide';
+export * from './slow-internet-fix';

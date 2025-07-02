@@ -40,13 +40,6 @@ const Blog = () => {
   }, []);
   
   useEffect(() => {
-    // Získáme všechny posty a zkontrolujeme existenci postu s ID 100
-    const porubaPost = blogPosts.find(post => post.id === 100);
-    console.log("Poruba post exists:", !!porubaPost);
-    if (porubaPost) {
-      console.log("Poruba post title:", porubaPost.title);
-    }
-    
     let filtered = blogPosts;
     
     if (selectedCategory !== 'all') {
@@ -63,12 +56,6 @@ const Blog = () => {
         (post.content && post.content.toLowerCase().includes(term)) ||
         (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
       );
-    }
-    
-    // Kontrolní výpis
-    console.log(`Filtred posts count: ${filtered.length}`);
-    if (searchTerm.toLowerCase().includes('poruba')) {
-      console.log("Posts containing Poruba:", filtered.map(p => p.id));
     }
     
     setFilteredPosts(filtered);

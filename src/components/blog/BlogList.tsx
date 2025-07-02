@@ -14,19 +14,6 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
   const [searchParams] = useSearchParams();
   const [displayedPosts, setDisplayedPosts] = useState<BlogPost[]>(posts);
   
-  // Kontrolní výpis v useEffectu
-  useEffect(() => {
-    console.log("BlogList - Total posts:", posts.length);
-    console.log("BlogList - Posts IDs:", posts.map(p => p.id));
-    
-    // Specific check for Poruba post
-    const porubaPost = posts.find(p => p.id === 100);
-    if (porubaPost) {
-      console.log("Found Poruba post in BlogList:", porubaPost.title);
-    } else {
-      console.log("Poruba post NOT found in BlogList posts");
-    }
-  }, [posts]);
   
   // Watch for URL parameter changes - e.g., when someone clicks on a tag
   useEffect(() => {

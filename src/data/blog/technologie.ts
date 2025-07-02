@@ -434,7 +434,7 @@ export const technologiePosts: BlogPost[] = [
     tags: ["O2", "Nej.cz", "Netbox", "PODA", "Migrácia", "Ostrava", "Akvizícia", "Telekomunikácie"]
   },
   {
-    id: 102,
+    id: 104,
     title: "Bleskový internet bez drátů? Poznejte 60 GHz technologii a nabídku PODA!",
     excerpt: "Představte si připojení tak rychlé, že můžete streamovat 4K video bez zadrhnutí a stahovat gigabajtové soubory v průběhu sekund. Objevte budoucnost internetu s 60 GHz technologií od PODA.",
     content: `

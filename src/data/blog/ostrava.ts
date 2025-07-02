@@ -15,7 +15,7 @@ import {
 } from './content/ostrava-remaining';
 
 export const ostravaPost: BlogPost = {
-  id: 500,
+  id: 16,
   title: 'Internet PODA Ostrava: Nejrychlejší optické připojení v Moravskoslezském kraji 2025',
   excerpt: 'Hledáte rychlý internet v Ostravě? Potřebujete spolehlivé připojení v Karviné nebo optický internet v Havířově? Společnost PODA prostřednictvím platformy Popri.cz nabízí nejkonkurenceschopnější internetové služby v celém Moravskoslezském kraji.',
   content: `

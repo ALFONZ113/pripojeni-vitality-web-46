@@ -51,8 +51,6 @@ const BlogPostPage = () => {
     if (foundPost) {
       setPost(foundPost);
       
-      // Log the view for analytics
-      console.log(`Blog post viewed: ${foundPost.title} (ID: ${foundPost.id})`);
 
       // FIXED: Update canonical URL to use clean numeric ID format
       const canonicalUrl = `https://www.popri.cz/blog/${foundPost.id}`;

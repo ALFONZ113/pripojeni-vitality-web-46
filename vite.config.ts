@@ -48,6 +48,13 @@ export default defineConfig(({ mode }) => ({
             'date-fns'
           ],
           
+          // Blog chunk for blog-related components
+          blog: [
+            'src/components/blog',
+            'src/data/blog',
+            'src/pages/BlogPost.tsx'
+          ],
+          
           // Animation and interaction chunk
           animations: ['framer-motion'],
           

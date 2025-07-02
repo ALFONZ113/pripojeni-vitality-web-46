@@ -85,9 +85,11 @@ export const measureCoreWebVitals = () => {
   const observeLCP = () => {
     try {
       const observer = new PerformanceObserver((list) => {
-        const entries = list.getEntries();
-        const lastEntry = entries[entries.length - 1] as any;
-        console.log('LCP:', lastEntry.startTime);
+        if (process.env.NODE_ENV === 'development') {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1] as any;
+          console.log('LCP:', lastEntry.startTime);
+        }
       });
       observer.observe({ entryTypes: ['largest-contentful-paint'] });
     } catch (e) {
@@ -106,7 +108,9 @@ export const measureCoreWebVitals = () => {
             clsValue += entry.value;
           }
         });
-        console.log('CLS:', clsValue);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('CLS:', clsValue);
+        }
       });
       observer.observe({ entryTypes: ['layout-shift'] });
     } catch (e) {

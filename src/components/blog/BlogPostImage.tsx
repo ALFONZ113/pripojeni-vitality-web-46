@@ -16,7 +16,6 @@ const BlogPostImage = ({ post }: BlogPostImageProps) => {
     // Try with the full URL if it's a relative path
     if (!imageError && post.image.startsWith('/')) {
       const fullUrl = window.location.origin + post.image;
-      console.log(`Trying with full URL: ${fullUrl}`);
       
       // Set with a timeout to prevent infinite rendering loops
       setTimeout(() => {

@@ -53,7 +53,7 @@ export const initMapySuggester = (
         }
       });
 
-      console.log("Mapy.cz suggester initialized successfully");
+      
     } catch (error) {
       console.error("Error initializing Mapy.cz suggester:", error);
     }

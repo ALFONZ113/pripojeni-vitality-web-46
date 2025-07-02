@@ -16,12 +16,8 @@ interface EmailFormData {
 
 export const sendContactFormEmail = async (formData: EmailFormData): Promise<boolean> => {
   try {
-    console.log("Preparing to send email with formData:", formData);
-    
     // Use direct URL to edge function
     const functionUrl = "https://yjzzhfvwbnzhecffuelt.supabase.co/functions/v1/send-email";
-    
-    console.log("Making request to:", functionUrl);
     
     // Send admin email
     const adminResponse = await fetch(functionUrl, {
@@ -38,8 +34,6 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
         emailType: "admin"
       })
     });
-
-    console.log("Admin email response status:", adminResponse.status);
     
     if (!adminResponse.ok) {
       const errorText = await adminResponse.text();
@@ -60,8 +54,6 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
         emailType: "customer"
       })
     });
-
-    console.log("Customer email response status:", customerResponse.status);
     
     if (!customerResponse.ok) {
       const errorText = await customerResponse.text();
@@ -71,7 +63,6 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
     }
     
     const adminResult = await adminResponse.json();
-    console.log("Admin email sent successfully:", adminResult);
     
     toast({
       title: "Formulář odeslán",

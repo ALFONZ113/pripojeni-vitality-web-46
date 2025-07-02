@@ -40,12 +40,15 @@ const useEnhancedPerformance = () => {
       if ('performance' in window && 'getEntriesByType' in performance) {
         const navigationEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
         if (navigationEntries.length > 0) {
-          const entry = navigationEntries[0];
-          console.log('Navigation timing:', {
-            domContentLoaded: entry.domContentLoadedEventEnd - entry.domContentLoadedEventStart,
-            loadComplete: entry.loadEventEnd - entry.loadEventStart,
-            totalTime: entry.loadEventEnd - entry.fetchStart
-          });
+          // Performance metrics available in development only
+          if (process.env.NODE_ENV === 'development') {
+            const entry = navigationEntries[0];
+            console.log('Navigation timing:', {
+              domContentLoaded: entry.domContentLoadedEventEnd - entry.domContentLoadedEventStart,
+              loadComplete: entry.loadEventEnd - entry.loadEventStart,
+              totalTime: entry.loadEventEnd - entry.fetchStart
+            });
+          }
         }
       }
     };

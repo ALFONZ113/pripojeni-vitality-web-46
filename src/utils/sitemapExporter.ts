@@ -27,7 +27,7 @@ export const downloadSitemap = (baseUrl: string = 'https://www.popri.cz') => {
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
   
-  console.log('Clean XML sitemap downloaded successfully');
+  
   return true;
 };
 
@@ -45,7 +45,6 @@ export const copySitemapToClipboard = async (baseUrl: string = 'https://www.popr
   
   try {
     await navigator.clipboard.writeText(sitemapContent);
-    console.log('Clean XML sitemap copied to clipboard successfully');
     return true;
   } catch (err) {
     console.error('Failed to copy sitemap to clipboard:', err);
@@ -62,14 +61,6 @@ export const logSitemapToConsole = (baseUrl: string = 'https://www.popri.cz') =>
   // Validate before logging
   const isValid = validateSitemapXML(sitemapContent);
   
-  console.log('=== CLEAN XML SITEMAP FOR GOOGLE SEARCH CONSOLE ===');
-  console.log(`Validation status: ${isValid ? '✅ VALID XML' : '❌ INVALID XML'}`);
-  console.log('Content-Type: application/xml; charset=utf-8');
-  console.log('');
-  console.log(sitemapContent);
-  console.log('');
-  console.log('=== END OF CLEAN XML SITEMAP ===');
-  console.log('Copy the XML content above and submit to Google Search Console');
   
   if (!isValid) {
     console.warn('⚠️ WARNING: Sitemap contains errors. Check content before use.');
@@ -119,7 +110,6 @@ export const validateCleanXML = (sitemapContent: string): boolean => {
       return false;
     }
     
-    console.log('✅ Sitemap is clean XML without HTML contamination');
     return true;
   } catch (error) {
     console.error('Clean XML validation failed:', error);

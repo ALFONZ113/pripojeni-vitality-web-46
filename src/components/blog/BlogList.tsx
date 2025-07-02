@@ -1,6 +1,6 @@
 
 import { Bookmark } from 'lucide-react';
-import BlogCard from './BlogCard';
+import LazyBlogCard from './LazyBlogCard';
 import type { BlogPost } from '../../data/blog/types';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -71,7 +71,7 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {sortedPosts.map((post) => (
-        <BlogCard key={post.id} post={post} />
+        <LazyBlogCard key={post.id} post={post} />
       ))}
     </div>
   );

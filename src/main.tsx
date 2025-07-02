@@ -3,6 +3,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
 
 // Error tracking with improved error information
 const handleError = (error: Error) => {
@@ -19,7 +20,10 @@ try {
   }
   
   createRoot(rootElement).render(<App />);
-  console.log('Application successfully rendered');
+  
+  // Initialize performance optimizations
+  preloadCriticalRoutes();
+  optimizeChunkLoading();
 } catch (error) {
   handleError(error as Error);
   

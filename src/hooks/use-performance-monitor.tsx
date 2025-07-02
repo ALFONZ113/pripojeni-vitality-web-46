@@ -15,7 +15,7 @@ interface PerformanceMonitorOptions {
 }
 
 const usePerformanceMonitor = (options: PerformanceMonitorOptions = {}) => {
-  const { reportInterval = 10000, enableReporting = true } = options;
+  const { reportInterval = 10000, enableReporting = process.env.NODE_ENV === 'development' } = options;
   const [metrics, setMetrics] = useState<PerformanceMetrics>({
     lcp: null,
     fid: null,

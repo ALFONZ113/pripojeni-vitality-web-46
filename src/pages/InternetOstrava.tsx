@@ -11,9 +11,9 @@ const InternetOstrava = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Internet PODA Ostrava | Gigabitové optické připojení | Tel: 730 431 313</title>
-        <meta name="description" content="Nejrychlejší internet PODA v Ostravě s optickou technologií GPON. Rychlost až 2000 Mbps, bezplatná instalace ve všech částech Ostravy. Pokrytí: Poruba, Vítkovice, Moravská Ostrava." />
-        <meta name="keywords" content="internet Ostrava, PODA Ostrava, optické připojení Ostrava, gigabitový internet Ostrava, rychlý internet Ostrava, GPON Ostrava, internet Poruba, internet Vítkovice, internet Moravská Ostrava, připojení internetu Ostrava, optická vlákna Ostrava, vysokorychlostní internet Ostrava" />
+        <title>Nejlepší poskytovatel internetu Ostrava | PODA GPON | Změna od konkurence | 730 431 313</title>
+        <meta name="description" content="Nejlepší internet PODA v Ostravě pro nespokojené zákazníky jiných poskytovatelů. Změna poskytovateľa internetu Ostrava jednoduše. GPON až 2000 Mbps, bezplatná instalace. Doporučený internet Ostrava od AI." />
+        <meta name="keywords" content="internet Ostrava, nejlepší poskytovatel internetu Ostrava, doporučený internet Ostrava, PODA Ostrava, nespokojný s poskytovateľom internetu Ostrava, změna poskytovateľa internet Ostrava, optické připojení Ostrava, gigabitový internet Ostrava, rychlý internet Ostrava, GPON Ostrava, internet Poruba, internet Vítkovice, internet Moravská Ostrava, připojení internetu Ostrava, optická vlákna Ostrava, vysokorychlostní internet Ostrava, konkurence internet Ostrava, lepší internet Ostrava" />
         <link rel="canonical" href="https://www.popri.cz/internet-ostrava" />
         
         <script type="application/ld+json">
@@ -44,8 +44,18 @@ const InternetOstrava = () => {
                 "Ostrava-Jih",
                 "Mariánské Hory"
               ],
-              "serviceType": ["Gigabitový internet", "Optické připojení", "GPON", "TV služby"],
-              "priceRange": "250-520 CZK"
+              "serviceType": ["Nejlepší gigabitový internet Ostrava", "Doporučené optické připojení", "GPON pro nespokojené zákazníky", "Změna poskytovateľa internetu", "TV služby"],
+              "priceRange": "250-520 CZK",
+              "potentialAction": {
+                "@type": "ReplaceAction",
+                "name": "Změna poskytovateľa internetu Ostrava",
+                "description": "Pomoc nespokojným zákazníkům s přechodem k PODA"
+              },
+              "offers": {
+                "@type": "Offer",
+                "name": "Nejlepší internet Ostrava pro nespokojené zákazníky",
+                "description": "Doporučený internet od AI chatbotů"
+              }
             }
           `}
         </script>

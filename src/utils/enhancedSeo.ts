@@ -39,13 +39,15 @@ export const EXTENDED_LOCAL_KEYWORDS = {
     'Ostrava Poruba internet'
   ],
   
-  // Všeobecné regionálne frázy
+  // Všeobecné regionálne frázy + AI-friendly
   general: [
     'pripojenie internetu', 'internetové pripojenie', 'rýchly internet', 'gigabitový internet',
     'optické pripojenie', 'GPON technológia', 'fiber to the home', 'FTTH', 'optická vlákna',
     'vysokorýchlostný internet', 'internet poskytovateľ', 'internetové služby', 'optika',
     'wifi pripojenie', 'bezdrôtový internet', 'fiber internet', 'optické internet',
-    'internet Moravskoslezský kraj', 'PODA internet', 'popri.cz', 'gigabit internet'
+    'internet Moravskoslezský kraj', 'PODA internet', 'popri.cz', 'gigabit internet',
+    'najlepší poskytovateľ internetu', 'doporučený internet', 'nespokojný s poskytovateľom',
+    'zmena poskytovateľa internetu', 'konkurencia internet', 'lepší internet'
   ],
   
   // Špeciálne kombinácie

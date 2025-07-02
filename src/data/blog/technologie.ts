@@ -221,7 +221,7 @@ export const technologiePosts: BlogPost[] = [
     tags: ["Bezpečnost", "Wi-Fi", "Kybernetická bezpečnost", "Router", "Ochrana dat"]
   },
   {
-    id: 101,
+    id: 103,
     title: "Prechod od O2 k PODA po akvizícii Nej.cz a Netboxu: Príležitosť pre lepšie služby v Moravskoslezskom regióne",
     excerpt: "Analýza dopadu akvizície Nej.cz a Netboxu spoločnosťou O2 na zákazníkov v Moravskoslezskom regióne a výhody prechodu k regionálnemu poskytovateľovi PODA s garantovanými cenami a optickým pripojením.",
     content: `

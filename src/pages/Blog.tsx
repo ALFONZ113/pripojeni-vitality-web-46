@@ -37,22 +37,10 @@ const Blog = () => {
   }, []);
   
   useEffect(() => {
-    console.log("Blog filtering - selectedCategory:", selectedCategory);
-    console.log("Blog filtering - searchTerm:", searchTerm);
-    console.log("Blog filtering - total blogPosts:", blogPosts.length);
-    
-    // Log all unique categories from posts
-    const uniqueCategories = [...new Set(blogPosts.map(post => post.category))];
-    console.log("Blog filtering - available categories in posts:", uniqueCategories);
-    
-    // Log all posts with their IDs and categories
-    console.log("Blog filtering - all posts:", blogPosts.map(p => ({ id: p.id, title: p.title.substring(0, 50), category: p.category })));
-    
     let filtered = blogPosts;
     
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(post => post.category === selectedCategory);
-      console.log("Blog filtering - after category filter:", filtered.length);
     }
     
     if (searchTerm.trim() !== '') {
@@ -65,10 +53,8 @@ const Blog = () => {
         (post.content && post.content.toLowerCase().includes(term)) ||
         (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
       );
-      console.log("Blog filtering - after search filter:", filtered.length);
     }
     
-    console.log("Blog filtering - final filtered posts:", filtered.length);
     setFilteredPosts(filtered);
     
     const newParams = new URLSearchParams();

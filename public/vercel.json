@@ -6,7 +6,9 @@
     { "source": "https://www.pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
     { "source": "http://pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
     { "source": "http://www.pripojeni-poda.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
-    { "source": "https://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true }
+    { "source": "http://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
+    { "source": "https://popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true },
+    { "source": "http://www.popri.cz/:path*", "destination": "https://www.popri.cz/:path*", "permanent": true }
   ],
   "routes": [
     {
@@ -17,17 +19,6 @@
         "expires": "0"
       },
       "continue": true
-    },
-    {
-      "src": "/robots.txt",
-      "headers": {
-        "Host": "pripojeni-poda.cz"
-      },
-      "dest": "/robots-old-domain.txt"
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
     },
     {
       "src": "/(.*)",
@@ -59,6 +50,11 @@
       "src": "/sitemap.xml",
       "status": 200,
       "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/robots.txt",
+      "status": 200,
+      "dest": "/robots.txt"
     },
     {
       "handle": "filesystem"
@@ -168,25 +164,6 @@
         {
           "key": "Content-Type",
           "value": "application/xml; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "has": [
-        {
-          "type": "host",
-          "value": "pripojeni-poda.cz"
-        }
-      ],
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain; charset=utf-8"
         },
         {
           "key": "Cache-Control",

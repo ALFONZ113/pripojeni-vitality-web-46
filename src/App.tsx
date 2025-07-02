@@ -7,7 +7,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
-import useCoreWebVitals from './hooks/use-core-web-vitals';
 
 // Lazy load components for better performance
 const Home = lazy(() => import('./pages/Index'));
@@ -41,13 +40,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const vitals = useCoreWebVitals();
-
-  // Log performance metrics for monitoring
-  if (vitals.lcp && vitals.fcp) {
-    console.log('Core Web Vitals:', vitals);
-  }
-
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
@@ -58,7 +50,7 @@ function App() {
             <main className="flex-grow">
               <Suspense fallback={
                 <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-poda-blue">Načítava...</div>
+                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-poda-blue"></div>
                 </div>
               }>
                 <Routes>

@@ -75,7 +75,7 @@ const InternetHavirov = () => {
                 <div className="text-sm opacity-80">obyvatel</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">97%</div>
+                <div className="font-bold text-2xl">100%</div>
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
@@ -102,22 +102,22 @@ const InternetHavirov = () => {
               {[{
               name: 'Havířov-Šumbark',
               residents: '25 000',
-              coverage: '96%',
+              coverage: '100%',
               note: 'Největší část'
             }, {
               name: 'Havířov-Město',
               residents: '20 000',
-              coverage: '97%',
+              coverage: '100%',
               note: 'Centrum města'
             }, {
               name: 'Havířov-Podlesí',
               residents: '15 000',
-              coverage: '94%',
+              coverage: '100%',
               note: 'Rezidenční zóna'
             }, {
               name: 'Prostřední Suchá',
               residents: '10 000',
-              coverage: '92%',
+              coverage: '100%',
               note: 'Průmyslová část'
             }].map((district, index) => <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-4">
@@ -161,7 +161,7 @@ const InternetHavirov = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Express instalace</h3>
-                    <p className="text-gray-600">Díky kompaktnosti města zajistíme bezplatnou rychlou instalaci.</p>
+                    <p className="text-gray-600">Díky kompaktnosti města zajistíme rychlou  instalaci.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -203,12 +203,12 @@ const InternetHavirov = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Bezplatná rychlá instalace</div>
+                    <div className="text-sm opacity-90">✓ Bezplatná express instalace</div>
                     <div className="text-sm opacity-90">✓ Wi-Fi 6 router zdarma</div>
                     <div className="text-sm opacity-90">✓ Místní servis v Havířově</div>
                   </div>
                 </div>
-                <a href="tel:+420730431313" className="btn-primary bg-poda-orange hover:bg-orange-600 w-full inline-flex items-center justify-center">
+                <a href="tel:+420730431313" className="btn-primary bg-poda-orange hover:bg-orange-600 w-full mt-6 inline-flex items-center justify-center">
                   <Phone className="mr-2 h-5 w-5" />
                   Objednat nyní
                 </a>

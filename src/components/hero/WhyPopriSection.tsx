@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 const WhyPopriSection = () => {
@@ -14,7 +13,7 @@ const WhyPopriSection = () => {
   }} className="mt-16 mb-8 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-blue-50">
       <h2 className="text-2xl md:text-3xl font-bold text-poda-blue mb-4 text-center">Proč právě Popri.cz?</h2>
       <p className="text-gray-600 text-lg mb-6 text-center">
-        Popri.cz stojí po boku zákazníků s odborností a porozuměním. Naše filozofie je jednoduchá: technologie spojujeme s osobním přístupem pro váš ideální internet.
+        Jsme <span className="text-poda-blue font-semibold">popri</span> vám při každém kroku instalace PODA internetu. Naše jméno vyjadřuje naši filozofii – stát po vašem boku a zajistit nejlepší internetové připojení.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="text-center">

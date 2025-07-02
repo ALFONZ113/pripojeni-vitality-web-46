@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
@@ -79,7 +80,7 @@ const InternetOstrava = () => {
                 <div className="text-sm opacity-80">obyvatel</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">96%</div>
+                <div className="font-bold text-2xl">100%</div>
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
@@ -104,12 +105,12 @@ const InternetOstrava = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { name: 'Ostrava-Poruba', residents: '67 000', coverage: '97%' },
-                { name: 'Ostrava-Vítkovice', residents: '22 000', coverage: '95%' },
-                { name: 'Moravská Ostrava', residents: '36 000', coverage: '98%' },
-                { name: 'Ostrava-Jih', residents: '94 000', coverage: '94%' },
-                { name: 'Mariánské Hory', residents: '15 000', coverage: '96%' },
-                { name: 'Slezská Ostrava', residents: '18 000', coverage: '93%' }
+                { name: 'Ostrava-Poruba', residents: '67 000', coverage: '100%' },
+                { name: 'Ostrava-Vítkovice', residents: '22 000', coverage: '100%' },
+                { name: 'Moravská Ostrava', residents: '36 000', coverage: '100%' },
+                { name: 'Ostrava-Jih', residents: '94 000', coverage: '100%' },
+                { name: 'Mariánské Hory', residents: '15 000', coverage: '100%' },
+                { name: 'Slezská Ostrava', residents: '18 000', coverage: '100%' }
               ].map((district, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-4">
@@ -153,7 +154,7 @@ const InternetOstrava = () => {
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-lg mb-2">Rychlá instalace</h3>
-                    <p className="text-gray-600">Bezplatná rychlá instalace ve všech městských částech.</p>
+                    <p className="text-gray-600">Bezplatná a rychlá instalace ve všech městských částech.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -200,7 +201,7 @@ const InternetOstrava = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Bezplatná rychlá instalace</div>
+                    <div className="text-sm opacity-90">✓ Bezplatná instalace</div>
                     <div className="text-sm opacity-90">✓ Wi-Fi router zdarma</div>
                     <div className="text-sm opacity-90">✓ 24/7 podpora</div>
                   </div>

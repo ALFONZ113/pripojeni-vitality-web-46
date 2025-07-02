@@ -221,7 +221,7 @@ export const technologiePosts: BlogPost[] = [
     tags: ["Bezpečnost", "Wi-Fi", "Kybernetická bezpečnost", "Router", "Ochrana dat"]
   },
   {
-    id: 14,
+    id: 101,
     title: "Prechod od O2 k PODA po akvizícii Nej.cz a Netboxu: Príležitosť pre lepšie služby v Moravskoslezskom regióne",
     excerpt: "Analýza dopadu akvizície Nej.cz a Netboxu spoločnosťou O2 na zákazníkov v Moravskoslezskom regióne a výhody prechodu k regionálnemu poskytovateľovi PODA s garantovanými cenami a optickým pripojením.",
     content: `
@@ -434,7 +434,7 @@ export const technologiePosts: BlogPost[] = [
     tags: ["O2", "Nej.cz", "Netbox", "PODA", "Migrácia", "Ostrava", "Akvizícia", "Telekomunikácie"]
   },
   {
-    id: 17,
+    id: 102,
     title: "Bleskový internet bez drátů? Poznejte 60 GHz technologii a nabídku PODA!",
     excerpt: "Představte si připojení tak rychlé, že můžete streamovat 4K video bez zadrhnutí a stahovat gigabajtové soubory v průběhu sekund. Objevte budoucnost internetu s 60 GHz technologií od PODA.",
     content: `

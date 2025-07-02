@@ -1,17 +1,20 @@
+
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { blogPosts, categories } from '../data/blog';
 import BlogSearch from '../components/blog/BlogSearch';
 import BlogCategories from '../components/blog/BlogCategories';
-import OptimizedBlogList from '../components/blog/OptimizedBlogList';
-import { initAnimations } from '../utils/optimized-animation';
+import BlogList from '../components/blog/BlogList';
+import { initAnimations } from '../utils/animation';
 import { Helmet } from 'react-helmet-async';
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState(blogPosts);
   const [selectedCategory, setSelectedCategory] = useState('all');
   
+  // Zvýraznění pro Porubu - přidání parametru pro automatické hledání Poruby
   useEffect(() => {
     const category = searchParams.get('category');
     const tag = searchParams.get('tag');
@@ -25,6 +28,7 @@ const Blog = () => {
       setSearchTerm(tag);
     }
     
+    // Automatické vyhledávání lokality
     if (location === 'poruba') {
       setSearchTerm('Poruba');
     }
@@ -36,11 +40,44 @@ const Blog = () => {
   }, []);
   
   useEffect(() => {
-    // Update URL parameters based on current filters
+    // Získáme všechny posty a zkontrolujeme existenci postu s ID 100
+    const porubaPost = blogPosts.find(post => post.id === 100);
+    console.log("Poruba post exists:", !!porubaPost);
+    if (porubaPost) {
+      console.log("Poruba post title:", porubaPost.title);
+    }
+    
+    let filtered = blogPosts;
+    
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(post => post.category === selectedCategory);
+    }
+    
+    if (searchTerm.trim() !== '') {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(post => 
+        post.title.toLowerCase().includes(term) || 
+        post.excerpt.toLowerCase().includes(term) ||
+        post.author.toLowerCase().includes(term) ||
+        post.category.toLowerCase().includes(term) ||
+        (post.content && post.content.toLowerCase().includes(term)) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
+      );
+    }
+    
+    // Kontrolní výpis
+    console.log(`Filtred posts count: ${filtered.length}`);
+    if (searchTerm.toLowerCase().includes('poruba')) {
+      console.log("Posts containing Poruba:", filtered.map(p => p.id));
+    }
+    
+    setFilteredPosts(filtered);
+    
     const newParams = new URLSearchParams();
     if (selectedCategory !== 'all') newParams.set('category', selectedCategory);
     if (searchTerm.trim() !== '') newParams.set('search', searchTerm);
     setSearchParams(newParams, { replace: true });
+    
   }, [searchTerm, selectedCategory, setSearchParams]);
   
   const handleSearch = (value: string) => {
@@ -57,6 +94,7 @@ const Blog = () => {
     setSearchParams({}, { replace: true });
   };
   
+  // Get all unique tags and locations for SEO
   const getAllTags = () => {
     const allTags = new Set<string>();
     blogPosts.forEach(post => {
@@ -79,12 +117,7 @@ const Blog = () => {
   const allTags = getAllTags();
   const locations = getAllLocations();
   
-  // Debug: Log blog data
-  console.log('Blog.tsx - Total blogPosts:', blogPosts.length);
-  console.log('Blog.tsx - Selected category:', selectedCategory);
-  console.log('Blog.tsx - Search term:', searchTerm);
-  console.log('Blog.tsx - All categories:', categories);
-  
+  // Generate enhanced meta description
   const generateMetaDescription = () => {
     const baseDescription = "Blog o internetových službách PODA - články o technologiích, tipy pro lepší využití internetu a televize";
     if (selectedCategory !== 'all') {
@@ -96,6 +129,7 @@ const Blog = () => {
     return `${baseDescription}. Aktuálně ${blogPosts.length} článků.`;
   };
 
+  // Tlačítko pro rychlý přístup k blogu o Porubě
   const showPorubaPost = () => {
     setSearchTerm("Poruba");
   };
@@ -226,6 +260,7 @@ const Blog = () => {
             
             <BlogSearch searchTerm={searchTerm} onSearch={handleSearch} />
             
+            {/* Promo banner pro článek o Porubě */}
             <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-100 inline-block">
               <button 
                 onClick={showPorubaPost} 
@@ -250,13 +285,9 @@ const Blog = () => {
 
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <OptimizedBlogList 
-            posts={blogPosts} 
-            selectedCategory={selectedCategory}
-            searchTerm={searchTerm}
-            onResetFilters={resetFilters} 
-          />
+          <BlogList posts={filteredPosts} onResetFilters={resetFilters} />
           
+          {/* Enhanced CTA for blog page */}
           <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-8 rounded-xl shadow-lg">
               <h2 className="text-2xl font-bold mb-4">

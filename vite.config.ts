@@ -24,36 +24,55 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    modulePreload: true,
+    modulePreload: true, // Ensure module preloading is enabled
     rollupOptions: {
       output: {
         manualChunks: {
+          // Vendor chunk for React and core libraries
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', 'lucide-react'],
-          utils: ['clsx', 'tailwind-merge', '@tanstack/react-query']
+          
+          // UI chunk for component libraries
+          ui: [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tabs',
+            'lucide-react'
+          ],
+          
+          // Utils chunk for utilities
+          utils: [
+            'clsx',
+            'tailwind-merge',
+            'class-variance-authority',
+            'date-fns'
+          ],
+          
+          // Animation and interaction chunk
+          animations: ['framer-motion'],
+          
+          // Charts chunk (if used)
+          charts: ['recharts']
         },
       },
     },
+    // Optimize chunk size
+    chunkSizeWarningLimit: 1000,
     
-    // Optimize chunk size warnings
-    chunkSizeWarningLimit: 800,
-    
-    // Production optimizations
+    // Enable source maps in production for debugging
     sourcemap: false,
+    
+    // Minimize CSS and JS - only use terser in production
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.warn'],
-      },
-      mangle: {
-        safari10: true,
       },
     } : undefined,
   },
   
-  // Enhanced optimization
+  // Optimize dependencies
   optimizeDeps: {
     include: [
       'react',
@@ -61,19 +80,7 @@ export default defineConfig(({ mode }) => ({
       'react-router-dom',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
-      'lucide-react',
-      '@tanstack/react-query'
+      'lucide-react'
     ],
-    exclude: ['@vite/client', '@vite/env']
   },
-  
-  // Enable experimental features for better performance
-  experimental: {
-    renderBuiltUrl(filename, { hostId, hostType, type }) {
-      if (type === 'asset' && /\.(png|jpg|jpeg|gif|svg|webp)$/.test(filename)) {
-        return `/${filename}`;
-      }
-      return { relative: true };
-    }
-  }
 }));

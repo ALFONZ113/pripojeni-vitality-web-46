@@ -3,12 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Users, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-
 const InternetPoruba = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Internet PODA Poruba | Gigabitové optické připojení | Tel: 730 431 313</title>
         <meta name="description" content="Nejrychlejší internet PODA v Porubě (Ostrava) s optickou technologií GPON. Rychlost až 2000 Mbps, bezplatná instalace v největší městské části Ostravy." />
@@ -76,7 +73,7 @@ const InternetPoruba = () => {
                 <div className="text-sm opacity-80">obyvatel</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">97%</div>
+                <div className="font-bold text-2xl">100%</div>
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
@@ -199,7 +196,7 @@ const InternetPoruba = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Bezplatná rychlá instalace</div>
+                    <div className="text-sm opacity-90">✓ Instalace v den objednání</div>
                     <div className="text-sm opacity-90">✓ Studentské slevy</div>
                     <div className="text-sm opacity-90">✓ Nejhustší síť</div>
                   </div>
@@ -234,8 +231,6 @@ const InternetPoruba = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default InternetPoruba;

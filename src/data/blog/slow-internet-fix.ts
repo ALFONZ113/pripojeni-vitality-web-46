@@ -10,7 +10,7 @@ export const slowInternetFixPost: BlogPost = {
       <p class="lead">Je 20:00, chcete si pustit film na Netflixu, ale místo HD obrazu sledujete nekonečné načítání. Nebo se snažíte nahrát fotky na Instagram, ale trvá to věčnost. Zní vám to povědomě? Pokud bydlíte v Ostravě, Karviné nebo okolí, nejste sami. Pomalý internet trápí tisíce domácností v Moravskoslezském kraji, ale většinu problémů můžete vyřešit sami během půl hodiny.</p>
 
       <div class="w-full max-w-4xl mx-auto my-8">
-        <img src="/src/assets/slow-internet-guide-image.jpg" alt="Žena s laptopom a optické vláknové pripojenie" className="w-full h-auto rounded-lg shadow-lg" />
+        <img src="/lovable-uploads/4f1e695c-c1c9-4107-a093-0120ad8b650f.png" alt="Žena pracuje na laptope s optickými vláknami okolo nej symbolizujúcimi rýchle internetové pripojenie" className="w-full h-auto rounded-lg shadow-lg" />
       </div>
 
       <h2>Nejčastější Příčiny Pomalého Internetu (A Proč se to Děje Právě Vám)</h2>

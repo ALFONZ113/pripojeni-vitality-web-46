@@ -73,6 +73,10 @@ const OptimizedBlogList = ({ posts, selectedCategory, searchTerm, onResetFilters
   console.log('OptimizedBlogList - Total pages:', totalPages);
   console.log('OptimizedBlogList - Current page:', currentPage);
   console.log('OptimizedBlogList - Visible posts count:', visiblePosts.length);
+  console.log('OptimizedBlogList - Start index:', (currentPage - 1) * POSTS_PER_PAGE);
+  console.log('OptimizedBlogList - End index:', (currentPage - 1) * POSTS_PER_PAGE + POSTS_PER_PAGE);
+  console.log('OptimizedBlogList - Slice indices:', (currentPage - 1) * POSTS_PER_PAGE, 'to', (currentPage - 1) * POSTS_PER_PAGE + POSTS_PER_PAGE);
+  console.log('OptimizedBlogList - displayedPosts sample:', displayedPosts.slice(0, 5).map(p => ({ id: p.id, title: p.title.substring(0, 30) })));
 
   useEffect(() => {
     setCurrentPage(1);

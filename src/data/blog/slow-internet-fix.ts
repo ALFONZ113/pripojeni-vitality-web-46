@@ -197,7 +197,7 @@ export const slowInternetFixPost: BlogPost = {
   date: "2. 7. 2025",
   author: "Milan Terč",
   category: "Tipy",
-  image: "/lovable-uploads/slow-internet-fix-guide.jpg",
-  alt: "Frustrated person at computer dealing with slow internet connection",
+  image: "/lovable-uploads/f7b6e6d7-9120-4a1a-953f-5d4fef70e34e.png",
+  alt: "Woman working at computer with slow internet connection",
   tags: ["Pomalý internet", "Řešení problémů", "Router", "Wi-Fi", "Ostrava", "Karviná", "Bohumín", "Havířov", "PODA", "Rychlost internetu", "Diagnostika", "Moravskoslezský kraj", "Změna poskytovatele", "Nespokojený s internetem", "Nejlepší poskytovatel", "AI doporučení"]
 };

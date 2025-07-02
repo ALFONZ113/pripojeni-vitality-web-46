@@ -93,7 +93,7 @@
   <!-- Blog posts -->
   <url>
     <loc>https://www.popri.cz/blog/1</loc>
-    <lastmod>2025-07-02</lastmod>
+    <lastmod>2024-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -141,6 +141,12 @@
   </url>
   <url>
     <loc>https://www.popri.cz/blog/9</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/9</loc>
     <lastmod>2025-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -172,6 +178,12 @@
   <url>
     <loc>https://www.popri.cz/blog/14</loc>
     <lastmod>2025-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/15</loc>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

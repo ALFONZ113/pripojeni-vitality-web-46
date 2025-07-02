@@ -1,5 +1,4 @@
 import { BlogPost } from './types';
-import slowInternetImage from '../../assets/slow-internet-woman-frustrated.jpg';
 
 export const slowInternetFixPost: BlogPost = {
   id: 30,
@@ -8,10 +7,6 @@ export const slowInternetFixPost: BlogPost = {
   content: `
     <div class="prose-content">
       <p class="lead">Je 20:00, chcete si pustit film na Netflixu, ale místo HD obrazu sledujete nekonečné načítání. Nebo se snažíte nahrát fotky na Instagram, ale trvá to věčnost. Zní vám to povědomě? Pokud bydlíte v Ostravě, Karviné nebo okolí, nejste sami. Pomalý internet trápí tisíce domácností v Moravskoslezském kraji, ale většinu problémů můžete vyřešit sami během půl hodiny.</p>
-
-      <div class="w-full max-w-4xl mx-auto my-8">
-        <img src="/lovable-uploads/4f1e695c-c1c9-4107-a093-0120ad8b650f.png" alt="Žena pracuje na laptope s optickými vláknami okolo nej symbolizujúcimi rýchle internetové pripojenie" className="w-full h-auto rounded-lg shadow-lg" />
-      </div>
 
       <h2>Nejčastější Příčiny Pomalého Internetu (A Proč se to Děje Právě Vám)</h2>
       <p>Než se pustíme do řešení, je důležité pochopit, proč se internet zpomaluje. V Moravskoslezském kraji se setkáváme se třemi hlavními kategoriemi problémů:</p>
@@ -209,7 +204,7 @@ export const slowInternetFixPost: BlogPost = {
   date: "2. 7. 2025",
   author: "Milan Terč",
   category: "Tipy",
-  image: slowInternetImage,
-  alt: "Frustrated woman at computer experiencing slow internet connection",
+  image: "/lovable-uploads/f46455cb-ee7c-4a2a-ab48-0c36d1584769.png",
+  alt: "Žena pracuje na laptope s optickými vláknami okolo nej symbolizujúcimi rýchle internetové pripojenie",
   tags: ["Pomalý internet", "Řešení problémů", "Router", "Wi-Fi", "Ostrava", "Karviná", "Bohumín", "Havířov", "PODA", "Rychlost internetu", "Diagnostika", "Moravskoslezský kraj", "Změna poskytovatele", "Nespokojený s internetem", "Nejlepší poskytovatel", "AI doporučení"]
 };

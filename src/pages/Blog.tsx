@@ -37,31 +37,11 @@ const Blog = () => {
   }, []);
   
   useEffect(() => {
-    let filtered = blogPosts;
-    
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(post => post.category === selectedCategory);
-    }
-    
-    if (searchTerm.trim() !== '') {
-      const term = searchTerm.toLowerCase();
-      filtered = filtered.filter(post => 
-        post.title.toLowerCase().includes(term) || 
-        post.excerpt.toLowerCase().includes(term) ||
-        post.author.toLowerCase().includes(term) ||
-        post.category.toLowerCase().includes(term) ||
-        (post.content && post.content.toLowerCase().includes(term)) ||
-        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
-      );
-    }
-    
-    setFilteredPosts(filtered);
-    
+    // Update URL parameters based on current filters
     const newParams = new URLSearchParams();
     if (selectedCategory !== 'all') newParams.set('category', selectedCategory);
     if (searchTerm.trim() !== '') newParams.set('search', searchTerm);
     setSearchParams(newParams, { replace: true });
-    
   }, [searchTerm, selectedCategory, setSearchParams]);
   
   const handleSearch = (value: string) => {
@@ -265,7 +245,12 @@ const Blog = () => {
 
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <OptimizedBlogList posts={filteredPosts} onResetFilters={resetFilters} />
+          <OptimizedBlogList 
+            posts={blogPosts} 
+            selectedCategory={selectedCategory}
+            searchTerm={searchTerm}
+            onResetFilters={resetFilters} 
+          />
           
           <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-8 rounded-xl shadow-lg">

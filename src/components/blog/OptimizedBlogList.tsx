@@ -7,41 +7,47 @@ import { useSearchParams } from 'react-router-dom';
 
 interface OptimizedBlogListProps {
   posts: BlogPost[];
+  selectedCategory: string;
+  searchTerm: string;
   onResetFilters: () => void;
 }
 
 const POSTS_PER_PAGE = 9;
 
-const OptimizedBlogList = ({ posts, onResetFilters }: OptimizedBlogListProps) => {
-  const [searchParams] = useSearchParams();
+const OptimizedBlogList = ({ posts, selectedCategory, searchTerm, onResetFilters }: OptimizedBlogListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   
   // Memoize filtered posts to avoid recalculation
   const displayedPosts = useMemo(() => {
-    const tag = searchParams.get('tag');
-    const category = searchParams.get('category');
-    
     let filtered = posts;
     
-    if (tag) {
-      filtered = posts.filter(post => 
-        post.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
-      );
-    } else if (category) {
-      filtered = posts.filter(post => 
-        post.category.toLowerCase() === category.toLowerCase()
+    // Apply category filter
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(post => post.category === selectedCategory);
+    }
+    
+    // Apply search filter
+    if (searchTerm.trim() !== '') {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(post => 
+        post.title.toLowerCase().includes(term) || 
+        post.excerpt.toLowerCase().includes(term) ||
+        post.author.toLowerCase().includes(term) ||
+        post.category.toLowerCase().includes(term) ||
+        (post.content && post.content.toLowerCase().includes(term)) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
       );
     }
 
-    // Sort with Poruba first
+    // Sort with Poruba first, then by ID
     return filtered.sort((a, b) => {
       if (a.id === 100) return -1;
       if (b.id === 100) return 1;
       if (a.title.includes('Poruba') && !b.title.includes('Poruba')) return -1;
       if (!a.title.includes('Poruba') && b.title.includes('Poruba')) return 1;
-      return 0;
+      return a.id - b.id;
     });
-  }, [posts, searchParams]);
+  }, [posts, selectedCategory, searchTerm]);
 
   // Memoize visible posts for current page
   const visiblePosts = useMemo(() => {
@@ -54,7 +60,7 @@ const OptimizedBlogList = ({ posts, onResetFilters }: OptimizedBlogListProps) =>
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchParams]);
+  }, [selectedCategory, searchTerm]);
   
   if (displayedPosts.length === 0) {
     return (

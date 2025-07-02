@@ -111,7 +111,7 @@ export const tipyPosts: BlogPost[] = [
     `,
     date: "10. 5. 2025",
     author: "Marie Dvořáková",
-    category: "Tipy",
+    category: "Tipy a rady",
     image: "/lovable-uploads/5daa6fb6-9d90-41e9-bb84-0e836eb8965f.png",
     alt: "Rodina sledující televizi v obývacím pokoji s moderním smart TV",
     tags: ["Televizní balíčky", "PODA TV", "Úspora peněz", "Rodina", "Zábrava"]
@@ -222,7 +222,7 @@ export const tipyPosts: BlogPost[] = [
     `,
     date: "8. 5. 2025",
     author: "Jan Procházka",
-    category: "Tipy",
+    category: "Tipy a rady",
     image: "/lovable-uploads/235022db-f6c5-4a2f-8970-681e7c476589.png",
     alt: "Skupina přátel sledující sportovní přenos v obývacím pokoji",
     tags: ["Sport", "Streaming", "Televizní přenos", "Online sledování", "PODA TV"]
@@ -373,7 +373,7 @@ export const tipyPosts: BlogPost[] = [
     `,
     date: "5. 5. 2025",
     author: "Pavel Novotný",
-    category: "Tipy",
+    category: "Tipy a rady",
     image: "/lovable-uploads/35179673-7e72-4282-8609-a46686328aa0.png",
     alt: "Test rychlosti internetu na počítači",
     tags: ["Test rychlosti", "Internet", "Diagnostika", "Rychlost připojení", "PODA"]

@@ -39,7 +39,14 @@ export const slowInternetFixPost: BlogPost = {
         <li><strong>DSL připojení:</strong> průměrná rychlost 32,3 Mb/s (nejlepší AVONET s 38,5 Mb/s)</li>
         <li><strong>Optické připojení:</strong> průměrná rychlost 44,7 Mb/s (nejlepší OrbisNet s 69,3 Mb/s)</li>
         <li><strong>Wi-Fi připojení:</strong> průměrná rychlost 30,9 Mb/s (nejlepší CZNET s 56,4 Mb/s)</li>
+        <li><strong>PODA optická vlákna:</strong> až 1000/500 Mb/s pro rodinné domy v Moravskoslezském kraji</li>
       </ul>
+
+      <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
+        <h3 class="text-white mb-4">🚀 Revoluce v rychlosti internetu</h3>
+        <p class="mb-4">PODA přináší do vybraných lokalit Moravskoslezského kraje gigabitové optické připojení přímo do rodinných domů. Rychlost až <strong>1000 Mbps</strong> znamená stahování celého HD filmu za 30 sekund!</p>
+        <p class="mb-0">📞 Zavolejte na <strong>730 431 313</strong> a ověřte si dostupnost na vaší adrese nebo objednejte pohodlně na <strong>popri.cz</strong></p>
+      </div>
 
       <h2>8 Ověřených Způsobů, Jak Problém Vyřešit</h2>
 
@@ -105,8 +112,19 @@ export const slowInternetFixPost: BlogPost = {
         </ul>
       </div>
 
-      <h3>Řešení #8: Kontaktujte Poskytovatele nebo Zvažte Změnu</h3>
-      <p>Pokud žádné z předchozích řešení nepomohlo, problém může být na straně poskytovatele. V Moravskoslezském kraji máte několik kvalitních možností.</p>
+      <h3>Řešení #8: Kontaktujte Poskytovatele nebo Zvažte Změnu na PODA</h3>
+      <p>Pokud žádné z předchozích řešení nepomohlo, problém může být na straně poskytovatele. V Moravskoslezském kraji máte k dispozici nejmodernější optické připojení od PODA.</p>
+      
+      <div class="bg-poda-orange text-white p-6 rounded-lg my-8">
+        <h4 class="text-white mb-4">⚡ PODA - Optická revoluce pro váš domov</h4>
+        <ul class="space-y-2 mb-4">
+          <li>🏠 <strong>Rodinné domy:</strong> Internet až 1000 Gbps přímo do vašeho domu</li>
+          <li>🌐 <strong>Stabilita:</strong> 99,9% dostupnost bez výpadků</li>
+          <li>💰 <strong>Transparentní ceny:</strong> Bez skrytých poplatků</li>
+          <li>🚀 <strong>Rychlá instalace:</strong> Během 48 hodin</li>
+        </ul>
+        <p class="mb-0">📞 <strong>730 431 313</strong> - Zavolejte pro ověření dostupnosti | 🌐 <strong>popri.cz</strong> - Objednejte online</p>
+      </div>
 
       <h2>Speciální Tipy pro Moravskoslezský Kraj</h2>
       
@@ -116,8 +134,14 @@ export const slowInternetFixPost: BlogPost = {
       <h3>Pro průmyslové oblasti</h3>
       <p>V okolí velkých průmyslových podniků může docházet k přetížení sítě během směnních změn. Plánujte náročnější aktivity na hodiny mimo špičku.</p>
 
-      <h3>Pro rodinné domy</h3>
-      <p>Pokud bydlíte v rodinném domě, zvažte optické připojení, které v našem regionu nabízí výborné pokrytí a stabilitu.</p>
+      <h3>Pro rodinné domy - PODA Gigabit Connection</h3>
+      <p>Pokud bydlíte v rodinném domě, máte jedinečnou příležitost získat nejrychlejší připojení v regionu. <strong>PODA poskytuje v určitých lokalitách Moravskoslezského kraje internet s rychlostí až 1000 Gb/s přímo do rodinných domů!</strong> Tato technologie GPON zajišťuje nejen extrémní rychlosti, ale i absolutní stabilitu připojení.</p>
+      
+      <div class="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-6 rounded-lg my-6">
+        <h4 class="text-white mb-3">🏠 Speciální nabídka pro rodinné domy</h4>
+        <p class="mb-4">Gigabitové optické připojení PODA nyní dostupné ve vybraných lokalitách!</p>
+        <p class="mb-0">📞 <strong>730 431 313</strong> - Zjistěte dostupnost | 🌐 <strong>popri.cz</strong> - Objednejte ještě dnes</p>
+      </div>
 
       <h2>Kdy je Čas na Radikální Řešení</h2>
       <p>Někdy už nestačí "kutit" a je potřeba změna poskytovatele. Zvažte výměnu, pokud:</p>
@@ -131,9 +155,31 @@ export const slowInternetFixPost: BlogPost = {
 
       <p>V červenci 2025 máte v Moravskoslezském kraji k dispozici kvalitní alternativy. Podle aktuálních měření si nejlépe vedou poskytovatelé optického internetu, kde OrbisNet dosahuje rychlostí až 69,3 Mb/s. Pro ty, kteří hledají spolehlivé DSL připojení, vyniká AVONET s průměrnou rychlostí 38,5 Mb/s.</p>
 
-      <blockquote class="border-l-4 border-poda-orange pl-4 italic my-6">
-        <p>"Pro obyvatele Ostravy a okolí doporučujeme zvážit moderní optické připojení od PODA, které nabízí rychlosti až 1000/500 Mb/s. Objednat si můžete pohodlně přes popri.cz, kde najdete aktuální nabídky a můžete si ověřit dostupnost na vaší adrese."</p>
-      </blockquote>
+      <div class="bg-gradient-to-r from-green-500 to-blue-600 text-white p-8 rounded-lg my-8">
+        <h3 class="text-white mb-4 text-2xl">🏆 Nejrychlejší řešení pro Moravskoslezský kraj</h3>
+        <p class="text-lg mb-4">PODA revolucionizuje internet v regionu s gigabitovým optickým připojením až <strong>1000 Gb/s pro rodinné domy!</strong></p>
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <h4 class="font-bold mb-2">✅ Výhody PODA:</h4>
+            <ul class="space-y-1">
+              <li>• Gigabitové rychlosti až 1000 Gb/s</li>
+              <li>• Stabilita 99,9% bez výpadků</li>
+              <li>• Rychlá instalace do 48 hodin</li>
+              <li>• Transparentní ceny</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-2">📞 Kontakt a objednávka:</h4>
+            <ul class="space-y-1">
+              <li>• Telefon: <strong>730 431 313</strong></li>
+              <li>• Web: <strong>popri.cz</strong></li>
+              <li>• Dostupnost: vybrané lokality MSK</li>
+              <li>• Speciálně pro rodinné domy</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-center text-xl font-bold">📞 730 431 313 | 🌐 popri.cz - Objednejte si PODA ještě dnes!</p>
+      </div>
 
       <h2>Závěr: Váš Internet Může Být Rychlý Už Dnes</h2>
       <p>Pomalý internet nemusí být vaším osudem. Většina problémů má jednoduché řešení, které zvládnete sami během půl hodiny. Začněte prvními třemi kroky ještě dnes: restartujte router, zkontrolujte jeho umístění a odpojte nepotřebná zařízení. Ve většině případů se rychlost internetu výrazně zlepší.</p>

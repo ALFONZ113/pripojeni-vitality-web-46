@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { blogPosts, categories } from '../data/blog';
@@ -15,11 +14,19 @@ const Blog = () => {
   const [filteredPosts, setFilteredPosts] = useState(blogPosts);
   const [selectedCategory, setSelectedCategory] = useState('all');
   
+  // Debug logging
+  console.log('[Blog] Initial blogPosts count:', blogPosts.length);
+  console.log('[Blog] Current filteredPosts count:', filteredPosts.length);
+  console.log('[Blog] Search term:', searchTerm);
+  console.log('[Blog] Selected category:', selectedCategory);
+  
   // Zvýraznění pro Porubu - přidání parametru pro automatické hledání Poruby
   useEffect(() => {
     const category = searchParams.get('category');
     const tag = searchParams.get('tag');
     const location = searchParams.get('location');
+    
+    console.log('[Blog] URL params - category:', category, 'tag:', tag, 'location:', location);
     
     if (category) {
       setSelectedCategory(category);
@@ -44,8 +51,11 @@ const Blog = () => {
   useEffect(() => {
     let filtered = blogPosts;
     
+    console.log('[Blog] Starting filtering with', blogPosts.length, 'posts');
+    
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(post => post.category === selectedCategory);
+      console.log('[Blog] After category filter:', filtered.length, 'posts');
     }
     
     if (searchTerm.trim() !== '') {
@@ -58,8 +68,10 @@ const Blog = () => {
         (post.content && post.content.toLowerCase().includes(term)) ||
         (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
       );
+      console.log('[Blog] After search filter:', filtered.length, 'posts');
     }
     
+    console.log('[Blog] Final filtered posts:', filtered.length);
     setFilteredPosts(filtered);
     
     const newParams = new URLSearchParams();

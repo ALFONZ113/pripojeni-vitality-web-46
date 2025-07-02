@@ -1,6 +1,6 @@
 
 import { Bookmark } from 'lucide-react';
-import LazyBlogCard from './LazyBlogCard';
+import BlogCard from './BlogCard';
 import type { BlogPost } from '../../data/blog/types';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -14,30 +14,39 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
   const [searchParams] = useSearchParams();
   const [displayedPosts, setDisplayedPosts] = useState<BlogPost[]>(posts);
   
+  // Debug logging
+  console.log('[BlogList] Received posts count:', posts.length);
+  console.log('[BlogList] DisplayedPosts count:', displayedPosts.length);
   
   // Watch for URL parameter changes - e.g., when someone clicks on a tag
   useEffect(() => {
     const tag = searchParams.get('tag');
     const category = searchParams.get('category');
     
+    console.log('[BlogList] URL params - tag:', tag, 'category:', category);
+    
     if (tag) {
       // Filter posts by tag
       const filteredByTag = posts.filter(post => 
         post.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
       );
+      console.log('[BlogList] Filtered by tag:', filteredByTag.length);
       setDisplayedPosts(filteredByTag);
     } else if (category) {
       // Filter posts by category
       const filteredByCategory = posts.filter(post => 
         post.category.toLowerCase() === category.toLowerCase()
       );
+      console.log('[BlogList] Filtered by category:', filteredByCategory.length);
       setDisplayedPosts(filteredByCategory);
     } else {
+      console.log('[BlogList] No filters, showing all posts');
       setDisplayedPosts(posts);
     }
   }, [searchParams, posts]);
   
   if (displayedPosts.length === 0) {
+    console.log('[BlogList] No posts to display - showing empty state');
     return (
       <div className="text-center py-12">
         <Bookmark className="h-12 w-12 text-gray-300 mx-auto mb-4" />
@@ -68,10 +77,12 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
     return 0;
   });
 
+  console.log('[BlogList] Final sorted posts count:', sortedPosts.length);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {sortedPosts.map((post) => (
-        <LazyBlogCard key={post.id} post={post} />
+        <BlogCard key={post.id} post={post} />
       ))}
     </div>
   );

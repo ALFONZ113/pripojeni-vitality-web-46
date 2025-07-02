@@ -17,6 +17,11 @@ const POSTS_PER_PAGE = 9;
 const OptimizedBlogList = ({ posts, selectedCategory, searchTerm, onResetFilters }: OptimizedBlogListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   
+  // Debug: Log input data
+  console.log('OptimizedBlogList - Total posts received:', posts.length);
+  console.log('OptimizedBlogList - Selected category:', selectedCategory);
+  console.log('OptimizedBlogList - Search term:', searchTerm);
+  
   // Memoize filtered posts to avoid recalculation
   const displayedPosts = useMemo(() => {
     let filtered = posts;
@@ -40,13 +45,19 @@ const OptimizedBlogList = ({ posts, selectedCategory, searchTerm, onResetFilters
     }
 
     // Sort with Poruba first, then by ID
-    return filtered.sort((a, b) => {
+    const sorted = filtered.sort((a, b) => {
       if (a.id === 100) return -1;
       if (b.id === 100) return 1;
       if (a.title.includes('Poruba') && !b.title.includes('Poruba')) return -1;
       if (!a.title.includes('Poruba') && b.title.includes('Poruba')) return 1;
       return a.id - b.id;
     });
+    
+    // Debug: Log filtered results
+    console.log('OptimizedBlogList - Filtered posts count:', sorted.length);
+    console.log('OptimizedBlogList - First few posts:', sorted.slice(0, 3).map(p => ({ id: p.id, title: p.title, category: p.category })));
+    
+    return sorted;
   }, [posts, selectedCategory, searchTerm]);
 
   // Memoize visible posts for current page
@@ -57,6 +68,11 @@ const OptimizedBlogList = ({ posts, selectedCategory, searchTerm, onResetFilters
   }, [displayedPosts, currentPage]);
 
   const totalPages = Math.ceil(displayedPosts.length / POSTS_PER_PAGE);
+  
+  // Debug: Log pagination info
+  console.log('OptimizedBlogList - Total pages:', totalPages);
+  console.log('OptimizedBlogList - Current page:', currentPage);
+  console.log('OptimizedBlogList - Visible posts count:', visiblePosts.length);
 
   useEffect(() => {
     setCurrentPage(1);

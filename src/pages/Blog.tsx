@@ -10,7 +10,6 @@ import { Helmet } from 'react-helmet-async';
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState(blogPosts);
   const [selectedCategory, setSelectedCategory] = useState('all');
   
   useEffect(() => {
@@ -79,6 +78,12 @@ const Blog = () => {
   
   const allTags = getAllTags();
   const locations = getAllLocations();
+  
+  // Debug: Log blog data
+  console.log('Blog.tsx - Total blogPosts:', blogPosts.length);
+  console.log('Blog.tsx - Selected category:', selectedCategory);
+  console.log('Blog.tsx - Search term:', searchTerm);
+  console.log('Blog.tsx - All categories:', categories);
   
   const generateMetaDescription = () => {
     const baseDescription = "Blog o internetových službách PODA - články o technologiích, tipy pro lepší využití internetu a televize";

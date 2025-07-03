@@ -1,4 +1,3 @@
-
 export const generateCustomerEmailHTML = (formData: any): string => {
   const propertyType = formData.propertyType || 'byty';
   const isApartment = propertyType === 'byty';
@@ -26,7 +25,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
   ] : [
     {
       name: 'Internet + TV Basic',
-      speed: '500/200 Mbps',
+      speed: '1000/200 Mbps',
       technology: 'Bezdrátový internet',
       price: '250 Kč',
       priceNote: 'měsíčně + 50 Kč za zařízení',
@@ -35,7 +34,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
     },
     {
       name: 'Internet + TV Mých 10',
-      speed: '500/200 Mbps',
+      speed: '1000/200 Mbps',
       technology: 'Bezdrátový internet', 
       price: '390 Kč',
       priceNote: 'měsíčně + 50 Kč za zařízení',

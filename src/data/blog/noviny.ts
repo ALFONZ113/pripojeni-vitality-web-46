@@ -1,15 +1,14 @@
-
 import { BlogPost } from './types';
 
 export const novinyPosts: BlogPost[] = [
   {
     id: 11,
-    title: "Novinky v PODA službách: Nové možnosti pro zákazníky",
-    excerpt: "Objevte nejnovější vylepšení a nové funkce v PODA službách, které přinášejí ještě lepší zážitek z internetu a televize.",
+    title: "Novinky v PODA službách: Nové možnosti pro zákazníky v létě 2025",
+    excerpt: "Objevte nejnovější vylepšení a nové funkce v PODA službách v létě 2025, které přinášejí ještě lepší zážitek z internetu a televize.",
     content: `
       <div class="prose-content">
-        <h2>Úvod: Neustálé vylepšování služeb</h2>
-        <p>PODA se neustále snaží přinášet svým zákazníkům ty nejlepší služby. V tomto článku se dozvíte o nejnovějších novinkách a vylepšeních.</p>
+        <h2>Úvod: Neustálé vylepšování služeb v létě 2025</h2>
+        <p>PODA se neustále snaží přinášet svým zákazníkům ty nejlepší služby. V tomto článku se dozvíte o nejnovějších novinkách a vylepšeních během horúceho léta 2025.</p>
 
         <h2>Nové funkce v internetových službách</h2>
         <p>Představujeme vám nové možnosti, které zvýší kvalitu vašeho internetového připojení:</p>
@@ -43,8 +42,8 @@ export const novinyPosts: BlogPost[] = [
           </ul>
         </div>
 
-        <h2>Budoucí plány</h2>
-        <p>Připravujeme další vylepšení pro rok 2024:</p>
+        <h2>Budoucí plány pro zbytek roku 2025</h2>
+        <p>Připravujeme další vylepšení pro zbytek roku 2025:</p>
         <ul>
           <li>Rozšíření optické sítě do dalších oblastí</li>
           <li>Nové smart TV aplikace</li>
@@ -52,10 +51,10 @@ export const novinyPosts: BlogPost[] = [
           <li>Ještě více kanálů ve 4K kvalitě</li>
         </ul>
 
-        <p class="text-center mt-8 font-medium">Sledujte naše stránky pro nejnovější informace o nových službách a vylepšeních.</p>
+        <p class="text-center mt-8 font-medium">Sledujte naše stránky pro nejnovější informace o nových službách a vylepšeních během léta 2025.</p>
       </div>
     `,
-    date: "28. 5. 2025",
+    date: "19. 6. 2025",
     author: "Petra Svobodová",
     category: "Novinky",
     image: "/lovable-uploads/56ebeef3-04d0-42a6-ac4f-f47224a075fb.png",
@@ -64,12 +63,12 @@ export const novinyPosts: BlogPost[] = [
   },
   {
     id: 12,
-    title: "Rozšíření pokrytí PODA: Nové oblasti s optickým internetem",
-    excerpt: "Informace o rozšíření optické sítě PODA do nových oblastí Moravskoslezského kraje a plány na nejbližší měsíce.",
+    title: "Rozšíření pokrytí PODA: Nové oblasti s optickým internetem v létě 2025",
+    excerpt: "Informace o rozšíření optické sítě PODA do nových oblastí Moravskoslezského kraje a plány na nejbližší měsíce léta 2025.",
     content: `
       <div class="prose-content">
-        <h2>Úvod: Expanze optické sítě</h2>
-        <p>PODA pokračuje v rozšiřování své optické infrastruktury a přináší vysokorychlostní internet do dalších oblastí regionu.</p>
+        <h2>Úvod: Expanze optické sítě v létě 2025</h2>
+        <p>PODA pokračuje v rozšiřování své optické infrastruktury a přináší vysokorychlostní internet do dalších oblastí regionu během horúceho léta 2025.</p>
 
         <h2>Nové oblasti s pokrytím</h2>
         <h3>Aktuální rozšíření</h3>
@@ -93,8 +92,8 @@ export const novinyPosts: BlogPost[] = [
           </ul>
         </div>
 
-        <h2>Plány do budoucna</h2>
-        <p>Naše plány na rozšíření v roce 2024:</p>
+        <h2>Plány do budoucna pro zbytek roku 2025</h2>
+        <p>Naše plány na rozšíření pro zbytek roku 2025:</p>
         <ul>
           <li>Dokončení pokrytí všech větších měst regionu</li>
           <li>Rozšíření do menších obcí a venkovských oblastí</li>
@@ -110,10 +109,10 @@ export const novinyPosts: BlogPost[] = [
           </footer>
         </blockquote>
 
-        <p class="text-center mt-8 font-medium">Sledujte naše oznámení o rozšíření do vaší oblasti.</p>
+        <p class="text-center mt-8 font-medium">Sledujte naše oznámení o rozšíření do vaší oblasti během léta 2025.</p>
       </div>
     `,
-    date: "25. 5. 2025",
+    date: "16. 6. 2025",
     author: "Tomáš Krejčí",
     category: "Novinky",
     image: "/lovable-uploads/6f778a97-79bd-4698-b3f2-2a373893184b.png",

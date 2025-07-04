@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const karvinaPost: BlogPost = {
@@ -7,8 +6,8 @@ export const karvinaPost: BlogPost = {
   excerpt: "Karviná vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny. Objevte kompletní pokrytí města a výhody objednání přes popri.cz.",
   content: `
     <div class="prose-content">
-      <h2>Úvod: Nová éra internetového připojení v Karviné</h2>
-      <p>Moravskoslezský region dlouho čekal na skutečnou revoluci v oblasti internetového připojení. Karviná, město s bohatou průmyslovou historií na hranicích s Polskem, nyní vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny.</p>
+      <h2>Úvod: Nová éra internetového připojení v Karviné v létě 2025</h2>
+      <p>Moravskoslezský region dlouho čekal na skutečnou revoluci v oblasti internetového připojení. Karviná, město s bohatou průmyslovou historií na hranicích s Polskem, nyní v létě 2025 vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny.</p>
 
       <h2>Geografické pokrytí: Celá Karviná v dosahu optiky</h2>
       <h3>Kompletní infrastrukturní pokrytí městských částí</h3>
@@ -113,8 +112,8 @@ export const karvinaPost: BlogPost = {
         <li><strong>Profesionální instalace</strong> - obvykle do 48 hodin</li>
       </ol>
 
-      <h2>Závěr: Digitální transformace Karviné</h2>
-      <p>Příchod PODA do Karviné představuje více než jen nového poskytovatele internetových služeb. Jde o katalyzátor digitální transformace regionu, který umožňuje:</p>
+      <h2>Závěr: Digitální transformace Karviné v létě 2025</h2>
+      <p>Příchod PODA do Karviné představuje více než jen nového poskytovatele internetových služeb. Jde o katalyzátor digitální transformace regionu v létě 2025, který umožňuje:</p>
 
       <ul>
         <li><strong>Rodinám:</strong> Bezproblémové využívání moderních online služeb</li>
@@ -133,12 +132,12 @@ export const karvinaPost: BlogPost = {
         </ul>
       </div>
 
-      <p class="text-center mt-8 font-medium">Připojte se k rostoucí komunitě spokojených zákazníků v Karviné a využijte výhod objednání přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a>.</p>
+      <p class="text-center mt-8 font-medium">Připojte se k rostoucí komunitě spokojených zákazníků v Karviné v létě 2025 a využijte výhod objednání přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a>.</p>
 
-      <p class="text-sm text-gray-500 mt-8 italic">Tento článek byl vytvořen s důrazem na poskytnutí objektivních informací o dostupných internetových službách v regionu Karviná.</p>
+      <p class="text-sm text-gray-500 mt-8 italic">Tento článek byl vytvořen s důrazem na poskytnutí objektivních informací o dostupných internetových službách v regionu Karviná v létě 2025.</p>
     </div>
   `,
-  date: "31. 5. 2025",
+  date: "25. 6. 2025",
   author: "Martin Bartoš",
   category: "Služby",
   image: "/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png",

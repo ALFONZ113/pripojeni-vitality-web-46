@@ -1,3 +1,4 @@
+
 import { BlogPost } from './types';
 
 export const changeProviderPost: BlogPost = {
@@ -7,7 +8,7 @@ export const changeProviderPost: BlogPost = {
   content: `
     <div class="prose-content">
       <div class="bg-blue-50 border-l-4 border-poda-blue p-4 rounded-r-lg mb-6">
-        <p class="text-sm text-gray-600"><em>Aktualizováno: 1. 6. 2025 | Průvodce změnou poskytovatele</em></p>
+        <p class="text-sm text-gray-600"><em>Aktualizováno: 4. 7. 2025 | Průvodce změnou poskytovatele</em></p>
       </div>
       
       <div class="w-full max-w-4xl mx-auto my-8">
@@ -19,8 +20,11 @@ export const changeProviderPost: BlogPost = {
       </div>
 
       <div class="bg-red-50 p-6 rounded-lg my-8">
-        <h4>Perex:</h4>
-        <p>Nový zákon o elektronických komunikacích revolucionizoval způsob, jak můžete <strong>změnit poskytovatele internetu</strong>. Celý proces nyní trvá maximálně 4 pracovní dny a většinu kroků vyřídí za vás nový poskytovatel. Pokud bydlíte v Ostravě, Bohumíně, Karviné nebo Havířově a máte Vodafone, O2 či T-Mobile, můžete ušetřit tisíce korun ročně přechodem k lokálnímu poskytovateli jako je PODA internet prostřednictvím popri.cz. Přerušení internetu? Maximálně jeden den.</p>
+        <p>Každý měsíc platíte za internet, který nefunguje tak, jak má. Výpadky během důležitých videohovorů, pomalé stahování a ceny rostoucí rychleji než inflace. Přitom si myslíte, že <strong>změnit poskytovatele internetu</strong> je složitá papírová mašinérie. Mylíte se – od ledna 2022 je to jednodušší než objednání pizzy.</p>
+      </div>
+
+      <div class="bg-green-50 p-6 rounded-lg my-8">
+        <p>Nový zákon o elektronických komunikacích revolucionizoval způsob, jak můžete <strong>změnit poskytovatele internetu</strong>. Celý proces nyní trvá maximálně 4 pracovní dny a většinu kroků vyřídí za vás nový poskytovatel. Pokud bydlíte v Ostravě, Bohumíně, Karviné nebo Havířově a máte Vodafone, O2 či T-Mobile, můžete ušetřit tisíce korun ročně přechodem k lokálnímu poskytovateli jako je <strong>PODA internet</strong>. Nejlepší je objednat PODA přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange font-medium">kontaktní formulář</a> nebo zavoláním na <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange font-medium">730 431 313</a>. Přerušení internetu? Maximálně jeden den.</p>
       </div>
 
       <h2>Změna poskytovatele internetu je dnes jednodušší než kdy dříve</h2>
@@ -141,7 +145,7 @@ export const changeProviderPost: BlogPost = {
       </div>
     </div>
   `,
-  date: "1. 6. 2025",
+  date: "4. 7. 2025",
   author: "Milan Terč",
   category: "Tipy",
   image: "/lovable-uploads/dd5f19cd-ddba-490c-9a2c-f98e254713d6.png",

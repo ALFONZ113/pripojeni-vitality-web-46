@@ -9,12 +9,10 @@ import { recenziePosts } from './recenzie';
 import { ostravaPost } from './ostrava';
 import { internetGuidePost } from './internet-guide';
 import { slowInternetFixPost } from './slow-internet-fix';
-import { zmenaProviderGuide } from './zmena-poskytovatela-guide';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  zmenaProviderGuide, // Najnovší článok
-  slowInternetFixPost,
+  slowInternetFixPost, // Najnovší článok
   internetGuidePost,
   ...sluzbyPosts,
   ...technologiePosts,
@@ -36,4 +34,3 @@ export * from './recenzie';
 export * from './ostrava';
 export * from './internet-guide';
 export * from './slow-internet-fix';
-export * from './zmena-poskytovatela-guide';

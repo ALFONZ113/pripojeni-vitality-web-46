@@ -46,13 +46,13 @@ export const seoSection = `
             <ul class="text-gray-700 space-y-1">
                 <li>"GPON pripojenie Orlová": 180 vyhľadávaní/mesiac</li>
                 <li>"PODA internet Ostrava": 450 vyhľadávaní/mesiac</li>
-                <li>"Popri.cz recenzie": 280 vyhľadávaní/mesiac</li>
+                <li>"<a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> recenzie": 280 vyhľadávaní/mesiac</li>
             </ul>
         </div>
     </div>
 
-    <h3 class="text-xl font-semibold text-gray-800 mb-3">Lokálne SEO stratégia Popri.cz</h3>
-    <p class="text-gray-700 mb-4">Popri.cz využíva pokročilé lokálne SEO techniky pre Moravskoslezský kraj:</p>
+    <h3 class="text-xl font-semibold text-gray-800 mb-3">Lokálne SEO stratégia <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a></h3>
+    <p class="text-gray-700 mb-4"><a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> využíva pokročilé lokálne SEO techniky pre Moravskoslezský kraj:</p>
     <ul class="text-gray-700 space-y-1 mb-6">
         <li>Google My Business profily pre každé mesto</li>
         <li>Lokálne citácie v regionálnych katalógoch</li>
@@ -68,7 +68,7 @@ export const orderingSection = `
     <div class="bg-gray-50 p-4 rounded-lg mb-4">
         <p class="font-semibold text-poda-blue mb-2">Ostrava - postup objednania:</p>
         <ol class="text-gray-700 space-y-1 list-decimal list-inside">
-            <li>Navštívte Popri.cz a zadajte PSČ Ostravy</li>
+            <li>Navštívte <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> a zadajte PSČ Ostravy</li>
             <li>Vyberte tarif podľa potrieb domácnosti/firmy</li>
             <li>Overte dostupnosť na konkrétnej adrese</li>
             <li>Objednajte online alebo zavolajte na regionálnu linku <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a></li>
@@ -102,7 +102,7 @@ export const supportSection = `
     
     <h3 class="text-xl font-semibold text-gray-800 mb-3">Regionálna podpora</h3>
     <div class="bg-gray-50 p-4 rounded-lg mb-4">
-        <p class="font-semibold text-poda-blue mb-2">Popri.cz - kontaktné možnosti:</p>
+        <p class="font-semibold text-poda-blue mb-2"><a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> - kontaktné možnosti:</p>
         <ul class="text-gray-700 space-y-1">
             <li>Telefonická podpora: <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a></li>
             <li>Email podpora: <a href="mailto:terc@obchod.poda.cz" class="text-poda-blue font-medium">terc@obchod.poda.cz</a></li>
@@ -130,7 +130,7 @@ export const reviewsSection = `
     
     <div class="space-y-4 mb-6">
         <blockquote class="bg-gray-50 p-4 rounded-lg border-l-4 border-poda-blue">
-            <p class="text-gray-700 mb-2">"Ako programátor potrebujem stabilné pripojenie s nízkou latenciou. PODA cez Popri.cz splnilo všetky očakávania. Za 150 Kč mám to, za čo som u O2 platil 900 Kč. Odporúčam všetkým v Ostrave."</p>
+            <p class="text-gray-700 mb-2">"Ako programátor potrebujem stabilné pripojenie s nízkou latenciou. PODA cez <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> splnilo všetky očakávania. Za 150 Kč mám to, za čo som u O2 platil 900 Kč. Odporúčam všetkým v Ostrave."</p>
             <footer class="text-sm text-gray-600">
                 <strong>Pavel K., Ostrava-Poruba, IT špecialista</strong>
             </footer>
@@ -185,9 +185,9 @@ export const futureSection = `
     </div>`;
 
 export const conclusionSection = `
-    <h2 class="text-2xl font-bold text-poda-blue mt-8 mb-4">Záver: Prečo PODA cez Popri.cz v Moravskoslezskom kraji</h2>
+    <h2 class="text-2xl font-bold text-poda-blue mt-8 mb-4">Záver: Prečo PODA cez <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> v Moravskoslezskom kraji</h2>
     
-    <p class="text-gray-700 mb-4">Moravskoslezský kraj má v PODA a Popri.cz ideálneho partnera pre internetové služby. Regionálna špecializácia, najnižšie ceny na trhu a najvyššia kvalita služieb činí z tejto kombinácie jasnú voľbu pre rok 2025.</p>
+    <p class="text-gray-700 mb-4">Moravskoslezský kraj má v PODA a <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> ideálneho partnera pre internetové služby. Regionálna špecializácia, najnižšie ceny na trhu a najvyššia kvalita služieb činí z tejto kombinácie jasnú voľbu pre rok 2025.</p>
     
     <div class="bg-gradient-to-r from-poda-blue to-blue-700 text-white p-6 rounded-lg mb-6">
         <p class="font-semibold mb-3">Zhrnutie výhod pre región:</p>

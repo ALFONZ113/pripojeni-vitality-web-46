@@ -245,7 +245,7 @@ export const sluzbyPosts: BlogPost[] = [
           <h3>Objednejte si GPON připojení:</h3>
           <p><strong>Web:</strong> <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a><br>
           <strong>GPON specialista:</strong> Milan Terč<br>
-          <strong>Tel:</strong> 730 431 313<br>
+          <strong>Tel:</strong> <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange font-medium">730 431 313</a><br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
           <p class="mt-4 text-sm text-gray-600">Bezplatná technická konzultace a ověření dostupnosti GPON technologie na vaší adrese v Moravskoslezském regionu.</p>
         </div>
@@ -360,7 +360,7 @@ export const sluzbyPosts: BlogPost[] = [
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
           <h3 class="text-white mb-4">Profesionálna inštalácia PODA v Porube:</h3>
           <ol class="space-y-3">
-            <li><strong>1. Objednávka kontaktu</strong> - spojení prostřednictvím Milana Terče na tel. 730 431 313 nebo online přes popri.cz</li>
+            <li><strong>1. Objednávka kontaktu</strong> - spojení prostřednictvím Milana Terče na tel. <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange font-medium">730 431 313</a> nebo online přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange font-medium">popri.cz</a></li>
             <li><strong>2. Osobní konzultace</strong> - Milan Terč vás navštíví pro detailní zmapování požadavků a sepsání objednávky</li>
             <li><strong>3. Koordinácia termínu</strong> - zavoláme vám a dohodneme si nejoptimálnější termín instalace dle vašich možností</li>
             <li><strong>4. Technická realizace</strong> - kvalifikovaný technik provede kompletní instalaci všech potřebných služeb a zařízení</li>
@@ -395,7 +395,7 @@ export const sluzbyPosts: BlogPost[] = [
           <h3>Overenie dostupnosti a objednávka:</h3>
           <p><strong>Web:</strong> popri.cz<br>
           <strong>Špecialista pre Porubu:</strong> Milan Terč<br>
-          <strong>Tel:</strong> 730 431 313<br>
+          <strong>Tel:</strong> <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange font-medium">730 431 313</a><br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
           <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia a overenie dostupnosti PODA internetu na vašej konkrétnej adrese v Porube.</p>
         </div>

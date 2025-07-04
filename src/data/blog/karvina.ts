@@ -91,11 +91,11 @@ export const karvinaPost: BlogPost = {
         <li>Ukončení služby bez finančních sankcí</li>
       </ul>
 
-      <h2>Objednání přes popri.cz: Nejjednodušší cesta k rychlému internetu</h2>
-      <p>Portál popri.cz je preferovaným způsobem objednání PODA internetu v Karviné.</p>
+      <h2>Objednání přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a>: Nejjednodušší cesta k rychlému internetu</h2>
+      <p>Portál <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a> je preferovaným způsobem objednání PODA internetu v Karviné.</p>
 
       <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-        <h3 class="text-white mb-4">Exkluzivní výhody při objednání přes popri.cz:</h3>
+        <h3 class="text-white mb-4">Exkluzivní výhody při objednání přes <a href="/kontakt" class="text-white hover:text-poda-orange">popri.cz</a>:</h3>
         <ul class="space-y-2">
           <li>• <strong>Prioritní zpracování objednávky</strong> - rychlejší instalace</li>
           <li>• <strong>Online podpora</strong> - okamžitá pomoc při problémech</li>
@@ -104,7 +104,7 @@ export const karvinaPost: BlogPost = {
         </ul>
       </div>
 
-      <h3>Proces objednání přes popri.cz:</h3>
+      <h3>Proces objednání přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a>:</h3>
       <ol class="space-y-2">
         <li><strong>Zadání adresy</strong> - okamžité ověření pokrytí</li>
         <li><strong>Výběr balíčku</strong> - přehledné porovnání možností</li>
@@ -124,7 +124,7 @@ export const karvinaPost: BlogPost = {
       </ul>
 
       <div class="bg-gray-50 p-6 rounded-lg my-8">
-        <h3>Proč objednávat právě přes popri.cz?</h3>
+        <h3>Proč objednávat právě přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a>?</h3>
         <ul class="space-y-2 mt-4">
           <li>✓ Nejrychlejší způsob získání PODA internetu</li>
           <li>✓ Prioritní zpracování všech objednávek</li>

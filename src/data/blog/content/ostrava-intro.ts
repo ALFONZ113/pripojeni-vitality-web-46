@@ -5,7 +5,7 @@ export const introSection = `
     </div>
     
     <div class="prose-lg leading-relaxed mb-8">
-        <p><strong>Hledáte rychlý internet v Ostravě?</strong> Potřebujete spolehlivé připojení v Karviné nebo optický internet v Havířově? Společnost PODA prostřednictvím platformy Popri.cz nabízí nejkonkurenceschopnější internetové služby v celém Moravskoslezském kraji.</p>
+        <p><strong>Hledáte rychlý internet v Ostravě?</strong> Potřebujete spolehlivé připojení v Karviné nebo optický internet v Havířově? Společnost PODA prostřednictvím platformy <a href="/kontakt" class="text-poda-blue hover:text-poda-orange font-medium">Popri.cz</a> nabízí nejkonkurenceschopnější internetové služby v celém Moravskoslezském kraji.</p>
         
         <div class="inline-flex items-center gap-2 bg-gradient-to-r from-poda-blue to-poda-orange text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all cursor-pointer">
             <a href="tel:+420730431313" class="text-white no-underline">730 431 313</a> | 

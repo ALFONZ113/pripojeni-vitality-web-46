@@ -9,14 +9,16 @@ import { recenziePosts } from './recenzie';
 import { ostravaPost } from './ostrava';
 import { internetGuidePost } from './internet-guide';
 import { slowInternetFixPost } from './slow-internet-fix';
+import { changeProviderPost } from './change-provider-guide';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  slowInternetFixPost, // Najnovší článok
+  changeProviderPost, // Najnovší článok - 1. 6. 2025
+  slowInternetFixPost,
   internetGuidePost,
   ...sluzbyPosts,
   ...technologiePosts,
-  ...tipyPosts,
+  ...tipyPosts.filter(post => post.id !== 100), // Vyhnúť sa duplikátu changeProviderPost
   karvinaPost,
   ...novinyPosts,
   ...recenziePosts,
@@ -34,3 +36,4 @@ export * from './recenzie';
 export * from './ostrava';
 export * from './internet-guide';
 export * from './slow-internet-fix';
+export * from './change-provider-guide';

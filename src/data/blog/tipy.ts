@@ -1,6 +1,8 @@
 import { BlogPost } from './types';
+import { changeProviderPost } from './change-provider-guide';
 
 export const tipyPosts: BlogPost[] = [
+  changeProviderPost,
   {
     id: 6,
     title: "Jak vybrat nejlepší TV balíček pro vaši rodinu v létě 2025",

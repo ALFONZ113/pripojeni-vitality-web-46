@@ -133,7 +133,7 @@ export const karvinaPost: BlogPost = {
         </ul>
       </div>
 
-      <p class="text-center mt-8 font-medium">Připojte se k rostoucí komunitě spokojených zákazníků v Karviné a využijte výhod objednání přes popri.cz.</p>
+      <p class="text-center mt-8 font-medium">Připojte se k rostoucí komunitě spokojených zákazníků v Karviné a využijte výhod objednání přes <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a>.</p>
 
       <p class="text-sm text-gray-500 mt-8 italic">Tento článek byl vytvořen s důrazem na poskytnutí objektivních informací o dostupných internetových službách v regionu Karviná.</p>
     </div>

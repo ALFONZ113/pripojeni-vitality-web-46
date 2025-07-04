@@ -47,7 +47,7 @@ export const internetGuidePost: BlogPost = {
         </ul>
         <div class="bg-poda-blue text-white p-4 rounded">
           <p class="font-semibold">Chcete se dozvědět více o PODA v Ostravě?</p>
-          <p>Navštivte <a href="https://www.popri.cz" class="underline text-poda-orange">www.popri.cz</a> nebo volejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
+          <p>Navštivte <a href="/kontakt" class="underline text-poda-orange">www.popri.cz</a> nebo volejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
         </div>
       </div>
 
@@ -73,7 +73,7 @@ export const internetGuidePost: BlogPost = {
         </ul>
         <div class="bg-poda-blue text-white p-4 rounded">
           <p class="font-semibold">Zajímá vás PODA v Karviné?</p>
-          <p>Objednejte si na <a href="https://www.popri.cz" class="underline text-poda-orange">www.popri.cz</a> nebo zavolejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
+          <p>Objednejte si na <a href="/kontakt" class="underline text-poda-orange">www.popri.cz</a> nebo zavolejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
         </div>
       </div>
 
@@ -99,7 +99,7 @@ export const internetGuidePost: BlogPost = {
         </ul>
         <div class="bg-poda-blue text-white p-4 rounded">
           <p class="font-semibold">Chcete PODA v Havířově?</p>
-          <p>Jednoduše si objednejte na <a href="https://www.popri.cz" class="underline text-poda-orange">www.popri.cz</a> nebo volejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
+          <p>Jednoduše si objednejte na <a href="/kontakt" class="underline text-poda-orange">www.popri.cz</a> nebo volejte <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
         </div>
       </div>
 
@@ -167,7 +167,7 @@ export const internetGuidePost: BlogPost = {
 
       <div class="bg-poda-blue text-white p-6 rounded-lg mb-8">
         <h4 class="text-lg font-semibold mb-2">Potřebujete poradit s výběrem?</h4>
-        <p>Navštivte <a href="https://www.popri.cz" class="underline text-poda-orange">www.popri.cz</a> nebo zavolejte odborníkům na <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
+        <p>Navštivte <a href="/kontakt" class="underline text-poda-orange">www.popri.cz</a> nebo zavolejte odborníkům na <a href="tel:730431313" class="underline text-poda-orange">730 431 313</a></p>
       </div>
 
       <h2 class="text-2xl font-bold text-poda-blue mb-4 mt-8">Co říkají uživatelé: Zkušenosti s PODA</h2>
@@ -243,7 +243,7 @@ export const internetGuidePost: BlogPost = {
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white bg-opacity-20 p-4 rounded">
             <h4 class="font-semibold mb-2">Objednejte si online</h4>
-            <p><a href="https://www.popri.cz" class="underline text-yellow-200">www.popri.cz</a> - rychlá a snadná objednávka</p>
+            <p><a href="/kontakt" class="underline text-yellow-200">www.popri.cz</a> - rychlá a snadná objednávka</p>
           </div>
           
           <div class="bg-white bg-opacity-20 p-4 rounded">

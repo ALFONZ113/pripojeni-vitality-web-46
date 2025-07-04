@@ -31,7 +31,7 @@ export const popriSection = `
                     </div>
                     <div class="flex items-center">
                         <span class="font-semibold mr-2">Web:</span>
-                        <a href="https://www.popri.cz" target="_blank" rel="noopener noreferrer" class="text-poda-orange hover:text-orange-300">Popri.cz</a>
+                        <a href="/kontakt" class="text-poda-orange hover:text-orange-300">Popri.cz</a>
                     </div>
                 </div>
                 
@@ -96,7 +96,7 @@ export const comparisonTable = `
             <p class="text-sm text-gray-700">
                 <strong>Poznámka:</strong> Ceny a dostupnost sa môžu líšiť podľa konkrétnej lokality. 
                 Pre najnovšie informácie kontaktujte <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a> 
-                alebo navštívte <a href="https://www.popri.cz" class="text-poda-blue font-medium">Popri.cz</a>.
+                alebo navštívte <a href="/kontakt" class="text-poda-blue font-medium">Popri.cz</a>.
             </p>
         </div>
     </div>`;

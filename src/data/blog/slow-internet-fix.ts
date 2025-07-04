@@ -45,7 +45,7 @@ export const slowInternetFixPost: BlogPost = {
       <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
         <h3 class="text-white mb-4">🚀 Revoluce v rychlosti internetu</h3>
         <p class="mb-4">PODA přináší do vybraných lokalit Moravskoslezského kraje gigabitové optické připojení přímo do rodinných domů. Rychlost až <strong>1000 Mbps</strong> znamená stahování celého HD filmu za 30 sekund!</p>
-        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-poda-orange transition-colors">730 431 313</a> a ověřte si dostupnost na vaší adrese nebo objednejte pohodlně na <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-poda-orange transition-colors">popri.cz</a></p>
+        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-poda-orange transition-colors">730 431 313</a> a ověřte si dostupnost na vaší adrese nebo objednejte pohodlně na <a href="/kontakt" class="text-white font-bold underline hover:text-poda-orange transition-colors">popri.cz</a></p>
       </div>
 
       <h2>8 Ověřených Způsobů, Jak Problém Vyřešit</h2>
@@ -123,7 +123,7 @@ export const slowInternetFixPost: BlogPost = {
           <li>💰 <strong>Transparentní ceny:</strong> Bez skrytých poplatků</li>
           <li>🚀 <strong>Rychlá instalace:</strong> Během 48 hodin</li>
         </ul>
-        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zavolejte pro ověření dostupnosti | 🌐 <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte online</p>
+        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zavolejte pro ověření dostupnosti | 🌐 <a href="/kontakt" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte online</p>
       </div>
 
       <h2>Speciální Tipy pro Moravskoslezský Kraj</h2>
@@ -140,7 +140,7 @@ export const slowInternetFixPost: BlogPost = {
       <div class="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-6 rounded-lg my-6">
         <h4 class="text-white mb-3">🏠 Speciální nabídka pro rodinné domy</h4>
         <p class="mb-4">Gigabitové optické připojení PODA nyní dostupné ve vybraných lokalitách!</p>
-        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zjistěte dostupnost | 🌐 <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte ještě dnes</p>
+        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zjistěte dostupnost | 🌐 <a href="/kontakt" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte ještě dnes</p>
       </div>
 
       <h2>Kdy je Čas na Radikální Řešení</h2>
@@ -172,14 +172,14 @@ export const slowInternetFixPost: BlogPost = {
             <h4 class="font-bold mb-2">📞 Kontakt a objednávka:</h4>
             <ul class="space-y-1">
               <li>• Telefon: <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a></li>
-              <li>• Web: <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a></li>
+              <li>• Web: <a href="/kontakt" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a></li>
               <li>• Dostupnost: vybrané lokality MSK</li>
               <li>• Speciálně pro rodinné domy</li>
             </ul>
           </div>
         </div>
         <div class="text-center">
-          <p class="text-xl font-bold mb-4">📞 <a href="tel:+420730431313" class="text-white underline hover:text-yellow-200 transition-colors">730 431 313</a> | 🌐 <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white underline hover:text-yellow-200 transition-colors">popri.cz</a></p>
+          <p class="text-xl font-bold mb-4">📞 <a href="tel:+420730431313" class="text-white underline hover:text-yellow-200 transition-colors">730 431 313</a> | 🌐 <a href="/kontakt" class="text-white underline hover:text-yellow-200 transition-colors">popri.cz</a></p>
           <a href="/kontakt" class="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors">Objednejte si PODA ještě dnes!</a>
         </div>
       </div>
@@ -198,7 +198,7 @@ export const slowInternetFixPost: BlogPost = {
         </div>
       </div>
 
-      <p class="text-center mt-8 font-medium">Získejte spolehlivé připojení s PODA - <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-poda-blue underline hover:text-poda-orange transition-colors">rychlý internet bez kompromisů</a>!</p>
+      <p class="text-center mt-8 font-medium">Získejte spolehlivé připojení s PODA - <a href="/kontakt" class="text-poda-blue underline hover:text-poda-orange transition-colors">rychlý internet bez kompromisů</a>!</p>
     </div>
   `,
   date: "2. 7. 2025",

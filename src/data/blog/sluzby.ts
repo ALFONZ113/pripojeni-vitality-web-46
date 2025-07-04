@@ -192,7 +192,7 @@ export const sluzbyPosts: BlogPost[] = [
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
           <h3 class="text-white mb-4">Kompletní proces aktivace GPON:</h3>
           <ol class="space-y-2">
-            <li><strong>1. Objednávka přes popri.cz</strong> - jednoduchý online formulář</li>
+            <li><strong>1. Objednávka přes <a href="/kontakt" class="text-white hover:text-poda-orange">popri.cz</a></strong> - jednoduchý online formulář</li>
             <li><strong>2. Technická prohlídka</strong> - ověření trasování optiky</li>
             <li><strong>3. Projektová dokumentace</strong> - návrh optimálního řešení</li>
             <li><strong>4. Výkopové práce</strong> - profesionální vedení kabelů</li>
@@ -243,7 +243,7 @@ export const sluzbyPosts: BlogPost[] = [
 
         <div class="bg-gray-50 p-6 rounded-lg my-8">
           <h3>Objednejte si GPON připojení:</h3>
-          <p><strong>Web:</strong> popri.cz<br>
+          <p><strong>Web:</strong> <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a><br>
           <strong>GPON specialista:</strong> Milan Terč<br>
           <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>

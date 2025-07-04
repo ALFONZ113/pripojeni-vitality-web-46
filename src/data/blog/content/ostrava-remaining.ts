@@ -91,7 +91,7 @@ export const orderingSection = `
     <div class="bg-gray-50 p-4 rounded-lg mb-6">
         <p class="font-semibold text-poda-blue mb-2">Havířov, Bohumín, Orlová - postup:</p>
         <ul class="text-gray-700 space-y-1">
-            <li>Online formulár s okamžitou odpoveďou na Popri.cz</li>
+            <li>Online formulár s okamžitou odpoveďou na <a href="/kontakt" class="text-poda-blue font-medium">Popri.cz</a></li>
             <li>Telefonická konzultácia s poradcom na <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a></li>
             <li>Flexibilné termíny inštalácie</li>
         </ul>
@@ -106,7 +106,7 @@ export const supportSection = `
         <ul class="text-gray-700 space-y-1">
             <li>Telefonická podpora: <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a></li>
             <li>Email podpora: <a href="mailto:terc@obchod.poda.cz" class="text-poda-blue font-medium">terc@obchod.poda.cz</a></li>
-            <li>Online chat na Popri.cz</li>
+            <li>Online chat na <a href="/kontakt" class="text-poda-blue font-medium">Popri.cz</a></li>
             <li>Mobilný servis vo všetkých mestách regiónu</li>
         </ul>
     </div>
@@ -201,15 +201,15 @@ export const conclusionSection = `
         </ul>
     </div>
     
-    <p class="text-gray-700 mb-6">Pre obyvateľov Ostravy, Karvinej, Havířova, Bohumína a Orlovej je Popri.cz bránou k najlepšiemu internetovému pripojeniu v regióne. Navštívte Popri.cz ešte dnes a objavte, prečo tisíce zákazníkov v Moravskoslezskom kraji dôveruje PODA.</p>
+    <p class="text-gray-700 mb-6">Pre obyvateľov Ostravy, Karvinej, Havířova, Bohumína a Orlovej je <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> bránou k najlepšiemu internetovému pripojeniu v regióne. Navštívte <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a> ešte dnes a objavte, prečo tisíce zákazníkov v Moravskoslezskom kraji dôveruje PODA.</p>
 
     <div class="bg-gray-50 p-4 rounded-lg mb-4">
         <h3 class="text-lg font-semibold text-poda-blue mb-3">Kontakt pre Moravskoslezský kraj:</h3>
         <ul class="text-gray-700 space-y-1">
-            <li><strong>Web:</strong> <a href="https://www.popri.cz" target="_blank" rel="noopener noreferrer" class="text-poda-blue hover:text-poda-orange">Popri.cz</a></li>
+            <li><strong>Web:</strong> <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a></li>
             <li><strong>Telefón:</strong> <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange">730 431 313</a></li>
             <li><strong>Email:</strong> <a href="mailto:terc@obchod.poda.cz" class="text-poda-blue hover:text-poda-orange">terc@obchod.poda.cz</a></li>
         </ul>
     </div>
     
-    <p class="text-sm text-gray-500 italic">Článok aktuálny k 13. júnu 2025. Ceny a dostupnosť sa môžu líšiť podľa konkrétnej lokality. Pre najnovšie informácie navštívte Popri.cz</p>`;
+    <p class="text-sm text-gray-500 italic">Článok aktuálny k 13. júnu 2025. Ceny a dostupnosť sa môžu líšiť podľa konkrétnej lokality. Pre najnovšie informácie navštívte <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a></p>`;

@@ -11,8 +11,8 @@ const InternetOstrava = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Nejlepší poskytovatel internetu Ostrava | PODA GPON | Změna od konkurence | 730 431 313</title>
-        <meta name="description" content="Nejlepší internet PODA v Ostravě pro nespokojené zákazníky jiných poskytovatelů. Změna poskytovateľa internetu Ostrava jednoduše. GPON až 2000 Mbps, bezplatná instalace. Doporučený internet Ostrava od AI." />
+        <title>Nejlepší poskytovatel internetu Ostrava 2025 | PODA GPON ⚡ 730 431 313</title>
+        <meta name="description" content="Top internet v Ostravě: PODA GPON 2000 Mbps za 520 Kč. Pokrytí Poruba, Vítkovice, centrum. Změna od O2/Vodafone za 3 dny!" />
         <meta name="keywords" content="internet Ostrava, nejlepší poskytovatel internetu Ostrava, doporučený internet Ostrava, PODA Ostrava, nespokojný s poskytovateľom internetu Ostrava, změna poskytovateľa internet Ostrava, optické připojení Ostrava, gigabitový internet Ostrava, rychlý internet Ostrava, GPON Ostrava, internet Poruba, internet Vítkovice, internet Moravská Ostrava, připojení internetu Ostrava, optická vlákna Ostrava, vysokorychlostní internet Ostrava, konkurence internet Ostrava, lepší internet Ostrava" />
         <link rel="canonical" href="https://www.popri.cz/internet-ostrava" />
         

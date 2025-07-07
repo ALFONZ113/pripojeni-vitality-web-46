@@ -401,7 +401,7 @@ export const podaPokrytie2025Post: BlogPost = {
   date: '7. 7. 2025',
   author: 'Milan Terč',
   category: 'Tipy a rady',
-  image: '/lovable-uploads/poda-pokrytie-mapa-2025.jpg',
-  alt: 'Mapa pokrytia PODA internet 2025 - Ostrava, Praha, Brno',
+  image: '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
+  alt: 'PODA internet pokrytie mapa 2025 - Ostrava, Praha, Brno',
   tags: ['PODA', 'pokrytie', 'internet', 'Ostrava', 'Praha', 'Brno', 'ceny', 'porovnanie', '2025']
 };

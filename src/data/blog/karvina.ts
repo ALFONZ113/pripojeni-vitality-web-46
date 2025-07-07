@@ -2,8 +2,8 @@ import { BlogPost } from './types';
 
 export const karvinaPost: BlogPost = {
   id: 10,
-  title: "Rychlý internet v Karviné: Revoluce v připojení domácností díky PODA",
-  excerpt: "Karviná vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny. Objevte kompletní pokrytí města a výhody objednání přes popri.cz.",
+  title: 'Internet v Karviné: PODA pokrytie a ceny pre rok 2025',
+  excerpt: 'Všetko o internetovom pokrytí PODA v Karviné. Aktuálne ceny, dostupnosť v jednotlivých častiach mesta a porovnanie s konkurenciou.',
   content: `
     <div class="prose-content">
       <h2>Úvod: Nová éra internetového připojení v Karviné v létě 2025</h2>
@@ -137,21 +137,10 @@ export const karvinaPost: BlogPost = {
       <p class="text-sm text-gray-500 mt-8 italic">Tento článek byl vytvořen s důrazem na poskytnutí objektivních informací o dostupných internetových službách v regionu Karviná v létě 2025.</p>
     </div>
   `,
-  date: "25. 6. 2025",
-  author: "Martin Bartoš",
-  category: "Služby",
-  image: "/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png",
-  alt: "Vstupní tabule města Karviná při západu slunce s typickou moravskou zástavbou v pozadí",
-  tags: [
-    "Karviná",
-    "PODA internet",
-    "Optické připojení",
-    "Gigabitový internet",
-    "Moravskoslezský kraj",
-    "Rychlý internet",
-    "Lokální poskytovatel",
-    "Fiber to the Home",
-    "Popri.cz",
-    "Internet bez závazků"
-  ]
+  date: '28. 6. 2025',
+  author: 'Milan Terč',
+  category: 'Tipy a rady',
+  image: '/lovable-uploads/karvina-internet-poda.jpg',
+  alt: 'PODA internet v Karviné - kompletný sprievodca 2025',
+  tags: ['Karviná', 'PODA', 'internet', 'pokrytie', 'ceny', 'optika', 'GPON']
 };

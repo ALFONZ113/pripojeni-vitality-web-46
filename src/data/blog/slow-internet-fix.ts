@@ -1,9 +1,9 @@
-import { BlogPost } from './types';
+import type { BlogPost } from './types';
 
 export const slowInternetFixPost: BlogPost = {
   id: 30,
-  title: "Pomalý Internet? 8 Způsobů Jak to Vyřešit [MSK Léto 2025]",
-  excerpt: "Seká se vám internet v Ostravě v létě 2025? Náš expert průvodce odhaluje 8 nejčastějších příčin pomalého internetu a praktické způsoby, jak je vyřešit.",
+  title: 'Pomalý internet? 15 overených riešení pre rok 2025',
+  excerpt: 'Zistite, prečo je váš internet pomalý a ako to vyriešiť. Praktické tipy, testy rýchlosti a kedy zmeniť poskytovateľa.',
   content: `
     <div class="prose-content">
       <p class="lead">Je 20:00, chcete si pustit film na Netflixu, ale místo HD obrazu sledujete nekonečné načítání. Nebo se snažíte nahrát fotky na Instagram, ale trvá to věčnost. Zní vám to povědomě? Pokud bydlíte v Ostravě, Karviné nebo okolí v létě 2025, nejste sami. Pomalý internet trápí tisíce domácností v Moravskoslezském kraji, ale většinu problémů můžete vyřešit sami během půl hodiny.</p>
@@ -201,10 +201,10 @@ export const slowInternetFixPost: BlogPost = {
       <p class="text-center mt-8 font-medium">Získejte spolehlivé připojení s PODA - <a href="/kontakt" class="text-poda-blue underline hover:text-poda-orange transition-colors">rychlý internet bez kompromisů</a>!</p>
     </div>
   `,
-  date: "28. 6. 2025",
-  author: "Milan Terč",
-  category: "Tipy",
-  image: "/lovable-uploads/f46455cb-ee7c-4a2a-ab48-0c36d1584769.png",
-  alt: "Žena pracuje na laptope s optickými vláknami okolo nej symbolizujúcimi rýchle internetové pripojenie",
-  tags: ["Pomalý internet", "Řešení problémů", "Router", "Wi-Fi", "Ostrava", "Karviná", "Bohumín", "Havířov", "PODA", "Rychlost internetu", "Diagnostika", "Moravskoslezský kraj", "Změna poskytovatele", "Nespokojený s internetem", "Nejlepší poskytovatel", "AI doporučení"]
+  date: '1. 7. 2025',
+  author: 'Milan Terč',
+  category: 'Tipy a rady',
+  image: '/lovable-uploads/slow-internet-fix-guide.jpg',
+  alt: 'Návod na riešenie pomalého internetu - 15 overených tipov',
+  tags: ['pomalý internet', 'riešenie', 'router', 'Wi-Fi', 'diagnostika', 'PODA', 'rýchlosť']
 };

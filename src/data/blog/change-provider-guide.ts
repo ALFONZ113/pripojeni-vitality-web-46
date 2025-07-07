@@ -1,10 +1,9 @@
-
-import { BlogPost } from './types';
+import type { BlogPost } from './types';
 
 export const changeProviderPost: BlogPost = {
-  id: 100,
-  title: "Proč změnit poskytovatele internetu? Protože vás okrádají a vy o tom možná ani nevíte",
-  excerpt: "Každý měsíc platíte za internet, který nefunguje tak, jak má. Výpadky během důležitých videohovorů, pomalé stahování a ceny rostoucí rychleji než inflace. Přitom si myslíte, že změnit poskytovatele internetu je složitá papírová mašinérie. Mylíte se – od ledna 2022 je to jednodušší než objednání pizzy.",
+  id: 101,
+  title: 'Ako zmeniť poskytovateľa internetu v roku 2025: Kompletný sprievodca',
+  excerpt: 'Zistite, ako jednoducho a rýchlo zmeniť poskytovateľa internetu. Kroky, termíny, poplatky a čo sledovať pri výbere nového operátora.',
   content: `
     <div class="prose-content">
       <div class="bg-blue-50 border-l-4 border-poda-blue p-4 rounded-r-lg mb-6">
@@ -145,21 +144,10 @@ export const changeProviderPost: BlogPost = {
       </div>
     </div>
   `,
-  date: "4. 7. 2025",
-  author: "Milan Terč",
-  category: "Tipy",
-  image: "/lovable-uploads/dd5f19cd-ddba-490c-9a2c-f98e254713d6.png",
-  alt: "Frustrovaný muž při sledování pomalého internetu",
-  tags: [
-    "změnit poskytovatele internetu",
-    "poskytovatel internetu Ostrava", 
-    "internet Bohumín",
-    "internet Karviná",
-    "internet Havířov",
-    "PODA internet",
-    "rychlý internet",
-    "levný internet",
-    "výpadky internetu",
-    "pomalý internet"
-  ]
+  date: '5. 7. 2025',
+  author: 'Milan Terč',
+  category: 'Tipy a rady',
+  image: '/lovable-uploads/change-provider-guide.jpg',
+  alt: 'Sprievodca zmenou poskytovateľa internetu 2025',
+  tags: ['zmena poskytovateľa', 'internet', 'PODA', 'návod', 'telekomunikácie', 'zmluva']
 };

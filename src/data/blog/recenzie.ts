@@ -3,8 +3,8 @@ import { BlogPost } from './types';
 export const recenziePosts: BlogPost[] = [
   {
     id: 13,
-    title: "Recenze zákazníků PODA: Skutečné zkušenosti s našimi službami v létě 2025",
-    excerpt: "Přečtěte si autentické recenze a hodnocení od našich spokojených zákazníků z celého Moravskoslezského kraje v létě 2025.",
+    title: 'PODA recenzie 2025: Čo hovoria skutoční zákazníci?',
+    excerpt: 'Prečítajte si najnovšie recenzie PODA od skutočných zákazníkov. Hodnotenia kvality, rýchlosti internetu a zákazníckej podpory.',
     content: `
       <div class="prose-content">
         <h2>Úvod: Hlas našich zákazníků v létě 2025</h2>
@@ -91,11 +91,11 @@ export const recenziePosts: BlogPost[] = [
         <p class="text-center mt-8 font-medium">Děkujeme všem našim zákazníkům za důvěru a pozitivní hodnocení v roce 2025!</p>
       </div>
     `,
-    date: "22. 6. 2025",
-    author: "Lucie Horáková",
-    category: "Recenze",
-    image: "/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png",
-    alt: "Spokojení zákazníci PODA s pozitivními recenzemi",
-    tags: ["Recenze", "Zákazníci", "Spokojenost", "Hodnocení", "Zkušenosti", "Kvalita služeb"]
+    date: '25. 6. 2025',
+    author: 'Milan Terč',
+    category: 'Recenze',
+    image: '/lovable-uploads/poda-recenzie-2025.jpg',
+    alt: 'PODA recenzie od zákazníkov 2025',
+    tags: ['PODA', 'recenzie', 'hodnotenia', 'zákazníci', 'skúsenosti', 'kvalita']
   }
 ];

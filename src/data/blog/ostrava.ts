@@ -1,4 +1,3 @@
-
 import type { BlogPost } from './types';
 import { introSection } from './content/ostrava-intro';
 import { karvinaSection, havirovSection, bohuminSection, orlovaSection } from './content/ostrava-cities';
@@ -16,8 +15,8 @@ import {
 
 export const ostravaPost: BlogPost = {
   id: 500,
-  title: 'Internet PODA Ostrava: Nejrychlejší optické připojení v Moravskoslezském kraji 2025',
-  excerpt: 'Hledáte rychlý internet v Ostravě? Potřebujete spolehlivé připojení v Karviné nebo optický internet v Havířově? Společnost PODA prostřednictvím platformy Popri.cz nabízí nejkonkurenceschopnější internetové služby v celém Moravskoslezském kraji.',
+  title: 'Internet v Ostrave: Kde má PODA pokrytie v roku 2025',
+  excerpt: 'Kompletný prehľad internetového pokrytia PODA v Ostrave. Ceny, dostupnosť, porovnanie s konkurenciou a ako si objednať.',
   content: `
     ${introSection}
 
@@ -48,10 +47,10 @@ export const ostravaPost: BlogPost = {
 
     ${conclusionSection}
   `,
-  date: '1. 7. 2025',
+  date: '3. 7. 2025',
   author: 'Milan Terč',
-  category: 'Služby',
-  image: '/lovable-uploads/d043e07c-8916-4d2d-b35d-8f0ba81b4ebc.png',
-  alt: 'Rychlý optický internet PODA Ostrava s moderním vlakem v pozadí',
-  tags: ["PODA", "Popri.cz", "Internet", "Ostrava", "Karviná", "Havířov", "Bohumín", "Orlová", "Moravskoslezský kraj", "Optické připojení", "GPON", "Rychlý internet", "Služby"],
+  category: 'Tipy a rady',
+  image: '/lovable-uploads/ostrava-internet-poda-2025.jpg',
+  alt: 'PODA internet v Ostrave - pokrytie mestských častí 2025',
+  tags: ['Ostrava', 'PODA', 'internet', 'pokrytie', 'ceny', 'Poruba', 'Vítkovice', 'Moravská Ostrava']
 };

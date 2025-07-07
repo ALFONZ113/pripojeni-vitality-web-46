@@ -319,7 +319,7 @@ export const podaPokrytie2025Post: BlogPost = {
       </div>
     </div>
   `,
-  date: '7. 1. 2025',
+  date: '7. 7. 2025',
   author: 'Milan Terč',
   category: 'Tipy a rady',
   image: '/lovable-uploads/poda-pokrytie-mapa-2025.jpg',

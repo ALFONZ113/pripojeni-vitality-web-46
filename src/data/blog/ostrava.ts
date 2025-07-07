@@ -1,51 +1,46 @@
+
 import type { BlogPost } from './types';
-import { introSection } from './content/ostrava-intro';
-import { karvinaSection, havirovSection, bohuminSection, orlovaSection } from './content/ostrava-cities';
-import { popriSection, comparisonTable } from './content/ostrava-popri';
-import { ostravaTariffs, generateTariffTable } from './content/ostrava-tariffs';
-import { 
-  technicalSection, 
-  seoSection, 
-  orderingSection, 
-  supportSection, 
-  reviewsSection, 
-  futureSection, 
-  conclusionSection 
-} from './content/ostrava-remaining';
 
 export const ostravaPost: BlogPost = {
   id: 500,
   title: 'Internet v Ostrave: Kde má PODA pokrytie v roku 2025',
   excerpt: 'Kompletný prehľad internetového pokrytia PODA v Ostrave. Ceny, dostupnosť, porovnanie s konkurenciou a ako si objednať.',
   content: `
-    ${introSection}
+    <div class="prose prose-lg max-w-none">
+      <p>PODA je jedným z najvýznamnejších poskytovateľov internetu v Ostrave. Ponúka rýchle optické pripojenie v celom meste.</p>
 
-    ${karvinaSection}
+      <h2>Pokrytie v Ostrave</h2>
+      <p>PODA má pokrytie vo všetkých hlavných častiach Ostravy:</p>
+      <ul>
+        <li><strong>Moravská Ostrava</strong> - centrum mesta</li>
+        <li><strong>Poruba</strong> - sídliskové oblasti</li>
+        <li><strong>Vítkovice</strong> - priemyselná zóna</li>
+        <li><strong>Ostrava-Juh</strong> - nové rozšírenie</li>
+      </ul>
 
-    ${havirovSection}
+      <h2>Ceny a služby</h2>
+      <ul>
+        <li><strong>Optický internet 1000 Mbps:</strong> 250 Kč/mesiac</li>
+        <li><strong>Internet + TV balíček:</strong> 390 Kč/mesiac</li>
+        <li>Bez aktivačných poplatkov</li>
+        <li>Bez záväzkov</li>
+      </ul>
 
-    ${bohuminSection}
+      <h2>Výhody PODA v Ostrave</h2>
+      <ul>
+        <li>Lokálna technická podpora</li>
+        <li>Rýchla inštalácia do 48 hodín</li>
+        <li>Stabilné pripojenie 99,9% uptime</li>
+        <li>Bezplatné TV programy</li>
+      </ul>
 
-    ${orlovaSection}
-
-    ${popriSection}
-    ${generateTariffTable(ostravaTariffs)}
-
-    ${comparisonTable}
-
-    ${technicalSection}
-
-    ${seoSection}
-
-    ${orderingSection}
-
-    ${supportSection}
-
-    ${reviewsSection}
-
-    ${futureSection}
-
-    ${conclusionSection}
+      <h2>Objednanie</h2>
+      <p>Pre objednanie PODA internetu v Ostrave kontaktujte:</p>
+      <ul>
+        <li><a href="tel:+420730431313" class="text-poda-blue">730 431 313</a></li>
+        <li><a href="/kontakt" class="text-poda-blue">Online formulár</a></li>
+      </ul>
+    </div>
   `,
   date: '3. 7. 2025',
   author: 'Milan Terč',

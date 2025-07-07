@@ -4,12 +4,14 @@ import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import LocalBusinessSchema from '../components/seo/LocalBusinessSchema';
 
 const InternetOstrava = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
 
   return (
     <div className="min-h-screen">
+      <LocalBusinessSchema city="Ostrava" lat="49.8175" lng="18.2624" />
       <Helmet>
         <title>Nejlepší poskytovatel internetu Ostrava 2025 | PODA GPON ⚡ 730 431 313</title>
         <meta name="description" content="Top internet v Ostravě: PODA GPON 2000 Mbps za 520 Kč. Pokrytí Poruba, Vítkovice, centrum. Změna od O2/Vodafone za 3 dny!" />

@@ -40,6 +40,8 @@ const BlogPostSidebar = ({ relatedPosts }: BlogPostSidebarProps) => {
                         src={relatedPost.image} 
                         alt={relatedPost.title} 
                         className="w-full h-full object-cover"
+                        width="64"
+                        height="64"
                       />
                     </div>
                     <div>

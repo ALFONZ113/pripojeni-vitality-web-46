@@ -10,15 +10,17 @@ import { ostravaPost } from './ostrava';
 import { internetGuidePost } from './internet-guide';
 import { slowInternetFixPost } from './slow-internet-fix';
 import { changeProviderPost } from './change-provider-guide';
+import { podaPokrytie2025Post } from './poda-pokrytie-2025';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  changeProviderPost, // Najnovší článok - 1. 6. 2025
+  podaPokrytie2025Post, // Najnovší článok - 7. 1. 2025
+  changeProviderPost, // 1. 6. 2025
   slowInternetFixPost,
   internetGuidePost,
   ...sluzbyPosts,
   ...technologiePosts,
-  ...tipyPosts.filter(post => post.id !== 100), // Vyhnúť sa duplikátu changeProviderPost
+  ...tipyPosts.filter(post => post.id !== 100), // Vyhnúť sa duplikátu
   karvinaPost,
   ...novinyPosts,
   ...recenziePosts,
@@ -37,3 +39,4 @@ export * from './ostrava';
 export * from './internet-guide';
 export * from './slow-internet-fix';
 export * from './change-provider-guide';
+export * from './poda-pokrytie-2025';

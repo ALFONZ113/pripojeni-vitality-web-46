@@ -30,8 +30,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="PODA Internet 2025 ✅ Gigabitové optické pripojenie | Popri.cz"
-        description="Najrýchlejšie PODA internet pripojenie 2025. Gigabitová optika s TV zdarma od 250 Kč/mesiac. Bez záväzkov, rýchla inštalácia. Popri.cz"
+        title="PODA Internet Pripojení | Rychlá Instalace a TV Zdarma | Popri.cz"
+        description="Získejte rychlé PODA internet pripojení s garantovanou rychlostí až 1000 Mbps. ✓ Rychlá instalace ✓ Televizní kanály zdarma ✓ Záruka spokojenosti ✓ Nepřetržitá podpora. Kontaktujte nás ještě dnes!"
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       

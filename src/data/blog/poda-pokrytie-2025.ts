@@ -1,4 +1,3 @@
-
 import type { BlogPost } from './types';
 
 export const podaPokrytie2025Post: BlogPost = {
@@ -322,7 +321,7 @@ export const podaPokrytie2025Post: BlogPost = {
   date: '7. 1. 2025',
   author: 'Milan Terč',
   category: 'Tipy a rady',
-  image: '/lovable-uploads/poda-pokrytie-mapa-2025.jpg',
-  alt: 'Mapa pokrytí PODA internet 2025 - Ostrava, Praha, Brno',
+  image: '/lovable-uploads/fbfe2144-780d-48a1-a206-5ba4ef65f8a9.png',
+  alt: 'PODA internet speed test - testovanie rýchlosti internetu s moderným pracovným prostredím',
   tags: ['PODA', 'pokrytie', 'internet', 'Ostrava', 'Praha', 'Brno', 'ceny', 'porovnanie', '2025']
 };

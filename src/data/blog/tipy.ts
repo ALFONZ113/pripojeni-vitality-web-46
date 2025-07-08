@@ -159,8 +159,8 @@ export const tipyPosts: BlogPost[] = [
     date: "10. 5. 2024",
     author: "Jana Svobodová",
     category: "Tipy",
-    image: "/lovable-uploads/8160a571-1dff-406c-bd7a-09dfb7c9e6f2.png",
-    alt: "Moderní Wi-Fi router v obývacím pokoji",
+    image: "/lovable-uploads/83abcdfd-2464-4e25-9286-3d0e01a157b7.png",
+    alt: "Moderní pracovní prostředí s Wi-Fi routerem a připojenými zařízeními - laptop, tablet, smartphone",
     tags: ["Wi-Fi", "Router", "Optimalizace", "Síť"]
   },
   {

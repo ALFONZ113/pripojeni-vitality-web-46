@@ -1,103 +1,122 @@
-
-import type { BlogPost } from './types';
+import { BlogPost } from './types';
 
 export const novinyPosts: BlogPost[] = [
   {
     id: 11,
-    title: 'PODA rozšírila pokrytie v Moravskoslezskom kraji',
-    excerpt: 'Najnovšie správy o rozšírení pokrytia PODA v regióne. Nové mestské časti, vylepšenia siete a plány na rok 2025.',
+    title: "Novinky v PODA službách: Nové možnosti pro zákazníky v létě 2025",
+    excerpt: "Objevte nejnovější vylepšení a nové funkce v PODA službách v létě 2025, které přinášejí ještě lepší zážitek z internetu a televize.",
     content: `
-      <div class="prose prose-lg max-w-none">
-        <p>PODA pokračuje v rozširovaní svojho pokrytia v Moravskoslezskom kraji, čím prináša rýchly internet do ďalších domácností.</p>
+      <div class="prose-content">
+        <h2>Úvod: Neustálé vylepšování služeb v létě 2025</h2>
+        <p>PODA se neustále snaží přinášet svým zákazníkům ty nejlepší služby. V tomto článku se dozvíte o nejnovějších novinkách a vylepšeních během horúceho léta 2025.</p>
 
-        <h2>Nové lokality s pokrytím PODA</h2>
+        <h2>Nové funkce v internetových službách</h2>
+        <p>Představujeme vám nové možnosti, které zvýší kvalitu vašeho internetového připojení:</p>
+        
         <ul>
-          <li><strong>Ostrava-Juh:</strong> Optické pripojenie pre 500+ domácností</li>
-          <li><strong>Havířov-Podlesí:</strong> Modernizácia siete dokončená</li>
-          <li><strong>Karviná-centrum:</strong> Rozšírenie optickej infraštruktúry</li>
+          <li>Rozšířená Wi-Fi 6 podpora pro všechny tarify</li>
+          <li>Nová mobilní aplikace pro správu služeb</li>
+          <li>Vylepšený zákaznický servis s 24/7 podporou</li>
+          <li>Možnost dočasného pozastavení služeb</li>
         </ul>
 
-        <h2>Vylepšenia siete</h2>
-        <p>Investície do moderných technológií:</p>
+        <h2>Televizní novinky</h2>
+        <h3>Nové kanály a funkce</h3>
+        <p>Do naší TV nabídky přidáváme:</p>
+        
         <ul>
-          <li>Zavedenie technológie GPON</li>
-          <li>Optimalizácia bezdrôtového pripojenia 5 GHz</li>
-          <li>Nové záložné zdroje energie</li>
+          <li>10 nových HD sportovních kanálů</li>
+          <li>Rozšířená dětská sekce</li>
+          <li>4K kvalita pro vybrané kanály</li>
+          <li>Funkce časového posunu až 7 dní</li>
         </ul>
 
-        <h2>Plány na rok 2025</h2>
+        <h2>Výhody pro stávající zákazníky</h2>
+        <div class="bg-blue-50 p-6 rounded-lg my-8">
+          <h3>Speciální výhody</h3>
+          <ul class="space-y-2">
+            <li>✓ Automatický upgrade na nejnovější technologie</li>
+            <li>✓ Prioritní technická podpora</li>
+            <li>✓ Slevy na další služby</li>
+            <li>✓ Bezplatná rozšíření během akcí</li>
+          </ul>
+        </div>
+
+        <h2>Budoucí plány pro zbytek roku 2025</h2>
+        <p>Připravujeme další vylepšení pro zbytek roku 2025:</p>
         <ul>
-          <li>Pokrytie ďalších mestských častí</li>
-          <li>Nové tarifné balíčky s vyššími rýchlosťami</li>
-          <li>Zlepšenie zákazníckej podpory</li>
+          <li>Rozšíření optické sítě do dalších oblastí</li>
+          <li>Nové smart TV aplikace</li>
+          <li>Integrace se smart home zařízeními</li>
+          <li>Ještě více kanálů ve 4K kvalitě</li>
         </ul>
 
-        <h2>Kontakt</h2>
-        <p>Pre overenie dostupnosti na vašej adrese:</p>
-        <ul>
-          <li><a href="tel:+420730431313" class="text-poda-blue">730 431 313</a></li>
-          <li><a href="/kontakt" class="text-poda-blue">Kontaktný formulár</a></li>
-        </ul>
+        <p class="text-center mt-8 font-medium">Sledujte naše stránky pro nejnovější informace o nových službách a vylepšeních během léta 2025.</p>
       </div>
     `,
-    date: '22. 6. 2025',
-    author: 'Milan Terč',
-    category: 'Novinky',
-    image: '/lovable-uploads/poda-rozsirenie-pokrytie.jpg',
-    alt: 'PODA rozšírenie pokrytia Moravskoslezský kraj 2025',
-    tags: ['PODA', 'rozšírenie', 'pokrytie', 'Moravskoslezský kraj', 'novinky', '2025']
+    date: "19. 6. 2025",
+    author: "Petra Svobodová",
+    category: "Novinky",
+    image: "/lovable-uploads/56ebeef3-04d0-42a6-ac4f-f47224a075fb.png",
+    alt: "Moderní technologie PODA - router a televize",
+    tags: ["Novinky", "PODA", "Internet", "Televize", "Technologie", "Zákazníci"]
   },
   {
     id: 12,
-    title: 'Nové tarify PODA pre rok 2025: Čo sa zmenilo?',
-    excerpt: 'Prehľad všetkých zmien v tarifách PODA pre rok 2025. Nové ceny, balíčky a výhody pre existujúcich zákazníkov.',
+    title: "Rozšíření pokrytí PODA: Nové oblasti s optickým internetem v létě 2025",
+    excerpt: "Informace o rozšíření optické sítě PODA do nových oblastí Moravskoslezského kraje a plány na nejbližší měsíce léta 2025.",
     content: `
-      <div class="prose prose-lg max-w-none">
-        <p>PODA predstavuje nové tarify pre rok 2025 s lepšími cenami a vyššími rýchlosťami.</p>
+      <div class="prose-content">
+        <h2>Úvod: Expanze optické sítě v létě 2025</h2>
+        <p>PODA pokračuje v rozšiřování své optické infrastruktury a přináší vysokorychlostní internet do dalších oblastí regionu během horúceho léta 2025.</p>
 
-        <h2>Prehľad nových taríf</h2>
+        <h2>Nové oblasti s pokrytím</h2>
+        <h3>Aktuální rozšíření</h3>
+        <p>V posledních měsících jsme rozšířili naše služby do těchto lokalit:</p>
         
-        <h3>Tarifa ZÁKLAD</h3>
         <ul>
-          <li>Rýchlosť: 50 Mbps</li>  
-          <li>Cena: 299 Kč mesačne</li>
-          <li>Bez viazanosti</li>
+          <li><strong>Frýdek-Místek:</strong> Kompletní pokrytí centra města</li>
+          <li><strong>Třinec:</strong> Rozšíření do obytných čtvrtí</li>
+          <li><strong>Český Těšín:</strong> Nová optická připojení</li>
+          <li><strong>Bohumín:</strong> Dokončení infrastruktury</li>
         </ul>
 
-        <h3>Tarifa ŠTANDARD</h3>
+        <h2>Technické detaily expanze</h2>
+        <h3>Investice do infrastruktury</h3>
+        <div class="bg-green-50 p-6 rounded-lg my-8">
+          <ul class="space-y-2">
+            <li>• <strong>50+ km</strong> nových optických kabelů</li>
+            <li>• <strong>500+</strong> nových připojení měsíčně</li>
+            <li>• <strong>99,9%</strong> spolehlivost sítě</li>
+            <li>• <strong>24/7</strong> monitoring infrastruktury</li>
+          </ul>
+        </div>
+
+        <h2>Plány do budoucna pro zbytek roku 2025</h2>
+        <p>Naše plány na rozšíření pro zbytek roku 2025:</p>
         <ul>
-          <li>Rýchlosť: 200 Mbps</li>
-          <li>Cena: 499 Kč mesačne</li>
-          <li>Bez viazanosti</li>
+          <li>Dokončení pokrytí všech větších měst regionu</li>
+          <li>Rozšíření do menších obcí a venkovských oblastí</li>
+          <li>Upgrade stávající infrastruktury na nejnovější standardy</li>
+          <li>Příprava na 5G technologie</li>
         </ul>
 
-        <h3>Tarifa PREMIUM</h3>
-        <ul>
-          <li>Rýchlosť: 1000 Mbps</li>
-          <li>Cena: 799 Kč mesačne</li>
-          <li>Bez viazanosti</li>
-        </ul>
+        <h2>Výhody pro nové oblasti</h2>
+        <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
+          <p>Příchod PODA do naší obce znamenal revoluci. Konečně máme stabilní internet pro práci z domu a děti mohou bez problémů studovat online.</p>
+          <footer class="mt-2 text-sm text-gray-600">
+            <strong>Milan Novák, starosta obce</strong>
+          </footer>
+        </blockquote>
 
-        <h2>Výhody nových taríf</h2>
-        <ul>
-          <li>Vyššie rýchlosti za rovnakú cenu</li>
-          <li>Bez viazanosti a skrytých poplatkov</li>
-          <li>Kvalitná zákaznícka podpora</li>
-        </ul>
-
-        <h2>Objednanie</h2>
-        <p>Pre objednanie nových taríf:</p>
-        <ul>
-          <li><a href="tel:+420730431313" class="text-poda-blue">730 431 313</a></li>
-          <li><a href="/kontakt" class="text-poda-blue">Online formulár</a></li>
-        </ul>
+        <p class="text-center mt-8 font-medium">Sledujte naše oznámení o rozšíření do vaší oblasti během léta 2025.</p>
       </div>
     `,
-    date: '20. 6. 2025',
-    author: 'Milan Terč',
-    category: 'Novinky',
-    image: '/lovable-uploads/poda-tarify-2025.jpg',
-    alt: 'Nové tarify PODA 2025 - prehľad zmien',
-    tags: ['PODA', 'tarify', 'ceny', '2025', 'zmeny', 'balíčky']
+    date: "16. 6. 2025",
+    author: "Tomáš Krejčí",
+    category: "Novinky",
+    image: "/lovable-uploads/6f778a97-79bd-4698-b3f2-2a373893184b.png",
+    alt: "Instalace optických kabelů v terénu",
+    tags: ["Rozšíření", "Optická síť", "Nové oblasti", "Infrastruktura", "Moravskoslezský kraj"]
   }
 ];

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import ErrorState from '../components/page/ErrorState';
@@ -26,16 +27,11 @@ const Index = () => {
     return <ErrorState error={error} />;
   }
 
-  // If isLoading is true for a very short flicker, consider if this is desired
-  // or if MainContent should always be rendered. For now, keeping the logic.
-  // If isLoading is almost always false immediately, the conditional rendering of PromotionPopup
-  // will show it almost instantly.
-
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="PODA Internet Ostrava 2025 ✅ Recenze + Ceny | Popri.cz"
-        description="Nejlepší PODA internet v Ostravě 2025. Porovnání cen, recenze zákazníků a pokrytí Poruba, Vítkovice. Ušetřete až 600 Kč měsíčně!"
+        title="PODA Internet 2025 ✅ Gigabitové optické pripojenie | Popri.cz"
+        description="Najrýchlejšie PODA internet pripojenie 2025. Gigabitová optika s TV zdarma od 250 Kč/mesiac. Bez záväzkov, rýchla inštalácia. Popri.cz"
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       

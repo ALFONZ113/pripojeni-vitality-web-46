@@ -140,7 +140,7 @@ export const podaPokrytie2025Post: BlogPost = {
           <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mt-1">2</div>
           <div>
             <h4 class="font-semibold mb-1">Telefonický kontakt</h4>
-            <p class="text-gray-600">Zavolajte na zákaznícku linku a opýtajte sa na dostupnosť na vašej konkrétnej adrese.</p>
+            <p class="text-gray-600">Zavolajte na zákaznícku linku a opýtajte sa na dostupnosť na vašej konkrétnej adrese. Pre rýchlu konzultáciu môžete kontaktovať aj našich špecialistov na čísle <a href="tel:+420730431313" class="text-blue-600 hover:text-blue-800 font-medium">730 431 313</a>.</p>
           </div>
         </div>
         
@@ -148,7 +148,7 @@ export const podaPokrytie2025Post: BlogPost = {
           <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mt-1">3</div>
           <div>
             <h4 class="font-semibold mb-1">Osobný kontakt</h4>
-            <p class="text-gray-600">Niektorí poskytovatelia majú lokálnych zástupcov, ktorí môžu poskytnút informácie o plánovanom rozširovaní.</p>
+            <p class="text-gray-600">Niektorí poskytovatelia majú lokálnych zástupcov, ktorí môžu poskytnúť informácie o plánovanom rozširovaní. Ak potrebujete podrobnú konzultáciu pre vašu lokalitu, môžete nás kontaktovať cez <a href="/kontakt" class="text-blue-600 hover:text-blue-800 font-medium">kontaktný formulár</a>.</p>
           </div>
         </div>
       </div>
@@ -196,27 +196,27 @@ export const podaPokrytie2025Post: BlogPost = {
       <div class="space-y-6 mb-8">
         <div class="bg-white p-6 border border-gray-200 rounded-lg">
           <h4 class="text-lg font-semibold text-gray-800 mb-3">Je PODA dostupná v mojom byte?</h4>
-          <p class="text-gray-600">Dostupnosť závisí od konkrétnej adresy a infraštruktúry v budove. Najlepší spôsob overenia je kontaktovať poskytovateľa s presnou adresou.</p>
+          <p class="text-gray-600">Dostupnosť závisí od konkrétnej adresy a infraštruktúry v budove. Najlepší spôsob overenia je kontaktovať poskytovateľa s presnou adresou. Pre bezplatnú konzultáciu nás môžete kontaktovať na telefónnom čísle <a href="tel:+420730431313" class="text-blue-600 hover:text-blue-800 font-medium">730 431 313</a>.</p>
         </div>
 
         <div class="bg-white p-6 border border-gray-200 rounded-lg">
           <h4 class="text-lg font-semibold text-gray-800 mb-3">Aké sú inštalačné poplatky?</h4>
-          <p class="text-gray-600">Inštalačné poplatky sa líšia podľa poskytovateľa a typu pripojenia. Optické pripojenie môže mať vyššie počiatočné náklady kvôli potrebe inštalácie optického kábla.</p>
+          <p class="text-gray-600">Inštalačné poplatky sa líšia podľa poskytovateľa a typu pripojenia. Optické pripojenie môže mať vyššie počiatočné náklady kvôli potrebe inštalácie optického kábla. Pre aktuálne cenové podmienky a možné akcie sa informujte priamo u nás.</p>
         </div>
 
         <div class="bg-white p-6 border border-gray-200 rounded-lg">
           <h4 class="text-lg font-semibold text-gray-800 mb-3">Ako dlho trvá inštalácia?</h4>
-          <p class="text-gray-600">Inštalácia optického pripojenia trvá zvyčajne 7-14 pracovných dní, bezdrátové pripojenie sa dá nainštalovať rýchlejšie, obvykle do 2-5 dní.</p>
+          <p class="text-gray-600">Inštalácia optického pripojenia trvá zvyčajne 7-14 pracovných dní, bezdrátové pripojenie sa dá nainštalovať rýchlejšie, obvykle do 2-5 dní. Presné termíny záležia od konkrétnej lokality a dostupnosti technických kapacít.</p>
         </div>
 
         <div class="bg-white p-6 border border-gray-200 rounded-lg">
           <h4 class="text-lg font-semibold text-gray-800 mb-3">Môžem zmeniť rýchlosť neskôr?</h4>
-          <p class="text-gray-600">Väčšina poskytovateľov umožňuje zmenu tarifu. Upgrade na vyššiu rýchlosť je obvykle možný kedykoľvek, downgrade môže mať určité obmedzenia.</p>
+          <p class="text-gray-600">Väčšina poskytovateľov umožňuje zmenu tarifu. Upgrade na vyššiu rýchlosť je obvykle možný kedykoľvek, downgrade môže mať určité obmedzenia. Pre konkrétne podmienky zmeny tarifu nás kontaktujte.</p>
         </div>
 
         <div class="bg-white p-6 border border-gray-200 rounded-lg">
           <h4 class="text-lg font-semibold text-gray-800 mb-3">Čo ak sa PODA rozpadne alebo prestane fungovať?</h4>
-          <p class="text-gray-600">PODA je značka a technológia. Ak niktorý konkrétny poskytovateľ prestane pôsobiť, infraštruktúra zvyčajne prechádza k inému operátorovi alebo je prevzatá väčšou spoločnosťou.</p>
+          <p class="text-gray-600">PODA je značka a technológia. Ak niektorý konkrétny poskytovateľ prestane pôsobiť, infraštruktúra zvyčajne prechádza k inému operátorovi alebo je prevzatá väčšou spoločnosťou. V praxi to znamená kontinuitu služieb pre zákazníkov.</p>
         </div>
       </div>
 
@@ -232,9 +232,11 @@ export const podaPokrytie2025Post: BlogPost = {
         <li>Rozvoj bezdrátových technológií pre ťažko dostupné lokality</li>
       </ul>
 
+      <p class="mb-6">Ak plánujete zmenu poskytovateľa alebo hľadáte informácie o dostupnosti PODA vo vašej lokalite, odporúčame vám kontaktovať našich odborníkov, ktorí vám poskytnú aktuálne informácie a pomôžu s výberom najvhodnejšieho riešenia.</p>
+
       <div class="bg-gray-50 p-6 rounded-lg">
         <h3 class="text-lg font-semibold text-gray-800 mb-3">Záver</h3>
-        <p class="text-gray-600">PODA reprezentuje kvalitnú alternatívu k tradičným poskytovateľom internetu, obzvlášť v regiónoch s dobrým pokrytím. Pred rozhodnutím je dôležité overiť dostupnosť na konkrétnej adrese a porovnať podmienky s ostatnými poskytovateľmi. Optické pripojenie PODA môže byť výbornou voľbou pre používateľov, ktorí potrebujú stabilné a rýchle pripojenie.</p>
+        <p class="text-gray-600">PODA reprezentuje kvalitnú alternatívu k tradičným poskytovateľom internetu, obzvlášť v regiónoch s dobrým pokrytím. Pred rozhodnutím je dôležité overiť dostupnosť na konkrétnej adrese a porovnať podmienky s ostatnými poskytovateľmi. Optické pripojenie PODA môže byť výbornou voľbou pre používateľov, ktorí potrebujú stabilné a rýchle pripojenie. Pre personalizovanú konzultáciu a aktuálne informácie o dostupnosti vo vašej oblasti nás neváhajte kontaktovať.</p>
       </div>
     </div>
   `,

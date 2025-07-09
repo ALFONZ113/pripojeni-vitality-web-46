@@ -1,320 +1,240 @@
+
 import type { BlogPost } from './types';
 
 export const podaPokrytie2025Post: BlogPost = {
   id: 103,
   title: 'Kde má PODA pokrytie: Kompletní průvodce pro rok 2025',
-  excerpt: 'Zjistěte, kde má PODA internet pokrytí v ČR. Ostrava, Praha, Brno, Havířov, Karviná - aktuální ceny 2025, porovnání s Vodafone, O2.',
+  excerpt: 'Zjistěte, kde má PODA internet pokrytie v ČR. Ostrava, Praha, Brno, Havířov, Karviná - aktuální informace o dostupnosti a technologiích.',
   content: `
     <div class="prose prose-lg max-w-none">
-      <p class="text-xl text-gray-600 mb-8">PODA je 8. největší poskytovatel internetu v ČR s největším počtem optických přípojek od roku 2015. Popri.cz vám ho zpřístupní tam, kde velcí operátoři selhávají nebo předražují.</p>
+      <p class="text-xl text-gray-600 mb-8">PODA je jedným z významných poskytovateľov internetu v Českej republike so špecializáciou na optické pripojenie. V tomto článku si povieme, kde všade môžete získať PODA internet a aké technológie sú dostupné.</p>
 
-      <h2 class="text-2xl font-bold text-poda-blue mb-6">Aktuální ceny poskytovatelů internetu 2025</h2>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Čo je PODA a prečo je dôležité poznať pokrytie</h2>
+      
+      <p class="mb-6">PODA (Provider of Data Access) je technológia a zároveň značka poskytovateľa internetových služieb, ktorá sa zameriava predovšetkým na optické pripojenie FTTH (Fiber to the Home). Od roku 2015 patrí medzi významných hráčov na českom trhu internetu.</p>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
-          <h3 class="text-xl font-semibold text-poda-blue mb-4">PODA přes popri.cz</h3>
-          <div class="space-y-4">
-            <div class="border-b border-blue-200 pb-3">
-              <div class="flex justify-between items-center mb-2">
-                <span class="font-medium">1000/1000 Mbps</span>
-                <span class="text-2xl font-bold text-green-600">250 Kč</span>
-              </div>
-              <div class="text-sm text-gray-600">
-                <div>✅ 85+ TV programů zdarma</div>
-                <div>✅ Bez závazku</div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <span class="font-medium">Bezdrátový 1000/200</span>
-                <span class="text-2xl font-bold text-green-600">250 Kč</span>
-              </div>
-              <div class="text-sm text-gray-600">
-                <div>✅ 100+ programů</div>
-                <div>✅ Bez závazku</div>
-              </div>
-            </div>
+      <div class="bg-blue-50 p-6 rounded-lg mb-8">
+        <h3 class="text-lg font-semibold text-blue-900 mb-3">Kľúčové fakty o PODA</h3>
+        <ul class="space-y-2 text-blue-800">
+          <li>• Špecializácia na optické pripojenie FTTH</li>
+          <li>• Pokrytie vo viacerých krajoch ČR</li>
+          <li>• Kombinuje vlastnú infraštruktúru s partnerskými sieťami</li>
+          <li>• Ponúka symetrické rýchlosti až do 1 Gbps</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Mapa pokrytia PODA po regiónoch</h2>
+
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Moravskoslezský kraj</h3>
+      <p class="mb-4">Najväčšie pokrytie má PODA v Moravskoslezskom kraji, kde pôsobí už niekoľko rokov:</p>
+      
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full border-collapse border border-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="border border-gray-200 px-4 py-2 text-left">Mesto</th>
+              <th class="border border-gray-200 px-4 py-2 text-left">Pokrytie</th>
+              <th class="border border-gray-200 px-4 py-2 text-left">Poznámky</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Ostrava</td>
+              <td class="border border-gray-200 px-4 py-2">Vysoké (95%)</td>
+              <td class="border border-gray-200 px-4 py-2">Pokrytie vo všetkých mestských častiach</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Havířov</td>
+              <td class="border border-gray-200 px-4 py-2">Vysoké (90%)</td>
+              <td class="border border-gray-200 px-4 py-2">Väčšina panelových sídlisk</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Karviná</td>
+              <td class="border border-gray-200 px-4 py-2">Dobré (85%)</td>
+              <td class="border border-gray-200 px-4 py-2">Centrum a hlavné sídliská</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Bohumín</td>
+              <td class="border border-gray-200 px-4 py-2">Stredné (80%)</td>
+              <td class="border border-gray-200 px-4 py-2">Postupné rozširovanie</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Frýdek-Místek</td>
+              <td class="border border-gray-200 px-4 py-2">Stredné (75%)</td>
+              <td class="border border-gray-200 px-4 py-2">Vybrané lokality</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Praha</h3>
+      <p class="mb-4">V hlavnom meste je pokrytie PODA selektívne, zamerané na vybrané mestské časti:</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-white p-4 border border-gray-200 rounded-lg">
+          <h4 class="font-semibold mb-2">Praha 4</h4>
+          <p class="text-sm text-gray-600">Podolí, Braník - vybrané lokality s optickým pripojením</p>
+        </div>
+        <div class="bg-white p-4 border border-gray-200 rounded-lg">
+          <h4 class="font-semibold mb-2">Praha 6</h4>
+          <p class="text-sm text-gray-600">Dejvice, Bubeneč - čiastočné pokrytie</p>
+        </div>
+        <div class="bg-white p-4 border border-gray-200 rounded-lg">
+          <h4 class="font-semibold mb-2">Praha 10</h4>
+          <p class="text-sm text-gray-600">Vršovice - nové projekty</p>
+        </div>
+        <div class="bg-white p-4 border border-gray-200 rounded-lg">
+          <h4 class="font-semibold mb-2">Praha 2</h4>
+          <p class="text-sm text-gray-600">Vybrané budovy - obmedzené pokrytie</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Brno</h3>
+      <p class="mb-4">V Brne sa PODA zameriava na centrum a vybrané časti mesta:</p>
+      
+      <ul class="list-disc pl-6 mb-6 space-y-1">
+        <li><strong>Centrum Brna:</strong> Komplexné pokrytie historického centra</li>
+        <li><strong>Královo Pole:</strong> Rozsiahle pokrytie bytových komplexov</li>
+        <li><strong>Židenice:</strong> Nové projekty a rozširovanie</li>
+        <li><strong>Líšeň:</strong> Plánované rozširovanie pokrytia</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Dostupné technológie</h2>
+
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Optická sieť GPON</h3>
+      <div class="bg-gray-50 p-6 rounded-lg mb-6">
+        <p class="mb-4">Hlavná technológia PODA je optické pripojenie typu FTTH (Fiber to the Home):</p>
+        <ul class="space-y-2">
+          <li>📡 <strong>Rýchlosť:</strong> až 1000/1000 Mbps (symetrické)</li>
+          <li>⚡ <strong>Latencia:</strong> pod 5 ms</li>
+          <li>🔒 <strong>Stabilita:</strong> 99,9% dostupnosť</li>
+          <li>🏠 <strong>Inštalácia:</strong> optický kábel priamo do bytu/domu</li>
+        </ul>
+      </div>
+
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Bezdrátové pripojenie 60 GHz</h3>
+      <div class="bg-gray-50 p-6 rounded-lg mb-6">
+        <p class="mb-4">Alternatívna technológia pre lokality bez optického pokrytia:</p>
+        <ul class="space-y-2">
+          <li>📶 <strong>Rýchlosť:</strong> až 1000/200 Mbps</li>
+          <li>⏱️ <strong>Inštalácia:</strong> 2-5 pracovných dní</li>
+          <li>🔒 <strong>Stabilita:</strong> 99,5% dostupnosť</li>
+          <li>🏢 <strong>Vhodné pre:</strong> panelové domy a miesta bez optiky</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Ako zistiť dostupnosť PODA</h2>
+
+      <p class="mb-4">Existuje niekoľko spôsobov, ako overiť dostupnosť PODA internetu na vašej adrese:</p>
+
+      <div class="space-y-4 mb-8">
+        <div class="flex items-start space-x-3">
+          <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mt-1">1</div>
+          <div>
+            <h4 class="font-semibold mb-1">Online overenie</h4>
+            <p class="text-gray-600">Navštívte oficiálne stránky poskytovateľa a zadajte svoju adresu do vyhľadávacieho formulára.</p>
           </div>
         </div>
-
-        <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-700 mb-4">Vodafone</h3>
-          <div class="space-y-4">
-            <div class="border-b border-gray-200 pb-3">
-              <div class="flex justify-between items-center mb-2">
-                <span class="font-medium">2000/400 Mbps</span>
-                <span class="text-2xl font-bold text-red-600">599 Kč</span>
-              </div>
-              <div class="text-sm text-gray-600">
-                <div>❌ TV +199 Kč extra</div>
-                <div>❌ 24 měsíců závazek</div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <span class="font-medium">1000/200 Mbps</span>
-                <span class="text-2xl font-bold text-red-600">499 Kč</span>
-              </div>
-              <div class="text-sm text-gray-600">
-                <div>❌ TV +199 Kč extra</div>
-                <div>❌ 24 měsíců závazek</div>
-              </div>
-            </div>
+        
+        <div class="flex items-start space-x-3">
+          <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mt-1">2</div>
+          <div>
+            <h4 class="font-semibold mb-1">Telefonický kontakt</h4>
+            <p class="text-gray-600">Zavolajte na zákaznícku linku a opýtajte sa na dostupnosť na vašej konkrétnej adrese.</p>
           </div>
         </div>
-
-        <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-          <h3 class="text-xl font-semibold text-gray-700 mb-4">O2</h3>
-          <div class="space-y-4">
-            <div class="border-b border-gray-200 pb-3">
-              <div class="flex justify-between items-center mb-2">
-                <span class="font-medium">1000/100 Mbps</span>
-                <span class="text-2xl font-bold text-red-600">599 Kč</span>
-              </div>
-              <div class="text-sm text-gray-600">
-                <div>❌ TV +199 Kč extra</div>
-                <div>❌ 24 měsíců závazek</div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <span class="font-medium">500/50 Mbps</span>
-                <span class="text-2xl font-bold text-red-600">499 Kč</span>
-              </div>
-              <div class="text-sm text-gray-600">
-                <div>❌ TV +199 Kč extra</div>
-                <div>❌ 24 měsíců závazek</div>
-              </div>
-            </div>
+        
+        <div class="flex items-start space-x-3">
+          <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mt-1">3</div>
+          <div>
+            <h4 class="font-semibold mb-1">Osobný kontakt</h4>
+            <p class="text-gray-600">Niektorí poskytovatelia majú lokálnych zástupcov, ktorí môžu poskytnút informácie o plánovanom rozširovaní.</p>
           </div>
         </div>
       </div>
 
-      <div class="bg-green-50 p-6 rounded-xl border border-green-200 mb-8">
-        <h3 class="text-xl font-semibold text-green-800 mb-3">💡 Proč PODA přes popri.cz?</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-green-700">
-          <div>✅ Úspora až 349 Kč měsíčně</div>
-          <div>✅ TV programy zdarma</div>
-          <div>✅ Bez dlouhodobých závazků</div>
-          <div>✅ Lokální česká podpora</div>
-        </div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Cenové pásma a tarify</h2>
+
+      <p class="mb-4">PODA ponúka rôzne cenové kategórie v závislosti od rýchlosti a dodatočných služieb:</p>
+
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full border-collapse border border-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="border border-gray-200 px-4 py-2 text-left">Kategória</th>
+              <th class="border border-gray-200 px-4 py-2 text-left">Rýchlosť</th>
+              <th class="border border-gray-200 px-4 py-2 text-left">Cenové pásmo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Základný internet</td>
+              <td class="border border-gray-200 px-4 py-2">100/100 Mbps</td>
+              <td class="border border-gray-200 px-4 py-2">200-300 Kč/mesiac</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Štandardný internet</td>
+              <td class="border border-gray-200 px-4 py-2">500/500 Mbps</td>
+              <td class="border border-gray-200 px-4 py-2">300-400 Kč/mesiac</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Premium internet</td>
+              <td class="border border-gray-200 px-4 py-2">1000/1000 Mbps</td>
+              <td class="border border-gray-200 px-4 py-2">400-500 Kč/mesiac</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">Internet + TV</td>
+              <td class="border border-gray-200 px-4 py-2">Rôzne rýchlosti</td>
+              <td class="border border-gray-200 px-4 py-2">500-700 Kč/mesiac</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <h2 class="text-2xl font-bold text-poda-blue mb-6">Mapa pokrytí PODA</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <h3 class="text-xl font-semibold text-poda-blue mb-4">🏭 Moravskoslezský kraj</h3>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Ostrava</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">95%</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Havířov</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">90%</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Karviná</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">85%</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Bohumín</span>
-              <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">80%</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Frýdek-Místek</span>
-              <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">75%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <h3 class="text-xl font-semibold text-poda-blue mb-4">🏛️ Praha</h3>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Praha 4</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Podolí, Braník</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Praha 6</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Dejvice, Bubeneč</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Praha 10</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Vršovice</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Praha 2</span>
-              <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">Částečně</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <h3 class="text-xl font-semibold text-poda-blue mb-4">🏰 Brno</h3>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Centrum</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">100%</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Královo Pole</span>
-              <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Rozsáhlé</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Židenice</span>
-              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">Nové</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Líšeň</span>
-              <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">Plánované</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="text-2xl font-bold text-poda-blue mb-6">Technologie PODA</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div class="bg-blue-50 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold text-poda-blue mb-4">🌐 Optická síť GPON</h3>
-          <div class="space-y-2 text-gray-700">
-            <div>⚡ Rychlost: až 1000/1000 Mbps</div>
-            <div>🔒 Stabilita: 99,9% uptime</div>
-            <div>🚀 Latence: pod 5ms</div>
-            <div>⚖️ Symetrické rychlosti</div>
-          </div>
-        </div>
-
-        <div class="bg-orange-50 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold text-orange-700 mb-4">📡 Bezdrátová 60 GHz</h3>
-          <div class="space-y-2 text-gray-700">
-            <div>⚡ Rychlost: až 1000/200 Mbps</div>
-            <div>⏱️ Instalace: do 48 hodin</div>
-            <div>🔒 Stabilita: 99,5% uptime</div>
-            <div>🏠 Ideální pro panelové domy</div>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="text-2xl font-bold text-poda-blue mb-6">Jak objednat PODA internet</h2>
-
-      <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl mb-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="text-center">
-            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
-            <h3 class="font-semibold mb-2">Ověření pokrytí</h3>
-            <p class="text-gray-600">Navštivte popri.cz a ověřte dostupnost</p>
-          </div>
-          <div class="text-center">
-            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
-            <h3 class="font-semibold mb-2">Objednávka</h3>
-            <p class="text-gray-600">Objednejte přes popri.cz</p>
-          </div>
-          <div class="text-center">
-            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
-            <h3 class="font-semibold mb-2">Instalace</h3>
-            <p class="text-gray-600">7-14 dní (optika), 2-5 dní (bezdrát)</p>
-          </div>
-        </div>
-
-        <div class="mt-8 bg-white p-6 rounded-xl shadow-sm">
-          <h3 class="text-xl font-semibold text-poda-blue mb-4">📋 Chcete vědět, zda je PODA dostupná na vaší adrese?</h3>
-          <p class="text-gray-600 mb-6">Vyplňte formulář a do 2 minut vám odpovíme s přesným termínem instalace a cenovou nabídkou.</p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Jméno a příjmení *</label>
-              <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Vaše jméno">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Telefonní číslo *</label>
-              <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="+420 XXX XXX XXX">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-              <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="vas@email.cz">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">PSČ a město *</label>
-              <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="700 30 Ostrava">
-            </div>
-          </div>
-          
-          <div class="mb-6">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Přesná adresa *</label>
-            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Ulice a číslo domu">
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button class="flex-1 bg-poda-blue text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-              ✅ Ověřit dostupnost PODA
-            </button>
-            <a href="tel:+420730431313" class="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors text-center">
-              📞 Zavolat +420 730 431 313
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="text-2xl font-bold text-poda-blue mb-6">Často kladené otázky</h2>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Často kladené otázky</h2>
 
       <div class="space-y-6 mb-8">
-        <div class="bg-white p-6 rounded-xl border border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-800 mb-3">Proč objednávat přes popri.cz?</h3>
-          <div class="text-gray-600 space-y-2">
-            <div>✅ <strong>Lepší ceny</strong> - exkluzivní slevy pro popri.cz zákazníky</div>
-            <div>✅ <strong>Rychlejší instalace</strong> - prioritní termíny a expresní řešení</div>
-            <div>✅ <strong>Lokální podpora</strong> - technici z regionu, čeština</div>
-            <div>✅ <strong>Žádné skryté poplatky</strong> - transparentní ceníky</div>
-          </div>
+        <div class="bg-white p-6 border border-gray-200 rounded-lg">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Je PODA dostupná v mojom byte?</h4>
+          <p class="text-gray-600">Dostupnosť závisí od konkrétnej adresy a infraštruktúry v budove. Najlepší spôsob overenia je kontaktovať poskytovateľa s presnou adresou.</p>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-800 mb-3">Je PODA dostupná v mém bytě?</h3>
-          <p class="text-gray-600">Pokrytí závisí na konkrétní adrese. Ověření trvá 2 minuty přes náš formulář výše nebo telefonicky na <a href="tel:+420730431313" class="text-poda-blue font-medium">+420 730 431 313</a>.</p>
+        <div class="bg-white p-6 border border-gray-200 rounded-lg">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Aké sú inštalačné poplatky?</h4>
+          <p class="text-gray-600">Inštalačné poplatky sa líšia podľa poskytovateľa a typu pripojenia. Optické pripojenie môže mať vyššie počiatočné náklady kvôli potrebe inštalácie optického kábla.</p>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-800 mb-3">Jaké jsou aktivační poplatky?</h3>
-          <p class="text-gray-600">Pro zákazníky popri.cz jsou aktivační poplatky <strong>0 Kč</strong>. Běžně byste za aktivaci platili 500-1000 Kč u jiných operátorů.</p>
+        <div class="bg-white p-6 border border-gray-200 rounded-lg">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Ako dlho trvá inštalácia?</h4>
+          <p class="text-gray-600">Inštalácia optického pripojenia trvá zvyčajne 7-14 pracovných dní, bezdrátové pripojenie sa dá nainštalovať rýchlejšie, obvykle do 2-5 dní.</p>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-800 mb-3">Mohu vypovědět smlouvu kdykoliv?</h3>
-          <p class="text-gray-600">Ano! PODA přes popri.cz nemá žádné závazky. Můžete vypovědět kdykoliv s měsíční výpovědní lhůtou.</p>
+        <div class="bg-white p-6 border border-gray-200 rounded-lg">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Môžem zmeniť rýchlosť neskôr?</h4>
+          <p class="text-gray-600">Väčšina poskytovateľov umožňuje zmenu tarifu. Upgrade na vyššiu rýchlosť je obvykle možný kedykoľvek, downgrade môže mať určité obmedzenia.</p>
+        </div>
+
+        <div class="bg-white p-6 border border-gray-200 rounded-lg">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Čo ak sa PODA rozpadne alebo prestane fungovať?</h4>
+          <p class="text-gray-600">PODA je značka a technológia. Ak niktorý konkrétny poskytovateľ prestane pôsobiť, infraštruktúra zvyčajne prechádza k inému operátorovi alebo je prevzatá väčšou spoločnosťou.</p>
         </div>
       </div>
 
-      <div class="bg-gradient-to-r from-poda-blue to-blue-700 text-white p-8 rounded-xl text-center">
-        <h2 class="text-2xl font-bold mb-4">Závěr: PODA přes popri.cz je jasná volba pro rok 2025</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div class="bg-white/10 p-4 rounded-lg">
-            <div class="text-2xl font-bold">250 Kč</div>
-            <div class="text-sm">Nejlepší ceny za gigabit</div>
-          </div>
-          <div class="bg-white/10 p-4 rounded-lg">
-            <div class="text-2xl font-bold">0</div>
-            <div class="text-sm">Bez závazků</div>
-          </div>
-          <div class="bg-white/10 p-4 rounded-lg">
-            <div class="text-2xl font-bold">99.9%</div>
-            <div class="text-sm">Nejstabilnější síť</div>
-          </div>
-          <div class="bg-white/10 p-4 rounded-lg">
-            <div class="text-2xl font-bold">85+</div>
-            <div class="text-sm">TV programů zdarma</div>
-          </div>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/kontakt" class="bg-white text-poda-blue py-3 px-8 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-            📞 Kontaktovat popri.cz
-          </a>
-          <a href="tel:+420730431313" class="bg-green-600 text-white py-3 px-8 rounded-lg font-semibold hover:bg-green-700 transition-colors">
-            Zavolat +420 730 431 313
-          </a>
-        </div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Budúcnosť rozširovania PODA</h2>
+
+      <p class="mb-6">PODA postupne rozširuje svoje pokrytie, pričom prioritou sú:</p>
+
+      <ul class="list-disc pl-6 mb-8 space-y-2">
+        <li>Dokončenie pokrytia v existujúcich mestách</li>
+        <li>Rozšírenie do menších miest v Moravskoslezskom kraji</li>
+        <li>Pokrytie nových lokalít v Prahe a Brne</li>
+        <li>Modernizácia existujúcej infraštruktúry na vyššie rýchlosti</li>
+        <li>Rozvoj bezdrátových technológií pre ťažko dostupné lokality</li>
+      </ul>
+
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">Záver</h3>
+        <p class="text-gray-600">PODA reprezentuje kvalitnú alternatívu k tradičným poskytovateľom internetu, obzvlášť v regiónoch s dobrým pokrytím. Pred rozhodnutím je dôležité overiť dostupnosť na konkrétnej adrese a porovnať podmienky s ostatnými poskytovateľmi. Optické pripojenie PODA môže byť výbornou voľbou pre používateľov, ktorí potrebujú stabilné a rýchle pripojenie.</p>
       </div>
     </div>
   `,
@@ -322,6 +242,6 @@ export const podaPokrytie2025Post: BlogPost = {
   author: 'Milan Terč',
   category: 'Tipy a rady',
   image: '/lovable-uploads/fbfe2144-780d-48a1-a206-5ba4ef65f8a9.png',
-  alt: 'PODA internet speed test - testovanie rýchlosti internetu s moderným pracovným prostredím',
-  tags: ['PODA', 'pokrytie', 'internet', 'Ostrava', 'Praha', 'Brno', 'ceny', 'porovnanie', '2025']
+  alt: 'PODA internet pokrytie - mapa dostupnosti v Českej republike',
+  tags: ['PODA', 'pokrytie', 'internet', 'Ostrava', 'Praha', 'Brno', 'technológie', 'optické pripojenie']
 };

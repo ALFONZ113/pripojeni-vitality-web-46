@@ -15,12 +15,12 @@ import { podaPokrytie2025Post } from './poda-pokrytie-2025';
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
   podaPokrytie2025Post, // Najnovší článok - 7. 1. 2025
-  changeProviderPost, // 1. 6. 2025
+  changeProviderPost, // ID 100 - 4. 7. 2025
   slowInternetFixPost,
   internetGuidePost,
-  ...sluzbyPosts,
+  ...sluzbyPosts, // Obsahuje ID 2 a ID 101 (Poruba článok)
   ...technologiePosts,
-  ...tipyPosts.filter(post => post.id !== 100), // Vyhnúť sa duplikátu
+  ...tipyPosts, // Odstránený filter - už nie sú konflikty
   karvinaPost,
   ...novinyPosts,
   ...recenziePosts,

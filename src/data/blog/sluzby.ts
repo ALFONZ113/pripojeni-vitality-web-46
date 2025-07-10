@@ -263,7 +263,7 @@ export const sluzbyPosts: BlogPost[] = [
     tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
   },
   {
-    id: 100,
+    id: 101,
     title: "Internet PODA v Ostravě-Porubě: Gigabitové pripojenie pre najväčšiu mestskú časť",
     excerpt: "Kompletné informácie o optickom pripojení PODA v Ostrave-Porube. Pokrytie, inštalácia, ceny a výhody oproti konkurencii.",
     content: `

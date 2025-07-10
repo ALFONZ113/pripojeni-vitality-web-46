@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, Newspaper, MessageSquare, Info, ArrowRight } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight } from 'lucide-react';
 import {
   Popover,
   PopoverContent,
@@ -99,7 +99,7 @@ const Navbar = () => {
             className={`${isActivePath('/blog') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors flex items-center`}
             aria-current={isActivePath('/blog') ? 'page' : undefined}
           >
-            <Newspaper className="mr-1 h-4 w-4" aria-hidden="true" /> Novinky IT
+            <FileText className="mr-1 h-4 w-4" aria-hidden="true" /> Blog
           </Link>
           <Link 
             to="/kontakt" 
@@ -162,7 +162,7 @@ const Navbar = () => {
               className={`${isActivePath('/blog') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium text-xl transition-colors flex items-center`}
               aria-current={isActivePath('/blog') ? 'page' : undefined}
             >
-              <Newspaper className="mr-2 h-5 w-5" aria-hidden="true" /> Novinky IT
+              <FileText className="mr-2 h-5 w-5" aria-hidden="true" /> Blog
             </Link>
             <Link 
               to="/kontakt" 

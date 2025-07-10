@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, Tv, Film, Bookmark, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { initAnimations } from '../utils/animation';
 import ChannelLogo from '../components/tv/ChannelLogo';
 
@@ -285,22 +284,6 @@ const TvPrograms = () => {
   const filteredChannels = activeCategory === 'vsechny' ? channels : activeCategory === 'premium' ? channels.filter(channel => channel.premium) : channels.filter(channel => channel.category === activeCategory);
   
   return <div className="min-h-screen pt-24">
-      <Helmet>
-        <title>PODA TV Program Zdarma | Seznam Kanálů 2025</title>
-        <meta name="description" content="Kompletní TV program PODA zdarma k internetu. 150+ kanálů, sport, filmy. Žádné skryté poplatky!" />
-        <link rel="canonical" href="https://www.popri.cz/programy" />
-        <meta property="og:title" content="PODA TV Program Zdarma | Seznam Kanálů 2025" />
-        <meta property="og:description" content="Kompletní TV program PODA zdarma k internetu. 150+ kanálů, sport, filmy. Žádné skryté poplatky!" />
-        <meta property="og:url" content="https://www.popri.cz/programy" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.popri.cz/og-image.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="PODA TV Program Zdarma | Seznam Kanálů 2025" />
-        <meta name="twitter:description" content="Kompletní TV program PODA zdarma k internetu. 150+ kanálů, sport, filmy." />
-        <meta name="keywords" content="poda tv program, poda kanály, tv program zdarma, poda televize, seznam kanálů, poda net tv" />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-      </Helmet>
-
       {/* Hero section */}
       <section className="section-padding bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
@@ -309,7 +292,7 @@ const TvPrograms = () => {
               TV programy
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
-              PODA TV Program Zdarma
+              Programová nabídka
             </h1>
             <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200">
               Nabízíme více než 85 televizních kanálů v základní nabídce a další prémiové
@@ -474,7 +457,7 @@ const TvPrograms = () => {
             Kontaktujte Milana Terče pro získání podrobných informací o programové nabídce a možnostech připojení ve vaší lokalitě.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center reveal-animation delay-200">
-            <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300">Kontakt</Link>
+            <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300">Kontak</Link>
             <Link to="/internet-tv" className="bg-transparent border border-white text-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all duration-300">
               Zobrazit nabídku tarifů <ArrowRight className="ml-2 h-5 w-5 inline" />
             </Link>

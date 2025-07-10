@@ -1,4 +1,3 @@
-
 import { BlogPost } from './types';
 
 export const karvinaPost: BlogPost = {
@@ -138,7 +137,7 @@ export const karvinaPost: BlogPost = {
       <p class="text-sm text-gray-500 mt-8 italic">Tento článek byl vytvořen s důrazem na poskytnutí objektivních informací o dostupných internetových službách v regionu Karviná v létě 2025.</p>
     </div>
   `,
-  date: "7. 7. 2025",
+  date: "25. 6. 2025",
   author: "Martin Bartoš",
   category: "Služby",
   image: "/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png",

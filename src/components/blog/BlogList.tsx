@@ -64,7 +64,7 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
     );
   }
 
-  // Normálne zoradenie podľa dátumu a obsahu, bez špecifického ID sortovania
+  // Normálne triedenie - blog o Porube bude prvý kvôli názvu
   const sortedPosts = [...displayedPosts].sort((a, b) => {
     // Pokiaľ je v názve "Poruba", dáme na začiatok
     if (a.title.includes('Poruba') && !b.title.includes('Poruba')) return -1;

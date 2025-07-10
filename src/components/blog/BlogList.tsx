@@ -64,13 +64,16 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
     );
   }
 
-  // Normálne triedenie - blog o Porube bude prvý kvôli názvu
+  // Seřadíme posty tak, aby Poruba byla první
   const sortedPosts = [...displayedPosts].sort((a, b) => {
-    // Pokiaľ je v názve "Poruba", dáme na začiatok
+    if (a.id === 100) return -1;
+    if (b.id === 100) return 1;
+    
+    // Pokud je v názvu "Poruba", dáme na začátek
     if (a.title.includes('Poruba') && !b.title.includes('Poruba')) return -1;
     if (!a.title.includes('Poruba') && b.title.includes('Poruba')) return 1;
     
-    // Pre ostatné posty zachováme pôvodné poradie
+    // Pro ostatní posty zachováme původní pořadí
     return 0;
   });
 

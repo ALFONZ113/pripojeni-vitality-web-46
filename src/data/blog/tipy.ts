@@ -1,7 +1,79 @@
-
 import { BlogPost } from './types';
 
 export const tipyPosts: BlogPost[] = [
+  {
+    id: 100,
+    title: "Internet PODA Poruba: Optické pripojenie v Ostrave-Porube 2025",
+    excerpt: "Všetko, čo potrebujete vedieť o PODA internete v Porube - rýchle optické pripojenie, výhodné ceny a kompletný servis pre domácnosti i firmy v Ostrave-Porube.",
+    content: `
+      <div class="prose-content">
+        <h2>Úvod: PODA Internet v Porube</h2>
+        <p>Poruba, jedna z najväčších mestských častí Ostravy, má konečne prístup k špičkovému optickému internetu od PODA. Našim zákazníkom v Porube ponúkame stabilné, rýchle a cenovo dostupné internetové pripojenie.</p>
+
+        <h2>Pokrytie v Porube</h2>
+        <h3>Oblasti s dostupným pripojením</h3>
+        <p>PODA internet je dostupný v týchto častiach Poruby:</p>
+        
+        <ul>
+          <li><strong>Poruba-Sever:</strong> Kompletné pokrytie sídlisk</li>
+          <li><strong>Poruba-Jih:</strong> Rodinné domy a bytovky</li>
+          <li><strong>Poruba-Centrum:</strong> Obchodné a administratívne zóny</li>
+          <li><strong>Poruba-Východ:</strong> Nové rezidenčné projekty</li>
+        </ul>
+
+        <h2>Cenník a balíčky</h2>
+        <h3>Internetové pripojenie</h3>
+        <ul>
+          <li><strong>Optický internet 1 Gb/s:</strong> 250 Kč/mesiac</li>
+          <li><strong>Internet + TV balíček:</strong> 390 Kč/mesiac</li>
+          <li><strong>Biznis pripojenie:</strong> Od 450 Kč/mesiac</li>
+        </ul>
+
+        <h2>Výhody PODA v Porube</h2>
+        <div class="bg-blue-50 p-6 rounded-lg my-8">
+          <h3>Prečo si vybrať PODA?</h3>
+          <ul class="space-y-2">
+            <li>✓ <strong>Bez záväzkov:</strong> Flexibilné podmienky</li>
+            <li>✓ <strong>Lokálna podpora:</strong> Technici z regiónu</li>
+            <li>✓ <strong>Stabilita:</strong> 99,9% dostupnosť</li>
+            <li>✓ <strong>Rýchlosť:</strong> Skutočné gigabitové rýchlosti</li>
+          </ul>
+        </div>
+
+        <h2>Technické parametre</h2>
+        <p>Naše optické pripojenie v Porube poskytuje:</p>
+        <ul>
+          <li>Download rýchlosť: až 1000 Mb/s</li>
+          <li>Upload rýchlosť: až 1000 Mb/s</li>
+          <li>Latencia: pod 5 ms</li>
+          <li>Technológia: FTTH (optika až do domácnosti)</li>
+        </ul>
+
+        <h2>Ako objednať</h2>
+        <p>Objednanie PODA internetu v Porube je jednoduché:</p>
+        <ol>
+          <li>Kontaktujte nás cez <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">popri.cz</a></li>
+          <li>Overíme dostupnosť na vašej adrese</li>
+          <li>Dohodneme termín inštalácie</li>
+          <li>Profesionálne nainštalujeme pripojenie</li>
+        </ol>
+
+        <h2>Záver</h2>
+        <p>PODA internet v Porube predstavuje modernú alternatívu k tradičným poskytovateľom. S našimi službami získate spoľahlivé pripojenie za výhodnú cenu.</p>
+
+        <div class="bg-gray-50 p-6 rounded-lg my-8">
+          <h3>Kontaktujte nás</h3>
+          <p>Pre viac informácií o PODA internete v Porube navštívte náš <a href="/kontakt" class="text-poda-blue hover:text-poda-orange">kontaktný formulár</a> alebo nás zavolajte.</p>
+        </div>
+      </div>
+    `,
+    date: "6. 7. 2025",
+    author: "Tomáš Novák",
+    category: "Tipy",
+    image: "/lovable-uploads/9ce3244c-96d6-4078-9808-3edc99d0e01b.png",
+    alt: "Moderné sídlisko v Porube s optickými káblami",
+    tags: ["Poruba", "PODA", "Internet", "Optické pripojenie", "Ostrava", "Gigabit"]
+  },
   {
     id: 1,
     title: "Jak vybrat správný internetový tarif pro domácnost",

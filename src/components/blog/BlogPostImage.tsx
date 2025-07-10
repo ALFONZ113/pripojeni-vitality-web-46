@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import type { BlogPost } from '../../data/blog/types';
-import OptimizedImage from '../ui/optimized-image';
 
 interface BlogPostImageProps {
   post: BlogPost;
@@ -15,6 +14,10 @@ const BlogPostImage = ({ post }: BlogPostImageProps) => {
     setImageError(true);
   };
 
+  const handleImageLoad = () => {
+    console.log(`Successfully loaded image: ${post.image}`);
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto my-8">
       {imageError ? (
@@ -22,15 +25,14 @@ const BlogPostImage = ({ post }: BlogPostImageProps) => {
           <p className="text-gray-500">Obrázok nie je k dispozícii</p>
         </div>
       ) : (
-        <OptimizedImage
+        <img
           src={post.image}
           alt={post.alt || post.title}
           className="w-full h-auto rounded-lg shadow-lg"
           onError={handleImageError}
-          priority={true}
-          enableWebP={true}
-          responsive={true}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+          onLoad={handleImageLoad}
+          loading="eager"
+          decoding="sync"
         />
       )}
     </div>

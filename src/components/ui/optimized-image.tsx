@@ -44,13 +44,21 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   useEffect(() => {
     if (enableWebP) {
       supportsWebP().then(setWebPSupported);
+    } else {
+      setWebPSupported(false);
     }
   }, [enableWebP]);
 
   // Optimize image source when WebP support is determined
   useEffect(() => {
     if (enableWebP && webPSupported !== null && isInView) {
-      getOptimizedImageSrc(src).then(setOptimizedSrc);
+      if (webPSupported) {
+        getOptimizedImageSrc(src).then(setOptimizedSrc);
+      } else {
+        setOptimizedSrc(src);
+      }
+    } else if (!enableWebP) {
+      setOptimizedSrc(src);
     }
   }, [src, enableWebP, webPSupported, isInView]);
 
@@ -106,12 +114,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       .join(', ');
   };
 
-  const shouldShowSkeleton = !isLoaded && !isError && isInView;
+  const shouldShowSkeleton = !isLoaded && !isError && isInView && !priority;
   const imageSrc = isInView ? (isError ? fallbackSrc : optimizedSrc) : fallbackSrc;
 
   return (
     <div className={cn("relative overflow-hidden", className)}>
-      {/* Loading skeleton */}
+      {/* Loading skeleton - only show for non-priority images */}
       {shouldShowSkeleton && (
         <LoadingSkeleton 
           variant="image" 
@@ -119,54 +127,22 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         />
       )}
       
-      {/* Optimized image with WebP support */}
-      {enableWebP && webPSupported && responsive ? (
-        <picture>
-          <source 
-            srcSet={generateSrcSet(optimizedSrc)} 
-            type="image/webp" 
-            sizes={sizes}
-          />
-          <source 
-            srcSet={generateSrcSet(src)} 
-            type={`image/${src.split('.').pop()}`}
-            sizes={sizes}
-          />
-          <img
-            ref={imgRef}
-            src={imageSrc}
-            alt={alt}
-            className={cn(
-              "w-full h-full object-cover transition-opacity duration-300",
-              isLoaded ? "opacity-100" : "opacity-0"
-            )}
-            onLoad={handleLoad}
-            onError={handleError}
-            loading={priority ? "eager" : "lazy"}
-            decoding={priority ? "sync" : "async"}
-            fetchPriority={priority ? "high" : "auto"}
-            {...props}
-          />
-        </picture>
-      ) : (
-        <img
-          ref={imgRef}
-          src={imageSrc}
-          alt={alt}
-          srcSet={responsive ? generateSrcSet(imageSrc) : undefined}
-          sizes={responsive ? sizes : undefined}
-          className={cn(
-            "w-full h-full object-cover transition-opacity duration-300",
-            isLoaded ? "opacity-100" : "opacity-0"
-          )}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading={priority ? "eager" : "lazy"}
-          decoding={priority ? "sync" : "async"}
-          fetchPriority={priority ? "high" : "auto"}
-          {...props}
-        />
-      )}
+      {/* Simple image without WebP complexity for better reliability */}
+      <img
+        ref={imgRef}
+        src={imageSrc}
+        alt={alt}
+        className={cn(
+          "w-full h-full object-cover transition-opacity duration-300",
+          isLoaded ? "opacity-100" : "opacity-0"
+        )}
+        onLoad={handleLoad}
+        onError={handleError}
+        loading={priority ? "eager" : "lazy"}
+        decoding={priority ? "sync" : "async"}
+        fetchPriority={priority ? "high" : "auto"}
+        {...props}
+      />
     </div>
   );
 };

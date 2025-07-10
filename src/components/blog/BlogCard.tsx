@@ -2,32 +2,31 @@
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
-import { handleImageError } from '../../utils/imageUtils';
+import OptimizedImage from '../ui/optimized-image';
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {
-  // Přidáme zvýraznění pro blog o Porubě
+  // Zvýraznenie pre blog o Porubě
   const isPorubaPost = post.id === 100 || (post.title && post.title.includes('Poruba'));
   const cardClasses = `bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation ${isPorubaPost ? 'ring-2 ring-poda-blue' : ''}`;
 
   return (
     <div className={cardClasses}>
       <div className="relative h-48 overflow-hidden">
-        <img 
-          src={post.image} 
-          alt={post.alt || post.title} 
+        <OptimizedImage
+          src={post.image}
+          alt={post.alt || post.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          width="640"
-          height="360"
-          onError={(e) => handleImageError(e)}
+          enableWebP={true}
+          responsive={true}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
-        {/* Zvýraznění pro blog o Porubě */}
+        {/* Zvýraznenie pre blog o Porube */}
         {isPorubaPost && (
           <div className="absolute top-2 right-2 bg-poda-blue text-white px-2 py-1 rounded text-xs font-semibold">
             Nový

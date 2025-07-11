@@ -39,7 +39,7 @@ const formatDateISO = (dateStr) => {
 
 const generateSitemap = () => {
   const baseUrl = 'https://www.popri.cz';
-  const currentDate = new Date().toISOString().split('T')[0];
+  const currentDate = '2025-07-11';
   
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'daily' },

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import ErrorState from '../components/page/ErrorState';
@@ -27,13 +26,20 @@ const Index = () => {
     return <ErrorState error={error} />;
   }
 
+  // If isLoading is true for a very short flicker, consider if this is desired
+  // or if MainContent should always be rendered. For now, keeping the logic.
+  // If isLoading is almost always false immediately, the conditional rendering of PromotionPopup
+  // will show it almost instantly.
+
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="PODA pripojení - Popri.cz | Gigabitový Internet s TV Zdarma"
-        description="Najlepšie PODA pripojení na Slovensku a v Čechách. Gigabitový internet s TV zdarma, non-stop podpora. PODA pripojení od 250 Kč mesačne."
+        title="Popri.cz – Rychlý PODA Internet s TV Zdarma | Gigabitové Připojení"
+        description="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
+      
+      {/* Loading indicator removed */}
       
       {/* Main content - always full opacity */}
       <div className={`transition-opacity duration-300 opacity-100`}>

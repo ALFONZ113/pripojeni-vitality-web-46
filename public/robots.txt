@@ -1,14 +1,14 @@
 
-# www.popri.cz robots.txt - FIXED FOR PROPER DOMAIN MIGRATION - Updated 2025-06-23
+# www.popri.cz robots.txt - PODA pripojení - Updated 2025-01-15
 User-agent: *
 Allow: /
 
 # CRITICAL DOMAIN MIGRATION INFORMATION
 # Old domain: pripojeni-poda.cz -> DEPRECATED (301 redirects to www.popri.cz)
-# New domain: www.popri.cz -> PREFERRED CANONICAL DOMAIN
+# New domain: www.popri.cz -> PREFERRED CANONICAL DOMAIN FOR PODA PRIPOJENÍ
 # Migration completed: 2025-06-23
 
-# Explicitly allow main pages
+# Explicitly allow main pages for PODA pripojení
 Allow: /$
 Allow: /internet-tv$
 Allow: /iptv$
@@ -21,14 +21,14 @@ Allow: /cookies$
 Allow: /obchodni-podminky$
 Allow: /ochrana-soukromi$
 
-# Local geo-specific pages
+# Local geo-specific pages for PODA pripojení
 Allow: /internet-ostrava$
 Allow: /internet-karvina$
 Allow: /internet-bohumin$
 Allow: /internet-havirov$
 Allow: /internet-poruba$
 
-# Explicitly allow all current blog posts
+# Explicitly allow all current blog posts about PODA pripojení
 Allow: /blog/1$
 Allow: /blog/2$
 Allow: /blog/3$
@@ -43,8 +43,9 @@ Allow: /blog/11$
 Allow: /blog/12$
 Allow: /blog/13$
 Allow: /blog/100$
+Allow: /blog/101$
 
-# Allow blog categories and tags
+# Allow blog categories and tags for PODA pripojení content
 Allow: /blog?category=*
 Allow: /blog?tag=*
 Allow: /blog?search=*
@@ -62,7 +63,7 @@ Disallow: /*&utm_*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
 
-# Search engine specific rules
+# Search engine specific rules for PODA pripojení indexing
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
@@ -81,5 +82,5 @@ User-agent: Googlebot-Image
 Allow: /assets/*
 Allow: /lovable-uploads/*
 
-# CANONICAL SITEMAP - ONLY www.popri.cz
+# CANONICAL SITEMAP FOR PODA PRIPOJENÍ - ONLY www.popri.cz
 Sitemap: https://www.popri.cz/sitemap.xml

@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
 import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
@@ -19,7 +20,11 @@ try {
     throw new Error("Root element not found - check your HTML");
   }
   
-  createRoot(rootElement).render(<App />);
+  createRoot(rootElement).render(
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  );
   
   // Initialize performance optimizations
   preloadCriticalRoutes();

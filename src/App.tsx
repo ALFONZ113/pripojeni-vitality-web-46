@@ -40,9 +40,12 @@ const queryClient = new QueryClient({
   },
 });
 
+// Create helmet context outside of component to avoid re-initialization
+const helmetContext = {};
+
 function App() {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       <QueryClientProvider client={queryClient}>
         <Router>
           <div className="min-h-screen bg-white flex flex-col">

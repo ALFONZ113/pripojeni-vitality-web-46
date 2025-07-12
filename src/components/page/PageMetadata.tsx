@@ -47,7 +47,7 @@ const PageMetadata = ({
       {seznamVerification && <meta name="seznam-wmt" content={seznamVerification} />}
       <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
       <meta name="robots" content="index, follow, max-image-preview:large" />
-      <meta name="keywords" content="PODA internet, PODA připojení, popri, popri.cz, gigabitový internet, internetové připojení Ostrava, rychlý internet, telefon, kontakt" />
+      <meta name="keywords" content="PODA, PODA internet, PODA připojení, PODA telefon, PODA kontakt, popri, popri.cz, kontakt popri, internet Karviná, internet Havířov, gigabitový internet, internetové připojení Ostrava, rychlý internet, telefon, kontakt" />
       <meta name="revisit-after" content="7 days" />
       
       {/* Enhanced domain migration signals */}

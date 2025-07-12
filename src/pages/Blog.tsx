@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { blogPosts, categories } from '../data/blog';
@@ -139,7 +138,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen pt-24">
       <Helmet>
-        <title>Novinky IT | PODA | Popri.cz</title>
+        <title>Blog o internetu a technologiích | PODA | Popri.cz</title>
         <meta name="description" content={generateMetaDescription()} />
         <link rel="canonical" href="https://www.popri.cz/blog" />
         <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, internetové technologie, ${allTags.join(', ')}, ${locations.join(', ')}`} />
@@ -250,14 +249,14 @@ const Blog = () => {
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto">
             <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4 reveal-animation">
-              Novinky IT
+              Blog a novinky
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
-              IT novinky a technológie
+              Články o internetu a technologiích
             </h1>
             <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200">
-              Najnovšie IT novinky, technológie a tipy pre lepšie využitie vašeho internetu 
-              a televízie. Všetko o službách PODA v {locations.join(', ')} a ďalších mestách.
+              Přečtěte si nejnovější články o technologiích, tipy pro lepší využití vašeho internetu 
+              a televize. Vše o službách PODA v {locations.join(', ')} a dalších městech.
             </p>
             
             <BlogSearch searchTerm={searchTerm} onSearch={handleSearch} />

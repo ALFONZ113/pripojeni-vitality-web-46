@@ -40,6 +40,8 @@ const BlogPostImage = ({ post }: BlogPostImageProps) => {
           alt={post.alt || post.title} 
           className="w-full h-auto rounded-lg shadow-lg"
           onError={handleImageError}
+          width="800"
+          height="450"
         />
       )}
     </div>

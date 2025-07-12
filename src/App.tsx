@@ -28,7 +28,6 @@ const CookiePolicy = lazy(() => import('./pages/Cookies'));
 const MigrationMonitor = lazy(() => import('./pages/MigrationMonitor'));
 const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
 const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
-const SSRMonitor = lazy(() => import('./pages/SSRMonitor'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -40,12 +39,9 @@ const queryClient = new QueryClient({
   },
 });
 
-// Create helmet context outside of component to avoid re-initialization
-const helmetContext = {};
-
 function App() {
   return (
-    <HelmetProvider context={helmetContext}>
+    <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <Router>
           <div className="min-h-screen bg-white flex flex-col">
@@ -83,7 +79,6 @@ function App() {
                   <Route path="/migration-monitor" element={<MigrationMonitor />} />
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
-                  <Route path="/ssr-monitor" element={<SSRMonitor />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

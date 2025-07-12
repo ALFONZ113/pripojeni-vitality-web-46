@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import ErrorState from '../components/page/ErrorState';
@@ -7,6 +8,9 @@ import usePageInitialization from '../hooks/use-page-initialization';
 import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
+import NoScriptContent from '../components/page/NoScriptContent';
+import AIBotDetector from '../components/seo/AIBotDetector';
+import EnhancedStructuredData from '../components/seo/EnhancedStructuredData';
 
 // Len najkritickejšie obrázky
 const CRITICAL_IMAGES = [
@@ -26,11 +30,6 @@ const Index = () => {
     return <ErrorState error={error} />;
   }
 
-  // If isLoading is true for a very short flicker, consider if this is desired
-  // or if MainContent should always be rendered. For now, keeping the logic.
-  // If isLoading is almost always false immediately, the conditional rendering of PromotionPopup
-  // will show it almost instantly.
-
   return (
     <div className="min-h-screen">
       <PageMetadata 
@@ -39,7 +38,18 @@ const Index = () => {
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       
-      {/* Loading indicator removed */}
+      {/* Enhanced SEO and AI detection */}
+      <EnhancedStructuredData 
+        pageType="website"
+        title="PODA Internet Ostrava 2025 ✅ Recenze + Ceny | Popri.cz"
+        description="Nejlepší PODA internet v Ostravě 2025. Porovnání cen, recenze zákazníků a pokrytí Poruba, Vítkovice. Ušetřete až 600 Kč měsíčně!"
+        url="https://www.popri.cz"
+      />
+      
+      <AIBotDetector />
+      
+      {/* NoScript content for AI bots and users without JS */}
+      <NoScriptContent />
       
       {/* Main content - always full opacity */}
       <div className={`transition-opacity duration-300 opacity-100`}>

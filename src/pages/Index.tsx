@@ -34,8 +34,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="Popri.cz – Rychlý PODA Internet s TV Zdarma | Gigabitové Připojení"
-        description="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace."
+        title="PODA | Gigabitový Internet | Popri.cz"
+        description="PODA internet s TV zdarma. Spolehlivé gigabitové připojení, rychlá instalace a non-stop podpora. Nejlepší ceny v Ostravě."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       

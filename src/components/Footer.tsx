@@ -38,22 +38,27 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/internet-tv" className="text-blue-100 hover:text-poda-orange transition-colors">
-                  Internet a TV pro byty
+                  PODA Internet a TV
                 </Link>
               </li>
               <li>
-                <Link to="/internet-tv" className="text-blue-100 hover:text-poda-orange transition-colors">
-                  Internet a TV pro domy
+                <Link to="/internet-ostrava" className="text-blue-100 hover:text-poda-orange transition-colors">
+                  PODA Internet Ostrava
                 </Link>
               </li>
               <li>
-                <Link to="/programy" className="text-blue-100 hover:text-poda-orange transition-colors">
-                  Programová nabídka
+                <Link to="/internet-poruba" className="text-blue-100 hover:text-poda-orange transition-colors">
+                  PODA Internet Poruba
+                </Link>
+              </li>
+              <li>
+                <Link to="/tarify" className="text-blue-100 hover:text-poda-orange transition-colors">
+                  PODA Tarify a Ceny
                 </Link>
               </li>
               <li>
                 <Link to="/blog" className="text-blue-100 hover:text-poda-orange transition-colors">
-                  Blog a novinky
+                  PODA Blog a novinky
                 </Link>
               </li>
             </ul>

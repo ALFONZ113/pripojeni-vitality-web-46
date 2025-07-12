@@ -32,8 +32,8 @@ const PageMetadata = ({
   
   return (
     <Helmet>
-      <title>{title || "PODA | Levný a Rychlý Internet | Alternativa k O2 | Popri.cz"}</title>
-      <meta name="description" content={description || "Levný gigabitový internet od PODA. Lepší než O2, bez výpadků. Spokojení zákazníci v Ostravě, Karviné, Havířově. Rychlá instalace."} />
+      <title>{title}</title>
+      <meta name="description" content={description} />
       <link rel="canonical" href={migrationSafeCanonicalUrl} />
       
       {/* Force preferred domain for all pages */}
@@ -47,7 +47,7 @@ const PageMetadata = ({
       {seznamVerification && <meta name="seznam-wmt" content={seznamVerification} />}
       <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
       <meta name="robots" content="index, follow, max-image-preview:large" />
-      <meta name="keywords" content="PODA, PODA internet, PODA připojení, PODA telefon, PODA kontakt, levný internet, rychlý internet, nespokojený s internetem, O2 zdražilo, alternativa k O2, lepší než O2, lacnejší internet, problém s internetem, pomalý internet, výpadky internetu, zmenil poskytovateľa, prestup od O2, Nej.cz alternativa, popri, popri.cz, kontakt popri, internet Karviná, internet Havířov, gigabitový internet, internetové připojení Ostrava, telefon, kontakt" />
+      <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
       <meta name="revisit-after" content="7 days" />
       
       {/* Enhanced domain migration signals */}
@@ -98,8 +98,6 @@ const PageMetadata = ({
             "@type": "WebSite",
             "name": "Popri.cz – PODA Internet",
             "url": "${migrationSafeCanonicalUrl}",
-            "description": "Levný gigabitový internet od PODA. Lepší než O2, bez výpadků. Spolehlivé připojení v Ostravě, Karviné, Havířově.",
-            "keywords": "PODA internet, levný internet, alternativa k O2, gigabitový internet",
             "potentialAction": {
               "@type": "SearchAction",
               "target": "https://www.popri.cz/search?q={search_term_string}",
@@ -116,51 +114,14 @@ const PageMetadata = ({
             "name": "Popri.cz - PODA Internet",
             "url": "https://www.popri.cz",
             "logo": "https://www.popri.cz/poda-logo.svg",
-            "description": "Poskytovatel internetového připojení a televizních služeb v Ostravě a okolí. Levná alternativa k O2.",
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+420-776-666-901",
+              "telephone": "+420-739-065-142",
               "contactType": "customer service",
               "areaServed": "CZ",
               "availableLanguage": "Czech"
             },
             "sameAs": []
-          }
-        `}
-      </script>
-
-      {/* FAQ Schema */}
-      <script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Je PODA lacnejší než O2?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Áno, PODA ponúka konkurenčné ceny a lepší hodnotu za peniaze v porovnaní s O2. Naši zákazníci ušetria až 30% mesačne."
-                }
-              },
-              {
-                "@type": "Question", 
-                "name": "Ako prejsť od O2 k PODA?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Prechod je jednoduchý. Kontaktujte nás na 776 666 901 a my vybavíme všetko za vás vrátane výpovede u O2."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Prečo ľudia menia poskytovateľa?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Hlavné dôvody sú vysoké ceny, časté výpadky, pomalý internet a zlý zákaznícky servis. PODA rieši všetky tieto problémy."
-                }
-              }
-            ]
           }
         `}
       </script>

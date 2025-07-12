@@ -10,15 +10,7 @@ const blogPosts = [
   { id: 4, date: '3. 1. 2025' },
   { id: 5, date: '28. 12. 2024' },
   { id: 6, date: '25. 12. 2024' },
-  { id: 7, date: '10. 1. 2025' },
-  { id: 8, date: '12. 1. 2025' },
-  { id: 9, date: '11. 1. 2025' },
-  { id: 10, date: '9. 1. 2025' },
-  { id: 11, date: '7. 1. 2025' },
-  { id: 12, date: '6. 1. 2025' },
-  { id: 13, date: '4. 1. 2025' },
-  { id: 100, date: '11. 1. 2025' },
-  { id: 101, date: '11. 1. 2025' }
+  { id: 7, date: '10. 1. 2025' }
 ];
 
 const formatDateISO = (dateStr) => {
@@ -39,7 +31,7 @@ const formatDateISO = (dateStr) => {
 
 const generateSitemap = () => {
   const baseUrl = 'https://www.popri.cz';
-  const currentDate = '2025-07-11';
+  const currentDate = new Date().toISOString().split('T')[0];
   
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'daily' },
@@ -110,4 +102,4 @@ if (!fs.existsSync(publicDir)) {
 }
 
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapContent, 'utf8');
-console.log('✅ Sitemap.xml generated successfully with current dates');
+console.log('✅ Sitemap.xml generated successfully in public/ directory');

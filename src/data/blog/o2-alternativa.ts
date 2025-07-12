@@ -1,118 +1,119 @@
+
 import { BlogPost } from './types';
 
 export const o2AlternativaPost: BlogPost = {
   id: 1001,
-  title: "Prečo ľudia opúšťajú O2 a prechádzajú k PODA v roku 2025",
-  excerpt: "Zistite prečo stovky zákazníkov každý mesiac opúšťajú O2 a volí PODA ako svoju novú alternatívu. Skutočné príbehy a porovnanie služieb.",
+  title: "Proč lidé opouštějí O2 a přecházejí k PODA v roce 2025",
+  excerpt: "Zjistěte proč stovky zákazníků každý měsíc opouští O2 a volí PODA jako svou novou alternativu. Skutečné příběhy a porovnání služeb.",
   content: `
-# Prečo ľudia opúšťajú O2 a prechádzajú k PODA v roku 2025
+# Proč lidé opouštějí O2 a přecházejí k PODA v roce 2025
 
-V posledných mesiacoch zaznamenávame masívny prechod zákazníkov od O2 k alternatívnym poskytovateľom, najmä k PODA. Čo je za týmto trendom?
+V posledních měsících zaznamenáváme masivní přechod zákazníků od O2 k alternativním poskytovatelům, zejména k PODA. Co je za tímto trendem?
 
-## Hlavné dôvody nespokojnosti s O2
+## Hlavní důvody nespokojenosti s O2
 
-### 1. Dramatické zdražovanie po prevzatí Nej.cz
-Od roku 2024 O2 výrazne zvýšilo ceny všetkých služieb. Zákazníci, ktorí platili za internet 20-25€, zrazu dostávajú faktúry na 35-40€ mesačne.
+### 1. Dramatické zdražování po převzetí Nej.cz
+Od roku 2024 O2 výrazně zvýšilo ceny všech služeb. Zákazníci, kteří platili za internet 500-600 Kč, najednou dostávají faktury na 900-1200 Kč měsíčně.
 
-**Príklad:** Milan z Ostravy: *"Platil som 690 Kč za 100 Mbps, teraz chcú 1200 Kč za to isté. To je nehoráznosť!"*
+**Příklad:** Milan z Ostravy: *"Platil jsem 690 Kč za 100 Mbps, teraz chtějí 1200 Kč za to samé. To je nehoráznost!"*
 
-### 2. Kvalita služieb poklesla
+### 2. Kvalita služeb poklesla
 - Časté výpadky internetu
-- Pomalšie rýchlosti než sľubované
-- Horší zákaznícky servis
-- Dlhé čakacie doby na telefóne
+- Pomalejší rychlosti než slibované
+- Horší zákaznický servis
+- Dlouhé čekací doby na telefonu
 
-### 3. Nevýhodné zmluvné podmienky
-- Dlhé viazanosti
-- Vysoké sankcie za predčasné ukončenie
-- Automatické predlžovanie zmlúv
+### 3. Nevýhodné smluvní podmínky
+- Dlouhé vázanosti
+- Vysoké sankce za předčasné ukončení
+- Automatické prodlužování smluv
 - Skryté poplatky
 
-## Prečo zákazníci volí PODA?
+## Proč zákazníci volí PODA?
 
-### Transparentné ceny
-- Žiadne skryté poplatky
-- Ceny sa nezvyšujú bez upozornenia
-- Flexibilné tarify podľa potrieb
+### Transparentní ceny
+- Žádné skryté poplatky
+- Ceny se nezvyšují bez upozornění
+- Flexibilní tarify podle potřeb
 
-### Kvalita služieb
-- Stabilný gigabitový internet
-- TV služby zadarmo
-- 99.9% dostupnosť služieb
-- Rýchla technická podpora
+### Kvalita služeb
+- Stabilní gigabitový internet
+- TV služby zdarma
+- 99.9% dostupnost služeb
+- Rychlá technická podpora
 
-### Osobný prístup
-- Priamy kontakt s technikom
-- Rýchla inštalácia do 7 dní
-- Individuálne riešenia
+### Osobní přístup
+- Přímý kontakt s technikem
+- Rychlá instalace do 7 dní
+- Individuální řešení
 
-## Skutočné príbehy zákazníkov
+## Skutečné příběhy zákazníků
 
-### Príbeh 1: Rodina Novákových z Havířova
-*"O2 nám po dvoch rokoch zdražilo o 400 Kč mesačne. Internet bol pomalý, TV sa sekala. U PODA platíme o 200 Kč menej a máme 10x lepšie služby."*
+### Příběh 1: Rodina Novákových z Havířova
+*"O2 nám po dvou letech zdražilo o 400 Kč měsíčně. Internet byl pomalý, TV se sekala. U PODA platíme o 200 Kč méně a máme 10x lepší služby."*
 
-### Príbeh 2: Firma TECH Solutions z Ostravy
-*"Pre našu firmu bol spoľahlivý internet kritický. O2 mal výpadky každý týždeň. S PODA nemáme problém už 8 mesiacov."*
+### Příběh 2: Firma TECH Solutions z Ostravy
+*"Pro naši firmu byl spolehlivý internet kritický. O2 mělo výpadky každý týden. S PODA nemáme problém už 8 měsíců."*
 
-### Príbeh 3: Študent Tomáš z Karviné
-*"Potreboval som rýchly internet na online výuku. O2 mi nedokázalo zabezpečiť ani 50 Mbps, hoci som platil za 100. PODA mi dáva skutočných 300 Mbps za polovičnú cenu."*
+### Příběh 3: Student Tomáš z Karviné
+*"Potřeboval jsem rychlý internet na online výuku. O2 mi nedokázalo zabezpečit ani 50 Mbps, přesto jsem platil za 100. PODA mi dává skutečných 300 Mbps za poloviční cenu."*
 
-## Ako prejsť od O2 k PODA?
+## Jak přejít od O2 k PODA?
 
 ### Krok 1: Kontaktujte nás
-Zavolajte na **776 666 901** alebo napíšte na info@popri.cz
+Zavolejte na **730 431 313** nebo napište na info@poda.cz
 
-### Krok 2: Bezplatná konzultácia
+### Krok 2: Bezplatná konzultace
 Naši odborníci vám:
-- Analyzujú vašu aktuálnu situáciu
-- Navrhnú optimálny tarif
-- Vypočítajú úspory
+- Analyzují vaši aktuální situaci
+- Navrhnou optimální tarif
+- Vypočítají úspory
 
-### Krok 3: Vybavíme prechod za vás
-- Pomôžeme s výpoveďou u O2
-- Naplánujeme inštaláciu bez výpadku
-- Riešime všetky formality
+### Krok 3: Vyřídíme přechod za vás
+- Pomůžeme s výpovědí u O2
+- Naplánujeme instalaci bez výpadku
+- Vyřešíme všechny formality
 
-### Krok 4: Inštalácia a spustenie
-- Profesionálna inštalácia do 7 dní
-- Testovanie všetkých služieb
-- Školenie obsluhy
+### Krok 4: Instalace a spuštění
+- Profesionální instalace do 7 dní
+- Testování všech služeb
+- Školení obsluhy
 
-## Porovnanie O2 vs PODA
+## Porovnání O2 vs PODA
 
 | Služba | O2 | PODA |
 |--------|----|----- |
-| Internet 100 Mbps | 1200 Kč/mesiac | 799 Kč/mesiac |
-| TV kanály | +300 Kč | Zadarmo |
-| Inštalácia | 1500 Kč | Zadarmo |
-| Viazanosť | 24 mesiacov | 12 mesiacov |
-| Zákaznícka podpora | 8-17h | 24/7 |
+| Internet 100 Mbps | 1200 Kč/měsíc | 799 Kč/měsíc |
+| TV kanály | +300 Kč | Zdarma |
+| Instalace | 1500 Kč | Zdarma |
+| Vázanost | 24 měsíců | 12 měsíců |
+| Zákaznická podpora | 8-17h | 24/7 |
 
 ## Často kladené otázky
 
-**Q: Môžem si zachovať svoje telefónne číslo?**
-A: Áno, portovanie čísla vybavíme zadarmo.
+**Q: Mohu si zachovat své telefonní číslo?**
+A: Ano, portování čísla vyřídíme zdarma.
 
-**Q: Aká je kvalita signálu v mojej oblasti?**
-A: Pred inštaláciou robíme bezplatnú analýzu pokrytia.
+**Q: Jaká je kvalita signálu v mé oblasti?**
+A: Před instalací děláme bezplatnou analýzu pokrytí.
 
-**Q: Čo ak nebudem spokojný?**
-A: Ponúkame 30-dňovú garanciu spokojnosti.
+**Q: Co když nebudu spokojený?**
+A: Nabízíme 30-denní garanciu spokojenosti.
 
-## Záver
+## Závěr
 
-Prechod od O2 k PODA nie je len o úspore peňazí - je to o lepšej kvalite života. Stabilný internet, spravodlivé ceny a osobný prístup sú dôvody, prečo už viac ako 1000 zákazníkov urobilo tento krok.
+Přechod od O2 k PODA není jen o úspoře peněz - je to o lepší kvalitě života. Stabilní internet, spravedlivé ceny a osobní přístup jsou důvody, proč už více než 1000 zákazníků udělalo tento krok.
 
-**Neplatite predražené služby O2. Zistite, koľko môžete ušetriť s PODA!**
+**Neplaťte předražené služby O2. Zjistěte, kolik můžete ušetřit s PODA!**
 
 ---
 
-*Chcete vedieť viac? Kontaktujte nás na 776 666 901 alebo navštívte naše pobočky v Ostrave, Karvinej a Havířove.*
+*Chcete vědět více? Kontaktujte nás na 730 431 313 nebo navštivte naše pobočky v Ostravě, Karviné a Havířově.*
 `,
-  date: "2025-01-12",
+  date: "12. 1. 2025",
   author: "Milan Terč",
   category: "Novinky",
   image: "/lovable-uploads/slow-internet-fix-guide.jpg",
-  alt: "Porovnanie O2 vs PODA internet",
-  tags: ["O2", "alternativa", "PODA", "prechod", "úspora", "internet"]
+  alt: "Porovnání O2 vs PODA internet",
+  tags: ["O2", "alternativa", "PODA", "přechod", "úspora", "internet"]
 };

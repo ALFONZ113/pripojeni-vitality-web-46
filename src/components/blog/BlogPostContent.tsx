@@ -2,7 +2,7 @@
 import React from 'react';
 import type { BlogPost } from '../../data/blog/types';
 import InternalLinkSuggestions from '../seo/InternalLinkSuggestions';
-import { Breadcrumb } from '../ui/breadcrumb';
+import BreadcrumbWrapper from '../common/BreadcrumbWrapper';
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -12,7 +12,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
   return (
     <div className="lg:col-span-8">
       {/* Breadcrumb navigation */}
-      <Breadcrumb 
+      <BreadcrumbWrapper 
         items={[
           { title: 'Úvod', href: '/' },
           { title: 'Blog', href: '/blog' },

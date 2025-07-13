@@ -6,7 +6,7 @@ import GSCMigrationGuide from '../components/migration/GSCMigrationGuide';
 import IndexingAccelerator from '../components/migration/IndexingAccelerator';
 import SEOAudit from '../components/migration/SEOAudit';
 import PageMetadata from '../components/page/PageMetadata';
-import { Breadcrumb } from '../components/ui/breadcrumb';
+import BreadcrumbWrapper from '../components/common/BreadcrumbWrapper';
 
 const MigrationCenter = () => {
   return (
@@ -18,7 +18,7 @@ const MigrationCenter = () => {
       />
       
       <div className="container-custom section-padding">
-        <Breadcrumb 
+        <BreadcrumbWrapper 
           items={[
             { title: 'Úvod', href: '/' },
             { title: 'Migration Center' }

@@ -2,7 +2,7 @@
 import React from 'react';
 import type { BlogPost } from '../../data/blog/types';
 import InternalLinkSuggestions from '../seo/InternalLinkSuggestions';
-import Breadcrumb from '../common/Breadcrumb';
+import { Breadcrumb } from '../ui/breadcrumb';
 
 interface BlogPostContentProps {
   post: BlogPost;

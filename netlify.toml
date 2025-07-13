@@ -6,18 +6,37 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Prerender rules for AI bots and search engines
+# Enhanced prerender rules for ALL bots and search engines
 [[redirects]]
   from = "/"
   to = "/prerender/index.html"
   status = 200
-  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*"] }
+  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
 
 [[redirects]]
   from = "/blog"
   to = "/prerender/blog.html" 
   status = 200
-  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*"] }
+  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
+
+# Prerender geo pages for bots
+[[redirects]]
+  from = "/internet-ostrava"
+  to = "/prerender/internet-ostrava.html"
+  status = 200
+  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
+
+[[redirects]]
+  from = "/internet-karvina"
+  to = "/prerender/internet-karvina.html"
+  status = 200
+  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
+
+[[redirects]]
+  from = "/internet-havirov"
+  to = "/prerender/internet-havirov.html"
+  status = 200
+  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
 
 # Static file serving
 [[redirects]]

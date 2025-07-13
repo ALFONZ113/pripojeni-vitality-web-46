@@ -6,7 +6,7 @@ import GSCMigrationGuide from '../components/migration/GSCMigrationGuide';
 import IndexingAccelerator from '../components/migration/IndexingAccelerator';
 import SEOAudit from '../components/migration/SEOAudit';
 import PageMetadata from '../components/page/PageMetadata';
-import Breadcrumb from '../components/common/Breadcrumb';
+import { Breadcrumb } from '../components/ui/breadcrumb';
 
 const MigrationCenter = () => {
   return (

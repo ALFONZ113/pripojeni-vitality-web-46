@@ -1,7 +1,7 @@
 
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
-import Breadcrumb from '../components/common/Breadcrumb';
+import { Breadcrumb } from '../components/ui/breadcrumb';
 import SEOAudit from '../components/migration/SEOAudit';
 import { blogPosts } from '../data/blog';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';

@@ -1,14 +1,15 @@
+
 import { BlogPost } from './types';
 
 export const recenziePosts: BlogPost[] = [
   {
     id: 13,
-    title: "Recenze zákazníků PODA: Skutečné zkušenosti s našimi službami v létě 2025",
-    excerpt: "Přečtěte si autentické recenze a hodnocení od našich spokojených zákazníků z celého Moravskoslezského kraje v létě 2025.",
+    title: "Recenze zákazníků PODA: Skutečné zkušenosti s našimi službami",
+    excerpt: "Přečtěte si autentické recenze a hodnocení od našich spokojených zákazníků z celého Moravskoslezského kraje.",
     content: `
       <div class="prose-content">
-        <h2>Úvod: Hlas našich zákazníků v létě 2025</h2>
-        <p>Nejlepším důkazem kvality našich služeb jsou spokojení zákazníci. Přečtěte si jejich autentické recenze a zkušenosti s PODA internetem a televizí během horkého léta 2025.</p>
+        <h2>Úvod: Hlas našich zákazníků</h2>
+        <p>Nejlepším důkazem kvality našich služeb jsou spokojení zákazníci. Přečtěte si jejich autentické recenze a zkušenosti s PODA internetem a televizí.</p>
 
         <h2>Recenze internetových služeb</h2>
         
@@ -83,15 +84,15 @@ export const recenziePosts: BlogPost[] = [
         </ul>
 
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-          <h3 class="text-white mb-4">Chcete se připojit ke spokojeným zákazníkům v létě 2025?</h3>
-          <p class="mb-4">Objednejte si PODA internet a TV už dnes a přesvědčte se o kvalitě našich služeb na vlastní kůži během horúceho léta 2025.</p>
+          <h3 class="text-white mb-4">Chcete se připojit ke spokojeným zákazníkům?</h3>
+          <p class="mb-4">Objednejte si PODA internet a TV už dnes a přesvědčte se o kvalitě našich služeb na vlastní kůži.</p>
           <p class="text-sm">Všechny recenze jsou autentické a ověřené. Respektujeme soukromí našich zákazníků.</p>
         </div>
 
-        <p class="text-center mt-8 font-medium">Děkujeme všem našim zákazníkům za důvěru a pozitivní hodnocení v roce 2025!</p>
+        <p class="text-center mt-8 font-medium">Děkujeme všem našim zákazníkům za důvěru a pozitivní hodnocení!</p>
       </div>
     `,
-    date: "22. 6. 2025",
+    date: "22. 5. 2025",
     author: "Lucie Horáková",
     category: "Recenze",
     image: "/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png",

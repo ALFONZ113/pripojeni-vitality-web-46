@@ -2,14 +2,14 @@ import { BlogPost } from './types';
 
 export const slowInternetFixPost: BlogPost = {
   id: 30,
-  title: "Pomalý Internet? 8 Způsobů Jak to Vyřešit [MSK Léto 2025]",
-  excerpt: "Seká se vám internet v Ostravě v létě 2025? Náš expert průvodce odhaluje 8 nejčastějších příčin pomalého internetu a praktické způsoby, jak je vyřešit.",
+  title: "Pomalý Internet? 8 Způsobů Jak to Vyřešit [MSK 2025]",
+  excerpt: "Seká se vám internet v Ostravě? Náš expert průvodce odhaluje 8 nejčastějších příčin pomalého internetu a praktické způsoby, jak je vyřešit.",
   content: `
     <div class="prose-content">
-      <p class="lead">Je 20:00, chcete si pustit film na Netflixu, ale místo HD obrazu sledujete nekonečné načítání. Nebo se snažíte nahrát fotky na Instagram, ale trvá to věčnost. Zní vám to povědomě? Pokud bydlíte v Ostravě, Karviné nebo okolí v létě 2025, nejste sami. Pomalý internet trápí tisíce domácností v Moravskoslezském kraji, ale většinu problémů můžete vyřešit sami během půl hodiny.</p>
+      <p class="lead">Je 20:00, chcete si pustit film na Netflixu, ale místo HD obrazu sledujete nekonečné načítání. Nebo se snažíte nahrát fotky na Instagram, ale trvá to věčnost. Zní vám to povědomě? Pokud bydlíte v Ostravě, Karviné nebo okolí, nejste sami. Pomalý internet trápí tisíce domácností v Moravskoslezském kraji, ale většinu problémů můžete vyřešit sami během půl hodiny.</p>
 
-      <h2>Nejčastější Příčiny Pomalého Internetu v Létě 2025 (A Proč se to Děje Právě Vám)</h2>
-      <p>Než se pustíme do řešení, je důležité pochopit, proč se internet zpomaluje. V Moravskoslezském kraji v létě 2025 se setkáváme se třemi hlavními kategoriemi problémů:</p>
+      <h2>Nejčastější Příčiny Pomalého Internetu (A Proč se to Děje Právě Vám)</h2>
+      <p>Než se pustíme do řešení, je důležité pochopit, proč se internet zpomaluje. V Moravskoslezském kraji se setkáváme se třemi hlavními kategoriemi problémů:</p>
 
       <h3>Přetížení domácí sítě</h3>
       <p><strong>Přetížení domácí sítě</strong> nastává, když je na vaši Wi-Fi síť připojeno příliš mnoho zařízení současně. Chytrá lednice, telefony, tablety, televize - každé zařízení "krade" část vaší šířky pásma. V panelových domech, kterých je v našem regionu mnoho, se tento problém ještě zhoršuje kvůli rušení od sousedních sítí.</p>
@@ -32,7 +32,7 @@ export const slowInternetFixPost: BlogPost = {
         </ul>
       </div>
 
-      <h2>Aktuální Stav Rychlostí v Létě 2025</h2>
+      <h2>Aktuální Stav Rychlostí v Červenci 2025</h2>
       <p>Podle nejnovějších měření z června 2025 se rychlosti internetu v České republice stále výrazně liší podle typu připojení a poskytovatele:</p>
 
       <ul>
@@ -43,9 +43,9 @@ export const slowInternetFixPost: BlogPost = {
       </ul>
 
       <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-        <h3 class="text-white mb-4">🚀 Revoluce v rychlosti internetu v létě 2025</h3>
-        <p class="mb-4">PODA přináší do vybraných lokalit Moravskoslezského kraje gigabitové optické připojení přímo do rodinných domů. V horúcom lete 2025 je rychlost až <strong>1000 Mbps</strong> ideálna pre stabilné pripojenie!</p>
-        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-poda-orange transition-colors">730 431 313</a> a ověřte si dostupnost na vaší adrese nebo objednejte pohodlně na <a href="/kontakt" class="text-white font-bold underline hover:text-poda-orange transition-colors">popri.cz</a></p>
+        <h3 class="text-white mb-4">🚀 Revoluce v rychlosti internetu</h3>
+        <p class="mb-4">PODA přináší do vybraných lokalit Moravskoslezského kraje gigabitové optické připojení přímo do rodinných domů. Rychlost až <strong>1000 Mbps</strong> znamená stahování celého HD filmu za 30 sekund!</p>
+        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-poda-orange transition-colors">730 431 313</a> a ověřte si dostupnost na vaší adrese nebo objednejte pohodlně na <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-poda-orange transition-colors">popri.cz</a></p>
       </div>
 
       <h2>8 Ověřených Způsobů, Jak Problém Vyřešit</h2>
@@ -123,7 +123,7 @@ export const slowInternetFixPost: BlogPost = {
           <li>💰 <strong>Transparentní ceny:</strong> Bez skrytých poplatků</li>
           <li>🚀 <strong>Rychlá instalace:</strong> Během 48 hodin</li>
         </ul>
-        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zavolejte pro ověření dostupnosti | 🌐 <a href="/kontakt" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte online</p>
+        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zavolejte pro ověření dostupnosti | 🌐 <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte online</p>
       </div>
 
       <h2>Speciální Tipy pro Moravskoslezský Kraj</h2>
@@ -132,7 +132,7 @@ export const slowInternetFixPost: BlogPost = {
       <p>V hustě osídlených oblastech jako je Ostrava-Poruba nebo Havířov může docházet k rušení Wi-Fi signálu od sousedních sítí. Zkuste změnit kanál Wi-Fi v nastavení routeru nebo použijte 5 GHz pásmo místo přetíženého 2,4 GHz.</p>
 
       <h3>Pro průmyslové oblasti</h3>
-      <p>V okolí velkých průmyslových podniků může docházet k přetížení sítě během směnných změn. Plánujte náročnější aktivity na hodiny mimo špičku.</p>
+      <p>V okolí velkých průmyslových podniků může docházet k přetížení sítě během směnních změn. Plánujte náročnější aktivity na hodiny mimo špičku.</p>
 
       <h3>Pro rodinné domy - PODA Gigabit Connection</h3>
       <p>Pokud bydlíte v rodinném domě, máte jedinečnou příležitost získat nejrychlejší připojení v regionu. <strong>PODA poskytuje v určitých lokalitách Moravskoslezského kraje internet s rychlostí až 1000 Gb/s přímo do rodinných domů!</strong> Tato technologie GPON zajišťuje nejen extrémní rychlosti, ale i absolutní stabilitu připojení.</p>
@@ -140,7 +140,7 @@ export const slowInternetFixPost: BlogPost = {
       <div class="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-6 rounded-lg my-6">
         <h4 class="text-white mb-3">🏠 Speciální nabídka pro rodinné domy</h4>
         <p class="mb-4">Gigabitové optické připojení PODA nyní dostupné ve vybraných lokalitách!</p>
-        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zjistěte dostupnost | 🌐 <a href="/kontakt" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte ještě dnes</p>
+        <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zjistěte dostupnost | 🌐 <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte ještě dnes</p>
       </div>
 
       <h2>Kdy je Čas na Radikální Řešení</h2>
@@ -172,14 +172,14 @@ export const slowInternetFixPost: BlogPost = {
             <h4 class="font-bold mb-2">📞 Kontakt a objednávka:</h4>
             <ul class="space-y-1">
               <li>• Telefon: <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a></li>
-              <li>• Web: <a href="/kontakt" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a></li>
+              <li>• Web: <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a></li>
               <li>• Dostupnost: vybrané lokality MSK</li>
               <li>• Speciálně pro rodinné domy</li>
             </ul>
           </div>
         </div>
         <div class="text-center">
-          <p class="text-xl font-bold mb-4">📞 <a href="tel:+420730431313" class="text-white underline hover:text-yellow-200 transition-colors">730 431 313</a> | 🌐 <a href="/kontakt" class="text-white underline hover:text-yellow-200 transition-colors">popri.cz</a></p>
+          <p class="text-xl font-bold mb-4">📞 <a href="tel:+420730431313" class="text-white underline hover:text-yellow-200 transition-colors">730 431 313</a> | 🌐 <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white underline hover:text-yellow-200 transition-colors">popri.cz</a></p>
           <a href="/kontakt" class="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors">Objednejte si PODA ještě dnes!</a>
         </div>
       </div>
@@ -198,10 +198,10 @@ export const slowInternetFixPost: BlogPost = {
         </div>
       </div>
 
-      <p class="text-center mt-8 font-medium">Získejte spolehlivé připojení s PODA - <a href="/kontakt" class="text-poda-blue underline hover:text-poda-orange transition-colors">rychlý internet bez kompromisů</a>!</p>
+      <p class="text-center mt-8 font-medium">Získejte spolehlivé připojení s PODA - <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-poda-blue underline hover:text-poda-orange transition-colors">rychlý internet bez kompromisů</a>!</p>
     </div>
   `,
-  date: "28. 6. 2025",
+  date: "2. 7. 2025",
   author: "Milan Terč",
   category: "Tipy",
   image: "/lovable-uploads/f46455cb-ee7c-4a2a-ab48-0c36d1584769.png",

@@ -53,6 +53,7 @@ const PageMetadata = ({
       {/* Enhanced domain migration signals */}
       <meta name="migration-date" content="2025-06-23" />
       <meta name="original-domain" content="pripojeni-poda.cz" />
+      <meta name="preferred-domain" content="www.popri.cz" />
       <meta name="migration-status" content="completed" />
       
       {/* Open Graph tags with canonical URLs */}

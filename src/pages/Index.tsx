@@ -34,8 +34,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="PODA Internet Ostrava 2025 ✅ Recenze + Ceny | Popri.cz"
-        description="Nejlepší PODA internet v Ostravě 2025. Porovnání cen, recenze zákazníků a pokrytí Poruba, Vítkovice. Ušetřete až 600 Kč měsíčně!"
+        title="Popri.cz – Rychlý PODA Internet s TV Zdarma | Gigabitové Připojení"
+        description="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
       />
       

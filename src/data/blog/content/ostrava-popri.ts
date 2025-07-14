@@ -1,13 +1,13 @@
 
 export const popriSection = `
     <div class="bg-gradient-to-br from-poda-blue to-blue-800 text-white p-8 rounded-xl mb-8">
-        <h2 class="text-3xl font-bold mb-6 text-center"><a href="/kontakt" class="text-white hover:text-poda-orange">Popri.cz</a> - Váš průvodce nejlepšími tarify PODA</h2>
+        <h2 class="text-3xl font-bold mb-6 text-center">Popri.cz - Váš průvodce nejlepšími tarify PODA</h2>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-                <h3 class="text-xl font-semibold mb-4 text-blue-200">Proč zvolit <a href="/kontakt" class="text-blue-200 hover:text-poda-orange">Popri.cz</a> pre PODA?</h3>
+                <h3 class="text-xl font-semibold mb-4 text-blue-200">Proč zvolit Popri.cz pro PODA?</h3>
                 <div class="space-y-3 text-blue-100">
-                    <p><a href="/kontakt" class="text-blue-100 hover:text-poda-orange">Popri.cz</a> je oficiální partner společnosti PODA pro Moravskoslezský kraj. Naše služby vám umožní:</p>
+                    <p>Popri.cz je oficiální partner společnosti PODA pro Moravskoslezský kraj. Naše služby vám umožní:</p>
                     <ul class="space-y-2 ml-4">
                         <li>Okamžité porovnání všech dostupných tarifů</li>
                         <li>Ověření pokrytí na konkrétní adrese</li>
@@ -31,7 +31,7 @@ export const popriSection = `
                     </div>
                     <div class="flex items-center">
                         <span class="font-semibold mr-2">Web:</span>
-                        <a href="/kontakt" class="text-poda-orange hover:text-orange-300">Popri.cz</a>
+                        <a href="https://www.popri.cz" target="_blank" rel="noopener noreferrer" class="text-poda-orange hover:text-orange-300">Popri.cz</a>
                     </div>
                 </div>
                 
@@ -61,7 +61,7 @@ export const comparisonTable = `
                 </thead>
                 <tbody>
                     <tr class="bg-blue-50">
-                        <td class="border border-gray-300 px-4 py-3 font-semibold text-poda-blue">PODA (<a href="/kontakt" class="text-poda-blue hover:text-poda-orange">Popri.cz</a>)</td>
+                        <td class="border border-gray-300 px-4 py-3 font-semibold text-poda-blue">PODA (Popri.cz)</td>
                         <td class="border border-gray-300 px-4 py-3 text-center">1000/500 Mb/s</td>
                         <td class="border border-gray-300 px-4 py-3 text-center font-bold text-green-600">od 150 Kč</td>
                         <td class="border border-gray-300 px-4 py-3 text-center">95%</td>
@@ -96,7 +96,7 @@ export const comparisonTable = `
             <p class="text-sm text-gray-700">
                 <strong>Poznámka:</strong> Ceny a dostupnost sa môžu líšiť podľa konkrétnej lokality. 
                 Pre najnovšie informácie kontaktujte <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a> 
-                alebo navštívte <a href="/kontakt" class="text-poda-blue font-medium">Popri.cz</a>.
+                alebo navštívte <a href="https://www.popri.cz" class="text-poda-blue font-medium">Popri.cz</a>.
             </p>
         </div>
     </div>`;

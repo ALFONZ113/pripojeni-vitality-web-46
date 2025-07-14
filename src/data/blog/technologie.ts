@@ -416,7 +416,7 @@ export const technologiePosts: BlogPost[] = [
           <h3>Využite príležitosť pre lepšie služby:</h3>
           <p><strong>Web:</strong> popri.cz<br>
           <strong>Migračný špecialista:</strong> Milan Terč<br>
-          <strong>Tel:</strong> <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange font-medium">730 431 313</a><br>
+          <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
           <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia migrácie a overenie možností pripojenia PODA na vašej adrese.</p>
         </div>
@@ -489,7 +489,7 @@ export const technologiePosts: BlogPost[] = [
           <ol class="space-y-3">
             <li><strong>1. Navštivte web popri.cz</strong><br>
                Prohlédněte si aktuální nabídku služeb PODA s 60 GHz technologií.</li>
-            <li><strong>2. Zavolejte na <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange font-medium">730 431 313</a></strong><br>
+            <li><strong>2. Zavolejte na 730 431 313</strong><br>
                Preferujete osobní kontakt? Ochotný personál popri.cz vám rád poradí a pomůže s výběrem toho nejlepšího řešení pro vaše potřeby.</li>
             <li><strong>3. Profesionální instalace</strong><br>
                Naši technici se postarají o rychlou a bezproblémovou instalaci přímo u vás doma.</li>
@@ -546,7 +546,7 @@ export const technologiePosts: BlogPost[] = [
           <h3>Kontaktní informace:</h3>
           <ul class="space-y-2">
             <li><strong>Web:</strong> popri.cz</li>
-            <li><strong>Telefon:</strong> <a href="tel:+420730431313" class="text-poda-blue hover:text-poda-orange font-medium">730 431 313</a></li>
+            <li><strong>Telefon:</strong> 730 431 313</li>
             <li><strong>E-mail:</strong> info@popri.cz</li>
             <li><strong>Konzultace:</strong> Bezplatná konzultace a návrh řešení</li>
           </ul>

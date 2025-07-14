@@ -36,6 +36,13 @@ const PageMetadata = ({
       <meta name="description" content={description} />
       <link rel="canonical" href={migrationSafeCanonicalUrl} />
       
+      {/* Enhanced Google re-indexing signals */}
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      <meta name="last-modified" content={currentDate} />
+      <meta name="content-updated" content={`${currentDate}T12:00:00Z`} />
+      
       {/* Force preferred domain for all pages */}
       <meta name="preferred-domain" content="www.popri.cz" />
       <meta name="canonical-domain" content="www.popri.cz" />
@@ -46,7 +53,6 @@ const PageMetadata = ({
       <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
       {seznamVerification && <meta name="seznam-wmt" content={seznamVerification} />}
       <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
-      <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
       <meta name="revisit-after" content="7 days" />
       
@@ -55,14 +61,16 @@ const PageMetadata = ({
       <meta name="original-domain" content="pripojeni-poda.cz" />
       <meta name="preferred-domain" content="www.popri.cz" />
       <meta name="migration-status" content="completed" />
+      <meta name="meta-update" content={currentDate} />
       
-      {/* Open Graph tags with canonical URLs */}
+      {/* Open Graph tags with canonical URLs and updated timestamp */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={migrationSafeCanonicalUrl} />
       <meta property="og:site_name" content="Popri.cz" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://www.popri.cz/og-image.png" />
+      <meta property="og:updated_time" content={`${currentDate}T12:00:00Z`} />
       
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -76,21 +84,22 @@ const PageMetadata = ({
         <link key={index} rel="alternate" href={tag.href} hrefLang={tag.hreflang} />
       ))}
       
-      {/* Remove cache control to prevent caching issues */}
+      {/* Updated cache control */}
       <meta name="version" content={faviconVersion} />
+      <meta name="cache-version" content="1747302000000" />
       
-      {/* Favicon links */}
-      <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}`} type="image/x-icon" />
-      <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}`} sizes="16x16" type="image/png" />
-      <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}`} sizes="32x32" type="image/png" />
-      <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}`} />
-      <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}`} />
+      {/* Favicon links with updated cache version */}
+      <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}&t=1747302000`} type="image/x-icon" />
+      <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}&t=1747302000`} sizes="16x16" type="image/png" />
+      <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}&t=1747302000`} sizes="32x32" type="image/png" />
+      <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}&t=1747302000`} />
+      <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}&t=1747302000`} />
 
       {/* Font preloading */}
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
-      {/* Enhanced structured data with migration signals */}
+      {/* Enhanced structured data with migration signals and updated timestamp */}
       <script type="application/ld+json">
         {`
           {
@@ -98,6 +107,8 @@ const PageMetadata = ({
             "@type": "WebSite",
             "name": "Popri.cz – PODA Internet",
             "url": "${migrationSafeCanonicalUrl}",
+            "description": "${description}",
+            "dateModified": "${currentDate}T12:00:00Z",
             "potentialAction": {
               "@type": "SearchAction",
               "target": "https://www.popri.cz/search?q={search_term_string}",
@@ -114,6 +125,7 @@ const PageMetadata = ({
             "name": "Popri.cz - PODA Internet",
             "url": "https://www.popri.cz",
             "logo": "https://www.popri.cz/poda-logo.svg",
+            "description": "${description}",
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "+420-739-065-142",
@@ -121,7 +133,8 @@ const PageMetadata = ({
               "areaServed": "CZ",
               "availableLanguage": "Czech"
             },
-            "sameAs": []
+            "sameAs": [],
+            "dateModified": "${currentDate}T12:00:00Z"
           }
         `}
       </script>

@@ -1,5 +1,5 @@
 
-# Netlify redirects - FIXED FOR PROPER DOMAIN MIGRATION
+# Netlify redirects - FIXED FOR PROPER SPA ROUTING
 
 # CRITICAL: Old domain redirects with proper 301 status
 http://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
@@ -33,12 +33,35 @@ http://www.popri.cz/* https://www.popri.cz/:splat 301!
 /*.png /placeholder.svg 302
 /*.webp /placeholder.svg 302
 
-# Blog URL handling
-/blog/:id /blog/:id 200
-/blog?* /blog 200
+# SPA ROUTING RULES - FIXED FOR CLIENT-SIDE ROUTING
+
+# Blog routes - all blog paths go to SPA
+/blog/* /index.html 200
+
+# Internet city pages
+/internet-ostrava /index.html 200
+/internet-karvina /index.html 200
+/internet-bohumin /index.html 200
+/internet-havirov /index.html 200
+/internet-poruba /index.html 200
+
+# Other SPA routes
+/kontakt /index.html 200
+/tarify /index.html 200
+/programy /index.html 200
+/iptv /index.html 200
+/internet-tv /index.html 200
+/tv-programy /index.html 200
+/obchodni-podminky /index.html 200
+/ochrana-soukromi /index.html 200
+/cookies /index.html 200
+/sitemap /index.html 200
+/migration-center /index.html 200
+/migration-monitor /index.html 200
+/indexing-dashboard /index.html 200
 
 # 404 handling
 /404 /index.html 404
 
-# SPA fallback - lowest priority
+# SPA fallback - lowest priority (catch all other routes)
 /* /index.html 200

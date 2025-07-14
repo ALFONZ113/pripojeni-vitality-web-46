@@ -7,10 +7,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
-// Direct import for main page - no lazy loading
-import Home from './pages/Index';
 
-// Lazy load other components for better performance
+// Lazy load components for better performance
+const Home = lazy(() => import('./pages/Index'));
 const InternetTV = lazy(() => import('./pages/InternetTV'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
@@ -50,8 +49,8 @@ function App() {
             <Navbar />
             <main className="flex-grow">
               <Suspense fallback={
-                <div className="flex items-center justify-center py-8">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-poda-blue"></div>
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-poda-blue"></div>
                 </div>
               }>
                 <Routes>

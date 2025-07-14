@@ -19,6 +19,7 @@ const CRITICAL_IMAGES = [
 
 const Index = () => {
   const { 
+    isLoading, 
     error
   } = usePageInitialization({ 
     criticalImages: CRITICAL_IMAGES,
@@ -50,15 +51,15 @@ const Index = () => {
       {/* NoScript content for AI bots and users without JS */}
       <NoScriptContent />
       
-      {/* Main content - zobrazí sa okamžite bez loading state */}
-      <div className="opacity-100">
+      {/* Main content - always full opacity */}
+      <div className={`transition-opacity duration-300 opacity-100`}>
         <MainContent />
         <LocalSEOSection />
         <IPTVSection />
       </div>
 
-      {/* Popup sa zobrazí okamžite */}
-      <PromotionPopup />
+      {/* Popup will show once isLoading is false (which should be very quick) */}
+      {!isLoading && <PromotionPopup />}
 
       <Toaster />
     </div>

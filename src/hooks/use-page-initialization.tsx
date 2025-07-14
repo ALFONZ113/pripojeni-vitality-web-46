@@ -13,7 +13,7 @@ const usePageInitialization = ({
   criticalImages, 
   enablePerformanceMonitoring = false
 }: UsePageInitializationProps) => {
-  // Odstránený loading state - obsah sa zobrazí okamžite
+  // Stav isLoading bol odstránený, aby sa predišlo preblikávaniu obsahu.
   const [error, setError] = useState<string | null>(null);
 
   const performanceMetrics = usePerformanceMonitor({
@@ -26,7 +26,7 @@ const usePageInitialization = ({
     
     const initializeApp = async () => {
       try {
-        // Okamžitá inicializácia bez čakania
+        // Inicializácia animácií a ďalšie úlohy na pozadí
         cleanupAnimation = initAnimations();
         
       } catch (e) {
@@ -35,7 +35,6 @@ const usePageInitialization = ({
       }
     };
 
-    // Spustiť okamžite bez setTimeout
     initializeApp();
 
     return () => {
@@ -44,7 +43,7 @@ const usePageInitialization = ({
   }, [criticalImages]);
 
   return { 
-    isLoading: false, // Vždy false - žiadny loading state
+    isLoading: false, // Vždy vrátime false, obsah sa zobrazí okamžite
     error, 
     performanceMetrics
   };

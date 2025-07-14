@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
   <head>
@@ -63,32 +64,6 @@
     <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png?v=3.0">
     <link rel="manifest" href="/site.webmanifest?v=3.0">
     
-    <!-- Critical CSS Inline -->
-    <style>
-      /* Critical Above-the-fold CSS */
-      *,*::before,*::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
-      html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
-      body{margin:0;line-height:inherit}
-      h1,h2,h3{font-size:inherit;font-weight:inherit}
-      
-      /* Basic Layout */
-      .container{max-width:1200px;margin:0 auto;padding:0 1rem}
-      .section{padding:3rem 0}
-      .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-      
-      /* React app content - show immediately */
-      #root{opacity:1;transition:none}
-      
-      /* Bot-only static content - hidden by default */
-      #bot-static-content{display:none}
-    </style>
-    
-    <!-- Preconnect to critical resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://api.mapy.cz">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    
     <!-- Enhanced font preloading with CORS support -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,7 +76,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" crossorigin="anonymous">
     </noscript>
     
-    <!-- Defer non-critical CSS -->
+    <!-- Preload critical CSS and images -->
     <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="console.warn('Failed to load CSS')">
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
@@ -116,175 +91,18 @@
     <script src="/js/mapy-loader.js"></script>
     
     <!-- Schema.org markup using JSON-LD -->
-    <script src="/json/schema-organization.json"></script>
-    <script src="/json/schema-service.json"></script>
+    <script type="application/ld+json" src="/json/schema-organization.json"></script>
+    <script type="application/ld+json" src="/json/schema-service.json"></script>
     
-    <!-- Enhanced Schema.org markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "PODA Internet Ostrava - Popri.cz",
-      "description": "Poskytovatel nejrychlejšího optického internetu v Ostravě, Karviné, Havířově a Bohumíně s TV zdarma",
-      "url": "https://www.popri.cz",
-      "telephone": "+420730431313",
-      "email": "terc@obchod.poda.cz",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Porubská 944/5",
-        "addressLocality": "Ostrava-Poruba",
-        "postalCode": "708 00",
-        "addressCountry": "CZ"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "49.6232",
-        "longitude": "18.2923"
-      },
-      "areaServed": [
-        {"@type": "City", "name": "Ostrava"},
-        {"@type": "City", "name": "Karviná"},
-        {"@type": "City", "name": "Havířov"},
-        {"@type": "City", "name": "Bohumín"}
-      ],
-      "serviceType": ["Gigabitový internet", "Optické připojení", "GPON", "TV služby", "IPTV"],
-      "priceRange": "250-520 CZK",
-      "openingHours": "Mo-Fr 08:00-18:00",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "PODA Internet Tarify",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "name": "Internet 300 Mbps",
-            "price": "340",
-            "priceCurrency": "CZK",
-            "description": "300/300 Mbps GPON s TV zdarma"
-          },
-          {
-            "@type": "Offer",
-            "name": "Internet 1000 Mbps",
-            "price": "250",
-            "priceCurrency": "CZK",
-            "description": "1000/1000 Mbps GPON s premium TV"
-          }
-        ]
-      }
-    }
-    </script>
-    
-    <!-- Lovable script tag - defer -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" defer></script>
+    <!-- Lovable script tag -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     
     <!-- Analytics (deferred) -->
     <script src="/js/analytics.js"></script>
   </head>
 
   <body>
-    <!-- React app root - visible immediately for humans -->
     <div id="root"></div>
-    
-    <!-- Bot-only static content - only shown to detected bots -->
-    <div id="bot-static-content">
-      <nav style="background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 50;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; justify-content: space-between; height: 4rem;">
-          <img src="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" alt="PODA Logo" style="height: 2.5rem;">
-          <div>
-            <a href="tel:+420730431313" style="color: #ea580c; font-weight: 600;">📞 730 431 313</a>
-          </div>
-        </div>
-      </nav>
-
-      <div style="background: linear-gradient(135deg, #1e40af, #1e3a8a); color: #fff; padding: 3rem 1rem; text-align: center; min-height: 60vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2;">PODA Internet Ostrava 2025</h1>
-        <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">Nejlepší gigabitové připojení s TV zdarma</p>
-        <a href="tel:+420730431313" style="background: #ea580c; color: #fff; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; display: inline-block; margin: 0.5rem;">📞 Objednat - 730 431 313</a>
-        <a href="#tarify" style="background: #ea580c; color: #fff; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; display: inline-block; margin: 0.5rem;">📋 Zobrazit tarify</a>
-      </div>
-
-      <main class="container">
-        <section id="tarify" class="section">
-          <h2 style="text-align: center; font-size: 2rem; color: #1e40af; margin-bottom: 2rem;">PODA Internet Tarify</h2>
-          <div class="grid">
-            <div style="border: 2px solid #e5e7eb; padding: 1.5rem; border-radius: 0.5rem; text-align: center;">
-              <h3 style="color: #1e40af; font-size: 1.25rem;">Internet 300 Mbps</h3>
-              <div style="font-size: 2rem; font-weight: bold; color: #ea580c; margin: 1rem 0;">340 Kč/měs</div>
-              <ul style="list-style: none; padding: 0;">
-                <li>✓ 300/300 Mbps GPON</li>
-                <li>✓ TV zdarma (85+ kanálů)</li>
-                <li>✓ Bezplatná instalace</li>
-              </ul>
-            </div>
-            
-            <div style="border: 2px solid #ea580c; padding: 1.5rem; border-radius: 0.5rem; text-align: center; background: #fef7f0;">
-              <h3 style="color: #1e40af; font-size: 1.25rem;">Internet 1000 Mbps</h3>
-              <div style="font-size: 2rem; font-weight: bold; color: #ea580c; margin: 1rem 0;">250 Kč/měs</div>
-              <div style="font-size: 0.875rem; color: #6b7280;">První rok, pak 440 Kč/měs</div>
-              <ul style="list-style: none; padding: 0;">
-                <li>✓ 1000/1000 Mbps GPON</li>
-                <li>✓ Premium TV (100+ kanálů)</li>
-                <li>✓ Wi-Fi 6 router</li>
-              </ul>
-            </div>
-            
-            <div style="border: 2px solid #e5e7eb; padding: 1.5rem; border-radius: 0.5rem; text-align: center;">
-              <h3 style="color: #1e40af; font-size: 1.25rem;">Internet 2000 Mbps</h3>
-              <div style="font-size: 2rem; font-weight: bold; color: #ea580c; margin: 1rem 0;">520 Kč/měs</div>
-              <ul style="list-style: none; padding: 0;">
-                <li>✓ 2000/2000 Mbps</li>
-                <li>✓ Enterprise TV</li>
-                <li>✓ Prioritní podpora</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2 style="text-align: center; font-size: 2rem; color: #1e40af; margin-bottom: 2rem;">Pokrytí PODA</h2>
-          <div class="grid">
-            <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 0.5rem;">
-              <h3 style="color: #1e40af;">Ostrava</h3>
-              <p>✓ Poruba, Vítkovice, Centrum</p>
-            </div>
-            <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 0.5rem;">
-              <h3 style="color: #1e40af;">Karviná</h3>
-              <p>✓ Ráj, Hranice, Nové Město</p>
-            </div>
-            <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 0.5rem;">
-              <h3 style="color: #1e40af;">Havířov</h3>
-              <p>✓ Šumbark, Město, Podlesí</p>
-            </div>
-            <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 0.5rem;">
-              <h3 style="color: #1e40af;">Bohumín</h3>
-              <p>✓ Centrum, Starý/Nový Bohumín</p>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer style="background: #1f2937; color: white; padding: 2rem; text-align: center;">
-        <p><strong>Kontakt:</strong> +420 730 431 313 | terc@obchod.poda.cz</p>
-        <p>© 2025 Popri.cz - Autorizovaný prodejce PODA internetu</p>
-      </footer>
-    </div>
-    
-    <script>
-      // Enhanced bot detection - show static content only for bots
-      const userAgent = navigator.userAgent.toLowerCase();
-      const botPatterns = ['bot', 'crawler', 'spider', 'googlebot', 'bingbot', 'facebookexternalhit'];
-      const isBot = botPatterns.some(pattern => userAgent.includes(pattern));
-      
-      if (isBot) {
-        // For bots - show static content immediately
-        document.getElementById('bot-static-content').style.display = 'block';
-        document.getElementById('root').style.display = 'none';
-        console.log('Bot detected, serving static content');
-      } else {
-        // For humans - React app loads immediately, no delays
-        document.getElementById('bot-static-content').style.display = 'none';
-      }
-    </script>
-    
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Service worker registration with updated version -->

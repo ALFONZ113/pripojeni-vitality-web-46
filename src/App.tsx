@@ -8,8 +8,10 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
 
-// Lazy load components for better performance
-const Home = lazy(() => import('./pages/Index'));
+// Import hlavnej stránky priamo (bez lazy loading)
+import Home from './pages/Index';
+
+// Lazy load ostatných komponentov
 const InternetTV = lazy(() => import('./pages/InternetTV'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
@@ -49,12 +51,15 @@ function App() {
             <Navbar />
             <main className="flex-grow">
               <Suspense fallback={
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-poda-blue"></div>
+                <div className="flex items-center justify-center py-8">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-poda-blue"></div>
                 </div>
               }>
                 <Routes>
+                  {/* Hlavná stránka sa načíta okamžite */}
                   <Route path="/" element={<Home />} />
+                  
+                  {/* Ostatné stránky s lazy loading */}
                   <Route path="/internet-tv" element={<InternetTV />} />
                   <Route path="/iptv" element={<IPTV />} />
                   <Route path="/kontakt" element={<Contact />} />

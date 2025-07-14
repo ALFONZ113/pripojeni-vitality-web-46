@@ -190,11 +190,31 @@
     
     <!-- Analytics (deferred) -->
     <script src="/js/analytics.js"></script>
+
+    <!-- Enhanced bot detection with better mobile support -->
+    <script>
+      // Immediate bot detection before any content rendering
+      (function() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isBot = /bot|crawler|spider|scraper|googlebot|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|whatsapp|claude|gpt|gemini/.test(userAgent);
+        
+        // Store bot detection result
+        window.isBotDetected = isBot;
+        
+        if (isBot) {
+          console.log('Bot detected, will serve static content');
+          document.documentElement.setAttribute('data-bot', 'true');
+        } else {
+          console.log('Human user detected, will serve React app');
+          document.documentElement.setAttribute('data-bot', 'false');
+        }
+      })();
+    </script>
   </head>
 
   <body>
-    <!-- Static fallback content visible immediately -->
-    <div id="static-fallback">
+    <!-- Static fallback content - ONLY for bots -->
+    <div id="static-fallback" style="display: none;">
       <nav class="navbar">
         <div class="nav-container">
           <img src="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" alt="PODA Logo" class="nav-logo">
@@ -277,36 +297,30 @@
       </footer>
     </div>
 
-    <!-- React app root - will be populated by JS -->
-    <div id="root" class="js-content"></div>
+    <!-- React app root - PRIMARY content for humans -->
+    <div id="root"></div>
     
     <script>
-      // Show static content immediately, hide when React loads
+      // Enhanced loading logic with immediate React app display
       document.addEventListener('DOMContentLoaded', function() {
         const staticFallback = document.getElementById('static-fallback');
         const reactRoot = document.getElementById('root');
         
-        // Enhanced bot detection
-        const userAgent = navigator.userAgent.toLowerCase();
-        const botPatterns = ['bot', 'crawler', 'spider', 'googlebot', 'bingbot'];
-        const isBot = botPatterns.some(pattern => userAgent.includes(pattern));
-        
-        if (!isBot) {
-          // For human users - load React app
-          setTimeout(() => {
-            if (reactRoot && reactRoot.children.length > 0) {
-              staticFallback.style.display = 'none';
-              reactRoot.classList.remove('js-content');
-              reactRoot.style.display = 'block';
-            }
-          }, 100);
+        // Only show static content to confirmed bots
+        if (window.isBotDetected) {
+          staticFallback.style.display = 'block';
+          reactRoot.style.display = 'none';
+          console.log('Serving static content to bot');
         } else {
-          // For bots - keep static content
-          console.log('Bot detected, serving static content');
+          // For humans - hide static, show React immediately
+          staticFallback.style.display = 'none';
+          reactRoot.style.display = 'block';
+          console.log('Serving React app to human user');
         }
       });
     </script>
     
+    <!-- Load React app immediately -->
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Service worker registration with updated version -->

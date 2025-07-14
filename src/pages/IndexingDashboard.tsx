@@ -1,7 +1,7 @@
 
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
-import BreadcrumbWrapper from '../components/common/BreadcrumbWrapper';
+import Breadcrumb from '../components/common/Breadcrumb';
 import SEOAudit from '../components/migration/SEOAudit';
 import { blogPosts } from '../data/blog';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -26,7 +26,7 @@ const IndexingDashboard = () => {
       />
       
       <div className="container-custom section-padding">
-        <BreadcrumbWrapper 
+        <Breadcrumb 
           items={[
             { title: 'Úvod', href: '/' },
             { title: 'Indexing Dashboard' }

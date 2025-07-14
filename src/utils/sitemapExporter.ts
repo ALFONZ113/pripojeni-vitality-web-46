@@ -1,10 +1,5 @@
 
-/**
- * Sitemap export utilities - updated to use refactored structure
- */
-
-import { generateSitemap } from './sitemapGenerator';
-import { validateSitemapXML } from './sitemap/xmlUtils';
+import { generateSitemap, validateSitemapXML } from './sitemapGenerator';
 
 /**
  * Export clean XML sitemap as downloadable file
@@ -31,6 +26,7 @@ export const downloadSitemap = (baseUrl: string = 'https://www.popri.cz') => {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+  
   
   return true;
 };
@@ -64,6 +60,7 @@ export const logSitemapToConsole = (baseUrl: string = 'https://www.popri.cz') =>
   
   // Validate before logging
   const isValid = validateSitemapXML(sitemapContent);
+  
   
   if (!isValid) {
     console.warn('⚠️ WARNING: Sitemap contains errors. Check content before use.');

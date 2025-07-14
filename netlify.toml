@@ -5,44 +5,6 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Edge Functions Configuration
-[[edge_functions]]
-  function = "bot-detector"
-  path = "/*"
-
-# Enhanced prerender rules for ALL bots and search engines
-[[redirects]]
-  from = "/"
-  to = "/prerender/index.html"
-  status = 200
-  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*", "*Mobile*", "*Smartphone*"] }
-
-[[redirects]]
-  from = "/blog"
-  to = "/prerender/blog.html" 
-  status = 200
-  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
-
-# Prerender geo pages for bots
-[[redirects]]
-  from = "/internet-ostrava"
-  to = "/prerender/internet-ostrava.html"
-  status = 200
-  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
-
-[[redirects]]
-  from = "/internet-karvina"
-  to = "/prerender/internet-karvina.html"
-  status = 200
-  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
-
-[[redirects]]
-  from = "/internet-havirov"
-  to = "/prerender/internet-havirov.html"
-  status = 200
-  conditions = { User-Agent = ["*bot*", "*crawler*", "*spider*", "*scraper*", "*Gemini*", "*GPT*", "*Claude*", "*ChatGPT*", "*anthropic*", "*OpenAI*", "*Google*", "*Bing*", "*Yahoo*", "*Baidu*", "*DuckDuckGo*", "*Yandex*", "*Seznam*", "*Facebook*", "*Twitter*", "*LinkedIn*", "*WhatsApp*", "*Telegram*", "*Slack*", "*Discord*", "*CCBot*", "*GPTBot*", "*Google-Extended*", "*gemini-pro*", "*palm*", "*bard*", "*llama*", "*meta-ai*", "*perplexity*", "*you.com*", "*phind*", "*cohere*", "*AI*", "*artificial*", "*intelligence*", "*machine*", "*learning*", "*neural*", "*deep*", "*language*", "*model*", "*assistant*", "*chat*", "*conversational*", "*gpt*", "*bert*", "*transformer*", "*llm*", "*nlp*", "*ml*", "*dl*", "*python-requests*", "*curl*", "*wget*", "*http*", "*api*", "*scraper*", "*parser*", "*extractor*", "*indexer*"] }
-
-# Static file serving
 [[redirects]]
   from = "/sitemap.xml"
   to = "/sitemap.xml"
@@ -53,7 +15,6 @@
   to = "/index.html"
   status = 200
 
-# Enhanced headers for AI bots
 [[headers]]
   for = "/*"
   [headers.values]
@@ -61,16 +22,6 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    X-AI-Friendly = "true"
-    X-Content-Summary = "PODA internet provider with fiber optic services in Ostrava region"
-
-[[headers]]
-  for = "/prerender/*"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-    Content-Type = "text/html; charset=UTF-8"
-    X-Robots-Tag = "index, follow"
-    X-AI-Content = "prerendered"
 
 [[headers]]
   for = "/assets/*"
@@ -107,23 +58,3 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type = "application/xml"
-
-# New headers for static content optimization
-[[headers]]
-  for = "/prerender/*"
-  [headers.values]
-    Cache-Control = "public, max-age=3600, s-maxage=7200"
-    Content-Type = "text/html; charset=UTF-8"
-    X-Robots-Tag = "index, follow"
-    X-AI-Content = "prerendered"
-    X-Content-Complete = "true"
-
-[[headers]]
-  for = "/"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    X-AI-Friendly = "true"
-    X-Content-Summary = "PODA internet provider with fiber optic services in Ostrava region"
-    Link = "</src/index.css>; rel=preload; as=style"

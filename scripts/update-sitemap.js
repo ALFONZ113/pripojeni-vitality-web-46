@@ -1,4 +1,3 @@
-
 import { generateSitemap, validateSitemapXML, getSitemapStats } from '../src/utils/sitemapGenerator.js';
 import { writeFileSync } from 'fs';
 import { join } from 'path';

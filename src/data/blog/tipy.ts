@@ -212,8 +212,8 @@ export const tipyPosts: BlogPost[] = [
     date: "5. 5. 2024",
     author: "Michal Dvořák",
     category: "Tipy",
-    image: "/lovable-uploads/c6595b21-b123-40f5-9ec0-6986badb9d6d.png",
-    alt: "Štít symbolizující kybernetickou bezpečnost",
+    image: "/lovable-uploads/f86fd39a-dbf4-4b01-a94b-09904dbce094.png",
+    alt: "Moderní domácnost s lidmi používajícími různá zařízení - laptopy, tablety, telefony - ilustrující potřebu kybernetické bezpečnosti",
     tags: ["Bezpečnost", "Kyberútoky", "Phishing", "Ochrana"]
   }
 ];

@@ -7,8 +7,8 @@ import IndexingHelper from '../seo/IndexingHelper';
 
 const MainContent = () => {
   // Show indexing helper only in development or for admins
-  const showIndexingHelper = process.env.NODE_ENV === 'development' || 
-    window.location.search.includes('admin=true');
+  const showIndexingHelper = typeof window !== 'undefined' && 
+    (import.meta.env.DEV || window.location.search.includes('admin=true'));
 
   return (
     <>

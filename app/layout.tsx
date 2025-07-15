@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next'
 import '../src/index.css'
 import { Toaster } from '@/components/ui/toaster'

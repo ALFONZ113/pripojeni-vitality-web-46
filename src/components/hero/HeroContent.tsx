@@ -10,6 +10,17 @@ interface HeroContentProps {
 }
 
 const HeroContent = ({ handleContactClick }: HeroContentProps) => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
+  
   const item = {
     hidden: {
       opacity: 0,
@@ -38,6 +49,7 @@ const HeroContent = ({ handleContactClick }: HeroContentProps) => {
         S Popri.cz vám zajistíme rychle <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užijte si stabilní internet a TV bez výpadků.
       </motion.p>
       
+      {/* Callback Form - Adjusted for better mobile visibility */}
       <motion.div variants={item} className="mb-6">
         <CallbackForm />
       </motion.div>

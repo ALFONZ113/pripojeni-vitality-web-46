@@ -7,11 +7,11 @@ import BlogCategories from '../../src/components/blog/BlogCategories';
 import BlogList from '../../src/components/blog/BlogList';
 import { initAnimations } from '../../src/utils/animation';
 import { preloadCriticalResources } from '../../src/utils/performance-optimization';
-import type { BlogPost, Category } from '../../src/data/blog/types';
+import type { BlogPost, BlogCategory } from '../../src/data/blog/types';
 
 interface BlogContentProps {
   blogPosts: BlogPost[];
-  categories: Category[];
+  categories: BlogCategory[];
   allTags: string[];
   locations: string[];
 }

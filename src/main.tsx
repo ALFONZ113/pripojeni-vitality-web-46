@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './index.css'
-import { Toaster } from '@/components/ui/toaster'
+import { Toaster } from './components/Toaster'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 

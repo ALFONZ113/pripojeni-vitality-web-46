@@ -5,7 +5,6 @@ import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
 import PromotionPopup from '../components/PromotionPopup';
 import usePageInitialization from '../hooks/use-page-initialization';
-import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
 
@@ -46,8 +45,6 @@ const Index = () => {
 
       {/* Popup will show once isLoading is false (which should be very quick) */}
       {!isLoading && <PromotionPopup />}
-
-      <Toaster />
     </div>
   );
 };

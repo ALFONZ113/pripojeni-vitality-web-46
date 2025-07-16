@@ -6,7 +6,6 @@ import { popriSection, comparisonTable } from './content/ostrava-popri';
 import { ostravaTariffs, generateTariffTable } from './content/ostrava-tariffs';
 import { 
   technicalSection, 
-  seoSection, 
   orderingSection, 
   supportSection, 
   reviewsSection, 
@@ -35,8 +34,6 @@ export const ostravaPost: BlogPost = {
     ${comparisonTable}
 
     ${technicalSection}
-
-    ${seoSection}
 
     ${orderingSection}
 

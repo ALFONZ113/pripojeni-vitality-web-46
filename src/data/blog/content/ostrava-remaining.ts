@@ -28,38 +28,7 @@ export const technicalSection = `
         </ul>
     </div>`;
 
-export const seoSection = `
-    <h2 class="text-2xl font-bold text-poda-blue mt-8 mb-4">SEO optimalizácia pre vyhľadávanie v regióne</h2>
-    
-    <h3 class="text-xl font-semibold text-gray-800 mb-3">Najčastejšie vyhľadávané frázy v Moravskoslezskom kraji</h3>
-    <p class="text-gray-700 mb-4">Analýza vyhľadávania internetových služieb v regióne:</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div class="bg-gray-50 p-4 rounded-lg">
-            <ul class="text-gray-700 space-y-1">
-                <li>"rýchly internet Ostrava": 2400 vyhľadávaní/mesiac</li>
-                <li>"optický internet Karviná": 890 vyhľadávaní/mesiac</li>
-                <li>"lacný internet Havířov": 650 vyhľadávaní/mesiac</li>
-                <li>"internet pre firmy Bohumín": 320 vyhľadávaní/mesiac</li>
-            </ul>
-        </div>
-        <div class="bg-blue-50 p-4 rounded-lg">
-            <ul class="text-gray-700 space-y-1">
-                <li>"GPON pripojenie Orlová": 180 vyhľadávaní/mesiac</li>
-                <li>"PODA internet Ostrava": 450 vyhľadávaní/mesiac</li>
-                <li>"Popri.cz recenzie": 280 vyhľadávaní/mesiac</li>
-            </ul>
-        </div>
-    </div>
-
-    <h3 class="text-xl font-semibold text-gray-800 mb-3">Lokálne SEO stratégia Popri.cz</h3>
-    <p class="text-gray-700 mb-4">Popri.cz využíva pokročilé lokálne SEO techniky pre Moravskoslezský kraj:</p>
-    <ul class="text-gray-700 space-y-1 mb-6">
-        <li>Google My Business profily pre každé mesto</li>
-        <li>Lokálne citácie v regionálnych katalógoch</li>
-        <li>Obsahový marketing zameraný na región</li>
-        <li>Partnerstvo s miestnymi webmi a médiami</li>
-        <li>Regionálne kľúčové slová v URL štruktúrach</li>
-    </ul>`;
+// SEO section removed as requested
 
 export const orderingSection = `
     <h2 class="text-2xl font-bold text-poda-blue mt-8 mb-4">Praktický průvodce objednáním podle měst</h2>

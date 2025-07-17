@@ -13,12 +13,12 @@ const PromoAkcia = () => {
           content="Objednejte si PODA internet s TV a získejte první měsíc ZDARMA! Rychlé připojení až 1000 Mb/s, TV zdarma a non-stop podpora. Limitovaná nabídka." 
         />
         <meta name="keywords" content="poda internet zdarma, první měsíc zdarma, akce internet, promo nabídka ostrava" />
-        <link rel="canonical" href="https://popri.cz/promo-akcia" />
+        <link rel="canonical" href="https://popri.cz/promo-akce" />
         
         {/* Open Graph */}
         <meta property="og:title" content="První měsíc ZDARMA - Speciální nabídka PODA internet" />
         <meta property="og:description" content="Objednejte si PODA internet s TV a získejte první měsíc ZDARMA! Rychlé připojení až 1000 Mb/s." />
-        <meta property="og:url" content="https://popri.cz/promo-akcia" />
+        <meta property="og:url" content="https://popri.cz/promo-akce" />
         <meta property="og:type" content="website" />
         
         {/* JSON-LD Schema */}
@@ -63,6 +63,26 @@ const PromoAkcia = () => {
           </div>
         </div>
 
+        {/* Main CTA Section - moved here for mobile-first */}
+        <div className="max-w-2xl mx-auto mb-12">
+          <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-poda-orange/20">
+            <div className="text-center mb-6">
+              <Clock className="h-8 w-8 text-poda-orange mx-auto mb-3" />
+              <h2 className="text-2xl font-bold text-poda-blue mb-2">
+                Nezmeškejte tuto příležitost!
+              </h2>
+              <p className="text-gray-600">
+                Zadejte své telefonní číslo a náš specialista Vás bude kontaktovat s nejlepší nabídkou
+              </p>
+            </div>
+            
+            <PromoForm 
+              buttonText="Chci první měsíc zdarma"
+              successMessage="Děkujeme! Brzy Vás budeme kontaktovat s nabídkou prvního měsíce zdarma."
+            />
+          </div>
+        </div>
+
         {/* Features Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-blue">
@@ -90,25 +110,6 @@ const PromoAkcia = () => {
           </div>
         </div>
 
-        {/* Main CTA Section */}
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-poda-orange/20">
-            <div className="text-center mb-6">
-              <Clock className="h-8 w-8 text-poda-orange mx-auto mb-3" />
-              <h2 className="text-2xl font-bold text-poda-blue mb-2">
-                Nezmeškejte tuto příležitost!
-              </h2>
-              <p className="text-gray-600">
-                Zadejte své telefonní číslo a náš specialista Vás bude kontaktovat s nejlepší nabídkou
-              </p>
-            </div>
-            
-            <PromoForm 
-              buttonText="Chci první měsíc zdarma"
-              successMessage="Děkujeme! Brzy Vás budeme kontaktovat s nabídkou prvního měsíce zdarma."
-            />
-          </div>
-        </div>
 
         {/* Additional Benefits */}
         <div className="mt-12 grid md:grid-cols-2 gap-6">

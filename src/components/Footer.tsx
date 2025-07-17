@@ -56,6 +56,11 @@ const Footer = () => {
                   Blog a novinky
                 </Link>
               </li>
+              <li>
+                <Link to="/promo-akce" className="text-blue-100 hover:text-poda-orange transition-colors">
+                  Promo akce - První měsíc ZDARMA
+                </Link>
+              </li>
             </ul>
           </nav>
 

@@ -63,7 +63,7 @@ function App() {
                   <Route path="/programy" element={<Programy />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
-                  <Route path="/promo-akcia" element={<PromoAkcia />} />
+                  <Route path="/promo-akce" element={<PromoAkcia />} />
                   
                   {/* Geographic pages */}
                   <Route path="/internet-ostrava" element={<InternetOstrava />} />

@@ -22,6 +22,7 @@ const InternetPoruba = lazy(() => import('./pages/InternetPoruba'));
 const Tarify = lazy(() => import('./pages/Tarify'));
 const Programy = lazy(() => import('./pages/TvPrograms'));
 const IPTV = lazy(() => import('./pages/IPTV'));
+const PromoAkcia = lazy(() => import('./pages/PromoAkcia'));
 const PrivacyPolicy = lazy(() => import('./pages/OchranaSoukromi'));
 const TermsOfService = lazy(() => import('./pages/ObchodniPodminky'));
 const CookiePolicy = lazy(() => import('./pages/Cookies'));
@@ -62,6 +63,7 @@ function App() {
                   <Route path="/programy" element={<Programy />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
+                  <Route path="/promo-akcia" element={<PromoAkcia />} />
                   
                   {/* Geographic pages */}
                   <Route path="/internet-ostrava" element={<InternetOstrava />} />

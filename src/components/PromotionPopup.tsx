@@ -14,9 +14,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
-const POPUP_STORAGE_KEY = 'poda_promotion_popup_shown';
-const POPUP_EXPIRY_HOURS = 24; // Don't show again for 24 hours
+const POPUP_DELAY_MS = 15000; // 15 seconds delay before showing popup
+const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
+const SESSION_STORAGE = true; // Use sessionStorage instead of localStorage
 
 const PromotionPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,32 +25,27 @@ const PromotionPopup = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   
   useEffect(() => {
-    // Check if we've shown the popup recently
-    const hasShownPopup = () => {
-      const popupShownData = localStorage.getItem(POPUP_STORAGE_KEY);
-      if (!popupShownData) return false;
-      
-      try {
-        const { timestamp } = JSON.parse(popupShownData);
-        const expiryTime = timestamp + (POPUP_EXPIRY_HOURS * 60 * 60 * 1000);
-        return Date.now() < expiryTime;
-      } catch (e) {
-        return false;
-      }
+    // Check if we've shown the popup in this session
+    const hasShownInSession = () => {
+      return sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
     };
     
-    // Show popup after delay if not shown recently
-    if (!hasShownPopup()) {
+    // Show popup after delay if not shown in this session
+    if (!hasShownInSession()) {
+      console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms');
       const timer = setTimeout(() => {
+        console.log('PromotionPopup: Showing popup');
         setIsOpen(true);
-        // Save that we've shown the popup
-        localStorage.setItem(
-          POPUP_STORAGE_KEY, 
-          JSON.stringify({ timestamp: Date.now() })
-        );
+        // Save that we've shown the popup in this session
+        sessionStorage.setItem(POPUP_STORAGE_KEY, 'shown');
       }, POPUP_DELAY_MS);
       
-      return () => clearTimeout(timer);
+      return () => {
+        console.log('PromotionPopup: Clearing timer');
+        clearTimeout(timer);
+      };
+    } else {
+      console.log('PromotionPopup: Already shown in this session');
     }
   }, []);
   

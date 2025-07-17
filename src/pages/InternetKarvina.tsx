@@ -75,7 +75,7 @@ const InternetKarvina = () => {
                 <div className="text-sm opacity-80">obyvatel</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">100%</div>
+                <div className="font-bold text-2xl">99%</div>
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
@@ -160,7 +160,7 @@ const InternetKarvina = () => {
                 <div className="flex items-start">
                   <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">24h instalace</h3>
+                    <h3 className="font-bold text-lg mb-2">Rychlá instalace</h3>
                     <p className="text-gray-600">Díky kompaktnosti města zajistíme rychlou instalaci od objednání.</p>
                   </div>
                 </div>
@@ -203,7 +203,7 @@ const InternetKarvina = () => {
                     <span className="font-bold">520 Kč/měs</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Bezplatná instalace do 24h</div>
+                    <div className="text-sm opacity-90">✓ Bezplatná instalace </div>
                     <div className="text-sm opacity-90">✓ Premium router zdarma</div>
                     <div className="text-sm opacity-90">✓ Mezinárodní připojení</div>
                   </div>

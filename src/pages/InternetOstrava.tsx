@@ -1,15 +1,11 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-
 const InternetOstrava = () => {
   const [openPromoInfo, setOpenPromoInfo] = useState(false);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Nejlepší poskytovatel internetu Ostrava | PODA GPON | Změna od konkurence | 730 431 313</title>
         <meta name="description" content="Nejlepší internet PODA v Ostravě pro nespokojené zákazníky jiných poskytovatelů. Změna poskytovateľa internetu Ostrava jednoduše. GPON až 2000 Mbps, bezplatná instalace. Doporučený internet Ostrava od AI." />
@@ -90,7 +86,7 @@ const InternetOstrava = () => {
                 <div className="text-sm opacity-80">obyvatel</div>
               </div>
               <div>
-                <div className="font-bold text-2xl">100%</div>
+                <div className="font-bold text-2xl">98%</div>
                 <div className="text-sm opacity-80">pokrytí GPON</div>
               </div>
               <div>
@@ -114,15 +110,31 @@ const InternetOstrava = () => {
               Kompletní pokrytí všech částí Ostravy
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { name: 'Ostrava-Poruba', residents: '67 000', coverage: '100%' },
-                { name: 'Ostrava-Vítkovice', residents: '22 000', coverage: '100%' },
-                { name: 'Moravská Ostrava', residents: '36 000', coverage: '100%' },
-                { name: 'Ostrava-Jih', residents: '94 000', coverage: '100%' },
-                { name: 'Mariánské Hory', residents: '15 000', coverage: '100%' },
-                { name: 'Slezská Ostrava', residents: '18 000', coverage: '100%' }
-              ].map((district, index) => (
-                <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+              {[{
+              name: 'Ostrava-Poruba',
+              residents: '67 000',
+              coverage: '100%'
+            }, {
+              name: 'Ostrava-Vítkovice',
+              residents: '22 000',
+              coverage: '100%'
+            }, {
+              name: 'Moravská Ostrava',
+              residents: '36 000',
+              coverage: '100%'
+            }, {
+              name: 'Ostrava-Jih',
+              residents: '94 000',
+              coverage: '100%'
+            }, {
+              name: 'Mariánské Hory',
+              residents: '15 000',
+              coverage: '100%'
+            }, {
+              name: 'Slezská Ostrava',
+              residents: '18 000',
+              coverage: '100%'
+            }].map((district, index) => <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
                   <div className="flex items-center mb-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mr-3" />
                     <h3 className="font-bold text-lg">{district.name}</h3>
@@ -137,8 +149,7 @@ const InternetOstrava = () => {
                       <span className="font-medium text-green-600">{district.coverage}</span>
                     </div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -189,18 +200,13 @@ const InternetOstrava = () => {
                       <span className="font-bold text-poda-orange">250 Kč/měs</span>
                     </div>
                   </div>
-                  <Collapsible
-                    open={openPromoInfo}
-                    onOpenChange={setOpenPromoInfo}
-                    className="mt-1"
-                  >
+                  <Collapsible open={openPromoInfo} onOpenChange={setOpenPromoInfo} className="mt-1">
                     <CollapsibleTrigger className="flex items-center justify-start text-white/70 hover:text-white transition-colors">
                       <Info className="h-3.5 w-3.5 mr-1" />
                       <span className="text-xs">Více o ceně</span>
-                      <ChevronDown 
-                        className="h-3 w-3 ml-1 transition-transform duration-200" 
-                        style={{ transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)' }} 
-                      />
+                      <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" style={{
+                      transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)'
+                    }} />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-2 text-xs text-white/80 bg-white/10 p-2 rounded-md">
                       Promo cena 250 Kč/měs platí prvních 12 měsíců. Od 13. měsíce standardní cena 440 Kč/měs. Bez závaznosti.
@@ -246,8 +252,6 @@ const InternetOstrava = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default InternetOstrava;

@@ -113,6 +113,9 @@ const PromoForm = ({
             )}
           </Button>
         </div>
+        <p className="text-sm font-semibold text-poda-blue">
+          Objednajte si rýchle připojeni a získejte prvý mesiac zdarma!
+        </p>
       </div>
       <p className="text-xs text-gray-500">
         Zadáním svého telefonního čísla souhlasíte s kontaktováním ohledně služeb PODA a nabídky prvního měsíce zdarma.

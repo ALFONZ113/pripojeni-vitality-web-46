@@ -58,7 +58,7 @@ const PromoAkcia = () => {
           
           <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-6 rounded-xl inline-block">
             <p className="text-lg font-semibold">
-              Objednejte si naše služby a získejte první měsíc ZDARMA!
+              Objednajte si rýchle připojeni a získejte první měsíc ZDARMA!
             </p>
           </div>
         </div>
@@ -164,8 +164,8 @@ const PromoAkcia = () => {
           </p>
           <div className="flex items-center justify-center space-x-2 text-poda-blue font-semibold">
             <Phone className="h-5 w-5" />
-            <a href="tel:+420778694748" className="hover:text-poda-orange transition-colors">
-              +420 778 694 748
+            <a href="tel:730431313" className="hover:text-poda-orange transition-colors">
+              730 431 313
             </a>
           </div>
         </div>

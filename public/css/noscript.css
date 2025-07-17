@@ -1,41 +1,207 @@
+/* NoScript CSS - Critical styles for when JavaScript is disabled */
 
-.noscript-container { font-family: 'Inter', sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
-.noscript-header { text-align: center; margin-bottom: 30px; }
-.noscript-logo { max-width: 200px; height: auto; margin-bottom: 15px; }
-.noscript-title { color: #0066cc; font-size: 24px; margin-bottom: 10px; }
-.noscript-subtitle { color: #ff6600; font-size: 18px; margin-bottom: 20px; }
-.noscript-section { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-.noscript-tariff { border: 1px solid #ddd; border-radius: 10px; padding: 15px; margin-bottom: 15px; background-color: #f9f9f9; }
-.noscript-tariff h3 { color: #0066cc; margin-top: 0; }
-.noscript-tariff-price { color: #ff6600; font-weight: bold; font-size: 20px; }
-.noscript-feature { display: flex; margin-bottom: 10px; }
-.noscript-feature-check { color: #ff6600; margin-right: 10px; }
-.noscript-contact { background-color: #f0f7ff; padding: 20px; border-radius: 10px; }
-.noscript-phone { display: block; font-size: 22px; color: #0066cc; font-weight: bold; margin: 10px 0; }
-.noscript-button { background-color: #ff6600; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+.noscript-visible {
+  display: block !important;
+}
 
-/* Styles for Mapy.cz suggestions */
-.smap-suggest {
-  border: 1px solid #e2e8f0;
+.js-only {
+  display: none !important;
+}
+
+/* Ensure basic layout works without JS */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #374151;
+  background-color: #f8fafc;
+}
+
+/* Basic grid fallback */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Responsive adjustments for no-JS */
+@media (max-width: 768px) {
+  .grid-cols-2,
+  .grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Button styles for forms that might work without JS */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #1e40af;
+  color: white;
+  text-decoration: none;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  background-color: white;
-  z-index: 100;
-  max-height: 250px;
-  overflow-y: auto;
-}
-
-.smap-suggest-item {
-  padding: 0.75rem 1rem;
+  border: none;
   cursor: pointer;
-  border-bottom: 1px solid #f0f0f0;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.2s;
 }
 
-.smap-suggest-item:hover,
-.smap-suggest-item:focus {
-  background-color: #f7fafc;
+.btn:hover {
+  background-color: #1d4ed8;
 }
 
-.smap-suggest-item.active {
-  background-color: #ebf4ff;
+.btn-orange {
+  background-color: #f59e0b;
+}
+
+.btn-orange:hover {
+  background-color: #d97706;
+}
+
+/* Form styling for no-JS fallback */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1e40af;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+/* NoScript warning banner */
+.noscript-banner {
+  background: #f59e0b;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 500;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Hide interactive elements that require JS */
+noscript .js-required {
+  display: none !important;
+}
+
+/* Show fallback content */
+noscript .noscript-fallback {
+  display: block !important;
+}
+
+/* Basic card styling */
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #1e40af;
+}
+
+.card-orange {
+  border-left-color: #f59e0b;
+}
+
+/* Typography */
+.text-center {
+  text-align: center;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Colors */
+.text-blue {
+  color: #1e40af;
+}
+
+.text-orange {
+  color: #f59e0b;
+}
+
+.text-gray {
+  color: #6b7280;
+}
+
+.bg-blue {
+  background-color: #1e40af;
+}
+
+.bg-orange {
+  background-color: #f59e0b;
+}
+
+/* Spacing utilities */
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-12 { margin-bottom: 3rem; }
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Links */
+a {
+  color: #1e40af;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Phone number styling */
+.phone-link {
+  color: #f59e0b;
+  font-weight: 600;
+  font-size: 1.25rem;
 }

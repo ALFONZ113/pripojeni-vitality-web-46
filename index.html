@@ -127,11 +127,72 @@
     }
     </script>
     
+    <!-- Critical CSS inlined for above-the-fold content -->
+    <style>
+      /* Critical CSS for initial paint */
+      .poda-blue { color: #1e40af; }
+      .bg-poda-blue { background-color: #1e40af; }
+      .poda-orange { color: #f59e0b; }
+      .border-poda-orange { border-color: #f59e0b; }
+      .text-blue-100 { color: #dbeafe; }
+      .container { max-width: 1200px; margin: 0 auto; }
+      .grid { display: grid; }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+      .gap-8 { gap: 2rem; }
+      .p-4 { padding: 1rem; }
+      .p-6 { padding: 1.5rem; }
+      .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .mb-4 { margin-bottom: 1rem; }
+      .mb-6 { margin-bottom: 1.5rem; }
+      .mb-12 { margin-bottom: 3rem; }
+      .text-center { text-align: center; }
+      .font-bold { font-weight: 700; }
+      .font-semibold { font-weight: 600; }
+      .text-xl { font-size: 1.25rem; }
+      .text-2xl { font-size: 1.5rem; }
+      .text-4xl { font-size: 2.25rem; }
+      .rounded-xl { border-radius: 0.75rem; }
+      .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+      .border-l-4 { border-left-width: 4px; }
+      .bg-white { background-color: #ffffff; }
+      .text-gray-600 { color: #4b5563; }
+      .max-w-3xl { max-width: 48rem; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      .min-h-screen { min-height: 100vh; }
+      
+      @media (max-width: 768px) {
+        .md\:grid-cols-3 { grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- Progressive enhancement script -->
+    <script>
+      // Hide static content once JS loads
+      document.addEventListener('DOMContentLoaded', function() {
+        const staticContent = document.getElementById('static-content');
+        if (staticContent) {
+          staticContent.style.display = 'none';
+        }
+      });
+      
+      // Show static content if React fails to load
+      setTimeout(function() {
+        const root = document.getElementById('root');
+        if (!root || !root.children.length) {
+          const staticContent = document.getElementById('static-content');
+          if (staticContent) {
+            staticContent.style.display = 'block';
+          }
+        }
+      }, 3000);
+    </script>
+
     <!-- Lovable script tag -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     
     <!-- Analytics (deferred) -->
-    <script src="/js/analytics.js"></script>
+    <script src="/js/analytics.js" defer></script>
   </head>
 
   <body>
@@ -188,25 +249,67 @@
       })();
     </script>
     
+    <!-- Static content for SEO and progressive enhancement -->
+    <div id="static-content" style="display: none;">
+      <main class="min-h-screen bg-white">
+        <header class="bg-poda-blue text-white p-4">
+          <div class="container mx-auto">
+            <h1 class="text-2xl font-bold">Popri.cz – Rychlý PODA Internet s TV Zdarma</h1>
+            <p class="text-blue-100">Gigabitové připojení, TV zdarma, non-stop podpora</p>
+          </div>
+        </header>
+        
+        <section class="py-16 px-4">
+          <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold text-poda-blue mb-4">
+                PODA Internet s TV za nejlepší ceny
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Získejte gigabitové připojení s TV zdarma. Rychlá instalace, spolehlivá síť a non-stop technická podpora.
+              </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-blue">
+                <h3 class="text-xl font-semibold text-poda-blue mb-3">Rychlé připojení</h3>
+                <p class="text-gray-600">Gigabitové rychlosti až 1000 Mb/s pro domácnosti i firmy</p>
+              </div>
+              
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-orange">
+                <h3 class="text-xl font-semibold text-poda-blue mb-3">TV zdarma</h3>
+                <p class="text-gray-600">Více než 100 televizních kanálů včetně HD kvality</p>
+              </div>
+              
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-blue">
+                <h3 class="text-xl font-semibold text-poda-blue mb-3">Non-stop podpora</h3>
+                <p class="text-gray-600">24/7 technická podpora a servis</p>
+              </div>
+            </div>
+            
+            <div class="text-center">
+              <h3 class="text-2xl font-bold text-poda-blue mb-4">Kontaktujte nás</h3>
+              <p class="text-lg text-gray-600 mb-6">
+                Telefon: <a href="tel:+420730431313" class="text-poda-blue font-semibold">730 431 313</a>
+              </p>
+              <p class="text-gray-600">
+                Pokrýváme oblasti: Ostrava, Karviná, Bohumín, Havířov, Poruba a okolí
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
     <!-- NoScript fallback -->
     <noscript>
-      <div id="noscript-content"></div>
-      <script>
-        // This won't execute if JavaScript is disabled, but it's good practice
-        document.addEventListener('DOMContentLoaded', function() {
-          fetch('/html/noscript.html')
-            .then(response => response.text())
-            .then(html => {
-              document.getElementById('noscript-content').innerHTML = html;
-            })
-            .catch(() => {
-              // Fallback content
-              document.getElementById('noscript-content').innerHTML = '<p>Prosím povolte JavaScript pro plnou funkcionalitu stránky.</p>';
-            });
-        });
-      </script>
-      <!-- Fallback for the fallback -->
-      <iframe src="/html/noscript.html" style="width: 100%; height: 100vh; border: none;"></iframe>
+      <style>
+        #static-content { display: block !important; }
+        #root { display: none; }
+      </style>
+      <div class="noscript-banner" style="background: #f59e0b; color: white; padding: 10px; text-align: center;">
+        <strong>JavaScript je zakázán.</strong> Stránka funguje i bez JavaScriptu, ale pro plnou funkcionalitat doporučujeme jej povolit.
+      </div>
     </noscript>
   </body>
 </html>

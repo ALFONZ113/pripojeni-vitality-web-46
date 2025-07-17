@@ -63,5 +63,8 @@ http://www.popri.cz/* https://www.popri.cz/:splat 301!
 # 404 handling
 /404 /index.html 404
 
+# Promotion page redirect
+/promo-akcia /promo-akce 301
+
 # SPA fallback - lowest priority (catch all other routes)
 /* /index.html 200

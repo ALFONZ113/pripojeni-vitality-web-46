@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -90,15 +89,13 @@ const Blog = () => {
             <div className="w-full lg:flex-1 reveal-animation">
               <BlogSearch 
                 searchTerm={searchTerm} 
-                onSearchChange={setSearchTerm}
-                className="w-full"
+                onSearch={setSearchTerm}
               />
             </div>
             <div className="w-full lg:w-auto reveal-animation delay-100">
               <BlogCategories 
                 selectedCategory={selectedCategory}
                 onCategoryChange={setSelectedCategory}
-                className="w-full lg:w-auto"
               />
             </div>
           </div>

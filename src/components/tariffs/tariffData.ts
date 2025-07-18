@@ -6,6 +6,7 @@ export const tariffData = {
       title: 'Internet + TV Basic',
       price: '250 Kč',
       priceNote: 'měsíčně + 50 Kč za zařízení',
+      promoId: 'bytyBasic' as const,
       isPromo: true,
       features: [
         {
@@ -28,6 +29,7 @@ export const tariffData = {
       title: 'Internet + TV Mých 10',
       price: '390 Kč',
       priceNote: 'měsíčně + 50 Kč za zařízení',
+      promoId: 'bytyMych10' as const,
       isPromo: true,
       isRecommended: true,
       features: [
@@ -53,6 +55,7 @@ export const tariffData = {
       title: 'Internet + TV Basic',
       price: '250 Kč',
       priceNote: 'měsíčně + 50 Kč za zařízení',
+      promoId: 'domyBasic' as const,
       isPromo: true,
       features: [
         {
@@ -75,6 +78,7 @@ export const tariffData = {
       title: 'Internet + TV Mých 10',
       price: '390 Kč',
       priceNote: 'měsíčně + 50 Kč za zařízení',
+      promoId: 'domyMych10' as const,
       isPromo: true,
       isRecommended: true,
       features: [

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Check, Phone, Loader2 } from 'lucide-react';
 import { sendContactFormEmail } from '../utils/emailService';
@@ -73,64 +72,52 @@ const PromoForm = ({
   
   if (isSuccess) {
     return (
-      <div className="flex items-center justify-center bg-green-50 p-4 sm:p-6 rounded-lg">
-        <Check className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 mr-2 sm:mr-3 flex-shrink-0" />
-        <p className="text-green-700 font-medium text-sm sm:text-base text-center leading-relaxed">{successMessage}</p>
+      <div className="flex items-center justify-center bg-green-50 p-6 rounded-lg">
+        <Check className="h-6 w-6 text-green-600 mr-3 flex-shrink-0" />
+        <p className="text-green-700 font-medium">{successMessage}</p>
       </div>
     );
   }
   
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-      <div className="flex flex-col space-y-2 sm:space-y-3">
-        <label htmlFor="phoneNumber" className="text-xs sm:text-sm font-medium text-gray-700 text-center sm:text-left px-2 sm:px-0">
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="flex flex-col space-y-2">
+        <label htmlFor="phoneNumber" className="text-sm font-medium text-gray-700">
           Zadejte své telefonní číslo a my se Vám ozveme
         </label>
-        
-        {/* Mobilní layout - sloupce, desktop layout - řádek */}
-        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+        <div className="flex space-x-2">
           <div className="relative flex-grow">
-            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 sm:h-5 sm:w-5" />
+            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <Input
               id="phoneNumber"
               type="tel"
               placeholder="Telefonní číslo"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="pl-9 sm:pl-10 h-11 sm:h-12 text-base"
+              className="pl-10"
               disabled={isSubmitting}
-              style={{
-                fontSize: '16px', // Prevents zoom on iOS
-                WebkitAppearance: 'none',
-                WebkitBorderRadius: '0'
-              }}
             />
           </div>
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-poda-orange hover:bg-poda-orange/90 text-white h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base font-medium whitespace-nowrap"
+            className="bg-poda-orange hover:bg-poda-orange/90 text-white"
           >
             {isSubmitting ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                <span className="hidden sm:inline">Odesílání...</span>
-                <span className="sm:hidden">...</span>
+                Odesílání...
               </>
             ) : (
-              <span className="text-center">{buttonText}</span>
+              buttonText
             )}
           </Button>
         </div>
-        
-        <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-2 sm:p-3 rounded-lg text-center">
-          <p className="text-xs sm:text-sm font-semibold leading-relaxed">
-            Objednejte si rychlé připojení a získejte první měsíc zdarma!
-          </p>
-        </div>
+        <p className="text-sm font-semibold text-poda-blue">
+          Objednajte si rýchle připojeni a získejte prvý mesiac zdarma!
+        </p>
       </div>
-      
-      <p className="text-xs text-gray-500 text-center leading-relaxed px-2 sm:px-0">
+      <p className="text-xs text-gray-500">
         Zadáním svého telefonního čísla souhlasíte s kontaktováním ohledně služeb PODA a nabídky prvního měsíce zdarma.
       </p>
     </form>

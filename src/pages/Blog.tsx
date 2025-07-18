@@ -1,154 +1,319 @@
-
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { blogPosts } from '../data/blog';
-import { initAnimations } from '../utils/animation';
-import BlogCategories from '../components/blog/BlogCategories';
+import { blogPosts, categories } from '../data/blog';
 import BlogSearch from '../components/blog/BlogSearch';
-import LazyBlogCard from '../components/blog/LazyBlogCard';
-import type { BlogPost } from '../data/blog/types';
+import BlogCategories from '../components/blog/BlogCategories';
+import BlogList from '../components/blog/BlogList';
+import { initAnimations } from '../utils/animation';
+import { Helmet } from 'react-helmet-async';
+import { preloadCriticalResources } from '../utils/performance-optimization';
 
 const Blog = () => {
-  const [searchParams] = useSearchParams();
-  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(blogPosts);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-
+  const [filteredPosts, setFilteredPosts] = useState(blogPosts);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  
+  // Debug logging
+  console.log('[Blog] Initial blogPosts count:', blogPosts.length);
+  console.log('[Blog] Current filteredPosts count:', filteredPosts.length);
+  console.log('[Blog] Search term:', searchTerm);
+  console.log('[Blog] Selected category:', selectedCategory);
+  
+  // Zvýraznění pro Porubu - přidání parametru pro automatické hledání Poruby
+  useEffect(() => {
+    const category = searchParams.get('category');
+    const tag = searchParams.get('tag');
+    const location = searchParams.get('location');
+    
+    console.log('[Blog] URL params - category:', category, 'tag:', tag, 'location:', location);
+    
+    if (category) {
+      setSelectedCategory(category);
+    }
+    
+    if (tag) {
+      setSearchTerm(tag);
+    }
+    
+    // Automatické vyhledávání lokality
+    if (location === 'poruba') {
+      setSearchTerm('Poruba');
+    }
+  }, [searchParams]);
+  
   useEffect(() => {
     const cleanupAnimation = initAnimations();
-    window.scrollTo(0, 0);
-    
-    // Get URL parameters
-    const categoryParam = searchParams.get('category');
-    const searchParam = searchParams.get('search');
-    
-    if (categoryParam) {
-      setSelectedCategory(categoryParam);
-    }
-    
-    if (searchParam) {
-      setSearchTerm(searchParam);
-    }
-    
-    return () => {
-      cleanupAnimation();
-    };
-  }, [searchParams]);
-
+    preloadCriticalResources();
+    return () => cleanupAnimation();
+  }, []);
+  
   useEffect(() => {
     let filtered = blogPosts;
-
-    // Filter by category
+    
+    console.log('[Blog] Starting filtering with', blogPosts.length, 'posts');
+    
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(post => post.category === selectedCategory);
+      console.log('[Blog] After category filter:', filtered.length, 'posts');
     }
-
-    // Filter by search term
-    if (searchTerm) {
-      const searchLower = searchTerm.toLowerCase();
-      filtered = filtered.filter(post =>
-        post.title.toLowerCase().includes(searchLower) ||
-        post.excerpt.toLowerCase().includes(searchLower) ||
-        post.tags?.some(tag => tag.toLowerCase().includes(searchLower))
+    
+    if (searchTerm.trim() !== '') {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(post => 
+        post.title.toLowerCase().includes(term) || 
+        post.excerpt.toLowerCase().includes(term) ||
+        post.author.toLowerCase().includes(term) ||
+        post.category.toLowerCase().includes(term) ||
+        (post.content && post.content.toLowerCase().includes(term)) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
       );
+      console.log('[Blog] After search filter:', filtered.length, 'posts');
     }
-
+    
+    console.log('[Blog] Final filtered posts:', filtered.length);
     setFilteredPosts(filtered);
-  }, [selectedCategory, searchTerm]);
+    
+    const newParams = new URLSearchParams();
+    if (selectedCategory !== 'all') newParams.set('category', selectedCategory);
+    if (searchTerm.trim() !== '') newParams.set('search', searchTerm);
+    setSearchParams(newParams, { replace: true });
+    
+  }, [searchTerm, selectedCategory, setSearchParams]);
+  
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+  };
+  
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+  };
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('all');
+    setSearchParams({}, { replace: true });
+  };
+  
+  // Get all unique tags and locations for SEO
+  const getAllTags = () => {
+    const allTags = new Set<string>();
+    blogPosts.forEach(post => {
+      if (post.tags) {
+        post.tags.forEach(tag => allTags.add(tag));
+      }
+    });
+    return Array.from(allTags);
+  };
+  
+  const getAllLocations = () => {
+    const locations = ['Ostrava', 'Karviná', 'Bohumín', 'Frýdek-Místek', 'Havířov', 'Poruba', 'Orlová'];
+    return locations.filter(location => 
+      blogPosts.some(post => 
+        post.title.includes(location) || (post.content && post.content.includes(location))
+      )
+    );
+  };
+  
+  const allTags = getAllTags();
+  const locations = getAllLocations();
+  
+  // Generate enhanced meta description
+  const generateMetaDescription = () => {
+    const baseDescription = "Blog o internetových službách PODA - články o technologiích, tipy pro lepší využití internetu a televize";
+    if (selectedCategory !== 'all') {
+      return `${baseDescription}. Kategorie: ${selectedCategory}`;
+    }
+    if (searchTerm) {
+      return `${baseDescription}. Hledání: ${searchTerm}`;
+    }
+    return `${baseDescription}. Aktuálně ${blogPosts.length} článků.`;
+  };
+
+  // Tlačítko pro rychlý přístup k blogu o Porubě
+  const showPorubaPost = () => {
+    setSearchTerm("Poruba");
+  };
 
   return (
-    <div className="min-h-screen pt-20 sm:pt-24">
+    <div className="min-h-screen pt-24">
       <Helmet>
-        <title>Blog - Tipy a novinky o PODA internetu | Popri.cz</title>
-        <meta name="description" content="Čtěte nejnovější články o PODA internetu, tipech na optimalizaci připojení a novinkách v oblasti telekomunikací." />
+        <title>Blog o internetu a technologiích | PODA | Popri.cz</title>
+        <meta name="description" content={generateMetaDescription()} />
         <link rel="canonical" href="https://www.popri.cz/blog" />
+        <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, internetové technologie, ${allTags.join(', ')}, ${locations.join(', ')}`} />
+        <link rel="alternate" href="https://popri.cz/blog" hrefLang="cs" />
+        
+        {/* Enhanced Open Graph */}
+        <meta property="og:title" content="Blog PODA | Internetové služby a technologie" />
+        <meta property="og:description" content={generateMetaDescription()} />
+        <meta property="og:url" content="https://www.popri.cz/blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.popri.cz/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" />
+        
+        {/* Geographic meta tags */}
+        <meta name="geo.region" content="CZ" />
+        <meta name="geo.placename" content="Česká republika" />
+        <meta name="ICBM" content="49.8175, 18.2624" />
+        
+        {/* Twitter Cards */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog PODA | Internetové služby" />
+        <meta name="twitter:description" content={generateMetaDescription()} />
+        
+        {/* Enhanced structured data for blog */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Blog Popri.cz",
+            "url": "https://www.popri.cz/blog",
+            "description": generateMetaDescription(),
+            "inLanguage": "cs-CZ",
+            "about": {
+              "@type": "Thing",
+              "name": "Internet a telekomunikační služby"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "PODA",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.popri.cz/poda-logo.svg"
+              },
+              "url": "https://www.popri.cz",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+420730431313",
+                "contactType": "customer service",
+                "areaServed": locations
+              }
+            },
+            "blogPost": blogPosts.slice(0, 10).map(post => ({
+              "@type": "BlogPosting",
+              "headline": post.title,
+              "datePublished": post.date.split('. ').reverse().join('-'),
+              "author": {
+                "@type": "Person",
+                "name": post.author
+              },
+              "url": `https://www.popri.cz/blog/${post.id}`,
+              "keywords": post.tags?.join(', ') || post.category,
+              "about": {
+                "@type": "Thing",
+                "name": post.category
+              }
+            }))
+          })}
+        </script>
+        
+        {/* Breadcrumb structured data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Úvod",
+                "item": "https://www.popri.cz"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://www.popri.cz/blog"
+              }
+            ]
+          })}
+        </script>
+        
+        {/* Categories meta */}
+        {categories.map((cat, index) => (
+          <meta key={index} name="article:section" content={cat.name} />
+        ))}
+        
+        {/* Tags meta */}
+        {allTags.map((tag, index) => (
+          <meta key={index} name="article:tag" content={tag} />
+        ))}
+        
+        {/* Location meta for geo SEO */}
+        {locations.map((location, index) => (
+          <meta key={index} name="geo.placename" content={`${location}, Česká republika`} />
+        ))}
       </Helmet>
-
-      {/* Hero Section - responzívny */}
+      
       <section className="section-padding bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto px-4 sm:px-0">
-            <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4 sm:mb-6 reveal-animation">
-              Blog
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4 reveal-animation">
+              Blog a novinky
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-poda-blue mb-4 sm:mb-6 leading-tight reveal-animation delay-100">
-              Tipy a novinky o internetu
+            <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
+              Články o internetu a technologiích
             </h1>
-            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed reveal-animation delay-200">
-              Přečtěte si nejnovější články o PODA internetu, tipech na optimalizaci připojení 
-              a novinkách v oblasti telekomunikací
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200">
+              Přečtěte si nejnovější články o technologiích, tipy pro lepší využití vašeho internetu 
+              a televize. Vše o službách PODA v {locations.join(', ')} a dalších městech.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Search and Filter Section - responzívny */}
-      <section className="bg-white py-6 sm:py-8 border-b border-gray-100">
-        <div className="container-custom">
-          <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-start lg:items-center px-4 sm:px-0">
-            <div className="w-full lg:flex-1 reveal-animation">
-              <BlogSearch 
-                searchTerm={searchTerm} 
-                onSearch={setSearchTerm}
-              />
-            </div>
-            <div className="w-full lg:w-auto reveal-animation delay-100">
-              <BlogCategories 
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-              />
+            
+            <BlogSearch searchTerm={searchTerm} onSearch={handleSearch} />
+            
+            {/* Promo banner pro článek o Porubě */}
+            <div className="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-100 inline-block">
+              <button 
+                onClick={showPorubaPost} 
+                className="flex items-center text-poda-blue hover:text-poda-orange transition-colors font-semibold"
+              >
+                <span className="bg-poda-blue text-white rounded-full px-2 py-1 text-xs mr-2">NOVÉ</span>
+                Přečtěte si o novém připojení v Ostravě-Porubě
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Blog Posts Grid - responzívny */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding pt-4 pb-4 bg-white sticky top-20 z-30 border-b border-gray-100 shadow-sm">
         <div className="container-custom">
-          {filteredPosts.length > 0 ? (
-            <>
-              <div className="text-center mb-6 sm:mb-8 px-4 sm:px-0">
-                <p className="text-sm sm:text-base text-gray-600">
-                  {selectedCategory !== 'all' && `Kategorie: ${selectedCategory} • `}
-                  Zobrazeno {filteredPosts.length} článků
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
-                {filteredPosts.map((post, index) => (
-                  <div 
-                    key={post.id} 
-                    className="reveal-animation"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <LazyBlogCard post={post} />
-                  </div>
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className="text-center p-8 sm:p-12 px-4 sm:px-0">
-              <div className="max-w-md mx-auto">
-                <div className="text-4xl sm:text-6xl mb-4">🔍</div>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">
-                  Žádné články nenalezeny
-                </h3>
-                <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">
-                  Zkuste změnit vyhledávací výraz nebo kategorii
-                </p>
-                <button
-                  onClick={() => {
-                    setSearchTerm('');
-                    setSelectedCategory('all');
-                  }}
-                  className="btn-primary text-sm sm:text-base"
+          <BlogCategories 
+            selectedCategory={selectedCategory} 
+            onCategoryChange={handleCategoryChange} 
+          />
+        </div>
+      </section>
+
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <BlogList posts={filteredPosts} onResetFilters={resetFilters} />
+          
+          {/* Enhanced CTA for blog page */}
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-8 rounded-xl shadow-lg">
+              <h2 className="text-2xl font-bold mb-4">
+                Hledáte rychlé internetové připojení?
+              </h2>
+              <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+                PODA poskytuje spolehlivé optické připojení v {locations.slice(0, 3).join(', ')} 
+                a dalších městech. Kontaktujte nás pro bezplatnou konzultaci.
+              </p>
+              <div className="flex gap-4 justify-center flex-wrap">
+                <a
+                  href="tel:+420730431313"
+                  className="bg-white text-poda-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
                 >
-                  Zobrazit všechny články
-                </button>
+                  📞 730 431 313
+                </a>
+                <a
+                  href="/kontakt"
+                  className="bg-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors"
+                >
+                  Kontaktní formulář
+                </a>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </section>
     </div>

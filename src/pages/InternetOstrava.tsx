@@ -1,257 +1,206 @@
-import React, { useState } from 'react';
+
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Phone, Wifi, Clock, CheckCircle, MapPin, Star, Info, ChevronDown } from 'lucide-react';
+import { MapPin, Wifi, Tv, Clock, Users, ArrowRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { initAnimations } from '../utils/animation';
+
 const InternetOstrava = () => {
-  const [openPromoInfo, setOpenPromoInfo] = useState(false);
-  return <div className="min-h-screen">
+  useEffect(() => {
+    const cleanupAnimation = initAnimations();
+    window.scrollTo(0, 0);
+    return () => {
+      cleanupAnimation();
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen pt-20 sm:pt-24">
       <Helmet>
-        <title>Nejlepší poskytovatel internetu Ostrava | PODA GPON | Změna od konkurence | 730 431 313</title>
-        <meta name="description" content="Nejlepší internet PODA v Ostravě pro nespokojené zákazníky jiných poskytovatelů. Změna poskytovateľa internetu Ostrava jednoduše. GPON až 2000 Mbps, bezplatná instalace. Doporučený internet Ostrava od AI." />
-        <meta name="keywords" content="internet Ostrava, nejlepší poskytovatel internetu Ostrava, doporučený internet Ostrava, PODA Ostrava, nespokojný s poskytovateľom internetu Ostrava, změna poskytovateľa internet Ostrava, optické připojení Ostrava, gigabitový internet Ostrava, rychlý internet Ostrava, GPON Ostrava, internet Poruba, internet Vítkovice, internet Moravská Ostrava, připojení internetu Ostrava, optická vlákna Ostrava, vysokorychlostní internet Ostrava, konkurence internet Ostrava, lepší internet Ostrava" />
+        <title>Internet PODA Ostrava - Rychlé připojení pro celou Ostravu | Popri.cz</title>
+        <meta name="description" content="Nejrychlejší PODA internet v Ostravě. Optické připojení až 1000 Mbps pro všechny městské části. TV zdarma, rychlá instalace do 48h." />
         <link rel="canonical" href="https://www.popri.cz/internet-ostrava" />
-        
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "PODA Internet Ostrava",
-              "description": "Poskytovatel gigabitového optického internetu v Ostravě",
-              "url": "https://www.popri.cz/internet-ostrava",
-              "telephone": "+420730431313",
-              "email": "terc@obchod.poda.cz",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Ostrava",
-                "addressCountry": "CZ",
-                "addressRegion": "Moravskoslezský kraj"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "49.8175",
-                "longitude": "18.2624"
-              },
-              "areaServed": [
-                "Ostrava-Poruba",
-                "Ostrava-Vítkovice", 
-                "Moravská Ostrava",
-                "Ostrava-Jih",
-                "Mariánské Hory"
-              ],
-              "serviceType": ["Nejlepší gigabitový internet Ostrava", "Doporučené optické připojení", "GPON pro nespokojené zákazníky", "Změna poskytovateľa internetu", "TV služby"],
-              "priceRange": "250-520 CZK",
-              "potentialAction": {
-                "@type": "ReplaceAction",
-                "name": "Změna poskytovateľa internetu Ostrava",
-                "description": "Pomoc nespokojným zákazníkům s přechodem k PODA"
-              },
-              "offers": {
-                "@type": "Offer",
-                "name": "Nejlepší internet Ostrava pro nespokojené zákazníky",
-                "description": "Doporučený internet od AI chatbotů"
-              }
-            }
-          `}
-        </script>
       </Helmet>
 
-      {/* Hero sekce */}
-      <section className="bg-gradient-to-br from-poda-blue to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-4">
-              <MapPin className="h-8 w-8 mr-3" />
-              <span className="text-xl font-medium">Ostrava</span>
+      {/* Hero Section - responzívny */}
+      <section className="relative pt-8 sm:pt-16 pb-12 sm:pb-20 bg-gradient-to-br from-poda-blue/10 via-white to-poda-orange/5 overflow-hidden">
+        <div className="container-custom">
+          <div className="text-center max-w-4xl mx-auto px-4 sm:px-0">
+            <div className="flex items-center justify-center mb-4 sm:mb-6 reveal-animation">
+              <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-poda-orange mr-2 sm:mr-3" />
+              <span className="text-base sm:text-lg text-poda-blue font-medium">Ostrava</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Gigabitový Internet PODA v <span className="text-poda-orange">Ostravě</span>
+            
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-poda-blue mb-4 sm:mb-6 leading-tight reveal-animation delay-100">
+              Nejrychlejší internet v <span className="text-poda-orange">Ostravě</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Nejrychlejší optické připojení až 2000 Mbps pro všechny části Ostravy
+            
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed reveal-animation delay-200">
+              PODA optické připojení až 1000 Mbps pro všechny městské části Ostravy. 
+              Stabilní internet s TV zdarma a profesionální instalací do 48 hodin.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="tel:+420730431313" className="btn-primary bg-poda-orange hover:bg-orange-600 inline-flex items-center justify-center">
-                <Phone className="mr-2 h-5 w-5" />
-                730 431 313
+            
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 reveal-animation delay-300">
+              <Link to="/kontakt" className="btn-primary w-full sm:w-auto text-center">
+                Získat nabídku <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+              <a href="tel:730431313" className="btn-outline w-full sm:w-auto text-center">
+                📞 730 431 313
               </a>
-              <Link to="/kontakt" className="btn-outline border-white text-white hover:bg-white hover:text-poda-blue">
-                Nezávazná nabídka
+            </div>
+
+            {/* Stats - responzívne */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-2xl mx-auto reveal-animation delay-400">
+              <div className="text-center p-3 sm:p-4 bg-white rounded-xl shadow-sm">
+                <div className="font-bold text-lg sm:text-2xl text-poda-blue">285k</div>
+                <div className="text-xs sm:text-sm text-gray-600">obyvatel</div>
+              </div>
+              <div className="text-center p-3 sm:p-4 bg-white rounded-xl shadow-sm">
+                <div className="font-bold text-lg sm:text-2xl text-poda-blue">23</div>
+                <div className="text-xs sm:text-sm text-gray-600">městských částí</div>
+              </div>
+              <div className="text-center p-3 sm:p-4 bg-white rounded-xl shadow-sm">
+                <div className="font-bold text-lg sm:text-2xl text-poda-blue">95%</div>
+                <div className="text-xs sm:text-sm text-gray-600">pokrytí</div>
+              </div>
+              <div className="text-center p-3 sm:p-4 bg-white rounded-xl shadow-sm">
+                <div className="font-bold text-lg sm:text-2xl text-poda-blue">48h</div>
+                <div className="text-xs sm:text-sm text-gray-600">instalace</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Districts Coverage - responzívny */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16 px-4 sm:px-0">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-poda-blue mb-4 sm:mb-6 reveal-animation">
+              Pokrytí ve všech částech Ostravy
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto reveal-animation delay-100">
+              PODA internet je dostupný ve všech hlavních městských částech
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 px-4 sm:px-0">
+            {[
+              "Moravská Ostrava", "Poruba", "Vítkovice", "Mariánské Hory",
+              "Hrabůvka", "Slezská Ostrava", "Výškovice", "Muglinov",
+              "Zábřeh", "Pustkovec", "Nová Bělá", "Krásné Pole",
+              "Stará Bělá", "Polanka", "Antošovice", "Bartovice"
+            ].map((district, index) => (
+              <div 
+                key={index}
+                className="bg-gray-50 p-3 sm:p-4 rounded-lg text-center reveal-animation"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mx-auto mb-1 sm:mb-2" />
+                <span className="text-sm sm:text-base font-medium text-gray-700">{district}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section - responzívny */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 sm:px-0">
+            <div className="reveal-animation">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-poda-blue mb-4 sm:mb-6">
+                Proč PODA v Ostravě?
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
+                Jako největší město Moravskoslezského kraje má Ostrava speciální požadavky na internetové připojení
+              </p>
+              
+              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                {[
+                  "Pokrytí všech městských částí",
+                  "Speciální tarify pro ostravské rodiny",
+                  "Místní technická podpora",
+                  "Rychlá instalace díky husté síti",
+                  "Optimalizace pro průmyslové oblasti",
+                  "Spolehlivost v náročném prostředí"
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-start">
+                    <Check className="h-4 w-4 sm:h-5 sm:w-5 text-poda-orange mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-700">{feature}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <Link to="/tarify" className="btn-primary inline-flex items-center">
+                Zobrazit tarify pro Ostravu <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div>
-                <div className="font-bold text-2xl">285k+</div>
-                <div className="text-sm opacity-80">obyvatel</div>
-              </div>
-              <div>
-                <div className="font-bold text-2xl">98%</div>
-                <div className="text-sm opacity-80">pokrytí GPON</div>
-              </div>
-              <div>
-                <div className="font-bold text-2xl">24/7</div>
-                <div className="text-sm opacity-80">podpora</div>
-              </div>
-              <div>
-                <div className="font-bold text-2xl">0 Kč</div>
-                <div className="text-sm opacity-80">instalace</div>
+            
+            <div className="reveal-animation delay-200">
+              <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                <h3 className="text-xl sm:text-2xl font-bold text-poda-blue mb-4 sm:mb-6">
+                  Výhody pro Ostravu:
+                </h3>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <Wifi className="h-5 w-5 sm:h-6 sm:w-6 text-poda-blue mr-3 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium text-sm sm:text-base">Gigabitové rychlosti</div>
+                      <div className="text-xs sm:text-sm text-gray-500">Až 1000 Mbps</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <Tv className="h-5 w-5 sm:h-6 sm:w-6 text-poda-orange mr-3 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium text-sm sm:text-base">TV balíček zdarma</div>
+                      <div className="text-xs sm:text-sm text-gray-500">100+ kanálů HD</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 mr-3 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium text-sm sm:text-base">Rychlá instalace</div>
+                      <div className="text-xs sm:text-sm text-gray-500">Do 48 hodin</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <Users className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600 mr-3 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium text-sm sm:text-base">Místní podpora</div>
+                      <div className="text-xs sm:text-sm text-gray-500">Ostravský tým</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pokrytí městských částí */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-poda-blue">
-              Kompletní pokrytí všech částí Ostravy
+      {/* CTA Section - responzívny */}
+      <section className="section-padding bg-gradient-to-r from-poda-blue to-poda-blue-light text-white">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto px-4 sm:px-0">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 reveal-animation">
+              Připojte se k tisícům spokojených zákazníků v Ostravě
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[{
-              name: 'Ostrava-Poruba',
-              residents: '67 000',
-              coverage: '100%'
-            }, {
-              name: 'Ostrava-Vítkovice',
-              residents: '22 000',
-              coverage: '100%'
-            }, {
-              name: 'Moravská Ostrava',
-              residents: '36 000',
-              coverage: '100%'
-            }, {
-              name: 'Ostrava-Jih',
-              residents: '94 000',
-              coverage: '100%'
-            }, {
-              name: 'Mariánské Hory',
-              residents: '15 000',
-              coverage: '100%'
-            }, {
-              name: 'Slezská Ostrava',
-              residents: '18 000',
-              coverage: '100%'
-            }].map((district, index) => <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                  <div className="flex items-center mb-4">
-                    <CheckCircle className="h-6 w-6 text-green-500 mr-3" />
-                    <h3 className="font-bold text-lg">{district.name}</h3>
-                  </div>
-                  <div className="space-y-2 text-gray-600">
-                    <div className="flex justify-between">
-                      <span>Obyvatelé:</span>
-                      <span className="font-medium">{district.residents}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>GPON pokrytí:</span>
-                      <span className="font-medium text-green-600">{district.coverage}</span>
-                    </div>
-                  </div>
-                </div>)}
+            <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-90 leading-relaxed reveal-animation delay-100">
+              Získejte nejrychlejší internet v Ostravě s TV zdarma a profesionální instalací
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center reveal-animation delay-200">
+              <Link to="/kontakt" className="btn-secondary w-full sm:w-auto text-center">
+                Objednat internet
+              </Link>
+              <a href="tel:730431313" className="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 w-full sm:w-auto text-center">
+                📞 730 431 313
+              </a>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Výhody pro Ostravu */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-poda-blue">
-              Proč si vybrat PODA internet v Ostravě?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <Wifi className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-lg mb-2">Nejrychlejší optika v regionu</h3>
-                    <p className="text-gray-600">GPON technologie s rychlostí až 2000/2000 Mbps pro všechny části Ostravy.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <Clock className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-lg mb-2">Rychlá instalace</h3>
-                    <p className="text-gray-600">Bezplatná a rychlá instalace ve všech městských částech.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <Star className="h-6 w-6 text-poda-orange mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-lg mb-2">Místní podpora</h3>
-                    <p className="text-gray-600">Náš tým zná Ostravu jako vlastní kapsu - rychlá pomoc kdykoliv.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-br from-poda-blue to-blue-800 text-white p-8 rounded-xl">
-                <h3 className="font-bold text-xl mb-4">Speciální nabídka pro Ostravu</h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span>Internet 300 Mbps</span>
-                    <span className="font-bold">340 Kč/měs</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Internet 1000 Mbps</span>
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-gray-300 line-through text-sm">440 Kč</span>
-                      <span className="font-bold text-poda-orange">250 Kč/měs</span>
-                    </div>
-                  </div>
-                  <Collapsible open={openPromoInfo} onOpenChange={setOpenPromoInfo} className="mt-1">
-                    <CollapsibleTrigger className="flex items-center justify-start text-white/70 hover:text-white transition-colors">
-                      <Info className="h-3.5 w-3.5 mr-1" />
-                      <span className="text-xs">Více o ceně</span>
-                      <ChevronDown className="h-3 w-3 ml-1 transition-transform duration-200" style={{
-                      transform: openPromoInfo ? 'rotate(180deg)' : 'rotate(0deg)'
-                    }} />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="mt-2 text-xs text-white/80 bg-white/10 p-2 rounded-md">
-                      Promo cena 250 Kč/měs platí prvních 12 měsíců. Od 13. měsíce standardní cena 440 Kč/měs. Bez závaznosti.
-                    </CollapsibleContent>
-                  </Collapsible>
-                  <div className="flex justify-between items-center">
-                    <span>Internet 2000 Mbps</span>
-                    <span className="font-bold">520 Kč/měs</span>
-                  </div>
-                  <div className="border-t border-white/20 pt-3 mt-4">
-                    <div className="text-sm opacity-90">✓ Bezplatná instalace</div>
-                    <div className="text-sm opacity-90">✓ Wi-Fi router zdarma</div>
-                    <div className="text-sm opacity-90">✓ 24/7 podpora</div>
-                  </div>
-                </div>
-                <a href="tel:+420730431313" className="btn-primary bg-poda-orange hover:bg-orange-600 w-full mt-6 inline-flex items-center justify-center">
-                  <Phone className="mr-2 h-5 w-5" />
-                  Objednat nyní
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA sekce */}
-      <section className="py-16 bg-poda-orange text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            Připojte se k tisícům spokojených zákazníků v Ostravě
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Volejte nyní a získejte gigabitový internet už zítra!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+420730431313" className="btn-primary bg-white text-poda-orange hover:bg-gray-100 inline-flex items-center justify-center">
-              <Phone className="mr-2 h-5 w-5" />
-              730 431 313
-            </a>
-            <Link to="/kontakt" className="btn-outline border-white text-white hover:bg-white hover:text-poda-orange">
-              Online objednávka
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>;
+    </div>
+  );
 };
+
 export default InternetOstrava;

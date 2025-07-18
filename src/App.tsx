@@ -1,80 +1,97 @@
-import { Suspense } from "react";
-import { Toaster } from "@/components/ui/toaster";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { Suspense, lazy } from 'react';
+import { Toaster } from 'sonner';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
-import LoadingState from './components/page/LoadingState';
-import { LAZY_ROUTES, createLazyComponent } from './utils/codeSplitting';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ui/scroll-to-top';
 
-// Create lazy components
-const Index = createLazyComponent(LAZY_ROUTES.Home);
-const Blog = createLazyComponent(LAZY_ROUTES.Blog);
-const BlogPost = createLazyComponent(LAZY_ROUTES.BlogPost);
-const Contact = createLazyComponent(LAZY_ROUTES.Contact);
-const InternetTV = createLazyComponent(LAZY_ROUTES.InternetTV);
-const IPTV = createLazyComponent(LAZY_ROUTES.IPTV);
-const Tarify = createLazyComponent(LAZY_ROUTES.Tarify);
-const TvPrograms = createLazyComponent(LAZY_ROUTES.TvPrograms);
-const InternetOstrava = createLazyComponent(LAZY_ROUTES.InternetOstrava);
-const InternetKarvina = createLazyComponent(LAZY_ROUTES.InternetKarvina);
-const InternetBohumin = createLazyComponent(LAZY_ROUTES.InternetBohumin);
-const InternetHavirov = createLazyComponent(LAZY_ROUTES.InternetHavirov);
-const InternetPoruba = createLazyComponent(LAZY_ROUTES.InternetPoruba);
-const OchranaSoukromi = createLazyComponent(LAZY_ROUTES.OchranaSoukromi);
-const ObchodniPodminky = createLazyComponent(LAZY_ROUTES.ObchodniPodminky);
-const Cookies = createLazyComponent(LAZY_ROUTES.Cookies);
-const PromoAkce = createLazyComponent(LAZY_ROUTES.PromoAkce);
-const Sitemap = createLazyComponent(LAZY_ROUTES.Sitemap);
-const MigrationCenter = createLazyComponent(LAZY_ROUTES.MigrationCenter);
-const IndexingDashboard = createLazyComponent(LAZY_ROUTES.IndexingDashboard);
-const MigrationMonitor = createLazyComponent(LAZY_ROUTES.MigrationMonitor);
+// Lazy load components for better performance
+const Home = lazy(() => import('./pages/Index'));
+const InternetTV = lazy(() => import('./pages/InternetTV'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const InternetOstrava = lazy(() => import('./pages/InternetOstrava'));
+const InternetKarvina = lazy(() => import('./pages/InternetKarvina'));
+const InternetBohumin = lazy(() => import('./pages/InternetBohumin'));
+const InternetHavirov = lazy(() => import('./pages/InternetHavirov'));
+const InternetPoruba = lazy(() => import('./pages/InternetPoruba'));
+const Tarify = lazy(() => import('./pages/Tarify'));
+const Programy = lazy(() => import('./pages/TvPrograms'));
+const IPTV = lazy(() => import('./pages/IPTV'));
+const PromoAkcia = lazy(() => import('./pages/PromoAkcia'));
+const PrivacyPolicy = lazy(() => import('./pages/OchranaSoukromi'));
+const TermsOfService = lazy(() => import('./pages/ObchodniPodminky'));
+const CookiePolicy = lazy(() => import('./pages/Cookies'));
+const MigrationMonitor = lazy(() => import('./pages/MigrationMonitor'));
+const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
+const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
-// 404 component - keep lightweight and not lazy
-const NotFound = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="text-center">
-      <h1 className="text-4xl font-bold text-poda-blue mb-4">404</h1>
-      <p className="text-gray-600 mb-4">Stránka nebola nájdená</p>
-      <a href="/" className="text-poda-blue hover:underline">Späť na domovskú stránku</a>
-    </div>
-  </div>
-);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 30, // 30 minutes
+    },
+  },
+});
 
 function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <div className="min-h-screen bg-background font-sans antialiased">
-          <Suspense fallback={<LoadingState />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogPost />} />
-              <Route path="/kontakt" element={<Contact />} />
-              <Route path="/internet-tv" element={<InternetTV />} />
-              <Route path="/iptv" element={<IPTV />} />
-              <Route path="/tarify" element={<Tarify />} />
-              <Route path="/programy" element={<TvPrograms />} />
-              <Route path="/tv-programy" element={<TvPrograms />} />
-              <Route path="/internet-ostrava" element={<InternetOstrava />} />
-              <Route path="/internet-karvina" element={<InternetKarvina />} />
-              <Route path="/internet-bohumin" element={<InternetBohumin />} />
-              <Route path="/internet-havirov" element={<InternetHavirov />} />
-              <Route path="/internet-poruba" element={<InternetPoruba />} />
-              <Route path="/ochrana-soukromi" element={<OchranaSoukromi />} />
-              <Route path="/obchodni-podminky" element={<ObchodniPodminky />} />
-              <Route path="/cookies" element={<Cookies />} />
-              <Route path="/promo-akce" element={<PromoAkce />} />
-              <Route path="/promo-akcia" element={<PromoAkce />} />
-              <Route path="/sitemap" element={<Sitemap />} />
-              <Route path="/migration-center" element={<MigrationCenter />} />
-              <Route path="/migration-monitor" element={<MigrationMonitor />} />
-              <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-          <Toaster />
-        </div>
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <div className="min-h-screen bg-white flex flex-col">
+            <ScrollToTop />
+            <Navbar />
+            <main className="flex-grow">
+              <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-poda-blue"></div>
+                </div>
+              }>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/internet-tv" element={<InternetTV />} />
+                  <Route path="/iptv" element={<IPTV />} />
+                  <Route path="/kontakt" element={<Contact />} />
+                  <Route path="/tarify" element={<Tarify />} />
+                  <Route path="/programy" element={<Programy />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:id" element={<BlogPost />} />
+                  <Route path="/promo-akce" element={<PromoAkcia />} />
+                  
+                  {/* Geographic pages */}
+                  <Route path="/internet-ostrava" element={<InternetOstrava />} />
+                  <Route path="/internet-karvina" element={<InternetKarvina />} />
+                  <Route path="/internet-bohumin" element={<InternetBohumin />} />
+                  <Route path="/internet-havirov" element={<InternetHavirov />} />
+                  <Route path="/internet-poruba" element={<InternetPoruba />} />
+                  
+                  {/* Legal pages */}
+                  <Route path="/ochrana-soukromi" element={<PrivacyPolicy />} />
+                  <Route path="/obchodni-podminky" element={<TermsOfService />} />
+                  <Route path="/cookies" element={<CookiePolicy />} />
+                  
+                  {/* Migration and SEO tools */}
+                  <Route path="/migration-monitor" element={<MigrationMonitor />} />
+                  <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
+                  <Route path="/migration-center" element={<MigrationCenter />} />
+                  
+                  {/* 404 fallback */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </main>
+            <Footer />
+          </div>
+          <Toaster position="top-right" />
+        </Router>
+      </QueryClientProvider>
     </HelmetProvider>
   );
 }

@@ -1,9 +1,8 @@
-
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
+import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/codeSplitting'
 
 // Error tracking with improved error information
 const handleError = (error: Error) => {

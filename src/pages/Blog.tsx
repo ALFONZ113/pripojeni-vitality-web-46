@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -60,7 +61,7 @@ const Blog = () => {
     <div className="min-h-screen pt-20 sm:pt-24">
       <Helmet>
         <title>Blog - Tipy a novinky o PODA internetu | Popri.cz</title>
-        <meta name="description" content="Čítajte najnovšie články o PODA internetu, tipoch na optimalizáciu pripojenia a novinkách v oblasti telekomunikácií." />
+        <meta name="description" content="Čtěte nejnovější články o PODA internetu, tipech na optimalizaci připojení a novinkách v oblasti telekomunikací." />
         <link rel="canonical" href="https://www.popri.cz/blog" />
       </Helmet>
 
@@ -75,8 +76,8 @@ const Blog = () => {
               Tipy a novinky o internetu
             </h1>
             <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed reveal-animation delay-200">
-              Prečítajte si najnovšie články o PODA internetu, tipoch na optimalizáciu pripojenia 
-              a novinkách v oblasti telekomunikácií
+              Přečtěte si nejnovější články o PODA internetu, tipech na optimalizaci připojení 
+              a novinkách v oblasti telekomunikací
             </p>
           </div>
         </div>
@@ -109,8 +110,8 @@ const Blog = () => {
             <>
               <div className="text-center mb-6 sm:mb-8 px-4 sm:px-0">
                 <p className="text-sm sm:text-base text-gray-600">
-                  {selectedCategory !== 'all' && `Kategória: ${selectedCategory} • `}
-                  Zobrazených {filteredPosts.length} článkov
+                  {selectedCategory !== 'all' && `Kategorie: ${selectedCategory} • `}
+                  Zobrazeno {filteredPosts.length} článků
                 </p>
               </div>
               
@@ -131,10 +132,10 @@ const Blog = () => {
               <div className="max-w-md mx-auto">
                 <div className="text-4xl sm:text-6xl mb-4">🔍</div>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">
-                  Žiadne články nenájdené
+                  Žádné články nenalezeny
                 </h3>
                 <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">
-                  Skúste zmeniť vyhľadávací výraz alebo kategóriu
+                  Zkuste změnit vyhledávací výraz nebo kategorii
                 </p>
                 <button
                   onClick={() => {
@@ -143,7 +144,7 @@ const Blog = () => {
                   }}
                   className="btn-primary text-sm sm:text-base"
                 >
-                  Zobraziť všetky články
+                  Zobrazit všechny články
                 </button>
               </div>
             </div>

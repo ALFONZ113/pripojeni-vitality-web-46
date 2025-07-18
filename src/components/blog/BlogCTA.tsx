@@ -17,7 +17,7 @@ const BlogCTA = ({ location, variant = 'inline', compact = false }: BlogCTAProps
         <a
           href="tel:+420730431313"
           className="bg-poda-blue hover:bg-poda-blue-dark text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group"
-          aria-label="Zavolať"
+          aria-label="Zavolat"
         >
           <Phone className="h-5 w-5" />
         </a>
@@ -38,10 +38,10 @@ const BlogCTA = ({ location, variant = 'inline', compact = false }: BlogCTAProps
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h3 className="text-xl font-semibold mb-2">
-              Zaujíma vás naše pripojenie{locationText}?
+              Zajímá vás naše připojení{locationText}?
             </h3>
             <p className="text-blue-100">
-              Kontaktujte nás pre bezplatnú konzultáciu a overenie dostupnosti.
+              Kontaktujte nás pro bezplatnou konzultaci a ověření dostupnosti.
             </p>
           </div>
           <div className="flex gap-3">
@@ -57,7 +57,7 @@ const BlogCTA = ({ location, variant = 'inline', compact = false }: BlogCTAProps
               className="bg-white/20 text-white px-4 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors flex items-center gap-2"
             >
               <MessageSquare className="h-4 w-4" />
-              Kontaktný formulár
+              Kontaktní formulář
             </Link>
           </div>
         </div>
@@ -88,17 +88,17 @@ const BlogCTA = ({ location, variant = 'inline', compact = false }: BlogCTAProps
         </div>
         <div className="flex-1">
           <h4 className="font-semibold text-poda-blue mb-1">
-            Potrebujete rychlé pripojenie{locationText}?
+            Potřebujete rychlé připojení{locationText}?
           </h4>
           <p className="text-gray-600 text-sm mb-3">
-            Overíme dostupnosť PODA internetu na vašej adrese a poradíme s výberom najvhodnejšieho tarifu.
+            Ověříme dostupnost PODA internetu na vaší adrese a poradíme s výběrem nejvhodnějšího tarifu.
           </p>
           <div className="flex gap-3 flex-wrap">
             <Link
               to="/kontakt"
               className="text-sm bg-poda-blue text-white px-3 py-1.5 rounded hover:bg-poda-blue-dark transition-colors"
             >
-              Kontaktný formulár
+              Kontaktní formulář
             </Link>
             <a
               href="tel:+420730431313"

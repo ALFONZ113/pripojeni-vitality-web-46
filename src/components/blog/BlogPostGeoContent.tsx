@@ -12,8 +12,8 @@ const BlogPostGeoContent = ({ location }: BlogPostGeoContentProps) => {
         Služby PODA v {location}
       </h4>
       <p className="text-gray-700 mb-4">
-        Hľadáte spoľahlivé internetové pripojenie v {location}? PODA poskytuje rýchly optický internet 
-        s garantovanými rýchlosťami a bezplatnou inštaláciou. 
+        Hledáte spolehlivé internetové připojení v {location}? PODA poskytuje rychlý optický internet 
+        s garantovanými rychlostmi a bezplatnou instalací. 
         <BlogCTA variant="inline" compact location={location} />
       </p>
     </div>

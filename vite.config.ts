@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import prerender from "vite-plugin-prerender";
 
 // Critical routes for prerendering
 const PRERENDER_ROUTES = [
@@ -37,11 +38,14 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    // Temporarily disable prerendering until we can fix the configuration
-    // mode === 'production' && prerender({
-    //   routes: PRERENDER_ROUTES,
-    //   renderAfterTime: 500
-    // }),
+    mode === 'production' && prerender({
+      routes: PRERENDER_ROUTES,
+      rendererOptions: {
+        renderAfterTime: 500,
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      }
+    }),
   ].filter(Boolean),
   resolve: {
     alias: {

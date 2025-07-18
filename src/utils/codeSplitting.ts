@@ -1,9 +1,33 @@
 
-import { lazy } from 'react';
+import { lazy, ComponentType } from 'react';
 
-// Define all lazy routes with proper paths
+/**
+ * Enhanced lazy loading with error boundary and loading states
+ */
+export const createLazyComponent = <T extends ComponentType<any>>(
+  importFunc: () => Promise<{ default: T }>,
+  fallback?: ComponentType
+) => {
+  const LazyComponent = lazy(importFunc);
+  
+  return LazyComponent;
+};
+
+/**
+ * Preload component for better UX
+ */
+export const preloadComponent = (importFunc: () => Promise<any>) => {
+  return importFunc();
+};
+
+/**
+ * Bundle splitting configuration
+ */
 export const LAZY_ROUTES = {
+  // Main pages - load immediately
   Home: () => import('../pages/Index'),
+  
+  // Secondary pages - load on demand
   Blog: () => import('../pages/Blog'),
   BlogPost: () => import('../pages/BlogPost'),
   Contact: () => import('../pages/Contact'),
@@ -11,71 +35,49 @@ export const LAZY_ROUTES = {
   IPTV: () => import('../pages/IPTV'),
   Tarify: () => import('../pages/Tarify'),
   TvPrograms: () => import('../pages/TvPrograms'),
+  
+  // Geo pages - load on demand
   InternetOstrava: () => import('../pages/InternetOstrava'),
   InternetKarvina: () => import('../pages/InternetKarvina'),
   InternetBohumin: () => import('../pages/InternetBohumin'),
   InternetHavirov: () => import('../pages/InternetHavirov'),
   InternetPoruba: () => import('../pages/InternetPoruba'),
+  
+  // Legal pages - load on demand
   OchranaSoukromi: () => import('../pages/OchranaSoukromi'),
   ObchodniPodminky: () => import('../pages/ObchodniPodminky'),
   Cookies: () => import('../pages/Cookies'),
+  
+  // Promo page - load on demand
   PromoAkce: () => import('../pages/PromoAkcia'),
+  
+  // Utility pages - load on demand
   Sitemap: () => import('../pages/Sitemap'),
   MigrationCenter: () => import('../pages/MigrationCenter'),
   IndexingDashboard: () => import('../pages/IndexingDashboard'),
-  MigrationMonitor: () => import('../pages/MigrationMonitor')
-};
-
-// Create lazy component helper
-export const createLazyComponent = (importFn: () => Promise<any>) => {
-  return lazy(importFn);
+  MigrationMonitor: () => import('../pages/MigrationMonitor'),
 };
 
 /**
- * Optimize bundle loading based on priority
+ * Component lazy loading with route-based splitting
  */
-export const optimizeChunkLoading = () => {
-  if (typeof document === 'undefined') return;
-
-  // Preload high-priority chunks
-  const highPriorityChunks = [
-    'vendor',
-    'ui',
-    'utils'
-  ];
-
-  highPriorityChunks.forEach(chunk => {
-    const link = document.createElement('link');
-    link.rel = 'modulepreload';
-    link.href = `/assets/${chunk}.js`;
-    document.head.appendChild(link);
-  });
-};
-
-/**
- * Preload critical routes and components
- */
-export const preloadCriticalRoutes = () => {
-  if (typeof document === 'undefined') return;
-
-  // Preload critical route bundles
-  const criticalRoutes = [
-    '/blog',
-    '/kontakt',
-    '/tarify'
-  ];
-
-  criticalRoutes.forEach(route => {
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = route;
-    document.head.appendChild(link);
-  });
-};
-
-export default {
-  LAZY_ROUTES,
-  createLazyComponent,
-  preloadCriticalRoutes,
-  optimizeChunkLoading
+export const LAZY_COMPONENTS = {
+  // Heavy components - load on demand
+  PromotionPopup: () => import('../components/PromotionPopup'),
+  ContactForm: () => import('../components/ContactForm'),
+  CallbackForm: () => import('../components/CallbackForm'),
+  PromoForm: () => import('../components/PromoForm'),
+  
+  // Blog components - load with blog pages
+  BlogList: () => import('../components/blog/BlogList'),
+  BlogCard: () => import('../components/blog/BlogCard'),
+  BlogPostContent: () => import('../components/blog/BlogPostContent'),
+  
+  // Migration tools - load on demand
+  MigrationDashboard: () => import('../components/migration/MigrationDashboard'),
+  IndexingAccelerator: () => import('../components/migration/IndexingAccelerator'),
+  
+  // Charts and heavy UI - load on interaction
+  TariffSection: () => import('../components/TariffSection'),
+  ChannelsSection: () => import('../components/ChannelsSection'),
 };

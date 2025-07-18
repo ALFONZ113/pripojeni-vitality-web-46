@@ -59,7 +59,7 @@ const PromoAkcia = () => {
           
           <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-4 sm:p-6 rounded-xl inline-block mx-2 sm:mx-0 max-w-full">
             <p className="text-base sm:text-lg font-semibold leading-relaxed">
-              Objednajte si rýchle pripojenie a získajte prvý mesiac ZDARMA!
+              Objednejte si rychlé připojení a získejte první měsíc ZDARMA!
             </p>
           </div>
         </div>

@@ -87,7 +87,7 @@ const PromoForm = ({
           Zadejte své telefonní číslo a my se Vám ozveme
         </label>
         
-        {/* Mobilný layout - stĺpce, desktop layout - riadok */}
+        {/* Mobilní layout - sloupce, desktop layout - řádek */}
         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
           <div className="relative flex-grow">
             <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 sm:h-5 sm:w-5" />
@@ -125,7 +125,7 @@ const PromoForm = ({
         
         <div className="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-2 sm:p-3 rounded-lg text-center">
           <p className="text-xs sm:text-sm font-semibold leading-relaxed">
-            Objednajte si rýchle pripojenie a získajte prvý mesiac zdarma!
+            Objednejte si rychlé připojení a získejte první měsíc zdarma!
           </p>
         </div>
       </div>

@@ -20,25 +20,25 @@
     <meta name="google" content="notranslate">
     <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
     
-    <!-- Google re-indexing signals -->
+    <!-- Enhanced Google re-indexing signals -->
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="last-modified" content="2025-01-14" />
     <meta name="content-updated" content="2025-01-14T12:00:00Z" />
     
-    <!-- Enhanced cache control meta tags -->
+    <!-- Enhanced cache control -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <meta name="version" content="3.1" />
+    <meta name="version" content="4.0" />
     <meta name="cache-version" content="1747302000000" />
-    <meta name="domain-cache" content="dual-domain-3.1" />
-    <meta name="meta-update" content="2025-01-14" />
+    <meta name="build-optimization" content="enhanced-ssg-4.0" />
     
     <!-- Canonical URLs -->
     <link rel="canonical" href="https://www.popri.cz/" />
     <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-images.xml" />
     
     <!-- Open Graph Tags -->
     <meta property="og:type" content="website" />
@@ -56,41 +56,25 @@
     <meta name="twitter:description" content="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace." />
     <meta name="twitter:image" content="https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" />
     
-    <!-- Favicon configuration with updated cache version -->
-    <link rel="icon" href="/poda-favicon.ico?v=3.1&t=1747302000" type="image/x-icon">
-    <link rel="icon" href="/poda-favicon-16x16.png?v=3.1&t=1747302000" sizes="16x16" type="image/png">
-    <link rel="icon" href="/poda-favicon-32x32.png?v=3.1&t=1747302000" sizes="32x32" type="image/png">
-    <link rel="icon" href="/poda-favicon-48x48.png?v=3.1&t=1747302000" sizes="48x48" type="image/png">
-    <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png?v=3.1&t=1747302000">
-    <link rel="manifest" href="/site.webmanifest?v=3.1&t=1747302000">
+    <!-- Favicon configuration -->
+    <link rel="icon" href="/poda-favicon.ico?v=4.0&t=1747302000" type="image/x-icon">
+    <link rel="icon" href="/poda-favicon-16x16.png?v=4.0&t=1747302000" sizes="16x16" type="image/png">
+    <link rel="icon" href="/poda-favicon-32x32.png?v=4.0&t=1747302000" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/poda-apple-touch-icon.png?v=4.0&t=1747302000">
+    <link rel="manifest" href="/site.webmanifest?v=4.0&t=1747302000">
     
-    <!-- Enhanced font preloading with CORS support -->
+    <!-- Enhanced font preloading with display swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload fonts - replace the old stylesheet link -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" crossorigin="anonymous">
     </noscript>
     
-    <!-- Preload critical CSS and images -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="console.warn('Failed to load CSS')">
-    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+    <!-- Critical image preloading -->
+    <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" width="256" height="256">
     
-    <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" width="256" height="256" onerror="this.href='/placeholder.svg'">
-    <link rel="preload" as="image" href="/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" fetchpriority="low" width="512" height="512" onerror="this.href='/placeholder.svg'">
-    
-    <!-- NoScript CSS -->
-    <link rel="stylesheet" href="/css/noscript.css">
-    
-    <!-- External APIs -->
-    <script src="https://api.mapy.cz/loader.js"></script>
-    <script src="/js/mapy-loader.js"></script>
-    
-    <!-- Schema.org markup using JSON-LD with updated data -->
+    <!-- Enhanced structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -98,6 +82,7 @@
       "name": "Popri.cz – PODA Internet",
       "url": "https://www.popri.cz",
       "description": "Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace.",
+      "inLanguage": "cs-CZ",
       "dateModified": "2025-01-14T12:00:00Z",
       "potentialAction": {
         "@type": "SearchAction",
@@ -114,28 +99,35 @@
       "name": "Popri.cz - PODA Internet",
       "url": "https://www.popri.cz",
       "logo": "https://www.popri.cz/poda-logo.svg",
-      "description": "Poskytovateľ PODA internetových služieb s gigabitovým pripojením a TV zdarma",
+      "description": "Poskytovatel PODA internetových služeb s gigabitovým připojením a TV zdarma",
+      "telephone": "+420-730-431-313",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+420-739-065-142",
+        "telephone": "+420-730-431-313",
         "contactType": "customer service",
         "areaServed": "CZ",
         "availableLanguage": "Czech"
       },
-      "sameAs": [],
+      "areaServed": [
+        {"@type": "City", "name": "Ostrava"},
+        {"@type": "City", "name": "Karviná"},
+        {"@type": "City", "name": "Bohumín"},
+        {"@type": "City", "name": "Havířov"},
+        {"@type": "City", "name": "Poruba"}
+      ],
       "dateModified": "2025-01-14T12:00:00Z"
     }
     </script>
     
-    <!-- Critical CSS inlined for above-the-fold content -->
+    <!-- Critical CSS inlined -->
     <style>
-      /* Critical CSS for initial paint */
+      /* Critical above-the-fold styles */
       .poda-blue { color: #1e40af; }
       .bg-poda-blue { background-color: #1e40af; }
       .poda-orange { color: #f59e0b; }
-      .border-poda-orange { border-color: #f59e0b; }
+      .bg-poda-orange { background-color: #f59e0b; }
       .text-blue-100 { color: #dbeafe; }
-      .container { max-width: 1200px; margin: 0 auto; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
       .grid { display: grid; }
       .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
       .gap-8 { gap: 2rem; }
@@ -149,108 +141,100 @@
       .text-center { text-align: center; }
       .font-bold { font-weight: 700; }
       .font-semibold { font-weight: 600; }
-      .text-xl { font-size: 1.25rem; }
-      .text-2xl { font-size: 1.5rem; }
-      .text-4xl { font-size: 2.25rem; }
+      .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+      .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+      .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
       .rounded-xl { border-radius: 0.75rem; }
-      .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+      .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
       .border-l-4 { border-left-width: 4px; }
       .bg-white { background-color: #ffffff; }
       .text-gray-600 { color: #4b5563; }
       .max-w-3xl { max-width: 48rem; }
       .mx-auto { margin-left: auto; margin-right: auto; }
       .min-h-screen { min-height: 100vh; }
+      .transition-opacity { transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+      .opacity-0 { opacity: 0; }
+      .opacity-100 { opacity: 1; }
+      
+      /* Loading states */
+      .lazy-loading { opacity: 0.5; }
+      .lazy-loaded { opacity: 1; transition: opacity 0.3s ease; }
       
       @media (max-width: 768px) {
         .md\:grid-cols-3 { grid-template-columns: 1fr; }
+        .text-4xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
       }
     </style>
 
     <!-- Progressive enhancement script -->
     <script>
-      // Hide static content once JS loads
-      document.addEventListener('DOMContentLoaded', function() {
-        const staticContent = document.getElementById('static-content');
-        if (staticContent) {
-          staticContent.style.display = 'none';
-        }
-      });
-      
-      // Show static content if React fails to load
-      setTimeout(function() {
-        const root = document.getElementById('root');
-        if (!root || !root.children.length) {
+      // Enhanced progressive enhancement with performance monitoring
+      (function() {
+        const startTime = performance.now();
+        
+        // Show static content until React loads
+        document.addEventListener('DOMContentLoaded', function() {
           const staticContent = document.getElementById('static-content');
           if (staticContent) {
             staticContent.style.display = 'block';
+            staticContent.style.opacity = '1';
           }
+        });
+        
+        // Enhanced fallback with timeout
+        const fallbackTimeout = setTimeout(function() {
+          const root = document.getElementById('root');
+          const staticContent = document.getElementById('static-content');
+          
+          if (!root || !root.children.length) {
+            if (staticContent) {
+              staticContent.style.display = 'block';
+              staticContent.style.opacity = '1';
+            }
+            console.warn('React failed to load, showing static content');
+          }
+        }, 3000);
+        
+        // Clear fallback when React loads
+        window.addEventListener('load', function() {
+          clearTimeout(fallbackTimeout);
+          const loadTime = performance.now() - startTime;
+          console.log(`Page loaded in ${Math.round(loadTime)}ms`);
+        });
+        
+        // Setup lazy image loading
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                const src = img.dataset.src;
+                if (src) {
+                  img.src = src;
+                  img.classList.remove('lazy-loading');
+                  img.classList.add('lazy-loaded');
+                  imageObserver.unobserve(img);
+                }
+              }
+            });
+          }, { rootMargin: '50px' });
+          
+          document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('img[data-src]').forEach(function(img) {
+              imageObserver.observe(img);
+            });
+          });
         }
-      }, 3000);
+      })();
     </script>
-
-    <!-- Lovable script tag -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    
-    <!-- Analytics (deferred) -->
-    <script src="/js/analytics.js" defer></script>
   </head>
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Service worker registration with updated version -->
-    <script src="/sw-register.js?v=3.1"></script>
-    
-    <!-- Enhanced resource error handling -->
-    <script>
-      // Enhanced error handling for resources
-      window.addEventListener('error', function(e) {
-        if (e.target && e.target.tagName) {
-          const tag = e.target.tagName.toLowerCase();
-          const src = e.target.src || e.target.href;
-          
-          if (tag === 'img' && src) {
-            console.warn('Image failed to load:', src);
-            e.target.src = '/placeholder.svg';
-          } else if (tag === 'link' && src && src.includes('css')) {
-            console.warn('CSS failed to load:', src);
-          }
-        }
-      }, true);
-      
-      // Ensure favicon is loaded correctly on all domains
-      (function() {
-        const checkFavicon = () => {
-          // Get all favicon links
-          const faviconLinks = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"], link[rel="manifest"]');
-          const domain = window.location.hostname;
-          
-          // Add domain-specific cache parameter
-          faviconLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && (href.includes('favicon') || href.includes('apple-touch-icon') || href.includes('manifest'))) {
-              // Generate domain-specific parameter
-              const domainParam = domain.includes('poda') ? 'poda' : 'popri';
-              const newHref = href.includes('?') 
-                ? `${href}&domain=${domainParam}&t=${Date.now()}` 
-                : `${href}?domain=${domainParam}&t=${Date.now()}`;
-              link.setAttribute('href', newHref);
-            }
-          });
-        };
-        
-        // Run after DOM is fully loaded
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', checkFavicon);
-        } else {
-          checkFavicon();
-        }
-      })();
-    </script>
-    
-    <!-- Static content for SEO and progressive enhancement -->
-    <div id="static-content" style="display: none;">
+    <!-- Enhanced static content for SEO and no-JS users -->
+    <div id="static-content" style="display: none; opacity: 0;" class="transition-opacity">
       <main class="min-h-screen bg-white">
         <header class="bg-poda-blue text-white p-4">
           <div class="container mx-auto">
@@ -266,34 +250,61 @@
                 PODA Internet s TV za nejlepší ceny
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Získejte gigabitové připojení s TV zdarma. Rychlá instalace, spolehlivá síť a non-stop technická podpora.
+                Získejte gigabitové připojení s TV zdarma. Rychlá instalace, spolehlivá síť a non-stop technická podpora pro váš domov i firmu.
               </p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-blue">
-                <h3 class="text-xl font-semibold text-poda-blue mb-3">Rychlé připojení</h3>
-                <p class="text-gray-600">Gigabitové rychlosti až 1000 Mb/s pro domácnosti i firmy</p>
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-l-poda-blue">
+                <h3 class="text-xl font-semibold text-poda-blue mb-3">🚀 Rychlé připojení</h3>
+                <p class="text-gray-600">Gigabitové rychlosti až 1000 Mb/s pro domácnosti i firmy. Stabilní připojení bez omezení data.</p>
               </div>
               
-              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-orange">
-                <h3 class="text-xl font-semibold text-poda-blue mb-3">TV zdarma</h3>
-                <p class="text-gray-600">Více než 100 televizních kanálů včetně HD kvality</p>
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-l-poda-orange">
+                <h3 class="text-xl font-semibold text-poda-blue mb-3">📺 TV zdarma</h3>
+                <p class="text-gray-600">Více než 100 televizních kanálů včetně HD kvality v ceně internetového připojení.</p>
               </div>
               
-              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-blue">
-                <h3 class="text-xl font-semibold text-poda-blue mb-3">Non-stop podpora</h3>
-                <p class="text-gray-600">24/7 technická podpora a servis</p>
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-l-poda-blue">
+                <h3 class="text-xl font-semibold text-poda-blue mb-3">🛠️ Non-stop podpora</h3>
+                <p class="text-gray-600">24/7 technická podpora a servis. Jsme tu pro vás kdykoliv potřebujete pomoct.</p>
               </div>
             </div>
             
+            <div class="bg-poda-orange p-6 rounded-xl text-center mb-12">
+              <h3 class="text-2xl font-bold text-white mb-4">🎉 Speciální nabídka</h3>
+              <p class="text-white text-lg mb-4">První měsíc zdarma pro nové zákazníky!</p>
+              <a href="tel:+420730431313" class="inline-block bg-white text-poda-orange px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                Zavolejte: 730 431 313
+              </a>
+            </div>
+
+            <div class="text-center mb-12">
+              <h3 class="text-2xl font-bold text-poda-blue mb-6">Pokrýváme tyto oblasti</h3>
+              <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <h4 class="font-semibold text-poda-blue">🏙️ Ostrava</h4>
+                  <p class="text-sm text-gray-600">Centrum, Poruba, Vítkovice</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <h4 class="font-semibold text-poda-blue">🏭 Karviná</h4>
+                  <p class="text-sm text-gray-600">Město a okolní obce</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <h4 class="font-semibold text-poda-blue">🚉 Havířov & Bohumín</h4>
+                  <p class="text-sm text-gray-600">Kompletní pokrytí</p>
+                </div>
+              </div>
+            </div>
+
             <div class="text-center">
               <h3 class="text-2xl font-bold text-poda-blue mb-4">Kontaktujte nás</h3>
-              <p class="text-lg text-gray-600 mb-6">
-                Telefon: <a href="tel:+420730431313" class="text-poda-blue font-semibold">730 431 313</a>
+              <p class="text-lg text-gray-600 mb-2">
+                📞 Telefon: <a href="tel:+420730431313" class="text-poda-blue font-semibold hover:underline">730 431 313</a>
               </p>
-              <p class="text-gray-600">
-                Pokrýváme oblasti: Ostrava, Karviná, Bohumín, Havířov, Poruba a okolí
+              <p class="text-gray-600 mb-4">Milan Terč - obchodní zástupce PODA</p>
+              <p class="text-sm text-gray-500">
+                ⏰ Dostupní: Po-Ne 8:00-20:00 | 📧 Email: terc@obchod.poda.cz
               </p>
             </div>
           </div>
@@ -301,14 +312,30 @@
       </main>
     </div>
 
+    <!-- React application entry point -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service worker for caching -->
+    <script src="/sw-register.js?v=4.0"></script>
+    
+    <!-- Error handling for resources -->
+    <script>
+      window.addEventListener('error', function(e) {
+        if (e.target && e.target.tagName === 'IMG') {
+          console.warn('Image failed to load:', e.target.src);
+          e.target.src = '/placeholder.svg';
+        }
+      }, true);
+    </script>
+
     <!-- NoScript fallback -->
     <noscript>
       <style>
-        #static-content { display: block !important; }
+        #static-content { display: block !important; opacity: 1 !important; }
         #root { display: none; }
       </style>
-      <div class="noscript-banner" style="background: #f59e0b; color: white; padding: 10px; text-align: center;">
-        <strong>JavaScript je zakázán.</strong> Stránka funguje i bez JavaScriptu, ale pro plnou funkcionalitat doporučujeme jej povolit.
+      <div style="background: #f59e0b; color: white; padding: 10px; text-align: center; font-weight: bold;">
+        JavaScript je zakázán. Stránka funguje i bez JavaScriptu, ale pro plnou funkcionalnost doporučujeme jej povolit.
       </div>
     </noscript>
   </body>

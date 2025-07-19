@@ -1,10 +1,8 @@
-
 import { useEffect } from 'react';
 import { Mail, MapPin } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import { initAnimations } from '../utils/animation';
 import PhoneLink from '../components/ui/phone-link';
-
 const Contact = () => {
   useEffect(() => {
     // Initialize scroll animations
@@ -16,7 +14,6 @@ const Contact = () => {
       cleanupAnimation();
     };
   }, []);
-
   return <div className="min-h-screen pt-24">
       {/* Hero section */}
       <section className="section-padding bg-gradient-to-b from-white to-blue-50">
@@ -28,7 +25,7 @@ const Contact = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
               Kontakt
             </h1>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200 text-left">Máte zájem o naše služby nebo potřebujete poradit? Neváhejte nás kontaktovat.         Milan Terč vám rád zodpoví všechny vaše otázky a vytvoří pro vás objednávku</p>
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200 text-left">Máte zájem o naše služby nebo potřebujete poradit? Neváhejte nás kontaktovat. Zodpovíme všechny vaše otázky a vytvoříme pro vás objednávku</p>
           </div>
         </div>
       </section>
@@ -59,11 +56,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-blue-100">Telefon</p>
-                        <PhoneLink 
-                          phoneNumber="+420730431313"
-                          className="text-xl font-medium hover:text-poda-orange transition-colors"
-                          displayNumber="+420 730 431 313"
-                        />
+                        <PhoneLink phoneNumber="+420730431313" className="text-xl font-medium hover:text-poda-orange transition-colors" displayNumber="+420 730 431 313" />
                       </div>
                     </div>
                     
@@ -152,5 +145,4 @@ const Contact = () => {
       </section>
     </div>;
 };
-
 export default Contact;

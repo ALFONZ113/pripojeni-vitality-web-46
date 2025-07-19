@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { Mail, MapPin } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
@@ -71,7 +70,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <PhoneLink 
-                        phoneNumber="+420730431313" 
+                        phone="+420730431313" 
                         className="text-lg font-medium hover:text-poda-orange transition-colors" 
                         displayNumber="+420 730 431 313" 
                       />
@@ -117,7 +116,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-blue-100">Telefon</p>
-                        <PhoneLink phoneNumber="+420730431313" className="text-xl font-medium hover:text-poda-orange transition-colors" displayNumber="+420 730 431 313" />
+                        <PhoneLink phone="+420730431313" className="text-xl font-medium hover:text-poda-orange transition-colors" displayNumber="+420 730 431 313" />
                       </div>
                     </div>
                     

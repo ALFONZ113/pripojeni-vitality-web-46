@@ -31,7 +31,7 @@ const ContactSection = () => {
                     <div>
                       <p className="text-sm text-blue-100">Telefon</p>
                       <PhoneLink 
-                        phoneNumber="+420730431313"
+                        phone="+420730431313"
                         className="text-xl font-medium hover:text-poda-orange transition-colors"
                         displayNumber="+420 730 431 313"
                       />

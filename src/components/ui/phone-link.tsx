@@ -3,7 +3,9 @@ import React from 'react';
 import { trackPhoneClick } from '../../utils/googleAdsTracking';
 
 interface PhoneLinkProps {
-  phone: string;
+  phone?: string;
+  phoneNumber?: string;
+  displayNumber?: string;
   className?: string;
   children?: React.ReactNode;
   trackClick?: boolean;
@@ -11,10 +13,15 @@ interface PhoneLinkProps {
 
 const PhoneLink: React.FC<PhoneLinkProps> = ({ 
   phone, 
+  phoneNumber,
+  displayNumber,
   className = '', 
   children, 
   trackClick = true 
 }) => {
+  // Use phoneNumber if provided, otherwise fallback to phone
+  const actualPhone = phoneNumber || phone || '';
+  
   const handleClick = () => {
     if (trackClick) {
       trackPhoneClick();
@@ -23,11 +30,11 @@ const PhoneLink: React.FC<PhoneLinkProps> = ({
 
   return (
     <a 
-      href={`tel:${phone.replace(/\s/g, '')}`}
+      href={`tel:${actualPhone.replace(/\s/g, '')}`}
       className={className}
       onClick={handleClick}
     >
-      {children || phone}
+      {children || displayNumber || actualPhone}
     </a>
   );
 };

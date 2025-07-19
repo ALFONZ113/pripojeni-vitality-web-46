@@ -59,11 +59,11 @@ const InternetBohumin = () => {
               Gigabitový Internet PODA v <span className="text-poda-orange">Bohumíně</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Moderní město s nejrychlejším optickým připojením až 1000 Mbps
+              Moderní město s nejrychlejší optickým připojením až 1000 Mbps
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <PhoneLink 
-                phoneNumber="+420730431313"
+                phone="+420730431313"
                 className="btn-primary bg-poda-orange hover:bg-orange-600 inline-flex items-center justify-center"
               >
                 <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
@@ -210,7 +210,7 @@ const InternetBohumin = () => {
                   </div>
                 </div>
                 <PhoneLink 
-                  phoneNumber="+420730431313"
+                  phone="+420730431313"
                   className="btn-primary bg-poda-orange hover:bg-orange-600 w-full mt-6 inline-flex items-center justify-center"
                 >
                   <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
@@ -235,7 +235,7 @@ const InternetBohumin = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <PhoneLink 
-              phoneNumber="+420730431313"
+              phone="+420730431313"
               className="btn-primary bg-white text-poda-orange hover:bg-gray-100 inline-flex items-center justify-center"
             >
               <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">

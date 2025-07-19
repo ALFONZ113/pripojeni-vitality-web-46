@@ -4,6 +4,7 @@ import { sendContactFormEmail } from '../utils/emailService';
 import { toast } from '@/hooks/use-toast';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { trackPromoFormSubmission } from '../utils/googleAdsTracking';
 
 interface PromoFormProps {
   onSuccess?: () => void;
@@ -45,6 +46,9 @@ const PromoForm = ({
       });
       
       if (emailSent) {
+        // Track Google Ads conversion
+        trackPromoFormSubmission();
+        
         setIsSuccess(true);
         setPhoneNumber('');
         

@@ -1,40 +1,33 @@
 
 import React from 'react';
-import { getPhoneProps } from '../../utils/phoneOptimization';
-import { cn } from '../../lib/utils';
+import { trackPhoneClick } from '../../utils/googleAdsTracking';
 
 interface PhoneLinkProps {
-  phoneNumber: string;
-  children?: React.ReactNode;
+  phone: string;
   className?: string;
-  displayNumber?: string;
+  children?: React.ReactNode;
+  trackClick?: boolean;
 }
 
 const PhoneLink: React.FC<PhoneLinkProps> = ({ 
-  phoneNumber, 
+  phone, 
+  className = '', 
   children, 
-  className,
-  displayNumber 
+  trackClick = true 
 }) => {
-  const phoneProps = getPhoneProps(phoneNumber);
+  const handleClick = () => {
+    if (trackClick) {
+      trackPhoneClick();
+    }
+  };
 
   return (
-    <a
-      {...phoneProps}
-      className={cn(
-        'phone-link transition-colors duration-200 touch-manipulation',
-        'focus:outline-none focus:ring-2 focus:ring-poda-blue focus:ring-offset-2',
-        'active:scale-95 transform transition-transform',
-        className
-      )}
-      style={{
-        WebkitTapHighlightColor: 'transparent',
-        WebkitTouchCallout: 'none',
-        WebkitUserSelect: 'none',
-        userSelect: 'none'
-      }}
+    <a 
+      href={`tel:${phone.replace(/\s/g, '')}`}
+      className={className}
+      onClick={handleClick}
     >
-      {children || displayNumber || phoneNumber}
+      {children || phone}
     </a>
   );
 };

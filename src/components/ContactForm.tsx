@@ -1,9 +1,9 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { sendContactFormEmail } from '../utils/emailService';
 import { initMapySuggester, parseAddressComponents } from '../utils/mapyService';
+import { trackFormSubmission } from '../utils/googleAdsTracking';
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -103,6 +103,9 @@ const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
       const emailSent = await sendContactFormEmail(formData);
       
       if (emailSent) {
+        // Track Google Ads conversion
+        trackFormSubmission('contact');
+        
         setFormState({
           submitted: true,
           success: true,

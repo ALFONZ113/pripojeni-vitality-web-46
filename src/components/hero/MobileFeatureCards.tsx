@@ -12,7 +12,7 @@ const MobileFeatureCards = () => {
           </div>
           <div>
             <h3 className="font-semibold text-lg text-poda-blue mb-1">Rychlý optický internet</h3>
-            <p className="text-gray-600 text-sm">PODA připojení od Popri.cz s garantovanou rychlostí až 1000/1000 Mbps.</p>
+            <p className="text-gray-600 text-sm">PODA připojení s garantovanou rychlostí až 1000/1000 Mbps.</p>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@ const MobileFeatureCards = () => {
           </div>
           <div>
             <h3 className="font-semibold text-lg text-poda-blue mb-1">Chytrá televize</h3>
-            <p className="text-gray-600 text-sm">S Popri.cz získáte více než 100 TV programů na všech zařízeních.</p>
+            <p className="text-gray-600 text-sm">Získáte více než 100 TV programů na všech zařízeních.</p>
           </div>
         </div>
       </div>

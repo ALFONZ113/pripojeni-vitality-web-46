@@ -13,7 +13,7 @@ const FeatureCardsDesktop = () => {
         <FeatureCard
           icon={Wifi}
           title="Rychlý optický internet"
-          description="PODA připojení od Popri.cz s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost."
+          description="PODA připojení s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost."
           iconColor="text-poda-blue"
           iconBgColor="bg-poda-blue/10"
           index={0}
@@ -22,7 +22,7 @@ const FeatureCardsDesktop = () => {
         <FeatureCard
           icon={Tv}
           title="Chytrá televize"
-          description="S Popri.cz získáte více než 100 TV programů, sledování na všech zařízeních a vlastní výběr stanic."
+          description="Získáte více než 100 TV programů, sledování na všech zařízeních a vlastní výběr stanic."
           iconColor="text-poda-orange"
           iconBgColor="bg-poda-orange/10"
           index={1}

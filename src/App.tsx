@@ -7,6 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
+import FloatingCallButton from './components/ui/floating-call-button';
 
 // Lazy load components for better performance
 const Home = lazy(() => import('./pages/Index'));
@@ -23,6 +24,7 @@ const Tarify = lazy(() => import('./pages/Tarify'));
 const Programy = lazy(() => import('./pages/TvPrograms'));
 const IPTV = lazy(() => import('./pages/IPTV'));
 const PromoAkcia = lazy(() => import('./pages/PromoAkcia'));
+const PomocPrechodem = lazy(() => import('./pages/PomocPrechodem'));
 const PrivacyPolicy = lazy(() => import('./pages/OchranaSoukromi'));
 const TermsOfService = lazy(() => import('./pages/ObchodniPodminky'));
 const CookiePolicy = lazy(() => import('./pages/Cookies'));
@@ -64,6 +66,7 @@ function App() {
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
                   <Route path="/promo-akce" element={<PromoAkcia />} />
+                  <Route path="/pomoc-s-prechodem" element={<PomocPrechodem />} />
                   
                   {/* Geographic pages */}
                   <Route path="/internet-ostrava" element={<InternetOstrava />} />
@@ -88,6 +91,7 @@ function App() {
               </Suspense>
             </main>
             <Footer />
+            <FloatingCallButton />
           </div>
           <Toaster position="top-right" />
         </Router>

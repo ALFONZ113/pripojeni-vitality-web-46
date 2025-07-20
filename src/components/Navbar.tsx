@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight, HandHeart } from 'lucide-react';
 import {
   Popover,
   PopoverContent,
@@ -95,6 +95,13 @@ const Navbar = () => {
             <Tv className="mr-1 h-4 w-4" aria-hidden="true" /> TV Programy
           </Link>
           <Link 
+            to="/pomoc-s-prechodem" 
+            className={`${isActivePath('/pomoc-s-prechodem') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors flex items-center`}
+            aria-current={isActivePath('/pomoc-s-prechodem') ? 'page' : undefined}
+          >
+            <HandHeart className="mr-1 h-4 w-4" aria-hidden="true" /> Pomoc s přechodem
+          </Link>
+          <Link 
             to="/blog" 
             className={`${isActivePath('/blog') ? 'text-poda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium transition-colors flex items-center`}
             aria-current={isActivePath('/blog') ? 'page' : undefined}
@@ -156,6 +163,13 @@ const Navbar = () => {
               aria-current={isActivePath('/programy') ? 'page' : undefined}
             >
               <Tv className="mr-2 h-5 w-5" aria-hidden="true" /> TV Programy
+            </Link>
+            <Link 
+              to="/pomoc-s-prechodem" 
+              className={`${isActivePath('/pomoc-s-prechodem') ? 'text-puda-orange' : 'text-poda-blue hover:text-poda-orange'} font-medium text-xl transition-colors flex items-center`}
+              aria-current={isActivePath('/pomoc-s-prechodem') ? 'page' : undefined}
+            >
+              <HandHeart className="mr-2 h-5 w-5" aria-hidden="true" /> Pomoc s přechodem
             </Link>
             <Link 
               to="/blog" 

@@ -73,14 +73,14 @@ export const introSection = `
                 <p class="text-gray-700 mb-4">Vítkovice jako průmyslové srdce Ostravy vyžadují robustní internetové řešení. PODA zde provozuje své hlavní datové centrum a nabízí speciální firemní tarify.</p>
             </div>
             <div class="bg-white p-4 rounded-lg shadow-sm">
-                <h4 class="font-semibold mb-2">Speciálne pre firmy:</h4>
+                <h4 class="font-semibold mb-2">Výhody pre Vítkovice:</h4>
                 <ul class="text-sm space-y-1">
-                    <li>Garantované SLA</li>
-                    <li>Redundantní připojení</li>
-                    <li>24/7 technická podpora</li>
+                    <li>Najstabilnejšie pripojenie v regióne</li>
+                    <li>Priemyselné riešenia</li>
+                    <li>Nízka latencia pre smart systémy</li>
                 </ul>
                 <a href="tel:+420730431313" class="inline-flex items-center mt-3 text-poda-blue hover:text-poda-orange font-medium text-sm">
-                    730 431 313 - Firemní tarify
+                    730 431 313 - Informácie
                 </a>
             </div>
         </div>

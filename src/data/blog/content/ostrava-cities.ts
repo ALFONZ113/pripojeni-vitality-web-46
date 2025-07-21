@@ -100,8 +100,8 @@ export const bohuminSection = `
             <div class="bg-white/10 p-4 rounded-lg">
                 <h4 class="font-semibold mb-2">Logistické tarify</h4>
                 <div class="space-y-1 text-sm text-purple-100">
-                    <p>Internet 150 Mbps</p>
-                    <p class="font-bold text-lg">230 Kč/měsíc</p>
+                    <p>Internet 1000 Mbps</p>
+                    <p class="font-bold text-lg">1000 Kč/měsíc</p>
                     <p>Speciální podpora pro logistiku</p>
                     <p>Nízká latence do Polska</p>
                 </div>

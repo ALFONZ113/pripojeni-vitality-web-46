@@ -4,7 +4,7 @@ import type { CityTariff } from './types';
 export const ostravaTariffs: CityTariff[] = [
   {
     city: 'Ostrava',
-    price: '150 Kč/měsíc',
+    price: '250 Kč/měsíc',
     speed: '1000/1000 Mb/s',
     features: 'TV zdarma (bez Nová a Prima)'
   },
@@ -22,9 +22,9 @@ export const ostravaTariffs: CityTariff[] = [
   },
   {
     city: 'Bohumín',
-    price: '230 Kč/měsíc',
-    speed: '150/150 Mb/s',
-    features: 'důchodcovský tarif'
+    price: '1000 Kč/měsíc',
+    speed: '1000/1000 Mb/s',
+    features: 'firemný tarif pre logistiku'
   },
   {
     city: 'Orlová',

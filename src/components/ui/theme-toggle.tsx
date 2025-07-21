@@ -20,14 +20,14 @@ export function ThemeToggle() {
           <span className="sr-only">Přepnout téma</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+      <DropdownMenuContent align="end" className="z-50 bg-popover border border-border shadow-lg">
+        <DropdownMenuItem onClick={() => setTheme("light")} className="cursor-pointer">
           Světlé
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => setTheme("dark")} className="cursor-pointer">
           Tmavé
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={() => setTheme("system")} className="cursor-pointer">
           Systémové
         </DropdownMenuItem>
       </DropdownMenuContent>

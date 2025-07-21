@@ -98,11 +98,11 @@ export const bohuminSection = `
                 <p class="text-purple-100 mb-4">Bohumín využívá své strategické polohy na hranicích s Polskem a Slovenskem. PODA zde nabízí speciální tarify pro firmy s mezinárodními požadavky.</p>
             </div>
             <div class="bg-white/10 p-4 rounded-lg">
-                <h4 class="font-semibold mb-2">Logistické tarify</h4>
+                <h4 class="font-semibold mb-2">Mestská optika</h4>
                 <div class="space-y-1 text-sm text-purple-100">
                     <p>Internet 1000 Mbps</p>
-                    <p class="font-bold text-lg">1000 Kč/měsíc</p>
-                    <p>Speciální podpora pro logistiku</p>
+                    <p class="font-bold text-lg">250 Kč/měsíc</p>
+                    <p>Vysokorýchlostné pripojenie</p>
                     <p>Nízká latence do Polska</p>
                 </div>
                 <div class="mt-3">

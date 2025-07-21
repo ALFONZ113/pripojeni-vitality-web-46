@@ -62,7 +62,7 @@ export const comparisonTable = `
                 <tbody>
                     <tr class="bg-blue-50">
                         <td class="border border-gray-300 px-4 py-3 font-semibold text-poda-blue">PODA (Popri.cz)</td>
-                        <td class="border border-gray-300 px-4 py-3 text-center">1000/500 Mb/s</td>
+                        <td class="border border-gray-300 px-4 py-3 text-center">1000/1000 Mb/s</td>
                         <td class="border border-gray-300 px-4 py-3 text-center font-bold text-green-600">od 250 Kč</td>
                         <td class="border border-gray-300 px-4 py-3 text-center">95%</td>
                         <td class="border border-gray-300 px-4 py-3 text-center">★★★★★</td>

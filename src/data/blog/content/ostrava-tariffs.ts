@@ -22,9 +22,9 @@ export const ostravaTariffs: CityTariff[] = [
   },
   {
     city: 'Bohumín',
-    price: '1000 Kč/měsíc',
+    price: '250 Kč/měsíc',
     speed: '1000/1000 Mb/s',
-    features: 'firemný tarif pre logistiku'
+    features: 'mestská optika'
   },
   {
     city: 'Orlová',

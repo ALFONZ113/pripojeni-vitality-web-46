@@ -64,10 +64,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				poda: {
-					blue: '#0F4C81',
-					'blue-light': '#3A7CA5',
-					orange: '#FF6B35',
-					'orange-light': '#FF9E6B',
+					blue: 'hsl(var(--poda-blue))',
+					'blue-light': 'hsl(var(--poda-blue-light))',
+					orange: 'hsl(var(--poda-orange))',
+					'orange-light': 'hsl(var(--poda-orange-light))',
 				}
 			},
 			borderRadius: {

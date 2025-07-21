@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -5,35 +6,41 @@
 
 @layer base {
   :root {
-    --background: 210 33% 99%;
-    --foreground: 210 35% 10%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 35% 10%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 35% 10%;
+    --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 210 50% 28%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 25 100% 60%;
-    --secondary-foreground: 210 35% 10%;
+    --secondary-foreground: 222.2 84% 4.9%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 210 20% 50%;
+    --muted: 210 40% 98%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 30% 95%;
-    --accent-foreground: 210 50% 28%;
+    --accent: 210 40% 98%;
+    --accent-foreground: 222.2 84% 4.9%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
     --ring: 210 50% 28%;
 
     --radius: 0.75rem;
+
+    /* PODA brand colors - light mode */
+    --poda-blue: 210 70% 25%;
+    --poda-blue-light: 210 60% 45%;
+    --poda-orange: 14 100% 60%;
+    --poda-orange-light: 14 80% 70%;
   }
 
   .dark {
@@ -46,8 +53,8 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 50% 45%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 210 50% 60%;
+    --primary-foreground: 222.2 84% 4.9%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -63,7 +70,13 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 210 50% 45%;
+    --ring: 210 50% 60%;
+
+    /* PODA brand colors - dark mode optimized */
+    --poda-blue: 210 70% 65%;
+    --poda-blue-light: 210 60% 75%;
+    --poda-orange: 14 100% 65%;
+    --poda-orange-light: 14 85% 75%;
   }
 
   * {
@@ -77,20 +90,39 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'SF Pro Display', 'Inter', sans-serif;
+    @apply text-foreground;
+  }
+
+  /* Ensure proper text contrast in dark mode */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-foreground;
+  }
+
+  .dark p, .dark span, .dark div {
+    @apply text-foreground;
   }
 }
 
 @layer components {
   .hero-gradient {
-    @apply bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800;
+    @apply bg-gradient-to-b from-white to-blue-50;
+  }
+
+  .dark .hero-gradient {
+    @apply bg-gradient-to-b from-gray-900 to-gray-800;
   }
   
   .card-glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg dark:bg-gray-900/70 dark:border-gray-700/20;
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+
+  .dark .card-glass {
+    @apply bg-gray-900/80 backdrop-blur-md border border-gray-700/30 shadow-xl;
   }
   
   .promo-tag {
@@ -131,9 +163,17 @@
            focus:ring-2 focus:ring-poda-blue/50;
   }
 
+  .dark .btn-outline {
+    @apply border-poda-blue text-poda-blue hover:bg-poda-blue/20;
+  }
+
   .tariff-card {
     @apply relative overflow-hidden bg-card rounded-2xl shadow-lg transition-all duration-300 
            hover:shadow-xl border border-border;
+  }
+
+  .dark .tariff-card {
+    @apply bg-card border-border shadow-2xl hover:shadow-2xl;
   }
   
   .tariff-header {
@@ -145,7 +185,7 @@
            tracking-wider transform rotate-45 translate-x-[30%] translate-y-[-10%] shadow-md;
   }
 
-  /* Speciální styly pro zvýraznění textu jen v hlavním nadpisu */
+  /* Enhanced text contrast for dark mode */
   .text-highlight-poda {
     @apply text-poda-blue;
   }
@@ -154,14 +194,47 @@
     @apply text-poda-blue;
   }
   
-  /* Styly pro zvýraznění části textu v hlavním nadpisu */
   .text-highlight-poda .text-highlight-po,
   .text-highlight-pripojeni .text-highlight-pri {
     @apply text-poda-orange;
   }
+
+  /* Dark mode specific text improvements */
+  .dark .text-gray-600 {
+    @apply text-gray-300;
+  }
+
+  .dark .text-gray-500 {
+    @apply text-gray-400;
+  }
+
+  .dark .text-gray-700 {
+    @apply text-gray-200;
+  }
+
+  .dark .text-blue-100 {
+    @apply text-blue-200;
+  }
+
+  .dark .text-blue-200 {
+    @apply text-blue-300;
+  }
+
+  .dark .text-blue-300 {
+    @apply text-blue-400;
+  }
+
+  /* Enhanced form elements for dark mode */
+  .dark input, .dark select, .dark textarea {
+    @apply bg-gray-800 border-gray-600 text-foreground placeholder-gray-400;
+  }
+
+  .dark input:focus, .dark select:focus, .dark textarea:focus {
+    @apply ring-poda-blue border-poda-blue;
+  }
 }
 
-/* Custom animations */
+/* Custom animations - preserved from original */
 .reveal-animation {
   opacity: 0;
   transform: translateY(20px);
@@ -185,7 +258,11 @@
   background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(240,249,255,1) 100%);
 }
 
-/* Glass card effect */
+.dark .radial-gradient {
+  background: radial-gradient(circle at center, rgba(17,24,39,0.8) 0%, rgba(31,41,55,1) 100%);
+}
+
+/* Glass card effect - enhanced for dark mode */
 .glass-card {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
@@ -195,9 +272,9 @@
 }
 
 .dark .glass-card {
-  background: rgba(17, 24, 39, 0.8);
-  border: 1px solid rgba(55, 65, 81, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(17, 24, 39, 0.9);
+  border: 1px solid rgba(75, 85, 99, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Phone link optimizations for mobile devices */
@@ -211,6 +288,20 @@
 
 .phone-link:active {
   transform: scale(0.95);
+}
+
+/* Dark mode navbar improvements */
+.dark .navbar-blur {
+  @apply bg-background/90 backdrop-blur-md border-b border-border/50;
+}
+
+/* Dark mode card improvements */
+.dark .feature-card {
+  @apply bg-gray-800/80 border-gray-700/50 shadow-lg;
+}
+
+.dark .feature-card:hover {
+  @apply bg-gray-800/90 shadow-xl;
 }
 
 /* Prevent zoom on input focus for mobile */

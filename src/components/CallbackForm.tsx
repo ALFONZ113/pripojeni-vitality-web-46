@@ -61,7 +61,7 @@ const CallbackForm = () => {
   };
   
   return (
-    <div className="bg-card/90 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border">
+    <div className="bg-card rounded-xl p-4 border border-border">
       <div className="flex flex-col">
         <div className="flex items-center mb-2">
           <Phone className="h-5 w-5 text-poda-orange mr-2 flex-shrink-0" />

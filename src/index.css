@@ -44,35 +44,35 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 210 50% 60%;
-    --primary-foreground: 222.2 84% 4.9%;
+    --primary: 210 70% 60%;
+    --primary-foreground: 0 0% 2%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 6%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 90%;
 
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 210 50% 60%;
+    --border: 0 0% 12%;
+    --input: 0 0% 8%;
+    --ring: 210 70% 60%;
 
-    /* PODA brand colors - dark mode optimized */
+    /* PODA brand colors - premium dark mode */
     --poda-blue: 210 70% 65%;
     --poda-blue-light: 210 60% 75%;
     --poda-orange: 14 100% 65%;
@@ -114,7 +114,7 @@
   }
 
   .dark .hero-gradient {
-    @apply bg-gradient-to-b from-gray-900 to-gray-800;
+    @apply bg-gradient-to-b from-black to-gray-900;
   }
   
   .card-glass {
@@ -259,7 +259,7 @@
 }
 
 .dark .radial-gradient {
-  background: radial-gradient(circle at center, rgba(17,24,39,0.8) 0%, rgba(31,41,55,1) 100%);
+  background: radial-gradient(circle at center, rgba(0,0,0,0.9) 0%, rgba(10,10,10,1) 100%);
 }
 
 /* Glass card effect - enhanced for dark mode */
@@ -272,9 +272,9 @@
 }
 
 .dark .glass-card {
-  background: rgba(17, 24, 39, 0.8);
-  border: 1px solid rgba(75, 85, 99, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* Phone link optimizations for mobile devices */

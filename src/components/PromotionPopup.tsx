@@ -130,7 +130,7 @@ const PromotionPopup = () => {
         
         <div className="bg-gradient-to-r from-poda-blue/10 to-poda-orange/10 p-4 my-4 rounded-lg">
           <p className="font-medium text-center text-poda-blue">
-            Objednejte si naše služby a získejte <span className="text-poda-orange font-bold">první měsíc ZDARMA</span>!
+            Objednejte si PODA internet a TV za bezkonkurenčnú cenu a získejte <span className="text-poda-orange font-bold">první měsíc ZDARMA</span>!
           </p>
         </div>
         

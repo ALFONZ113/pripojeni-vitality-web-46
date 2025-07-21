@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight, HandHeart } from 'lucide-react';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import {
   Popover,
   PopoverContent,
@@ -38,7 +39,7 @@ const Navbar = () => {
   }, [location]);
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`} role="banner">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`} role="banner">
       <div className="container-custom flex items-center justify-between">
         <div className="flex flex-col items-start">
           <Link to="/" className="text-2xl font-bold text-poda-blue flex items-center" aria-label="Popri.cz - Domovská stránka">
@@ -117,11 +118,12 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        <div className="hidden lg:flex items-center">
-          <a href="tel:+420730431313" className="flex items-center text-poda-blue hover:text-poda-orange transition-colors font-medium mr-6">
+        <div className="hidden lg:flex items-center space-x-4">
+          <a href="tel:+420730431313" className="flex items-center text-poda-blue hover:text-poda-orange transition-colors font-medium">
             <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
             +420 730 431 313
           </a>
+          <ThemeToggle />
           <Link to="/kontakt" className="btn-secondary">Kontakt</Link>
         </div>
 
@@ -138,7 +140,7 @@ const Navbar = () => {
 
       <div 
         id="mobile-menu"
-        className={`fixed inset-0 z-40 bg-white pt-20 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed inset-0 z-40 bg-background pt-20 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
         aria-hidden={!isMobileMenuOpen}
       >
         <div className="container px-4 py-6 flex flex-col">
@@ -186,14 +188,19 @@ const Navbar = () => {
               <MessageSquare className="mr-2 h-5 w-5" aria-hidden="true" /> Kontakt
             </Link>
             
-            <div className="border-t border-gray-100 pt-6 mt-4">
+            <div className="border-t border-border pt-6 mt-4">
               <a href="tel:+420730431313" className="flex items-center text-poda-blue hover:text-poda-orange transition-colors font-medium text-xl mb-6">
                 <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
                 +420 730 431 313
               </a>
-              <Link to="/kontakt" className="btn-secondary w-full flex justify-center">
-                Kontaktovat Milana
-              </Link>
+              <div className="flex flex-col space-y-4">
+                <div className="flex justify-center">
+                  <ThemeToggle />
+                </div>
+                <Link to="/kontakt" className="btn-secondary w-full flex justify-center">
+                  Kontaktovat Milana
+                </Link>
+              </div>
             </div>
           </nav>
         </div>

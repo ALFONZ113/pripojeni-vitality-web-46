@@ -4,7 +4,6 @@ import { Toaster } from 'sonner';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
-import { ThemeProvider } from '@/providers/theme-provider';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
@@ -47,9 +46,8 @@ function App() {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme="system" storageKey="poda-ui-theme">
-          <Router>
-            <div className="min-h-screen bg-background text-foreground flex flex-col">
+        <Router>
+          <div className="min-h-screen bg-white flex flex-col">
             <ScrollToTop />
             <Navbar />
             <main className="flex-grow">
@@ -94,10 +92,9 @@ function App() {
             </main>
             <Footer />
             <FloatingCallButton />
-            </div>
-            <Toaster position="top-right" />
-          </Router>
-        </ThemeProvider>
+          </div>
+          <Toaster position="top-right" />
+        </Router>
       </QueryClientProvider>
     </HelmetProvider>
   );

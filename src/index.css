@@ -199,29 +199,29 @@
     @apply text-poda-orange;
   }
 
-  /* Dark mode specific text improvements */
+  /* Dark mode specific text improvements - using direct colors to avoid circular dependencies */
   .dark .text-gray-600 {
-    @apply text-gray-300;
+    color: hsl(210 20% 65%);
   }
 
   .dark .text-gray-500 {
-    @apply text-gray-400;
+    color: hsl(210 20% 70%);
   }
 
   .dark .text-gray-700 {
-    @apply text-gray-200;
+    color: hsl(210 20% 80%);
   }
 
   .dark .text-blue-100 {
-    @apply text-blue-200;
+    color: hsl(214 95% 85%);
   }
 
   .dark .text-blue-200 {
-    @apply text-blue-300;
+    color: hsl(214 95% 80%);
   }
 
   .dark .text-blue-300 {
-    @apply text-blue-400;
+    color: hsl(214 95% 75%);
   }
 
   /* Enhanced form elements for dark mode */

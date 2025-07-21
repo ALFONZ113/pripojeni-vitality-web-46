@@ -10,8 +10,8 @@ export const ostravaTariffs: CityTariff[] = [
   },
   {
     city: 'Karviná',
-    price: '320 Kč/měsíc',
-    speed: '150/150 Mb/s',
+    price: '250 Kč/měsíc',
+    speed: '1000/1000 Mb/s',
     features: 'TV zdarma (důchodcovský tarif)'
   },
   {

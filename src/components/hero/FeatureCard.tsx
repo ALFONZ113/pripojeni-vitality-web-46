@@ -49,7 +49,7 @@ const FeatureCard = ({
       }} 
       custom={index} 
       variants={featureCardVariants} 
-      className={`glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all ${className}`}
+      className={`glass-card rounded-xl p-6 border border-border shadow-xl backdrop-blur-md hover:shadow-2xl transition-all ${className}`}
     >
       <div className="flex items-start">
         <div className={`${iconBgColor} p-3 rounded-lg mr-4 flex items-center justify-center`} aria-hidden="true">
@@ -57,7 +57,7 @@ const FeatureCard = ({
         </div>
         <div>
           <h3 className="font-semibold text-xl text-poda-blue mb-2">{title}</h3>
-          <p className="text-gray-600">{description}</p>
+          <p className="text-muted-foreground">{description}</p>
         </div>
       </div>
     </motion.article>

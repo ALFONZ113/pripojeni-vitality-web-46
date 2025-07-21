@@ -16,7 +16,7 @@ const BlogPreview = () => {
     .slice(0, 4);
 
   return (
-    <section className="section-padding bg-white" aria-labelledby="blog-heading">
+    <section className="section-padding bg-background" aria-labelledby="blog-heading">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
@@ -35,7 +35,7 @@ const BlogPreview = () => {
           {recentPosts.map((post) => (
             <article 
               key={post.id} 
-              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group"
+              className="bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-border group"
             >
               <div className="relative h-48 overflow-hidden">
                 <img 

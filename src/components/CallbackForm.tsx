@@ -61,7 +61,7 @@ const CallbackForm = () => {
   };
   
   return (
-    <div className="bg-white bg-opacity-90 backdrop-blur-md rounded-xl p-4 shadow-lg border border-gray-100">
+    <div className="bg-card/90 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border">
       <div className="flex flex-col">
         <div className="flex items-center mb-2">
           <Phone className="h-5 w-5 text-poda-orange mr-2 flex-shrink-0" />
@@ -71,9 +71,9 @@ const CallbackForm = () => {
         </div>
         
         {isSuccess ? (
-          <div className="flex items-center bg-green-50 p-3 rounded-lg">
+          <div className="flex items-center bg-green-50 dark:bg-green-900/30 p-3 rounded-lg">
             <Check className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
-            <p className="text-sm text-green-700">Děkujeme, brzy Vás budeme kontaktovat!</p>
+            <p className="text-sm text-green-700 dark:text-green-300">Děkujeme, brzy Vás budeme kontaktovat!</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
@@ -84,7 +84,7 @@ const CallbackForm = () => {
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 disabled={isSubmitting}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors text-sm"
+                className="w-full px-3 py-2 border border-input bg-background rounded-md focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors text-sm text-foreground placeholder:text-muted-foreground"
                 aria-label="Vaše telefonní číslo pro zpětné volání"
               />
             </div>
@@ -105,7 +105,7 @@ const CallbackForm = () => {
           </form>
         )}
         
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Zadáním svého telefonního čísla souhlasíte s kontaktováním ohledně služeb PODA.
         </p>
       </div>

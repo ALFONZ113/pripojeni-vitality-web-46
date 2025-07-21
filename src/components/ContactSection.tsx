@@ -5,7 +5,7 @@ import PhoneLink from './ui/phone-link';
 
 const ContactSection = () => {
   return (
-    <section className="section-padding bg-white" aria-labelledby="contact-heading">
+    <section className="section-padding bg-background" aria-labelledby="contact-heading">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Contact Info */}
@@ -61,7 +61,7 @@ const ContactSection = () => {
                   </div>
                 </div>
                 
-                <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg inline-flex items-center font-medium transition-all duration-300">
+                <Link to="/kontakt" className="bg-card text-poda-blue hover:bg-muted px-6 py-3 rounded-lg inline-flex items-center font-medium transition-all duration-300">
                   Kontaktovat <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                 </Link>
               </div>
@@ -70,36 +70,36 @@ const ContactSection = () => {
           
           {/* Features */}
           <div className="order-1 lg:order-2">
-            <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block bg-blue-100 dark:bg-blue-900/50 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
               Proč zvolit naše služby
             </span>
             <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
               Výhody připojení od PODA
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-8">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               Nabízíme kvalitní internetové a televizní služby s důrazem na rychlost, stabilitu a zákaznickou podporu.
             </p>
             
             <div className="space-y-6">
-              <article className="bg-gray-50 p-6 rounded-xl border border-gray-100">
+              <article className="bg-muted/50 p-6 rounded-xl border border-border">
                 <h3 className="text-xl font-semibold text-poda-blue mb-3">Vysokorychlostní připojení</h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Díky moderní GPON technologii dosahujeme rychlosti až 1000/1000 Mbps, což zajišťuje plynulé streamování, 
                   hraní online her i práci z domova bez jakýchkoli omezení.
                 </p>
               </article>
               
-              <article className="bg-gray-50 p-6 rounded-xl border border-gray-100">
+              <article className="bg-muted/50 p-6 rounded-xl border border-border">
                 <h3 className="text-xl font-semibold text-poda-blue mb-3">Bohatá televizní nabídka</h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   S více než 100 TV programy a možností výběru vlastních stanic si každý najde své oblíbené pořady. 
                   Navíc služba PODA net.TV umožňuje sledování až na 4 zařízeních současně.
                 </p>
               </article>
               
-              <article className="bg-gray-50 p-6 rounded-xl border border-gray-100">
+              <article className="bg-muted/50 p-6 rounded-xl border border-border">
                 <h3 className="text-xl font-semibold text-poda-blue mb-3">Osobní přístup</h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Milan Terč vám poskytne osobní konzultaci, pomůže s výběrem nejvhodnějšího tarifu a zajistí 
                   bezproblémový přechod od vašeho stávajícího poskytovatele.
                 </p>

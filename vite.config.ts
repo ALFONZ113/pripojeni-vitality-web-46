@@ -110,7 +110,7 @@ export default defineConfig(({ mode }) => ({
     
     // CSS optimization
     cssCodeSplit: true,
-    cssMinify: 'lightningcss',
+    // Use default CSS minifier instead of lightningcss
     
     // Enhanced minification
     minify: mode === 'production' ? 'terser' : false,

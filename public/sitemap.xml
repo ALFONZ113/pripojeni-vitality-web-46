@@ -1,11 +1,15 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.popri.cz</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.popri.cz/poda-favicon-192x192.png</image:loc>
+      <image:caption>Popri.cz PODA Internet Logo</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.popri.cz/internet-tv</loc>

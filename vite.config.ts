@@ -3,7 +3,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import prerender from "vite-plugin-prerender";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -18,8 +17,6 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    // Prerendering disabled for now - using static content approach
-    // mode === 'production' && prerender({...}),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -28,127 +25,62 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     modulePreload: true,
+    
+    // Simplified rollup options for better mobile compatibility
     rollupOptions: {
       output: {
-        // Advanced chunking strategy with dynamic imports
+        // Simplified chunking strategy - less aggressive for mobile
         manualChunks: (id) => {
-          // Vendor chunks by library type
+          // Only chunk vendor libraries
           if (id.includes('node_modules')) {
             if (id.includes('react') || id.includes('react-dom')) {
               return 'vendor-react';
             }
-            if (id.includes('@radix-ui')) {
+            if (id.includes('@radix-ui') || id.includes('lucide-react')) {
               return 'vendor-ui';
-            }
-            if (id.includes('react-router')) {
-              return 'vendor-router';
-            }
-            if (id.includes('framer-motion')) {
-              return 'vendor-animation';
-            }
-            if (id.includes('lucide-react')) {
-              return 'vendor-icons';
-            }
-            if (id.includes('recharts')) {
-              return 'vendor-charts';
             }
             return 'vendor-other';
           }
-          
-          // App chunks by feature
-          if (id.includes('/components/blog/')) {
-            return 'chunk-blog';
-          }
-          if (id.includes('/components/ui/')) {
-            return 'chunk-ui';
-          }
-          if (id.includes('/pages/')) {
-            return 'chunk-pages';
-          }
-          if (id.includes('/utils/')) {
-            return 'chunk-utils';
-          }
+          // Let Vite handle app chunks automatically
         },
         
-        // Optimize asset naming and organization
-        chunkFileNames: (chunkInfo) => {
-          return `assets/js/[name]-[hash].js`;
-        },
-        assetFileNames: (assetInfo) => {
-          const fileName = assetInfo.name || 'asset';
-          const info = fileName.split('.');
-          const ext = info[info.length - 1];
-          if (/\.(css)$/.test(fileName)) {
-            return `assets/css/[name]-[hash].${ext}`;
-          }
-          if (/\.(png|jpe?g|svg|gif|webp|avif)$/.test(fileName)) {
-            return `assets/images/[name]-[hash].${ext}`;
-          }
-          if (/\.(woff|woff2|eot|ttf|otf)$/.test(fileName)) {
-            return `assets/fonts/[name]-[hash].${ext}`;
-          }
-          return `assets/[name]-[hash].${ext}`;
-        }
+        // Simplified asset naming
+        chunkFileNames: `assets/js/[name]-[hash].js`,
+        assetFileNames: `assets/[ext]/[name]-[hash].[ext]`
       },
       
-      // Tree shaking optimizations
+      // Basic tree shaking
       treeshake: {
-        moduleSideEffects: false,
-        propertyReadSideEffects: false,
-        unknownGlobalSideEffects: false
+        moduleSideEffects: false
       }
     },
     
-    // Target modern browsers for better optimization
-    target: ['es2022', 'chrome89', 'firefox89', 'safari15'],
+    // Target broader browser support for mobile
+    target: ['es2020', 'chrome80', 'firefox78', 'safari14'],
     
-    // Optimize chunk sizes
-    chunkSizeWarningLimit: 600,
+    // Reasonable chunk size limit
+    chunkSizeWarningLimit: 1000,
     
-    // Disable source maps for production
-    sourcemap: false,
+    // Enable source maps for development
+    sourcemap: mode === 'development',
     
     // CSS optimization
     cssCodeSplit: true,
-    // Use default CSS minifier instead of lightningcss
     
-    // Enhanced minification
-    minify: mode === 'production' ? 'terser' : false,
-    terserOptions: mode === 'production' ? {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.warn'],
-        passes: 2,
-        hoist_funs: true,
-        hoist_vars: true
-      },
-      mangle: {
-        safari10: true,
-        properties: {
-          regex: /^_/
-        }
-      },
-      format: {
-        comments: false
-      }
-    } : undefined,
+    // Simplified minification
+    minify: mode === 'production' ? 'esbuild' : false,
     
-    // Optimize output
-    reportCompressedSize: false,
-    
-    // Enable aggressive asset inlining for small assets
-    assetsInlineLimit: 4096
+    // Less aggressive asset inlining for mobile compatibility
+    assetsInlineLimit: 2048
   },
   
-  // Optimize dependencies
+  // Optimize dependencies for mobile
   optimizeDeps: {
     include: [
       'react',
       'react-dom',
       'react-router-dom',
-      '@radix-ui/react-dialog',
-      '@radix-ui/react-dropdown-menu',
+      'framer-motion',
       'lucide-react'
     ],
   },

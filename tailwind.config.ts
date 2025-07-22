@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -64,10 +63,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				poda: {
-					blue: '#0F4C81',
-					'blue-light': '#3A7CA5',
-					orange: '#FF6B35',
-					'orange-light': '#FF9E6B',
+					blue: '210 73% 29%',        // #0F4C81 converted to HSL
+					'blue-light': '201 48% 43%', // #3A7CA5 converted to HSL
+					orange: '19 100% 60%',       // #FF6B35 converted to HSL
+					'orange-light': '20 100% 71%', // #FF9E6B converted to HSL
 				}
 			},
 			borderRadius: {

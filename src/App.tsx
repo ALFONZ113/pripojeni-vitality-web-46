@@ -46,7 +46,7 @@ function App() {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <Router>
+        <Router basename={import.meta.env.DEV ? undefined : '/'}>
           <div className="min-h-screen bg-white flex flex-col">
             <ScrollToTop />
             <Navbar />

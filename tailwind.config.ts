@@ -63,10 +63,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				poda: {
-					blue: '210 73% 29%',        // #0F4C81 converted to HSL
-					'blue-light': '201 48% 43%', // #3A7CA5 converted to HSL
-					orange: '19 100% 60%',       // #FF6B35 converted to HSL
-					'orange-light': '20 100% 71%', // #FF9E6B converted to HSL
+					blue: 'hsl(210, 73%, 29%)',        // #0F4C81 converted to HSL
+					'blue-light': 'hsl(201, 48%, 43%)', // #3A7CA5 converted to HSL
+					orange: 'hsl(19, 100%, 60%)',       // #FF6B35 converted to HSL
+					'orange-light': 'hsl(20, 100%, 71%)', // #FF9E6B converted to HSL
 				}
 			},
 			borderRadius: {

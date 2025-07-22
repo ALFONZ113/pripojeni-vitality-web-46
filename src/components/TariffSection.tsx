@@ -1,13 +1,12 @@
 
-import { useState } from 'react';
+import React, { memo, useState, useCallback, useMemo } from 'react';
 import TariffTabs from './tariffs/TariffTabs';
 import TariffCard from './tariffs/TariffCard';
 import { tariffData } from './tariffs/tariffData';
 
-// Define the PromoInfoState type for better type safety
 type PromoInfoState = Record<'bytyBasic' | 'bytyMych10' | 'domyBasic' | 'domyMych10', boolean>;
 
-const TariffSection = () => {
+const TariffSection = memo(() => {
   const [activeTab, setActiveTab] = useState('byty');
   const [openPromoInfo, setOpenPromoInfo] = useState<PromoInfoState>({
     bytyBasic: false,
@@ -16,12 +15,22 @@ const TariffSection = () => {
     domyMych10: false,
   });
 
-  const togglePromoInfo = (tariff: keyof PromoInfoState) => {
+  // Memoizované callback funkcie
+  const togglePromoInfo = useCallback((tariff: keyof PromoInfoState) => {
     setOpenPromoInfo(prev => ({
       ...prev,
       [tariff]: !prev[tariff],
     }));
-  };
+  }, []);
+
+  const handleTabChange = useCallback((tab: string) => {
+    setActiveTab(tab);
+  }, []);
+
+  // Memoizované tariff data pre aktuálny tab
+  const currentTariffData = useMemo(() => {
+    return tariffData[activeTab as keyof typeof tariffData];
+  }, [activeTab]);
 
   return (
     <section className="section-padding bg-gradient-to-b from-white to-blue-50" id="tarify">
@@ -39,10 +48,10 @@ const TariffSection = () => {
           </p>
         </div>
 
-        <TariffTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        <TariffTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {tariffData[activeTab as keyof typeof tariffData].map((tariff) => (
+          {currentTariffData.map((tariff) => (
             <TariffCard
               key={tariff.id}
               {...tariff}
@@ -55,6 +64,8 @@ const TariffSection = () => {
       </div>
     </section>
   );
-};
+});
+
+TariffSection.displayName = 'TariffSection';
 
 export default TariffSection;

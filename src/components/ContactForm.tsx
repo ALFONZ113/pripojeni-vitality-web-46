@@ -1,165 +1,105 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { memo, useRef, useEffect, useCallback } from 'react';
 import { Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { sendContactFormEmail } from '../utils/emailService';
 import { initMapySuggester, parseAddressComponents } from '../utils/mapyService';
 import { trackFormSubmission } from '../utils/googleAdsTracking';
+import { useOptimizedForm } from '../hooks/use-optimized-form';
 
 interface ContactFormProps {
   onSuccess?: () => void;
   compact?: boolean;
 }
 
-const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
-  const [formData, setFormData] = useState({
+const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
+  // Optimalizovaný form hook
+  const initialFormData = {
     name: '',
     address: '',
     city: '',
     zip: '',
     phone: '',
     email: '',
-    propertyType: 'byty', // Nové pole pre typ nehnuteľnosti
+    propertyType: 'byty',
     currentProvider: '',
     currentPrice: '',
     message: ''
-  });
-  
-  const [formState, setFormState] = useState({
-    submitted: false,
-    success: false,
-    error: null as string | null,
-    loading: false
+  };
+
+  const validateForm = useCallback((data: typeof initialFormData) => {
+    if (!data.name || !data.phone || !data.email) {
+      return 'Prosím vyplňte všechna povinná pole označená *';
+    }
+    return null;
+  }, []);
+
+  const handleFormSubmit = useCallback(async (data: typeof initialFormData) => {
+    const emailSent = await sendContactFormEmail(data);
+    if (emailSent) {
+      trackFormSubmission('contact');
+      toast({
+        title: "Formulář odeslán",
+        description: "Děkujeme za váš zájem. Budeme vás kontaktovat co nejdříve.",
+        variant: "default"
+      });
+      return true;
+    }
+    return false;
+  }, []);
+
+  const { 
+    formData, 
+    formState, 
+    handleChange, 
+    updateField, 
+    handleSubmit 
+  } = useOptimizedForm({
+    initialData: initialFormData,
+    onSubmit: handleFormSubmit,
+    validate: validateForm,
+    onSuccess
   });
 
   // Reference for the address input field
   const addressInputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize Mapy.cz suggester when component mounts
+  // Optimalizovaný Mapy.cz suggester
+  const handleAddressSuggestion = useCallback((suggestion: any) => {
+    if (suggestion && suggestion.data) {
+      const addressComponents = parseAddressComponents(suggestion);
+      
+      updateField('address', addressComponents.street || formData.address);
+      updateField('city', addressComponents.city || formData.city);
+      updateField('zip', addressComponents.zip || formData.zip);
+      
+      if (addressComponents.street && addressComponents.city) {
+        toast({
+          title: "Adresa byla doplněna",
+          description: "Adresa byla úspěšně doplněna z Mapy.cz",
+          variant: "default"
+        });
+      }
+    }
+  }, [updateField, formData.address, formData.city, formData.zip]);
+
   useEffect(() => {
     if (addressInputRef.current) {
       initMapySuggester(
         addressInputRef.current,
-        (suggestion) => {
-          if (suggestion && suggestion.data) {
-            // Parse address components
-            const addressComponents = parseAddressComponents(suggestion);
-            
-            // Update form data with the parsed components
-            setFormData(prev => ({
-              ...prev,
-              address: addressComponents.street || prev.address,
-              city: addressComponents.city || prev.city,
-              zip: addressComponents.zip || prev.zip
-            }));
-            
-            // Show a success toast when address is selected
-            if (addressComponents.street && addressComponents.city) {
-              toast({
-                title: "Adresa byla doplněna",
-                description: "Adresa byla úspěšně doplněna z Mapy.cz",
-                variant: "default"
-              });
-            }
-          }
-        },
-        { country: "cz" } // Limit to Czech Republic
+        handleAddressSuggestion,
+        { country: "cz" }
       );
     }
-  }, []);
+  }, [handleAddressSuggestion]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Basic validation
-    if (!formData.name || !formData.phone || !formData.email) {
-      setFormState({
-        submitted: true,
-        success: false,
-        error: 'Prosím vyplňte všechna povinná pole označená *',
-        loading: false
-      });
-      
-      toast({
-        title: "Kontrola formuláře",
-        description: "Prosím vyplňte všechna povinná pole označená *",
-        variant: "destructive"
-      });
-      
-      return;
-    }
-    
-    setFormState(prev => ({ ...prev, loading: true, error: null }));
-
-    try {
-      // Send email notification
-      const emailSent = await sendContactFormEmail(formData);
-      
-      if (emailSent) {
-        // Track Google Ads conversion
-        trackFormSubmission('contact');
-        
-        setFormState({
-          submitted: true,
-          success: true,
-          error: null,
-          loading: false
-        });
-        
-        toast({
-          title: "Formulář odeslán",
-          description: "Děkujeme za váš zájem. Budeme vás kontaktovat co nejdříve.",
-          variant: "default"
-        });
-        
-        // Execute success callback if provided
-        if (onSuccess) {
-          setTimeout(() => {
-            onSuccess();
-          }, 1500);
-        }
-        
-        // Reset form after successful submission
-        setTimeout(() => {
-          setFormState({
-            submitted: false,
-            success: false,
-            error: null,
-            loading: false
-          });
-          setFormData({
-            name: '',
-            address: '',
-            city: '',
-            zip: '',
-            phone: '',
-            email: '',
-            propertyType: 'byty',
-            currentProvider: '',
-            currentPrice: '',
-            message: ''
-          });
-        }, 1500);
-      } else {
-        throw new Error("Nepodařilo se odeslat email");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setFormState({
-        submitted: true,
-        success: false,
-        error: 'Nastala chyba při odesílání formuláře. Zkuste to prosím později.',
-        loading: false
-      });
-    }
-  };
+  // Error handling s toast notification
+  if (formState.error) {
+    toast({
+      title: "Kontrola formuláře",
+      description: formState.error,
+      variant: "destructive"
+    });
+  }
 
   // Compact styling for the modal version
   const formWrapperClass = compact 
@@ -377,6 +317,8 @@ const ContactForm = ({ onSuccess, compact = false }: ContactFormProps) => {
       )}
     </div>
   );
-};
+});
+
+ContactForm.displayName = 'ContactForm';
 
 export default ContactForm;

@@ -1,4 +1,5 @@
 
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
@@ -8,7 +9,7 @@ interface BlogCardProps {
   post: BlogPost;
 }
 
-const BlogCard = ({ post }: BlogCardProps) => {
+const BlogCard = memo(({ post }: BlogCardProps) => {
   // Přidáme zvýraznění pro blog o Porubě
   const isPorubaPost = post.id === 100 || (post.title && post.title.includes('Poruba'));
   const cardClasses = `bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 group reveal-animation ${isPorubaPost ? 'ring-2 ring-poda-blue' : ''}`;
@@ -65,6 +66,8 @@ const BlogCard = ({ post }: BlogCardProps) => {
       </div>
     </div>
   );
-};
+});
+
+BlogCard.displayName = 'BlogCard';
 
 export default BlogCard;

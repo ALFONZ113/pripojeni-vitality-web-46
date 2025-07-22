@@ -1,8 +1,8 @@
 
+import React, { memo, useState, useEffect, useMemo, useCallback } from 'react';
 import { Bookmark } from 'lucide-react';
 import BlogCard from './BlogCard';
 import type { BlogPost } from '../../data/blog/types';
-import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 interface BlogListProps {
@@ -10,40 +10,30 @@ interface BlogListProps {
   onResetFilters: () => void;
 }
 
-const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
+const BlogList = memo(({ posts, onResetFilters }: BlogListProps) => {
   const [searchParams] = useSearchParams();
-  const [displayedPosts, setDisplayedPosts] = useState<BlogPost[]>(posts);
   
-  // Debug logging
-  console.log('[BlogList] Received posts count:', posts.length);
-  console.log('[BlogList] DisplayedPosts count:', displayedPosts.length);
-  
-  // Watch for URL parameter changes - e.g., when someone clicks on a tag
-  useEffect(() => {
+  // Memoizované filtrovanie postov
+  const displayedPosts = useMemo(() => {
     const tag = searchParams.get('tag');
     const category = searchParams.get('category');
     
-    console.log('[BlogList] URL params - tag:', tag, 'category:', category);
-    
     if (tag) {
-      // Filter posts by tag
-      const filteredByTag = posts.filter(post => 
+      return posts.filter(post => 
         post.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
       );
-      console.log('[BlogList] Filtered by tag:', filteredByTag.length);
-      setDisplayedPosts(filteredByTag);
     } else if (category) {
-      // Filter posts by category
-      const filteredByCategory = posts.filter(post => 
+      return posts.filter(post => 
         post.category.toLowerCase() === category.toLowerCase()
       );
-      console.log('[BlogList] Filtered by category:', filteredByCategory.length);
-      setDisplayedPosts(filteredByCategory);
-    } else {
-      console.log('[BlogList] No filters, showing all posts');
-      setDisplayedPosts(posts);
     }
+    return posts;
   }, [searchParams, posts]);
+
+  // Memoizovaný callback pre reset
+  const handleResetFilters = useCallback(() => {
+    onResetFilters();
+  }, [onResetFilters]);
   
   if (displayedPosts.length === 0) {
     console.log('[BlogList] No posts to display - showing empty state');
@@ -55,7 +45,7 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
           Zkuste změnit vyhledávací kritéria nebo vybrat jinou kategorii.
         </p>
         <button
-          onClick={onResetFilters}
+          onClick={handleResetFilters}
           className="mt-4 text-poda-blue hover:text-poda-orange font-medium"
         >
           Zobrazit všechny články
@@ -64,20 +54,20 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
     );
   }
 
-  // Seřadíme posty tak, aby Poruba byla první
-  const sortedPosts = [...displayedPosts].sort((a, b) => {
-    if (a.id === 100) return -1;
-    if (b.id === 100) return 1;
-    
-    // Pokud je v názvu "Poruba", dáme na začátek
-    if (a.title.includes('Poruba') && !b.title.includes('Poruba')) return -1;
-    if (!a.title.includes('Poruba') && b.title.includes('Poruba')) return 1;
-    
-    // Pro ostatní posty zachováme původní pořadí
-    return 0;
-  });
-
-  console.log('[BlogList] Final sorted posts count:', sortedPosts.length);
+  // Memoizované sortevaie postov
+  const sortedPosts = useMemo(() => {
+    return [...displayedPosts].sort((a, b) => {
+      if (a.id === 100) return -1;
+      if (b.id === 100) return 1;
+      
+      // Pokud je v názvu "Poruba", dáme na začátek
+      if (a.title.includes('Poruba') && !b.title.includes('Poruba')) return -1;
+      if (!a.title.includes('Poruba') && b.title.includes('Poruba')) return 1;
+      
+      // Pro ostatní posty zachováme původní pořadí
+      return 0;
+    });
+  }, [displayedPosts]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -86,6 +76,8 @@ const BlogList = ({ posts, onResetFilters }: BlogListProps) => {
       ))}
     </div>
   );
-};
+});
+
+BlogList.displayName = 'BlogList';
 
 export default BlogList;

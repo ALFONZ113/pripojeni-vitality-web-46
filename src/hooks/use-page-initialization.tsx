@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { initAnimations } from '../utils/animation';
+import useOptimizedPerformance from './use-optimized-performance';
 
 interface UsePageInitializationProps {
   criticalImages: string[];
@@ -13,22 +14,24 @@ const usePageInitialization = ({
   enablePerformanceMonitoring = false
 }: UsePageInitializationProps) => {
   const [error, setError] = useState<string | null>(null);
-  const [isReady, setIsReady] = useState(false);
 
-  // Simplified critical images handling
+  // Optimalizovaný performance monitoring
+  const performanceMetrics = useOptimizedPerformance({
+    enableReporting: enablePerformanceMonitoring,
+    reportInterval: 10000,
+    enableCriticalResourcePreload: true
+  });
+
+  // Memoizované kritické obrázky
   const memoizedCriticalImages = useMemo(() => criticalImages, [criticalImages]);
 
-  // Simplified initialization without heavy performance monitoring
+  // Optimalizovaná inicializácia
   const initializeApp = useCallback(async () => {
     try {
-      // Simple animation initialization
-      const cleanup = await initAnimations();
-      setIsReady(true);
-      return cleanup;
+      return initAnimations();
     } catch (e) {
       console.error('Error initializing page:', e);
       setError('Došlo k chybě při načítání stránky.');
-      setIsReady(true); // Still set ready to show content
       return undefined;
     }
   }, []);
@@ -46,9 +49,9 @@ const usePageInitialization = ({
   }, [initializeApp, memoizedCriticalImages]);
 
   return { 
-    isLoading: false, // Always show content immediately for better mobile UX
-    error,
-    isReady
+    isLoading: false, // Vždy vrátime false, obsah sa zobrazí okamžite
+    error, 
+    performanceMetrics
   };
 };
 

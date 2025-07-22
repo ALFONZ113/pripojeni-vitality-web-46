@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -43,18 +42,11 @@
 
   html {
     scroll-behavior: smooth;
-    /* Better mobile viewport handling */
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
-    /* Better mobile rendering */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -91,7 +83,6 @@
     @apply opacity-100;
   }
   
-  /* Fixed PODA color utilities with HSL values */
   .btn-primary {
     @apply bg-poda-blue hover:bg-poda-blue/90 text-white px-6 py-3 rounded-lg 
            font-medium transition-all duration-300 transform hover:translate-y-[-2px]
@@ -124,7 +115,7 @@
            tracking-wider transform rotate-45 translate-x-[30%] translate-y-[-10%] shadow-md;
   }
 
-  /* Fixed highlight classes with HSL color utilities */
+  /* Speciální styly pro zvýraznění textu jen v hlavním nadpisu */
   .text-highlight-poda {
     @apply text-poda-blue;
   }
@@ -133,6 +124,7 @@
     @apply text-poda-blue;
   }
   
+  /* Styly pro zvýraznění části textu v hlavním nadpisu */
   .text-highlight-poda .text-highlight-po,
   .text-highlight-pripojeni .text-highlight-pri {
     @apply text-poda-orange;
@@ -172,7 +164,7 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Enhanced mobile optimizations */
+/* Phone link optimizations for mobile devices */
 .phone-link {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -185,7 +177,7 @@
   transform: scale(0.95);
 }
 
-/* Mobile-first responsive design */
+/* Prevent zoom on input focus for mobile */
 @media screen and (max-width: 768px) {
   input, select, textarea {
     font-size: 16px !important;
@@ -198,39 +190,11 @@
     align-items: center;
     justify-content: center;
   }
-  
-  /* Better mobile spacing */
-  .container-custom {
-    @apply px-3;
-  }
-  
-  .section-padding {
-    @apply py-12 px-3;
-  }
 }
 
 /* Additional mobile touch optimizations */
 @media (hover: none) and (pointer: coarse) {
   .phone-link:hover {
     background-color: transparent;
-  }
-  
-  /* Remove hover effects on touch devices */
-  .btn-primary:hover,
-  .btn-secondary:hover,
-  .btn-outline:hover {
-    transform: none;
-  }
-}
-
-/* Prevent horizontal scrolling on mobile */
-@media screen and (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-    width: 100%;
-  }
-  
-  * {
-    max-width: 100%;
   }
 }

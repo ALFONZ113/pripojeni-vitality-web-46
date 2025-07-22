@@ -27,52 +27,118 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    modulePreload: true, // Ensure module preloading is enabled
+    modulePreload: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Vendor chunk for React and core libraries
-          vendor: ['react', 'react-dom', 'react-router-dom'],
+        // Advanced chunking strategy with dynamic imports
+        manualChunks: (id) => {
+          // Vendor chunks by library type
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'vendor-ui';
+            }
+            if (id.includes('react-router')) {
+              return 'vendor-router';
+            }
+            if (id.includes('framer-motion')) {
+              return 'vendor-animation';
+            }
+            if (id.includes('lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('recharts')) {
+              return 'vendor-charts';
+            }
+            return 'vendor-other';
+          }
           
-          // UI chunk for component libraries
-          ui: [
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-toast',
-            '@radix-ui/react-tabs',
-            'lucide-react'
-          ],
-          
-          // Utils chunk for utilities
-          utils: [
-            'clsx',
-            'tailwind-merge',
-            'class-variance-authority',
-            'date-fns'
-          ],
-          
-          // Animation and interaction chunk
-          animations: ['framer-motion'],
-          
-          // Charts chunk (if used)
-          charts: ['recharts']
+          // App chunks by feature
+          if (id.includes('/components/blog/')) {
+            return 'chunk-blog';
+          }
+          if (id.includes('/components/ui/')) {
+            return 'chunk-ui';
+          }
+          if (id.includes('/pages/')) {
+            return 'chunk-pages';
+          }
+          if (id.includes('/utils/')) {
+            return 'chunk-utils';
+          }
         },
+        
+        // Optimize asset naming and organization
+        chunkFileNames: (chunkInfo) => {
+          return `assets/js/[name]-[hash].js`;
+        },
+        assetFileNames: (assetInfo) => {
+          const fileName = assetInfo.name || 'asset';
+          const info = fileName.split('.');
+          const ext = info[info.length - 1];
+          if (/\.(css)$/.test(fileName)) {
+            return `assets/css/[name]-[hash].${ext}`;
+          }
+          if (/\.(png|jpe?g|svg|gif|webp|avif)$/.test(fileName)) {
+            return `assets/images/[name]-[hash].${ext}`;
+          }
+          if (/\.(woff|woff2|eot|ttf|otf)$/.test(fileName)) {
+            return `assets/fonts/[name]-[hash].${ext}`;
+          }
+          return `assets/[name]-[hash].${ext}`;
+        }
       },
+      
+      // Tree shaking optimizations
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        unknownGlobalSideEffects: false
+      }
     },
-    // Optimize chunk size
-    chunkSizeWarningLimit: 1000,
     
-    // Enable source maps in production for debugging
+    // Target modern browsers for better optimization
+    target: ['es2022', 'chrome89', 'firefox89', 'safari15'],
+    
+    // Optimize chunk sizes
+    chunkSizeWarningLimit: 600,
+    
+    // Disable source maps for production
     sourcemap: false,
     
-    // Minimize CSS and JS - only use terser in production
+    // CSS optimization
+    cssCodeSplit: true,
+    cssMinify: 'lightningcss',
+    
+    // Enhanced minification
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.warn'],
+        passes: 2,
+        hoist_funs: true,
+        hoist_vars: true
       },
+      mangle: {
+        safari10: true,
+        properties: {
+          regex: /^_/
+        }
+      },
+      format: {
+        comments: false
+      }
     } : undefined,
+    
+    // Optimize output
+    reportCompressedSize: false,
+    
+    // Enable aggressive asset inlining for small assets
+    assetsInlineLimit: 4096
   },
   
   // Optimize dependencies

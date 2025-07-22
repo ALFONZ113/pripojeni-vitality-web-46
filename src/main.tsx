@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
+import { preloadCriticalAssets, createResourceHints } from './utils/asset-optimization'
 
 // Error tracking with improved error information
 const handleError = (error: Error) => {
@@ -22,8 +23,14 @@ try {
   createRoot(rootElement).render(<App />);
   
   // Initialize performance optimizations
-  preloadCriticalRoutes();
-  optimizeChunkLoading();
+  createResourceHints();
+  preloadCriticalAssets();
+  
+  // Start route and chunk preloading after initial render
+  setTimeout(() => {
+    preloadCriticalRoutes();
+    optimizeChunkLoading();
+  }, 100);
 } catch (error) {
   handleError(error as Error);
   

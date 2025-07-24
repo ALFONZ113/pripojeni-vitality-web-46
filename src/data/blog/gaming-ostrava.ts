@@ -5,39 +5,39 @@ export const gamingOstravaPost: BlogPost = {
   title: "Internetové připojení pro online hráče v Ostravě: Rychlosti, ping a spolehlivost s PODA",
   excerpt: "Objevte, jak dosáhnout nejnižšího pingu a nejvyšší stability pro online hraní v Ostravě. Kompletní průvodce pro gamery s PODA připojením.",
   content: `
-    <div class="space-y-8">
-      <div class="bg-gradient-to-r from-red-600 to-orange-500 text-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-3">⚡ Gaming připojení PODA v Ostravě</h2>
-        <p class="text-lg">Nízký ping, vysoká stabilita a symetrické rychlosti pro náročné hráče</p>
-        <div class="mt-4 flex flex-col sm:flex-row gap-3">
-          <a href="tel:730431313" class="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors text-center">
-            📞 Zavolat: 730 431 313
+    <div class="prose prose-lg max-w-none">
+      <div class="bg-gradient-to-r from-primary to-primary-foreground text-primary-foreground p-8 rounded-lg shadow-lg mb-8">
+        <h2 class="text-2xl font-bold mb-3">Gaming připojení PODA v Ostravě</h2>
+        <p class="text-lg mb-6">Ultra rychlé <span class="text-3xl font-bold bg-white/20 px-2 py-1 rounded">1000/1000 Mbps</span> symetrické připojení s nejnižším pingem pro náročné hráče</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="tel:730431313" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors text-center">
+            Zavolat: 730 431 313
           </a>
-          <a href="/kontakt" class="bg-red-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-800 transition-colors text-center">
-            💬 Kontaktní formulář
+          <a href="/kontakt" class="bg-primary-foreground/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-foreground/30 transition-colors text-center">
+            Kontaktní formulář
           </a>
         </div>
       </div>
 
-      <section>
-        <h2 class="text-3xl font-bold mb-6 text-gray-900">Když každá milisekunda rozhoduje</h2>
-        <p class="text-lg text-gray-700 mb-4">
-          Je 21:00, finálový zápas turnaje se právě načítá, ale právě v klíčovém momentě se zasekáváte. Vysoký ping, packet loss a nestabilní připojení - to jsou problémy, které znají mnozí hráči v Ostravě. 
-        </p>
-        <p class="text-lg text-gray-700 mb-6">
-          Kvalitní internetové připojení není pro moderní gaming jen luxus - je to nutnost. S <strong>PODA</strong> můžete dosáhnout profesionálních parametrů připojení přímo ve vašem bytě v Ostravě.
-        </p>
+      <h2 class="text-3xl font-bold mb-6">Když každá milisekunda rozhoduje</h2>
+      
+      <p class="text-lg leading-relaxed mb-6">
+        Je 21:00, finálový zápas turnaje se právě načítá, ale právě v klíčovém momentě se zasekáváte. Vysoký ping, packet loss a nestabilní připojení - to jsou problémy, které znají mnozí hráči v Ostravě. Kvalitní internetové připojení není pro moderní gaming jen luxus - je to nutnost.
+      </p>
+      
+      <p class="text-lg leading-relaxed mb-8">
+        S <strong>PODA optickým připojením</strong> můžete dosáhnout profesionálních parametrů připojení přímo ve vašem bytě v Ostravě. Naše <strong class="text-2xl text-primary">1000/1000 Mbps</strong> symetrické rychlosti zajistí, že budete vždy o krok napřed.
+      </p>
 
-        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
-          <h3 class="text-xl font-semibold text-blue-800 mb-3">🎯 Proč je rychlé připojení klíčové?</h3>
-          <ul class="space-y-2 text-blue-700">
-            <li>• <strong>Kompetitivní výhoda:</strong> Každá milisekunda může rozhodnout o výhře</li>
-            <li>• <strong>Plynulý gameplay:</strong> Žádné sekání ani výpadky</li>
-            <li>• <strong>Streaming kvalita:</strong> Sdílení gameplay bez kompromisů</li>
-            <li>• <strong>Multiplayer stabilita:</strong> Spolehlivé připojení s přáteli</li>
-          </ul>
-        </div>
-      </section>
+      <div class="bg-muted p-6 rounded-lg border-l-4 border-primary mb-8">
+        <h3 class="text-xl font-semibold mb-4">Proč je rychlé připojení klíčové pro gaming?</h3>
+        <ul class="space-y-3">
+          <li><strong>Kompetitivní výhoda:</strong> Každá milisekunda může rozhodnout o výhře nebo prohře</li>
+          <li><strong>Plynulý gameplay:</strong> Žádné sekání, lagování ani frustrující výpadky</li>
+          <li><strong>Streaming kvalita:</strong> Sdílení gameplay v 4K bez kompromisů</li>
+          <li><strong>Multiplayer stabilita:</strong> Spolehlivé připojení s přáteli po celém světě</li>
+        </ul>
+      </div>
 
       <section>
         <h2 class="text-3xl font-bold mb-6 text-gray-900">Klíčové parametry pro perfektní gaming</h2>

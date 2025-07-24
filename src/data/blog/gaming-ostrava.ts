@@ -474,7 +474,7 @@ export const gamingOstravaPost: BlogPost = {
       </section>
     </div>
   `,
-  date: "24. 01. 2025",
+  date: "24. 07. 2025",
   author: "Adam Hass",
   category: "Tipy a rady",
   image: "/lovable-uploads/e99cde57-f2e6-45ff-b0cb-db715960e72c.png",

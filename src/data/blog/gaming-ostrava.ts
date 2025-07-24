@@ -1,3 +1,4 @@
+
 import type { BlogPost } from './types';
 
 export const gamingOstravaPost: BlogPost = {
@@ -22,7 +23,7 @@ export const gamingOstravaPost: BlogPost = {
       <h2 class="text-3xl font-bold mb-6">Když každá milisekunda rozhoduje</h2>
       
       <p class="text-lg leading-relaxed mb-6">
-        Je 21:00, finálový zápas turnaje se právě načítá, ale právě v klíčovém momentě se zasekáváte. Vysoký ping, packet loss a nestabilní připojení - to jsou problémy, které znají mnozí hráči v Ostravě. Kvalitní internetové připojení není pro moderní gaming jen luxus - je to nutnost.
+        Je 21:00, finálový zápas turnaje se právě načítá, ale právě v klíčovém momentu se zasekáváte. Vysoký ping, packet loss a nestabilní připojení - to jsou problémy, které znají mnozí hráči v Ostravě. Kvalitní internetové připojení není pro moderní gaming jen luxus - je to nutnost.
       </p>
       
       <p class="text-lg leading-relaxed mb-8">
@@ -88,7 +89,7 @@ export const gamingOstravaPost: BlogPost = {
         </div>
 
         <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-          <h3 class="text-lg font-semibold text-yellow-800 mb-3">📊 Požadavky různých herních žánrů:</h3>
+          <h3 class="text-lg font-semibold text-yellow-800 mb-3">Požadavky různých herních žánrů:</h3>
           <div class="grid md:grid-cols-2 gap-4 text-yellow-700">
             <div>
               <strong>FPS hry (CS2, Valorant):</strong> Ping &lt; 15ms kritický
@@ -110,7 +111,7 @@ export const gamingOstravaPost: BlogPost = {
         <h2 class="text-3xl font-bold mb-6 text-gray-900">Situace v Ostravě - realita vs. potřeby gamerů</h2>
         
         <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg mb-6">
-          <h3 class="text-xl font-semibold text-red-800 mb-3">❌ Typické problémy v Ostravě:</h3>
+          <h3 class="text-xl font-semibold text-red-800 mb-3">Typické problémy v Ostravě:</h3>
           <ul class="space-y-2 text-red-700">
             <li>• <strong>DSL připojení:</strong> Ping často 40-80ms, nestabilní v večerních hodinách</li>
             <li>• <strong>Kabelové sítě:</strong> Sdílená kapacita způsobuje výpadky při zátěži</li>
@@ -121,7 +122,7 @@ export const gamingOstravaPost: BlogPost = {
 
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-gray-100 p-6 rounded-lg">
-            <h4 class="text-lg font-semibold text-gray-800 mb-3">📈 Statistiky problémů:</h4>
+            <h4 class="text-lg font-semibold text-gray-800 mb-3">Statistiky problémů:</h4>
             <ul class="space-y-2 text-gray-700">
               <li>• 67% hráčů má ping vyšší než 30ms</li>
               <li>• 43% zažívá pravidelné výpadky</li>
@@ -129,7 +130,7 @@ export const gamingOstravaPost: BlogPost = {
             </ul>
           </div>
           <div class="bg-blue-100 p-6 rounded-lg">
-            <h4 class="text-lg font-semibold text-blue-800 mb-3">🏆 Herní komunity v Ostravě:</h4>
+            <h4 class="text-lg font-semibold text-blue-800 mb-3">Herní komunity v Ostravě:</h4>
             <ul class="space-y-2 text-blue-700">
               <li>• 15+ esport týmů</li>
               <li>• 200+ aktivních streamerů</li>
@@ -140,14 +141,14 @@ export const gamingOstravaPost: BlogPost = {
       </section>
 
       <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg shadow-lg text-center">
-        <h3 class="text-2xl font-bold mb-4">🚀 Připraveni na změnu?</h3>
+        <h3 class="text-2xl font-bold mb-4">Připraveni na změnu?</h3>
         <p class="text-lg mb-6">Milan Terč vám poradí s nejlepším gamingowym připojením v Ostravě</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="tel:730431313" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition-colors">
-            📞 730 431 313
+            730 431 313
           </a>
           <a href="https://popri.cz/kontakt" class="bg-blue-800 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-900 transition-colors" target="_blank" rel="noopener">
-            💬 popri.cz/kontakt
+            popri.cz/kontakt
           </a>
         </div>
       </div>
@@ -158,7 +159,7 @@ export const gamingOstravaPost: BlogPost = {
         <div class="grid lg:grid-cols-2 gap-8">
           <div class="space-y-6">
             <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-green-800 mb-4">🔧 GPON technologie - herní výhody:</h3>
+              <h3 class="text-xl font-semibold text-green-800 mb-4">GPON technologie - herní výhody:</h3>
               <ul class="space-y-3 text-green-700">
                 <li class="flex items-start">
                   <span class="text-green-500 font-bold mr-2">✓</span>
@@ -186,31 +187,11 @@ export const gamingOstravaPost: BlogPost = {
                 </li>
               </ul>
             </div>
-
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-blue-800 mb-4">💰 Gaming tarify PODA:</h3>
-              <div class="space-y-3">
-                <div class="bg-white p-4 rounded border">
-                  <div class="flex justify-between items-center">
-                    <span class="font-semibold">PODA Gaming Pro</span>
-                    <span class="text-blue-600 font-bold">250 Kč/měsíc</span>
-                  </div>
-                  <div class="text-sm text-gray-600 mt-1">1000/1000 Mbps + Gaming priorita</div>
-                </div>
-                <div class="bg-white p-4 rounded border">
-                  <div class="flex justify-between items-center">
-                    <span class="font-semibold">PODA Standard</span>
-                    <span class="text-blue-600 font-bold">250 Kč/měsíc</span>
-                  </div>
-                  <div class="text-sm text-gray-600 mt-1">1000/1000 Mbps + TV zdarma</div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div class="space-y-6">
             <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-purple-800 mb-4">📊 Porovnání s konkurencí:</h3>
+              <h3 class="text-xl font-semibold text-purple-800 mb-4">Porovnání s konkurencí:</h3>
               <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
                   <thead>
@@ -237,7 +218,7 @@ export const gamingOstravaPost: BlogPost = {
             </div>
 
             <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
-              <h3 class="text-xl font-semibold text-orange-800 mb-3">🎮 Herní výhody PODA:</h3>
+              <h3 class="text-xl font-semibold text-orange-800 mb-3">Herní výhody PODA:</h3>
               <ul class="space-y-2 text-orange-700">
                 <li>• Prioritní routing pro gaming traffic</li>
                 <li>• Optimalizované trasy na herní servery</li>
@@ -254,7 +235,7 @@ export const gamingOstravaPost: BlogPost = {
         
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-gray-50 p-6 rounded-lg">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">🔧 Optimalizace domácí sítě:</h3>
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Optimalizace domácí sítě:</h3>
             <ul class="space-y-3 text-gray-700">
               <li class="flex items-start">
                 <span class="text-blue-500 font-bold mr-2">1.</span>
@@ -284,7 +265,7 @@ export const gamingOstravaPost: BlogPost = {
           </div>
 
           <div class="bg-blue-50 p-6 rounded-lg">
-            <h3 class="text-xl font-semibold text-blue-800 mb-4">⚙️ QoS nastavení pro hry:</h3>
+            <h3 class="text-xl font-semibold text-blue-800 mb-4">QoS nastavení pro hry:</h3>
             <ul class="space-y-3 text-blue-700">
               <li class="flex items-start">
                 <span class="text-green-500 font-bold mr-2">•</span>
@@ -315,7 +296,7 @@ export const gamingOstravaPost: BlogPost = {
         </div>
 
         <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-          <h3 class="text-lg font-semibold text-yellow-800 mb-3">💡 Pro tip od odborníků:</h3>
+          <h3 class="text-lg font-semibold text-yellow-800 mb-3">Pro tip od odborníků:</h3>
           <p class="text-yellow-700">
             "Kombinace PODA optického připojení s kvalitním gaming routerem může snížit váš ping o 70-80% oproti standardnímu DSL připojení. 
             Investice do správného hardware a optimalizace sítě se vyplatí každému serióznímu hráči." 
@@ -406,7 +387,7 @@ export const gamingOstravaPost: BlogPost = {
         </div>
 
         <div class="mt-8 bg-gray-100 p-6 rounded-lg text-center">
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">📈 Souhrnné výsledky po přechodu na PODA:</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Souhrnné výsledky po přechodu na PODA:</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
               <div class="text-3xl font-bold text-green-600">92%</div>
@@ -430,17 +411,17 @@ export const gamingOstravaPost: BlogPost = {
 
       <div class="bg-gradient-to-r from-green-600 to-blue-600 text-white p-8 rounded-lg shadow-lg">
         <div class="text-center">
-          <h2 class="text-3xl font-bold mb-4">🏆 Připraveni dominovat online?</h2>
+          <h2 class="text-3xl font-bold mb-4">Připraveni dominovat online?</h2>
           <p class="text-xl mb-6">Milan Terč vám nastaví herní připojení snů v Ostravě a okolí</p>
           <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
             <a href="tel:730431313" class="bg-white text-green-600 px-6 py-4 rounded-lg font-bold hover:bg-green-50 transition-colors text-center">
-              📞 Zavolat: 730 431 313
+              Zavolat: 730 431 313
             </a>
             <a href="https://popri.cz" class="bg-green-700 text-white px-6 py-4 rounded-lg font-bold hover:bg-green-800 transition-colors text-center" target="_blank" rel="noopener">
-              🌐 Navštívit popri.cz
+              Navštívit popri.cz
             </a>
             <a href="/kontakt" class="bg-blue-700 text-white px-6 py-4 rounded-lg font-bold hover:bg-blue-800 transition-colors text-center">
-              💬 Kontaktní formulář
+              Kontaktní formulář
             </a>
           </div>
           <p class="mt-4 text-blue-100">Nezávazná konzultace zdarma • Instalace během 7 dnů • Technická podpora 24/7</p>
@@ -452,7 +433,7 @@ export const gamingOstravaPost: BlogPost = {
         
         <div class="space-y-4">
           <div class="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">❓ Jaký ping mohu očekávat s PODA připojením?</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Jaký ping mohu očekávat s PODA připojením?</h3>
             <p class="text-gray-700">
               S PODA GPON technologií dosáhnete pingu 1-3ms na evropské servery a 15-25ms na americké servery. 
               To je výrazně lepší než u tradičních DSL nebo kabelových připojení.
@@ -460,7 +441,7 @@ export const gamingOstravaPost: BlogPost = {
           </div>
 
           <div class="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">❓ Podporuje PODA prioritizaci gaming trafficu?</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Podporuje PODA prioritizaci gaming trafficu?</h3>
             <p class="text-gray-700">
               Ano, PODA nabízí optimalizované routing pro herní traffic a možnost nastavení QoS pravidel přímo na úrovni poskytovatele. 
               Gaming pakety mají automaticky vyšší prioritu.
@@ -468,7 +449,7 @@ export const gamingOstravaPost: BlogPost = {
           </div>
 
           <div class="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">❓ Mohu streamovat a hrát současně bez problémů?</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Mohu streamovat a hrát současně bez problémů?</h3>
             <p class="text-gray-700">
               Díky symetrickým rychlostem 1000/1000 Mbps můžete bez problémů streamovat ve 4K kvalitě a současně hrát náročné hry. 
               Upload rychlost 1000 Mbps je více než dostatečná pro profesionální streaming.
@@ -476,7 +457,7 @@ export const gamingOstravaPost: BlogPost = {
           </div>
 
           <div class="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">❓ Je dostupné PODA připojení v mém bytě?</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Je dostupné PODA připojení v mém bytě?</h3>
             <p class="text-gray-700">
               PODA postupně rozšiřuje pokrytí v Ostravě a okolních městech. Zavolejte na 730 431 313 a technici ověří dostupnost 
               na vaší konkrétní adrese zdarma.
@@ -487,7 +468,7 @@ export const gamingOstravaPost: BlogPost = {
         <div class="mt-8 text-center">
           <p class="text-gray-600 mb-4">Máte další otázky? Kontaktujte nás!</p>
           <a href="tel:730431313" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-            📞 730 431 313 - Zavolat nyní
+            730 431 313 - Zavolat nyní
           </a>
         </div>
       </section>

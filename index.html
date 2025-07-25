@@ -167,26 +167,49 @@
       }
     </style>
 
-    <!-- Progressive enhancement script -->
+    <!-- Enhanced progressive enhancement script -->
     <script>
-      // Hide static content once JS loads
-      document.addEventListener('DOMContentLoaded', function() {
+      // Enhanced React app loading detection
+      let reactLoaded = false;
+      let loadingTimeout;
+      
+      // Mark React as loaded
+      window.markReactLoaded = function() {
+        reactLoaded = true;
         const staticContent = document.getElementById('static-content');
         if (staticContent) {
-          staticContent.style.display = 'none';
+          staticContent.style.opacity = '0';
+          staticContent.style.transition = 'opacity 0.3s ease-out';
+          setTimeout(() => {
+            staticContent.style.display = 'none';
+          }, 300);
+        }
+        clearTimeout(loadingTimeout);
+      };
+      
+      // Hide static content immediately on DOM ready if possible
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check if React might already be loaded
+        const root = document.getElementById('root');
+        if (root && root.children.length > 0) {
+          window.markReactLoaded();
         }
       });
       
-      // Show static content if React fails to load
-      setTimeout(function() {
-        const root = document.getElementById('root');
-        if (!root || !root.children.length) {
-          const staticContent = document.getElementById('static-content');
-          if (staticContent) {
-            staticContent.style.display = 'block';
+      // Reduced timeout for faster experience
+      loadingTimeout = setTimeout(function() {
+        if (!reactLoaded) {
+          const root = document.getElementById('root');
+          if (!root || !root.children.length) {
+            const staticContent = document.getElementById('static-content');
+            if (staticContent) {
+              staticContent.style.display = 'block';
+              staticContent.style.opacity = '1';
+              console.warn('React app failed to load in time, showing fallback content');
+            }
           }
         }
-      }, 3000);
+      }, 1000); // Reduced from 3s to 1s
     </script>
 
     <!-- Lovable script tag -->
@@ -220,7 +243,7 @@
     </script>
     
     <!-- Static content for SEO and progressive enhancement -->
-    <div id="static-content" style="display: none;">
+    <div id="static-content" style="display: none; opacity: 0; transition: opacity 0.3s ease-out;">
       <main class="min-h-screen bg-white">
         <header class="bg-poda-blue text-white p-4">
           <div class="container mx-auto">

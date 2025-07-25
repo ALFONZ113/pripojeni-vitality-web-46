@@ -15,12 +15,16 @@ export const preloadCriticalResources = () => {
   ];
 
   criticalResources.forEach(resource => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.href = resource.href;
-    link.as = resource.as;
-    link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
+    // Check if already preloaded to avoid duplicates
+    const existing = document.querySelector(`link[href="${resource.href}"]`);
+    if (!existing) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = resource.href;
+      link.as = resource.as;
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    }
   });
 };
 
@@ -30,15 +34,18 @@ export const preloadCriticalResources = () => {
 export const optimizeBundleLoading = () => {
   if (typeof document === 'undefined') return;
 
-  // Preconnect to important domains
+  // Preconnect to important domains (avoid duplicates)
   const domains = ['https://fonts.googleapis.com', 'https://fonts.gstatic.com'];
   
   domains.forEach(domain => {
-    const link = document.createElement('link');
-    link.rel = 'preconnect';
-    link.href = domain;
-    link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
+    const existing = document.querySelector(`link[href="${domain}"][rel="preconnect"]`);
+    if (!existing) {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = domain;
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    }
   });
 };
 

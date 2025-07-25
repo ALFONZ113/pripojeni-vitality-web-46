@@ -102,7 +102,7 @@ export const bohuminSection = `
                 <div class="space-y-1 text-sm text-purple-100">
                     <p>Internet 1000 Mbps</p>
                     <p class="font-bold text-lg">250 Kč/měsíc</p>
-                    <p>Vysokorýchlostné pripojenie</p>
+                    <p>Vysokorychlostní připojení</p>
                     <p>Nízká latence do Polska</p>
                 </div>
                 <div class="mt-3">
@@ -116,23 +116,23 @@ export const bohuminSection = `
 
 export const orlovaSection = `
     <div class="bg-gradient-to-br from-orange-600 to-red-700 text-white p-6 rounded-xl mb-6">
-        <h2 class="text-2xl font-bold mb-4">Internet Orlová - Expandujúce pokrytie</h2>
+        <h2 class="text-2xl font-bold mb-4">Internet Orlová - Expandující pokrytí</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-                <h3 class="text-xl font-semibold mb-3 text-orange-200">Orlová: Postupné rozšiřování optické siete</h3>
-                <p class="text-orange-100 mb-4">Orlová predstavuje najnovší rozvoj PODA v regióne. Optická sieť sa postupne rozširuje a pokrytie rastie každým mesiacom.</p>
+                <h3 class="text-xl font-semibold mb-3 text-orange-200">Orlová: Postupné rozšiřování optické sítě</h3>
+                <p class="text-orange-100 mb-4">Orlová představuje nejnovější rozvoj PODA v regionu. Optická síť se postupně rozšiřuje a pokrytí roste každým měsícem.</p>
             </div>
             <div class="bg-white/10 p-4 rounded-lg">
-                <h4 class="font-semibold mb-2">Stav pokrytia v Orlovej</h4>
+                <h4 class="font-semibold mb-2">Stav pokrytí v Orlové</h4>
                 <div class="space-y-1 text-sm">
-                    <p>Současné pokrytie: <span class="font-bold">65%</span></p>
+                    <p>Současné pokrytí: <span class="font-bold">65%</span></p>
                     <p>Plán na rok 2025: <span class="font-bold">80%</span></p>
                     <p>Investice: 45 mil. Kč</p>
                 </div>
                 <div class="mt-3">
                     <a href="/kontakt" class="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded text-sm font-medium">
-                        Overit dostupnost
+                        Ověřit dostupnost
                     </a>
                 </div>
             </div>

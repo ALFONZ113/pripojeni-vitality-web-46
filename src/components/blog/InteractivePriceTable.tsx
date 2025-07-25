@@ -34,7 +34,7 @@ const InteractivePriceTable = ({ title, subtitle, tariffs }: InteractivePriceTab
             {tariff.isPopular && (
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                 <span className="bg-poda-orange text-white px-4 py-1 rounded-full text-sm font-bold">
-                  🌟 NAJPOPULÁRNEJŠÍ
+                  🌟 NEJPOPULÁRNĚJŠÍ
                 </span>
               </div>
             )}
@@ -63,7 +63,7 @@ const InteractivePriceTable = ({ title, subtitle, tariffs }: InteractivePriceTab
                 <div className="text-3xl font-bold text-poda-blue">
                   {tariff.price}
                 </div>
-                <div className="text-sm text-gray-600">mesačne</div>
+                <div className="text-sm text-gray-600">měsíčně</div>
               </div>
               
               <ul className="space-y-2 mb-6">
@@ -81,7 +81,7 @@ const InteractivePriceTable = ({ title, subtitle, tariffs }: InteractivePriceTab
                     className={`w-full ${tariff.isPopular ? 'bg-poda-orange hover:bg-orange-600' : 'bg-poda-blue hover:bg-blue-700'} text-white`}
                   >
                     <MessageSquare className="h-4 w-4 mr-2" />
-                    Objednať online
+                    Objednat online
                   </EnhancedButton>
                 </Link>
                 <a href="tel:+420730431313" className="block">
@@ -99,17 +99,17 @@ const InteractivePriceTable = ({ title, subtitle, tariffs }: InteractivePriceTab
       <div className="mt-8 text-center">
         <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
           <p className="text-sm text-blue-800 mb-3">
-            <strong>💡 Nezabudnite:</strong> Všetky ceny sú konečné bez skrytých poplatkov. PODA nemá aktivačné poplatky ani minimálnu viazanosť!
+            <strong>💡 Nezapomeňte:</strong> Všechny ceny jsou konečné bez skrytých poplatků. PODA nemá aktivační poplatky ani minimální vázanost!
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/kontakt">
               <EnhancedButton variant="outline" size="sm">
-                📋 Porovnať všetky tarify
+                📋 Porovnat všechny tarify
               </EnhancedButton>
             </Link>
             <a href="tel:+420730431313">
               <EnhancedButton size="sm" className="bg-poda-blue hover:bg-blue-700 text-white">
-                📞 Poradenstvo zdarma
+                📞 Poradenství zdarma
               </EnhancedButton>
             </a>
           </div>

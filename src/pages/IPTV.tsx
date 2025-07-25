@@ -27,14 +27,14 @@ const IPTV = () => {
                 IPTV za 99 Kč
               </span>
               <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation">
-                IPTV služba za <span className="text-poda-orange">99 Kč</span> mesačne
+                IPTV služba za <span className="text-poda-orange">99 Kč</span> měsíčně
               </h1>
               <p className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 reveal-animation delay-100">
-                Sledujte obľúbené programy kdekoľvek a kedykoľvek. Viac ako 200 kanálov vo Full HD kvalite bez satelitných parabôl.
+                Sledujte oblíbené programy kdykoliv a kdekoliv. Více než 200 kanálů ve Full HD kvalitě bez satelitních parabol.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal-animation delay-200">
                 <Link to="/kontakt" className="btn-primary">
-                  Objednať IPTV <ArrowRight className="ml-2 h-5 w-5 inline" />
+                  Objednat IPTV <ArrowRight className="ml-2 h-5 w-5 inline" />
                 </Link>
                 <a href="tel:+420730431313" className="btn-outline">
                   +420 730 431 313
@@ -47,8 +47,8 @@ const IPTV = () => {
                 <div className="bg-poda-blue/10 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
                   <Tv className="h-6 w-6 text-poda-blue" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">200+ kanálov</h3>
-                <p className="text-gray-600">Slovenské, české a medzinárodné kanály</p>
+                <h3 className="font-semibold text-lg mb-2">200+ kanálů</h3>
+                <p className="text-gray-600">České, slovenské a mezinárodní kanály</p>
               </div>
               
               <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
@@ -56,7 +56,7 @@ const IPTV = () => {
                   <Monitor className="h-6 w-6 text-poda-orange" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Full HD kvalita</h3>
-                <p className="text-gray-600">Až 4K rozlíšenie pre vybrané kanály</p>
+                <p className="text-gray-600">Až 4K rozlišení pro vybrané kanály</p>
               </div>
               
               <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
@@ -64,14 +64,14 @@ const IPTV = () => {
                   <Clock className="h-6 w-6 text-poda-blue" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Timeshift 7 dní</h3>
-                <p className="text-gray-600">Pozrite si programy až 7 dní späť</p>
+                <p className="text-gray-600">Podívejte se na programy až 7 dní zpět</p>
               </div>
               
               <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
                 <div className="bg-poda-orange/10 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
                   <Smartphone className="h-6 w-6 text-poda-orange" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Všetky zariadenia</h3>
+                <h3 className="font-semibold text-lg mb-2">Všechna zařízení</h3>
                 <p className="text-gray-600">TV, tablet, mobil, počítač</p>
               </div>
             </div>
@@ -87,7 +87,7 @@ const IPTV = () => {
               Cenový balíček IPTV
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Našu IPTV službu ponúkame za výhodnú cenu. Ušetríte až 400 Kč mesačne oproti klasickej satelitnej TV.
+              Naši IPTV službu nabízíme za výhodnou cenu. Ušetříte až 400 Kč měsíčně oproti klasické satelitní TV.
             </p>
           </div>
 
@@ -98,7 +98,7 @@ const IPTV = () => {
                 <h3 className="text-xl font-bold">IPTV služba</h3>
                 <div className="flex items-baseline mt-2">
                   <span className="text-3xl font-bold">99 Kč</span>
-                  <span className="text-blue-200 ml-2">/mesiac</span>
+                  <span className="text-blue-200 ml-2">/měsíc</span>
                 </div>
               </div>
               
@@ -106,7 +106,7 @@ const IPTV = () => {
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>200+ TV kanálov</span>
+                    <span>200+ TV kanálů</span>
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
@@ -114,7 +114,7 @@ const IPTV = () => {
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>EPG sprievodca</span>
+                    <span>EPG průvodce</span>
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
@@ -122,11 +122,11 @@ const IPTV = () => {
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>3 zariadenia súčasne</span>
+                    <span>3 zařízení současně</span>
                   </li>
                 </ul>
                 <Link to="/kontakt" className="btn-primary w-full justify-center">
-                  Objednať
+                  Objednat
                 </Link>
               </div>
             </div>
@@ -139,10 +139,10 @@ const IPTV = () => {
         <div className="container-custom">
           <div className="text-center mb-12 reveal-animation">
             <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
-              Kanálová ponuka
+              Kanálová nabídka
             </h2>
             <p className="text-gray-600 text-lg">
-              Viac ako 200 kanálov rozdelených do kategórií pre celú rodinu
+              Více než 200 kanálů rozdělených do kategorií pro celou rodinu
             </p>
           </div>
 
@@ -151,7 +151,7 @@ const IPTV = () => {
               <div className="bg-blue-100 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
                 <Star className="h-6 w-6 text-poda-blue" />
               </div>
-              <h3 className="font-semibold text-lg mb-3 text-poda-blue">Slovenské kanály</h3>
+              <h3 className="font-semibold text-lg mb-3 text-poda-blue">České kanály</h3>
               <ul className="text-gray-600 space-y-1">
                 <li>• JOJ, Markíza, RTVS</li>
                 <li>• TA3, Plus, Doma</li>
@@ -177,7 +177,7 @@ const IPTV = () => {
               <div className="bg-green-100 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
                 <Play className="h-6 w-6 text-green-500" />
               </div>
-              <h3 className="font-semibold text-lg mb-3 text-poda-blue">Športové kanály</h3>
+              <h3 className="font-semibold text-lg mb-3 text-poda-blue">Sportovní kanály</h3>
               <ul className="text-gray-600 space-y-1">
                 <li>• Eurosport 1 & 2</li>
                 <li>• Sport1, Sport2</li>
@@ -190,7 +190,7 @@ const IPTV = () => {
               <div className="bg-purple-100 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
                 <Tv className="h-6 w-6 text-purple-500" />
               </div>
-              <h3 className="font-semibold text-lg mb-3 text-poda-blue">Detské a zábavné</h3>
+              <h3 className="font-semibold text-lg mb-3 text-poda-blue">Dětské a zábavné</h3>
               <ul className="text-gray-600 space-y-1">
                 <li>• Minimax, JimJam</li>
                 <li>• Cartoon Network</li>
@@ -208,10 +208,10 @@ const IPTV = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="reveal-animation">
               <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
-                Prečo zvoliť našu IPTV?
+                Proč zvolit naši IPTV?
               </h2>
               <p className="text-gray-600 text-lg mb-8">
-                Naša IPTV služba ponúka modernú alternatívu k tradičnej satelitnej televízii s množstvom výhod.
+                Naše IPTV služba nabízí moderní alternativu k tradiční satelitní televizi s mnoha výhodami.
               </p>
 
               <div className="space-y-6">
@@ -220,8 +220,8 @@ const IPTV = () => {
                     <CheckCircle className="h-5 w-5 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Žiadne satelitné paraboly</h3>
-                    <p className="text-gray-600">Nepotrebujete parabolu ani antény. Stačí internetové pripojenie.</p>
+                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Žádné satelitní paraboly</h3>
+                    <p className="text-gray-600">Nepotřebujete parabolu ani antény. Stačí internetové připojení.</p>
                   </div>
                 </div>
 
@@ -230,8 +230,8 @@ const IPTV = () => {
                     <CheckCircle className="h-5 w-5 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Sledovanie na viacerých zariadeniach</h3>
-                    <p className="text-gray-600">Sledujte TV súčasne na Smart TV, mobile, tablete a počítači.</p>
+                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Sledování na více zařízeních</h3>
+                    <p className="text-gray-600">Sledujte TV současně na Smart TV, mobilu, tabletu a počítači.</p>
                   </div>
                 </div>
 
@@ -240,8 +240,8 @@ const IPTV = () => {
                     <CheckCircle className="h-5 w-5 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Archív programov až 7 dní</h3>
-                    <p className="text-gray-600">Pozrite si ľubovoľný program až 7 dní dozadu pomocou Timeshift funkcie.</p>
+                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Archiv programů až 7 dní</h3>
+                    <p className="text-gray-600">Podívejte se na libovolný program až 7 dní zpět pomocí Timeshift funkce.</p>
                   </div>
                 </div>
 
@@ -250,8 +250,8 @@ const IPTV = () => {
                     <CheckCircle className="h-5 w-5 text-poda-blue" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Úspora až 400 Kč mesačne</h3>
-                    <p className="text-gray-600">Výrazne lacnejšie ako klasické satelitné alebo káblové pripojenie.</p>
+                    <h3 className="font-semibold text-lg text-poda-blue mb-1">Úspora až 400 Kč měsíčně</h3>
+                    <p className="text-gray-600">Výrazně levnější než klasické satelitní nebo kabelové připojení.</p>
                   </div>
                 </div>
               </div>
@@ -286,8 +286,8 @@ const IPTV = () => {
                 <div className="bg-poda-orange/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Wifi className="h-8 w-8 text-poda-orange" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Webový prehrávač</h3>
-                <p className="text-gray-600 text-sm">Priamo v prehliadači</p>
+                <h3 className="font-semibold text-lg mb-2">Webový přehrávač</h3>
+                <p className="text-gray-600 text-sm">Přímo v prohlížeči</p>
               </div>
             </div>
           </div>
@@ -299,10 +299,10 @@ const IPTV = () => {
         <div className="container-custom text-center">
           <div className="max-w-3xl mx-auto reveal-animation">
             <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
-              Jednoduché nastavenie a inštalácia
+              Jednoduché nastavení a instalace
             </h2>
             <p className="text-gray-600 text-lg mb-8">
-              Nastavenie IPTV je veľmi jednoduché a nevyžaduje žiadne špeciálne technické znalosti.
+              Nastavení IPTV je velmi jednoduché a nevyžaduje žádné speciální technické znalosti.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -310,40 +310,40 @@ const IPTV = () => {
                 <div className="bg-poda-blue p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">1</span>
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Objednajte službu</h3>
-                <p className="text-gray-600">Kontaktujte nás a objednajte si IPTV balíček</p>
+                <h3 className="font-semibold text-lg mb-2">Objednejte službu</h3>
+                <p className="text-gray-600">Kontaktujte nás a objednejte si IPTV balíček</p>
               </div>
 
               <div className="text-center">
                 <div className="bg-poda-orange p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">2</span>
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Dostanete prístupové údaje</h3>
-                <p className="text-gray-600">Zašleme vám login a heslo pre váš IPTV účet</p>
+                <h3 className="font-semibold text-lg mb-2">Dostanete přístupové údaje</h3>
+                <p className="text-gray-600">Zašleme vám login a heslo pro váš IPTV účet</p>
               </div>
 
               <div className="text-center">
                 <div className="bg-poda-blue p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-bold text-xl">3</span>
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Nastavte zariadenie</h3>
-                <p className="text-gray-600">Zadajte údaje do aplikácie alebo set-top boxu</p>
+                <h3 className="font-semibold text-lg mb-2">Nastavte zařízení</h3>
+                <p className="text-gray-600">Zadejte údaje do aplikace nebo set-top boxu</p>
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-md">
-              <h3 className="font-semibold text-lg mb-4 text-poda-blue">Technické požiadavky</h3>
+              <h3 className="font-semibold text-lg mb-4 text-poda-blue">Technické požadavky</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                 <div>
-                  <h4 className="font-medium text-poda-blue mb-2">Internetové pripojenie:</h4>
+                  <h4 className="font-medium text-poda-blue mb-2">Internetové připojení:</h4>
                   <ul className="text-gray-600 space-y-1">
-                    <li>• Minimálne 10 Mbps pre HD</li>
-                    <li>• Odporúčané 25 Mbps pre 4K</li>
-                    <li>• Stabilné pripojenie (PODA ideálne)</li>
+                    <li>• Minimálně 10 Mbps pro HD</li>
+                    <li>• Doporučené 25 Mbps pro 4K</li>
+                    <li>• Stabilní připojení (PODA ideální)</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium text-poda-blue mb-2">Kompatibilné zariadenia:</h4>
+                  <h4 className="font-medium text-poda-blue mb-2">Kompatibilní zařízení:</h4>
                   <ul className="text-gray-600 space-y-1">
                     <li>• Android TV, Samsung, LG Smart TV</li>
                     <li>• Android/iOS mobily a tablety</li>
@@ -361,14 +361,14 @@ const IPTV = () => {
       <section className="section-padding bg-gradient-to-r from-poda-blue to-poda-blue-light text-white">
         <div className="container-custom text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 reveal-animation">
-            Pripravení začať sledovať IPTV?
+            Připraveni začít sledovat IPTV?
           </h2>
           <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto leading-relaxed reveal-animation delay-100">
-            Kontaktujte Milana Terče a získajte IPTV službu za 99 Kč mesačne. Bezplatná konzultácia a pomoc s nastavením.
+            Kontaktujte Milana Terče a získejte IPTV službu za 99 Kč měsíčně. Bezplatná konzultace a pomoc s nastavením.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center reveal-animation delay-200">
             <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-8 py-4 rounded-lg font-medium transition-all duration-300">
-              Objednať IPTV
+              Objednat IPTV
             </Link>
             <a href="tel:+420730431313" className="bg-transparent border border-white text-white hover:bg-white/10 px-8 py-4 rounded-lg font-medium transition-all duration-300">
               +420 730 431 313

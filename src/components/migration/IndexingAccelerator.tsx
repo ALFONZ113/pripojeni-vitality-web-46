@@ -113,7 +113,7 @@ const IndexingAccelerator = () => {
         <CardTitle className="flex items-center justify-between">
           <span className="flex items-center">
             <Zap className="w-5 h-5 mr-2" />
-            FIXNÚŤ INDEXOVANIE - Akcelerované riešenie
+            OPRAVIT INDEXOVÁNÍ - Zrychlené řešení
           </span>
           <div className="flex items-center space-x-2">
             <Button 
@@ -122,7 +122,7 @@ const IndexingAccelerator = () => {
               onClick={copyAllUrls}
             >
               <Copy className="w-4 h-4 mr-1" />
-              Všetky URL
+              Všechny URL
             </Button>
             <Button 
               variant="outline" 
@@ -147,7 +147,7 @@ const IndexingAccelerator = () => {
         <div className="grid grid-cols-4 gap-4 mb-6 text-center">
           <div className="p-4 bg-blue-50 rounded-lg">
             <div className="text-2xl font-bold text-blue-600">{totalUrls}</div>
-            <div className="text-sm text-gray-600">Celkom URL</div>
+            <div className="text-sm text-gray-600">Celkem URL</div>
           </div>
           <div className="p-4 bg-green-50 rounded-lg">
             <div className="text-2xl font-bold text-green-600">{completedActions}</div>
@@ -159,17 +159,17 @@ const IndexingAccelerator = () => {
           </div>
           <div className="p-4 bg-orange-50 rounded-lg">
             <div className="text-2xl font-bold text-orange-600">{totalActions - completedActions}</div>
-            <div className="text-sm text-gray-600">Zostáva</div>
+            <div className="text-sm text-gray-600">Zbývá</div>
           </div>
         </div>
 
         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
           <h3 className="font-semibold text-red-800 mb-2 flex items-center">
             <AlertTriangle className="w-5 h-5 mr-2" />
-            KRITICKÉ: Začnite s PRIORITA 1!
+            KRITICKÉ: Začněte s PRIORITA 1!
           </h3>
           <p className="text-sm text-red-700">
-            Najskôr indexujte kritické stránky (homepage, kontakt, tarify). Až potom pokračujte s ostatnými.
+            Nejdříve indexujte kritické stránky (homepage, kontakt, tarify). Až potom pokračujte s ostatními.
           </p>
         </div>
 
@@ -216,7 +216,7 @@ const IndexingAccelerator = () => {
                   <div key={idx}>{url}</div>
                 ))}
                 {action.urls.length > 3 && (
-                  <div className="text-blue-600">... a ďalších {action.urls.length - 3} URL</div>
+                  <div className="text-blue-600">... a dalších {action.urls.length - 3} URL</div>
                 )}
               </div>
             </div>

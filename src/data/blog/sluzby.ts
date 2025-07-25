@@ -264,55 +264,55 @@ export const sluzbyPosts: BlogPost[] = [
   },
   {
     id: 100,
-    title: "Internet PODA v Ostravě-Porubě: Gigabitové pripojenie pre najväčšiu mestskú časť",
-    excerpt: "Kompletné informácie o optickom pripojení PODA v Ostrave-Porube. Pokrytie, inštalácia, ceny a výhody oproti konkurencii.",
+    title: "Internet PODA v Ostravě-Porubě: Gigabitové připojení pro největší městskou část",
+    excerpt: "Kompletní informace o optickém připojení PODA v Ostravě-Porubě. Pokrytí, instalace, ceny a výhody oproti konkurenci.",
     content: `
       <div class="prose-content">
-        <h2>Internet PODA v Ostrave-Porube</h2>
-        <p>Ostrava-Poruba je najväčšia mestská časť Ostravy s viac ako 67 000 obyvateľmi. PODA poskytuje moderné optické pripojenie s rýchlosťou až 1000 Mbps symetricky za výhodnú cenu. <a href="tel:730431313" class="inline-flex items-center text-poda-blue hover:text-poda-blue-dark font-medium mx-1 transition-colors" onclick="if(typeof trackPhoneClick==='function') trackPhoneClick();">📞 Zavolať 730 431 313</a> a zistite dostupnosť na vašej adrese.</p>
+        <h2>Internet PODA v Ostravě-Porubě</h2>
+        <p>Ostrava-Poruba je největší městská část Ostravy s více než 67 000 obyvateli. PODA poskytuje moderní optické připojení s rychlostí až 1000 Mbps symetricky za výhodnou cenu. <a href="tel:730431313" class="inline-flex items-center text-poda-blue hover:text-poda-blue-dark font-medium mx-1 transition-colors" onclick="if(typeof trackPhoneClick==='function') trackPhoneClick();">📞 Zavolat 730 431 313</a> a zjistěte dostupnost na vaší adrese.</p>
 
-        <h2>Pokrytie v Porube</h2>
-        <h3>Zoznam pokrytých ulíc</h3>
+        <h2>Pokrytí v Porubě</h2>
+        <h3>Seznam pokrytých ulic</h3>
         <div class="bg-blue-50 p-6 rounded-lg my-6">
-          <h4>Pokryté lokality (abecedne):</h4>
+          <h4>Pokryté lokality (abecedně):</h4>
           <p class="text-sm mt-2">Aloise Gavlase, Bohuslava Martinů, Bulharská, Čkalovova, Dětská, Dvorní, Francouzská, Generála Sochora, Gurťjevova, Havanská, Hlavní třída, Heyrovského, Ivana Sekaniny, Jana Šoupala, Jindřicha Plachty, Karla Pokorného, Komenského, Kosmická, Kubánská, Kyjevská, Liptaňského náměstí, Ludvíka Podéště, Marie Majerové, Matěje Kopeckého, Mongolská, Nálepkova, Náměstí Družby, Nezvalovo náměstí, Opavská, Podroužkova, Polská, Porubská, Příčná, Průběžná, Pustkovecká, Rabasova, Řecká, Resslova, Skautská, Školní, Slepá, Slavíkova, Sokolovská, Španielova, Spartakovců, Spojů, Stavební, Svojsíkova, Tř. 17. listopadu, U Oblouku, U Školky, U Soudu, U Sportoviště, U Vozovny, Ukrajinská, Urxova, Větrná, Vietnamská, Vincence Makovského, Vítězslava Nováka, Vřesinská, Záhumenní, Zdeňka Štěpánka, Zednická, Žilinská.</p>
         </div>
 
-        <h2>Technické riešenie pre domácnosti</h2>
-        <h3>Riešenie pre panelové domy</h3>
+        <h2>Technické řešení pro domácnosti</h2>
+        <h3>Řešení pro panelové domy</h3>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h4>FTTH inštalácia v panelákoch:</h4>
+          <h4>FTTH instalace v panelových domech:</h4>
           <ul class="space-y-2 mt-4">
-            <li><strong>Vstup do budovy:</strong> Optický kábel cez existujúce šachty</li>
-            <li><strong>Distribúcia po podlažiach:</strong> Rozvádzače na každom poschodí</li>
-            <li><strong>Pripojenie do bytu:</strong> Individuálne optické vlákno</li>
-            <li><strong>Zakončenie:</strong> ONT modem v byte + Wi-Fi 6 router</li>
-            <li><strong>Rýchlosť:</strong> Garantovaných 1000/1000 Mbps</li>
+            <li><strong>Vstup do budovy:</strong> Optický kabel přes existující šachty</li>
+            <li><strong>Distribuce po podlažích:</strong> Rozvaděče na každém podlaží</li>
+            <li><strong>Připojení do bytu:</strong> Individuální optické vlákno</li>
+            <li><strong>Zakončení:</strong> ONT modem v bytě + Wi-Fi 6 router</li>
+            <li><strong>Rychlost:</strong> Garantovaných 1000/1000 Mbps</li>
           </ul>
         </div>
 
-        <h3>Riešenie pre rodinné domy</h3>
+        <h3>Řešení pro rodinné domy</h3>
         <div class="bg-blue-50 p-6 rounded-lg my-8">
-          <h4>Priame optické pripojenie:</h4>
+          <h4>Přímé optické připojení:</h4>
           <ul class="space-y-2 mt-4">
-            <li><strong>Vedenie optiky:</strong> Podzemné alebo vzdušné vedenie</li>
-            <li><strong>Vnútorná inštalácia:</strong> Profesionálne zakončenie v dome</li>
-            <li><strong>Pokrytie celého domu:</strong> Mesh systém alebo káblový rozvod</li>
-            <li><strong>Smart home ready:</strong> Pripravenosť pre IoT zariadenia</li>
+            <li><strong>Vedení optiky:</strong> Podzemní nebo vzdušné vedení</li>
+            <li><strong>Vnitřní instalace:</strong> Profesionální zakončení v domě</li>
+            <li><strong>Pokrytí celého domu:</strong> Mesh systém nebo kabelový rozvod</li>
+            <li><strong>Smart home ready:</strong> Připravenost pro IoT zařízení</li>
           </ul>
         </div>
 
         <h2>Cenová analýza</h2>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Mesačné náklady v Porube (vrátane DPH):</h3>
+          <h3>Měsíční náklady v Porubě (včetně DPH):</h3>
           <table class="w-full mt-4 text-sm">
             <thead>
               <tr class="border-b">
-                <th class="text-left py-2">Poskytovateľ</th>
-                <th class="text-left py-2">Rýchlosť</th>
-                <th class="text-left py-2">Cena/mesiac</th>
-                <th class="text-left py-2">Aktivácia</th>
-                <th class="text-left py-2">Záväzok</th>
+                <th class="text-left py-2">Poskytovatel</th>
+                <th class="text-left py-2">Rychlost</th>
+                <th class="text-left py-2">Cena/měsíc</th>
+                <th class="text-left py-2">Aktivace</th>
+                <th class="text-left py-2">Závazek</th>
               </tr>
             </thead>
             <tbody>
@@ -320,98 +320,98 @@ export const sluzbyPosts: BlogPost[] = [
                 <td class="py-2 font-semibold">PODA</td>
                 <td class="py-2">1000/1000 Mbps</td>
                 <td class="py-2 text-green-600">250 Kč</td>
-                <td class="py-2 text-green-600">Zadarmo</td>
-                <td class="py-2 text-green-600">Bez záväzku</td>
+                <td class="py-2 text-green-600">Zdarma</td>
+                <td class="py-2 text-green-600">Bez závazku</td>
               </tr>
               <tr class="border-b">
                 <td class="py-2">Vodafone (Liberty)</td>
                 <td class="py-2">500/50 Mbps</td>
                 <td class="py-2 text-red-600">899 Kč</td>
                 <td class="py-2 text-red-600">990 Kč</td>
-                <td class="py-2 text-red-600">24 mesiacov</td>
+                <td class="py-2 text-red-600">24 měsíců</td>
               </tr>
               <tr class="border-b">
                 <td class="py-2">O2</td>
                 <td class="py-2">100/20 Mbps</td>
                 <td class="py-2 text-orange-600">699 Kč</td>
                 <td class="py-2 text-orange-600">500 Kč</td>
-                <td class="py-2 text-orange-600">24 mesiacov</td>
+                <td class="py-2 text-orange-600">24 měsíců</td>
               </tr>
               <tr>
                 <td class="py-2">T-Mobile</td>
                 <td class="py-2">50/10 Mbps</td>
                 <td class="py-2 text-red-600">799 Kč</td>
                 <td class="py-2 text-red-600">800 Kč</td>
-                <td class="py-2 text-red-600">24 mesiacov</td>
+                <td class="py-2 text-red-600">24 měsíců</td>
               </tr>
             </tbody>
           </table>
-          <p class="text-center mt-4">Úspora oproti konkurencii až <strong>649 Kč mesačne!</strong> <a href="tel:+420730431313" class="inline-flex items-center text-poda-blue hover:text-poda-blue-dark font-medium transition-colors ml-2">📞 730 431 313</a> pre konzultáciu.</p>
+          <p class="text-center mt-4">Úspora oproti konkurenci až <strong>649 Kč měsíčně!</strong> <a href="tel:+420730431313" class="inline-flex items-center text-poda-blue hover:text-poda-blue-dark font-medium transition-colors ml-2">📞 730 431 313</a> pro konzultaci.</p>
         </div>
 
-        <h2>Inštalačný proces v Porube</h2>
-        <h3>Typická doba realizácie</h3>
+        <h2>Instalační proces v Porubě</h2>
+        <h3>Typická doba realizace</h3>
         <ul>
-          <li><strong>Panelové domy s optikou:</strong> 1-3 dni</li>
-          <li><strong>Panelové domy bez optiky:</strong> 1-2 týdne</li>
+          <li><strong>Panelové domy s optikou:</strong> 1-3 dny</li>
+          <li><strong>Panelové domy bez optiky:</strong> 1-2 týdny</li>
           <li><strong>Rodinné domy:</strong> 3-7 dní</li>
-          <li><strong>Nové budovy:</strong> Koordinácia s developerom</li>
+          <li><strong>Nové budovy:</strong> Koordinace s developerem</li>
         </ul>
 
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-          <h3 class="text-white mb-4">Profesionálna inštalácia PODA v Porube:</h3>
+          <h3 class="text-white mb-4">Profesionální instalace PODA v Porubě:</h3>
           <ol class="space-y-3">
             <li><strong>1. Objednávka kontaktu</strong> - spojení prostřednictvím Milana Terče na tel. 730 431 313 nebo online přes popri.cz</li>
             <li><strong>2. Osobní konzultace</strong> - Milan Terč vás navštíví pro detailní zmapování požadavků a sepsání objednávky</li>
-            <li><strong>3. Koordinácia termínu</strong> - zavoláme vám a dohodneme si nejoptimálnější termín instalace dle vašich možností</li>
+            <li><strong>3. Koordinace termínu</strong> - zavoláme vám a dohodneme si nejoptimálnější termín instalace dle vašich možností</li>
             <li><strong>4. Technická realizace</strong> - kvalifikovaný technik provede kompletní instalaci všech potřebných služeb a zařízení</li>
             <li><strong>5. Plně funkční služby</strong> - po dokončení instalace jsou všechny služby ihned připraveny k používání</li>
           </ol>
         </div>
 
-        <h2>Zákaznícka podpora</h2>
-        <h3>Lokálne servisné centrum</h3>
+        <h2>Zákaznická podpora</h2>
+        <h3>Lokální servisní centrum</h3>
         <div class="bg-green-50 p-6 rounded-lg my-6">
-          <h4>Technická podpora v regióne:</h4>
+          <h4>Technická podpora v regionu:</h4>
           <ul class="space-y-1">
-            <li><strong>Poloha:</strong> Servisné centrum v Ostrave-centre</li>
-            <li><strong>Doba reakcie:</strong> Do 4 hodín v pracovné dni</li>
-            <li><strong>Víkendový servis:</strong> Dostupný pre kritické prípady</li>
-            <li><strong>Preventívna údržba:</strong> Pravidelné kontroly siete</li>
+            <li><strong>Poloha:</strong> Servisní centrum v Ostravě-centru</li>
+            <li><strong>Doba reakce:</strong> Do 4 hodin v pracovní dny</li>
+            <li><strong>Víkendový servis:</strong> Dostupný pro kritické případy</li>
+            <li><strong>Preventivní údržba:</strong> Pravidelné kontroly sítě</li>
           </ul>
-          <p class="mt-4">Máte technický problém? <a href="tel:730431313" class="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors" onclick="if(typeof trackPhoneClick==='function') trackPhoneClick();">📞 Priama linka 730 431 313</a> - riešime okamžite!</p>
+          <p class="mt-4">Máte technický problém? <a href="tel:730431313" class="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors" onclick="if(typeof trackPhoneClick==='function') trackPhoneClick();">📞 Přímá linka 730 431 313</a> - řešíme okamžitě!</p>
         </div>
 
-        <h2>Záver</h2>
-        <p>Internet PODA v Ostrave-Porube predstavuje kvalitné riešenie pre moderné digitálne potreby obyvateľov najväčšej mestskej časti Ostravy.</p>
+        <h2>Závěr</h2>
+        <p>Internet PODA v Ostravě-Porubě představuje kvalitní řešení pro moderní digitální potřeby obyvatel největší městské části Ostravy.</p>
 
-        <h3>Prečo si vybrať PODA v Porube:</h3>
+        <h3>Proč si vybrat PODA v Porubě:</h3>
         <ul>
-          <li><strong>Najlepší pomer cena/výkon:</strong> Najrýchlejší internet za najnižšiu cenu</li>
-          <li><strong>Lokálna podpora:</strong> Technici z regiónu</li>
-          <li><strong>Flexibilita:</strong> Bez záväzkov s možnosťou zmien</li>
-          <li><strong>Moderné technológie:</strong> GPON optika pripravená na budúcnosť</li>
+          <li><strong>Nejlepší poměr cena/výkon:</strong> Nejrychlejší internet za nejnižší cenu</li>
+          <li><strong>Lokální podpora:</strong> Technici z regionu</li>
+          <li><strong>Flexibilita:</strong> Bez závazků s možností změn</li>
+          <li><strong>Moderní technologie:</strong> GPON optika připravená na budoucnost</li>
         </ul>
 
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Overenie dostupnosti a objednávka:</h3>
+          <h3>Ověření dostupnosti a objednávka:</h3>
           <p><strong>Web:</strong> popri.cz<br>
-          <strong>Špecialista pre Porubu:</strong> Milan Terč<br>
+          <strong>Specialista pro Porubu:</strong> Milan Terč<br>
           <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
-          <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia a overenie dostupnosti PODA internetu na vašej konkrétnej adrese v Porube.</p>
+          <p class="mt-4 text-sm text-gray-600">Bezplatná konzultace a ověření dostupnosti PODA internetu na vaší konkrétní adrese v Porubě.</p>
         </div>
 
-        <p class="text-center mt-8 font-medium">Pripojte sa k tisícom spokojných zákazníkov v Ostrave-Porube a získajte internet bez kompromisov! <a href="/kontakt" class="inline-flex items-center bg-poda-orange text-white px-4 py-2 rounded-lg hover:bg-poda-orange-dark transition-colors ml-2">📝 Kontaktný formulár</a></p>
+        <p class="text-center mt-8 font-medium">Připojte se k tisícům spokojených zákazníků v Ostravě-Porubě a získejte internet bez kompromisů! <a href="/kontakt" class="inline-flex items-center bg-poda-orange text-white px-4 py-2 rounded-lg hover:bg-poda-orange-dark transition-colors ml-2">📝 Kontaktní formulář</a></p>
 
-        <p class="text-sm text-gray-500 mt-8 italic">PODA v Porube - váš vstup do gigabitovej budúcnosti.</p>
+        <p class="text-sm text-gray-500 mt-8 italic">PODA v Porubě - váš vstup do gigabitové budoucnosti.</p>
       </div>
     `,
     date: '1. 6. 2025',
     author: 'Milan Terč',
     category: 'Služby',
     image: '/lovable-uploads/fedd23c9-5c8e-46f4-9d2e-02b0d64208cf.png',
-    alt: 'Moderná ulica v Ostrave-Porube s vizualizáciou optických pripojení a svetelných efektov symbolizujúcich rýchly internet PODA',
-    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické pripojenie', 'Inštalácia zadarmo', 'Rychlý internet'],
+    alt: 'Moderní ulice v Ostravě-Porubě s vizualizací optických připojení a světelných efektů symbolizujících rychlý internet PODA',
+    tags: ['Internet', 'Ostrava', 'Poruba', 'PODA', 'Optické připojení', 'Instalace zdarma', 'Rychlý internet'],
   }
 ];

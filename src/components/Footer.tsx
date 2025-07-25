@@ -61,6 +61,11 @@ const Footer = () => {
                   Promo akce - První měsíc ZDARMA
                 </Link>
               </li>
+              <li>
+                <Link to="/giga-internet" className="text-blue-100 hover:text-poda-orange transition-colors">
+                  Gigabitový internet
+                </Link>
+              </li>
             </ul>
           </nav>
 

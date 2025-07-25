@@ -31,6 +31,7 @@ const CookiePolicy = lazy(() => import('./pages/Cookies'));
 const MigrationMonitor = lazy(() => import('./pages/MigrationMonitor'));
 const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
 const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
+const GigaInternet = lazy(() => import('./pages/GigaInternet'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -84,6 +85,7 @@ function App() {
                   <Route path="/migration-monitor" element={<MigrationMonitor />} />
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
+                  <Route path="/giga-internet" element={<GigaInternet />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

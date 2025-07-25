@@ -84,18 +84,18 @@ const IPTV = () => {
         <div className="container-custom">
           <div className="text-center mb-12 reveal-animation">
             <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
-              Cenové balíčky IPTV
+              Cenový balíček IPTV
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Vyberte si balíček, ktorý vyhovuje vašim potrebám. Ušetríte až 400 Kč mesačne oproti klasickej satelitnej TV.
+              Našu IPTV službu ponúkame za výhodnú cenu. Ušetríte až 400 Kč mesačne oproti klasickej satelitnej TV.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="max-w-md mx-auto">
             {/* Basic IPTV */}
             <div className="tariff-card reveal-animation">
               <div className="tariff-header">
-                <h3 className="text-xl font-bold">Základný IPTV</h3>
+                <h3 className="text-xl font-bold">IPTV služba</h3>
                 <div className="flex items-baseline mt-2">
                   <span className="text-3xl font-bold">99 Kč</span>
                   <span className="text-blue-200 ml-2">/mesiac</span>
@@ -127,46 +127,6 @@ const IPTV = () => {
                 </ul>
                 <Link to="/kontakt" className="btn-primary w-full justify-center">
                   Objednať
-                </Link>
-              </div>
-            </div>
-
-            {/* Premium IPTV */}
-            <div className="tariff-card reveal-animation delay-100 relative">
-              <div className="recommended-badge">Populárne</div>
-              <div className="bg-gradient-to-r from-poda-orange to-red-500 text-white p-6">
-                <h3 className="text-xl font-bold">Premium IPTV</h3>
-                <div className="flex items-baseline mt-2">
-                  <span className="text-3xl font-bold">149 Kč</span>
-                  <span className="text-orange-200 ml-2">/mesiac</span>
-                </div>
-              </div>
-              
-              <div className="p-6">
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>Všetko zo základného</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>HBO, Cinemax balíček</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>Športové kanály Premium</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>4K rozlíšenie</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>5 zariadení súčasne</span>
-                  </li>
-                </ul>
-                <Link to="/kontakt" className="btn-secondary w-full justify-center">
-                  Objednať Premium
                 </Link>
               </div>
             </div>
@@ -404,7 +364,7 @@ const IPTV = () => {
             Pripravení začať sledovať IPTV?
           </h2>
           <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto leading-relaxed reveal-animation delay-100">
-            Kontaktujte Milana Terče a získajte IPTV službu už od 99 Kč mesačne. Bezplatná konzultácia a pomoc s nastavením.
+            Kontaktujte Milana Terče a získajte IPTV službu za 99 Kč mesačne. Bezplatná konzultácia a pomoc s nastavením.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center reveal-animation delay-200">
             <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-8 py-4 rounded-lg font-medium transition-all duration-300">

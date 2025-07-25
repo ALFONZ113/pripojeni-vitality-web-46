@@ -34,7 +34,7 @@ const GigaInternet = () => {
   ];
 
   const features = [
-    'Symetrické rychlosti až 1000/1000 Mbps',
+    'Symetrické rychlosti až 1000/200 Mbps',
     'Latence pod 5ms pro gaming a video hovory',
     'Podpora WiFi 6 technologie',
     'Profesionální instalace zdarma',

@@ -346,7 +346,7 @@ export const sluzbyPosts: BlogPost[] = [
               </tr>
             </tbody>
           </table>
-          <p class="text-center mt-4">Úspora oproti konkurencii až <strong>649 Kč mesačne!</strong> <a href="/contact" class="inline-flex items-center bg-poda-blue text-white px-3 py-1 rounded hover:bg-poda-blue-dark transition-colors ml-2 text-sm">📋 Vypočítať úsporu</a></p>
+          <p class="text-center mt-4">Úspora oproti konkurencii až <strong>649 Kč mesačne!</strong> <a href="tel:+420730431313" class="inline-flex items-center text-poda-blue hover:text-poda-blue-dark font-medium transition-colors ml-2">📞 730 431 313</a> pre konzultáciu.</p>
         </div>
 
         <h2>Inštalačný proces v Porube</h2>
@@ -402,7 +402,7 @@ export const sluzbyPosts: BlogPost[] = [
           <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia a overenie dostupnosti PODA internetu na vašej konkrétnej adrese v Porube.</p>
         </div>
 
-        <p class="text-center mt-8 font-medium">Pripojte sa k tisícom spokojných zákazníkov v Ostrave-Porube a získajte internet bez kompromisov! <a href="/contact" class="inline-flex items-center bg-poda-blue text-white px-4 py-2 rounded-lg hover:bg-poda-blue-dark transition-colors ml-2">💬 Spýtať sa na dostupnosť</a></p>
+        <p class="text-center mt-8 font-medium">Pripojte sa k tisícom spokojných zákazníkov v Ostrave-Porube a získajte internet bez kompromisov! <a href="/kontakt" class="inline-flex items-center bg-poda-orange text-white px-4 py-2 rounded-lg hover:bg-poda-orange-dark transition-colors ml-2">📝 Kontaktný formulár</a></p>
 
         <p class="text-sm text-gray-500 mt-8 italic">PODA v Porube - váš vstup do gigabitovej budúcnosti.</p>
       </div>

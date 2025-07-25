@@ -269,7 +269,7 @@ export const sluzbyPosts: BlogPost[] = [
     content: `
       <div class="prose-content">
         <h2>Internet PODA v Ostrave-Porube</h2>
-        <p>Ostrava-Poruba je najväčšia mestská časť Ostravy s viac ako 67 000 obyvateľmi. PODA poskytuje moderné optické pripojenie s rýchlosťou až 1000 Mbps symetricky za výhodnú cenu.</p>
+        <p>Ostrava-Poruba je najväčšia mestská časť Ostravy s viac ako 67 000 obyvateľmi. PODA poskytuje moderné optické pripojenie s rýchlosťou až 1000 Mbps symetricky za výhodnú cenu. <a href="tel:730431313" class="inline-flex items-center text-poda-blue hover:text-poda-blue-dark font-medium mx-1 transition-colors" onclick="if(typeof trackPhoneClick==='function') trackPhoneClick();">📞 Zavolať 730 431 313</a> a zistite dostupnosť na vašej adrese.</p>
 
         <h2>Pokrytie v Porube</h2>
         <h3>Zoznam pokrytých ulíc</h3>
@@ -346,6 +346,7 @@ export const sluzbyPosts: BlogPost[] = [
               </tr>
             </tbody>
           </table>
+          <p class="text-center mt-4">Úspora oproti konkurencii až <strong>649 Kč mesačne!</strong> <button onclick="window.open('/contact', '_blank')" class="inline-flex items-center bg-poda-blue text-white px-3 py-1 rounded hover:bg-poda-blue-dark transition-colors ml-2 text-sm">📋 Vypočítať úsporu</button></p>
         </div>
 
         <h2>Inštalačný proces v Porube</h2>
@@ -378,6 +379,7 @@ export const sluzbyPosts: BlogPost[] = [
             <li><strong>Víkendový servis:</strong> Dostupný pre kritické prípady</li>
             <li><strong>Preventívna údržba:</strong> Pravidelné kontroly siete</li>
           </ul>
+          <p class="mt-4">Máte technický problém? <a href="tel:730431313" class="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors" onclick="if(typeof trackPhoneClick==='function') trackPhoneClick();">📞 Priama linka 730 431 313</a> - riešime okamžite!</p>
         </div>
 
         <h2>Záver</h2>
@@ -400,7 +402,7 @@ export const sluzbyPosts: BlogPost[] = [
           <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia a overenie dostupnosti PODA internetu na vašej konkrétnej adrese v Porube.</p>
         </div>
 
-        <p class="text-center mt-8 font-medium">Pripojte sa k tisícom spokojných zákazníkov v Ostrave-Porube a získajte internet bez kompromisov!</p>
+        <p class="text-center mt-8 font-medium">Pripojte sa k tisícom spokojných zákazníkov v Ostrave-Porube a získajte internet bez kompromisov! <button onclick="window.open('/contact', '_blank')" class="inline-flex items-center bg-poda-blue text-white px-4 py-2 rounded-lg hover:bg-poda-blue-dark transition-colors ml-2">💬 Spýtať sa na dostupnosť</button></p>
 
         <p class="text-sm text-gray-500 mt-8 italic">PODA v Porube - váš vstup do gigabitovej budúcnosti.</p>
       </div>

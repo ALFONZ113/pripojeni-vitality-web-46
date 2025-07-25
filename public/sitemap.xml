@@ -3,13 +3,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.popri.cz</loc>
-    <lastmod>2025-01-22</lastmod>
+    <lastmod>2025-07-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.popri.cz/poda-favicon-192x192.png</image:loc>
       <image:caption>Popri.cz PODA Internet Logo</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.popri.cz/blog/31</loc>
+    <lastmod>2025-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.popri.cz/internet-tv</loc>

@@ -64,7 +64,7 @@ function App() {
                   <Route path="/tarify" element={<Tarify />} />
                   <Route path="/programy" element={<Programy />} />
                   <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:id" element={<BlogPost />} />
+                  <Route path="/blog/:slugOrId" element={<BlogPost />} />
                   <Route path="/promo-akce" element={<PromoAkcia />} />
                   <Route path="/pomoc-s-prechodem" element={<PomocPrechodem />} />
                   

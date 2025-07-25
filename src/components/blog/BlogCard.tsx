@@ -3,6 +3,7 @@ import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
+import { getBlogPostUrl } from '../../utils/blogRouting';
 import { handleImageError } from '../../utils/imageUtils';
 
 interface BlogCardProps {
@@ -57,7 +58,7 @@ const BlogCard = memo(({ post }: BlogCardProps) => {
             {post.author}
           </div>
           <Link 
-            to={`/blog/${post.id}`} 
+            to={getBlogPostUrl(post)} 
             className="text-poda-blue hover:text-poda-orange font-medium flex items-center transition-colors"
           >
             Číst více <ArrowRight className="ml-1 h-4 w-4" />

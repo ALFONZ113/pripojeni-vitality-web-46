@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
+import { getBlogPostUrl } from '../../utils/blogRouting';
 import ProgressiveImage from '../ui/progressive-image';
 import LoadingSkeleton from '../ui/loading-skeleton';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
@@ -62,7 +63,7 @@ const EnhancedBlogCard: React.FC<EnhancedBlogCardProps> = ({ post, featured = fa
         <h3 className={`font-bold text-poda-blue group-hover:text-poda-orange transition-colors mb-3 ${
           featured ? 'text-2xl' : 'text-xl'
         }`}>
-          <Link to={`/blog/${post.id}`} className="hover:underline">
+          <Link to={getBlogPostUrl(post)} className="hover:underline">
             {post.title}
           </Link>
         </h3>
@@ -74,7 +75,7 @@ const EnhancedBlogCard: React.FC<EnhancedBlogCardProps> = ({ post, featured = fa
         )}
         
         <div className="flex items-center justify-between">
-          <Link to={`/blog/${post.id}`}>
+          <Link to={getBlogPostUrl(post)}>
             <EnhancedButton variant="ghost" size="sm" className="group/btn p-0 h-auto">
               Číst více
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />

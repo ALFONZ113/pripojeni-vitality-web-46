@@ -10,6 +10,7 @@ export interface BlogPost {
   image: string;
   alt?: string;
   tags?: string[];
+  slug?: string; // Pre nové články bude povinný slug
 }
 
 export interface BlogCategory {

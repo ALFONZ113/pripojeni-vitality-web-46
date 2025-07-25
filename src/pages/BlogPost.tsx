@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { blogPosts } from '../data/blog';
 import { initAnimations } from '../utils/animation';
+import { findBlogPost } from '../utils/blogRouting';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
@@ -13,7 +14,7 @@ import BlogPostSEO from '../components/blog/BlogPostSEO';
 import type { BlogPost } from '../data/blog/types';
 
 const BlogPostPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { slugOrId } = useParams<{ slugOrId: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const navigate = useNavigate();
   
@@ -31,21 +32,11 @@ const BlogPostPage = () => {
     const cleanupAnimation = initAnimations();
     window.scrollTo(0, 0);
     
-    // Support both numeric IDs and slug-based URLs
+    // Use new slug-based routing
     let foundPost: BlogPost | undefined;
     
-    if (id) {
-      // Try to find by ID first (backwards compatibility)
-      foundPost = blogPosts.find(p => p.id === Number(id));
-      
-      // If not found by ID, try to extract ID from slug
-      if (!foundPost) {
-        const match = id.match(/-(\d+)$/);
-        if (match) {
-          const extractedId = parseInt(match[1], 10);
-          foundPost = blogPosts.find(p => p.id === extractedId);
-        }
-      }
+    if (slugOrId) {
+      foundPost = findBlogPost(blogPosts, slugOrId);
     }
     
     if (foundPost) {
@@ -84,7 +75,7 @@ const BlogPostPage = () => {
     return () => {
       cleanupAnimation();
     };
-  }, [id, navigate]);
+  }, [slugOrId, navigate]);
   
   if (!post) {
     return (

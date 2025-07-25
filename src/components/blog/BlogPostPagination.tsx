@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import type { BlogPost } from '../../data/blog/types';
 import { getPageTrackingParams } from '../../utils/blogMetadata';
+import { getBlogPostUrl } from '../../utils/blogRouting';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 
 interface BlogPostPaginationProps {
@@ -18,7 +19,7 @@ const BlogPostPagination = ({ prevPost, nextPost }: BlogPostPaginationProps) => 
             {prevPost && (
               <PaginationItem>
                 <PaginationPrevious 
-                  href={`/blog/${prevPost.id}${getPageTrackingParams(prevPost.id, prevPost.category)}`}
+                  href={`${getBlogPostUrl(prevPost)}${getPageTrackingParams(prevPost.id, prevPost.category)}`}
                   aria-label={`Předchozí článek: ${prevPost.title}`}
                 />
               </PaginationItem>
@@ -33,7 +34,7 @@ const BlogPostPagination = ({ prevPost, nextPost }: BlogPostPaginationProps) => 
             {nextPost && (
               <PaginationItem>
                 <PaginationNext 
-                  href={`/blog/${nextPost.id}${getPageTrackingParams(nextPost.id, nextPost.category)}`}
+                  href={`${getBlogPostUrl(nextPost)}${getPageTrackingParams(nextPost.id, nextPost.category)}`}
                   aria-label={`Další článek: ${nextPost.title}`}
                 />
               </PaginationItem>

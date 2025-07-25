@@ -1,6 +1,7 @@
 
 import { blogPosts } from '../data/blog';
 import type { BlogPost } from '../data/blog/types';
+import { getBlogPostUrl } from './blogRouting';
 
 /**
  * Escape XML special characters properly
@@ -147,7 +148,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
 
   validBlogPosts.forEach((post: BlogPost) => {
     try {
-      const postUrl = `${baseUrl}/blog/${post.id}`;
+      const postUrl = `${baseUrl}${getBlogPostUrl(post)}`;
       const sanitizedUrl = sanitizeUrl(postUrl);
       const postDate = post.date ? formatDateISO(post.date) : currentDate;
       

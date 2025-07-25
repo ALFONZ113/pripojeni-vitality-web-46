@@ -207,10 +207,10 @@ const GigaInternet = () => {
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
-              Gigabitové tarify pro rodinné domy
+              Bezdrátové tarify pro rodinné domy
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Vyberte si tarif s gigabitovými rychlostmi, který nejlépe odpovídá vašim potřebám
+              Vyberte si tarif s vysokorychlostním bezdrátovým internetem, který nejlépe odpovídá vašim potřebám
             </p>
           </div>
 
@@ -218,14 +218,18 @@ const GigaInternet = () => {
             <Card className="border-2 border-gray-200 hover:border-poda-blue transition-colors">
               <CardHeader className="text-center">
                 <Badge className="mx-auto mb-4 bg-green-100 text-green-700">Akční cena</Badge>
-                <CardTitle className="text-2xl text-poda-blue">Giga Basic</CardTitle>
-                <div className="text-4xl font-bold text-poda-blue">390 Kč</div>
+                <CardTitle className="text-2xl text-poda-blue">Internet + TV Basic</CardTitle>
+                <div className="text-4xl font-bold text-poda-blue">250 Kč</div>
                 <div className="text-gray-600">měsíčně + 50 Kč za zařízení</div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                  <span>Internet 1000/1000 Mbps (60GHz)</span>
+                  <span>Internet 1000/200 Mbps</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
+                  <span>Bezdrátový internet s rychlostí optického</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
@@ -233,17 +237,13 @@ const GigaInternet = () => {
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                  <span>Služba PODA net.TV pro 4 zařízení</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                  <span>Instalace zdarma</span>
+                  <span>Služba PODA net.TV až pro 4 zařízení</span>
                 </div>
                 <Button className="w-full mt-6" size="lg">
                   <a href="#kontakt">Objednat tarif</a>
                 </Button>
                 <p className="text-sm text-gray-500 text-center">
-                  Akční cena platí 12 měsíců, pak 520 Kč/měsíc
+                  Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 440 Kč/měsíc.
                 </p>
               </CardContent>
             </Card>
@@ -252,14 +252,18 @@ const GigaInternet = () => {
               <Badge className="absolute top-4 right-4 bg-poda-blue text-white">Doporučujeme</Badge>
               <CardHeader className="text-center">
                 <Badge className="mx-auto mb-4 bg-green-100 text-green-700">Akční cena</Badge>
-                <CardTitle className="text-2xl text-poda-blue">Giga Premium</CardTitle>
-                <div className="text-4xl font-bold text-poda-blue">490 Kč</div>
+                <CardTitle className="text-2xl text-poda-blue">Internet + TV Mých 10</CardTitle>
+                <div className="text-4xl font-bold text-poda-blue">390 Kč</div>
                 <div className="text-gray-600">měsíčně + 50 Kč za zařízení</div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                  <span>Internet 1000/1000 Mbps (60GHz)</span>
+                  <span>Internet 1000/200 Mbps</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
+                  <span>Bezdrátový internet s rychlostí optického</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
@@ -271,21 +275,13 @@ const GigaInternet = () => {
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                  <span>Služba PODA net.TV pro 4 zařízení</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                  <span>Instalace zdarma</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                  <span>Prioritní technická podpora</span>
+                  <span>Služba PODA net.TV až pro 4 zařízení</span>
                 </div>
                 <Button className="w-full mt-6" size="lg">
                   <a href="#kontakt">Objednat tarif</a>
                 </Button>
                 <p className="text-sm text-gray-500 text-center">
-                  Akční cena platí 12 měsíců, pak 620 Kč/měsíc
+                  Zvýhodněná PROMO cena je určena novým zákazníkům a platí 12 měsíců od aktivace, následně se cena upravuje na standardních 520 Kč/měsíc.
                 </p>
               </CardContent>
             </Card>

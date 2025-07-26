@@ -64,7 +64,7 @@ const GigaInternet = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-poda-blue/90 to-poda-blue/70"></div>
         </div>
         
-        <div className="relative z-10 container-custom text-center text-white">
+        <div className="relative z-10 container-custom text-center text-white px-4">
           <Badge className="bg-white/20 text-white border-white/30 mb-6 text-lg px-4 py-2">
             <Zap className="mr-2 h-5 w-5" />
             Nová technologie 60GHz
@@ -80,15 +80,19 @@ const GigaInternet = () => {
             pomocí nejmodernější 60GHz technologie přímo do vašeho rodinného domu.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-poda-blue hover:bg-gray-100">
-              <a href="#tarify" className="flex items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
+            <Button size="lg" className="bg-white text-poda-blue hover:bg-gray-100 font-semibold text-base px-6 py-3 shadow-lg">
+              <a href="#tarify" className="flex items-center justify-center w-full">
                 Zobrazit tarify
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-              <a href="#kontakt" className="flex items-center">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-poda-blue font-semibold text-base px-6 py-3 shadow-lg backdrop-blur-sm"
+            >
+              <a href="#kontakt" className="flex items-center justify-center w-full">
                 Zjistit dostupnost
                 <Signal className="ml-2 h-5 w-5" />
               </a>

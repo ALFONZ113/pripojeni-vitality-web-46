@@ -167,49 +167,13 @@
       }
     </style>
 
-    <!-- Enhanced progressive enhancement script -->
+    <!-- Simplified app loading script -->
     <script>
-      // Enhanced React app loading detection
-      let reactLoaded = false;
-      let loadingTimeout;
-      
-      // Mark React as loaded
+      // Mark React as loaded - called from main.tsx
       window.markReactLoaded = function() {
-        reactLoaded = true;
-        const staticContent = document.getElementById('static-content');
-        if (staticContent) {
-          staticContent.style.opacity = '0';
-          staticContent.style.transition = 'opacity 0.3s ease-out';
-          setTimeout(() => {
-            staticContent.style.display = 'none';
-          }, 300);
-        }
-        clearTimeout(loadingTimeout);
+        // React app loaded successfully - loading indicator will be replaced automatically
+        console.log('React app loaded successfully');
       };
-      
-      // Hide static content immediately on DOM ready if possible
-      document.addEventListener('DOMContentLoaded', function() {
-        // Check if React might already be loaded
-        const root = document.getElementById('root');
-        if (root && root.children.length > 0) {
-          window.markReactLoaded();
-        }
-      });
-      
-      // Reduced timeout for faster experience
-      loadingTimeout = setTimeout(function() {
-        if (!reactLoaded) {
-          const root = document.getElementById('root');
-          if (!root || !root.children.length) {
-            const staticContent = document.getElementById('static-content');
-            if (staticContent) {
-              staticContent.style.display = 'block';
-              staticContent.style.opacity = '1';
-              console.warn('React app failed to load in time, showing fallback content');
-            }
-          }
-        }
-      }, 1000); // Reduced from 3s to 1s
     </script>
 
     <!-- Lovable script tag -->
@@ -220,7 +184,20 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Loading indicator shown immediately -->
+      <div style="position: fixed; inset: 0; background: hsl(var(--background)); display: flex; align-items: center; justify-content: center; z-index: 50;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+          <div style="width: 2rem; height: 2rem; border: 2px solid hsl(var(--primary)); border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+          <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">Načítává se...</p>
+        </div>
+      </div>
+      <style>
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Service worker registration with updated version -->
@@ -242,67 +219,28 @@
       }, true);
     </script>
     
-    <!-- Static content for SEO and progressive enhancement -->
-    <div id="static-content" style="display: none; opacity: 0; transition: opacity 0.3s ease-out;">
-      <main class="min-h-screen bg-white">
-        <header class="bg-poda-blue text-white p-4">
-          <div class="container mx-auto">
-            <h1 class="text-2xl font-bold">Popri.cz – Rychlý PODA Internet s TV Zdarma</h1>
-            <p class="text-blue-100">Gigabitové připojení, TV zdarma, non-stop podpora</p>
-          </div>
-        </header>
-        
-        <section class="py-16 px-4">
-          <div class="container mx-auto max-w-6xl">
-            <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold text-poda-blue mb-4">
-                PODA Internet s TV za nejlepší ceny
-              </h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Získejte gigabitové připojení s TV zdarma. Rychlá instalace, spolehlivá síť a non-stop technická podpora.
-              </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
-              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-blue">
-                <h3 class="text-xl font-semibold text-poda-blue mb-3">Rychlé připojení</h3>
-                <p class="text-gray-600">Gigabitové rychlosti až 1000 Mb/s pro domácnosti i firmy</p>
-              </div>
-              
-              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-orange">
-                <h3 class="text-xl font-semibold text-poda-blue mb-3">TV zdarma</h3>
-                <p class="text-gray-600">Více než 100 televizních kanálů včetně HD kvality</p>
-              </div>
-              
-              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-poda-blue">
-                <h3 class="text-xl font-semibold text-poda-blue mb-3">Non-stop podpora</h3>
-                <p class="text-gray-600">24/7 technická podpora a servis</p>
-              </div>
-            </div>
-            
-            <div class="text-center">
-              <h3 class="text-2xl font-bold text-poda-blue mb-4">Kontaktujte nás</h3>
-              <p class="text-lg text-gray-600 mb-6">
-                Telefon: <a href="tel:+420730431313" class="text-poda-blue font-semibold">730 431 313</a>
-              </p>
-              <p class="text-gray-600">
-                Pokrýváme oblasti: Ostrava, Karviná, Bohumín, Havířov, Poruba a okolí
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
 
     <!-- NoScript fallback -->
     <noscript>
       <style>
-        #static-content { display: block !important; }
-        #root { display: none; }
+        #root > div { display: none !important; }
       </style>
-      <div class="noscript-banner" style="background: #f59e0b; color: white; padding: 10px; text-align: center;">
-        <strong>JavaScript je zakázán.</strong> Stránka funguje i bez JavaScriptu, ale pro plnou funkcionalitat doporučujeme jej povolit.
-      </div>
+      <main style="min-height: 100vh; background: white; padding: 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+          <h1 style="color: #1e40af; font-size: 2rem; margin-bottom: 1rem;">
+            Popri.cz – Rychlý PODA Internet s TV Zdarma
+          </h1>
+          <p style="color: #4b5563; font-size: 1.25rem; margin-bottom: 2rem;">
+            Gigabitové připojení, TV zdarma, non-stop podpora
+          </p>
+          <div style="background: #f59e0b; color: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 2rem;">
+            <strong>JavaScript je zakázán.</strong> Pro plnou funkcionalitu stránky doporučujeme povolit JavaScript.
+          </div>
+          <p style="font-size: 1.125rem; color: #4b5563;">
+            Kontakt: <a href="tel:+420730431313" style="color: #1e40af; font-weight: bold;">730 431 313</a>
+          </p>
+        </div>
+      </main>
     </noscript>
   </body>
 </html>

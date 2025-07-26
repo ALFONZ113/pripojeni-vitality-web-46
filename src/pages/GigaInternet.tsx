@@ -8,59 +8,37 @@ import ContactForm from '@/components/ContactForm';
 import heroImage from '@/assets/60ghz-technology-hero.jpg';
 import gigabitHomeImage from '@/assets/gigabit-home-internet.jpg';
 import spectrumImage from '@/assets/60ghz-spectrum.jpg';
-
 const GigaInternet = () => {
-  const benefits = [
-    {
-      icon: Zap,
-      title: 'Gigabitové rychlosti',
-      description: 'Až 1000 Mbps pro stahování i odesílání dat pomocí 60GHz technologie'
-    },
-    {
-      icon: Home,
-      title: 'Ideální pro rodinné domy',
-      description: 'Bezdrátové připojení s výkonem optického internetu přímo do vašeho domu'
-    },
-    {
-      icon: Signal,
-      title: '60GHz technologie',
-      description: 'Nejmodernější bezdrátová technologie s minimální latencí a maximální spolehlivostí'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Bez datových limitů',
-      description: 'Neomezené stahování a streamování bez fair use policy'
-    }
-  ];
-
-  const features = [
-    'Symetrické rychlosti až 1000/200 Mbps',
-    'Latence pod 5ms pro gaming a video hovory',
-    'Podpora WiFi 6 technologie',
-    'Profesionální instalace zdarma',
-    'Televizní služby PODA net.TV v ceně',
-    'Více než 85 televizních programů',
-    '24/7 technická podpora',
-    'Žádné aktivační ani ukončovací poplatky'
-  ];
-
-  return (
-    <>
+  const benefits = [{
+    icon: Zap,
+    title: 'Gigabitové rychlosti',
+    description: 'Až 1000 Mbps pro stahování i odesílání dat pomocí 60GHz technologie'
+  }, {
+    icon: Home,
+    title: 'Ideální pro rodinné domy',
+    description: 'Bezdrátové připojení s výkonem optického internetu přímo do vašeho domu'
+  }, {
+    icon: Signal,
+    title: '60GHz technologie',
+    description: 'Nejmodernější bezdrátová technologie s minimální latencí a maximální spolehlivostí'
+  }, {
+    icon: CheckCircle,
+    title: 'Bez datových limitů',
+    description: 'Neomezené stahování a streamování bez fair use policy'
+  }];
+  const features = ['Symetrické rychlosti až 1000/200 Mbps', 'Latence pod 5ms pro gaming a video hovory', 'Podpora WiFi 6 technologie', 'Profesionální instalace zdarma', 'Televizní služby PODA net.TV v ceně', 'Více než 85 televizních programů', '24/7 technická podpora', 'Žádné aktivační ani ukončovací poplatky'];
+  return <>
       <Helmet>
         <title>Gigabitový internet do domu - 60GHz technologie | PODA</title>
-        <meta 
-          name="description" 
-          content="Nový gigabitový internet do rodinných domů pomocí 60GHz technologie. Symetrické rychlosti až 1000 Mbps, minimální latence a neomezené stahování." 
-        />
+        <meta name="description" content="Nový gigabitový internet do rodinných domů pomocí 60GHz technologie. Symetrické rychlosti až 1000 Mbps, minimální latence a neomezené stahování." />
         <meta name="keywords" content="gigabitový internet, 60GHz, rodinný dům, vysokorychlostní internet, PODA" />
       </Helmet>
 
       {/* Hero sekce */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+        backgroundImage: `url(${heroImage})`
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-poda-blue/90 to-poda-blue/70"></div>
         </div>
         
@@ -75,10 +53,7 @@ const GigaInternet = () => {
             <span className="block text-yellow-300">už i do domu</span>
           </h1>
           
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Přinášíme revoluci v domácím internetu. Symetrické rychlosti až 1000 Mbps 
-            pomocí nejmodernější 60GHz technologie přímo do vašeho rodinného domu.
-          </p>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Přinášíme revoluci v domácím internetu. Rychlosti až 1000 Mbps pomocí nejmodernější 60GHz technologie přímo do vašeho rodinného domu.</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md sm:max-w-none mx-auto">
             <Button size="lg" className="bg-white text-poda-blue hover:bg-gray-100 font-semibold text-base px-6 py-3 shadow-lg">
@@ -87,11 +62,7 @@ const GigaInternet = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-poda-blue font-semibold text-base px-6 py-3 shadow-lg backdrop-blur-sm"
-            >
+            <Button variant="outline" size="lg" className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-poda-blue font-semibold text-base px-6 py-3 shadow-lg backdrop-blur-sm">
               <a href="#kontakt" className="flex items-center justify-center w-full">
                 Zjistit dostupnost
                 <Signal className="ml-2 h-5 w-5" />
@@ -115,8 +86,7 @@ const GigaInternet = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center border-none shadow-lg hover:shadow-xl transition-shadow">
+            {benefits.map((benefit, index) => <Card key={index} className="text-center border-none shadow-lg hover:shadow-xl transition-shadow">
                 <CardHeader>
                   <div className="mx-auto w-16 h-16 bg-poda-blue/10 rounded-full flex items-center justify-center mb-4">
                     <benefit.icon className="h-8 w-8 text-poda-blue" />
@@ -126,8 +96,7 @@ const GigaInternet = () => {
                 <CardContent>
                   <p className="text-gray-600">{benefit.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -147,21 +116,15 @@ const GigaInternet = () => {
               </p>
               
               <div className="space-y-4">
-                {features.slice(0, 4).map((feature, index) => (
-                  <div key={index} className="flex items-center">
+                {features.slice(0, 4).map((feature, index) => <div key={index} className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
             
             <div className="relative">
-              <img 
-                src={spectrumImage} 
-                alt="60GHz spektrum a technologie"
-                className="rounded-lg shadow-xl w-full"
-              />
+              <img src={spectrumImage} alt="60GHz spektrum a technologie" className="rounded-lg shadow-xl w-full" />
               <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
                 <div className="text-2xl font-bold text-poda-blue">1000 Mbps</div>
                 <div className="text-sm text-gray-600">Symetrická rychlost</div>
@@ -176,11 +139,7 @@ const GigaInternet = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <img 
-                src={gigabitHomeImage} 
-                alt="Gigabitový internet v domácnosti"
-                className="rounded-lg shadow-xl w-full"
-              />
+              <img src={gigabitHomeImage} alt="Gigabitový internet v domácnosti" className="rounded-lg shadow-xl w-full" />
             </div>
             
             <div className="order-1 lg:order-2">
@@ -194,12 +153,10 @@ const GigaInternet = () => {
               </p>
               
               <div className="space-y-4">
-                {features.slice(4).map((feature, index) => (
-                  <div key={index} className="flex items-center">
+                {features.slice(4).map((feature, index) => <div key={index} className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
@@ -310,8 +267,6 @@ const GigaInternet = () => {
           </div>
         </div>
       </section>
-    </>
-  );
+    </>;
 };
-
 export default GigaInternet;

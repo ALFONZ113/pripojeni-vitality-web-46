@@ -1,12 +1,8 @@
-
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Info } from 'lucide-react';
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
-  return (
-    <footer className="bg-poda-blue text-white pt-16 pb-8" role="contentinfo" aria-label="Patička webu">
+  return <footer className="bg-poda-blue text-white pt-16 pb-8" role="contentinfo" aria-label="Patička webu">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -62,9 +58,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/giga-internet" className="text-blue-100 hover:text-poda-orange transition-colors">
-                  Gigabitový internet
-                </Link>
+                <Link to="/giga-internet" className="text-blue-100 hover:text-poda-orange transition-colors">Gigabitový internet už i do Domu </Link>
               </li>
             </ul>
           </nav>
@@ -138,8 +132,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

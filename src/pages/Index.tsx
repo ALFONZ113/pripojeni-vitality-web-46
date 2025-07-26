@@ -5,6 +5,7 @@ import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
 import PromotionPopup from '../components/PromotionPopup';
 import usePageInitialization from '../hooks/use-page-initialization';
+import { useEnhancedTracking } from '../hooks/use-enhanced-tracking';
 import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
@@ -22,6 +23,9 @@ const Index = () => {
     criticalImages: CRITICAL_IMAGES,
     enablePerformanceMonitoring: false
   });
+
+  // Enhanced tracking for Google Ads optimization
+  useEnhancedTracking();
 
   if (error) {
     return <ErrorState error={error} />;

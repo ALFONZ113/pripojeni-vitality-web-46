@@ -2,6 +2,7 @@
 import React from 'react';
 import HeroSection from '../hero/HeroSection';
 import TariffSection from '../TariffSection';
+import SocialProof from '../SocialProof';
 import ContactSection from '../ContactSection';
 
 const MainContent = () => {
@@ -9,6 +10,7 @@ const MainContent = () => {
     <>
       <HeroSection />
       <TariffSection />
+      <SocialProof />
       <ContactSection />
     </>
   );

@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { initAnimations } from '../utils/animation';
-import useOptimizedPerformance from './use-optimized-performance';
+import usePerformanceOptimization from './use-performance-optimization';
 
 interface UsePageInitializationProps {
   criticalImages: string[];
@@ -16,10 +16,11 @@ const usePageInitialization = ({
   const [error, setError] = useState<string | null>(null);
 
   // Optimalizovaný performance monitoring
-  const performanceMetrics = useOptimizedPerformance({
+  const performanceMetrics = usePerformanceOptimization({
     enableReporting: enablePerformanceMonitoring,
     reportInterval: 10000,
-    enableCriticalResourcePreload: true
+    enableResourceHints: true,
+    criticalResources: criticalImages.map(img => ({ href: img, as: 'image' }))
   });
 
   // Memoizované kritické obrázky

@@ -4,7 +4,8 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
-import { measureCoreWebVitals } from './utils/performance-optimization'
+import { preloadCriticalResources, optimizeBundleLoading, measureCoreWebVitals } from './utils/performance-optimization'
+import './utils/bundle-analyzer'
 
 // Global type declaration for window functions
 declare global {
@@ -48,6 +49,8 @@ try {
   requestIdleCallback(() => {
     preloadCriticalRoutes();
     optimizeChunkLoading();
+    preloadCriticalResources();
+    optimizeBundleLoading();
     measureCoreWebVitals();
   });
   

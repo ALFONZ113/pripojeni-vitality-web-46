@@ -6,6 +6,7 @@ import BlogCategories from '../components/blog/BlogCategories';
 import BlogList from '../components/blog/BlogList';
 import { initAnimations } from '../utils/animation';
 import { Helmet } from 'react-helmet-async';
+import { preloadCriticalResources } from '../utils/performance-optimization';
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +44,7 @@ const Blog = () => {
   
   useEffect(() => {
     const cleanupAnimation = initAnimations();
+    preloadCriticalResources();
     return () => cleanupAnimation();
   }, []);
   

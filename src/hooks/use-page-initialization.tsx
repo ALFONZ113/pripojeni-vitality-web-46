@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { initAnimations } from '../utils/animation';
+import useOptimizedPerformance from './use-optimized-performance';
 
 interface UsePageInitializationProps {
   criticalImages: string[];
@@ -14,8 +15,12 @@ const usePageInitialization = ({
 }: UsePageInitializationProps) => {
   const [error, setError] = useState<string | null>(null);
 
-  // DISABLED - performance monitoring was causing loading issues
-  const performanceMetrics = null;
+  // Optimalizovaný performance monitoring
+  const performanceMetrics = useOptimizedPerformance({
+    enableReporting: enablePerformanceMonitoring,
+    reportInterval: 10000,
+    enableCriticalResourcePreload: true
+  });
 
   // Memoizované kritické obrázky
   const memoizedCriticalImages = useMemo(() => criticalImages, [criticalImages]);

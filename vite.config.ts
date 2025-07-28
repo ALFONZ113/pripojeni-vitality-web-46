@@ -27,119 +27,52 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    modulePreload: true,
+    modulePreload: true, // Ensure module preloading is enabled
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // Node modules chunking strategy
-          if (id.includes('node_modules')) {
-            // Core React libraries
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-              return 'vendor-react';
-            }
-            
-            // UI libraries
-            if (id.includes('@radix-ui') || id.includes('lucide-react')) {
-              return 'vendor-ui';
-            }
-            
-            // Utility libraries
-            if (id.includes('clsx') || id.includes('tailwind') || id.includes('class-variance') || id.includes('date-fns')) {
-              return 'vendor-utils';
-            }
-            
-            // Animation libraries
-            if (id.includes('framer-motion')) {
-              return 'vendor-animations';
-            }
-            
-            // Charts and data visualization
-            if (id.includes('recharts')) {
-              return 'vendor-charts';
-            }
-            
-            // Query and data management
-            if (id.includes('@tanstack') || id.includes('@supabase')) {
-              return 'vendor-data';
-            }
-            
-            // Form libraries
-            if (id.includes('react-hook-form') || id.includes('@hookform') || id.includes('zod')) {
-              return 'vendor-forms';
-            }
-            
-            // Remaining node_modules
-            return 'vendor-misc';
-          }
+        manualChunks: {
+          // Vendor chunk for React and core libraries
+          vendor: ['react', 'react-dom', 'react-router-dom'],
           
-          // App-specific chunks
-          if (id.includes('/pages/')) {
-            return 'pages';
-          }
+          // UI chunk for component libraries
+          ui: [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tabs',
+            'lucide-react'
+          ],
           
-          if (id.includes('/components/blog/')) {
-            return 'blog';
-          }
+          // Utils chunk for utilities
+          utils: [
+            'clsx',
+            'tailwind-merge',
+            'class-variance-authority',
+            'date-fns'
+          ],
           
-          if (id.includes('/data/blog/')) {
-            return 'blog-data';
-          }
+          // Animation and interaction chunk
+          animations: ['framer-motion'],
           
-          if (id.includes('/utils/')) {
-            return 'utils';
-          }
-        },
-        
-        // Optimize chunk naming
-        chunkFileNames: (chunkInfo) => {
-          const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/').pop() : 'chunk';
-          return `js/[name]-[hash].js`;
-        },
-        
-        assetFileNames: (assetInfo) => {
-          if (!assetInfo.name) {
-            return `assets/[name]-[hash].[ext]`;
-          }
-          
-          const info = assetInfo.name.split('.');
-          const ext = info[info.length - 1];
-          
-          if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(assetInfo.name)) {
-            return `images/[name]-[hash].[ext]`;
-          }
-          if (/\.(css)$/.test(assetInfo.name)) {
-            return `css/[name]-[hash].[ext]`;
-          }
-          return `assets/[name]-[hash].[ext]`;
+          // Charts chunk (if used)
+          charts: ['recharts']
         },
       },
     },
+    // Optimize chunk size
+    chunkSizeWarningLimit: 1000,
     
-    // Performance optimizations
-    chunkSizeWarningLimit: 800,
+    // Enable source maps in production for debugging
     sourcemap: false,
+    
+    // Minimize CSS and JS - only use terser in production
     minify: mode === 'production' ? 'terser' : false,
     terserOptions: mode === 'production' ? {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info'],
-        passes: 2,
-      },
-      mangle: {
-        safari10: true,
-      },
-      format: {
-        comments: false,
       },
     } : undefined,
-    
-    // CSS optimization
-    cssCodeSplit: true,
-    cssMinify: mode === 'production',
-    
-    // Target modern browsers for better performance
-    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
   },
   
   // Optimize dependencies

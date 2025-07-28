@@ -1,7 +1,6 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { initAnimations } from '../utils/animation';
-import usePerformanceOptimization from './use-performance-optimization';
 
 interface UsePageInitializationProps {
   criticalImages: string[];

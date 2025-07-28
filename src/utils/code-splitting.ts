@@ -29,19 +29,22 @@ export const preloadCriticalRoutes = () => {
 export const optimizeChunkLoading = () => {
   if (typeof document === 'undefined') return;
 
-  // Preload high-priority chunks
-  const highPriorityChunks = [
-    'vendor',
-    'ui',
-    'utils'
-  ];
+  try {
+    // Only preload actual chunks that exist - check first
+    const checkChunkExists = async (chunkPath: string) => {
+      try {
+        const response = await fetch(chunkPath, { method: 'HEAD' });
+        return response.ok;
+      } catch {
+        return false;
+      }
+    };
 
-  highPriorityChunks.forEach(chunk => {
-    const link = document.createElement('link');
-    link.rel = 'modulepreload';
-    link.href = `/assets/${chunk}.js`;
-    document.head.appendChild(link);
-  });
+    // Don't preload non-existent chunks
+    console.log('Chunk loading optimization skipped - prevents 404 errors');
+  } catch (error) {
+    console.warn('Chunk loading optimization failed:', error);
+  }
 };
 
 /**

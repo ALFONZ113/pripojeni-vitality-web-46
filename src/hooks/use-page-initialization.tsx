@@ -15,13 +15,8 @@ const usePageInitialization = ({
 }: UsePageInitializationProps) => {
   const [error, setError] = useState<string | null>(null);
 
-  // Optimalizovaný performance monitoring
-  const performanceMetrics = usePerformanceOptimization({
-    enableReporting: enablePerformanceMonitoring,
-    reportInterval: 10000,
-    enableResourceHints: true,
-    criticalResources: criticalImages.map(img => ({ href: img, as: 'image' }))
-  });
+  // DISABLED - performance monitoring was causing loading issues
+  const performanceMetrics = null;
 
   // Memoizované kritické obrázky
   const memoizedCriticalImages = useMemo(() => criticalImages, [criticalImages]);

@@ -23,12 +23,16 @@ export const usePerformanceOptimization = (options: UsePerformanceOptimizationOp
   const [metrics, setMetrics] = useState<PerformanceMetrics>({ isOptimized: false });
   const [performanceScore, setPerformanceScore] = useState<number>(0);
 
-  // Memoize performance monitor instance
+  // Memoize performance monitor instance - FIX INFINITE LOOP
   const performanceMonitor = useMemo(() => {
-    return new PerformanceMonitor((newMetrics) => {
+    let monitor: PerformanceMonitor;
+    monitor = new PerformanceMonitor((newMetrics) => {
       setMetrics(newMetrics);
-      setPerformanceScore(performanceMonitor.getPerformanceScore());
+      if (monitor) {
+        setPerformanceScore(monitor.getPerformanceScore());
+      }
     });
+    return monitor;
   }, []);
 
   // Preload critical resources

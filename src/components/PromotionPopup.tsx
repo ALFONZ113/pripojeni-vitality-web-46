@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const POPUP_DELAY_MS = 15000; // 15 seconds delay before showing popup
+const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
 const SESSION_STORAGE = true; // Use sessionStorage instead of localStorage
 

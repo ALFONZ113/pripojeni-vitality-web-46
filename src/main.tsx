@@ -3,9 +3,6 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
-import { preloadCriticalResources, optimizeBundleLoading, measureCoreWebVitals } from './utils/performance-optimization'
-import './utils/bundle-analyzer'
 
 // Global type declaration for window functions
 declare global {
@@ -45,14 +42,6 @@ try {
     window.markReactLoaded();
   }
   
-  // Initialize performance optimizations after successful render
-  requestIdleCallback(() => {
-    preloadCriticalRoutes();
-    optimizeChunkLoading();
-    preloadCriticalResources();
-    optimizeBundleLoading();
-    measureCoreWebVitals();
-  });
   
 } catch (error) {
   handleError(error as Error);

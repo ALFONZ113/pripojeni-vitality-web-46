@@ -150,28 +150,27 @@ async function clearFaviconCache() {
   }
 }
 
-// Install event - cache core resources and clean favicon cache
+// Install event - simplified to prevent blocking
 self.addEventListener('install', event => {
   console.log('Service Worker installing version ' + CACHE_CONFIG.VERSION);
   self.skipWaiting(); // Force activation immediately
 
+  // Simplified installation - don't block if resources fail to cache
   event.waitUntil(
-    Promise.all([
-      // Cache static assets
-      caches.open(CACHE_CONFIG.STATIC).then(cache => {
-        console.log('Caching static assets');
-        return cache.addAll(RESOURCES.STATIC);
-      }),
-      
-      // Cache core pages and assets
-      caches.open(CACHE_CONFIG.MAIN).then(cache => {
-        console.log('Pre-caching important assets');
-        return cache.addAll(RESOURCES.PRECACHE);
-      }),
-      
-      // Clear favicon cache
-      clearFaviconCache()
-    ])
+    caches.open(CACHE_CONFIG.MAIN).then(cache => {
+      console.log('Attempting to cache core assets');
+      // Don't fail the entire install if one resource fails
+      return Promise.allSettled(
+        RESOURCES.PRECACHE.map(url => 
+          cache.add(url).catch(error => {
+            console.warn('Failed to cache:', url, error);
+            return null;
+          })
+        )
+      );
+    }).catch(error => {
+      console.warn('Cache installation failed but continuing:', error);
+    })
   );
 });
 
@@ -258,9 +257,15 @@ self.addEventListener('fetch', event => {
       );
       break;
       
-    default: // network-first
+    default: // network-first with timeout
       event.respondWith(
-        fetch(event.request)
+        // Add timeout to prevent hanging
+        Promise.race([
+          fetch(event.request),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Network timeout')), 10000)
+          )
+        ])
           .then(response => {
             if (response && response.status === 200 && response.type === 'basic') {
               const responseToCache = response.clone();
@@ -271,6 +276,7 @@ self.addEventListener('fetch', event => {
             return response;
           })
           .catch(() => {
+            console.log('Network failed, trying cache for:', requestUrl.pathname);
             return caches.match(event.request);
           })
       );

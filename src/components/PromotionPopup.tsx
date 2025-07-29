@@ -123,6 +123,9 @@ const PromotionPopup = () => {
           <DialogTitle className="text-2xl text-poda-blue font-bold">
             První měsíc ZDARMA!
           </DialogTitle>
+          <div className="text-sm text-red-600 font-semibold mt-1">
+            Len do 31.7.2025!
+          </div>
           <DialogDescription className="text-base text-gray-700">
             Potřebujete připojit internet a TV nebo změnit stávajícího operátora?
           </DialogDescription>
@@ -131,6 +134,9 @@ const PromotionPopup = () => {
         <div className="bg-gradient-to-r from-poda-blue/10 to-poda-orange/10 p-4 my-4 rounded-lg">
           <p className="font-medium text-center text-poda-blue">
             Objednejte si PODA internet a TV a získejte <span className="text-poda-orange font-bold">první měsíc ZDARMA</span>!
+          </p>
+          <p className="font-medium text-center text-poda-blue mt-2">
+            + <span className="text-poda-orange font-bold">Bezplatná instalace</span>
           </p>
         </div>
         

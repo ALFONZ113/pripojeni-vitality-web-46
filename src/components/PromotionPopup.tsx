@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const POPUP_DELAY_MS = 15000; // 15 seconds delay before showing popup
+const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
 const SESSION_STORAGE = true; // Use sessionStorage instead of localStorage
 
@@ -29,25 +29,40 @@ const PromotionPopup = () => {
     const hasShownInSession = () => {
       return sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
     };
-    
-    // Show popup after delay if not shown in this session
-    if (!hasShownInSession()) {
-      console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms');
-      const timer = setTimeout(() => {
+
+    const showPopup = () => {
+      if (!hasShownInSession() && !isOpen) {
         console.log('PromotionPopup: Showing popup');
         setIsOpen(true);
         // Save that we've shown the popup in this session
         sessionStorage.setItem(POPUP_STORAGE_KEY, 'shown');
-      }, POPUP_DELAY_MS);
+      }
+    };
+    
+    // Show popup after delay if not shown in this session
+    if (!hasShownInSession()) {
+      console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms');
+      const timer = setTimeout(showPopup, POPUP_DELAY_MS);
+      
+      // Exit intent detection
+      const handleMouseLeave = (e: MouseEvent) => {
+        // Only trigger if mouse leaves from the top of the window (user wants to close tab/navigate away)
+        if (e.clientY <= 0 && e.relatedTarget === null) {
+          showPopup();
+        }
+      };
+      
+      document.addEventListener('mouseleave', handleMouseLeave);
       
       return () => {
-        console.log('PromotionPopup: Clearing timer');
+        console.log('PromotionPopup: Cleaning up');
         clearTimeout(timer);
+        document.removeEventListener('mouseleave', handleMouseLeave);
       };
     } else {
       console.log('PromotionPopup: Already shown in this session');
     }
-  }, []);
+  }, [isOpen]);
   
   const handleClose = () => {
     setIsOpen(false);

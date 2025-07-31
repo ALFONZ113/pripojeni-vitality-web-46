@@ -32,6 +32,7 @@ const MigrationMonitor = lazy(() => import('./pages/MigrationMonitor'));
 const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
 const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
 const GigaInternet = lazy(() => import('./pages/GigaInternet'));
+const PodaInternet = lazy(() => import('./pages/PodaInternet'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -86,6 +87,7 @@ function App() {
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
                   <Route path="/giga-internet" element={<GigaInternet />} />
+                  <Route path="/poda-internet" element={<PodaInternet />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

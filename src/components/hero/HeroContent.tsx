@@ -41,9 +41,9 @@ const HeroContent = ({ handleContactClick }: HeroContentProps) => {
       <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
         Vaše cesta k nejlepšímu PODA internetu
       </motion.span>
-      <motion.h1 id="hero-title" variants={item} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
-        PODA Internet - Prémiové optické gigabitové 
-        <span className="text-poda-orange block sm:inline"> připojení a smart TV</span>
+      <motion.h1 id="hero-title" variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
+        Prémiové optické gigabitové 
+        <span className="text-poda-orange block md:inline"> připojení a smart TV</span>
       </motion.h1>
       <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
         Přinášíme Vám rychlé <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užívejte si internet i TV bez kompromisů.

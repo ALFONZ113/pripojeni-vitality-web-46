@@ -11,26 +11,26 @@ const PodaInternet = () => {
   const benefits = [
     {
       icon: <Sparkles className="h-8 w-8" />,
-      title: "GPON Technológia",
-      description: "Najmodernejšie optické pripojenie s garantovanou rýchlosťou",
+      title: "GPON Technologie",
+      description: "Nejmodernější optické připojení s garantovanou rychlostí",
       gradient: "from-purple-500 to-pink-500"
     },
     {
       icon: <Zap className="h-8 w-8" />,
-      title: "Symetrické rýchlosti",
-      description: "Rovnaká rýchlosť upload aj download až 1000 Mbps",
+      title: "Symetrické rychlosti",
+      description: "Stejná rychlost upload i download až 1000 Mbps",
       gradient: "from-orange-500 to-red-500"
     },
     {
       icon: <Shield className="h-8 w-8" />,
-      title: "99,9% spoľahlivosť",
-      description: "Garantovaná stabilita a nepretržité pripojenie",
+      title: "99,9% spolehlivost",
+      description: "Garantovaná stabilita a nepřetržité připojení",
       gradient: "from-green-500 to-emerald-500"
     },
     {
       icon: <Trophy className="h-8 w-8" />,
-      title: "TV programy zadarmo",
-      description: "Viac ako 85 TV kanálov automaticky v cene",
+      title: "TV programy zdarma",
+      description: "Více než 85 TV kanálů automaticky v ceně",
       gradient: "from-blue-500 to-cyan-500"
     }
   ];
@@ -42,51 +42,51 @@ const PodaInternet = () => {
       name: "Pavel Novák",
       city: "Ostrava",
       rating: 5,
-      text: "PODA internet je fantastický! Rýchlosť je presne taká, akú sľubujú. Konečne môžem pracovať z domu bez problémov."
+      text: "PODA internet je fantastický! Rychlost je přesně taková, jakou slibují. Konečně můžu pracovat z domu bez problémů."
     },
     {
       name: "Marie Svobodová", 
       city: "Karviná",
       rating: 5,
-      text: "Prestúpila som z iného poskytovateľa a rozdiel je obrovský. TV kanály zadarmo sú super bonus!"
+      text: "Přestoupila jsem z jiného poskytovatele a rozdíl je obrovský. TV kanály zdarma jsou super bonus!"
     },
     {
       name: "Tomáš Dvořák",
       city: "Havířov", 
       rating: 5,
-      text: "Inštalácia bola rýchla a technická podpora je na výbornej úrovni. Jednoznačne odporúčam!"
+      text: "Instalace byla rychlá a technická podpora je na výborné úrovni. Jednoznačně doporučujem!"
     }
   ];
 
   const faqItems = [
     {
-      question: "Aká je dostupnosť PODA internetu v mojej oblasti?",
-      answer: "PODA pokrýva väčšinu Moravskoslezského kraja vrátane Ostravy, Karvinej, Havířova, Bohumína a ďalších miest. Kontaktujte nás pre overenie dostupnosti na vašej adrese."
+      question: "Jaká je dostupnost PODA internetu v mé oblasti?",
+      answer: "PODA pokrývá většinu Moravskoslezského kraje včetně Ostravy, Karviné, Havířova, Bohumína a dalších měst. Kontaktujte nás pro ověření dostupnosti na vaší adrese."
     },
     {
-      question: "Sú v cene nejako skryté poplatky?",
-      answer: "Nie! Uvedené ceny sú konečné. Inštalácia, Wi-Fi router aj aktivácia sú zadarmo. Platíte len mesačný poplatok za pripojenie."
+      question: "Jsou v ceně nějaké skryté poplatky?",
+      answer: "Ne! Uvedené ceny jsou konečné. Instalace, Wi-Fi router i aktivace jsou zdarma. Platíte jen měsíční poplatek za připojení."
     },
     {
-      question: "Ako dlho trvá inštalácia PODA internetu?",
-      answer: "Štandardná inštalácia trvá 2-4 hodiny. Náš technik sa s vami dohodne na vhodnom termíne a všetko nastaví vrátane Wi-Fi."
+      question: "Jak dlouho trvá instalace PODA internetu?",
+      answer: "Standardní instalace trvá 2-4 hodiny. Náš technik se s vámi domluví na vhodném termínu a vše nastaví včetně Wi-Fi."
     },
     {
-      question: "Môžem si ponechať svoje telefónne číslo?",
-      answer: "Áno, pri prechode z iného poskytovateľa si môžete ponechať vaše súčasné telefónne číslo. Pomôžeme vám s celým procesom prenosu."
+      question: "Můžu si ponechat své telefonní číslo?",
+      answer: "Ano, při přechodu z jiného poskytovatele si můžete ponechat vaše současné telefonní číslo. Pomůžeme vám s celým procesem přenosu."
     },
     {
-      question: "Aká je výpovedná lehota?",
-      answer: "Máme flexibilné podmienky s možnosťou výpovede na konci kalendárneho mesiaca. Žiadne dlhodobé záväzky."
+      question: "Jaká je výpovědní lhůta?",
+      answer: "Máme flexibilní podmínky s možností výpovědi na konci kalendářního měsíce. Žádné dlouhodobé závazky."
     }
   ];
 
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Internet PODA - Prémiové optické pripojenie | Popri.cz</title>
-        <meta name="description" content="Internet PODA - najluxusnejšie optické pripojenie v Moravskoslezskom kraji. GPON technológia, symetrické gigabitové rýchlosti, TV programy zadarmo. Objednajte si premium internet už dnes!" />
-        <meta name="keywords" content="Internet PODA, PODA internet, optické pripojenie, GPON technológia, internet Ostrava, PODA Karviná, prémiový internet" />
+        <title>Internet PODA - Prémiové optické připojení | Popri.cz</title>
+        <meta name="description" content="Internet PODA - nejluxusnější optické připojení v Moravskoslezském kraji. GPON technologie, symetrické gigabitové rychlosti, TV programy zdarma. Objednejte si premium internet již dnes!" />
+        <meta name="keywords" content="Internet PODA, PODA internet, optické připojení, GPON technologie, internet Ostrava, PODA Karviná, prémiový internet" />
         <link rel="canonical" href="https://popri.cz/internet-poda" />
       </Helmet>
 
@@ -114,7 +114,7 @@ const PodaInternet = () => {
               className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 mb-8"
             >
               <Sparkles className="h-5 w-5 text-purple-400 mr-2" />
-              <span className="text-purple-200 font-medium">Prémiové optické pripojenie</span>
+              <span className="text-purple-200 font-medium">Prémiové optické připojení</span>
             </motion.div>
             
             <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
@@ -128,8 +128,8 @@ const PodaInternet = () => {
             </h1>
             
             <p className="text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Zažite budúcnosť internetu s <strong className="text-white">GPON technológiou</strong>. 
-              Symetrické gigabitové rýchlosti a prémiové TV programy v jednom balíku.
+              Zažijte budoucnost internetu s <strong className="text-white">GPON technologií</strong>. 
+              Symetrické gigabitové rychlosti a prémiové TV programy v jednom balíku.
             </p>
             
             <motion.div
@@ -140,10 +140,10 @@ const PodaInternet = () => {
             >
               <Button size="lg" className="group bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-orange-500/25 transition-all duration-300">
                 <Phone className="mr-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
-                Zavolať +420 730 431 313
+                Zavolat +420 730 431 313
               </Button>
               <Button size="lg" variant="outline" className="border-2 border-purple-400 text-purple-200 hover:bg-purple-400 hover:text-white px-10 py-4 text-lg font-semibold backdrop-blur-sm bg-white/5">
-                Získať ponuku
+                Získat nabídku
               </Button>
             </motion.div>
           </motion.div>
@@ -164,13 +164,13 @@ const PodaInternet = () => {
               Prémiové výhody
             </div>
             <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent mb-6">
-              Prečo je Internet PODA
+              Proč je Internet PODA
               <span className="block text-transparent bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text">
-                neprekonateľný?
+                neporazitelný?
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Kombinácia najmodernejších technológií s luxusným zákazníckym zážitkom
+              Kombinace nejmodernějších technologií s luxusním zákaznickým zážitkem
             </p>
           </motion.div>
 
@@ -212,13 +212,13 @@ const PodaInternet = () => {
           >
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/20 to-pink-500/20 border border-orange-500/30 text-orange-200 font-medium mb-6">
               <Star className="h-4 w-4 mr-2" />
-              Prémiové balíky
+              Prémiové balíčky
             </div>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Naše <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">exkluzívne</span> tarify
+              Naše <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">exkluzivní</span> tarify
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Každý balík je navrhnutý pre maximálny komfort a spokojnosť
+              Každý balíček je navržen pro maximální komfort a spokojenost
             </p>
           </motion.div>
 
@@ -235,7 +235,7 @@ const PodaInternet = () => {
                   {tariff.isRecommended && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <span className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                        ⭐ ODPORÚČANÉ
+                        ⭐ DOPORUČENO
                       </span>
                     </div>
                   )}
@@ -284,7 +284,7 @@ const PodaInternet = () => {
                       }`}
                     >
                       <Sparkles className="mr-2 h-5 w-5" />
-                      Objednať teraz
+                      Objednat nyní
                     </Button>
                   </CardContent>
                 </Card>
@@ -304,7 +304,7 @@ const PodaInternet = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
-              Čo hovoria naši zákazníci
+              Co říkají naši zákazníci
             </h2>
             <div className="flex items-center justify-center gap-2 text-lg">
               <div className="flex">
@@ -312,7 +312,7 @@ const PodaInternet = () => {
                   <Star key={i} className="h-6 w-6 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-gray-600">4.8/5 na základe 150+ hodnotení</span>
+              <span className="text-gray-600">4.8/5 na základě 150+ hodnocení</span>
             </div>
           </motion.div>
 
@@ -357,7 +357,7 @@ const PodaInternet = () => {
               Často kladené otázky
             </h2>
             <p className="text-gray-600 text-lg">
-              Máte otázky? Tu nájdete odpovede na najčastejšie otázky o PODA internete
+              Máte otázky? Zde najdete odpovědi na nejčastější otázky o PODA internetu
             </p>
           </motion.div>
 
@@ -392,19 +392,19 @@ const PodaInternet = () => {
             className="text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Pripravení na najrýchlejší internet?
+              Připraveni na nejrychlejší internet?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Objednajte si PODA internet ešte dnes a užívajte si stabilné pripojenie 
-              s gigabitovými rýchlosťami a TV zadarmo.
+              Objednejte si PODA internet ještě dnes a užívejte si stabilní připojení 
+              s gigabitovými rychlostmi a TV zdarma.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-poda-orange hover:bg-poda-orange/90 text-white">
                 <Phone className="mr-2 h-5 w-5" />
-                Zavolať +420 730 431 313
+                Zavolat +420 730 431 313
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-poda-blue">
-                Kontaktný formulár
+                Kontaktní formulář
               </Button>
             </div>
           </motion.div>
@@ -425,7 +425,7 @@ const PodaInternet = () => {
                 Kontaktujte nás
               </h2>
               <p className="text-gray-600">
-                Vyplňte formulár a my sa vám ozveme do 24 hodín
+                Vyplňte formulář a my se vám ozveme do 24 hodin
               </p>
             </motion.div>
             <ContactForm />

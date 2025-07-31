@@ -87,7 +87,7 @@ function App() {
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
                   <Route path="/giga-internet" element={<GigaInternet />} />
-                  <Route path="/poda-internet" element={<PodaInternet />} />
+                  <Route path="/internet-poda" element={<PodaInternet />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

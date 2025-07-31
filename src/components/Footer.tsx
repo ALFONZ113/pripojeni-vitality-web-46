@@ -61,7 +61,7 @@ const Footer = () => {
                 <Link to="/giga-internet" className="text-blue-100 hover:text-poda-orange transition-colors">Gigabitový internet už i do Domu </Link>
               </li>
               <li>
-                <Link to="/poda-internet" className="text-blue-100 hover:text-poda-orange transition-colors">PODA Internet - Špecializovaná stránka</Link>
+                <Link to="/internet-poda" className="text-blue-100 hover:text-poda-orange transition-colors">Internet PODA - Prémiové pripojenie</Link>
               </li>
             </ul>
           </nav>

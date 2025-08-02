@@ -50,7 +50,7 @@ const GigaInternet = () => {
           
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Gigabitový internet
-            <span className="block text-orange-600">už i do domu</span>
+            <span className="block text-orange-500">už i do domu</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Přinášíme revoluci v domácím internetu. Rychlosti až 1000 Mbps pomocí nejmodernější 60GHz technologie přímo do vašeho rodinného domu.</p>

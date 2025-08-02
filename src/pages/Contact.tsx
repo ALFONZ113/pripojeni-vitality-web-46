@@ -19,17 +19,17 @@ const Contact = () => {
   return (
     <div className="min-h-screen pt-24">
       {/* Hero section */}
-      <section className="section-padding bg-gradient-to-b from-white to-blue-50">
+      <section className="py-8 md:py-12 bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4 reveal-animation">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-3 reveal-animation">
               Kontaktujte nás
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight reveal-animation delay-100">
+            <h1 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4 leading-tight reveal-animation delay-100">
               Kontakt
             </h1>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed reveal-animation delay-200 text-left">
-              Máte zájem o naše služby nebo potřebujete poradit? Neváhejte nás kontaktovat. Zodpovíme všechny vaše otázky a vytvoříme pro vás objednávku
+            <p className="text-gray-600 text-base mb-6 leading-relaxed reveal-animation delay-200">
+              Máte zájem o naše služby? Kontaktujte nás a vytvoříme pro vás objednávku.
             </p>
           </div>
         </div>

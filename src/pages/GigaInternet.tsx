@@ -127,7 +127,7 @@ const GigaInternet = () => {
               <img src={spectrumImage} alt="60GHz spektrum a technologie" className="rounded-lg shadow-xl w-full" />
               <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
                 <div className="text-2xl font-bold text-poda-blue">1000 Mbps</div>
-                <div className="text-sm text-gray-600">Symetrická rychlost</div>
+                <div className="text-sm text-gray-600">Gigabit rychlost</div>
               </div>
             </div>
           </div>

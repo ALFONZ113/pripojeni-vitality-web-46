@@ -106,10 +106,10 @@ export const generateCustomerEmailHTML = (formData: any): string => {
       <div style="padding: 24px 20px; background: white;">
         <!-- Greeting -->
         <div style="margin-bottom: 32px;">
-          <h2 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Dobrý deň ${formData.name}!</h2>
+          <h2 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Vážený/á ${formData.name},</h2>
           <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4b5563;">
-            Ďakujeme za váš zájem o naše PODA služby. 
-            Pripravili sme pre vás prehľad dostupných tarifov pre <strong style="color: #0F4C81;">${isApartment ? 'byty a bytovky' : 'rodinné domy'}</strong>.
+            ďakujeme za váš zájem o naše PODA služby. 
+            Pripravili sme pre vás profesionálny prehľad dostupných tarifov pre <strong style="color: #0F4C81;">${isApartment ? 'byty a bytovky' : 'rodinné domy'}</strong>.
           </p>
         </div>
 

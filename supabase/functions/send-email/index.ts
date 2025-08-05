@@ -73,11 +73,11 @@ serve(async (req) => {
     
     try {
       const emailResponse = await resend.emails.send({
-        from: "Popri.cz <noreply@popri.cz>",
+        from: "Milan Terč - PODA <junkert@seznam.cz>",
         to: [to],
         subject: subject,
         html: htmlContent,
-        reply_to: replyTo
+        reply_to: "junkert@seznam.cz"
       });
 
       console.log("✅ Email sent successfully:", emailResponse);

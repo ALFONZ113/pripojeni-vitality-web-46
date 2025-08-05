@@ -142,7 +142,7 @@ const PromotionPopup = () => {
             Len do 15.8.2025!
           </div>
           <DialogDescription className="text-base text-gray-700">
-            Potřebujete připojit internet a TV nebo změnit stávajícího operátora?
+            Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele?
           </DialogDescription>
         </DialogHeader>
         

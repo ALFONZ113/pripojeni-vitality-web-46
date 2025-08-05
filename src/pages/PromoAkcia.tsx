@@ -52,7 +52,7 @@ const PromoAkcia = () => {
           </h1>
           
           <p className="text-xl text-gray-700 mb-6 max-w-2xl mx-auto">
-            Potřebujete připojit internet a TV nebo změnit stávajícího operátora? 
+            Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele? 
             Využijte naši speciální nabídku a ušetřete!
           </p>
           

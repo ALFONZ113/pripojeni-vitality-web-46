@@ -58,7 +58,7 @@ const CallbackForm = memo(() => {
         <div className="flex items-center mb-2">
           <Phone className="h-5 w-5 text-poda-orange mr-2 flex-shrink-0" />
           <h3 className="font-semibold text-poda-blue">
-            Potřebujete připojit internet a TV nebo změnit stávajícího operátora?
+            Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele?
           </h3>
         </div>
         

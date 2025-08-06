@@ -16,7 +16,7 @@ const BlogPostCTA = () => {
             to="/kontakt"
             className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300"
           >
-            Kontaktovat Milana Terče
+            Kontaktný formulár
           </Link>
           <Link
             to="/internet-tv"

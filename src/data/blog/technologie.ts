@@ -1,5 +1,6 @@
 
 import { BlogPost } from './types';
+import optikaVsMedImage from '../../assets/optika-vs-med-ostrava.jpg';
 
 export const technologiePosts: BlogPost[] = [
   {
@@ -137,7 +138,7 @@ export const technologiePosts: BlogPost[] = [
     date: "6. 8. 2025",
     author: "Adam Otisk",
     category: "Technologie",
-    image: "/src/assets/optika-vs-med-ostrava.jpg",
+    image: optikaVsMedImage,
     alt: "Porovnání starých měděných kabelů s moderními optickými vlákny v Ostravě",
     tags: ["Optika", "Měděné vedení", "Internet", "Ostrava", "Technologie", "PODA"],
     slug: "optika-vs-med-ostravsko-internet-21-stoleti"

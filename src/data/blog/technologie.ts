@@ -3,6 +3,146 @@ import { BlogPost } from './types';
 
 export const technologiePosts: BlogPost[] = [
   {
+    id: 150,
+    title: "Optika vs. měď: Proč Ostravsko konečně dostává internet 21. století",
+    excerpt: "Konec pomalému internetu! Zjistěte, proč optické připojení mění hru pro ostravské domácnosti a firmy.",
+    content: `
+      <div class="prose-content">
+        <h2>Úvod: Měď vs. optika - Souboj technologií</h2>
+        <p>Pokud si vzpomenete na staré telefonní kabely, které ještě před pár lety běžely ulicemi Ostravy, mluvíme o měděných vedeních. Tato technologie, která fungovala skvěle pro telefonování, se čím dál více potýká s požadavky moderního internetu.</p>
+        
+        <p>Optické kabely jsou něco úplně jiného - využívají světelné signály místo elektrických impulzů. Představte si to jako rozdíl mezi posíláním zprávy pěšky versus tryskáčem.</p>
+
+        <h2>Proč měď v Ostravě už nestačí</h2>
+        <p>Ostravský region s jeho průmyslovou tradicí a rostoucím počtem domácností pracujících z domova potřebuje spolehlivé a rychlé připojení. Měděná vedení mají několik zásadních limitů:</p>
+
+        <div class="bg-red-50 p-6 rounded-lg my-8">
+          <h3>Hlavní problémy měděných vedení:</h3>
+          <ul class="space-y-2 mt-4">
+            <li><strong>Vzdálenost = pomalost:</strong> Čím dál jste od rozvaděče, tím pomalejší internet</li>
+            <li><strong>Rušení:</strong> Elektrická zařízení v průmyslové oblasti často ruší signál</li>
+            <li><strong>Opotřebení:</strong> Stará vedení postupně ztrácejí kvalitu přenosu</li>
+            <li><strong>Omezená kapacita:</strong> Měď prostě neunese dnešní nároky na rychlost</li>
+          </ul>
+        </div>
+
+        <h2>Co optika přináší do vašeho domova</h2>
+        <p>PODA instaluje v Ostravě a okolí 100% optickou síť, která mění pravidla hry:</p>
+
+        <div class="grid md:grid-cols-3 gap-6 my-8">
+          <div class="bg-green-50 p-6 rounded-lg">
+            <h3>⚡ Gigabitové rychlosti skutečně</h3>
+            <ul class="space-y-1 mt-4 text-sm">
+              <li>• Stahování filmů v HD během minut</li>
+              <li>• Plynulé videohovory pro celou rodinu současně</li>
+              <li>• Gaming bez lagů a výpadků</li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 p-6 rounded-lg">
+            <h3>🏠 Stejně rychle nahoru i dolů</h3>
+            <ul class="space-y-1 mt-4 text-sm">
+              <li>• Nahrávání fotek a videí na cloud bleskově</li>
+              <li>• Práce z domova bez kompromisů</li>
+              <li>• Streamování na sociální sítě v perfektní kvalitě</li>
+            </ul>
+          </div>
+          <div class="bg-purple-50 p-6 rounded-lg">
+            <h3>🛡️ Stabilita, na kterou se můžete spolehnout</h3>
+            <ul class="space-y-1 mt-4 text-sm">
+              <li>• Žádné výpadky kvůli počasí</li>
+              <li>• Konzistentní rychlost po celý den</li>
+              <li>• Připojení, které prostě funguje</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Proč právě teď?</h2>
+        <p>Ostravsko se konečně dostává do 21. století internetu díky masivním investicím do optické infrastruktury. Místo čekání na pomalu rozšiřované sítě velkých poskytovatelů můžete mít gigabitový internet od PODA už za pár týdnů.</p>
+
+        <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
+          <p>"Přechod z měděného připojení na optiku PODA byl jako skok z koňského povozu do Tesly. Konečně můžeme pracovat z domova všichni současně bez problémů."</p>
+          <footer class="mt-2 text-sm text-gray-600">
+            <strong>Marie Nováková, Ostrava-Poruba</strong><br>
+            Zákazník PODA od roku 2024
+          </footer>
+        </blockquote>
+
+        <h2>Váš přechod na optiku bez starostí</h2>
+        <p>Obáváte se složitých výpovědí nebo komplikované instalace? S PODA je to jednoduché:</p>
+
+        <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
+          <h3 class="text-white">Naše záruky pro vás:</h3>
+          <ul class="space-y-2 mt-4">
+            <li>✅ Zdarma instalace optického připojení</li>
+            <li>✅ Pomoc s výpovědí u současného poskytovatele</li>
+            <li>✅ Bez viazanosti - žádné pasti</li>
+            <li>✅ Lokální technická podpora pro Ostravsko</li>
+          </ul>
+        </div>
+
+        <h2>Porovnání technologií v číslech</h2>
+        <div class="bg-gray-50 p-6 rounded-lg my-8">
+          <table class="w-full mt-4 text-sm">
+            <thead>
+              <tr class="border-b">
+                <th class="text-left py-2">Vlastnost</th>
+                <th class="text-left py-2">Měděné vedení</th>
+                <th class="text-left py-2">Optické vlákno</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <td class="py-2">Maximální rychlost</td>
+                <td class="py-2 text-red-600">100 Mbps</td>
+                <td class="py-2 text-green-600">10+ Gbps</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-2">Vzdálenostní limit</td>
+                <td class="py-2 text-red-600">Několik set metrů</td>
+                <td class="py-2 text-green-600">Desítky kilometrů</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-2">Odolnost vůči rušení</td>
+                <td class="py-2 text-red-600">Náchylné</td>
+                <td class="py-2 text-green-600">Imunní</td>
+              </tr>
+              <tr>
+                <td class="py-2">Latencia</td>
+                <td class="py-2 text-orange-600">15-50 ms</td>
+                <td class="py-2 text-green-600">1-5 ms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Závěr: Budoucnost je zde</h2>
+        <p>Nečekejte na budoucnost - budoucnost internetu je už tady. Optické připojení PODA přináší do ostravských domácností rychlost a spolehlivost, kterou si zasloužíte.</p>
+
+        <div class="text-center mt-8 space-y-4">
+          <a href="/tarify" class="inline-block bg-poda-orange text-white px-8 py-3 rounded-lg font-semibold hover:bg-poda-orange-dark transition-colors text-lg">
+            Objednejte si gigabitový internet ještě dnes →
+          </a>
+          <p class="text-lg font-medium">Měď patří do muzea, optika do vašeho domova. Přesvědčte se sami.</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-poda-blue to-poda-orange text-white p-6 rounded-lg my-8 text-center">
+          <h3 class="text-white text-xl mb-4">Připraveni na přechod?</h3>
+          <p class="mb-4">Zavolejte nám na <strong>730 431 313</strong> nebo vyplňte kontaktní formulář</p>
+          <a href="/kontakt" class="inline-block bg-white text-poda-blue px-6 py-2 rounded font-semibold hover:bg-gray-100 transition-colors">
+            Kontaktovat nás
+          </a>
+        </div>
+      </div>
+    `,
+    date: "6. 8. 2025",
+    author: "Adam Otisk",
+    category: "Technologie",
+    image: "/src/assets/optika-vs-med-ostrava.jpg",
+    alt: "Porovnání starých měděných kabelů s moderními optickými vlákny v Ostravě",
+    tags: ["Optika", "Měděné vedení", "Internet", "Ostrava", "Technologie", "PODA"],
+    slug: "optika-vs-med-ostravsko-internet-21-stoleti"
+  },
+  {
     id: 3,
     title: "Jak vybrat správný router pro váš domov: Kompletní průvodce 2025",
     excerpt: "Vše, co potřebujete vědět o výběru routeru pro domácí použití. Porovnání funkcí, výkonu a cen nejlepších modelů na trhu.",

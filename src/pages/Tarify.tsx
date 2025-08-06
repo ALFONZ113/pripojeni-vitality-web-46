@@ -115,7 +115,6 @@ const Tarify = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-poda-blue mb-4">Internetové a TV tarify PODA</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Vyberte si z naší nabídky výhodných tarifů PODA internetu s garantovanou rychlostí a stabilitou.
-              Všechny tarify zahrnují TV programy zdarma.
             </p>
           </div>
         </div>

@@ -88,7 +88,7 @@ export const createGeoContent = (location?: string) => {
   const baseTexts = [
     'Kontaktujte nás pre viac informácií o pripojení',
     'Zavolajte nám na 730 431 313',
-    'Vyplňte kontaktný formulár',
+    'Vyplňte kontaktní formulář',
     'Overíme dostupnosť na vašej adrese'
   ];
   
@@ -96,7 +96,7 @@ export const createGeoContent = (location?: string) => {
     return [
       `Služby PODA v ${location} - kontaktujte nás`,
       `Pripojenie PODA ${location} - zavolajte 730 431 313`,
-      `Internet ${location} - vyplňte kontaktný formulár`,
+      `Internet ${location} - vyplňte kontaktní formulář`,
       `Dostupnosť v ${location} - overíme na vašej adrese`
     ];
   }

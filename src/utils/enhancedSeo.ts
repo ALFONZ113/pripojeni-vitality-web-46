@@ -240,7 +240,7 @@ export const generateFAQSchema = (content: string) => {
       "name": match[1],
       "acceptedAnswer": {
         "@type": "Answer", 
-        "text": "Kontaktujte PODA na čísle 730 431 313 alebo vyplňte kontaktný formulár na popri.cz pre podrobné informácie."
+        "text": "Kontaktujte PODA na čísle 730 431 313 alebo vyplňte kontaktní formulář na popri.cz pre podrobné informácie."
       }
     });
   }

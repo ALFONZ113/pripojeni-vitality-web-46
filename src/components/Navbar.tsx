@@ -192,7 +192,7 @@ const Navbar = memo(() => {
                 +420 730 431 313
               </a>
               <Link to="/kontakt" className="btn-secondary w-full flex justify-center">
-                Kontaktný formulár
+                Kontaktní formulář
               </Link>
             </div>
           </nav>

@@ -12,7 +12,7 @@ const BlogPostSidebar = ({ relatedPosts }: BlogPostSidebarProps) => {
     <div className="lg:col-span-4">
       <div className="sticky top-28">
         <div className="bg-blue-50 rounded-xl p-6 mb-8">
-          <h3 className="text-xl font-semibold text-poda-blue mb-4">Kontaktný formulár</h3>
+          <h3 className="text-xl font-semibold text-poda-blue mb-4">Kontaktní formulář</h3>
           <p className="text-gray-600 mb-6">
             Máte otázky k našim službám nebo potřebujete poradit s výběrem tarifu? Neváhejte nás kontaktovat.
           </p>

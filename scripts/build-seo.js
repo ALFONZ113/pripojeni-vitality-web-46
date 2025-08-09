@@ -204,76 +204,215 @@ Sitemap: https://www.popri.cz/sitemap.xml
 
 function buildSEO() {
   console.log('🚀 Building SEO optimizations...');
-  
-  // Ensure public directory exists
-  if (!fs.existsSync('public')) {
-    fs.mkdirSync('public', { recursive: true });
-  }
+
+  // Ensure public directories exist
+  if (!fs.existsSync('public')) fs.mkdirSync('public', { recursive: true });
+  if (!fs.existsSync('public/json')) fs.mkdirSync('public/json', { recursive: true });
+
+  // Helpers (scoped here to minimize diff)
+  const createSlug = (text) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[áä]/g, 'a')
+      .replace(/[éě]/g, 'e')
+      .replace(/[íì]/g, 'i')
+      .replace(/[óô]/g, 'o')
+      .replace(/[úů]/g, 'u')
+      .replace(/[ýÿ]/g, 'y')
+      .replace(/č/g, 'c')
+      .replace(/ď/g, 'd')
+      .replace(/ň/g, 'n')
+      .replace(/ř/g, 'r')
+      .replace(/š/g, 's')
+      .replace(/ť/g, 't')
+      .replace(/ž/g, 'z')
+      .replace(/ľ/g, 'l')
+      .replace(/[^
+\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+
+  const collectBlogPosts = () => {
+    const dir = path.resolve('src/data/blog');
+    /** @type {{ id: number; title: string; slug?: string }[]} */
+    const posts = [];
+    if (!fs.existsSync(dir)) return posts;
+
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    const files = entries
+      .filter((e) => e.isFile() && e.name.endsWith('.ts') && e.name !== 'types.ts')
+      .map((e) => path.join(dir, e.name));
+
+    // Also include nested files we know about (content is excluded)
+    // NOTE: We rely on simple regex extraction for id, title, optional slug
+    const postRegex = /id:\s*(\d+)\s*,[\s\S]*?title:\s*"([^"]+)"[\s\S]*?(?:slug:\s*"([^"]+)")?/g;
+
+    files.forEach((file) => {
+      try {
+        const src = fs.readFileSync(file, 'utf8');
+        let m;
+        while ((m = postRegex.exec(src)) !== null) {
+          const id = Number(m[1]);
+          const title = m[2];
+          const slug = m[3];
+          if (!Number.isNaN(id) && title) posts.push({ id, title, slug });
+        }
+      } catch (_) {
+        // ignore file read errors
+      }
+    });
+    return posts;
+  };
+
+  const generateSitemapFromPosts = (posts) => {
+    const baseUrl = 'https://www.popri.cz';
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+    sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+
+    const staticPages = [
+      { url: '/', priority: '1.0', changefreq: 'daily' },
+      { url: '/internet-tv', priority: '0.9', changefreq: 'weekly' },
+      { url: '/iptv', priority: '0.9', changefreq: 'weekly' },
+      { url: '/kontakt', priority: '0.8', changefreq: 'monthly' },
+      { url: '/tarify', priority: '0.9', changefreq: 'weekly' },
+      { url: '/programy', priority: '0.8', changefreq: 'weekly' },
+      { url: '/blog', priority: '0.9', changefreq: 'daily' },
+      { url: '/promo-akce', priority: '0.95', changefreq: 'weekly' },
+      { url: '/ochrana-soukromi', priority: '0.3', changefreq: 'yearly' },
+      { url: '/obchodni-podminky', priority: '0.3', changefreq: 'yearly' },
+      { url: '/cookies', priority: '0.3', changefreq: 'yearly' },
+    ];
+
+    staticPages.forEach((page) => {
+      sitemap += `\n  <url>\n    <loc>${baseUrl}${page.url}</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>`;
+    });
+
+    const geoPages = [
+      '/internet-ostrava',
+      '/internet-karvina',
+      '/internet-bohumin',
+      '/internet-havirov',
+      '/internet-poruba',
+    ];
+
+    geoPages.forEach((url) => {
+      sitemap += `\n  <url>\n    <loc>${baseUrl}${url}</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`;
+    });
+
+    posts.forEach((p) => {
+      const slug = p.slug || createSlug(p.title);
+      sitemap += `\n  <url>\n    <loc>${baseUrl}/blog/${slug}</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
+    });
+
+    sitemap += `\n</urlset>`;
+    return sitemap;
+  };
+
+  const replaceBlockInFile = (filePath, begin, end, newContent, insertBeforeRegex) => {
+    try {
+      const exists = fs.existsSync(filePath);
+      const original = exists ? fs.readFileSync(filePath, 'utf8') : '';
+      if (original.includes(begin) && original.includes(end)) {
+        const updated = original.replace(new RegExp(`${begin}[\s\S]*?${end}`), `${begin}\n${newContent}\n${end}`);
+        fs.writeFileSync(filePath, updated);
+        return true;
+      }
+      // No markers: insert before target if possible
+      if (insertBeforeRegex) {
+        const idx = original.search(insertBeforeRegex);
+        if (idx !== -1) {
+          const head = original.slice(0, idx);
+          const tail = original.slice(idx);
+          fs.writeFileSync(filePath, `${head}${begin}\n${newContent}\n${end}\n\n${tail}`);
+          return true;
+        }
+      }
+      // Fallback: append at end
+      fs.writeFileSync(filePath, `${original}\n\n${begin}\n${newContent}\n${end}\n`);
+      return true;
+    } catch (e) {
+      console.warn(`Could not update ${filePath}:`, e.message);
+      return false;
+    }
+  };
 
   try {
-    // Deprecated: Sitemap and robots.txt generation moved to src/utils/sitemapGenerator.ts
-    // Please use the in-app generator or run a dedicated TS-based build step.
-    console.log('ℹ️ Skipping legacy sitemap/robots generation (unified in src/utils).');
+    // 1) Collect posts and generate sitemap
+    const posts = collectBlogPosts();
+    const sitemapXml = generateSitemapFromPosts(posts);
+    fs.writeFileSync('public/sitemap.xml', sitemapXml);
+    console.log('✅ sitemap.xml updated');
 
-    // Create structured data files
+    // 2) Build server-side 301 redirects for old ID-based URLs
+    const netlifyLines = posts.map((p) => `/blog/${p.id} /blog/${(p.slug || createSlug(p.title))} 301`);
+    const apacheLines = posts.map((p) => `Redirect 301 /blog/${p.id} /blog/${(p.slug || createSlug(p.title))}`);
+
+    const beginMarker = '# BEGIN AUTO BLOG ID->SLUG REDIRECTS';
+    const endMarker = '# END AUTO BLOG ID->SLUG REDIRECTS';
+
+    // Netlify _redirects
+    replaceBlockInFile(
+      'public/_redirects',
+      beginMarker,
+      endMarker,
+      netlifyLines.join('\n'),
+      /\n# Blog routes - all blog paths go to SPA[\s\S]*?\n\/blog\/\*.*\n/
+    );
+    console.log('✅ public/_redirects updated');
+
+    // Apache .htaccess
+    replaceBlockInFile(
+      'public/.htaccess',
+      beginMarker,
+      endMarker,
+      apacheLines.join('\n'),
+      /\n# SPA routing - handle all non-file requests\n/
+    );
+    console.log('✅ public/.htaccess updated');
+
+    // 3) Structured data JSON files (kept from legacy)
     const organizationSchema = {
       "@context": "https://schema.org",
-      "@type": "Organization", 
-      "name": "Popri.cz - PODA Internet",
-      "url": "https://www.popri.cz",
-      "logo": "https://www.popri.cz/poda-logo.svg",
-      "description": "Poskytovatel PODA internetových služeb s gigabitovým připojením a TV zdarma",
-      "contactPoint": {
+      "@type": "Organization",
+      name: "Popri.cz - PODA Internet",
+      url: "https://www.popri.cz",
+      logo: "https://www.popri.cz/poda-logo.svg",
+      description: "Poskytovatel PODA internetových služeb s gigabitovým připojením a TV zdarma",
+      contactPoint: {
         "@type": "ContactPoint",
-        "telephone": "+420-730-431-313",
-        "contactType": "customer service",
-        "areaServed": "CZ",
-        "availableLanguage": "Czech"
+        telephone: "+420-730-431-313",
+        contactType: "customer service",
+        areaServed: "CZ",
+        availableLanguage: "Czech",
       },
-      "address": {
+      address: {
         "@type": "PostalAddress",
-        "addressLocality": "Ostrava",
-        "addressCountry": "CZ"
+        addressLocality: "Ostrava",
+        addressCountry: "CZ",
       },
-      "sameAs": [],
-      "dateModified": new Date().toISOString()
+      sameAs: [],
+      dateModified: new Date().toISOString(),
     };
 
     const serviceSchema = {
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "PODA Internet s TV",
-      "description": "Gigabitové internetové připojení s TV zdarma",
-      "provider": {
-        "@type": "Organization",
-        "name": "Popri.cz",
-        "url": "https://www.popri.cz"
-      },
-      "areaServed": {
-        "@type": "Place",
-        "name": "Ostrava, Karviná, Bohumín, Havířov, Poruba"
-      },
-      "offers": {
-        "@type": "Offer",
-        "description": "Internetové připojení s TV zdarma",
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "priceCurrency": "CZK"
-        }
-      }
+      name: "PODA Internet s TV",
+      description: "Gigabitové internetové připojení s TV zdarma",
+      provider: { "@type": "Organization", name: "Popri.cz", url: "https://www.popri.cz" },
+      areaServed: { "@type": "Place", name: "Ostrava, Karviná, Bohumín, Havířov, Poruba" },
+      offers: { "@type": "Offer", description: "Internetové připojení s TV zdarma", priceSpecification: { "@type": "PriceSpecification", priceCurrency: "CZK" } },
     };
-
-    // Ensure json directory exists
-    if (!fs.existsSync('public/json')) {
-      fs.mkdirSync('public/json', { recursive: true });
-    }
 
     fs.writeFileSync('public/json/schema-organization.json', JSON.stringify(organizationSchema, null, 2));
     fs.writeFileSync('public/json/schema-service.json', JSON.stringify(serviceSchema, null, 2));
     console.log('✅ Generated structured data schemas');
 
     console.log('🎉 SEO build completed successfully!');
-    
   } catch (error) {
     console.error('❌ Error building SEO files:', error);
     process.exit(1);

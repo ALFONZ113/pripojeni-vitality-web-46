@@ -221,24 +221,54 @@
     
 
     <!-- NoScript fallback -->
-    <noscript>
+<noscript>
       <style>
         #root > div { display: none !important; }
+        .ns-container { max-width: 1200px; margin: 0 auto; text-align: left; }
+        .ns-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+        @media (max-width: 768px) { .ns-grid { grid-template-columns: 1fr; } }
+        .ns-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem; }
+        .ns-link { color: #1e40af; font-weight: 600; text-decoration: none; }
+        .ns-link:hover { text-decoration: underline; }
       </style>
       <main style="min-height: 100vh; background: white; padding: 2rem;">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-          <h1 style="color: #1e40af; font-size: 2rem; margin-bottom: 1rem;">
-            Popri.cz – Rychlý PODA Internet s TV Zdarma
-          </h1>
-          <p style="color: #4b5563; font-size: 1.25rem; margin-bottom: 2rem;">
-            Gigabitové připojení, TV zdarma, non-stop podpora
-          </p>
-          <div style="background: #f59e0b; color: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 2rem;">
-            <strong>JavaScript je zakázán.</strong> Pro plnou funkcionalitu stránky doporučujeme povolit JavaScript.
+        <div class="ns-container">
+          <h1 style="color: #1e40af; font-size: 2rem; margin-bottom: 0.5rem;">Popri.cz – Rychlý PODA Internet s TV Zdarma</h1>
+          <p style="color: #4b5563; font-size: 1.125rem; margin-bottom: 1rem;">Gigabitové připojení, TV zdarma, non-stop podpora</p>
+          <div class="ns-card" style="margin-bottom: 1rem; background:#fff7ed; border-color:#fdba74;">
+            <strong>JavaScript je zakázán.</strong> Stránka je plně funkční i bez něj na hlavních odkazech níže.
           </div>
-          <p style="font-size: 1.125rem; color: #4b5563;">
-            Kontakt: <a href="tel:+420730431313" style="color: #1e40af; font-weight: bold;">730 431 313</a>
-          </p>
+
+          <section class="ns-grid" aria-label="Rychlé odkazy">
+            <div class="ns-card">
+              <h2 style="margin-bottom:0.5rem; font-size:1.125rem; color:#0f172a;">Hlavní stránky</h2>
+              <ul style="margin:0; padding-left:1rem; line-height:1.9;">
+                <li><a class="ns-link" href="/">Úvod</a></li>
+                <li><a class="ns-link" href="/blog">Blog</a></li>
+                <li><a class="ns-link" href="/tarify">Tarify</a></li>
+                <li><a class="ns-link" href="/iptv">IPTV</a></li>
+                <li><a class="ns-link" href="/internet-tv">Internet + TV</a></li>
+                <li><a class="ns-link" href="/programy">TV programy</a></li>
+              </ul>
+            </div>
+            <div class="ns-card">
+              <h2 style="margin-bottom:0.5rem; font-size:1.125rem; color:#0f172a;">Internet v regionech</h2>
+              <ul style="margin:0; padding-left:1rem; line-height:1.9;">
+                <li><a class="ns-link" href="/internet-ostrava">Internet Ostrava</a></li>
+                <li><a class="ns-link" href="/internet-karvina">Internet Karviná</a></li>
+                <li><a class="ns-link" href="/internet-havirov">Internet Havířov</a></li>
+                <li><a class="ns-link" href="/internet-bohumin">Internet Bohumín</a></li>
+                <li><a class="ns-link" href="/internet-poruba">Internet Poruba</a></li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="ns-card" style="margin-top:1rem;">
+            <h2 style="margin-bottom:0.5rem; font-size:1.125rem; color:#0f172a;">Kontakt</h2>
+            <p style="margin:0.25rem 0;">Telefon: <a class="ns-link" href="tel:+420730431313">730 431 313</a></p>
+            <p style="margin:0.25rem 0;">E-mail: <a class="ns-link" href="mailto:info@popri.cz">info@popri.cz</a></p>
+            <p style="margin:0.25rem 0;">Formulář: <a class="ns-link" href="/kontakt">/kontakt</a></p>
+          </section>
         </div>
       </main>
     </noscript>

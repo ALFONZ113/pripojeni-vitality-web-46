@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import { blogPosts } from '../../data/blog';
 import type { BlogPost } from '../../data/blog/types';
+import { getBlogPostUrl } from '../../utils/blogRouting';
 
 interface InternalLinkSuggestionsProps {
   currentPost: BlogPost;
@@ -48,7 +49,7 @@ const InternalLinkSuggestions = ({ currentPost, maxSuggestions = 3 }: InternalLi
         {relatedPosts.map(post => (
           <Link
             key={post.id}
-            to={`/blog/${post.id}`}
+            to={getBlogPostUrl(post)}
             className="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group"
           >
             <div className="flex items-start justify-between">

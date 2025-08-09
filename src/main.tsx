@@ -5,6 +5,7 @@ import App from './App.tsx'
 import './index.css'
 import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
 import { measureCoreWebVitals } from './utils/performance-optimization'
+import { handleBlogRedirects } from './utils/redirectManager'
 
 // Global type declaration for window functions
 declare global {
@@ -25,6 +26,8 @@ const handleError = (error: Error) => {
 
 // Enhanced render application with performance monitoring
 try {
+  // Client-side redirects for legacy blog URLs (ID -> slug)
+  handleBlogRedirects();
   const rootElement = document.getElementById("root");
   
   if (!rootElement) {

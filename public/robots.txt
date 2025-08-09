@@ -1,85 +1,14 @@
-
-# www.popri.cz robots.txt - FIXED FOR PROPER DOMAIN MIGRATION - Updated 2025-06-23
+# robots.txt pro www.popri.cz (zjednodušeno)
 User-agent: *
 Allow: /
 
-# CRITICAL DOMAIN MIGRATION INFORMATION
-# Old domain: pripojeni-poda.cz -> DEPRECATED (301 redirects to www.popri.cz)
-# New domain: www.popri.cz -> PREFERRED CANONICAL DOMAIN
-# Migration completed: 2025-06-23
-
-# Explicitly allow main pages
-Allow: /$
-Allow: /internet-tv$
-Allow: /iptv$
-Allow: /tarify$
-Allow: /programy$
-Allow: /kontakt$
-Allow: /blog$
-Allow: /blog/*$
-Allow: /cookies$
-Allow: /obchodni-podminky$
-Allow: /ochrana-soukromi$
-
-# Local geo-specific pages
-Allow: /internet-ostrava$
-Allow: /internet-karvina$
-Allow: /internet-bohumin$
-Allow: /internet-havirov$
-Allow: /internet-poruba$
-
-# Explicitly allow all current blog posts
-Allow: /blog/1$
-Allow: /blog/2$
-Allow: /blog/3$
-Allow: /blog/4$
-Allow: /blog/5$
-Allow: /blog/6$
-Allow: /blog/7$
-Allow: /blog/8$
-Allow: /blog/9$
-Allow: /blog/10$
-Allow: /blog/11$
-Allow: /blog/12$
-Allow: /blog/13$
-Allow: /blog/100$
-
-# Allow blog categories and tags
-Allow: /blog?category=*
-Allow: /blog?tag=*
-Allow: /blog?search=*
-
-# Disallow administrative URLs
-Disallow: /wp-admin/
-Disallow: /admin/
-Disallow: */admin
-Disallow: /api/*
-Disallow: /feed/
-
-# No tracking parameters
+# Blokace sledovacích parametrů
 Disallow: /*?utm_*
 Disallow: /*&utm_*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
+Disallow: /*?gclid=*
+Disallow: /*&gclid=*
 
-# Search engine specific rules
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: SeznamBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Googlebot-Mobile
-Allow: /
-
-User-agent: Googlebot-Image
-Allow: /assets/*
-Allow: /lovable-uploads/*
-
-# CANONICAL SITEMAP - ONLY www.popri.cz
+# Jediný kanonický sitemap
 Sitemap: https://www.popri.cz/sitemap.xml

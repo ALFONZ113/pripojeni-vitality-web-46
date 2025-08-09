@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
+import { getBlogPostUrl } from '../../utils/blogRouting';
 
 interface BlogPostNavigationProps {
   prevPost: BlogPost | null;
@@ -13,7 +14,7 @@ const BlogPostNavigation = ({ prevPost, nextPost }: BlogPostNavigationProps) => 
     <div className="mt-12 flex flex-col sm:flex-row justify-between gap-4">
       {prevPost ? (
         <Link 
-          to={`/blog/${prevPost.id}`} 
+          to={getBlogPostUrl(prevPost)} 
           className="flex items-center text-poda-blue hover:text-poda-orange transition-colors group"
         >
           <ArrowLeft className="h-5 w-5 mr-2 transition-transform group-hover:-translate-x-1" />
@@ -28,7 +29,7 @@ const BlogPostNavigation = ({ prevPost, nextPost }: BlogPostNavigationProps) => 
       
       {nextPost ? (
         <Link 
-          to={`/blog/${nextPost.id}`} 
+          to={getBlogPostUrl(nextPost)} 
           className="flex items-center text-poda-blue hover:text-poda-orange transition-colors group sm:ml-auto text-right"
         >
           <div>

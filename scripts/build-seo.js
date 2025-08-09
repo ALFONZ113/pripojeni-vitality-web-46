@@ -211,15 +211,9 @@ function buildSEO() {
   }
 
   try {
-    // Generate and write sitemap
-    const sitemap = generateSitemap();
-    fs.writeFileSync('public/sitemap.xml', sitemap);
-    console.log('✅ Generated sitemap.xml');
-
-    // Generate and write robots.txt
-    const robots = generateRobotsTxt();
-    fs.writeFileSync('public/robots.txt', robots);
-    console.log('✅ Generated robots.txt');
+    // Deprecated: Sitemap and robots.txt generation moved to src/utils/sitemapGenerator.ts
+    // Please use the in-app generator or run a dedicated TS-based build step.
+    console.log('ℹ️ Skipping legacy sitemap/robots generation (unified in src/utils).');
 
     // Create structured data files
     const organizationSchema = {

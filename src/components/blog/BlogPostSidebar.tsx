@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
+import { getBlogPostUrl } from '../../utils/blogRouting';
 
 interface BlogPostSidebarProps {
   relatedPosts: BlogPost[];
@@ -31,7 +32,7 @@ const BlogPostSidebar = ({ relatedPosts }: BlogPostSidebarProps) => {
               {relatedPosts.map(relatedPost => (
                 <Link 
                   key={relatedPost.id}
-                  to={`/blog/${relatedPost.id}`}
+                  to={getBlogPostUrl(relatedPost)}
                   className="block group"
                 >
                   <div className="flex items-start">

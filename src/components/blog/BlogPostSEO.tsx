@@ -9,6 +9,7 @@ import {
   generateReviewSchema
 } from '../../utils/blogSeo';
 import { generateCanonicalUrl, generateHreflangTags } from '../../utils/domainMigration';
+import { getBlogPostUrl } from '../../utils/blogRouting';
 
 interface BlogPostSEOProps {
   post: BlogPost;
@@ -22,9 +23,10 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   const geoMeta = generateGeoMeta();
   const localBusinessData = generateLocalBusinessData(baseUrl);
   
-  // Generate migration-safe canonical URL
-  const canonicalUrl = generateCanonicalUrl(`/blog/${post.id}`);
-  const hreflangTags = generateHreflangTags(`/blog/${post.id}`);
+  // Generate migration-safe canonical URL (slug-first)
+  const canonicalPath = getBlogPostUrl(post);
+  const canonicalUrl = generateCanonicalUrl(canonicalPath);
+  const hreflangTags = generateHreflangTags(canonicalPath);
   
   // Extract location for geo-specific optimization
   const extractLocation = (text: string): string | null => {
@@ -116,8 +118,8 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       ))}
       
       {/* Navigation links for SEO - FIXED: Use canonical URLs */}
-      {prevPost && <link rel="prev" href={generateCanonicalUrl(`/blog/${prevPost.id}`)} />}
-      {nextPost && <link rel="next" href={generateCanonicalUrl(`/blog/${nextPost.id}`)} />}
+      {prevPost && <link rel="prev" href={generateCanonicalUrl(getBlogPostUrl(prevPost))} />}
+      {nextPost && <link rel="next" href={generateCanonicalUrl(getBlogPostUrl(nextPost))} />}
       
       {/* Preconnect to external domains */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -3,6 +3,7 @@ import { Calendar, ArrowRight, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blog';
 import { responsiveImageProps } from '../utils/imageUtils';
+import { getBlogPostUrl } from '../utils/blogRouting';
 
 const BlogPreview = () => {
   // Get the 4 most recent blog posts
@@ -66,7 +67,7 @@ const BlogPreview = () => {
                     <span itemProp="author">{post.author}</span>
                   </div>
                   <Link 
-                    to={`/blog/${post.id}`} 
+                    to={getBlogPostUrl(post)} 
                     className="text-poda-blue hover:text-poda-orange font-medium flex items-center transition-colors"
                     aria-label={`Číst více o článku: ${post.title}`}
                   >

@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import prerender from "vite-plugin-prerender";
+import { createRequire } from "module";
 
 // Precompute routes for prerendering (safe static routes only)
 const STATIC_ROUTES = [
@@ -35,11 +35,12 @@ export default defineConfig(({ mode }) => {
     plugins.push(componentTagger());
   }
   if (mode === "production") {
+    const require = createRequire(import.meta.url);
+    const prerender = require("vite-plugin-prerender").default;
     plugins.push(
       prerender({
         staticDir: path.resolve(__dirname, "dist"),
         routes: STATIC_ROUTES,
-        minify: true,
       })
     );
   }

@@ -1,0 +1,8 @@
+# Netlify build configuration
+# Force Node + npm and generate SEO assets before build
+[build]
+  command = "npm ci && node scripts/build-seo.js || true && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"

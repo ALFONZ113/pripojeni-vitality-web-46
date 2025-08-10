@@ -35,14 +35,24 @@ export default defineConfig(({ mode }) => {
     plugins.push(componentTagger());
   }
   if (mode === "production") {
-    const require = createRequire(import.meta.url);
-    const prerender = require("vite-plugin-prerender").default;
-    plugins.push(
-      prerender({
-        staticDir: path.resolve(__dirname, "dist"),
-        routes: STATIC_ROUTES,
-      })
-    );
+    try {
+      const require = createRequire(import.meta.url);
+      // Support both CJS and ESM export shapes
+      const mod: any = require("vite-plugin-prerender");
+      const prerender = mod?.default ?? mod;
+      if (typeof prerender === "function") {
+        plugins.push(
+          prerender({
+            staticDir: path.resolve(__dirname, "dist"),
+            routes: STATIC_ROUTES,
+          })
+        );
+      } else {
+        console.warn("[vite] vite-plugin-prerender loaded but is not a function; skipping.");
+      }
+    } catch (err) {
+      console.warn("[vite] vite-plugin-prerender not available; skipping.", err);
+    }
   }
 
   return {

@@ -70,7 +70,7 @@ const Footer = () => {
               <li className="flex items-start">
                 <Phone className="mr-3 h-5 w-5 text-blue-200 mt-0.5" aria-hidden="true" />
                 <div>
-                  <p className="text-white font-medium">Milan Terč</p>
+                  <p className="text-white font-medium">Obchodní zástupce</p>
                   <a href="tel:+420730431313" className="text-blue-100 hover:text-poda-orange transition-colors">
                     +420 730 431 313
                   </a>
@@ -127,7 +127,7 @@ const Footer = () => {
             <Info className="h-5 w-5 text-blue-300 mr-3 flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div className="text-xs text-blue-300">
               <p className="mb-1">Tato webová stránka je provozována obchodním zástupcem společnosti <span className="text-poda-orange">PO</span>DA pod doménou Popri.cz, nikoliv samotnou společností <span className="text-poda-orange">PO</span>DA.</p>
-              <p>Milan Terč | IČO: 75546230 | Sídlo: Ostrava | Zapsán v živnostenském rejstříku</p>
+              <p>Obchodní zástupce | IČO: 75546230 | Sídlo: Ostrava | Zapsán v živnostenském rejstříku</p>
             </div>
           </div>
         </div>

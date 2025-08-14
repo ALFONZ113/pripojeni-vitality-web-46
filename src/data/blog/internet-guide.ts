@@ -257,7 +257,7 @@ export const internetGuidePost: BlogPost = {
     </div>
   `,
   date: "23. 6. 2025",
-  author: "Milan Terč",
+  author: "Internetový poradce",
   category: "Tipy a rady",
   image: "/lovable-uploads/4f53eb71-2c7a-4280-9b37-19e17047d420.png",
   alt: "Jak najít nejlepší internet v Ostravě, Karviné a Havířově - kompletní průvodce 2025",

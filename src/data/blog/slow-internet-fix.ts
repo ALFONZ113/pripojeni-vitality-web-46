@@ -202,7 +202,7 @@ export const slowInternetFixPost: BlogPost = {
     </div>
   `,
   date: "2. 7. 2025",
-  author: "Milan Terč",
+  author: "Technický poradce",
   category: "Tipy",
   image: "/lovable-uploads/f46455cb-ee7c-4a2a-ab48-0c36d1584769.png",
   alt: "Žena pracuje na laptope s optickými vláknami okolo nej symbolizujúcimi rýchle internetové pripojenie",

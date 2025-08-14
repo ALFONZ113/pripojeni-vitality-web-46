@@ -32,7 +32,7 @@ export const gamingOstravaExamplePost: BlogPost = {
     <p>Pro více informací o gaming internetu v Ostravě nás kontaktujte na <strong>730 431 313</strong>.</p>
   `,
   date: "2025-01-25",
-  author: "Milan Terče",
+  author: "Odborník na internet",
   category: "Gaming",
   image: "/lovable-uploads/gaming-ostrava-2025.jpg",
   alt: "Gaming setup v Ostravě s rychlým internetem",

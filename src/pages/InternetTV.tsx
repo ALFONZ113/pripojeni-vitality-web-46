@@ -265,10 +265,10 @@ const InternetTV = () => {
             Připraveni pro lepší internetové připojení?
           </h2>
           <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto leading-relaxed reveal-animation delay-100">
-            Kontaktujte Milana Terče ještě dnes a získejte speciální nabídku internetového a televizního připojení na míru pro vaši domácnost.
+            Kontaktujte nás ještě dnes a získejte speciální nabídku internetového a televizního připojení na míru pro vaši domácnost.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center reveal-animation delay-200">
-            <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300">Kontakt Milan Terč</Link>
+            <Link to="/kontakt" className="bg-white text-poda-blue hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300">Kontaktovat nás</Link>
             <a href="tel:+420730431313" className="bg-transparent border border-white text-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all duration-300">
               +420 730 431 313
             </a>

@@ -46,7 +46,7 @@ export const ostravaPost: BlogPost = {
     ${conclusionSection}
   `,
   date: '13. 06. 2025',
-  author: 'Milan Terč',
+  author: 'Odborník na připojení',
   category: 'Služby',
   image: '/lovable-uploads/d043e07c-8916-4d2d-b35d-8f0ba81b4ebc.png',
   alt: 'Rychlý optický internet PODA Ostrava s moderním vlakem v pozadí',

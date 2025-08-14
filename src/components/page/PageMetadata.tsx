@@ -52,7 +52,7 @@ const PageMetadata = ({
       <meta name="google" content="notranslate"/>
       <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
       {seznamVerification && <meta name="seznam-wmt" content={seznamVerification} />}
-      <meta name="author" content="Milan Terč - obchodní zástupce PODA" />
+      <meta name="author" content="Obchodní zástupce PODA" />
       <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
       <meta name="revisit-after" content="7 days" />
       

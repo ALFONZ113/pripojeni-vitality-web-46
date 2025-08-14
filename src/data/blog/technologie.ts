@@ -556,7 +556,7 @@ export const technologiePosts: BlogPost[] = [
         <div class="bg-gray-50 p-6 rounded-lg my-8">
           <h3>Využite príležitosť pre lepšie služby:</h3>
           <p><strong>Web:</strong> popri.cz<br>
-          <strong>Migračný špecialista:</strong> Milan Terč<br>
+          <strong>Migračný špecialista:</strong> Náš odborník<br>
           <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
           <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia migrácie a overenie možností pripojenia PODA na vašej adrese.</p>
@@ -583,7 +583,7 @@ export const technologiePosts: BlogPost[] = [
       </div>
     `,
     date: "8. 5. 2025",
-    author: "Milan Terč",
+    author: "Technický poradce",
     category: "Technologie",
     image: "/lovable-uploads/9ce3244c-96d6-4078-9808-3edc99d0e01b.png",
     alt: "Futuristická vizualizácia prepojenia telekomunikačných sietí, symbolizujúca zmeny na trhu poskytovateľov internetu",

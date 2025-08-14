@@ -176,7 +176,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
         <!-- Next steps -->
         <div style="background: linear-gradient(135deg, #0F4C81 0%, #3A7CA5 100%); color: white; padding: 24px; border-radius: 8px; margin-bottom: 32px;">
           <h3 style="margin: 0 0 16px 0; color: white; font-size: 20px; font-weight: 600;">Ďalšie kroky</h3>
-          <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.5;">Milan Terč, váš obchodný zástupca, vás bude kontaktovať do <strong>24 hodín</strong> na:</p>
+          <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.5;">Náš obchodný zástupca vás bude kontaktovať do <strong>24 hodín</strong> na:</p>
           <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 6px; margin-bottom: 20px;">
             <div style="margin-bottom: 8px;">
               <strong>Telefón:</strong> <a href="tel:${formData.phone}" style="color: white; text-decoration: none;">${formData.phone}</a>
@@ -198,7 +198,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
           <h3 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Kontaktné údaje</h3>
           <div style="background: white; padding: 20px; border-radius: 6px; margin-bottom: 16px; border: 1px solid #e5e7eb;">
             <div style="margin-bottom: 12px;">
-              <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-size: 16px; font-weight: 600;">Milan Terč</h4>
+              <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-size: 16px; font-weight: 600;">Obchodní zástupce</h4>
               <p style="margin: 0; color: #6b7280; font-size: 14px;">Obchodný zástupca PODA</p>
             </div>
             <div style="margin-bottom: 8px;">

@@ -244,7 +244,7 @@ export const sluzbyPosts: BlogPost[] = [
         <div class="bg-gray-50 p-6 rounded-lg my-8">
           <h3>Objednejte si GPON připojení:</h3>
           <p><strong>Web:</strong> popri.cz<br>
-          <strong>GPON specialista:</strong> Milan Terč<br>
+          <strong>GPON specialista:</strong> Náš odborník<br>
           <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
           <p class="mt-4 text-sm text-gray-600">Bezplatná technická konzultace a ověření dostupnosti GPON technologie na vaší adrese v Moravskoslezském regionu.</p>
@@ -256,7 +256,7 @@ export const sluzbyPosts: BlogPost[] = [
       </div>
     `,
     date: '24. 4. 2025',
-    author: 'Milan Terč',
+    author: 'Technický specialista',
     category: 'Služby',
     image: '/lovable-uploads/3f530f22-64ab-45d8-9db3-0280fa731f62.png',
     alt: 'Moderní bytový komplex v Ostravě-Porubě s vizualizací optické sítě, futuristický vzhled připojení PODA',
@@ -362,7 +362,7 @@ export const sluzbyPosts: BlogPost[] = [
           <h3 class="text-white mb-4">Profesionální instalace PODA v Porubě:</h3>
           <ol class="space-y-3">
             <li><strong>1. Objednávka kontaktu</strong> - spojení prostřednictvím Milana Terče na tel. 730 431 313 nebo online přes popri.cz</li>
-            <li><strong>2. Osobní konzultace</strong> - Milan Terč vás navštíví pro detailní zmapování požadavků a sepsání objednávky</li>
+            <li><strong>2. Osobní konzultace</strong> - Náš zástupce vás navštíví pro detailní zmapování požadavků a sepsání objednávky</li>
             <li><strong>3. Koordinace termínu</strong> - zavoláme vám a dohodneme si nejoptimálnější termín instalace dle vašich možností</li>
             <li><strong>4. Technická realizace</strong> - kvalifikovaný technik provede kompletní instalaci všech potřebných služeb a zařízení</li>
             <li><strong>5. Plně funkční služby</strong> - po dokončení instalace jsou všechny služby ihned připraveny k používání</li>
@@ -396,7 +396,7 @@ export const sluzbyPosts: BlogPost[] = [
         <div class="bg-gray-50 p-6 rounded-lg my-8">
           <h3>Ověření dostupnosti a objednávka:</h3>
           <p><strong>Web:</strong> popri.cz<br>
-          <strong>Specialista pro Porubu:</strong> Milan Terč<br>
+          <strong>Specialista pro Porubu:</strong> Náš obchodní zástupce<br>
           <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
           <p class="mt-4 text-sm text-gray-600">Bezplatná konzultace a ověření dostupnosti PODA internetu na vaší konkrétní adrese v Porubě.</p>
@@ -408,7 +408,7 @@ export const sluzbyPosts: BlogPost[] = [
       </div>
     `,
     date: '1. 6. 2025',
-    author: 'Milan Terč',
+    author: 'Odborník na připojení',
     category: 'Služby',
     image: '/lovable-uploads/fedd23c9-5c8e-46f4-9d2e-02b0d64208cf.png',
     alt: 'Moderní ulice v Ostravě-Porubě s vizualizací optických připojení a světelných efektů symbolizujících rychlý internet PODA',

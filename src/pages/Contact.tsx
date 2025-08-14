@@ -59,7 +59,7 @@ const Contact = () => {
                 <span className="inline-block bg-white/20 text-white py-1 px-3 rounded-full text-sm font-medium mb-3">
                   Obchodní zástupce
                 </span>
-                <h3 className="text-2xl font-bold mb-4">Milan Terč</h3>
+                <h3 className="text-2xl font-bold mb-4">Váš kontakt</h3>
                 
                 <div className="space-y-3">
                   <div className="flex items-center justify-center">
@@ -105,7 +105,7 @@ const Contact = () => {
                   <span className="inline-block bg-white/20 text-white py-1 px-3 rounded-full text-sm font-medium mb-4">
                     Obchodní zástupce
                   </span>
-                  <h2 className="text-3xl font-bold mb-6">Milan Terč</h2>
+                  <h2 className="text-3xl font-bold mb-6">Váš obchodní zástupce</h2>
                   
                   <div className="space-y-5 mb-8">
                     <div className="flex items-center">

@@ -9,7 +9,7 @@ const BlogPostCTA = () => {
           Zaujala vás naše nabídka?
         </h2>
         <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto leading-relaxed reveal-animation delay-100">
-          Nezávazně se informujte o možnostech připojení ve vaší lokalitě. Milan Terč vám rád poskytne veškeré informace.
+          Nezávazně se informujte o možnostech připojení ve vaší lokalitě. Náš obchodní zástupce vám rád poskytne veškeré informace.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center reveal-animation delay-200">
           <Link

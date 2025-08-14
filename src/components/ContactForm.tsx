@@ -117,7 +117,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
           </div>
           <h3 className="text-2xl font-bold text-green-800 mb-2">Formulář byl úspěšně odeslán</h3>
           <p className="text-green-700">
-            Děkujeme za váš zájem. Milan Terč vás bude kontaktovat co nejdříve na uvedeném telefonním čísle nebo e-mailu.
+            Děkujeme za váš zájem. Náš obchodní zástupce vás bude kontaktovat co nejdříve na uvedeném telefonním čísle nebo e-mailu.
           </p>
         </div>
       ) : (

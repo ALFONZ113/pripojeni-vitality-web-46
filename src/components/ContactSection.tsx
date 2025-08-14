@@ -19,7 +19,7 @@ const ContactSection = () => {
                 <span className="inline-block bg-white/20 text-white py-1 px-3 rounded-full text-sm font-medium mb-4">
                   Váš obchodní zástupce
                 </span>
-                <h2 id="contact-person" className="text-3xl font-bold mb-6">Milan Terč</h2>
+                <h2 id="contact-person" className="text-3xl font-bold mb-6">Váš obchodní zástupce</h2>
                 
                 <div className="space-y-5 mb-8">
                   <div className="flex items-center">
@@ -100,7 +100,7 @@ const ContactSection = () => {
               <article className="bg-gray-50 p-6 rounded-xl border border-gray-100">
                 <h3 className="text-xl font-semibold text-poda-blue mb-3">Osobní přístup</h3>
                 <p className="text-gray-600">
-                  Milan Terč vám poskytne osobní konzultaci, pomůže s výběrem nejvhodnějšího tarifu a zajistí 
+                  Náš obchodní zástupce vám poskytne osobní konzultaci, pomůže s výběrem nejvhodnějšího tarifu a zajistí 
                   bezproblémový přechod od vašeho stávajícího poskytovatele.
                 </p>
               </article>

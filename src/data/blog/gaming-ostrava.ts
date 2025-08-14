@@ -142,7 +142,7 @@ export const gamingOstravaPost: BlogPost = {
 
       <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg shadow-lg text-center">
         <h3 class="text-2xl font-bold mb-4">Připraveni na změnu?</h3>
-        <p class="text-lg mb-6">Milan Terč vám poradí s nejlepším gamingowym připojením v Ostravě</p>
+        <p class="text-lg mb-6">Náš specialista vám poradí s nejlepším gamingowym připojením v Ostravě</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="tel:730431313" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition-colors">
             730 431 313
@@ -300,7 +300,7 @@ export const gamingOstravaPost: BlogPost = {
           <p class="text-yellow-700">
             "Kombinace PODA optického připojení s kvalitním gaming routerem může snížit váš ping o 70-80% oproti standardnímu DSL připojení. 
             Investice do správného hardware a optimalizace sítě se vyplatí každému serióznímu hráči." 
-            <em>- Milan Terč, technický specialista PODA</em>
+            <em>- Technický specialista PODA</em>
           </p>
         </div>
       </section>
@@ -412,7 +412,7 @@ export const gamingOstravaPost: BlogPost = {
       <div class="bg-gradient-to-r from-green-600 to-blue-600 text-white p-8 rounded-lg shadow-lg">
         <div class="text-center">
           <h2 class="text-3xl font-bold mb-4">Připraveni dominovat online?</h2>
-          <p class="text-xl mb-6">Milan Terč vám nastaví herní připojení snů v Ostravě a okolí</p>
+          <p class="text-xl mb-6">Náš specialista vám nastaví herní připojení snů v Ostravě a okolí</p>
           <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
             <a href="tel:730431313" class="bg-white text-green-600 px-6 py-4 rounded-lg font-bold hover:bg-green-50 transition-colors text-center">
               Zavolat: 730 431 313

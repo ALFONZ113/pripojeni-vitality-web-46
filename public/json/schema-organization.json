@@ -14,9 +14,7 @@
   },
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Ostrava - Poruba",
-    "postalCode": "708 00",
-    "streetAddress": "Porubská 944/5",
+    "addressLocality": "Ostrava",
     "addressCountry": "CZ"
   },
   "sameAs": [

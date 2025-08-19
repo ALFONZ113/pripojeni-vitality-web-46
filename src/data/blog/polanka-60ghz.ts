@@ -2,13 +2,13 @@ import { BlogPost } from './types';
 
 export const polanka60ghzPost: BlogPost = {
   id: 102,
-  title: "PODA Super 2025: Polanka nad Odrou připojena revolučním 60 GHz připojením",
+  title: "PODA 2025: Polanka nad Odrou připojena revolučním 60 GHz připojením",
   slug: "polanka-nad-odrou-60ghz-pripojeni-2025",
-  excerpt: "Novinky PODA Super 2025! Obec Polanka nad Odrou u Ostravy získala nejmodernější bezdrátové připojení s 60 GHz technologií. Rychlost až 1000/200 Mbps prostřednictvím vzdušného připojení.",
+  excerpt: "Novinky PODA 2025! Obec Polanka nad Odrou u Ostravy získala nejmodernější bezdrátové připojení s 60 GHz technologií. Rychlost až 1000/200 Mbps prostřednictvím vzdušného připojení.",
   content: `
-    <h2>PODA Super 2025: Revoluce v připojení Polanky nad Odrou</h2>
+    <h2>PODA 2025: Revoluce v připojení Polanky nad Odrou</h2>
     
-    <p>Společnost PODA v rámci projektu <strong>PODA Super 2025</strong> úspěšně připojila obec Polanka nad Odrou k nejmodernější 60 GHz bezdrátové technologii. Tato inovativní technologie přináší mieszkańcom rychlé a spolehlivé internetové připojení přímo do jejich domovů.</p>
+    <p>Společnost PODA v rámci projektu <strong>PODA 2025</strong> úspěšně připojila obec Polanka nad Odrou k nejmodernější 60 GHz bezdrátové technologii. Tato inovativní technologie přináší mieszkańcom rychlé a spolehlivé internetové připojení přímo do jejich domovů.</p>
     
     <h3>60 GHz technologie - budoucnost je zde</h3>
     <p>Nová <strong>60 GHz technologie</strong> představuje průlom v oblasti bezdrátového připojení:</p>
@@ -40,8 +40,8 @@ export const polanka60ghzPost: BlogPost = {
       <li>Profesionální instalaci</li>
     </ul>
     
-    <h3>PODA Super 2025 - více lokalit v přípravě</h3>
-    <p>Úspěšné nasazení 60 GHz technologie v Polance nad Odrou je součástí ambiciózního plánu PODA Super 2025, který předpokládá rozšíření této technologie do dalších obcí v Moravskoslezském kraji.</p>
+    <h3>PODA 2025 - více lokalit v přípravě</h3>
+    <p>Úspěšné nasazení 60 GHz technologie v Polance nad Odrou je součástí ambiciózního plánu PODA 2025, který předpokládá rozšíření této technologie do dalších obcí v Moravskoslezském kraji.</p>
     
     <h3>Kontakt a objednávka</h3>
     <p>Pro více informací o 60 GHz připojení v Polance nad Odrou kontaktujte PODA na <strong>730 431 313</strong> nebo navštivte naše pobočky v Ostravě.</p>
@@ -51,5 +51,5 @@ export const polanka60ghzPost: BlogPost = {
   category: "Novinky",
   image: "/src/assets/polanka-60ghz-antenna.jpg",
   alt: "60 GHz bezdrátová anténa pro internetové připojení v Polance nad Odrou",
-  tags: ["PODA Super 2025", "Polanka nad Odrou", "60 GHz", "bezdrátové připojení", "Ostrava", "novinky", "rychlý internet", "vzdušné připojení"]
+  tags: ["PODA 2025", "Polanka nad Odrou", "60 GHz", "bezdrátové připojení", "Ostrava", "novinky", "rychlý internet", "vzdušné připojení"]
 };

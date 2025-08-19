@@ -10,10 +10,12 @@ import { ostravaPost } from './ostrava';
 import { internetGuidePost } from './internet-guide';
 import { slowInternetFixPost } from './slow-internet-fix';
 import { gamingOstravaPost } from './gaming-ostrava';
+import { polanka60ghzPost } from './polanka-60ghz';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  gamingOstravaPost, // Najnovší článok
+  polanka60ghzPost, // Najnovší článok - PODA Super 2025
+  gamingOstravaPost,
   slowInternetFixPost,
   internetGuidePost,
   ...sluzbyPosts,
@@ -37,3 +39,4 @@ export * from './ostrava';
 export * from './internet-guide';
 export * from './slow-internet-fix';
 export * from './gaming-ostrava';
+export * from './polanka-60ghz';

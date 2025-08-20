@@ -1,3 +1,4 @@
+
 import { BlogPost } from './types';
 
 export const polanka60ghzPost: BlogPost = {
@@ -49,7 +50,7 @@ export const polanka60ghzPost: BlogPost = {
   date: "19. 08. 2025",
   author: "Odborník na telekomunikace",
   category: "Novinky",
-  image: "/lovable-uploads/0f7a9eb9-f46d-4493-8c78-bf99d151db24.png",
-  alt: "60 GHz bezdrátová anténa pro internetové připojení v Polance nad Odrou",
+  image: "/lovable-uploads/0c952940-aa5d-4157-b3a8-82b62d2a048c.png",
+  alt: "60 GHz bezdrátová anténa PODA SUPER 2025 pro internetové připojení v Polance nad Odrou",
   tags: ["PODA 2025", "Polanka nad Odrou", "60 GHz", "bezdrátové připojení", "Ostrava", "novinky", "rychlý internet", "vzdušné připojení"]
 };

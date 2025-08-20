@@ -49,7 +49,7 @@ export const polanka60ghzPost: BlogPost = {
   date: "19. 08. 2025",
   author: "Odborník na telekomunikace",
   category: "Novinky",
-  image: "/src/assets/polanka-60ghz-antenna.jpg",
+  image: "/polanka-60ghz-antenna.jpg",
   alt: "60 GHz bezdrátová anténa pro internetové připojení v Polance nad Odrou",
   tags: ["PODA 2025", "Polanka nad Odrou", "60 GHz", "bezdrátové připojení", "Ostrava", "novinky", "rychlý internet", "vzdušné připojení"]
 };

@@ -11,10 +11,12 @@ import { internetGuidePost } from './internet-guide';
 import { slowInternetFixPost } from './slow-internet-fix';
 import { gamingOstravaPost } from './gaming-ostrava';
 import { polanka60ghzPost } from './polanka-60ghz';
+import { panelakOtazkyPost } from './panelak-otazky';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  polanka60ghzPost, // Najnovší článok - PODA Super 2025
+  panelakOtazkyPost, // Najnovší článok - FAQ panelák
+  polanka60ghzPost, // PODA Super 2025
   gamingOstravaPost,
   slowInternetFixPost,
   internetGuidePost,
@@ -40,3 +42,4 @@ export * from './internet-guide';
 export * from './slow-internet-fix';
 export * from './gaming-ostrava';
 export * from './polanka-60ghz';
+export * from './panelak-otazky';

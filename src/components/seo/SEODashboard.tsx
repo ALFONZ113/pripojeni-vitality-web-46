@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { blogPosts } from '../../data/blog';
 import { analyzeSEOMetrics, generateEnhancedMetaDescription } from '../../utils/seoEnhancements';
 import { getSitemapStats } from '../../utils/sitemapGenerator';
+import { BlogOptimizer } from './BlogOptimizer';
 import { submitBatchToIndexNow } from '../../utils/indexNowService';
 import { 
   Search, 
@@ -213,8 +214,9 @@ export const SEODashboard: React.FC = () => {
 
       {/* Detailed Analysis */}
       <Tabs defaultValue="posts" className="w-full">
-        <TabsList>
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="posts">Analýza článků</TabsTrigger>
+          <TabsTrigger value="optimizer">Optimalizace popisů</TabsTrigger>
           <TabsTrigger value="technical">Technické SEO</TabsTrigger>
         </TabsList>
 
@@ -282,6 +284,10 @@ export const SEODashboard: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="optimizer" className="space-y-4">
+          <BlogOptimizer />
         </TabsContent>
 
         <TabsContent value="technical">

@@ -6,7 +6,7 @@ export const technologiePosts: BlogPost[] = [
   {
     id: 150,
     title: "Optika vs. měď: Proč Ostravsko konečně dostává internet 21. století",
-    excerpt: "Konec pomalému internetu! Zjistěte, proč optické připojení mění hru pro ostravské domácnosti a firmy.",
+    excerpt: "Konec pomalému internetu v Ostravě! Zjistěte, proč optické připojení PODA mění hru pro domácnosti a firmy. Praktické rady od expertů PODA.",
     content: `
       <div class="prose-content">
         <h2>Úvod: Měď vs. optika - Souboj technologií</h2>
@@ -206,7 +206,7 @@ export const technologiePosts: BlogPost[] = [
   {
     id: 4,
     title: "Mesh systémy vs. klasické routery: Co je lepší pro váš domov?",
-    excerpt: "Podrobné porovnání mesh systémů a tradičních routerů. Zjistěte, která technologie je ideální pro vaši domácnost.",
+    excerpt: "Mesh systémy vs. klasické routery - kompletní porovnání pro váš domov. Zjistěte, která technologie je ideální pro vaši domácnost od PODA.",
     content: `
       <div class="prose-content">
         <h2>Úvod: Mesh revoluce v domácích sítích</h2>
@@ -275,7 +275,7 @@ export const technologiePosts: BlogPost[] = [
   {
     id: 5,
     title: "Zabezpečení domácí Wi-Fi sítě: Kompletní průvodce bezpečností",
-    excerpt: "Jak ochránit svou domácí Wi-Fi síť před hackery a neoprávněným přístupem. Praktické tipy pro maximální bezpečnost.",
+    excerpt: "Ochrana domácí Wi-Fi sítě před hackery a útoky. Praktické tipy pro maximální bezpečnost vašeho internetového připojení PODA radí.",
     content: `
       <div class="prose-content">
         <h2>Úvod: Proč je bezpečnost Wi-Fi tak důležitá?</h2>

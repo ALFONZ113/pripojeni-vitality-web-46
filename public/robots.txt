@@ -1,14 +1,97 @@
-# robots.txt pro www.popri.cz (zjednodušeno)
+# robots.txt pro www.popri.cz - SEO Optimized
 User-agent: *
 Allow: /
 
-# Blokace sledovacích parametrů
+# Allow main pages explicitly
+Allow: /$
+Allow: /internet-tv$
+Allow: /iptv$
+Allow: /tarify$
+Allow: /programy$ 
+Allow: /kontakt$
+Allow: /blog$
+Allow: /blog/*$
+Allow: /promo-akce$
+
+# Geo-specific pages
+Allow: /internet-ostrava$
+Allow: /internet-karvina$
+Allow: /internet-bohumin$
+Allow: /internet-havirov$
+Allow: /internet-poruba$
+
+# Assets and media
+Allow: /assets/*
+Allow: /lovable-uploads/*
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Block tracking parameters and admin areas
 Disallow: /*?utm_*
 Disallow: /*&utm_*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
 Disallow: /*?gclid=*
 Disallow: /*&gclid=*
+Disallow: /admin/
+Disallow: */admin/
+Disallow: /wp-admin/
+Disallow: /wp-content/
 
-# Jediný kanonický sitemap
+# Search engine specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: SeznamBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/*
+Allow: /lovable-uploads/*
+
+# AI crawlers - explicit permissions
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Aggressive crawlers - throttle them
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Sitemap location
 Sitemap: https://www.popri.cz/sitemap.xml
+Sitemap: https://www.popri.cz/sitemap-images.xml

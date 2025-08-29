@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.popri.cz/</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/poda-logo.svg</image:loc>
+      <image:title>PODA Internet Logo</image:title>
+      <image:caption>PODA - poskytovateľ internetových služieb</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.popri.cz/assets/60ghz-technology-hero.jpg</image:loc>
+      <image:title>60GHz technologie</image:title>
+      <image:caption>Moderní 60GHz bezdrátová technologie pro vysokorychlostní internet</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.popri.cz/internet-ostrava</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/assets/optika-vs-med-ostrava.jpg</image:loc>
+      <image:title>Optické připojení Ostrava</image:title>
+      <image:caption>PODA optické internetové připojení v Ostravě</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://www.popri.cz/blog/nejcastejsi-otazky-pripojeni-internetu-panelak</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/lovable-uploads/slow-internet-fix-guide.jpg</image:loc>
+      <image:title>Internet v paneláku</image:title>
+      <image:caption>Průvodce připojením internetu v panelovém domě</image:caption>
+    </image:image>
+  </url>
+</urlset>

@@ -95,14 +95,16 @@ function generateSitemap() {
   </url>`;
   });
 
-  // Add blog posts
-  BLOG_POSTS.forEach(post => {
+  // Add blog posts with slug-based URLs
+  const posts = collectBlogPosts();
+  posts.forEach(post => {
+    const slug = post.slug || createSlug(post.title);
     sitemap += `
   <url>
-    <loc>${baseUrl}/blog/${post.id}</loc>
-    <lastmod>${post.lastmod}</lastmod>
+    <loc>${baseUrl}/blog/${slug}</loc>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>`;
   });
 

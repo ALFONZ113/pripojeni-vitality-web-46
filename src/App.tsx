@@ -30,6 +30,7 @@ const TermsOfService = lazy(() => import('./pages/ObchodniPodminky'));
 const CookiePolicy = lazy(() => import('./pages/Cookies'));
 const MigrationMonitor = lazy(() => import('./pages/MigrationMonitor'));
 const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
+const SEODashboard = lazy(() => import('./pages/SEODashboard'));
 const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
 const GigaInternet = lazy(() => import('./pages/GigaInternet'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -84,6 +85,7 @@ function App() {
                   {/* Migration and SEO tools */}
                   <Route path="/migration-monitor" element={<MigrationMonitor />} />
                   <Route path="/indexing-dashboard" element={<IndexingDashboard />} />
+                  <Route path="/seo-dashboard" element={<SEODashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
                   <Route path="/giga-internet" element={<GigaInternet />} />
                   

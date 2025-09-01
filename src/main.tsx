@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 const startTime = performance.now();
 
-// Enhanced render application with optimized performance
+// Enhanced render application with optimized performance and IMMEDIATE CONTENT RENDERING
 try {
   // Handle redirects first, before any DOM manipulation
   handleBlogRedirects();
@@ -30,24 +30,25 @@ try {
     throw new Error("Root element not found - check your HTML");
   }
   
-  // Create root and render immediately for faster FCP
+  // Create root and render IMMEDIATELY for fastest FCP
   const root = createRoot(rootElement);
   
-  // Use synchronous rendering for critical initial paint
+  // CRITICAL: Use immediate synchronous rendering to replace static content ASAP
   root.render(<App />);
   
-  // Signal successful React load immediately for better UX
+  // Mark React as loaded IMMEDIATELY for FCP improvement
   const loadTime = performance.now() - startTime;
   if (process.env.NODE_ENV === 'development') {
     console.log(`React app loaded in ${loadTime.toFixed(2)}ms`);
   }
   
-  // Mark React as loaded for static content management
+  // Signal React loaded immediately to hide static content
   if (window.markReactLoaded) {
     window.markReactLoaded();
   }
   
-  // Defer non-critical optimizations to avoid blocking initial render
+  // Defer ALL non-critical optimizations to avoid blocking initial render
+  // Use immediate callback to avoid any delays
   setTimeout(() => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
@@ -59,14 +60,13 @@ try {
         measureCoreWebVitals();
       }, { timeout: 2000 });
     } else {
-      setTimeout(() => {
-        const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
-        preloadCriticalRoutes();
-        optimizeChunkLoading();
-        lazyLoadHeavyComponents();
-        loadMapyWhenNeeded();
-        measureCoreWebVitals();
-      }, 100);
+      // Even faster fallback - no setTimeout delay
+      const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
+      preloadCriticalRoutes();
+      optimizeChunkLoading();
+      lazyLoadHeavyComponents();
+      loadMapyWhenNeeded();
+      measureCoreWebVitals();
     }
   }, 0);
   

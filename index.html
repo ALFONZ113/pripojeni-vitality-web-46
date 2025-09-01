@@ -124,9 +124,29 @@
       .to-secondary\/5 { --tw-gradient-to: hsl(25 100% 60% / 0.05); }
       .absolute { position: absolute; }
       .overflow-hidden { overflow: hidden; }
+      .pt-20 { padding-top: 5rem; }
+      .pb-16 { padding-bottom: 4rem; }
+      .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+      .text-gray-600 { color: rgb(75 85 99); }
+      .max-w-xl { max-width: 36rem; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      .mb-8 { margin-bottom: 2rem; }
+      .leading-relaxed { line-height: 1.625; }
+      .inline-block { display: inline-block; }
+      .bg-blue-100 { background-color: rgb(219 234 254); }
+      .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+      .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+      .rounded-full { border-radius: 9999px; }
+      .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+      .font-medium { font-weight: 500; }
+      .mb-4 { margin-bottom: 1rem; }
+      .block { display: block; }
       
       @media (min-width: 640px) {
         .sm\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .sm\\:pt-32 { padding-top: 8rem; }
+        .sm\\:pb-24 { padding-bottom: 6rem; }
+        .sm\\:inline { display: inline; }
       }
       
       @media (min-width: 768px) {
@@ -138,6 +158,42 @@
         .lg\\:gap-12 { gap: 3rem; }
         .lg\\:text-left { text-align: left; }
         .lg\\:text-6xl { font-size: 3.75rem; line-height: 1; }
+        .lg\\:mx-0 { margin-left: 0; margin-right: 0; }
+      }
+
+      /* Critical styles for immediate content display */
+      .static-hero {
+        position: relative;
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+        overflow: hidden;
+        background: linear-gradient(to bottom right, hsl(210 50% 28% / 0.05), hsl(210 30% 95% / 0.03), hsl(25 100% 60% / 0.05));
+      }
+
+      .static-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      @media (min-width: 1024px) {
+        .static-content {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
+        }
+        .static-hero {
+          padding-top: 8rem;
+          padding-bottom: 6rem;
+        }
+      }
+
+      /* Hide static content when React loads */
+      .react-loaded .static-content {
+        display: none;
       }
     </style>
     
@@ -191,51 +247,12 @@
       "dateModified": "2025-01-14T12:00:00Z"
     }
     </script>
-    
-    <!-- Critical CSS inlined for above-the-fold content -->
-    <style>
-      /* Critical CSS for initial paint */
-      .poda-blue { color: #1e40af; }
-      .bg-poda-blue { background-color: #1e40af; }
-      .poda-orange { color: #f59e0b; }
-      .border-poda-orange { border-color: #f59e0b; }
-      .text-blue-100 { color: #dbeafe; }
-      .container { max-width: 1200px; margin: 0 auto; }
-      .grid { display: grid; }
-      .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-      .gap-8 { gap: 2rem; }
-      .p-4 { padding: 1rem; }
-      .p-6 { padding: 1.5rem; }
-      .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-      .px-4 { padding-left: 1rem; padding-right: 1rem; }
-      .mb-4 { margin-bottom: 1rem; }
-      .mb-6 { margin-bottom: 1.5rem; }
-      .mb-12 { margin-bottom: 3rem; }
-      .text-center { text-align: center; }
-      .font-bold { font-weight: 700; }
-      .font-semibold { font-weight: 600; }
-      .text-xl { font-size: 1.25rem; }
-      .text-2xl { font-size: 1.5rem; }
-      .text-4xl { font-size: 2.25rem; }
-      .rounded-xl { border-radius: 0.75rem; }
-      .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-      .border-l-4 { border-left-width: 4px; }
-      .bg-white { background-color: #ffffff; }
-      .text-gray-600 { color: #4b5563; }
-      .max-w-3xl { max-width: 48rem; }
-      .mx-auto { margin-left: auto; margin-right: auto; }
-      .min-h-screen { min-height: 100vh; }
-      
-      @media (max-width: 768px) {
-        .md\:grid-cols-3 { grid-template-columns: 1fr; }
-      }
-    </style>
 
     <!-- Simplified app loading script -->
     <script>
       // Mark React as loaded - called from main.tsx
       window.markReactLoaded = function() {
-        // React app loaded successfully - loading indicator will be replaced automatically
+        document.documentElement.classList.add('react-loaded');
         console.log('React app loaded successfully');
       };
     </script>
@@ -249,18 +266,37 @@
 
   <body>
     <div id="root">
-      <!-- Loading indicator shown immediately -->
-      <div style="position: fixed; inset: 0; background: hsl(var(--background)); display: flex; align-items: center; justify-content: center; z-index: 50;">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-          <div style="width: 2rem; height: 2rem; border: 2px solid hsl(var(--primary)); border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-          <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">Načítává se...</p>
-        </div>
-      </div>
-      <style>
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      </style>
+      <!-- IMMEDIATE STATIC CONTENT FOR FAST FCP -->
+      <main class="min-h-screen">
+        <!-- Static Hero Section - Shows immediately -->
+        <section class="static-hero" aria-labelledby="static-hero-title">
+          <div class="static-content">
+            <div class="text-center lg:text-left">
+              <span class="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
+                Vaše cesta k nejlepšímu PODA internetu
+              </span>
+              <h1 id="static-hero-title" class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight">
+                PODA Internet - Prémiové optické gigabitové 
+                <span class="text-poda-orange block sm:inline"> připojení a smart TV</span>
+              </h1>
+              <p class="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Přinášíme Vám rychlé <span class="text-poda-blue"><span class="text-poda-orange">PO</span>DA</span> <span class="text-poda-blue"><span class="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užívejte si internet i TV bez kompromisů.
+              </p>
+            </div>
+            <div class="relative hidden lg:block">
+              <img 
+                src="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" 
+                alt="PODA Internet připojení" 
+                width="512" 
+                height="512"
+                style="max-width: 100%; height: auto;"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
     <script type="module" src="/src/main.tsx"></script>
     
@@ -282,7 +318,6 @@
         }
       }, true);
     </script>
-    
 
     <!-- NoScript fallback -->
 <noscript>

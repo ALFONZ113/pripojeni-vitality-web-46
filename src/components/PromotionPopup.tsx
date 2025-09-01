@@ -25,6 +25,11 @@ const PromotionPopup = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   
   useEffect(() => {
+    // Clear session storage on component mount to ensure popup shows for testing
+    // Comment this out in production if you want session persistence
+    console.log('PromotionPopup: Clearing session storage for testing');
+    sessionStorage.removeItem(POPUP_STORAGE_KEY);
+    
     // Check if we've shown the popup in this session
     const hasShownInSession = () => {
       return sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
@@ -32,7 +37,7 @@ const PromotionPopup = () => {
 
     const showPopup = () => {
       if (!hasShownInSession() && !isOpen) {
-        console.log('PromotionPopup: Showing popup');
+        console.log('PromotionPopup: Showing popup after delay');
         setIsOpen(true);
         // Save that we've shown the popup in this session
         sessionStorage.setItem(POPUP_STORAGE_KEY, 'shown');
@@ -41,13 +46,14 @@ const PromotionPopup = () => {
     
     // Show popup after delay if not shown in this session
     if (!hasShownInSession()) {
-      console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms');
+      console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms (20 seconds)');
       const timer = setTimeout(showPopup, POPUP_DELAY_MS);
       
       // Exit intent detection
       const handleMouseLeave = (e: MouseEvent) => {
         // Only trigger if mouse leaves from the top of the window (user wants to close tab/navigate away)
         if (e.clientY <= 0 && e.relatedTarget === null) {
+          console.log('PromotionPopup: Exit intent detected');
           showPopup();
         }
       };
@@ -55,7 +61,7 @@ const PromotionPopup = () => {
       document.addEventListener('mouseleave', handleMouseLeave);
       
       return () => {
-        console.log('PromotionPopup: Cleaning up');
+        console.log('PromotionPopup: Cleaning up timer and event listeners');
         clearTimeout(timer);
         document.removeEventListener('mouseleave', handleMouseLeave);
       };

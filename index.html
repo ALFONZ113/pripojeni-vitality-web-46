@@ -69,13 +69,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Completely non-blocking font loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
-    </noscript>
+    <!-- Completely non-blocking font loading with font-display swap -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
+    </style>
+    
     
     <!-- Inline critical CSS to prevent render blocking -->
     <style>
@@ -141,6 +140,7 @@
       .font-medium { font-weight: 500; }
       .mb-4 { margin-bottom: 1rem; }
       .block { display: block; }
+      .hidden { display: none; }
       
       @media (min-width: 640px) {
         .sm\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
@@ -159,6 +159,7 @@
         .lg\\:text-left { text-align: left; }
         .lg\\:text-6xl { font-size: 3.75rem; line-height: 1; }
         .lg\\:mx-0 { margin-left: 0; margin-right: 0; }
+        .lg\\:block { display: block; }
       }
 
       /* Critical styles for immediate content display */
@@ -198,8 +199,24 @@
     </style>
     
     <!-- Completely non-blocking CSS loading -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
-    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+    <script>
+      // Load main CSS without blocking render
+      const loadCSS = (href) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.media = 'print';
+        link.onload = () => { link.media = 'all'; };
+        document.head.appendChild(link);
+      };
+      
+      // Load main stylesheet after critical render
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => loadCSS('/src/index.css'));
+      } else {
+        setTimeout(() => loadCSS('/src/index.css'), 0);
+      }
+    </script>
     
     <!-- Optimize LCP images with highest priority -->
     <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" imagesizes="(max-width: 640px) 256px, (max-width: 1024px) 384px, 512px" width="512" height="512" onerror="this.href='/placeholder.svg'">

@@ -77,8 +77,35 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" crossorigin="anonymous">
     </noscript>
     
-    <!-- Preload critical CSS and images -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="console.warn('Failed to load CSS')">
+    <!-- Inline critical CSS to prevent render blocking -->
+    <style>
+      /* Critical above-the-fold styles inlined for faster FCP */
+      
+      /* Essential base styles */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { 
+        font-family: 'Inter', sans-serif; 
+        background: hsl(210 33% 99%); 
+        color: hsl(210 35% 10%);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* Critical layout utilities */
+      .min-h-screen { min-height: 100vh; }
+      .relative { position: relative; }
+      .fixed { position: fixed; }
+      .inset-0 { inset: 0; }
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .z-50 { z-index: 50; }
+    </style>
+    
+    <!-- Preload main CSS bundle with high priority -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" width="256" height="256" onerror="this.href='/placeholder.svg'">

@@ -14,48 +14,61 @@ declare global {
   }
 }
 
-// Performance tracking
-console.log('React app loading started');
+// Performance tracking - minimize console logs for production
+if (process.env.NODE_ENV === 'development') {
+  console.log('React app loading started');
+}
 const startTime = performance.now();
 
-// Error tracking with improved error information
-const handleError = (error: Error) => {
-  console.error('[App Error]:', error.message);
-  console.error('Stack:', error.stack);
-};
-
-// Enhanced render application with performance monitoring
+// Enhanced render application with optimized performance
 try {
-  // Client-side redirects for legacy blog URLs (ID -> slug)
+  // Handle redirects first, before any DOM manipulation
   handleBlogRedirects();
-  const rootElement = document.getElementById("root");
   
+  const rootElement = document.getElementById("root");
   if (!rootElement) {
     throw new Error("Root element not found - check your HTML");
   }
   
-  // Create root and render with performance tracking
+  // Create root and render immediately for faster FCP
   const root = createRoot(rootElement);
+  
+  // Use synchronous rendering for critical initial paint
   root.render(<App />);
   
-  // Signal successful React load to global scope
+  // Signal successful React load immediately for better UX
   const loadTime = performance.now() - startTime;
-  console.log(`React app loaded in ${loadTime.toFixed(2)}ms`);
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`React app loaded in ${loadTime.toFixed(2)}ms`);
+  }
   
   // Mark React as loaded for static content management
   if (window.markReactLoaded) {
     window.markReactLoaded();
   }
   
-  // Initialize performance optimizations after successful render
-  requestIdleCallback(() => {
-    preloadCriticalRoutes();
-    optimizeChunkLoading();
-    measureCoreWebVitals();
-  });
+  // Defer non-critical optimizations to avoid blocking initial render
+  setTimeout(() => {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        preloadCriticalRoutes();
+        optimizeChunkLoading();
+        measureCoreWebVitals();
+      }, { timeout: 2000 });
+    } else {
+      setTimeout(() => {
+        preloadCriticalRoutes();
+        optimizeChunkLoading();
+        measureCoreWebVitals();
+      }, 100);
+    }
+  }, 0);
   
 } catch (error) {
-  handleError(error as Error);
+  // Minimal error handling to avoid blocking render
+  if (process.env.NODE_ENV === 'development') {
+    console.error('[App Error]:', (error as Error).message);
+  }
   console.error('React render failed, showing fallback');
   
   // Fallback UI if React fails to render

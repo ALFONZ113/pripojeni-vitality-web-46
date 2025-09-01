@@ -3,9 +3,9 @@ import React from 'react';
 
 const HeroBackground = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      {/* Base gradient mesh background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-secondary/5"></div>
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ contentVisibility: 'auto' }}>
+      {/* Base gradient mesh background - optimized for LCP */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-secondary/5" style={{ transform: 'translateZ(0)' }}></div>
       
       {/* Animated gradient orbs */}
       <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-radial from-primary/20 via-primary/10 to-transparent rounded-full animate-float"></div>

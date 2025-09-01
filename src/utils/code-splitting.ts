@@ -92,44 +92,35 @@ export const monitorBundlePerformance = () => {
 };
 
 /**
- * Conditionally load Mapy.cz only when user interacts with address input
+ * Conditionally load Mapy.cz only when needed
  */
 export const loadMapyWhenNeeded = () => {
   if (typeof window === 'undefined' || window.__MAPY_LOADED) return;
   
-  // Only load when user actually focuses on address input
-  const addressInputs = document.querySelectorAll('input[data-mapy-suggest]');
+  const needsMapy = () => {
+    return document.querySelector('[data-needs-mapy]') || 
+           window.location.pathname.includes('/kontakt') ||
+           document.querySelector('input[data-mapy-suggest]');
+  };
   
-  addressInputs.forEach(input => {
-    const loadMapy = () => {
-      if (window.__MAPY_LOADED || window.__MAPY_LOADING) return;
-      window.__MAPY_LOADING = true;
-      
-      const script = document.createElement('script');
-      script.src = 'https://api.mapy.cz/loader.js';
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        if (typeof window.initMapy === 'function') {
-          window.initMapy();
-        }
-        window.__MAPY_LOADED = true;
-        window.__MAPY_LOADING = false;
-      };
-      document.head.appendChild(script);
+  if (needsMapy()) {
+    const script = document.createElement('script');
+    script.src = 'https://api.mapy.cz/loader.js';
+    script.async = true;
+    script.onload = () => {
+      if (typeof window.initMapy === 'function') {
+        window.initMapy();
+      }
+      window.__MAPY_LOADED = true;
     };
-    
-    // Load only on first focus/interaction
-    input.addEventListener('focus', loadMapy, { once: true });
-    input.addEventListener('input', loadMapy, { once: true });
-  });
+    document.head.appendChild(script);
+  }
 };
 
 declare global {
   interface Window {
     __UI_LOADED?: boolean;
     __MAPY_LOADED?: boolean;
-    __MAPY_LOADING?: boolean;
     initMapy?: () => void;
   }
 }

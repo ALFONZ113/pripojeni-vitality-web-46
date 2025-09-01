@@ -26,12 +26,9 @@
     <meta name="last-modified" content="2025-01-14" />
     <meta name="content-updated" content="2025-01-14T12:00:00Z" />
     
-    <!-- Simplified cache control with version bump -->
-    <meta http-equiv="Cache-Control" content="public, max-age=0, must-revalidate" />
-    <meta name="version" content="4.1" />
-    <meta name="build-timestamp" content="2025-01-14T15:30:00Z" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <!-- Simplified cache control -->
+    <meta http-equiv="Cache-Control" content="public, max-age=3600" />
+    <meta name="version" content="4.0" />
     
     <!-- Canonical URLs -->
     <link rel="canonical" href="https://www.popri.cz/" />
@@ -72,12 +69,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Completely non-blocking font loading with font-display swap -->
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
-    </style>
-    
+    <!-- Completely non-blocking font loading -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
+    </noscript>
     
     <!-- Inline critical CSS to prevent render blocking -->
     <style>
@@ -103,45 +101,9 @@
       .inset-0 { inset: 0; }
       .flex { display: flex; }
       .items-center { align-items: center; }
-      .items-start { align-items: flex-start; }
       .justify-center { justify-content: center; }
       .z-50 { z-index: 50; }
       .z-10 { z-index: 10; }
-      .space-y-6 > * + * { margin-top: 1.5rem; }
-      .space-y-4 > * + * { margin-top: 1rem; }
-      .mt-4 { margin-top: 1rem; }
-      .mr-4 { margin-right: 1rem; }
-      .mr-3 { margin-right: 0.75rem; }
-      .mb-2 { margin-bottom: 0.5rem; }
-      .mb-1 { margin-bottom: 0.25rem; }
-      .ml-6 { margin-left: 1.5rem; }
-      .p-6 { padding: 1.5rem; }
-      .p-4 { padding: 1rem; }
-      .p-3 { padding: 0.75rem; }
-      .p-2 { padding: 0.5rem; }
-      .rounded-xl { border-radius: 0.75rem; }
-      .rounded-lg { border-radius: 0.5rem; }
-      .border { border-width: 1px; }
-      .border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
-      .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-      .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-      .backdrop-blur-md { backdrop-filter: blur(12px); }
-      .bg-blue-50 { background-color: rgb(239 246 255); }
-      .bg-orange-50 { background-color: rgb(255 247 237); }
-      .h-6 { height: 1.5rem; }
-      .w-6 { width: 1.5rem; }
-      .h-5 { height: 1.25rem; }
-      .w-5 { width: 1.25rem; }
-      .font-semibold { font-weight: 600; }
-      .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-      
-      /* Glass card effect */
-      .glass-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
       
       /* Critical hero styles for faster LCP */
       .container-custom { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
@@ -179,7 +141,6 @@
       .font-medium { font-weight: 500; }
       .mb-4 { margin-bottom: 1rem; }
       .block { display: block; }
-      .hidden { display: none; }
       
       @media (min-width: 640px) {
         .sm\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
@@ -198,7 +159,6 @@
         .lg\\:text-left { text-align: left; }
         .lg\\:text-6xl { font-size: 3.75rem; line-height: 1; }
         .lg\\:mx-0 { margin-left: 0; margin-right: 0; }
-        .lg\\:block { display: block; }
       }
 
       /* Critical styles for immediate content display */
@@ -214,65 +174,32 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 1rem;
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 2rem !important;
-        align-items: center !important;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
       }
 
-      /* Robust desktop layout with higher specificity */
-      @media screen and (min-width: 1024px) {
+      @media (min-width: 1024px) {
         .static-content {
-          grid-template-columns: repeat(2, 1fr) !important;
-          gap: 3rem !important;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
         }
         .static-hero {
           padding-top: 8rem;
           padding-bottom: 6rem;
         }
-        .static-content > .feature-cards-desktop {
-          display: block !important;
-        }
-        .static-content > .feature-cards-mobile {
-          display: none !important;
-        }
-      }
-
-      /* Mobile layout */
-      @media screen and (max-width: 1023px) {
-        .static-content > .feature-cards-desktop {
-          display: none !important;
-        }
-        .static-content > .feature-cards-mobile {
-          display: block !important;
-        }
       }
 
       /* Hide static content when React loads */
       .react-loaded .static-content {
-        display: none !important;
+        display: none;
       }
     </style>
     
     <!-- Completely non-blocking CSS loading -->
-    <script>
-      // Load main CSS without blocking render
-      const loadCSS = (href) => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        link.media = 'print';
-        link.onload = () => { link.media = 'all'; };
-        document.head.appendChild(link);
-      };
-      
-      // Load main stylesheet after critical render
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => loadCSS('/src/index.css'));
-      } else {
-        setTimeout(() => loadCSS('/src/index.css'), 0);
-      }
-    </script>
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <!-- Optimize LCP images with highest priority -->
     <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" imagesizes="(max-width: 640px) 256px, (max-width: 1024px) 384px, 512px" width="512" height="512" onerror="this.href='/placeholder.svg'">
@@ -356,86 +283,16 @@
                 Přinášíme Vám rychlé <span class="text-poda-blue"><span class="text-poda-orange">PO</span>DA</span> <span class="text-poda-blue"><span class="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užívejte si internet i TV bez kompromisů.
               </p>
             </div>
-            
-            <!-- Feature Cards Desktop - Right Column -->
-            <div class="feature-cards-desktop relative mt-4 lg:mt-0 hidden md:block">
-              <div class="relative space-y-6">
-                <!-- Rychlý optický internet -->
-                <article class="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md">
-                  <div class="flex items-start">
-                    <div class="bg-blue-50 p-3 rounded-lg mr-4 flex items-center justify-center">
-                      <svg class="h-6 w-6 text-poda-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-xl text-poda-blue mb-2">Rychlý optický internet</h3>
-                      <p class="text-gray-600">PODA připojení s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost.</p>
-                    </div>
-                  </div>
-                </article>
-                
-                <!-- Chytrá televize -->
-                <article class="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md ml-6">
-                  <div class="flex items-start">
-                    <div class="bg-orange-50 p-3 rounded-lg mr-4 flex items-center justify-center">
-                      <svg class="h-6 w-6 text-poda-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-xl text-poda-blue mb-2">Chytrá televize</h3>
-                      <p class="text-gray-600">Získáte více než 100 TV programů, sledování na všech zařízeních a vlastní výběr stanic.</p>
-                    </div>
-                  </div>
-                </article>
-                
-                <!-- Moderní technologie -->
-                <article class="glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md">
-                  <div class="flex items-start">
-                    <div class="bg-blue-50 p-3 rounded-lg mr-4 flex items-center justify-center">
-                      <svg class="h-6 w-6 text-poda-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-xl text-poda-blue mb-2">Moderní technologie</h3>
-                      <p class="text-gray-600">Optická síť GPON od PODA zajišťuje maximální stabilitu a komfort bez kompromisů.</p>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-            
-            <!-- Mobile Feature Cards -->
-            <div class="feature-cards-mobile block md:hidden space-y-4 mt-4">
-              <div class="glass-card rounded-xl p-4 border border-white/20 shadow-lg backdrop-blur-md">
-                <div class="flex items-start">
-                  <div class="bg-blue-50 p-2 rounded-lg mr-3 flex items-center justify-center">
-                    <svg class="h-5 w-5 text-poda-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-lg text-poda-blue mb-1">Rychlý optický internet</h3>
-                    <p class="text-gray-600 text-sm">PODA připojení s garantovanou rychlostí až 1000/1000 Mbps.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="glass-card rounded-xl p-4 border border-white/20 shadow-lg backdrop-blur-md">
-                <div class="flex items-start">
-                  <div class="bg-orange-50 p-2 rounded-lg mr-3 flex items-center justify-center">
-                    <svg class="h-5 w-5 text-poda-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-lg text-poda-blue mb-1">Chytrá televize</h3>
-                    <p class="text-gray-600 text-sm">Získáte více než 100 TV programů na všech zařízeních.</p>
-                  </div>
-                </div>
-              </div>
+            <div class="relative hidden lg:block">
+              <img 
+                src="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" 
+                alt="PODA Internet připojení" 
+                width="512" 
+                height="512"
+                style="max-width: 100%; height: auto;"
+                loading="eager"
+                fetchpriority="high"
+              />
             </div>
           </div>
         </section>

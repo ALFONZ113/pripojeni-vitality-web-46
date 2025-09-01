@@ -153,39 +153,7 @@
     <link rel="preload" href="/css/noscript.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
     <noscript><link rel="stylesheet" href="/css/noscript.css"></noscript>
     
-    <!-- External APIs - Completely non-blocking -->
-    <script>
-      // Load Mapy.cz only when needed, not blocking render
-      window.addEventListener('load', function() {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(function() {
-            var script = document.createElement('script');
-            script.src = 'https://api.mapy.cz/loader.js';
-            script.async = true;
-            script.onload = function() {
-              var loaderScript = document.createElement('script');
-              loaderScript.src = '/js/mapy-loader.js';
-              loaderScript.async = true;
-              document.head.appendChild(loaderScript);
-            };
-            document.head.appendChild(script);
-          }, { timeout: 3000 });
-        } else {
-          setTimeout(function() {
-            var script = document.createElement('script');
-            script.src = 'https://api.mapy.cz/loader.js';
-            script.async = true;
-            script.onload = function() {
-              var loaderScript = document.createElement('script');
-              loaderScript.src = '/js/mapy-loader.js';
-              loaderScript.async = true;
-              document.head.appendChild(loaderScript);
-            };
-            document.head.appendChild(script);
-          }, 100);
-        }
-      });
-    </script>
+    <!-- Remove Mapy.cz from initial load - will load conditionally via code-splitting -->
     
     <!-- Schema.org markup using JSON-LD with updated data -->
     <script type="application/ld+json">

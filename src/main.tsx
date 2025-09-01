@@ -51,14 +51,20 @@ try {
   setTimeout(() => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
+        const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
         preloadCriticalRoutes();
         optimizeChunkLoading();
+        lazyLoadHeavyComponents();
+        loadMapyWhenNeeded();
         measureCoreWebVitals();
       }, { timeout: 2000 });
     } else {
       setTimeout(() => {
+        const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
         preloadCriticalRoutes();
         optimizeChunkLoading();
+        lazyLoadHeavyComponents();
+        loadMapyWhenNeeded();
         measureCoreWebVitals();
       }, 100);
     }

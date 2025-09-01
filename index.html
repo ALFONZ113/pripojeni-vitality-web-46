@@ -69,28 +69,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Preload fonts - replace the old stylesheet link -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
+    <!-- Non-blocking font loading with font-display: swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" media="print" onload="this.media='all'">
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
     </noscript>
     
     <!-- Inline critical CSS to prevent render blocking -->
     <style>
       /* Critical above-the-fold styles inlined for faster FCP */
       
-      /* Essential base styles */
+      /* Essential base styles with fallback fonts */
       * { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
       body { 
-        font-family: 'Inter', sans-serif; 
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
         background: hsl(210 33% 99%); 
         color: hsl(210 35% 10%);
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        font-display: swap;
       }
       
       /* Critical layout utilities */
@@ -104,8 +105,8 @@
       .z-50 { z-index: 50; }
     </style>
     
-    <!-- Preload main CSS bundle with high priority -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
+    <!-- Non-blocking CSS loading with fallback font -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" width="256" height="256" onerror="this.href='/placeholder.svg'">
@@ -114,9 +115,39 @@
     <!-- NoScript CSS -->
     <link rel="stylesheet" href="/css/noscript.css">
     
-    <!-- External APIs - Non-blocking loading -->
-    <script src="https://api.mapy.cz/loader.js" async defer></script>
-    <script src="/js/mapy-loader.js" async defer></script>
+    <!-- External APIs - Completely non-blocking -->
+    <script>
+      // Load Mapy.cz only when needed, not blocking render
+      window.addEventListener('load', function() {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(function() {
+            var script = document.createElement('script');
+            script.src = 'https://api.mapy.cz/loader.js';
+            script.async = true;
+            script.onload = function() {
+              var loaderScript = document.createElement('script');
+              loaderScript.src = '/js/mapy-loader.js';
+              loaderScript.async = true;
+              document.head.appendChild(loaderScript);
+            };
+            document.head.appendChild(script);
+          }, { timeout: 3000 });
+        } else {
+          setTimeout(function() {
+            var script = document.createElement('script');
+            script.src = 'https://api.mapy.cz/loader.js';
+            script.async = true;
+            script.onload = function() {
+              var loaderScript = document.createElement('script');
+              loaderScript.src = '/js/mapy-loader.js';
+              loaderScript.async = true;
+              document.head.appendChild(loaderScript);
+            };
+            document.head.appendChild(script);
+          }, 100);
+        }
+      });
+    </script>
     
     <!-- Schema.org markup using JSON-LD with updated data -->
     <script type="application/ld+json">

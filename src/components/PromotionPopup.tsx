@@ -44,30 +44,18 @@ const PromotionPopup = () => {
       }
     };
     
-    // Show popup after delay if not shown in this session
-    if (!hasShownInSession()) {
-      console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms (20 seconds)');
-      const timer = setTimeout(showPopup, POPUP_DELAY_MS);
-      
-      // Exit intent detection
-      const handleMouseLeave = (e: MouseEvent) => {
-        // Only trigger if mouse leaves from the top of the window (user wants to close tab/navigate away)
-        if (e.clientY <= 0 && e.relatedTarget === null) {
-          console.log('PromotionPopup: Exit intent detected');
-          showPopup();
-        }
-      };
-      
-      document.addEventListener('mouseleave', handleMouseLeave);
-      
-      return () => {
-        console.log('PromotionPopup: Cleaning up timer and event listeners');
-        clearTimeout(timer);
-        document.removeEventListener('mouseleave', handleMouseLeave);
-      };
-    } else {
-      console.log('PromotionPopup: Already shown in this session');
-    }
+      // Show popup after delay if not shown in this session
+      if (!hasShownInSession()) {
+        console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms (20 seconds)');
+        const timer = setTimeout(showPopup, POPUP_DELAY_MS);
+        
+        return () => {
+          console.log('PromotionPopup: Cleaning up timer');
+          clearTimeout(timer);
+        };
+      } else {
+        console.log('PromotionPopup: Already shown in this session');
+      }
   }, [isOpen]);
   
   const handleClose = () => {

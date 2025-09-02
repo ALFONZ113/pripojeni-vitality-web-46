@@ -215,62 +215,126 @@
         }
       }
 
-      /* Static feature cards styles */
+      /* Static feature cards styles with enhanced responsiveness */
       .static-features {
         position: relative;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .static-features {
+          margin-top: 2rem;
+        }
       }
 
       .static-feature-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 0.75rem;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
       }
 
-      .static-feature-card:hover {
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
+      @media (min-width: 640px) {
+        .static-feature-card {
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
+          border-radius: 1.125rem;
+        }
+      }
+
+      .static-feature-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .static-feature-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
       }
 
       .static-card-content {
         display: flex;
         align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      @media (min-width: 640px) {
+        .static-card-content {
+          gap: 1rem;
+        }
       }
 
       .static-icon-wrapper {
         padding: 0.75rem;
-        border-radius: 0.5rem;
-        margin-right: 1rem;
+        border-radius: 0.75rem;
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      @media (min-width: 640px) {
+        .static-icon-wrapper {
+          padding: 1rem;
+          border-radius: 0.875rem;
+        }
       }
 
       .static-icon-blue {
-        background-color: hsl(210 50% 28% / 0.1);
+        background-color: hsl(210 50% 28% / 0.12);
       }
 
       .static-icon-orange {
-        background-color: hsl(25 100% 60% / 0.1);
+        background-color: hsl(25 100% 60% / 0.12);
+      }
+
+      .static-card-text {
+        flex: 1;
+        min-width: 0;
       }
 
       .static-card-text h3 {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
         font-weight: 600;
         color: hsl(210 50% 28%);
         margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+
+      @media (min-width: 640px) {
+        .static-card-text h3 {
+          font-size: 1.25rem;
+          margin-bottom: 0.625rem;
+        }
       }
 
       .static-card-text p {
         color: rgb(75, 85, 99);
         font-size: 0.875rem;
         line-height: 1.5;
+      }
+
+      @media (min-width: 640px) {
+        .static-card-text p {
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+      }
+
+      /* Desktop features with enhanced tablet support */
+      .static-desktop-features {
+        display: none;
       }
 
       @media (min-width: 768px) {
@@ -283,58 +347,85 @@
           margin-top: 0;
         }
         .static-feature-card {
+          margin-bottom: 1.25rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .static-feature-card {
           margin-bottom: 1.5rem;
         }
-        .static-card-text h3 {
-          font-size: 1.25rem;
-        }
-        .static-card-text p {
-          font-size: 1rem;
-        }
       }
 
-      .static-desktop-features {
-        display: none;
-      }
-
-      /* Decorative background elements */
+      /* Enhanced decorative elements with performance optimization */
       .static-bg-blur {
         position: absolute;
-        width: 10rem;
-        height: 10rem;
+        width: 8rem;
+        height: 8rem;
         border-radius: 50%;
-        filter: blur(3rem);
-        opacity: 0.3;
-        animation: pulse 4s infinite;
+        filter: blur(2.5rem);
+        opacity: 0.25;
+        animation: pulse-gentle 4s ease-in-out infinite;
+        will-change: transform, opacity;
+      }
+
+      @media (min-width: 1024px) {
+        .static-bg-blur {
+          width: 10rem;
+          height: 10rem;
+          filter: blur(3rem);
+          opacity: 0.3;
+        }
       }
 
       .static-bg-blue {
-        background-color: rgb(191, 219, 254);
-        top: -2.5rem;
-        left: -2.5rem;
+        background: linear-gradient(135deg, rgb(191, 219, 254), rgb(147, 197, 253));
+        top: -2rem;
+        left: -2rem;
       }
 
       .static-bg-orange {
-        background-color: rgb(254, 215, 170);
-        bottom: -2.5rem;
-        right: -2.5rem;
+        background: linear-gradient(135deg, rgb(254, 215, 170), rgb(251, 191, 36));
+        bottom: -2rem;
+        right: -2rem;
         animation-delay: 2s;
       }
 
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); opacity: 0.3; }
-        50% { transform: scale(1.1); opacity: 0.4; }
+      @keyframes pulse-gentle {
+        0%, 100% { 
+          transform: scale(1); 
+          opacity: 0.25; 
+        }
+        50% { 
+          transform: scale(1.05); 
+          opacity: 0.35; 
+        }
       }
 
-      /* SVG icons for feature cards */
+      /* Responsive SVG icons */
       .static-icon {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.25rem;
+        height: 1.25rem;
         stroke: currentColor;
         fill: none;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
+        transition: all 0.2s ease;
+      }
+
+      @media (min-width: 640px) {
+        .static-icon {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .static-icon {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
       }
 
       .static-icon-blue { color: hsl(210 50% 28%); }
@@ -343,6 +434,38 @@
       /* Hide static content when React loads */
       .react-loaded .static-content {
         display: none;
+      }
+
+      /* Enhanced responsive typography */
+      @media (max-width: 640px) {
+        .static-content h1 {
+          font-size: 2rem;
+          line-height: 1.2;
+        }
+      }
+
+      @media (min-width: 640px) and (max-width: 768px) {
+        .static-content h1 {
+          font-size: 2.5rem;
+          line-height: 1.15;
+        }
+      }
+
+      /* Landscape phone optimizations */
+      @media screen and (orientation: landscape) and (max-height: 600px) {
+        .static-hero {
+          padding-top: 3rem;
+          padding-bottom: 2rem;
+        }
+        
+        .static-content h1 {
+          font-size: 1.875rem;
+          line-height: 1.1;
+        }
+        
+        .static-feature-card {
+          padding: 1rem;
+        }
       }
     </style>
     

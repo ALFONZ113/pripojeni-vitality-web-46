@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 const startTime = performance.now();
 
-// Enhanced render application with optimized performance and IMMEDIATE CONTENT RENDERING
+// ULTRA-OPTIMIZED React rendering for fastest possible FCP
 try {
   // Handle redirects first, before any DOM manipulation
   handleBlogRedirects();
@@ -30,45 +30,60 @@ try {
     throw new Error("Root element not found - check your HTML");
   }
   
-  // Create root and render IMMEDIATELY for fastest FCP
+  // CRITICAL: Create and render React IMMEDIATELY using concurrent features
   const root = createRoot(rootElement);
   
-  // CRITICAL: Use immediate synchronous rendering to replace static content ASAP
+  // Use React 18 concurrent rendering for better performance
   root.render(<App />);
   
-  // Mark React as loaded IMMEDIATELY for FCP improvement
+  // IMMEDIATE callback to mark React loaded for fastest static content replacement
   const loadTime = performance.now() - startTime;
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`React app loaded in ${loadTime.toFixed(2)}ms`);
-  }
   
-  // Signal React loaded immediately to hide static content
+  // Signal React loaded IMMEDIATELY
   if (window.markReactLoaded) {
     window.markReactLoaded();
   }
   
-  // Defer ALL non-critical optimizations to avoid blocking initial render
-  // Use immediate callback to avoid any delays
-  setTimeout(() => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`React FCP optimized: ${loadTime.toFixed(2)}ms`);
+  }
+  
+  // Defer ALL non-critical operations until after paint
+  requestAnimationFrame(() => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
-        const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
-        preloadCriticalRoutes();
-        optimizeChunkLoading();
-        lazyLoadHeavyComponents();
-        loadMapyWhenNeeded();
-        measureCoreWebVitals();
-      }, { timeout: 2000 });
+        // Dynamic imports for non-blocking optimization loading
+        import('./utils/code-splitting').then(({ 
+          preloadCriticalRoutes, 
+          optimizeChunkLoading, 
+          lazyLoadHeavyComponents, 
+          loadMapyWhenNeeded 
+        }) => {
+          preloadCriticalRoutes();
+          optimizeChunkLoading();  
+          lazyLoadHeavyComponents();
+          loadMapyWhenNeeded();
+          measureCoreWebVitals();
+        });
+      }, { timeout: 1000 });
     } else {
-      // Even faster fallback - no setTimeout delay
-      const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
-      preloadCriticalRoutes();
-      optimizeChunkLoading();
-      lazyLoadHeavyComponents();
-      loadMapyWhenNeeded();
-      measureCoreWebVitals();
+      // Immediate fallback for browsers without requestIdleCallback
+      setTimeout(() => {
+        import('./utils/code-splitting').then(({ 
+          preloadCriticalRoutes, 
+          optimizeChunkLoading, 
+          lazyLoadHeavyComponents, 
+          loadMapyWhenNeeded 
+        }) => {
+          preloadCriticalRoutes();
+          optimizeChunkLoading();
+          lazyLoadHeavyComponents();
+          loadMapyWhenNeeded();
+          measureCoreWebVitals();
+        });
+      }, 100);
     }
-  }, 0);
+  });
   
 } catch (error) {
   // Minimal error handling to avoid blocking render

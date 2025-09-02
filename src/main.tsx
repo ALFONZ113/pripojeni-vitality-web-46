@@ -3,7 +3,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
+import { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } from './utils/code-splitting'
 import { measureCoreWebVitals } from './utils/performance-optimization'
 import { handleBlogRedirects } from './utils/redirectManager'
 
@@ -52,7 +52,6 @@ try {
   setTimeout(() => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
-        const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
         preloadCriticalRoutes();
         optimizeChunkLoading();
         lazyLoadHeavyComponents();
@@ -61,7 +60,6 @@ try {
       }, { timeout: 2000 });
     } else {
       // Even faster fallback - no setTimeout delay
-      const { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } = require('./utils/code-splitting');
       preloadCriticalRoutes();
       optimizeChunkLoading();
       lazyLoadHeavyComponents();

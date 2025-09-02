@@ -49,16 +49,15 @@ const FeatureCard = ({
       }} 
       custom={index} 
       variants={featureCardVariants} 
-      className={`glass-card rounded-xl p-4 sm:p-5 lg:p-6 border border-white/20 shadow-xl backdrop-blur-md 
-                  no-touch:hover:shadow-2xl transition-all duration-300 active:scale-95 ${className}`}
+      className={`glass-card rounded-xl p-6 border border-white/20 shadow-xl backdrop-blur-md hover:shadow-2xl transition-all ${className}`}
     >
       <div className="flex items-start">
-        <div className={`${iconBgColor} p-2.5 sm:p-3 lg:p-3.5 rounded-lg mr-3 sm:mr-4 flex items-center justify-center flex-shrink-0`} aria-hidden="true">
-          <Icon className={`h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 ${iconColor}`} />
+        <div className={`${iconBgColor} p-3 rounded-lg mr-4 flex items-center justify-center`} aria-hidden="true">
+          <Icon className={`h-6 w-6 ${iconColor}`} />
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg sm:text-xl lg:text-2xl text-poda-blue mb-2 leading-tight">{title}</h3>
-          <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed">{description}</p>
+        <div>
+          <h3 className="font-semibold text-xl text-poda-blue mb-2">{title}</h3>
+          <p className="text-gray-600">{description}</p>
         </div>
       </div>
     </motion.article>

@@ -28,12 +28,7 @@ const HeroContainer = ({ handleContactClick }: HeroContainerProps) => {
       <HeroBackground />
 
       <div className="container-custom relative z-10">
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center min-h-[80vh] lg:min-h-[90vh]" 
-          initial="hidden" 
-          animate="show" 
-          variants={container}
-        >
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" initial="hidden" animate="show" variants={container}>
           <HeroContent handleContactClick={handleContactClick} />
           <FeatureCardsDesktop />
           <MobileFeatureCards />

@@ -2,7 +2,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-// CSS loaded non-blocking via index.html
+import './index.css'
 import { preloadCriticalRoutes, optimizeChunkLoading } from './utils/code-splitting'
 import { measureCoreWebVitals } from './utils/performance-optimization'
 import { handleBlogRedirects } from './utils/redirectManager'

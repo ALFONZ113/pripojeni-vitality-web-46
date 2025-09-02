@@ -5,11 +5,11 @@ import { Wifi, Tv, Zap } from 'lucide-react';
 
 const FeatureCardsDesktop = () => {
   return (
-    <div className="relative mt-6 lg:mt-0 hidden md:block">
-      <div className="absolute -top-10 -left-10 w-32 h-32 lg:w-40 lg:h-40 bg-blue-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
-      <div className="absolute -bottom-10 -right-10 w-32 h-32 lg:w-40 lg:h-40 bg-orange-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
+    <div className="relative mt-4 lg:mt-0 hidden md:block">
+      <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
+      <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-200 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" aria-hidden="true"></div>
       
-      <div className="relative space-y-4 lg:space-y-6">
+      <div className="relative space-y-6">
         <FeatureCard
           icon={Wifi}
           title="Rychlý optický internet"
@@ -26,7 +26,7 @@ const FeatureCardsDesktop = () => {
           iconColor="text-poda-orange"
           iconBgColor="bg-poda-orange/10"
           index={1}
-          className="md:ml-4 lg:ml-6"
+          className="ml-6"
         />
         
         <FeatureCard

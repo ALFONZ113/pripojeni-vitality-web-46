@@ -92,7 +92,7 @@ export const monitorBundlePerformance = () => {
 };
 
 /**
- * Conditionally load Mapy.cz only when needed
+ * Conditionally load Mapy.cz only when needed with proper deferring
  */
 export const loadMapyWhenNeeded = () => {
   if (typeof window === 'undefined' || window.__MAPY_LOADED) return;
@@ -103,18 +103,37 @@ export const loadMapyWhenNeeded = () => {
            document.querySelector('input[data-mapy-suggest]');
   };
   
-  if (needsMapy()) {
-    const script = document.createElement('script');
-    script.src = 'https://api.mapy.cz/loader.js';
-    script.async = true;
-    script.onload = () => {
-      if (typeof window.initMapy === 'function') {
-        window.initMapy();
-      }
-      window.__MAPY_LOADED = true;
-    };
-    document.head.appendChild(script);
+  // Only load after user interaction or after significant delay
+  const loadMapy = () => {
+    if (needsMapy() && !window.__MAPY_LOADED) {
+      const script = document.createElement('script');
+      script.src = 'https://api.mapy.cz/loader.js';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        if (typeof window.initMapy === 'function') {
+          setTimeout(() => window.initMapy(), 100);
+        }
+        window.__MAPY_LOADED = true;
+      };
+      script.onerror = () => {
+        console.warn('Failed to load Mapy.cz');
+      };
+      document.head.appendChild(script);
+    }
+  };
+
+  // Defer loading until after critical rendering is complete
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadMapy, { timeout: 5000 });
+  } else {
+    setTimeout(loadMapy, 2000);
   }
+  
+  // Also load on user interaction
+  ['mousedown', 'touchstart', 'scroll'].forEach(event => {
+    document.addEventListener(event, loadMapy, { once: true, passive: true });
+  });
 };
 
 declare global {

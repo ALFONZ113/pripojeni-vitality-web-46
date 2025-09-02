@@ -69,9 +69,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Completely non-blocking font loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
+    <!-- Optimized non-blocking font loading with proper JavaScript fallback -->
+    <script>
+      // Load fonts non-blocking with proper swap behavior
+      function loadFont(url, id) {
+        if (document.getElementById(id)) return;
+        const link = document.createElement('link');
+        link.id = id;
+        link.rel = 'stylesheet';
+        link.href = url;
+        link.media = 'print';
+        link.onload = function() { this.media = 'all'; };
+        document.head.appendChild(link);
+      }
+      
+      // Use requestIdleCallback for better performance
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          loadFont('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap', 'font-inter');
+          loadFont('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap', 'font-sf');
+        });
+      } else {
+        setTimeout(function() {
+          loadFont('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap', 'font-inter');
+          loadFont('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap', 'font-sf');
+        }, 100);
+      }
+    </script>
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
@@ -197,8 +221,31 @@
       }
     </style>
     
-    <!-- Completely non-blocking CSS loading -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
+    <!-- Completely non-blocking CSS loading with enhanced fallback -->
+    <script>
+      // Load main CSS non-blocking
+      function loadMainCSS() {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/src/index.css';
+        link.media = 'print';
+        link.onload = function() { 
+          this.media = 'all'; 
+          document.documentElement.classList.add('css-loaded');
+        };
+        link.onerror = function() {
+          console.warn('Failed to load main CSS');
+        };
+        document.head.appendChild(link);
+      }
+      
+      // Load immediately after critical styles
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadMainCSS);
+      } else {
+        loadMainCSS();
+      }
+    </script>
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <!-- Optimize LCP images with highest priority -->
@@ -257,11 +304,28 @@
       };
     </script>
 
-    <!-- Lovable script tag -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <!-- Lovable script tag (deferred) -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" defer></script>
     
-    <!-- Analytics (deferred) -->
-    <script src="/js/analytics.js" defer></script>
+    <!-- Analytics (deferred with proper priority) -->
+    <script>
+      // Defer analytics until after critical rendering
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          const script = document.createElement('script');
+          script.src = '/js/analytics.js';
+          script.defer = true;
+          document.head.appendChild(script);
+        }, { timeout: 3000 });
+      } else {
+        setTimeout(function() {
+          const script = document.createElement('script');
+          script.src = '/js/analytics.js';
+          script.defer = true;
+          document.head.appendChild(script);
+        }, 1000);
+      }
+    </script>
   </head>
 
   <body>

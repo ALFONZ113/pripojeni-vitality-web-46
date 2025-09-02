@@ -28,7 +28,7 @@
     
     <!-- Simplified cache control -->
     <meta http-equiv="Cache-Control" content="public, max-age=3600" />
-    <meta name="version" content="4.0" />
+    <meta name="version" content="5.0" />
     
     <!-- Canonical URLs -->
     <link rel="canonical" href="https://www.popri.cz/" />
@@ -215,6 +215,131 @@
         }
       }
 
+      /* Static feature cards styles */
+      .static-features {
+        position: relative;
+        margin-top: 1rem;
+      }
+
+      .static-feature-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s ease;
+      }
+
+      .static-feature-card:hover {
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .static-card-content {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .static-icon-wrapper {
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        margin-right: 1rem;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .static-icon-blue {
+        background-color: hsl(210 50% 28% / 0.1);
+      }
+
+      .static-icon-orange {
+        background-color: hsl(25 100% 60% / 0.1);
+      }
+
+      .static-card-text h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: hsl(210 50% 28%);
+        margin-bottom: 0.5rem;
+      }
+
+      .static-card-text p {
+        color: rgb(75, 85, 99);
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      @media (min-width: 768px) {
+        .static-features {
+          display: none;
+        }
+        .static-desktop-features {
+          display: block;
+          position: relative;
+          margin-top: 0;
+        }
+        .static-feature-card {
+          margin-bottom: 1.5rem;
+        }
+        .static-card-text h3 {
+          font-size: 1.25rem;
+        }
+        .static-card-text p {
+          font-size: 1rem;
+        }
+      }
+
+      .static-desktop-features {
+        display: none;
+      }
+
+      /* Decorative background elements */
+      .static-bg-blur {
+        position: absolute;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        filter: blur(3rem);
+        opacity: 0.3;
+        animation: pulse 4s infinite;
+      }
+
+      .static-bg-blue {
+        background-color: rgb(191, 219, 254);
+        top: -2.5rem;
+        left: -2.5rem;
+      }
+
+      .static-bg-orange {
+        background-color: rgb(254, 215, 170);
+        bottom: -2.5rem;
+        right: -2.5rem;
+        animation-delay: 2s;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.3; }
+        50% { transform: scale(1.1); opacity: 0.4; }
+      }
+
+      /* SVG icons for feature cards */
+      .static-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .static-icon-blue { color: hsl(210 50% 28%); }
+      .static-icon-orange { color: hsl(25 100% 60%); }
+
       /* Hide static content when React loads */
       .react-loaded .static-content {
         display: none;
@@ -346,17 +471,93 @@
               <p class="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 Přinášíme Vám rychlé <span class="text-poda-blue"><span class="text-poda-orange">PO</span>DA</span> <span class="text-poda-blue"><span class="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užívejte si internet i TV bez kompromisů.
               </p>
+              
+              <!-- Mobile feature cards -->
+              <div class="static-features">
+                <div class="static-feature-card">
+                  <div class="static-card-content">
+                    <div class="static-icon-wrapper static-icon-blue">
+                      <svg class="static-icon static-icon-blue" viewBox="0 0 24 24">
+                        <path d="M5 12.55C5 11.14 4.07 9.96 2.75 9.52C2.27 9.34 2 8.86 2 8.33C2 7.7 2.55 7.15 3.18 7.15C3.4 7.15 3.61 7.2 3.8 7.32L11.8 11.4C12.11 11.56 12.47 11.56 12.78 11.4L20.78 7.32C20.97 7.2 21.18 7.15 21.4 7.15C22.03 7.15 22.58 7.7 22.58 8.33C22.58 8.86 22.31 9.34 21.83 9.52C20.51 9.96 19.58 11.14 19.58 12.55V16.7C19.58 17.86 18.64 18.8 17.48 18.8H6.1C4.94 18.8 4 17.86 4 16.7V12.55H5Z"/>
+                        <circle cx="6" cy="12" r="2"/>
+                        <circle cx="18" cy="12" r="2"/>
+                      </svg>
+                    </div>
+                    <div class="static-card-text">
+                      <h3>Rychlý optický internet</h3>
+                      <p>PODA připojení s garantovanou rychlostí až 1000/1000 Mbps.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="static-feature-card">
+                  <div class="static-card-content">
+                    <div class="static-icon-wrapper static-icon-orange">
+                      <svg class="static-icon static-icon-orange" viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                      </svg>
+                    </div>
+                    <div class="static-card-text">
+                      <h3>Chytrá televize</h3>
+                      <p>Získáte více než 100 TV programů na všech zařízeních.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="relative hidden lg:block">
-              <img 
-                src="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" 
-                alt="PODA Internet připojení" 
-                width="512" 
-                height="512"
-                style="max-width: 100%; height: auto;"
-                loading="eager"
-                fetchpriority="high"
-              />
+            
+            <!-- Desktop feature cards -->
+            <div class="static-desktop-features">
+              <div class="static-bg-blur static-bg-blue"></div>
+              <div class="static-bg-blur static-bg-orange"></div>
+              
+              <div class="static-feature-card">
+                <div class="static-card-content">
+                  <div class="static-icon-wrapper static-icon-blue">
+                    <svg class="static-icon static-icon-blue" viewBox="0 0 24 24">
+                      <path d="M5 12.55C5 11.14 4.07 9.96 2.75 9.52C2.27 9.34 2 8.86 2 8.33C2 7.7 2.55 7.15 3.18 7.15C3.4 7.15 3.61 7.2 3.8 7.32L11.8 11.4C12.11 11.56 12.47 11.56 12.78 11.4L20.78 7.32C20.97 7.2 21.18 7.15 21.4 7.15C22.03 7.15 22.58 7.7 22.58 8.33C22.58 8.86 22.31 9.34 21.83 9.52C20.51 9.96 19.58 11.14 19.58 12.55V16.7C19.58 17.86 18.64 18.8 17.48 18.8H6.1C4.94 18.8 4 17.86 4 16.7V12.55H5Z"/>
+                      <circle cx="6" cy="12" r="2"/>
+                      <circle cx="18" cy="12" r="2"/>
+                    </svg>
+                  </div>
+                  <div class="static-card-text">
+                    <h3>Rychlý optický internet</h3>
+                    <p>PODA připojení s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="static-feature-card" style="margin-left: 1.5rem;">
+                <div class="static-card-content">
+                  <div class="static-icon-wrapper static-icon-orange">
+                    <svg class="static-icon static-icon-orange" viewBox="0 0 24 24">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                      <line x1="8" y1="21" x2="16" y2="21"/>
+                      <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                  </div>
+                  <div class="static-card-text">
+                    <h3>Chytrá televize</h3>
+                    <p>Získáte více než 100 TV programů, sledování na všech zařízeních a vlastní výběr stanic.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="static-feature-card">
+                <div class="static-card-content">
+                  <div class="static-icon-wrapper static-icon-blue">
+                    <svg class="static-icon static-icon-blue" viewBox="0 0 24 24">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                  </div>
+                  <div class="static-card-text">
+                    <h3>Moderní technologie</h3>
+                    <p>Optická síť GPON od PODA zajišťuje maximální stabilitu a komfort bez kompromisů.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -365,7 +566,7 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Service worker registration with updated version -->
-    <script src="/sw-register.js?v=4.0"></script>
+    <script src="/sw-register.js?v=5.0"></script>
     
     <!-- Simplified resource error handling -->
     <script>

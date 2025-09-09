@@ -67,6 +67,12 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
       <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
       
+      {/* Indexing optimization signals */}
+      <meta name="indexnow-key" content="a1b2c3d4e5f6g7h8i9j0" />
+      <meta name="google-site-verification" content="popri-cz-indexing" />
+      <meta name="crawl-frequency" content="weekly" />
+      <meta name="indexing-priority" content="high" />
+      
       {/* Domain migration signals */}
       <meta name="migration-date" content="2025-06-16" />
       <meta name="original-domain" content="pripojeni-poda.cz" />

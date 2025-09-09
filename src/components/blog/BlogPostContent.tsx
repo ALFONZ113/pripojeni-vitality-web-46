@@ -22,11 +22,12 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         className="mb-6"
       />
       
-      {/* Article content */}
-      <article className="prose prose-lg max-w-none">
+      {/* Article content with enhanced internal linking */}
+      <article className="prose prose-lg max-w-none" itemScope itemType="https://schema.org/BlogPosting">
         <div 
           className="blog-content"
           dangerouslySetInnerHTML={{ __html: post.content }}
+          itemProp="articleBody"
         />
       </article>
 

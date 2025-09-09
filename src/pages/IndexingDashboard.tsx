@@ -3,10 +3,11 @@ import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import Breadcrumb from '../components/common/Breadcrumb';
 import SEOAudit from '../components/migration/SEOAudit';
+import IndexingFixCenter from '../components/indexing/IndexingFixCenter';
 import { blogPosts } from '../data/blog';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { BarChart3, Search, Globe } from 'lucide-react';
+import { BarChart3, Search, Globe, AlertTriangle } from 'lucide-react';
 
 const IndexingDashboard = () => {
   const totalPosts = blogPosts.length;
@@ -36,11 +37,21 @@ const IndexingDashboard = () => {
         
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+              <div className="flex items-center gap-3 mb-2">
+                <AlertTriangle className="w-6 h-6 text-red-600" />
+                <h2 className="text-lg font-semibold text-red-800">Kritické problémy s indexáciou</h2>
+              </div>
+              <p className="text-red-700 text-sm">
+                Len 42 z 137 stránok je indexovaných v Google (30,7%). Toto výrazne znižuje vašu organickú návštevnosť a pozície vo vyhľadávači.
+              </p>
+            </div>
+            
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              SEO Indexing Dashboard
+              Google Search Console - Oprava indexácie
             </h1>
             <p className="text-gray-600 text-lg">
-              Nástroje a akcie pre zlepšenie indexovania stránok v Google Search Console
+              Komplexný nástroj na identifikáciu a opravu problémov s indexáciou na základe GSC dát
             </p>
           </div>
 
@@ -83,8 +94,11 @@ const IndexingDashboard = () => {
             </Card>
           </div>
 
-          {/* Only SEO Audit now */}
-          <div className="max-w-4xl mx-auto">
+          {/* Indexing Fix Center - hlavný nástroj */}
+          <IndexingFixCenter />
+
+          {/* SEO Audit ako doplnok */}
+          <div className="max-w-4xl mx-auto mt-8">
             <SEOAudit />
           </div>
 

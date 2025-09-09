@@ -3,7 +3,7 @@ import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import RedirectTestTool from '../components/migration/RedirectTestTool';
 import GSCMigrationGuide from '../components/migration/GSCMigrationGuide';
-import IndexingAccelerator from '../components/migration/IndexingAccelerator';
+import IndexingAccelerator from '../components/indexing/IndexingAccelerator';
 import SEOAudit from '../components/migration/SEOAudit';
 import PageMetadata from '../components/page/PageMetadata';
 import Breadcrumb from '../components/common/Breadcrumb';

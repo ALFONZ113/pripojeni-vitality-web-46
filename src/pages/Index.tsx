@@ -10,18 +10,26 @@ import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
 
-// Len najkritickejšie obrázky
+// Critical resources for LCP optimization
 const CRITICAL_IMAGES = [
+  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
+  '/poda-logo.svg'
+];
+
+const CRITICAL_RESOURCES = [
+  '/poda-logo.svg',
   '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png'
 ];
 
 const Index = () => {
   const { 
     isLoading, 
-    error
+    error,
+    performanceMetrics
   } = usePageInitialization({ 
     criticalImages: CRITICAL_IMAGES,
-    enablePerformanceMonitoring: false
+    criticalResources: CRITICAL_RESOURCES,
+    enablePerformanceMonitoring: true
   });
 
   // Enhanced tracking for Google Ads optimization

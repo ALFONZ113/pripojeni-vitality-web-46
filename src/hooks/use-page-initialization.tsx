@@ -25,16 +25,35 @@ const usePageInitialization = ({
   // Memoizované kritické obrázky
   const memoizedCriticalImages = useMemo(() => criticalImages, [criticalImages]);
 
-  // Optimalizovaná inicializácia
+  // Preload critical resources immediately
+  const preloadResources = useCallback(() => {
+    if (typeof document !== 'undefined') {
+      // Preload critical images for LCP
+      memoizedCriticalImages.forEach(src => {
+        if (!document.querySelector(`link[href="${src}"]`)) {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.href = src;
+          link.as = 'image';
+          link.fetchPriority = 'high';
+          document.head.appendChild(link);
+        }
+      });
+    }
+  }, [memoizedCriticalImages]);
+
+  // Optimalized initialization with immediate resource preloading
   const initializeApp = useCallback(async () => {
     try {
+      // Preload resources immediately
+      preloadResources();
       return initAnimations();
     } catch (e) {
       console.error('Error initializing page:', e);
       setError('Došlo k chybě při načítání stránky.');
       return undefined;
     }
-  }, []);
+  }, [preloadResources]);
 
   useEffect(() => {
     let cleanupAnimation: (() => void) | undefined;

@@ -6,6 +6,7 @@ import './index.css'
 import { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } from './utils/code-splitting'
 import { measureCoreWebVitals } from './utils/performance-optimization'
 import { handleBlogRedirects } from './utils/redirectManager'
+import { initializeLCPOptimizations } from './utils/lcp-optimization'
 
 // Global type declaration for window functions
 declare global {
@@ -13,6 +14,9 @@ declare global {
     markReactLoaded?: () => void;
   }
 }
+
+// Initialize LCP optimizations IMMEDIATELY for best performance
+initializeLCPOptimizations();
 
 // Performance tracking - minimize console logs for production
 if (process.env.NODE_ENV === 'development') {

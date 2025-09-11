@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
 import { getBlogPostUrl } from '../../utils/blogRouting';
-import { handleImageError } from '../../utils/imageUtils';
+import LazyBlogImage from './LazyBlogImage';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -18,14 +18,10 @@ const BlogCard = memo(({ post }: BlogCardProps) => {
   return (
     <div className={cardClasses}>
       <div className="relative h-48 overflow-hidden">
-        <img 
+        <LazyBlogImage 
           src={post.image} 
-          alt={post.alt || post.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          width="640"
-          height="360"
-          onError={(e) => handleImageError(e)}
+          alt={post.alt || post.title}
+          className="w-full h-full transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         

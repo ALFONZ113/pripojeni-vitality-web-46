@@ -26,9 +26,10 @@ RewriteRule ^(site\.webmanifest|apple-touch-icon\.png)$ - [L]
 RewriteCond %{REQUEST_URI} ^/(assets|lovable-uploads)/
 RewriteRule ^ - [L]
 
-# Handle missing images gracefully
+# Handle missing images gracefully - exclude lovable-uploads
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} \.(jpg|jpeg|gif|png|webp)$
+RewriteCond %{REQUEST_URI} !^/lovable-uploads/
 RewriteRule ^(.*)$ /placeholder.svg [L,R=302]
 
 # Set proper MIME types

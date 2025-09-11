@@ -1,44 +1,32 @@
 
 import { useState } from 'react';
 import type { BlogPost } from '../../data/blog/types';
+import LazyBlogImage from './LazyBlogImage';
 
 interface BlogPostImageProps {
   post: BlogPost;
 }
 
 const BlogPostImage = ({ post }: BlogPostImageProps) => {
-  const [imageError, setImageError] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
 
-  // Handle image loading errors
   const handleImageError = () => {
-    console.error(`Failed to load image: ${post.image}`);
-    
-    // Try with the full URL if it's a relative path
-    if (!imageError && post.image.startsWith('/')) {
-      const fullUrl = window.location.origin + post.image;
-      
-      // Set with a timeout to prevent infinite rendering loops
-      setTimeout(() => {
-        const img = document.getElementById('blog-post-image') as HTMLImageElement;
-        if (img) img.src = fullUrl;
-      }, 100);
-    } else {
-      setImageError(true);
-    }
+    console.warn(`Blog post image not available: ${post.image}`);
+    setShowFallback(true);
   };
 
   return (
     <div className="w-full max-w-4xl mx-auto my-8">
-      {imageError ? (
-        <div className="w-full h-64 flex items-center justify-center bg-gray-100 rounded-lg">
-          <p className="text-gray-500">Obrázek není k dispozici</p>
+      {showFallback ? (
+        <div className="w-full h-64 flex items-center justify-center bg-muted rounded-lg">
+          <p className="text-muted-foreground">Obrázek není k dispozici</p>
         </div>
       ) : (
-        <img 
-          id="blog-post-image"
+        <LazyBlogImage
           src={post.image} 
           alt={post.alt || post.title} 
           className="w-full h-auto rounded-lg shadow-lg"
+          priority={true}
           onError={handleImageError}
         />
       )}

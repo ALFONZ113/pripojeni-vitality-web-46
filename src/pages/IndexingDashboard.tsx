@@ -4,10 +4,12 @@ import PageMetadata from '../components/page/PageMetadata';
 import Breadcrumb from '../components/common/Breadcrumb';
 import SEOAudit from '../components/migration/SEOAudit';
 import IndexingFixCenter from '../components/indexing/IndexingFixCenter';
+import SiteAuditDashboard from '../components/indexing/SiteAuditDashboard';
 import { blogPosts } from '../data/blog';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { BarChart3, Search, Globe, AlertTriangle } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { BarChart3, Search, Globe, AlertTriangle, FileSearch, Settings } from 'lucide-react';
 
 const IndexingDashboard = () => {
   const totalPosts = blogPosts.length;
@@ -55,86 +57,116 @@ const IndexingDashboard = () => {
             </p>
           </div>
 
-          {/* Stats cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-600 mb-1">Celkovo článkov</p>
-                    <p className="text-2xl font-bold text-gray-900">{totalPosts}</p>
-                  </div>
-                  <BarChart3 className="w-8 h-8 text-blue-600" />
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-600 mb-1">Nové tento týždeň</p>
-                    <p className="text-2xl font-bold text-gray-900">{recentPosts}</p>
-                  </div>
-                  <Search className="w-8 h-8 text-green-600" />
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-600 mb-1">Sitemap URLs</p>
-                    <p className="text-2xl font-bold text-gray-900">25</p>
-                  </div>
-                  <Globe className="w-8 h-8 text-orange-600" />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Main Dashboard with Tabs */}
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="overview" className="flex items-center gap-2">
+                <BarChart3 className="w-4 h-4" />
+                Prehľad
+              </TabsTrigger>
+              <TabsTrigger value="audit" className="flex items-center gap-2">
+                <FileSearch className="w-4 h-4" />
+                Site Audit
+              </TabsTrigger>
+              <TabsTrigger value="fixes" className="flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                Opravy GSC
+              </TabsTrigger>
+              <TabsTrigger value="articles" className="flex items-center gap-2">
+                <Globe className="w-4 h-4" />
+                Články
+              </TabsTrigger>
+            </TabsList>
 
-          {/* Indexing Fix Center - hlavný nástroj */}
-          <IndexingFixCenter />
-
-          {/* SEO Audit ako doplnok */}
-          <div className="max-w-4xl mx-auto mt-8">
-            <SEOAudit />
-          </div>
-
-          {/* Recent blog posts that need indexing */}
-          <Card className="mt-8">
-            <CardHeader>
-              <CardTitle>Články na indexovanie</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {blogPosts.slice(0, 5).map(post => (
-                  <div key={post.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex-1">
-                      <h3 className="font-medium text-gray-900 line-clamp-1">
-                        {post.title}
-                      </h3>
-                      <p className="text-sm text-gray-600">
-                        {post.category} • {post.date}
-                      </p>
+            <TabsContent value="overview" className="space-y-6 mt-6">
+              {/* Stats cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600 mb-1">Celkovo článkov</p>
+                        <p className="text-2xl font-bold text-gray-900">{totalPosts}</p>
+                      </div>
+                      <BarChart3 className="w-8 h-8 text-blue-600" />
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Badge variant="secondary">ID: {post.id}</Badge>
-                      <a 
-                        href={`https://search.google.com/search-console/inspect?resource_id=https://www.popri.cz/&id=https://www.popri.cz/blog/${post.id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-blue-600 hover:text-blue-800"
-                      >
-                        Inspect URL
-                      </a>
+                  </CardContent>
+                </Card>
+                
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600 mb-1">Nové tento týždeň</p>
+                        <p className="text-2xl font-bold text-gray-900">{recentPosts}</p>
+                      </div>
+                      <Search className="w-8 h-8 text-green-600" />
                     </div>
-                  </div>
-                ))}
+                  </CardContent>
+                </Card>
+                
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600 mb-1">Sitemap URLs</p>
+                        <p className="text-2xl font-bold text-gray-900">25</p>
+                      </div>
+                      <Globe className="w-8 h-8 text-orange-600" />
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
-            </CardContent>
-          </Card>
+
+              {/* SEO Audit Summary */}
+              <div className="max-w-4xl mx-auto">
+                <SEOAudit />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="audit" className="mt-6">
+              <SiteAuditDashboard />
+            </TabsContent>
+
+            <TabsContent value="fixes" className="mt-6">
+              <IndexingFixCenter />
+            </TabsContent>
+
+            <TabsContent value="articles" className="mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Články na indexovanie</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {blogPosts.slice(0, 10).map(post => (
+                      <div key={post.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div className="flex-1">
+                          <h3 className="font-medium text-gray-900 line-clamp-1">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-gray-600">
+                            {post.category} • {post.date}
+                          </p>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Badge variant="secondary">ID: {post.id}</Badge>
+                          <a 
+                            href={`https://search.google.com/search-console/inspect?resource_id=https://www.popri.cz/&id=https://www.popri.cz/blog/${post.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-blue-600 hover:text-blue-800"
+                          >
+                            Inspect URL
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>

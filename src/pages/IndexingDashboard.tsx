@@ -5,6 +5,7 @@ import Breadcrumb from '../components/common/Breadcrumb';
 import SEOAudit from '../components/migration/SEOAudit';
 import IndexingFixCenter from '../components/indexing/IndexingFixCenter';
 import SiteAuditDashboard from '../components/indexing/SiteAuditDashboard';
+import SEOFixDashboard from '../components/seo/SEOFixDashboard';
 import { blogPosts } from '../data/blog';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -58,8 +59,12 @@ const IndexingDashboard = () => {
           </div>
 
           {/* Main Dashboard with Tabs */}
-          <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+          <Tabs defaultValue="seo-fix" className="w-full">
+            <TabsList className="grid w-full grid-cols-5">
+              <TabsTrigger value="seo-fix" className="flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                SEO Fix
+              </TabsTrigger>
               <TabsTrigger value="overview" className="flex items-center gap-2">
                 <BarChart3 className="w-4 h-4" />
                 Prehľad
@@ -69,14 +74,18 @@ const IndexingDashboard = () => {
                 Site Audit
               </TabsTrigger>
               <TabsTrigger value="fixes" className="flex items-center gap-2">
-                <Settings className="w-4 h-4" />
-                Opravy GSC
+                <Search className="w-4 h-4" />
+                GSC Opravy
               </TabsTrigger>
               <TabsTrigger value="articles" className="flex items-center gap-2">
                 <Globe className="w-4 h-4" />
                 Články
               </TabsTrigger>
             </TabsList>
+
+            <TabsContent value="seo-fix" className="mt-6">
+              <SEOFixDashboard />
+            </TabsContent>
 
             <TabsContent value="overview" className="space-y-6 mt-6">
               {/* Stats cards */}

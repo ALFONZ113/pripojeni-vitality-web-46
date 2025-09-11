@@ -99,7 +99,7 @@ const SiteAuditDashboard = () => {
           <p className="text-gray-600 mb-4">
             Zatiaľ nebol spustený žiadny audit stránky.
           </p>
-          <Button onClick={runNewAudit} className="gap-2">
+          <Button onClick={runAudit} className="gap-2">
             <RefreshCw className="w-4 h-4" />
             Spustiť prvý audit
           </Button>
@@ -123,7 +123,7 @@ const SiteAuditDashboard = () => {
             <Download className="w-4 h-4 mr-2" />
             Export
           </Button>
-          <Button onClick={runNewAudit} disabled={isLoading}>
+          <Button onClick={runAudit} disabled={isLoading}>
             <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
             {isLoading ? 'Audituje...' : 'Nový audit'}
           </Button>

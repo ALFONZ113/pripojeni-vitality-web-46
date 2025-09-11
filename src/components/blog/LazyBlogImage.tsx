@@ -28,7 +28,7 @@ const LazyBlogImage = ({
     triggerOnce: true
   });
 
-  // Load immediately if priority or in view
+  // Load immediately if priority, otherwise wait for intersection
   const shouldLoad = priority || isInView;
   
   const handleLoad = () => {
@@ -48,8 +48,8 @@ const LazyBlogImage = ({
   }
 
   return (
-    <div ref={targetRef} className={cn("relative overflow-hidden bg-muted", className)}>
-      {!isLoaded && (
+    <div ref={priority ? undefined : targetRef} className={cn("relative overflow-hidden bg-muted", className)}>
+      {!isLoaded && !priority && (
         <LoadingSkeleton 
           variant="image" 
           className="absolute inset-0" 
@@ -62,12 +62,13 @@ const LazyBlogImage = ({
           alt={alt}
           className={cn(
             "w-full h-full object-cover transition-opacity duration-300",
-            isLoaded ? "opacity-100" : "opacity-0"
+            isLoaded || priority ? "opacity-100" : "opacity-0"
           )}
           onLoad={handleLoad}
           onError={handleError}
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
+          fetchPriority={priority ? "high" : "auto"}
         />
       )}
     </div>

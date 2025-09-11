@@ -127,6 +127,9 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       {prevPost && <link rel="prev" href={generateCanonicalUrl(getBlogPostUrl(prevPost))} />}
       {nextPost && <link rel="next" href={generateCanonicalUrl(getBlogPostUrl(nextPost))} />}
       
+      {/* Preload critical blog post image for LCP optimization */}
+      <link rel="preload" as="image" href={post.image} fetchPriority="high" />
+      
       {/* Preconnect to external domains */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />

@@ -131,7 +131,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
             </div>
           )}
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className={`grid gap-4 mb-6 ${compact ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
             <div>
               <label className="block text-gray-700 font-medium mb-2" htmlFor="name">
                 Jméno a příjmení *
@@ -142,7 +142,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors ${compact ? 'text-sm' : ''}`}
                 required
                 disabled={formState.loading}
               />
@@ -158,7 +158,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors ${compact ? 'text-sm' : ''}`}
                 required
                 disabled={formState.loading}
               />
@@ -174,7 +174,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors ${compact ? 'text-sm' : ''}`}
                 required
                 disabled={formState.loading}
               />
@@ -190,7 +190,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
                 name="propertyType"
                 value={formData.propertyType}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors ${compact ? 'text-sm' : ''}`}
                 disabled={formState.loading}
               >
                 <option value="byty">Byt/bytovka</option>
@@ -283,8 +283,8 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
             )}
           </div>
           
-          <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="message">
+          <div className={`mb-4 ${compact ? 'mb-3' : 'mb-6'}`}>
+            <label className={`block text-gray-700 font-medium mb-2 ${compact ? 'text-sm' : ''}`} htmlFor="message">
               Zpráva nebo poznámka
             </label>
             <textarea
@@ -293,16 +293,16 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
               value={formData.message}
               onChange={handleChange}
               rows={compact ? 3 : 4}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors"
+              className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors ${compact ? 'text-sm' : ''}`}
               placeholder="Napište nám, pokud máte nějaké specifické požadavky nebo dotazy..."
               disabled={formState.loading}
             ></textarea>
           </div>
           
-          <div className="flex justify-end">
+          <div className={`flex justify-end ${compact ? 'pb-2' : ''}`}>
             <button
               type="submit"
-              className={`btn-secondary flex items-center justify-center min-w-[180px] ${formState.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`btn-secondary flex items-center justify-center w-full ${compact ? 'py-2 px-4 text-sm min-h-[44px]' : 'min-w-[180px]'} ${formState.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               disabled={formState.loading}
             >
               {formState.loading ? (

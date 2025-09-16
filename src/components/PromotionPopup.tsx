@@ -16,7 +16,9 @@ import { Button } from "@/components/ui/button";
 
 const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
-const SESSION_STORAGE = true; // Use sessionStorage instead of localStorage
+
+// For testing - reset popup session (set to true to reset)
+const RESET_FOR_TESTING = false;
 
 const PromotionPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +27,12 @@ const PromotionPopup = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   
   useEffect(() => {
+    // Reset for testing if needed
+    if (RESET_FOR_TESTING) {
+      sessionStorage.removeItem(POPUP_STORAGE_KEY);
+      console.log('PromotionPopup: Session reset for testing');
+    }
+    
     // Check if we've shown the popup in this session
     const hasShownInSession = () => {
       return sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;

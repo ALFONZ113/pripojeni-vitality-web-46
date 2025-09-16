@@ -16,9 +16,7 @@ import { Button } from "@/components/ui/button";
 
 const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
-
-// For testing - reset popup session (set to true to reset)
-const RESET_FOR_TESTING = false;
+const SESSION_STORAGE = true; // Use sessionStorage instead of localStorage
 
 const PromotionPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,12 +25,6 @@ const PromotionPopup = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   
   useEffect(() => {
-    // Reset for testing if needed
-    if (RESET_FOR_TESTING) {
-      sessionStorage.removeItem(POPUP_STORAGE_KEY);
-      console.log('PromotionPopup: Session reset for testing');
-    }
-    
     // Check if we've shown the popup in this session
     const hasShownInSession = () => {
       return sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
@@ -147,7 +139,7 @@ const PromotionPopup = () => {
             První měsíc ZDARMA!
           </DialogTitle>
           <div className="text-sm text-red-600 font-semibold mt-1">
-            Len do 30.9.2025!
+            Len do 15.9.2025!
           </div>
           <DialogDescription className="text-base text-gray-700">
             Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele?

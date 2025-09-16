@@ -1,7 +1,7 @@
 
 import { Check, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { OptimizedCollapsible, OptimizedCollapsibleContent, OptimizedCollapsibleTrigger } from '@/components/ui/optimized-collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 interface TariffFeature {
   title: string;
@@ -59,23 +59,23 @@ const TariffCard = ({
           <div className="text-center">
             <div className="text-4xl font-bold text-poda-blue">{price}</div>
             <div className="text-gray-500 text-sm">{priceNote}</div>
-            <OptimizedCollapsible
+            <Collapsible
               open={openPromoInfo[promoId]}
               onOpenChange={() => onPromoInfoToggle(promoId)}
               className="mt-1"
             >
-              <OptimizedCollapsibleTrigger className="flex items-center justify-center mx-auto text-gray-400 hover:text-gray-600 transition-colors">
+              <CollapsibleTrigger className="flex items-center justify-center mx-auto text-gray-400 hover:text-gray-600 transition-colors">
                 <Info className="h-3.5 w-3.5 mr-1" />
                 <span className="text-xs">Více o ceně</span>
                 <ChevronDown 
                   className="h-3 w-3 ml-1 transition-transform duration-200" 
                   style={{ transform: openPromoInfo[promoId] ? 'rotate(180deg)' : 'rotate(0deg)' }} 
                 />
-              </OptimizedCollapsibleTrigger>
-              <OptimizedCollapsibleContent className="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded-md">
+              </CollapsibleTrigger>
+              <CollapsibleContent className="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded-md">
                 {promoInfoText}
-              </OptimizedCollapsibleContent>
-            </OptimizedCollapsible>
+              </CollapsibleContent>
+            </Collapsible>
           </div>
         </div>
         <div className="space-y-4 mb-8">

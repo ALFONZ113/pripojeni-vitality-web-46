@@ -48,11 +48,9 @@ const isValidBlogPost = (post: BlogPost): boolean => {
     post.id &&
     post.title &&
     post.content &&
-    post.image &&
     typeof post.id === 'number' &&
     sanitizeForXml(post.title).trim().length > 0 &&
-    sanitizeForXml(post.content).trim().length > 0 &&
-    sanitizeForXml(post.image).trim().length > 0
+    sanitizeForXml(post.content).trim().length > 0
   );
 };
 
@@ -92,7 +90,7 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
   
   // Static pages with their priorities and change frequencies
   const staticPages = [
-    { url: '', priority: '1.0', changefreq: 'daily', image: `${baseUrl}/poda-favicon-192x192.png`, caption: 'PODA Internet Logo' }, // Homepage
+    { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage
     { url: '/internet-tv', priority: '0.9', changefreq: 'weekly' },
     { url: '/iptv', priority: '0.8', changefreq: 'weekly' },
     { url: '/tarify', priority: '0.8', changefreq: 'weekly' },
@@ -113,8 +111,8 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
     { url: '/internet-poruba', priority: '0.8', changefreq: 'monthly' },
   ];
 
-  // Start with clean XML declaration including image namespace
-  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
+  // Start with clean XML declaration
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
   // Add static pages
   staticPages.forEach(page => {
@@ -127,15 +125,6 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
       sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
       sitemap += `    <changefreq>${page.changefreq}</changefreq>\n`;
       sitemap += `    <priority>${page.priority}</priority>\n`;
-      
-      // Add image information if available
-      if (page.image && page.caption) {
-        sitemap += `    <image:image>\n`;
-        sitemap += `      <image:loc>${escapeXml(page.image)}</image:loc>\n`;
-        sitemap += `      <image:caption>${escapeXml(page.caption)}</image:caption>\n`;
-        sitemap += `    </image:image>\n`;
-      }
-      
       sitemap += `  </url>\n`;
     }
   });
@@ -163,25 +152,12 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
       const sanitizedUrl = sanitizeUrl(postUrl);
       const postDate = post.date ? formatDateISO(post.date) : currentDate;
       
-      if (sanitizedUrl && post.image) {
+      if (sanitizedUrl) {
         sitemap += `  <url>\n`;
         sitemap += `    <loc>${escapeXml(sanitizedUrl)}</loc>\n`;
         sitemap += `    <lastmod>${postDate}</lastmod>\n`;
         sitemap += `    <changefreq>monthly</changefreq>\n`;
         sitemap += `    <priority>0.6</priority>\n`;
-        
-        // Add image information for blog posts
-        const imageUrl = post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`;
-        const sanitizedImageUrl = sanitizeUrl(imageUrl);
-        const imageCaption = post.alt || post.title;
-        
-        if (sanitizedImageUrl) {
-          sitemap += `    <image:image>\n`;
-          sitemap += `      <image:loc>${escapeXml(sanitizedImageUrl)}</image:loc>\n`;
-          sitemap += `      <image:caption>${escapeXml(sanitizeForXml(imageCaption))}</image:caption>\n`;
-          sitemap += `    </image:image>\n`;
-        }
-        
         sitemap += `  </url>\n`;
       }
     } catch (error) {

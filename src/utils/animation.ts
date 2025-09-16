@@ -12,27 +12,17 @@ export function initAnimations() {
   // Use a WeakSet for memory-efficient tracking of observed elements
   const observedElements = new WeakSet<Element>();
   
-  // Create a single observer instance with optimized batched operations
+  // Create a single observer instance with batched operations
   const observer = new IntersectionObserver((entries) => {
     if (!entries.length) return;
     
-    // Use double RAF to ensure layout calculations are complete
+    // Batch DOM operations in a single animation frame
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        // Batch all DOM writes together to minimize reflows
-        const elementsToActivate: Element[] = [];
-        
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            elementsToActivate.push(entry.target);
-          }
-        });
-        
-        // Apply all class changes in a single batch
-        elementsToActivate.forEach(element => {
-          element.classList.add('active');
-          observer.unobserve(element);
-        });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
       });
     });
   }, observerOptions);
@@ -58,22 +48,12 @@ export function refreshAnimations(container: HTMLElement) {
   if (newElements.length === 0) return;
   
   const observer = new IntersectionObserver((entries) => {
-    // Use double RAF for better reflow prevention
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const elementsToActivate: Element[] = [];
-        
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            elementsToActivate.push(entry.target);
-          }
-        });
-        
-        // Batch DOM operations to prevent forced reflows
-        elementsToActivate.forEach(element => {
-          element.classList.add('active');
-          observer.unobserve(element);
-        });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
       });
     });
   }, {

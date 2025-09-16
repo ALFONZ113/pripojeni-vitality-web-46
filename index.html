@@ -82,28 +82,20 @@
       /* Critical above-the-fold styles inlined for faster FCP */
       
       /* Essential base styles with fallback fonts */
-      * { 
-        box-sizing: border-box; 
-        margin: 0; 
-        padding: 0; 
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      html { 
-        scroll-behavior: smooth; 
-        font-display: swap;
-      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
       body { 
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
         background: hsl(210 33% 99%); 
         color: hsl(210 35% 10%);
         line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         font-display: swap;
-        contain: layout style;
       }
       
-      /* Critical layout utilities with CSS containment */
-      .min-h-screen { min-height: 100vh; contain: layout; }
+      /* Critical layout utilities */
+      .min-h-screen { min-height: 100vh; }
       .relative { position: relative; }
       .fixed { position: fixed; }
       .inset-0 { inset: 0; }
@@ -112,15 +104,9 @@
       .justify-center { justify-content: center; }
       .z-50 { z-index: 50; }
       .z-10 { z-index: 10; }
-      .hidden { display: none; }
       
-      /* Critical hero styles for faster FCP */
-      .container-custom { 
-        max-width: 1200px; 
-        margin: 0 auto; 
-        padding: 0 1rem; 
-        contain: layout style;
-      }
+      /* Critical hero styles for faster LCP */
+      .container-custom { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
       .grid { display: grid; }
       .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
       .gap-8 { gap: 2rem; }
@@ -173,7 +159,6 @@
         .lg\\:text-left { text-align: left; }
         .lg\\:text-6xl { font-size: 3.75rem; line-height: 1; }
         .lg\\:mx-0 { margin-left: 0; margin-right: 0; }
-        .lg\\:block { display: block; }
       }
 
       /* Critical styles for immediate content display */
@@ -183,7 +168,6 @@
         padding-bottom: 4rem;
         overflow: hidden;
         background: linear-gradient(to bottom right, hsl(210 50% 28% / 0.05), hsl(210 30% 95% / 0.03), hsl(25 100% 60% / 0.05));
-        contain: layout style paint;
       }
 
       .static-content {
@@ -194,7 +178,6 @@
         grid-template-columns: 1fr;
         gap: 2rem;
         align-items: center;
-        contain: layout style;
       }
 
       @media (min-width: 1024px) {
@@ -212,56 +195,11 @@
       .react-loaded .static-content {
         display: none;
       }
-
-      /* Performance optimizations for FCP */
-      img {
-        content-visibility: auto;
-        contain-intrinsic-size: 512px;
-      }
-
-      /* Critical button styles */
-      .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: hsl(210 50% 28%);
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-      
-      .btn-primary:hover {
-        background: hsl(210 50% 24%);
-      }
-      
-      .btn-secondary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: hsl(25 100% 60%);
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
     </style>
     
-    <!-- Completely non-blocking CSS loading with higher priority -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all';" media="print" fetchpriority="high">
+    <!-- Completely non-blocking CSS loading -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
-    
-    <!-- Critical resource hints for faster loading -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
     <!-- Optimize LCP images with highest priority -->
     <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" imagesizes="(max-width: 640px) 256px, (max-width: 1024px) 384px, 512px" width="512" height="512" onerror="this.href='/placeholder.svg'">

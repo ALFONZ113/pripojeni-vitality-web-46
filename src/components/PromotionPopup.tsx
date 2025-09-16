@@ -14,9 +14,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
+const POPUP_DELAY_MS = 5000; // 5 seconds delay for testing (change to 20000 for production)
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
-const SESSION_STORAGE = true; // Use sessionStorage instead of localStorage
+const RESET_FOR_TESTING = true; // Set to false for production
 
 const PromotionPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,9 +25,17 @@ const PromotionPopup = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   
   useEffect(() => {
+    // Reset sessionStorage for testing (remove in production)
+    if (RESET_FOR_TESTING) {
+      sessionStorage.removeItem(POPUP_STORAGE_KEY);
+      console.log('PromotionPopup: Testing mode - sessionStorage reset');
+    }
+    
     // Check if we've shown the popup in this session
     const hasShownInSession = () => {
-      return sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
+      const hasShown = sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
+      console.log('PromotionPopup: Has shown in session:', hasShown);
+      return hasShown;
     };
 
     const showPopup = () => {
@@ -125,7 +133,7 @@ const PromotionPopup = () => {
   
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogClose 
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" 
           onClick={handleClose}
@@ -139,7 +147,7 @@ const PromotionPopup = () => {
             První měsíc ZDARMA!
           </DialogTitle>
           <div className="text-sm text-red-600 font-semibold mt-1">
-            Len do 15.9.2025!
+            Len do 30.9.2025!
           </div>
           <DialogDescription className="text-base text-gray-700">
             Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele?

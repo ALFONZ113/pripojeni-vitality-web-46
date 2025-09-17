@@ -14,9 +14,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const POPUP_DELAY_MS = 5000; // 5 seconds delay for testing (change to 20000 for production)
+const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
-const RESET_FOR_TESTING = true; // Set to false for production
+const RESET_FOR_TESTING = false; // Set to true only for testing
 
 const PromotionPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,19 +28,19 @@ const PromotionPopup = () => {
     // Reset sessionStorage for testing (remove in production)
     if (RESET_FOR_TESTING) {
       sessionStorage.removeItem(POPUP_STORAGE_KEY);
-      console.log('PromotionPopup: Testing mode - sessionStorage reset');
+      if (RESET_FOR_TESTING) console.log('PromotionPopup: Testing mode - sessionStorage reset');
     }
     
     // Check if we've shown the popup in this session
     const hasShownInSession = () => {
       const hasShown = sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
-      console.log('PromotionPopup: Has shown in session:', hasShown);
+      if (RESET_FOR_TESTING) console.log('PromotionPopup: Has shown in session:', hasShown);
       return hasShown;
     };
 
     const showPopup = () => {
       if (!hasShownInSession() && !isOpen) {
-        console.log('PromotionPopup: Showing popup');
+        if (RESET_FOR_TESTING) console.log('PromotionPopup: Showing popup');
         setIsOpen(true);
         // Save that we've shown the popup in this session
         sessionStorage.setItem(POPUP_STORAGE_KEY, 'shown');
@@ -49,7 +49,7 @@ const PromotionPopup = () => {
     
     // Show popup after delay if not shown in this session
     if (!hasShownInSession()) {
-      console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms');
+      if (RESET_FOR_TESTING) console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms');
       const timer = setTimeout(showPopup, POPUP_DELAY_MS);
       
       // Exit intent detection
@@ -63,17 +63,36 @@ const PromotionPopup = () => {
       document.addEventListener('mouseleave', handleMouseLeave);
       
       return () => {
-        console.log('PromotionPopup: Cleaning up');
+        if (RESET_FOR_TESTING) console.log('PromotionPopup: Cleaning up');
         clearTimeout(timer);
         document.removeEventListener('mouseleave', handleMouseLeave);
       };
     } else {
-      console.log('PromotionPopup: Already shown in this session');
+      if (RESET_FOR_TESTING) console.log('PromotionPopup: Already shown in this session');
     }
-  }, [isOpen]);
+  }, []); // Run only once on mount
+  
+  // Add manual reset function for testing (only in development)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).resetPromotionPopup = () => {
+        sessionStorage.removeItem(POPUP_STORAGE_KEY);
+        setIsOpen(false);
+        console.log('PromotionPopup: Manual reset - popup can be triggered again');
+      };
+    }
+    
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).resetPromotionPopup;
+      }
+    };
+  }, []);
   
   const handleClose = () => {
     setIsOpen(false);
+    // Save that we've interacted with the popup in this session
+    sessionStorage.setItem(POPUP_STORAGE_KEY, 'closed');
   };
   
   const handleSubmit = async (e: React.FormEvent) => {

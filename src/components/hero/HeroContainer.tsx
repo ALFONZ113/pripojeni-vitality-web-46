@@ -4,7 +4,6 @@ import HeroBackground from './HeroBackground';
 import HeroContent from './HeroContent';
 import FeatureCardsDesktop from './FeatureCardsDesktop';
 import MobileFeatureCards from './MobileFeatureCards';
-import WhyPopriSection from './WhyPopriSection';
 import DisclaimerText from './DisclaimerText';
 
 interface HeroContainerProps {
@@ -34,7 +33,6 @@ const HeroContainer = ({ handleContactClick }: HeroContainerProps) => {
           <MobileFeatureCards />
         </motion.div>
 
-        <WhyPopriSection />
         <DisclaimerText />
       </div>
     </>

@@ -1,68 +1,53 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import CallbackForm from '../CallbackForm';
 
-interface HeroContentProps {
+interface FastHeroContentProps {
   handleContactClick: (e: React.MouseEvent) => void;
 }
 
-const HeroContent = ({ handleContactClick }: HeroContentProps) => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0 // Remove delay for LCP optimization
-      }
-    }
-  };
-  
-  const item = {
-    hidden: {
-      opacity: 0,
-      y: 10
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        ease: "easeOut",
-        duration: 0.3 // Faster animation for LCP
-      }
-    }
-  };
-
+/**
+ * Optimized hero content for instant LCP - no animations or delays
+ * This component renders immediately without waiting for any effects
+ */
+const FastHeroContent = ({ handleContactClick }: FastHeroContentProps) => {
   return (
     <div className="text-center lg:text-left">
-      <motion.span variants={item} className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
+      <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
         Vaše cesta k nejlepšímu PODA internetu
-      </motion.span>
-      <motion.h1 
+      </span>
+      
+      {/* LCP Element - rendered immediately with no animations */}
+      <h1 
         id="hero-title" 
-        variants={item} 
         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6 leading-tight tracking-tight"
         style={{ 
-          willChange: 'auto' // Remove will-change after animation
+          opacity: 1,
+          transform: 'translateY(0)',
+          contentVisibility: 'auto',
+          containIntrinsicSize: '1200px 200px'
         }}
       >
         PODA Internet - Prémiové optické gigabitové 
         <span className="text-poda-orange block sm:inline"> připojení a smart TV</span>
-      </motion.h1>
-      <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+      </h1>
+      
+      <p className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
         Přinášíme Vám rychlé <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užívejte si internet i TV bez kompromisů.
-      </motion.p>
+      </p>
       
-      {/* Callback Form - Adjusted for better mobile visibility */}
-      <motion.div variants={item} className="mb-6">
+      {/* Callback Form - Rendered immediately */}
+      <div className="mb-6">
         <CallbackForm />
-      </motion.div>
+      </div>
       
-      <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-        <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <Link 
+          to="/tarify" 
+          className="btn-primary group transition-all" 
+          aria-label="Prozkoumat nabídku"
+        >
           Prozkoumat nabídku
           <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
         </Link>
@@ -74,9 +59,9 @@ const HeroContent = ({ handleContactClick }: HeroContentProps) => {
         >
           Kontaktní formulář
         </Link>
-      </motion.div>
+      </div>
     </div>
   );
 };
 
-export default HeroContent;
+export default FastHeroContent;

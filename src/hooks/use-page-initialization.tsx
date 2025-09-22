@@ -28,15 +28,32 @@ const usePageInitialization = ({
   // Preload critical resources immediately
   const preloadResources = useCallback(() => {
     if (typeof document !== 'undefined') {
-      // Preload critical images for LCP
-      memoizedCriticalImages.forEach(src => {
+      // Preload critical images for LCP with immediate priority
+      memoizedCriticalImages.forEach((src, index) => {
         if (!document.querySelector(`link[href="${src}"]`)) {
           const link = document.createElement('link');
           link.rel = 'preload';
           link.href = src;
           link.as = 'image';
-          link.fetchPriority = 'high';
-          document.head.appendChild(link);
+          link.fetchPriority = index === 0 ? 'high' : 'auto';
+          link.crossOrigin = 'anonymous';
+          document.head.insertBefore(link, document.head.firstChild);
+        }
+      });
+
+      // Preload critical fonts immediately
+      const criticalFonts = [
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+      ];
+      
+      criticalFonts.forEach(fontUrl => {
+        if (!document.querySelector(`link[href="${fontUrl}"]`)) {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.href = fontUrl;
+          link.as = 'style';
+          link.crossOrigin = 'anonymous';
+          document.head.insertBefore(link, document.head.firstChild);
         }
       });
     }

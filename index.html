@@ -180,6 +180,19 @@
         align-items: center;
       }
 
+      /* Critical hero title styles for immediate LCP */
+      #hero-title, .hero-title {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        font-weight: 700;
+        color: hsl(210 50% 28%);
+        margin-bottom: 1.5rem;
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
       @media (min-width: 1024px) {
         .static-content {
           grid-template-columns: repeat(2, 1fr);
@@ -202,8 +215,8 @@
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <!-- Optimize LCP images with highest priority -->
-    <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" imagesizes="(max-width: 640px) 256px, (max-width: 1024px) 384px, 512px" width="512" height="512" onerror="this.href='/placeholder.svg'">
-    <link rel="preload" as="image" href="/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" fetchpriority="low" width="512" height="512" onerror="this.href='/placeholder.svg'">
+    <link rel="preload" as="image" href="/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png" fetchpriority="high" sizes="(max-width: 640px) 256px, (max-width: 1024px) 384px, 512px" width="512" height="512">
+    <link rel="preload" as="image" href="/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png" fetchpriority="auto" width="512" height="512">
     
     <!-- NoScript CSS - Non-blocking -->
     <link rel="preload" href="/css/noscript.css" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='all'" media="print">

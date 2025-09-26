@@ -218,7 +218,7 @@ export const o2NejPrevzatiePodaAlternativaPost: BlogPost = {
   author: "PODA Redakcia",
   date: "26. 09. 2025",
   category: "Novinky",
-  image: "/src/assets/o2-nej-vs-poda-comparison.jpg",
+  image: "/o2-nej-vs-poda-comparison.jpg",
   alt: "Porovnanie nespokojných zákazníkov O2 a spokojnej rodiny s internetom PODA - ilustrácia prechodu od veľkých poskytovateľov k regionálnym alternatívam",
   tags: [
     "O2",

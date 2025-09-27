@@ -1,97 +1,32 @@
+# 301 redirects - old blog ID URLs to new slug URLs
+/blog/101 /blog/polanka-60ghz-antena-revolucia 301
+/blog/102 /blog/rychly-internet-navod-problemy 301
+/blog/103 /blog/panelak-internet-otazky-odpovede 301
+/blog/104 /blog/gaming-ostrava-esport-scena 301
+/blog/105 /blog/iptv-vs-traditionalni-tv-porovnani 301
+/blog/106 /blog/pomalý-internet-riesenia-guide 301
 
-# Netlify redirects - FIXED FOR PROPER SPA ROUTING
+# Remove query parameters that create duplicate content
+/blog?tag=* /blog 302
+/blog?category=* /blog 302
+/blog?search=* /blog 302
+/blog/?* /blog 302
 
-# CRITICAL: Blog post SEO-friendly URL redirects
-/blog/102 /blog/internet-poda-ostrava-pripojeni 301!
-/blog/101 /blog/rychly-internet-karvina 301!  
-/blog/100 /blog/opticky-internet-ostrava 301!
-
-# CRITICAL: Clean up duplicate content and parameterized URLs
-/blog/?tag=* /blog/ 301!
-/blog/?category=* /blog/ 301!
-/blog/?page=* /blog/ 301!
-/blog?tag=* /blog/ 301!
-/blog?category=* /blog/ 301!
-/blog?page=* /blog/ 301!
-/blog?source=* /blog/ 301!
-/blog/?source=* /blog/ 301!
-
-# Remove query parameters from blog post URLs
-/blog/*?source=* /blog/:splat 301!
-/blog/*?post_id=* /blog/:splat 301!
-/blog/*?category=* /blog/:splat 301!
-
-# Fix www vs non-www for cookies and other pages
-/cookies /cookies 301!
-https://popri.cz/cookies https://www.popri.cz/cookies 301!
-https://popri.cz/blog https://www.popri.cz/blog 301!
-https://popri.cz/blog/* https://www.popri.cz/blog/:splat 301!
-
-# IndexNow key file
-/a1b2c3d4e5f6g7h8i9j0.txt /a1b2c3d4e5f6g7h8i9j0.txt 200
-
-# CRITICAL: Old domain redirects with proper 301 status
-http://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
-https://pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
-http://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
-https://www.pripojeni-poda.cz/* https://www.popri.cz/:splat 301!
-
-# CRITICAL: Force www for popri.cz domain
+# Force www for popri.cz domain
 http://popri.cz/* https://www.popri.cz/:splat 301!
 https://popri.cz/* https://www.popri.cz/:splat 301!
-http://www.popri.cz/* https://www.popri.cz/:splat 301!
 
-# Direct file access - highest priority
-/sitemap.xml /sitemap.xml 200
-/robots.txt /robots.txt 200
-
-# Favicon files
-/poda-favicon.ico /poda-favicon.ico 200
-/poda-favicon-16x16.png /poda-favicon-16x16.png 200
-/poda-favicon-32x32.png /poda-favicon-32x32.png 200
-/poda-apple-touch-icon.png /poda-apple-touch-icon.png 200
-/site.webmanifest /site.webmanifest 200
-
-# Asset files
-/assets/* /assets/:splat 200
-/lovable-uploads/* /lovable-uploads/:splat 200
-
-# Handle missing images
-/*.jpg /placeholder.svg 302
-/*.jpeg /placeholder.svg 302
-/*.png /placeholder.svg 302
-/*.webp /placeholder.svg 302
-
-# Blog routes - all blog paths go to SPA
+# SPA routing - serve index.html for all routes
 /blog/* /index.html 200
-
-# Internet city pages
-/internet-ostrava /index.html 200
-/internet-karvina /index.html 200
-/internet-bohumin /index.html 200
-/internet-havirov /index.html 200
-/internet-poruba /index.html 200
-
-# Other SPA routes
+/internet-* /index.html 200
 /kontakt /index.html 200
 /tarify /index.html 200
 /programy /index.html 200
 /iptv /index.html 200
 /internet-tv /index.html 200
-/tv-programy /index.html 200
-/obchodni-podminky /index.html 200
 /ochrana-soukromi /index.html 200
+/obchodni-podminky /index.html 200
 /cookies /index.html 200
-/sitemap /index.html 200
-/migration-center /index.html 200
-/migration-monitor /index.html 200
-/indexing-dashboard /index.html 200
 
-# 404 handling
-/404 /index.html 404
-
-# Promotion page redirect
-/promo-akcia /promo-akce 301
-
-# SPA fallback - lowest priority (catch all other routes)
+# Catch all for SPA
 /* /index.html 200

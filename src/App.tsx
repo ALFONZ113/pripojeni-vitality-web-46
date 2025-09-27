@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
 import FloatingCallButton from './components/ui/floating-call-button';
+import { NoIndexMeta } from './components/seo/NoIndexMeta';
 
 // Direct import for Home to eliminate loading delay
 import Home from './pages/Index';
@@ -53,6 +54,7 @@ function App() {
         <Router>
           <div className="min-h-screen bg-white flex flex-col">
             <ScrollToTop />
+            <NoIndexMeta />
             <Navbar />
             <main className="flex-grow">
               <Suspense fallback={

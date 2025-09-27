@@ -1,6 +1,6 @@
 import { blogPosts } from '../data/blog';
 import type { BlogPost } from '../data/blog/types';
-import { generateLocalBusinessStructuredData, extractSEOKeywords } from './sitemapGenerator';
+// Remove unused imports
 
 /**
  * Rozšírený zoznam lokálnych kľúčových fráz pre lepšie SEO
@@ -156,8 +156,35 @@ const getCoordinates = (city: string): string => {
 };
 
 /**
- * Generate enhanced blog post meta with geo optimization
+ * Generate local business structured data
  */
+const generateLocalBusinessStructuredData = (cityName: string, baseUrl: string) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `PODA Internet ${cityName}`,
+    "description": `Gigabitové optické pripojenie PODA v ${cityName}`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": cityName,
+      "addressCountry": "CZ"
+    },
+    "url": `${baseUrl}/internet-${cityName.toLowerCase()}`,
+    "telephone": "730431313"
+  };
+};
+
+/**
+ * Extract SEO keywords from blog post
+ */
+const extractSEOKeywords = (post: BlogPost): string[] => {
+  const text = `${post.title} ${post.excerpt} ${post.content}`;
+  const stopWords = ['a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'];
+  return text.toLowerCase()
+    .split(/\W+/)
+    .filter(word => word.length > 3 && !stopWords.includes(word))
+    .slice(0, 10);
+};
 export const generateEnhancedBlogMeta = (post: BlogPost, baseUrl: string) => {
   const keywords = extractSEOKeywords(post);
   const canonicalUrl = `${baseUrl}/blog/${post.id}`;

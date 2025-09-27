@@ -234,6 +234,39 @@ export const generateSitemapIndex = (baseUrl: string = 'https://www.popri.cz'): 
 </sitemapindex>`;
 };
 
+// Legacy function alias for backward compatibility
+export const generateSitemap = generateCleanSitemap;
+
+/**
+ * Validate sitemap XML structure
+ */
+export const validateSitemapXML = (xmlContent: string): boolean => {
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlContent, 'application/xml');
+    const parseError = doc.querySelector('parsererror');
+    return !parseError && xmlContent.includes('<urlset');
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Get sitemap statistics
+ */
+export const getSitemapStats = () => {
+  const sitemap = generateCleanSitemap();
+  const urlCount = (sitemap.match(/<url>/g) || []).length;
+  const imageCount = (sitemap.match(/<image:image>/g) || []).length;
+  
+  return {
+    totalUrls: urlCount,
+    totalImages: imageCount,
+    lastGenerated: new Date().toISOString(),
+    sizeKB: Math.round(sitemap.length / 1024)
+  };
+};
+
 /**
  * Export sitemap for download
  */

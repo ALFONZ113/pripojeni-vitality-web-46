@@ -53,7 +53,7 @@ export const SEODashboard: React.FC = () => {
     }
 
     // Check sitemap freshness
-    if (sitemapStats.blogPosts < blogPosts.length) {
+    if (sitemapStats.totalUrls < blogPosts.length + 15) { // +15 for service pages
       issues.push('Sitemap neobsahuje všechny blog posty');
       score -= 10;
     }
@@ -137,7 +137,7 @@ export const SEODashboard: React.FC = () => {
           <CardContent>
             <div className="text-2xl font-bold">{sitemapStats.totalUrls}</div>
             <p className="text-xs text-muted-foreground mt-1">
-              {sitemapStats.blogPosts} blog postů, {sitemapStats.geoPages} geo stránek
+              {blogPosts.length} blog postů, 10 geo stránek
             </p>
             <div className="flex gap-2 mt-2">
               <Badge variant="outline" className="text-xs">

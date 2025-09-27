@@ -2,6 +2,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { generateCanonicalUrl, generateHreflangTags } from '../../utils/domainMigration';
+import { AIMetaTags } from '../seo/AIMetaTags';
 
 interface PageMetadataProps {
   title: string;
@@ -13,6 +14,10 @@ interface PageMetadataProps {
   seznamVerification?: string;
   canonicalUrl?: string;
   currentPath?: string;
+  aiOptimized?: boolean;
+  pageType?: 'website' | 'article' | 'product' | 'service';
+  keywords?: string[];
+  location?: string;
 }
 
 const PageMetadata = ({ 
@@ -24,7 +29,11 @@ const PageMetadata = ({
   domain = "www.popri.cz",
   seznamVerification,
   canonicalUrl,
-  currentPath = ""
+  currentPath = "",
+  aiOptimized = true,
+  pageType = 'website',
+  keywords = [],
+  location
 }: PageMetadataProps) => {
   // FIXED: Always use www.popri.cz as canonical domain
   const migrationSafeCanonicalUrl = canonicalUrl || generateCanonicalUrl(currentPath);
@@ -138,6 +147,19 @@ const PageMetadata = ({
           }
         `}
       </script>
+
+      {/* AI-optimized meta tags */}
+      {aiOptimized && (
+        <>
+          <AIMetaTags
+            title={title}
+            description={description}
+            pageType={pageType}
+            keywords={keywords}
+            location={location}
+          />
+        </>
+      )}
     </Helmet>
   );
 };

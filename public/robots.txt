@@ -63,24 +63,51 @@ User-agent: Googlebot-Image
 Allow: /assets/*
 Allow: /lovable-uploads/*
 
-# AI crawlers - explicit permissions
+# AI crawlers - explicit permissions with optimized crawl patterns
 User-agent: ChatGPT-User
 Allow: /
+Crawl-delay: 1
 
 User-agent: GPTBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Google-Extended
 Allow: /
+Crawl-delay: 1
 
 User-agent: CCBot
 Allow: /
+Crawl-delay: 2
 
 User-agent: anthropic-ai
 Allow: /
+Crawl-delay: 1
 
 User-agent: Claude-Web
 Allow: /
+Crawl-delay: 1
+
+# Additional AI crawlers
+User-agent: Grok-Bot
+Allow: /
+Crawl-delay: 1
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: You.com-Bot
+Allow: /
+Crawl-delay: 2
+
+User-agent: SearchGPT
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bard-Bot
+Allow: /
+Crawl-delay: 1
 
 # Aggressive crawlers - throttle them
 User-agent: AhrefsBot
@@ -96,3 +123,4 @@ Crawl-delay: 10
 Sitemap: https://www.popri.cz/sitemap-index.xml
 Sitemap: https://www.popri.cz/sitemap.xml
 Sitemap: https://www.popri.cz/sitemap-images.xml
+Sitemap: https://www.popri.cz/ai-sitemap.xml

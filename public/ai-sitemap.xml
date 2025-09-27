@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI-optimized sitemap for better machine readability -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:ai="https://schema.org/WebSite"
+        xmlns:content="https://schema.org/Article">
+  
+  <!-- Homepage with AI metadata -->
+  <url>
+    <loc>https://www.popri.cz/</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <ai:contentType>homepage</ai:contentType>
+    <ai:description>PODA internet služby v Ostravě - rychlé připojení s TV zdarma</ai:description>
+    <ai:keywords>PODA internet, Ostrava, rychlé připojení, TV zdarma</ai:keywords>
+  </url>
+
+  <!-- Service pages -->
+  <url>
+    <loc>https://www.popri.cz/internet-tv</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <ai:contentType>service</ai:contentType>
+    <ai:description>Internet + TV balíčky PODA s výhodným ceníkem</ai:description>
+    <ai:keywords>internet TV, PODA balíčky, televizní programy</ai:keywords>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/iptv</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <ai:contentType>service</ai:contentType>
+    <ai:description>IPTV služby PODA - televizní vysílání přes internet</ai:description>
+    <ai:keywords>IPTV, televizní vysílání, streamování</ai:keywords>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/tarify</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <ai:contentType>pricing</ai:contentType>
+    <ai:description>Ceník internetových tarifů PODA - přehled rychlostí a cen</ai:description>
+    <ai:keywords>tarify, ceník PODA, rychlosti internetu, ceny</ai:keywords>
+  </url>
+
+  <!-- Regional pages -->
+  <url>
+    <loc>https://www.popri.cz/internet-ostrava</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>PODA internet v Ostravě - rychlé připojení pro domácnosti i firmy</ai:description>
+    <ai:keywords>internet Ostrava, PODA Ostrava, připojení Ostrava</ai:keywords>
+    <ai:location>Ostrava, Moravskoslezský kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-karvina</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>PODA internet v Karviné - spolehlivé připojení s TV zdarma</ai:description>
+    <ai:keywords>internet Karviná, PODA Karviná, připojení Karviná</ai:keywords>
+    <ai:location>Karviná, Moravskoslezský kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-havirov</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>PODA internet v Havířově - gigabitové rychlosti pro domovy</ai:description>
+    <ai:keywords>internet Havířov, PODA Havířov, připojení Havířov</ai:keywords>
+    <ai:location>Havířov, Moravskoslezský kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-bohumin</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>PODA internet v Bohumíně - rychlá instalace a podpora</ai:description>
+    <ai:keywords>internet Bohumín, PODA Bohumín, připojení Bohumín</ai:keywords>
+    <ai:location>Bohumín, Moravskoslezský kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-poruba</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>PODA internet v Porubě - moderní připojení pro městskou část Ostravy</ai:description>
+    <ai:keywords>internet Poruba, PODA Poruba, připojení Poruba Ostrava</ai:keywords>
+    <ai:location>Poruba, Ostrava</ai:location>
+  </url>
+
+  <!-- Blog section -->
+  <url>
+    <loc>https://www.popri.cz/blog</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <ai:contentType>blog</ai:contentType>
+    <ai:description>Blog o internetových službách, technologiích a tipech pro zákazníky PODA</ai:description>
+    <ai:keywords>blog PODA, internetové technologie, tipy, novinky</ai:keywords>
+  </url>
+
+  <!-- Contact and support -->
+  <url>
+    <loc>https://www.popri.cz/kontakt</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <ai:contentType>contact</ai:contentType>
+    <ai:description>Kontaktní informace PODA - telefon, email, adresa a podpora</ai:description>
+    <ai:keywords>kontakt PODA, telefon, podpora, adresa</ai:keywords>
+  </url>
+
+</urlset>

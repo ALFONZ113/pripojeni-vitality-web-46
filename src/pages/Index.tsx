@@ -9,6 +9,7 @@ import { useEnhancedTracking } from '../hooks/use-enhanced-tracking';
 import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
+import { AIContentSummary } from '../components/seo/AIContentSummary';
 
 // Critical resources for LCP optimization
 const CRITICAL_IMAGES = [
@@ -47,6 +48,37 @@ const Index = () => {
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
         currentDate="2025-01-14"
         faviconVersion="3.1"
+        aiOptimized={true}
+        pageType="website"
+        keywords={[
+          'PODA internet', 'gigabitové připojení', 'internet Ostrava', 
+          'TV zdarma', 'rychlý internet', 'optické připojení',
+          'internet Karviná', 'internet Havířov', 'internet Bohumín'
+        ]}
+        location="Ostrava, Moravskoslezský kraj"
+      />
+      
+      <AIContentSummary
+        title="PODA Internet s TV Zdarma - Popri.cz"
+        summary="Poskytujeme rychlé a spolehlivé internetové připojení PODA v Ostravě a okolí. Nabízíme gigabitové rychlosti, televizní vysílání zdarma, profesionální instalaci a non-stop technickou podporu."
+        services={[
+          'Gigabitový internet PODA',
+          'Televizní vysílání zdarma',
+          'IPTV služby',
+          'Optické připojení',
+          'Non-stop podpora'
+        ]}
+        location="Ostrava, Karviná, Havířov, Bohumín, Poruba"
+        keyPoints={[
+          'Rychlá instalace do 48 hodin',
+          'Bez závazků a skrytých poplatků',
+          'Stabilní připojení s 99,9% dostupností',
+          'Výhodné cenové balíčky',
+          'Profesionální technická podpora'
+        ]}
+        contactInfo={{
+          phone: '+420 739 065 142'
+        }}
       />
       
       {/* Main content - always full opacity */}

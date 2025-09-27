@@ -90,6 +90,8 @@ const helpers = {
     
     // SEO-important files
     if (pathname === '/sitemap.xml' || 
+        pathname === '/sitemap-index.xml' ||
+        pathname === '/sitemap-images.xml' ||
         pathname === '/robots.txt' || 
         pathname.startsWith('/blog/')) {
       return 'network-first';

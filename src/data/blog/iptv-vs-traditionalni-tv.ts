@@ -1,7 +1,7 @@
 import { BlogPost } from './types';
 
 export const iptvVsTradicionalniTvPost: BlogPost = {
-  id: 101,
+  id: 203,
   title: "TV přes internet vs klasická kabelová / satelitní televize — srovnání výhod a nevýhod",
   slug: "iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod",
   excerpt: "Váháte mezi internetovou televizí IPTV a klasickou kabelovou či satelitní TV? Porovnáme výhody a nevýhody obou řešení, aby vám rozhodnutí bylo snazší. Zjistěte, proč IPTV získává na popularitě.",

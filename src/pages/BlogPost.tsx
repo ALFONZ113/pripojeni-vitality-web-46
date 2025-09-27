@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { blogPosts } from '../data/blog';
 import { initAnimations } from '../utils/animation';
 import { findBlogPost } from '../utils/blogRouting';
+import { createSlug } from '../utils/slugGenerator';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
@@ -42,9 +43,9 @@ const BlogPostPage = () => {
     if (foundPost) {
       setPost(foundPost);
       
-
-      // FIXED: Update canonical URL to use clean numeric ID format
-      const canonicalUrl = `https://www.popri.cz/blog/${foundPost.id}`;
+      // Generate clean canonical URL using slug
+      const slug = foundPost.slug || createSlug(foundPost.title);
+      const canonicalUrl = `https://www.popri.cz/blog/${slug}`;
       
       // Update meta tags for better SEO
       const linkElement = document.querySelector('link[rel="canonical"]');
@@ -57,16 +58,10 @@ const BlogPostPage = () => {
         document.head.appendChild(newCanonical);
       }
       
-      // Update URL parameters for better SEO
+      // Remove query parameters from URL if present (clean URL)
       const url = new URL(window.location.href);
-      if (!url.searchParams.has('category') && foundPost.category) {
-        url.searchParams.set('category', foundPost.category);
-        window.history.replaceState({}, '', url.toString());
-      }
-      
-      if (foundPost.tags && foundPost.tags.length > 0 && !url.searchParams.has('tag')) {
-        url.searchParams.set('tag', foundPost.tags[0]);
-        window.history.replaceState({}, '', url.toString());
+      if (url.search) {
+        window.history.replaceState({}, '', url.pathname);
       }
     } else {
       navigate('/blog', { replace: true });

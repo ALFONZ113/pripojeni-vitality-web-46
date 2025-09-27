@@ -2,8 +2,9 @@
 import type { BlogPost } from './types';
 
 export const internetGuidePost: BlogPost = {
-  id: 102,
+  id: 206,
   title: "Jak najít nejlepší internet v Ostravě, Karviné a Havířově: Kompletní průvodce pro rok 2025",
+  slug: "nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025",
   excerpt: "Kompletní průvodce výběrem nejlepšího internetového připojení v Ostravě, Karviné a Havířově pro rok 2025. Porovnání technologií, poskytovatelů a praktické tipy pro domácnosti i firmy.",
   content: `
     <div class="max-w-4xl mx-auto">

@@ -2,7 +2,7 @@
 import { BlogPost } from './types';
 
 export const polanka60ghzPost: BlogPost = {
-  id: 102,
+  id: 201,
   title: "PODA 2025: Polanka nad Odrou připojena revolučním 60 GHz připojením",
   slug: "polanka-nad-odrou-60ghz-pripojeni-2025",
   excerpt: "Novinky PODA 2025! Obec Polanka nad Odrou u Ostravy získala nejmodernější bezdrátové připojení s 60 GHz technologií. Rychlost až 1000/200 Mbps prostřednictvím vzdušného připojení.",

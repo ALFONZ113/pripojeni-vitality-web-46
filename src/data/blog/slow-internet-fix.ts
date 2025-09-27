@@ -3,6 +3,7 @@ import { BlogPost } from './types';
 export const slowInternetFixPost: BlogPost = {
   id: 30,
   title: "Pomalý Internet? 8 Způsobů Jak to Vyřešit [MSK 2025]",
+  slug: "pomaly-internet-8-sposobu-jak-vyresit-msk-2025",
   excerpt: "Seká se vám internet v Ostravě? Náš expert průvodce odhaluje 8 nejčastějších příčin pomalého internetu a praktické způsoby, jak je vyřešit.",
   content: `
     <div class="prose-content">

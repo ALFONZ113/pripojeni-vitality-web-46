@@ -2,7 +2,7 @@ import { BlogPost } from './types';
 
 // Příklad nového článku s slug
 export const gamingOstravaExamplePost: BlogPost = {
-  id: 101,
+  id: 205,
   title: "Gaming Internet Ostrava 2025 - Nejrychlejší připojení pro hráče",
   slug: "gaming-internet-ostrava-2025", // Nový slug parametr
   excerpt: "Objevte nejrychlejší internetové připojení pro gaming v Ostravě. Nízká latence, vysoká rychlost a stabilita pro profesionální hráče.",

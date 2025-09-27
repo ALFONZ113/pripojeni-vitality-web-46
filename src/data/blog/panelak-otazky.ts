@@ -1,9 +1,10 @@
 import { BlogPost } from './types';
 
 export const panelakOtazkyPost: BlogPost = {
-  id: 101,
+  id: 204,
   title: "Nejčastější otázky o připojení internetu v paneláku",
-  excerpt: "Odpovědi na nejčastější otázky týkající se internetového připojení v panelových domech. Technické požadavky, instalace a možnosti připojení.",
+  slug: "nejcastejsi-otazky-pripojeni-internet-panelak",
+  excerpt: "Chcete internet v paneláku a nevíte, jak na to? Odpovídáme na nejčastější otázky o připojení internetu v bytových domech. Optika, povolení SVJ, rychlosti a více.",
   content: `
     <div class="prose-content">
       <h2>Úvod: Internet v paneláku</h2>

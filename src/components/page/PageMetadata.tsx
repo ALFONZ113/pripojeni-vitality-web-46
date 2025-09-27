@@ -2,7 +2,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { generateCanonicalUrl, generateHreflangTags } from '../../utils/domainMigration';
-import { AIMetaTags } from '../seo/AIMetaTags';
 
 interface PageMetadataProps {
   title: string;
@@ -151,13 +150,60 @@ const PageMetadata = ({
       {/* AI-optimized meta tags */}
       {aiOptimized && (
         <>
-          <AIMetaTags
-            title={title}
-            description={description}
-            pageType={pageType}
-            keywords={keywords}
-            location={location}
-          />
+          <meta name="ai:title" content={title} />
+          <meta name="ai:description" content={description} />
+          <meta name="ai:content-summary" content={description} />
+          <meta name="ai:page-type" content={pageType} />
+          <meta name="ai:language" content="cs" />
+          <meta name="ai:region" content="CZ" />
+          <meta name="content-accessibility" content="public" />
+          <meta name="content-format" content="text/html" />
+          <meta name="reading-level" content="general" />
+          <meta name="ai-crawl-priority" content="high" />
+          <meta name="ai-index-content" content="full" />
+          <meta name="ai-extract-entities" content="true" />
+          {keywords.length > 0 && (
+            <meta name="ai:keywords" content={keywords.join(', ')} />
+          )}
+          {location && (
+            <>
+              <meta name="ai:location" content={location} />
+              <meta name="geo.placename" content={location} />
+            </>
+          )}
+          <script type="application/ld+json">
+            {`
+              {
+                "@context": "https://schema.org",
+                "@type": "${pageType === 'article' ? 'Article' : 'WebPage'}",
+                "name": "${title}",
+                "headline": "${title}",
+                "description": "${description}",
+                "contentSummary": "${description}",
+                "keywords": "${keywords.join(', ')}",
+                "inLanguage": "cs",
+                "isAccessibleForFree": true,
+                "audience": {
+                  "@type": "Audience",
+                  "audienceType": "general public"
+                },
+                ${location ? `"spatialCoverage": {
+                  "@type": "Place",
+                  "name": "${location}",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressRegion": "Moravskoslezský kraj",
+                    "addressCountry": "CZ"
+                  }
+                },` : ''}
+                "provider": {
+                  "@type": "Organization",
+                  "name": "PODA",
+                  "description": "Poskytovatel internetových služeb v Ostravě a okolí"
+                }
+              }
+            `}
+          </script>
         </>
       )}
     </Helmet>

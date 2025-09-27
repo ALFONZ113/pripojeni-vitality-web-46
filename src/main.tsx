@@ -40,15 +40,15 @@ try {
   // CRITICAL: Use immediate synchronous rendering to replace static content ASAP
   root.render(<App />);
   
-  // Mark React as loaded IMMEDIATELY for FCP improvement
+  // Mark React as loaded IMMEDIATELY - no delays for instant content swap
+  if (window.markReactLoaded) {
+    window.markReactLoaded();
+  }
+  
+  // Log performance only in dev
   const loadTime = performance.now() - startTime;
   if (process.env.NODE_ENV === 'development') {
     console.log(`React app loaded in ${loadTime.toFixed(2)}ms`);
-  }
-  
-  // Signal React loaded immediately to hide static content
-  if (window.markReactLoaded) {
-    window.markReactLoaded();
   }
   
   // Defer ALL non-critical optimizations to avoid blocking initial render

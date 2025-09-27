@@ -204,8 +204,18 @@
         }
       }
 
-      /* Hide static content when React loads */
+      /* Hide static content when React loads - instant transition */
       .react-loaded .static-content {
+        display: none;
+      }
+      
+      /* Faster content transition */
+      .static-content {
+        transition: opacity 0.1s ease-out;
+      }
+      
+      .react-loaded .static-content {
+        opacity: 0;
         display: none;
       }
     </style>

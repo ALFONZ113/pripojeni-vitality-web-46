@@ -9,8 +9,10 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
 import FloatingCallButton from './components/ui/floating-call-button';
 
-// Lazy load components for better performance
-const Home = lazy(() => import('./pages/Index'));
+// Direct import for Home to eliminate loading delay
+import Home from './pages/Index';
+
+// Lazy load other components for better performance
 const InternetTV = lazy(() => import('./pages/InternetTV'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
@@ -54,8 +56,8 @@ function App() {
             <Navbar />
             <main className="flex-grow">
               <Suspense fallback={
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-poda-blue"></div>
+                <div className="min-h-[200px] flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary opacity-50"></div>
                 </div>
               }>
                 <Routes>

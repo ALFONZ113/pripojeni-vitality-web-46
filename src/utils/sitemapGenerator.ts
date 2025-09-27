@@ -88,31 +88,31 @@ const formatDateISO = (dateStr: string): string => {
 export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): string => {
   const currentDate = new Date().toISOString().split('T')[0];
   
-  // Static pages with their priorities and change frequencies
+  // Static pages with optimized priorities and change frequencies for GSC
   const staticPages = [
-    { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage
+    { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage - highest priority
+    { url: '/tarify', priority: '0.9', changefreq: 'weekly' }, // Commercial pages
     { url: '/internet-tv', priority: '0.9', changefreq: 'weekly' },
     { url: '/iptv', priority: '0.8', changefreq: 'weekly' },
-    { url: '/tarify', priority: '0.8', changefreq: 'weekly' },
-    { url: '/programy', priority: '0.7', changefreq: 'monthly' },
-    { url: '/kontakt', priority: '0.9', changefreq: 'monthly' },
-    { url: '/blog', priority: '0.7', changefreq: 'weekly' },
+    { url: '/kontakt', priority: '0.8', changefreq: 'monthly' },
+    { url: '/blog', priority: '0.8', changefreq: 'daily' }, // Updated frequently
+    { url: '/programy', priority: '0.6', changefreq: 'monthly' },
     { url: '/ochrana-soukromi', priority: '0.3', changefreq: 'yearly' },
     { url: '/obchodni-podminky', priority: '0.3', changefreq: 'yearly' },
     { url: '/cookies', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  // Geo-specific pages
+  // Geo-specific pages - High priority for local SEO
   const geoPages = [
-    { url: '/internet-ostrava', priority: '0.8', changefreq: 'monthly' },
-    { url: '/internet-karvina', priority: '0.8', changefreq: 'monthly' },
-    { url: '/internet-bohumin', priority: '0.8', changefreq: 'monthly' },
-    { url: '/internet-havirov', priority: '0.8', changefreq: 'monthly' },
-    { url: '/internet-poruba', priority: '0.8', changefreq: 'monthly' },
+    { url: '/internet-ostrava', priority: '0.9', changefreq: 'weekly' }, // Main city
+    { url: '/internet-karvina', priority: '0.9', changefreq: 'weekly' },
+    { url: '/internet-poruba', priority: '0.9', changefreq: 'weekly' },
+    { url: '/internet-havirov', priority: '0.9', changefreq: 'weekly' },
+    { url: '/internet-bohumin', priority: '0.9', changefreq: 'weekly' },
   ];
 
-  // Start with clean XML declaration
-  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+  // Start with enhanced XML declaration with image and hreflang support
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`;
 
   // Add static pages
   staticPages.forEach(page => {
@@ -125,6 +125,17 @@ export const generateSitemap = (baseUrl: string = 'https://www.popri.cz'): strin
       sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
       sitemap += `    <changefreq>${page.changefreq}</changefreq>\n`;
       sitemap += `    <priority>${page.priority}</priority>\n`;
+      sitemap += `    <xhtml:link rel="alternate" hreflang="cs" href="${escapeXml(sanitizedUrl)}" />\n`;
+      
+      // Add images for homepage
+      if (page.url === '') {
+        sitemap += `    <image:image>\n`;
+        sitemap += `      <image:loc>https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png</image:loc>\n`;
+        sitemap += `      <image:caption>PODA Internet rychlé připojení</image:caption>\n`;
+        sitemap += `      <image:title>PODA Gigabitové připojení</image:title>\n`;
+        sitemap += `    </image:image>\n`;
+      }
+      
       sitemap += `  </url>\n`;
     }
   });

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- HLAVNÝ SITEMAP S VŠETKÝMI STRÁNKAMI -->
+  <sitemap>
+    <loc>https://www.popri.cz/sitemap.xml</loc>
+    <lastmod>2025-01-14</lastmod>
+  </sitemap>
+  
+  <!-- OBRAZOVÝ SITEMAP PRE LEPŠIE SEO OBRÁZKOV -->
+  <sitemap>
+    <loc>https://www.popri.cz/sitemap-images.xml</loc>
+    <lastmod>2025-01-14</lastmod>
+  </sitemap>
+  
+</sitemapindex>

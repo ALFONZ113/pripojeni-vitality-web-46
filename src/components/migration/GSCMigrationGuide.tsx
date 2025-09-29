@@ -135,7 +135,7 @@ const GSCMigrationGuide = () => {
               onClick={copyVerificationTag}
             >
               <Copy className="w-4 h-4 mr-1" />
-              Verification Tag
+              Overovací tag
             </Button>
             <Button 
               variant="outline" 
@@ -143,7 +143,7 @@ const GSCMigrationGuide = () => {
               onClick={openGSC}
             >
               <ExternalLink className="w-4 h-4 mr-1" />
-              Open GSC
+              Otvoriť GSC
             </Button>
           </div>
         </CardTitle>
@@ -189,7 +189,7 @@ const GSCMigrationGuide = () => {
                       size="sm"
                       onClick={step.action}
                     >
-                      Copy
+                      Kopírovať
                     </Button>
                   )}
                   {step.url && (

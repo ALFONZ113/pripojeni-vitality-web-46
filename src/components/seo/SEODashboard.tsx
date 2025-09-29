@@ -92,7 +92,7 @@ export const SEODashboard: React.FC = () => {
       const success = await submitBatchToIndexNow(urls);
       
       if (success) {
-        setSubmissionStatus('✅ Úspěšně odesláno do search engienů');
+        setSubmissionStatus('✅ Úspěšně odesláno do vyhledávačů');
       } else {
         setSubmissionStatus('⚠️ Částečně odesláno - zkuste to znovu později');
       }

@@ -284,7 +284,7 @@ const IndexingFixCenter = () => {
                     className="flex items-center gap-1 text-xs"
                   >
                     <ExternalLink className="w-3 h-3" />
-                    GSC Inspect
+                    GSC Inšpekcia
                   </Button>
                 </div>
               </CardContent>

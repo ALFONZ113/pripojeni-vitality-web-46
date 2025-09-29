@@ -130,7 +130,7 @@ const IndexingAccelerator = () => {
               onClick={openGSCSubmitSitemap}
             >
               <ExternalLink className="w-4 h-4 mr-1" />
-              Submit Sitemap
+              Odoslať Sitemap
             </Button>
             <Button 
               variant="outline" 
@@ -138,7 +138,7 @@ const IndexingAccelerator = () => {
               onClick={openGSCInspection}
             >
               <ExternalLink className="w-4 h-4 mr-1" />
-              URL Inspection
+              URL Inšpekcia
             </Button>
           </div>
         </CardTitle>
@@ -206,7 +206,7 @@ const IndexingAccelerator = () => {
                     size="sm"
                     variant={action.priority === 'high' ? 'default' : 'outline'}
                   >
-                    {action.completed ? 'Hotovo ✓' : 'Copy URLs'}
+                    {action.completed ? 'Hotovo ✓' : 'Kopírovať URLs'}
                   </Button>
                 </div>
               </div>

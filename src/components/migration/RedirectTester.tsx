@@ -150,7 +150,7 @@ const RedirectTester = () => {
     const labels = {
       success: '301 ✓',
       error: 'Chyba',
-      testing: 'Testing...',
+      testing: 'Testuje sa...',
       pending: 'Čaká'
     };
     

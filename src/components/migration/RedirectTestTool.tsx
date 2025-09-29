@@ -89,7 +89,7 @@ const RedirectTestTool = () => {
     }
     
     setTesting(false);
-    toast.success('Všetky redirect testy dokončené');
+    toast.success('Všechny redirect testy dokončeny');
   };
 
   const addCustomTest = () => {

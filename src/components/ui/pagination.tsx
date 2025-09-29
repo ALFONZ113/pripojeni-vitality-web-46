@@ -64,13 +64,13 @@ const PaginationPrevious = ({
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
-    aria-label="Prejsť na predchádzajúcu stránku"
+    aria-label="Přejít na předchozí stránku"
     size="default"
     className={cn("gap-1 pl-2.5", className)}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
-    <span>Predchádzajúca</span>
+    <span>Předchozí</span>
   </PaginationLink>
 )
 PaginationPrevious.displayName = "PaginationPrevious"
@@ -80,12 +80,12 @@ const PaginationNext = ({
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
-    aria-label="Prejsť na ďalšiu stránku"
+    aria-label="Přejít na další stránku"
     size="default"
     className={cn("gap-1 pr-2.5", className)}
     {...props}
   >
-    <span>Ďalšia</span>
+    <span>Další</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 )
@@ -101,7 +101,7 @@ const PaginationEllipsis = ({
     {...props}
   >
     <MoreHorizontal className="h-4 w-4" />
-    <span className="sr-only">Ďalšie stránky</span>
+    <span className="sr-only">Další stránky</span>
   </span>
 )
 PaginationEllipsis.displayName = "PaginationEllipsis"

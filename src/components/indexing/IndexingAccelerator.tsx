@@ -33,7 +33,7 @@ const IndexingAccelerator = () => {
       priority: 'high',
       action: function() {
         navigator.clipboard.writeText(this.urls.join('\n'));
-        toast.success(`${this.urls.length} kritických URL skopírovaných. NAJSKÔR tieto!`);
+        toast.success(`${this.urls.length} kritických URL zkopírováno. NEJDŘÍVE tyto!`);
         setActions(prev => prev.map(a => a.id === this.id ? { ...a, completed: true } : a));
       }
     },
@@ -52,7 +52,7 @@ const IndexingAccelerator = () => {
       priority: 'medium',
       action: function() {
         navigator.clipboard.writeText(this.urls.join('\n'));
-        toast.success(`${this.urls.length} geo URL skopírovaných.`);
+        toast.success(`${this.urls.length} geo URL zkopírováno.`);
         setActions(prev => prev.map(a => a.id === this.id ? { ...a, completed: true } : a));
       }
     },
@@ -65,7 +65,7 @@ const IndexingAccelerator = () => {
       priority: 'low',
       action: function() {
         navigator.clipboard.writeText(this.urls.join('\n'));
-        toast.success(`${this.urls.length} blog URL skopírovaných.`);
+        toast.success(`${this.urls.length} blog URL zkopírováno.`);
         setActions(prev => prev.map(a => a.id === this.id ? { ...a, completed: true } : a));
       }
     }
@@ -82,7 +82,7 @@ const IndexingAccelerator = () => {
   const copyAllUrls = () => {
     const allUrls = actions.flatMap(action => action.urls);
     navigator.clipboard.writeText(allUrls.join('\n'));
-    toast.success(`Všetkých ${allUrls.length} URL skopírovaných naraz!`);
+    toast.success(`Všech ${allUrls.length} URL zkopírováno najednou!`);
   };
 
   const completedActions = actions.filter(a => a.completed).length;
@@ -130,7 +130,7 @@ const IndexingAccelerator = () => {
               onClick={openGSCSubmitSitemap}
             >
               <ExternalLink className="w-4 h-4 mr-1" />
-              Odoslať Sitemap
+              Odeslat Sitemap
             </Button>
             <Button 
               variant="outline" 
@@ -138,7 +138,7 @@ const IndexingAccelerator = () => {
               onClick={openGSCInspection}
             >
               <ExternalLink className="w-4 h-4 mr-1" />
-              URL Inšpekcia
+              URL Inspekce
             </Button>
           </div>
         </CardTitle>
@@ -206,7 +206,7 @@ const IndexingAccelerator = () => {
                     size="sm"
                     variant={action.priority === 'high' ? 'default' : 'outline'}
                   >
-                    {action.completed ? 'Hotovo ✓' : 'Kopírovať URLs'}
+                    {action.completed ? 'Hotovo ✓' : 'Kopírovat URLs'}
                   </Button>
                 </div>
               </div>
@@ -226,11 +226,11 @@ const IndexingAccelerator = () => {
         <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
           <h4 className="font-semibold text-yellow-800 mb-2">POSTUP PRE RÝCHLE RIEŠENIE:</h4>
           <ol className="text-sm text-yellow-700 space-y-1">
-            <li>1. <strong>NAJSKÔR:</strong> Copy "KRITICKÉ stránky" URL a indexuj ich v GSC</li>
-            <li>2. <strong>Submit sitemap:</strong> Klik na "Submit Sitemap" tlačidlo</li>
-            <li>3. <strong>URL Inspection:</strong> Pre každú URL: Paste → Test Live URL → Request Indexing</li>
+            <li>1. <strong>NEJDŘÍVE:</strong> Zkopíruj "KRITICKÉ stránky" URL a indexuj je v GSC</li>
+            <li>2. <strong>Odeslat sitemap:</strong> Klikni na "Odeslat Sitemap" tlačítko</li>
+            <li>3. <strong>URL Inspection:</strong> Pro každou URL: Vložit → Test Live URL → Request Indexing</li>
             <li>4. <strong>Potom:</strong> Pokračuj s geo stránkami a nakonec blog</li>
-            <li>5. <strong>Kontrola:</strong> Za 24-48h skontroluj Index Coverage v GSC</li>
+            <li>5. <strong>Kontrola:</strong> Za 24-48h zkontroluj Index Coverage v GSC</li>
           </ol>
         </div>
       </CardContent>

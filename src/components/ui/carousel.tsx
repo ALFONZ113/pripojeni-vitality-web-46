@@ -215,7 +215,7 @@ const CarouselPrevious = React.forwardRef<
       {...props}
     >
       <ArrowLeft className="h-4 w-4" />
-      <span className="sr-only">Predchádzajúci snímok</span>
+      <span className="sr-only">Předchozí snímek</span>
     </Button>
   )
 })
@@ -244,7 +244,7 @@ const CarouselNext = React.forwardRef<
       {...props}
     >
       <ArrowRight className="h-4 w-4" />
-      <span className="sr-only">Ďalší snímok</span>
+      <span className="sr-only">Další snímek</span>
     </Button>
   )
 })

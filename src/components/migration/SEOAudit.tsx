@@ -40,51 +40,51 @@ const SEOAudit = () => {
           id: 'hreflang',
           name: 'Hreflang značky',
           status: 'pass',
-          description: 'Hreflang značky sú správne nastavené',
+          description: 'Hreflang značky jsou správně nastaveny',
           value: 'cs, sk, x-default'
         },
         {
           id: 'migration-meta',
           name: 'Migration meta značky',
           status: 'pass',
-          description: 'Migration signály sú prítomne',
+          description: 'Migration signály jsou přítomny',
           value: 'migration-date, original-domain, preferred-domain'
         },
         {
           id: 'open-graph',
           name: 'Open Graph',
           status: 'pass',
-          description: 'OG značky používajú novú doménu',
+          description: 'OG značky používají novou doménu',
           value: 'og:url = https://www.popri.cz/'
         },
         {
           id: 'sitemap',
-          name: 'Sitemap dostupnosť',
+          name: 'Sitemap dostupnost',
           status: 'pass',
-          description: 'Sitemap je dostupný a validný',
+          description: 'Sitemap je dostupný a validní',
           value: '/sitemap.xml (25 URLs)'
         },
         {
           id: 'robots',
           name: 'Robots.txt',
           status: 'pass',
-          description: 'Robots.txt obsahuje správne direktívy',
+          description: 'Robots.txt obsahuje správné direktívy',
           value: 'Allow: / + blog post IDs'
         },
         {
           id: 'schema',
           name: 'Structured Data',
           status: 'pass',
-          description: 'Schema.org značky používajú novú doménu',
+          description: 'Schema.org značky používají novou doménu',
           value: 'Organization, WebSite, LocalBusiness'
         },
         {
           id: 'gsc-verification',
-          name: 'GSC verifikácia',
+          name: 'GSC verifikace',
           status: 'warning',
-          description: 'Google Search Console verifikácia',
-          value: 'Meta tag prítomny',
-          recommendation: 'Pridať property do GSC a verifikovať'
+          description: 'Google Search Console verifikace',
+          value: 'Meta tag přítomen',
+          recommendation: 'Přidat property do GSC a verifikovat'
         }
       ];
       
@@ -116,7 +116,7 @@ const SEOAudit = () => {
     const labels = {
       pass: 'OK',
       fail: 'Chyba',
-      warning: 'Upozornenie'
+      warning: 'Upozornění'
     };
     
     return (
@@ -132,7 +132,7 @@ const SEOAudit = () => {
     ).join('\n');
     
     navigator.clipboard.writeText(results);
-    toast.success('Výsledky auditu skopírované do schránky');
+    toast.success('Výsledky auditu zkopírovány do schránky');
   };
 
   const downloadAuditReport = () => {
@@ -171,7 +171,7 @@ const SEOAudit = () => {
         <CardContent>
           <div className="flex items-center justify-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-            <span className="ml-2 text-gray-600">Spúšťam audit...</span>
+            <span className="ml-2 text-gray-600">Spouštím audit...</span>
           </div>
         </CardContent>
       </Card>
@@ -187,11 +187,11 @@ const SEOAudit = () => {
             <div className="flex items-center space-x-2">
               <Button variant="outline" size="sm" onClick={copyAuditResults}>
                 <Copy className="w-4 h-4 mr-1" />
-                Kopírovať
+                Kopírovat
               </Button>
               <Button variant="outline" size="sm" onClick={downloadAuditReport}>
                 <Download className="w-4 h-4 mr-1" />
-                Stiahnuť
+                Stáhnout
               </Button>
             </div>
           </CardTitle>
@@ -202,7 +202,7 @@ const SEOAudit = () => {
               {auditScore}%
             </div>
             <div className="text-gray-600">
-              {passedChecks} z {totalChecks} kontrol prešlo
+              {passedChecks} z {totalChecks} kontrol prošlo
             </div>
           </div>
 
@@ -225,7 +225,7 @@ const SEOAudit = () => {
                   )}
                   {check.recommendation && (
                     <p className="text-xs text-yellow-800 mt-2 p-2 bg-yellow-50 rounded">
-                      <strong>Odporúčanie:</strong> {check.recommendation}
+                      <strong>Doporučení:</strong> {check.recommendation}
                     </p>
                   )}
                 </div>

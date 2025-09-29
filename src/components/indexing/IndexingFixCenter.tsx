@@ -97,7 +97,7 @@ const IndexingFixCenter = () => {
   const copyUrls = (urls: string[]) => {
     const urlList = urls.map(url => `https://www.popri.cz${url}`).join('\n');
     navigator.clipboard.writeText(urlList);
-    toast.success(`Skopírované ${urls.length} URLs do schránky`);
+    toast.success(`Zkopírováno ${urls.length} URLs do schránky`);
   };
 
   const openGSC = (action: string, url?: string) => {
@@ -216,8 +216,8 @@ const IndexingFixCenter = () => {
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="overview">Prehľad problémov</TabsTrigger>
-          <TabsTrigger value="solutions">Riešenia krok za krokom</TabsTrigger>
+          <TabsTrigger value="overview">Přehled problémů</TabsTrigger>
+          <TabsTrigger value="solutions">Řešení krok za krokem</TabsTrigger>
           <TabsTrigger value="impact">Dopad na SEO</TabsTrigger>
         </TabsList>
 
@@ -284,7 +284,7 @@ const IndexingFixCenter = () => {
                     className="flex items-center gap-1 text-xs"
                   >
                     <ExternalLink className="w-3 h-3" />
-                    GSC Inšpekcia
+                    GSC Inspekce
                   </Button>
                 </div>
               </CardContent>

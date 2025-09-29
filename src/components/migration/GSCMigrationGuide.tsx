@@ -52,13 +52,13 @@ const GSCMigrationGuide = () => {
       completed: false,
       action: () => {
         navigator.clipboard.writeText('https://www.popri.cz/sitemap.xml');
-        toast.success('Sitemap URL skopírovaná do schránky');
+        toast.success('Sitemap URL zkopírována do schránky');
       },
       instructions: [
-        'V GSC pre www.popri.cz ísť do "Sitemaps"',
-        'Zadať URL: https://www.popri.cz/sitemap.xml',
-        'Kliknúť "Submit"',
-        'Skontrolovať úspešné spracovanie'
+        'V GSC pro www.popri.cz jít do "Sitemaps"',
+        'Zadat URL: https://www.popri.cz/sitemap.xml',
+        'Kliknout "Submit"',
+        'Zkontrolovat úspěšné zpracování'
       ]
     },
     {
@@ -77,7 +77,7 @@ const GSCMigrationGuide = () => {
           'https://www.popri.cz/tarify'
         ];
         navigator.clipboard.writeText(urls.join('\n'));
-        toast.success('URL zoznam skopírovaný. Použite "URL Inspection" v GSC pre každú URL.');
+        toast.success('URL seznam zkopírován. Použijte "URL Inspection" v GSC pro každou URL.');
       },
       instructions: [
         'V GSC pre www.popri.cz použiť "URL Inspection"',
@@ -117,7 +117,7 @@ const GSCMigrationGuide = () => {
   const copyVerificationTag = () => {
     const tag = '<meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />';
     navigator.clipboard.writeText(tag);
-    toast.success('Google verification tag skopírovaný');
+    toast.success('Google verification tag zkopírován');
   };
 
   return (
@@ -135,7 +135,7 @@ const GSCMigrationGuide = () => {
               onClick={copyVerificationTag}
             >
               <Copy className="w-4 h-4 mr-1" />
-              Overovací tag
+              Ověřovací tag
             </Button>
             <Button 
               variant="outline" 
@@ -143,7 +143,7 @@ const GSCMigrationGuide = () => {
               onClick={openGSC}
             >
               <ExternalLink className="w-4 h-4 mr-1" />
-              Otvoriť GSC
+              Otevřít GSC
             </Button>
           </div>
         </CardTitle>
@@ -154,7 +154,7 @@ const GSCMigrationGuide = () => {
             {progress}%
           </div>
           <div className="text-gray-600">
-            {completedSteps} z {totalSteps} krokov hotových
+            {completedSteps} z {totalSteps} kroků hotových
           </div>
         </div>
 
@@ -189,7 +189,7 @@ const GSCMigrationGuide = () => {
                       size="sm"
                       onClick={step.action}
                     >
-                      Kopírovať
+                      Kopírovat
                     </Button>
                   )}
                   {step.url && (

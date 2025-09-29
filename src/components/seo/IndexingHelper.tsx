@@ -19,8 +19,8 @@ const IndexingHelper = () => {
   const [actions, setActions] = useState<IndexingAction[]>([
     {
       id: 'gsc-property',
-      title: 'Pridať property do GSC',
-      description: 'Pridať www.popri.cz do Google Search Console',
+      title: 'Přidat property do GSC',
+      description: 'Přidat www.popri.cz do Google Search Console',
       url: 'https://search.google.com/search-console',
       status: 'pending',
       action: () => {
@@ -30,29 +30,29 @@ const IndexingHelper = () => {
     },
     {
       id: 'change-address',
-      title: 'Nastaviť Change of Address',
-      description: 'Migrácia z pripojeni-poda.cz na www.popri.cz',
+      title: 'Nastavit Change of Address',
+      description: 'Migrace z pripojeni-poda.cz na www.popri.cz',
       status: 'pending',
       action: () => {
-        toast.info('Otvorte GSC pre pripojeni-poda.cz > Settings > Change of Address');
+        toast.info('Otevřete GSC pro pripojeni-poda.cz > Settings > Change of Address');
         updateActionStatus('change-address', 'in-progress');
       }
     },
     {
       id: 'submit-sitemap',
-      title: 'Odoslať sitemap',
-      description: 'Pridať sitemap.xml do GSC',
+      title: 'Odeslat sitemap',
+      description: 'Přidat sitemap.xml do GSC',
       status: 'pending',
       action: () => {
         navigator.clipboard.writeText('https://www.popri.cz/sitemap.xml');
-        toast.success('Sitemap URL skopírovaná do schránky');
+        toast.success('Sitemap URL zkopírována do schránky');
         updateActionStatus('submit-sitemap', 'completed');
       }
     },
     {
       id: 'request-indexing',
-      title: 'Požiadať o indexovanie',
-      description: 'Manuálne požiadať o indexovanie blog postov',
+      title: 'Požádat o indexování',
+      description: 'Manuálně požádat o indexování blog postů',
       status: 'pending',
       action: () => {
         const urls = [
@@ -63,7 +63,7 @@ const IndexingHelper = () => {
           'https://www.popri.cz/blog/5'
         ];
         navigator.clipboard.writeText(urls.join('\n'));
-        toast.success('URL zoznam skopírovaný. Použite "Inspect URL" v GSC pre každú URL.');
+        toast.success('URL seznam zkopírován. Použijte "Inspect URL" v GSC pro každou URL.');
         updateActionStatus('request-indexing', 'in-progress');
       }
     }
@@ -83,8 +83,8 @@ const IndexingHelper = () => {
     } as const;
     
     const labels = {
-      pending: 'Čaká',
-      'in-progress': 'Prebieha',
+      pending: 'Čeká',
+      'in-progress': 'Probíhá',
       completed: 'Hotovo'
     };
     
@@ -101,7 +101,7 @@ const IndexingHelper = () => {
       <CardHeader>
         <CardTitle className="flex items-center">
           <Search className="w-5 h-5 mr-2" />
-          Indexovanie - Akčný plán
+          Indexování - Akční plán
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -131,18 +131,18 @@ const IndexingHelper = () => {
                 size="sm"
                 className="ml-4"
               >
-                {action.status === 'completed' ? 'Hotovo' : 'Spustiť'}
+                {action.status === 'completed' ? 'Hotovo' : 'Spustit'}
               </Button>
             </div>
           ))}
         </div>
         
         <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-          <h4 className="font-semibold text-blue-900 mb-2">Dôležité poznámky:</h4>
+          <h4 className="font-semibold text-blue-900 mb-2">Důležité poznámky:</h4>
           <ul className="text-sm text-blue-800 space-y-1">
-            <li>• Indexovanie môže trvať 1-7 dní</li>
-            <li>• Pravidelne kontrolujte GSC Coverage report</li>
-            <li>• Požiadajte o indexovanie nových článkov hneď po publikovaní</li>
+            <li>• Indexování může trvat 1-7 dní</li>
+            <li>• Pravidelně kontrolujte GSC Coverage report</li>
+            <li>• Požádejte o indexování nových článků hned po publikování</li>
             <li>• Monitorujte organic traffic v GSC Performance</li>
           </ul>
         </div>

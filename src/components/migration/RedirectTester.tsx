@@ -99,7 +99,7 @@ const RedirectTester = () => {
     }
     
     setTesting(false);
-    toast.success('Všetky redirect testy dokončené');
+    toast.success('Všechny redirect testy dokončeny');
   };
 
   const resetTests = () => {
@@ -150,7 +150,7 @@ const RedirectTester = () => {
     const labels = {
       success: '301 ✓',
       error: 'Chyba',
-      testing: 'Testuje sa...',
+      testing: 'Testuje se...',
       pending: 'Čaká'
     };
     

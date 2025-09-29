@@ -507,59 +507,59 @@ export const technologiePosts: BlogPost[] = [
           <li><strong>Celková úspora za 2 roky:</strong> 10 000 - 15 000 Kč</li>
         </ul>
 
-        <h2>Jednoduchý prechod s Popri.cz</h2>
+        <h2>Jednoduchý přechod s Popri.cz</h2>
         <div class="bg-poda-blue text-white p-6 rounded-lg my-8">
-          <h3 class="text-white mb-4">Popri.cz - váš sprievodca prechodom:</h3>
+          <h3 class="text-white mb-4">Popri.cz - váš průvodce přechodem:</h3>
           <ul class="space-y-2">
-            <li>• <strong>Komplexné riešenie:</strong> Od výpovede po inštaláciu</li>
-            <li>• <strong>Bez výpadku služby:</strong> Plynulý prechod medzi poskytovateľmi</li>
-            <li>• <strong>Prioritné spracovanie:</strong> Rýchlejšia aktivácia</li>
-            <li>• <strong>Osobný prístup:</strong> Konzultácia s regionálnym špecialisto</li>
-            <li>• <strong>Najlepšie ceny:</strong> Exkluzívne tarify pre Moravskoslezský región</li>
+            <li>• <strong>Komplexní řešení:</strong> Od výpovědi po instalaci</li>
+            <li>• <strong>Bez výpadku služby:</strong> Plynulý přechod mezi poskytovateli</li>
+            <li>• <strong>Prioritní zpracování:</strong> Rychlejší aktivace</li>
+            <li>• <strong>Osobní přístup:</strong> Konzultace s regionálním specialistou</li>
+            <li>• <strong>Nejlepší ceny:</strong> Exkluzivní tarify pro Moravskoslezský region</li>
           </ul>
         </div>
 
-        <h3>Proces prechodu krok za krokom</h3>
+        <h3>Proces přechodu krok za krokem</h3>
         <ol>
-          <li><strong>Kontakt cez popri.cz:</strong> Vyplnenie jednoduchého formulára</li>
-          <li><strong>Konzultácia potrieb:</strong> Analýza vašich požiadaviek</li>
-          <li><strong>Výber optimálneho tarifu:</strong> Personalizované odporúčanie</li>
-          <li><strong>Pomoc s výpoveďou:</strong> Asistencia pri ukončení stávajúcej zmluvy</li>
-          <li><strong>Plánovanie inštalácie:</strong> Termín bez výpadku služieb</li>
-          <li><strong>Profesionálna inštalácia:</strong> Nastavenie a testovanie</li>
-          <li><strong>Overenie funkčnosti:</strong> Kontrola všetkých parametrov</li>
-          <li><strong>Odovzdanie do užívania:</strong> Zaškolenie a dokumentácia</li>
+          <li><strong>Kontakt přes popri.cz:</strong> Vyplnění jednoduchého formuláře</li>
+          <li><strong>Konzultace potřeb:</strong> Analýza vašich požadavků</li>
+          <li><strong>Výběr optimálního tarifu:</strong> Personalizované doporučení</li>
+          <li><strong>Pomoc s výpovědí:</strong> Asistence při ukončení stávající smlouvy</li>
+          <li><strong>Plánování instalace:</strong> Termín bez výpadku služeb</li>
+          <li><strong>Profesionální instalace:</strong> Nastavení a testování</li>
+          <li><strong>Ověření funkčnosti:</strong> Kontrola všech parametrů</li>
+          <li><strong>Předání do užívání:</strong> Zaškolení a dokumentace</li>
         </ol>
 
-        <h2>Záver: Príležitosť pre zlepšenie služieb</h2>
-        <p>Akvizície Nej.cz a Netboxu spoločnosťou O2 predstavujú pre zákazníkov v Moravskoslezskom regióne príležitosť prehodnotiť svoje internetové služby. PODA ako regionálny poskytovateľ ponúka stabilnú alternatívu s lepšími technickými parametrami a výhodnejšími cenami.</p>
+        <h2>Závěr: Příležitost pro zlepšení služeb</h2>
+        <p>Akvizice Nej.cz a Netboxu společností O2 představuje pro zákazníky v Moravskoslezském regionu příležitost přehodnotit své internetové služby. PODA jako regionální poskytovatel nabízí stabilní alternativu s lepšími technickými parametry a výhodnějšími cenami.</p>
 
-        <h3>Kľúčové dôvody pre prechod k PODA:</h3>
+        <h3>Klíčové důvody pro přechod k PODA:</h3>
         <ul>
-          <li><strong>Ekonomické výhody:</strong> Úspora tisícov korún ročne</li>
-          <li><strong>Technická nadradnosť:</strong> Optické pripojenie vs. zastaralé technológie</li>
-          <li><strong>Regionálny prístup:</strong> Lokálna podpora namiesto call centier</li>
-          <li><strong>Flexibilita:</strong> Bez závazkov a s možnosťou zmien</li>
-          <li><strong>Budúcnosť:</strong> Investícia do modernej infraštruktúry</li>
+          <li><strong>Ekonomické výhody:</strong> Úspora tisíců korun ročně</li>
+          <li><strong>Technická nadřazenost:</strong> Optické připojení vs. zastaralé technologie</li>
+          <li><strong>Regionální přístup:</strong> Lokální podpora namísto call center</li>
+          <li><strong>Flexibilita:</strong> Bez závazků a s možností změn</li>
+          <li><strong>Budoucnost:</strong> Investice do moderní infrastruktury</li>
         </ul>
 
         <div class="bg-green-50 p-6 rounded-lg my-8">
-          <h3>Špeciálna ponuka pre migračných zákazníkov:</h3>
+          <h3>Speciální nabídka pro migrační zákazníky:</h3>
           <ul class="space-y-1">
-            <li>• <strong>Bezplatná migrácia:</strong> Bez aktivačných poplatkov</li>
-            <li>• <strong>Rýchla inštalácia:</strong> Prioritné spracovanie objednávok</li>
-            <li>• <strong>Technická asistencia:</strong> Pomoc s prechodom zadarmo</li>
-            <li>• <strong>Garancie spokojnosti:</strong> 30-dňová záruka vrátenia peňazí</li>
+            <li>• <strong>Bezplatná migrace:</strong> Bez aktivačních poplatků</li>
+            <li>• <strong>Rychlá instalace:</strong> Prioritní zpracování objednávek</li>
+            <li>• <strong>Technická asistence:</strong> Pomoc s přechodem zdarma</li>
+            <li>• <strong>Garance spokojenosti:</strong> 30-denní záruka vrácení peněz</li>
           </ul>
         </div>
 
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Využite príležitosť pre lepšie služby:</h3>
+          <h3>Využijte příležitost pro lepší služby:</h3>
           <p><strong>Web:</strong> popri.cz<br>
-          <strong>Migračný špecialista:</strong> Náš odborník<br>
+          <strong>Migrační specialista:</strong> Náš odborník<br>
           <strong>Tel:</strong> 730 431 313<br>
           <strong>E-mail:</strong> terc@obchod.poda.cz</p>
-          <p class="mt-4 text-sm text-gray-600">Bezplatná konzultácia migrácie a overenie možností pripojenia PODA na vašej adrese.</p>
+          <p class="mt-4 text-sm text-gray-600">Bezplatná konzultace migrace a ověření možností připojení PODA na vaší adrese.</p>
           
           <div class="flex flex-col sm:flex-row gap-3 mt-6">
             <a href="tel:730431313" class="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-medium transition-all duration-300 text-center inline-flex items-center justify-center gap-2">

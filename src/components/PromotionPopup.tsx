@@ -166,7 +166,7 @@ const PromotionPopup = () => {
             První měsíc ZDARMA!
           </DialogTitle>
           <div className="text-sm text-red-600 font-semibold mt-1">
-            Len do 30.9.2025!
+            Len do 15.10.2025!
           </div>
           <DialogDescription className="text-base text-gray-700">
             Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele?

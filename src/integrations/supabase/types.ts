@@ -7,14 +7,94 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "13.0.5"
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          last_login: string | null
+          name: string
+          password_hash: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          last_login?: string | null
+          name: string
+          password_hash: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          last_login?: string | null
+          name?: string
+          password_hash?: string
+        }
+        Relationships: []
+      }
+      form_submissions: {
+        Row: {
+          address: string | null
+          admin_notes: string | null
+          city: string | null
+          created_at: string
+          current_price: string | null
+          current_provider: string | null
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          property_type: string | null
+          status: string
+          updated_at: string
+          zip: string | null
+        }
+        Insert: {
+          address?: string | null
+          admin_notes?: string | null
+          city?: string | null
+          created_at?: string
+          current_price?: string | null
+          current_provider?: string | null
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          property_type?: string | null
+          status?: string
+          updated_at?: string
+          zip?: string | null
+        }
+        Update: {
+          address?: string | null
+          admin_notes?: string | null
+          city?: string | null
+          created_at?: string
+          current_price?: string | null
+          current_provider?: string | null
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          property_type?: string | null
+          status?: string
+          updated_at?: string
+          zip?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

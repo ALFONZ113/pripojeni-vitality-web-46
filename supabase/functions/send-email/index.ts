@@ -1,6 +1,7 @@
 
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 import { EmailRequest } from "./types.ts";
 import { corsHeaders } from "./utils/cors.ts";
 import { generateCustomerEmailHTML } from "./templates/customer-email.ts";
@@ -10,6 +11,11 @@ import { generateAdminEmailHTML } from "./templates/admin-email.ts";
 const resendApiKey = Deno.env.get("RESEND_API_KEY");
 console.log("RESEND_API_KEY exists:", !!resendApiKey);
 const resend = new Resend(resendApiKey);
+
+// Initialize Supabase client
+const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 serve(async (req) => {
   console.log("🔄 Request received for send-email function");
@@ -51,6 +57,37 @@ serve(async (req) => {
     const { to, subject, formData, emailType = "admin" } = requestData as EmailRequest;
 
     console.log("📧 Preparing email with data:", { to, subject, formData, emailType });
+    
+    // Save form data to database first
+    try {
+      console.log("💾 Saving form data to database");
+      const { data: submissionData, error: dbError } = await supabase
+        .from('form_submissions')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address || null,
+          city: formData.city || null,
+          zip: formData.zip || null,
+          property_type: formData.propertyType || null,
+          current_provider: formData.currentProvider || null,
+          current_price: formData.currentPrice || null,
+          message: formData.message || null,
+          status: 'new'
+        }])
+        .select();
+
+      if (dbError) {
+        console.error("❌ Database error:", dbError);
+        // Continue with email sending even if DB fails
+      } else {
+        console.log("✅ Form data saved to database:", submissionData);
+      }
+    } catch (dbError) {
+      console.error("❌ Error saving to database:", dbError);
+      // Continue with email sending even if DB fails
+    }
     
     let htmlContent: string;
     let replyTo: string | undefined;

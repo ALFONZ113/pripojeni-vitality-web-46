@@ -36,6 +36,8 @@ const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
 const SEODashboard = lazy(() => import('./pages/SEODashboard'));
 const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
 const GigaInternet = lazy(() => import('./pages/GigaInternet'));
+const AdminLogin = lazy(() => import('./pages/AdminLogin'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -92,6 +94,10 @@ function App() {
                   <Route path="/seo-dashboard" element={<SEODashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
                   <Route path="/giga-internet" element={<GigaInternet />} />
+                  
+                  {/* Admin panel - hidden routes */}
+                  <Route path="/admin-login-poda-2024" element={<AdminLogin />} />
+                  <Route path="/admin-dashboard-poda-2024" element={<AdminDashboard />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

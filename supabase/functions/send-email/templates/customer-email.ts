@@ -59,10 +59,10 @@ export const generateCustomerEmailHTML = (formData: any): string => {
           <div style="color: #6b7280; font-size: 14px;">${tariff.priceNote}</div>
         </div>
         
-        <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-bottom: 16px; border-left: 3px solid #0F4C81;">
+          <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-bottom: 16px; border-left: 3px solid #0F4C81;">
           <div style="margin-bottom: 8px; font-weight: 600; color: #0F4C81; font-size: 15px;">Internet: ${tariff.speed}</div>
           <div style="margin-bottom: 8px; color: #6b7280; font-size: 13px;">${tariff.technology}</div>
-          <div style="margin-bottom: 0; font-weight: 600; color: #0F4C81; font-size: 15px;">Televízia: ${tariff.tvChannels}</div>
+          <div style="margin-bottom: 0; font-weight: 600; color: #0F4C81; font-size: 15px;">Televize: ${tariff.tvChannels}</div>
         </div>
         
         <div style="margin-bottom: 16px;">
@@ -77,7 +77,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
         ${tariff.recommended ? `
         <div style="text-align: center; margin-top: 20px;">
           <a href="tel:+420730431313" style="display: inline-block; background: #FF6B35; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background-color 0.2s;">
-            Objednať teraz
+            Objednat teď
           </a>
         </div>` : ''}
       </div>
@@ -108,18 +108,18 @@ export const generateCustomerEmailHTML = (formData: any): string => {
         <div style="margin-bottom: 32px;">
           <h2 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Vážený/á ${formData.name},</h2>
           <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4b5563;">
-            ďakujeme za váš zájem o naše PODA služby. 
-            Pripravili sme pre vás profesionálny prehľad dostupných tarifov pre <strong style="color: #0F4C81;">${isApartment ? 'byty a bytovky' : 'rodinné domy'}</strong>.
+            děkujeme za váš zájem o naše PODA služby. 
+            Připravili jsme pro vás profesionální přehled dostupných tarifů pro <strong style="color: #0F4C81;">${isApartment ? 'byty a bytové domy' : 'rodinné domy'}</strong>.
           </p>
         </div>
 
         <!-- Location info -->
         ${formData.address || formData.city ? `
         <div style="background: #f0f7ff; padding: 20px; border-radius: 8px; margin-bottom: 32px; border-left: 4px solid #0F4C81;">
-          <div style="font-weight: 600; color: #0F4C81; margin-bottom: 8px; font-size: 16px;">Vaša adresa:</div>
+          <div style="font-weight: 600; color: #0F4C81; margin-bottom: 8px; font-size: 16px;">Vaše adresa:</div>
           <div style="color: #374151; font-size: 15px; margin-bottom: 8px;">${formData.address ? formData.address + ', ' : ''}${formData.city || ''}</div>
           <div style="color: #6b7280; font-size: 14px;">
-            Typ nehnuteľnosti: ${isApartment ? 'Byt/bytovka - GPON technológia' : 'Rodinný dom - Bezdrátový internet'}
+            Typ nemovitosti: ${isApartment ? 'Byt/bytový dům - GPON technologie' : 'Rodinný dům - Bezdrátový internet'}
           </div>
         </div>
         ` : ''}
@@ -133,41 +133,41 @@ export const generateCustomerEmailHTML = (formData: any): string => {
         <!-- Benefits -->
         <div style="background: #f8fafc; padding: 24px; border-radius: 8px; margin-bottom: 32px; border: 1px solid #e5e7eb;">
           <h3 style="color: #0F4C81; margin: 0 0 20px 0; font-size: 20px; font-weight: 600; text-align: center;">
-            Prečo si vybrať PODA služby?
+            Proč si vybrat PODA služby?
           </h3>
           <div style="display: grid; gap: 12px;">
             <div style="display: flex; align-items: center; padding: 12px 0;">
               <div style="width: 6px; height: 6px; background: #FF6B35; border-radius: 50%; margin-right: 16px; flex-shrink: 0;"></div>
               <div style="color: #374151; font-size: 15px; line-height: 1.4;">
-                <strong style="color: #0F4C81;">Garantovaná rýchlosť</strong> - bez obmedzení a spomalení
+                <strong style="color: #0F4C81;">Garantovaná rychlost</strong> - bez omezení a zpomalení
               </div>
             </div>
             
             <div style="display: flex; align-items: center; padding: 12px 0;">
               <div style="width: 6px; height: 6px; background: #FF6B35; border-radius: 50%; margin-right: 16px; flex-shrink: 0;"></div>
               <div style="color: #374151; font-size: 15px; line-height: 1.4;">
-                <strong style="color: #0F4C81;">TV automaticky v cene</strong> - žiadne extra poplatky
+                <strong style="color: #0F4C81;">TV automaticky v ceně</strong> - žádné extra poplatky
               </div>
             </div>
             
             <div style="display: flex; align-items: center; padding: 12px 0;">
               <div style="width: 6px; height: 6px; background: #FF6B35; border-radius: 50%; margin-right: 16px; flex-shrink: 0;"></div>
               <div style="color: #374151; font-size: 15px; line-height: 1.4;">
-                <strong style="color: #0F4C81;">Rýchla inštalácia</strong> - do 7 pracovných dní
+                <strong style="color: #0F4C81;">Rychlá instalace</strong> - do 7 pracovních dnů
               </div>
             </div>
             
             <div style="display: flex; align-items: center; padding: 12px 0;">
               <div style="width: 6px; height: 6px; background: #FF6B35; border-radius: 50%; margin-right: 16px; flex-shrink: 0;"></div>
               <div style="color: #374151; font-size: 15px; line-height: 1.4;">
-                <strong style="color: #0F4C81;">Non-stop technická podpora</strong> - 24/7 dostupnosť
+                <strong style="color: #0F4C81;">Non-stop technická podpora</strong> - 24/7 dostupnost
               </div>
             </div>
             
             <div style="display: flex; align-items: center; padding: 12px 0;">
               <div style="width: 6px; height: 6px; background: #FF6B35; border-radius: 50%; margin-right: 16px; flex-shrink: 0;"></div>
               <div style="color: #374151; font-size: 15px; line-height: 1.4;">
-                <strong style="color: #0F4C81;">Bez skrytých poplatkov</strong> - transparentné ceny
+                <strong style="color: #0F4C81;">Bez skrytých poplatků</strong> - transparentní ceny
               </div>
             </div>
           </div>
@@ -175,11 +175,11 @@ export const generateCustomerEmailHTML = (formData: any): string => {
 
         <!-- Next steps -->
         <div style="background: linear-gradient(135deg, #0F4C81 0%, #3A7CA5 100%); color: white; padding: 24px; border-radius: 8px; margin-bottom: 32px;">
-          <h3 style="margin: 0 0 16px 0; color: white; font-size: 20px; font-weight: 600;">Ďalšie kroky</h3>
-          <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.5;">Náš obchodný zástupca vás bude kontaktovať do <strong>24 hodín</strong> na:</p>
+          <h3 style="margin: 0 0 16px 0; color: white; font-size: 20px; font-weight: 600;">Další kroky</h3>
+          <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.5;">Náš obchodní zástupce vás bude kontaktovat do <strong>24 hodin</strong> na:</p>
           <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 6px; margin-bottom: 20px;">
             <div style="margin-bottom: 8px;">
-              <strong>Telefón:</strong> <a href="tel:${formData.phone}" style="color: white; text-decoration: none;">${formData.phone}</a>
+              <strong>Telefon:</strong> <a href="tel:${formData.phone}" style="color: white; text-decoration: none;">${formData.phone}</a>
             </div>
             <div>
               <strong>Email:</strong> <a href="mailto:${formData.email}" style="color: white; text-decoration: none;">${formData.email}</a>
@@ -188,18 +188,18 @@ export const generateCustomerEmailHTML = (formData: any): string => {
           
           <div style="text-align: center;">
             <a href="tel:+420730431313" style="display: inline-block; background: #FF6B35; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 16px;">
-              Zavolať teraz: +420 730 431 313
+              Zavolat teď: +420 730 431 313
             </a>
           </div>
         </div>
 
         <!-- Contact info -->
         <div style="background: #f8fafc; padding: 24px; border-radius: 8px; text-align: center;">
-          <h3 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Kontaktné údaje</h3>
+          <h3 style="color: #0F4C81; margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Kontaktní údaje</h3>
           <div style="background: white; padding: 20px; border-radius: 6px; margin-bottom: 16px; border: 1px solid #e5e7eb;">
             <div style="margin-bottom: 12px;">
               <h4 style="margin: 0 0 4px 0; color: #0F4C81; font-size: 16px; font-weight: 600;">Obchodní zástupce</h4>
-              <p style="margin: 0; color: #6b7280; font-size: 14px;">Obchodný zástupca PODA</p>
+              <p style="margin: 0; color: #6b7280; font-size: 14px;">Obchodní zástupce PODA</p>
             </div>
             <div style="margin-bottom: 8px;">
               <a href="tel:+420730431313" style="color: #0F4C81; text-decoration: none; font-weight: 500;">+420 730 431 313</a>
@@ -209,8 +209,8 @@ export const generateCustomerEmailHTML = (formData: any): string => {
             </div>
           </div>
           <p style="margin: 0; color: #6b7280; font-size: 14px; line-height: 1.5;">
-            Máte otázky? Neváhajte nás kontaktovať!<br>
-            Tešíme sa na spoluprácu s vami.
+            Máte otázky? Neváhejte nás kontaktovat!<br>
+            Těšíme se na spolupráci s vámi.
           </p>
         </div>
       </div>

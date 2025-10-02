@@ -514,7 +514,7 @@ const AdminDashboard = () => {
                   <SelectTrigger className="mt-1">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent position="popper" className="z-[100] bg-background">
                     <SelectItem value="new">Nová</SelectItem>
                     <SelectItem value="processing">Zpracovává se</SelectItem>
                     <SelectItem value="contacted">Kontaktováno</SelectItem>

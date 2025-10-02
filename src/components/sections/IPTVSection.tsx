@@ -1,18 +1,9 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tv, ArrowRight } from 'lucide-react';
-import { useCounterAnimation } from '@/hooks/use-counter-animation';
-import { RippleButton } from '@/components/ui/ripple-button';
 
 const IPTVSection = () => {
-  const { elementRef: channelsRef, displayValue: channelsValue } = useCounterAnimation({
-    start: 0,
-    end: 200,
-    duration: 2000,
-    decimals: 0,
-    suffix: '+'
-  });
-
   return (
     <section className="section-padding bg-gradient-to-r from-poda-orange/10 to-red-50">
       <div className="container-custom">
@@ -37,7 +28,7 @@ const IPTVSection = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div ref={channelsRef} className="font-bold text-2xl text-poda-blue">{channelsValue}</div>
+                <div className="font-bold text-2xl text-poda-blue">200+</div>
                 <div className="text-gray-600">TV kanálov</div>
               </div>
               <div className="text-center">
@@ -51,15 +42,11 @@ const IPTVSection = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/iptv">
-                <RippleButton variant="primary" className="inline-flex items-center justify-center">
-                  Zistiť viac o IPTV <ArrowRight className="ml-2 h-5 w-5" />
-                </RippleButton>
+              <Link to="/iptv" className="btn-primary inline-flex items-center justify-center">
+                Zistiť viac o IPTV <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <Link to="/kontakt">
-                <RippleButton variant="outline" className="inline-flex items-center justify-center">
-                  Objednať teraz
-                </RippleButton>
+              <Link to="/kontakt" className="btn-outline inline-flex items-center justify-center">
+                Objednať teraz
               </Link>
             </div>
           </div>

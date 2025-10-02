@@ -100,18 +100,6 @@ export default {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' },
 				},
-        'ripple': {
-          '0%': {
-            width: '20px',
-            height: '20px',
-            opacity: '0.5'
-          },
-          '100%': {
-            width: '400px',
-            height: '400px',
-            opacity: '0'
-          }
-        }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -120,7 +108,6 @@ export default {
 				'fade-up': 'fade-up 0.7s ease-out',
 				'pulse-slow': 'pulse-slow 3s infinite',
 				'float': 'float 6s ease-in-out infinite',
-        'ripple': 'ripple 0.6s ease-out',
 			}
 		}
 	},

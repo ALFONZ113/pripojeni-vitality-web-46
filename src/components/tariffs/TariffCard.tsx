@@ -1,8 +1,7 @@
+
 import { Check, Info, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { useCounterAnimation } from '@/hooks/use-counter-animation';
-import { RippleButton } from '@/components/ui/ripple-button';
 
 interface TariffFeature {
   title: string;
@@ -42,17 +41,6 @@ const TariffCard = ({
   onPromoInfoToggle,
   promoInfoText
 }: TariffCardProps) => {
-  // Extract numeric value from price string
-  const priceNumeric = parseInt(price.replace(/\D/g, ''));
-  
-  const { elementRef: priceRef, displayValue: priceValue } = useCounterAnimation({
-    start: 0,
-    end: priceNumeric,
-    duration: 1500,
-    decimals: 0,
-    suffix: ' Kč'
-  });
-
   return (
     <div className="tariff-card group">
       {isPromo && (
@@ -69,7 +57,7 @@ const TariffCard = ({
       <div className="p-6">
         <div className="mb-6 flex items-center justify-center">
           <div className="text-center">
-            <div ref={priceRef} className="text-4xl font-bold text-poda-blue">{priceValue}</div>
+            <div className="text-4xl font-bold text-poda-blue">{price}</div>
             <div className="text-gray-500 text-sm">{priceNote}</div>
             <Collapsible
               open={openPromoInfo[promoId]}
@@ -101,13 +89,8 @@ const TariffCard = ({
             </div>
           ))}
         </div>
-        <Link to="/kontakt">
-          <RippleButton 
-            variant={isRecommended ? 'secondary' : 'primary'} 
-            className="w-full flex justify-center"
-          >
-            Mám zájem
-          </RippleButton>
+        <Link to="/kontakt" className={`btn-${isRecommended ? 'secondary' : 'primary'} w-full flex justify-center`}>
+          Mám zájem
         </Link>
       </div>
     </div>

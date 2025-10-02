@@ -4,22 +4,12 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import CallbackForm from '../CallbackForm';
-import { useCounterAnimation } from '@/hooks/use-counter-animation';
-import { RippleButton } from '@/components/ui/ripple-button';
 
 interface HeroContentProps {
   handleContactClick: (e: React.MouseEvent) => void;
 }
 
 const HeroContent = ({ handleContactClick }: HeroContentProps) => {
-  const { elementRef: speedRef, displayValue: speedValue } = useCounterAnimation({
-    start: 0,
-    end: 1000,
-    duration: 2000,
-    decimals: 0,
-    suffix: ' Mbps'
-  });
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -63,7 +53,7 @@ const HeroContent = ({ handleContactClick }: HeroContentProps) => {
         <span className="text-poda-orange block sm:inline"> připojení a smart TV</span>
       </motion.h1>
       <motion.p variants={item} className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-        Přinášíme Vám rychlé <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až <span ref={speedRef} className="text-poda-orange font-bold">{speedValue}</span>. Užívejte si internet i TV bez kompromisů.
+        Přinášíme Vám rychlé <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užívejte si internet i TV bez kompromisů.
       </motion.p>
       
       {/* Callback Form - Adjusted for better mobile visibility */}
@@ -72,20 +62,17 @@ const HeroContent = ({ handleContactClick }: HeroContentProps) => {
       </motion.div>
       
       <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-        <Link to="/tarify">
-          <RippleButton variant="primary" className="group transition-all w-full sm:w-auto" aria-label="Prozkoumat nabídku">
-            Prozkoumat nabídku
-            <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
-          </RippleButton>
+        <Link to="/tarify" className="btn-primary group transition-all" aria-label="Prozkoumat nabídku">
+          Prozkoumat nabídku
+          <ArrowRight className="ml-2 h-5 w-5 inline transition-transform group-hover:translate-x-1" aria-hidden="true" />
         </Link>
-        <Link to="/kontakt" onClick={handleContactClick}>
-          <RippleButton 
-            variant="outline"
-            className="hover:bg-poda-blue/10 w-full sm:w-auto" 
-            aria-label="Kontaktní formulář"
-          >
-            Kontaktní formulář
-          </RippleButton>
+        <Link 
+          to="/kontakt" 
+          onClick={handleContactClick}
+          className="btn-outline hover:bg-poda-blue/10" 
+          aria-label="Kontaktní formulář"
+        >
+          Kontaktní formulář
         </Link>
       </motion.div>
     </div>

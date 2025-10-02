@@ -1,12 +1,7 @@
 
-import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
-import { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } from './utils/code-splitting'
-import { measureCoreWebVitals } from './utils/performance-optimization'
-import { handleBlogRedirects } from './utils/redirectManager'
-import { initializeLCPOptimizations } from './utils/lcp-optimization'
+import { injectCriticalCSS } from './utils/critical-css'
 
 // Global type declaration for window functions
 declare global {
@@ -15,62 +10,64 @@ declare global {
   }
 }
 
-// Initialize LCP optimizations IMMEDIATELY for best performance
-initializeLCPOptimizations();
+// CRITICAL: Inject critical CSS FIRST for fastest FCP
+injectCriticalCSS();
 
-// Performance tracking - minimize console logs for production
-if (process.env.NODE_ENV === 'development') {
-  console.log('React app loading started');
-}
 const startTime = performance.now();
 
-// Enhanced render application with optimized performance and IMMEDIATE CONTENT RENDERING
+// Render application with IMMEDIATE CONTENT for fastest FCP
 try {
-  // Handle redirects first, before any DOM manipulation
-  handleBlogRedirects();
+  // Handle redirects asynchronously to not block FCP
+  import('./utils/redirectManager').then(({ handleBlogRedirects }) => {
+    handleBlogRedirects();
+  });
   
   const rootElement = document.getElementById("root");
   if (!rootElement) {
-    throw new Error("Root element not found - check your HTML");
+    throw new Error("Root element not found");
   }
   
   // Create root and render IMMEDIATELY for fastest FCP
   const root = createRoot(rootElement);
   
-  // CRITICAL: Use immediate synchronous rendering to replace static content ASAP
+  // CRITICAL: Synchronous render - NO StrictMode for faster FCP
   root.render(<App />);
   
-  // Mark React as loaded IMMEDIATELY - no delays for instant content swap
+  // Mark React as loaded IMMEDIATELY
   if (window.markReactLoaded) {
     window.markReactLoaded();
   }
   
   // Log performance only in dev
-  const loadTime = performance.now() - startTime;
   if (process.env.NODE_ENV === 'development') {
-    console.log(`React app loaded in ${loadTime.toFixed(2)}ms`);
+    const loadTime = performance.now() - startTime;
+    console.log(`FCP: ${loadTime.toFixed(2)}ms`);
   }
   
-  // Defer ALL non-critical optimizations to avoid blocking initial render
-  // Use immediate callback to avoid any delays
-  setTimeout(() => {
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => {
-        preloadCriticalRoutes();
-        optimizeChunkLoading();
-        lazyLoadHeavyComponents();
-        loadMapyWhenNeeded();
-        measureCoreWebVitals();
-      }, { timeout: 2000 });
-    } else {
-      // Even faster fallback - no setTimeout delay
-      preloadCriticalRoutes();
-      optimizeChunkLoading();
-      lazyLoadHeavyComponents();
-      loadMapyWhenNeeded();
-      measureCoreWebVitals();
-    }
-  }, 0);
+  // Load main CSS after FCP to not block rendering
+  requestAnimationFrame(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/src/index.css';
+    document.head.appendChild(link);
+  });
+  
+  // Defer ALL non-critical code far after FCP
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      import('./utils/code-splitting').then(mod => {
+        mod.preloadCriticalRoutes();
+        mod.lazyLoadHeavyComponents();
+        mod.loadMapyWhenNeeded();
+      });
+      
+      if (process.env.NODE_ENV === 'development') {
+        import('./utils/performance-optimization').then(({ measureCoreWebVitals }) => {
+          measureCoreWebVitals();
+        });
+      }
+    }, { timeout: 3000 });
+  }
   
 } catch (error) {
   // Minimal error handling to avoid blocking render

@@ -19,7 +19,11 @@ import {
   MessageSquare,
   CheckCircle2,
   Clock,
-  XCircle
+  XCircle,
+  FileText,
+  Send,
+  AlertCircle,
+  Trash2
 } from "lucide-react";
 import {
   Table,
@@ -173,6 +177,30 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleDelete = async (id: string) => {
+    if (!confirm('Opravdu chcete smazat tento kontakt?')) return;
+
+    const { error } = await supabase
+      .from('form_submissions')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      toast({
+        title: "Chyba",
+        description: "Nepodařilo se smazat kontakt",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Úspěch",
+        description: "Kontakt byl smazán",
+      });
+      fetchSubmissions();
+      setSelectedSubmission(null);
+    }
+  };
+
   const exportToCSV = () => {
     const headers = ['Jméno', 'Email', 'Telefon', 'Adresa', 'Město', 'PSČ', 'Typ nemovitosti', 'Současný poskytovatel', 'Současná cena', 'Zpráva', 'Stav', 'Poznámky', 'Vytvořeno'];
     const csvData = filteredSubmissions.map(sub => [
@@ -214,8 +242,16 @@ const AdminDashboard = () => {
         return <Badge variant="default" className="bg-blue-500"><Clock className="h-3 w-3 mr-1" />Nová</Badge>;
       case 'processing':
         return <Badge variant="default" className="bg-yellow-500"><MessageSquare className="h-3 w-3 mr-1" />Zpracovává se</Badge>;
+      case 'contacted':
+        return <Badge variant="default" className="bg-purple-500"><Phone className="h-3 w-3 mr-1" />Kontaktováno</Badge>;
+      case 'contract_sent':
+        return <Badge variant="default" className="bg-indigo-500"><Send className="h-3 w-3 mr-1" />Smlouva odeslána</Badge>;
+      case 'contract_signed':
+        return <Badge variant="default" className="bg-emerald-500"><FileText className="h-3 w-3 mr-1" />Smlouva podepsána</Badge>;
       case 'completed':
         return <Badge variant="default" className="bg-green-500"><CheckCircle2 className="h-3 w-3 mr-1" />Dokončeno</Badge>;
+      case 'cancelled':
+        return <Badge variant="default" className="bg-gray-500"><AlertCircle className="h-3 w-3 mr-1" />Zrušeno</Badge>;
       case 'rejected':
         return <Badge variant="destructive"><XCircle className="h-3 w-3 mr-1" />Zamítnuto</Badge>;
       default:
@@ -306,7 +342,11 @@ const AdminDashboard = () => {
                   <SelectItem value="all">Všechny stavy</SelectItem>
                   <SelectItem value="new">Nové</SelectItem>
                   <SelectItem value="processing">Zpracovává se</SelectItem>
+                  <SelectItem value="contacted">Kontaktováno</SelectItem>
+                  <SelectItem value="contract_sent">Smlouva odeslána</SelectItem>
+                  <SelectItem value="contract_signed">Smlouva podepsána</SelectItem>
                   <SelectItem value="completed">Dokončeno</SelectItem>
+                  <SelectItem value="cancelled">Zrušeno</SelectItem>
                   <SelectItem value="rejected">Zamítnuto</SelectItem>
                 </SelectContent>
               </Select>
@@ -477,7 +517,11 @@ const AdminDashboard = () => {
                   <SelectContent>
                     <SelectItem value="new">Nová</SelectItem>
                     <SelectItem value="processing">Zpracovává se</SelectItem>
+                    <SelectItem value="contacted">Kontaktováno</SelectItem>
+                    <SelectItem value="contract_sent">Smlouva odeslána</SelectItem>
+                    <SelectItem value="contract_signed">Smlouva podepsána</SelectItem>
                     <SelectItem value="completed">Dokončeno</SelectItem>
+                    <SelectItem value="cancelled">Zrušeno</SelectItem>
                     <SelectItem value="rejected">Zamítnuto</SelectItem>
                   </SelectContent>
                 </Select>
@@ -495,13 +539,22 @@ const AdminDashboard = () => {
                 />
               </div>
 
-              <div className="flex justify-end gap-2">
-                <Button variant="outline" onClick={() => setSelectedSubmission(null)}>
-                  Zavřít
+              <div className="flex justify-between gap-2">
+                <Button 
+                  variant="destructive" 
+                  onClick={() => handleDelete(selectedSubmission.id)}
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Smazat kontakt
                 </Button>
-                <Button onClick={handleSaveNotes}>
-                  Uložit poznámky
-                </Button>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={() => setSelectedSubmission(null)}>
+                    Zavřít
+                  </Button>
+                  <Button onClick={handleSaveNotes}>
+                    Uložit poznámky
+                  </Button>
+                </div>
               </div>
             </div>
           )}

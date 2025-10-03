@@ -5,7 +5,6 @@ import HeroContent from './HeroContent';
 import FastHeroContent from './FastHeroContent';
 import FeatureCardsDesktop from './FeatureCardsDesktop';
 import MobileFeatureCards from './MobileFeatureCards';
-import DisclaimerText from './DisclaimerText';
 import { useState, useEffect } from 'react';
 
 interface HeroContainerProps {
@@ -51,8 +50,6 @@ const HeroContainer = ({ handleContactClick }: HeroContainerProps) => {
             <MobileFeatureCards />
           </div>
         )}
-
-        <DisclaimerText />
       </div>
     </>
   );

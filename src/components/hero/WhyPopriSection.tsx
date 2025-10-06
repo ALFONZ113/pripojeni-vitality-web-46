@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import DisclaimerText from './DisclaimerText';
 
 const WhyPopriSection = () => {
   return (
@@ -33,8 +32,6 @@ const WhyPopriSection = () => {
           </div>
         </div>
         </motion.div>
-        
-        <DisclaimerText />
       </div>
     </section>
   );

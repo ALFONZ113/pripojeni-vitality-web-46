@@ -35,6 +35,17 @@ const HeroContainer = ({ handleContactClick }: HeroContainerProps) => {
   return (
     <>
       <HeroBackground />
+      
+      {/* Mobile Hero Image Background */}
+      <div className="absolute inset-0 lg:hidden z-0">
+        <HeroImage
+          desktopSrc="/images/hero-family-desktop.jpg"
+          mobileSrc="/images/hero-family-mobile.jpg"
+          alt="Šťastná rodina užívající si rychlý PODA internet a TV"
+          className="opacity-30 blur-sm"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
+      </div>
 
       <div className="container-custom relative z-10">
         {showAnimations ? (

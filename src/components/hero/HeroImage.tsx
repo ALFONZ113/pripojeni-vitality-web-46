@@ -58,9 +58,9 @@ const HeroImage = ({ desktopSrc, mobileSrc, alt, className = '' }: HeroImageProp
           type="image/jpeg"
         />
         
-        {/* Mobile image */}
+        {/* Mobile image - always load for hero (no lazy loading) */}
         <img
-          src={isInView ? mobileSrc : ''}
+          src={mobileSrc}
           alt={alt}
           className={`w-full h-full object-cover transition-all duration-700 ${
             isLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'

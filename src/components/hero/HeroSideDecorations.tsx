@@ -46,7 +46,7 @@ const HeroSideDecorations = () => {
         {...fadeInLeft}
       >
         <motion.img
-          src="/src/assets/decorations/fiber-optic.svg"
+          src="/decorations/fiber-optic.svg"
           alt=""
           className="w-full h-full object-contain opacity-40"
           animate={floatAnimation}
@@ -62,7 +62,7 @@ const HeroSideDecorations = () => {
         transition={{ duration: 1, delay: 0.8 }}
       >
         <motion.img
-          src="/src/assets/decorations/wifi-waves.svg"
+          src="/decorations/wifi-waves.svg"
           alt=""
           className="w-full h-full object-contain opacity-30"
           animate={{
@@ -84,7 +84,7 @@ const HeroSideDecorations = () => {
         {...fadeInRight}
       >
         <motion.img
-          src="/src/assets/decorations/speed-meter.svg"
+          src="/decorations/speed-meter.svg"
           alt=""
           className="w-full h-full object-contain opacity-35"
           animate={{

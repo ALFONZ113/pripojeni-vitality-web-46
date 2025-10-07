@@ -1,137 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- HLAVNÍ STRÁNKA -->
   <url>
     <loc>https://www.popri.cz/</loc>
-    <lastmod>2025-09-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png</image:loc>
-      <image:caption>PODA Internet rychlé gigabitové připojení</image:caption>
-      <image:title>PODA Internet - Prémiové optické připojení</image:title>
-      <image:geo_location>Ostrava, Česká republika</image:geo_location>
+      <image:loc>https://www.popri.cz/poda-logo.svg</image:loc>
+      <image:title>PODA Internet - Nejrychlejší internet v Ostravě</image:title>
+      <image:caption>Gigabitový internet za 250 Kč měsíčně</image:caption>
     </image:image>
   </url>
+
+  <!-- TARIFY A SLUŽBY -->
   <url>
     <loc>https://www.popri.cz/tarify</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
     <loc>https://www.popri.cz/internet-tv</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
     <loc>https://www.popri.cz/iptv</loc>
-    <lastmod>2025-09-27</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://www.popri.cz/programy</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/giga-internet</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/promo-akcia</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
-    <loc>https://www.popri.cz/kontakt</loc>
-    <lastmod>2025-09-27</lastmod>
+    <loc>https://www.popri.cz/pomoc-prechodem</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
+
+  <!-- REGIONÁLNÍ STRÁNKY -->
   <url>
     <loc>https://www.popri.cz/internet-ostrava</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
     <loc>https://www.popri.cz/internet-karvina</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://www.popri.cz/internet-bohumin</loc>
-    <lastmod>2025-09-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+
   <url>
     <loc>https://www.popri.cz/internet-havirov</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-bohumin</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://www.popri.cz/internet-poruba</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
+
+  <!-- BLOG - HLAVNÍ STRÁNKA -->
   <url>
     <loc>https://www.popri.cz/blog</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- BLOG ČLÁNKY - SLUG-BASED URLs -->
   <url>
-    <loc>https://www.popri.cz/blog/polanka-60ghz-antena-revolucia</loc>
-    <lastmod>2025-09-27</lastmod>
+    <loc>https://www.popri.cz/blog/o2-nej-prevzatie-poda-alternativa-zakaznici</loc>
+    <lastmod>2025-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod</loc>
+    <lastmod>2025-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/nejcastejsi-otazky-pripojeni-internet-panelak</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/polanka-nad-odrou-60ghz-pripojeni-2025</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda</loc>
+    <lastmod>2025-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
-    <loc>https://www.popri.cz/blog/rychly-internet-navod-problemy</loc>
-    <lastmod>2025-09-27</lastmod>
+    <loc>https://www.popri.cz/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025</loc>
+    <lastmod>2025-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025</loc>
+    <lastmod>2025-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025</loc>
+    <lastmod>2025-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda</loc>
+    <lastmod>2025-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/gigabitovy-internet-poda-ostrava-technologie</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/poda-recenzie-skusenosti-zakaznikov-2025</loc>
+    <lastmod>2025-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/televize-160-programu-hd-uhd-kvalita-2025</loc>
+    <lastmod>2025-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- KONTAKT -->
   <url>
-    <loc>https://www.popri.cz/blog/panelak-internet-otazky-odpovede</loc>
-    <lastmod>2025-09-27</lastmod>
+    <loc>https://www.popri.cz/kontakt</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://www.popri.cz/blog/gaming-ostrava-esport-scena</loc>
-    <lastmod>2025-09-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.popri.cz/blog/iptv-vs-traditionalni-tv-porovnani</loc>
-    <lastmod>2025-09-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.popri.cz/blog/pomalý-internet-riesenia-guide</loc>
-    <lastmod>2025-09-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+
+  <!-- PRÁVNÍ STRÁNKY -->
   <url>
     <loc>https://www.popri.cz/ochrana-soukromi</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
   <url>
     <loc>https://www.popri.cz/obchodni-podminky</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
   <url>
     <loc>https://www.popri.cz/cookies</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>

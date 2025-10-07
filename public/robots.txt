@@ -43,6 +43,15 @@ Disallow: */admin/
 Disallow: /wp-admin/
 Disallow: /wp-content/
 
+# Block old ID-based blog URLs (redirect to slug-based)
+Disallow: /blog/[0-9]
+Disallow: /blog/[0-9][0-9]
+Disallow: /blog/[0-9][0-9][0-9]
+
+# Block parameterized blog URLs
+Disallow: /blog/*?*
+Disallow: /blog/*&*
+
 # Search engine specific rules
 User-agent: Googlebot
 Allow: /

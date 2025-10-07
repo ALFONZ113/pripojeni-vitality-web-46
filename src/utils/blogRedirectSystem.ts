@@ -99,16 +99,18 @@ export const getRobotsMetaContent = (path: string): string => {
 };
 
 /**
- * Generate canonical URL for blog posts
+ * Generate canonical URL for blog posts - ALWAYS use www.popri.cz
  */
 export const getCanonicalUrl = (path: string, baseUrl: string = 'https://www.popri.cz'): string => {
+  // CRITICAL: Force www.popri.cz for all canonical URLs
+  const canonicalBase = 'https://www.popri.cz';
   const redirectTarget = getRedirectTarget(path);
   const canonicalPath = redirectTarget || path;
   
   // Remove query parameters for canonical URL
   const cleanPath = canonicalPath.split('?')[0];
   
-  return `${baseUrl}${cleanPath}`;
+  return `${canonicalBase}${cleanPath}`;
 };
 
 /**

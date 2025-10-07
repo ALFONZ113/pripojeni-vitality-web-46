@@ -1,78 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  
-  <!-- OBRAZOVÉ SITEMAP PRE LEPŠIE SEO -->
-  <url>
-    <loc>https://www.popri.cz/</loc>
-    <image:image>
-      <image:loc>https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png</image:loc>
-      <image:caption>PODA Internet rychlé gigabitové připojení</image:caption>
-      <image:title>PODA Internet - Prémiové optické připojení</image:title>
-      <image:geo_location>Ostrava, Česká republika</image:geo_location>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.popri.cz/poda-logo.svg</image:loc>
-      <image:caption>PODA logo - internetový poskytovatel</image:caption>
-      <image:title>PODA - Rychlý internet a TV</image:title>
-    </image:image>
-  </url>
 
+  <!-- Blog článek: O2 Nej.cz převzetí -->
   <url>
-    <loc>https://www.popri.cz/internet-ostrava</loc>
-    <image:image>
-      <image:loc>https://www.popri.cz/assets/optika-vs-med-ostrava.jpg</image:loc>
-      <image:caption>Optické vs měděné připojení v Ostravě</image:caption>
-      <image:title>PODA optické internet v Ostravě</image:title>
-      <image:geo_location>Ostrava, Česká republika</image:geo_location>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.popri.cz/blog/poda-super-2025-60ghz-internet-polanka</loc>
-    <image:image>
-      <image:loc>https://www.popri.cz/assets/polanka-60ghz-antenna.jpg</image:loc>
-      <image:caption>60GHz anténa PODA Super v Polance nad Odrou</image:caption>
-      <image:title>PODA Super 2025 - Nejrychlejší internet v regionu</image:title>
-      <image:geo_location>Polanka nad Odrou, Česká republika</image:geo_location>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.popri.cz/assets/60ghz-spectrum.jpg</image:loc>
-      <image:caption>60GHz spektrum a jeho využití</image:caption>
-      <image:title>60GHz technologie pro ultra rychlý internet</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.popri.cz/blog/prevzati-nej-cz-spolecnosti-o2-co-to-znamena-pro-zakazni</loc>
+    <loc>https://www.popri.cz/blog/o2-nej-prevzatie-poda-alternativa-zakaznici</loc>
     <image:image>
       <image:loc>https://www.popri.cz/o2-nej-vs-poda-comparison.jpg</image:loc>
-      <image:caption>O2 Nej.cz vs PODA porovnání služeb</image:caption>
-      <image:title>Prevzatie Nej.cz spoločnosťou O2 - alternativa PODA</image:title>
+      <image:caption>Porovnání nespokojených zákazníků O2 a spokojené rodiny s internetem PODA</image:caption>
+      <image:title>O2 Nej.cz převzetí - alternativa PODA</image:title>
+      <image:geo_location>Ostrava, Česká republika</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Blog článek: Polanka 60GHz -->
+  <url>
+    <loc>https://www.popri.cz/blog/polanka-nad-odrou-60ghz-pripojeni-2025</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/polanka-60ghz-antenna.jpg</image:loc>
+      <image:caption>60GHz anténa PODA v Polance nad Odrou zajišťující gigabitové připojení</image:caption>
+      <image:title>60GHz technologie v Polance nad Odrou</image:title>
+      <image:geo_location>Polanka nad Odrou, Česká republika</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Blog článek: Pomalý internet fix -->
+  <url>
+    <loc>https://www.popri.cz/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/lovable-uploads/slow-internet-fix-guide.jpg</image:loc>
+      <image:caption>Průvodce řešením pomalého internetu v Moravskoslezském kraji</image:caption>
+      <image:title>Jak vyřešit pomalý internet - 8 způsobů</image:title>
       <image:geo_location>Moravskoslezský kraj, Česká republika</image:geo_location>
     </image:image>
   </url>
 
+  <!-- Blog článek: Gaming internet Ostrava -->
   <url>
-    <loc>https://www.popri.cz/blog/poruchy-internetu-jak-vyresit-pomaly-internet-rychly-navod</loc>
+    <loc>https://www.popri.cz/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda</loc>
     <image:image>
-      <image:loc>https://www.popri.cz/assets/slow-internet-guide-image.jpg</image:loc>
-      <image:caption>Jak vyřešit pomalý internet - praktický návod</image:caption>
-      <image:title>Řešení problémů s internetem</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.popri.cz/assets/slow-internet-woman-frustrated.jpg</image:loc>
-      <image:caption>Problémy s pomalým internetem</image:caption>
-      <image:title>Frustrace z pomalého internetu</image:title>
+      <image:loc>https://www.popri.cz/lovable-uploads/gaming-internet-ostrava.jpg</image:loc>
+      <image:caption>Hráč využívající gigabitový internet PODA pro online gaming v Ostravě</image:caption>
+      <image:title>Gaming internet PODA Ostrava - nízký ping</image:title>
+      <image:geo_location>Ostrava, Česká republika</image:geo_location>
     </image:image>
   </url>
 
+  <!-- Blog článek: Ostrava hlavní -->
   <url>
-    <loc>https://www.popri.cz/tarify</loc>
+    <loc>https://www.popri.cz/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/lovable-uploads/ostrava-poda-fiber-optic.jpg</image:loc>
+      <image:caption>Optické připojení PODA v Ostravě - nejrychlejší internet v kraji</image:caption>
+      <image:title>Internet PODA Ostrava 2025</image:title>
+      <image:geo_location>Ostrava, Česká republika</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Blog článek: Karviná -->
+  <url>
+    <loc>https://www.popri.cz/blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/lovable-uploads/karvina-internet-poda.jpg</image:loc>
+      <image:caption>Gigabitový internet PODA přináší revoluci do domácností v Karviné</image:caption>
+      <image:title>Rychlý internet Karviná PODA</image:title>
+      <image:geo_location>Karviná, Česká republika</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Regionální stránka: Ostrava -->
+  <url>
+    <loc>https://www.popri.cz/internet-ostrava</loc>
     <image:image>
       <image:loc>https://www.popri.cz/assets/gigabit-home-internet.jpg</image:loc>
-      <image:caption>Gigabitové domácí internetové připojení PODA</image:caption>
-      <image:title>PODA tarify - rychlý internet pro domácnosti</image:title>
+      <image:caption>Gigabitový domácí internet PODA v Ostravě</image:caption>
+      <image:title>Internet Ostrava PODA</image:title>
+      <image:geo_location>Ostrava, Česká republika</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Regionální stránka: Poruba -->
+  <url>
+    <loc>https://www.popri.cz/internet-poruba</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/blog%20poruba%20ibternet.webp</image:loc>
+      <image:caption>Internet PODA v Porubě - městská část Ostravy</image:caption>
+      <image:title>Internet Poruba PODA</image:title>
+      <image:geo_location>Poruba, Ostrava, Česká republika</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Hlavní stránka hero obrázek -->
+  <url>
+    <loc>https://www.popri.cz/</loc>
+    <image:image>
+      <image:loc>https://www.popri.cz/poda-logo.svg</image:loc>
+      <image:caption>PODA - Váš poskytovatel gigabitového internetu v Moravskoslezském kraji</image:caption>
+      <image:title>PODA Logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.popri.cz/assets/60ghz-technology-hero.jpg</image:loc>
+      <image:caption>Moderní 60GHz technologie PODA zajišťující stabilní připojení</image:caption>
+      <image:title>60GHz technologie PODA</image:title>
     </image:image>
   </url>
 

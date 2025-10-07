@@ -6,7 +6,6 @@ import FastHeroContent from './FastHeroContent';
 import FeatureCardsDesktop from './FeatureCardsDesktop';
 import MobileFeatureCards from './MobileFeatureCards';
 import DisclaimerText from './DisclaimerText';
-import HeroSideDecorations from './HeroSideDecorations';
 import { useState, useEffect } from 'react';
 
 interface HeroContainerProps {
@@ -36,7 +35,6 @@ const HeroContainer = ({ handleContactClick }: HeroContainerProps) => {
   return (
     <>
       <HeroBackground />
-      <HeroSideDecorations />
 
       <div className="container-custom relative z-10">
         {showAnimations ? (

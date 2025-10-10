@@ -84,7 +84,7 @@ const CallbackForm = memo(() => {
             <button
               type="submit"
               disabled={formState.loading}
-              className="bg-poda-orange hover:bg-poda-orange/90 text-white px-4 py-2 rounded-md font-medium transition-all duration-300 text-sm flex items-center justify-center"
+              className="relative bg-poda-orange text-white px-4 py-2 rounded-md font-medium text-sm flex items-center justify-center overflow-hidden transition-all duration-300 hover:scale-105 animate-glow-pulse before:absolute before:inset-0 before:rounded-md before:p-[2px] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:bg-[length:200%_100%] hover:before:animate-shimmer before:-z-10"
             >
               {formState.loading ? (
                 <>

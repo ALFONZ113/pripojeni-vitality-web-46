@@ -98,7 +98,7 @@ export const reviewsSection = `
     
     <div class="space-y-4 mb-6">
         <blockquote class="bg-gray-50 p-4 rounded-lg border-l-4 border-poda-blue">
-            <p class="text-gray-700 mb-2">"Jako programátor potřebuji stabilní připojení s nízkou latencí. PODA přes Popri.cz splnilo všechna očekávání. Za 250 Kč mám to, za co jsem u O2 platil 900 Kč. Doporučuji všem v Ostravě."</p>
+            <p class="text-gray-700 mb-2">"Jako programátor potřebuji stabilní připojení s nízkou latencí. PODA přes Popri.cz splnilo všechna očekávání. Za 300 Kč mám to, za co jsem u O2 platil 900 Kč. Doporučuji všem v Ostravě."</p>
             <footer class="text-sm text-gray-600">
                 <strong>Pavel K., Ostrava-Poruba, IT specialista</strong>
             </footer>
@@ -161,7 +161,7 @@ export const conclusionSection = `
         <p class="font-semibold mb-3">Shrnutí výhod pro region:</p>
         <ul class="space-y-2">
             <li>Nejlepší pokrytí optickou sítí v kraji</li>
-            <li>Nejnižší ceny - od 250 Kč/měsíc</li>
+            <li>Nejnižší ceny - od 300 Kč/měsíc</li>
             <li>Telefonická zákaznická podpora pro všechna města</li>
             <li>Specializace na potřeby průmyslového regionu</li>
             <li>Dlouhodobé investice do místní infrastruktury</li>

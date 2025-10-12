@@ -142,7 +142,7 @@ export const sluzbyPosts: BlogPost[] = [
             <tbody>
               <tr class="border-b">
                 <td class="py-2">GPON (PODA)</td>
-                <td class="py-2 text-green-600">250 Kč</td>
+                <td class="py-2 text-green-600">300 Kč</td>
                 <td class="py-2">15 000 Kč</td>
                 <td class="py-2">1000/1000 Mbps</td>
                 <td class="py-2 text-green-600">99,9%</td>
@@ -319,7 +319,7 @@ export const sluzbyPosts: BlogPost[] = [
               <tr class="border-b bg-green-50">
                 <td class="py-2 font-semibold">PODA</td>
                 <td class="py-2">1000/1000 Mbps</td>
-                <td class="py-2 text-green-600">250 Kč</td>
+                <td class="py-2 text-green-600">300 Kč</td>
                 <td class="py-2 text-green-600">Zdarma</td>
                 <td class="py-2 text-green-600">Bez závazku</td>
               </tr>

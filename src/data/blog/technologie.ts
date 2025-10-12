@@ -400,7 +400,7 @@ export const technologiePosts: BlogPost[] = [
 
         <h2>Prípadová štúdia: Zákazník v procese migrácie</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
-          <p>"Bol som spokojný zákazník Nej.cz v Ostrave-Vítkovice s internetom za 299 Kč/mesiac. Po prechode pod O2 mi prišiel list o zvýšení ceny na 599 Kč a nutnosti podpísania nových zmluvných podmienok s 24-mesačným závazkom. Po konzultácii s PODA som zistil, že môžem mať optický internet 1000 Mbps za 250 Kč bez závazkov. Rozhodnutie bolo jednoduché."</p>
+          <p>"Bol som spokojný zákazník Nej.cz v Ostrave-Vítkovice s internetom za 299 Kč/mesiac. Po prechode pod O2 mi prišiel list o zvýšení ceny na 599 Kč a nutnosti podpísania nových zmluvných podmienok s 24-mesačným závazkom. Po konzultácii s PODA som zistil, že môžem mať optický internet 1000 Mbps za 300 Kč bez závazkov. Rozhodnutie bolo jednoduché."</p>
           <footer class="mt-2 text-sm text-gray-600">
             <strong>Tomáš Svoboda, Ostrava-Vítkovice</strong><br>
             Bývalý zákazník Nej.cz, teraz PODA
@@ -422,7 +422,7 @@ export const technologiePosts: BlogPost[] = [
           <div class="bg-green-50 p-6 rounded-lg">
             <h4>PODA (regionálna alternatíva)</h4>
             <ul class="space-y-1">
-              <li>✅ Stabilná cena 250 Kč/mesiac</li>
+              <li>✅ Stabilná cena 300 Kč/mesiac</li>
               <li>✅ Bez závazkov, ukončenie kedykoľvek</li>
               <li>✅ Rýchlosť 1000/1000 Mbps (symetrické)</li>
               <li>✅ Lokálna technická podpora</li>
@@ -470,7 +470,7 @@ export const technologiePosts: BlogPost[] = [
               <tr class="border-b bg-green-50">
                 <td class="py-2 font-semibold">PODA</td>
                 <td class="py-2">1000/1000 Mbps</td>
-                <td class="py-2 text-green-600">250 Kč</td>
+                <td class="py-2 text-green-600">300 Kč</td>
                 <td class="py-2 text-green-600">Bez závazku</td>
                 <td class="py-2">3 000 Kč</td>
               </tr>

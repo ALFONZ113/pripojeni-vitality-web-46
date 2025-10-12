@@ -26,8 +26,8 @@ export const karvinaPost: BlogPost = {
       <h2>Cenová politika: Transparentnost bez skrytých nákladů</h2>
       <h3>Základní internetové balíčky</h3>
       <ul>
-        <li><strong>Optický internet 1 Gbit/s:</strong> 250 Kč/měsíc</li>
-        <li><strong>Kombinovaný balíček internet + TV:</strong> 390 Kč/měsíc (160 kanálů)</li>
+        <li><strong>Optický internet 1 Gbit/s:</strong> 300 Kč/měsíc</li>
+        <li><strong>Kombinovaný balíček internet + TV:</strong> 440 Kč/měsíc (160 kanálů)</li>
       </ul>
 
       <h3>Výhody cenového modelu PODA</h3>

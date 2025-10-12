@@ -66,7 +66,7 @@ export const o2NejPrevzatiePodaAlternativaPost: BlogPost = {
 
       <div class="bg-red-50 p-6 rounded-lg my-8 border-l-4 border-red-400">
         <h4 class="font-semibold text-red-800">⚠️ Upozornění</h4>
-        <p class="mt-2 text-red-700">Mnoho zákazníků hlásilo, že místo internetu 1 Gbps za 250 Kč dostali pomalejší a dražší službu od O2.</p>
+        <p class="mt-2 text-red-700">Mnoho zákazníků hlásilo, že místo internetu 1 Gbps za 300 Kč dostali pomalejší a dražší službu od O2.</p>
       </div>
 
       <h2>Kritika a stížnosti zákazníků</h2>
@@ -74,7 +74,7 @@ export const o2NejPrevzatiePodaAlternativaPost: BlogPost = {
       <p>Na internetu a sociálních sítích se brzy objevily první reakce. A nebyly příliš pozitivní.</p>
 
       <ul>
-        <li><strong>Reddit:</strong> uživatel si stěžoval, že místo internetu 1 Gbps za 250 Kč dostal pomalejší a dražší službu</li>
+        <li><strong>Reddit:</strong> uživatel si stěžoval, že místo internetu 1 Gbps za 300 Kč dostal pomalejší a dražší službu</li>
         <li><strong>Facebook skupiny:</strong> lidé kritizovali nedostatek informací a přístup „O2 na to prostě kašle"</li>
         <li><strong>Recenze na fórech:</strong> častá témata byla zdražené tarify a složitý proces výpovědi</li>
       </ul>
@@ -103,7 +103,7 @@ export const o2NejPrevzatiePodaAlternativaPost: BlogPost = {
 
       <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-lg my-8">
         <h4 class="font-bold text-lg mb-3">Hledáte alternativu k O2?</h4>
-        <p class="mb-4">PODA nabízí gigabitový internet za 250 Kč měsíčně + televizi se 160 programy. Bez skrytých poplatků, s férovou komunikací.</p>
+        <p class="mb-4">PODA nabízí gigabitový internet za 300 Kč měsíčně + televizi se 160 programy. Bez skrytých poplatků, s férovou komunikací.</p>
         <a href="/tarify" class="inline-block bg-white text-orange-600 px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors font-medium">
           Podívat se na nabídku PODA
         </a>
@@ -119,7 +119,7 @@ export const o2NejPrevzatiePodaAlternativaPost: BlogPost = {
         <div class="bg-blue-50 p-6 rounded-lg">
           <h4 class="font-semibold text-blue-800 mb-3">💰 Cenové výhody</h4>
           <ul class="text-blue-700 space-y-2">
-            <li>Gigabitový internet za <strong>250 Kč měsíčně</strong></li>
+            <li>Gigabitový internet za <strong>300 Kč měsíčně</strong></li>
             <li>Internet + televize se 160 programy za <strong>440 Kč</strong></li>
             <li>Transparentní smluvní podmínky bez skrytých poplatků</li>
           </ul>

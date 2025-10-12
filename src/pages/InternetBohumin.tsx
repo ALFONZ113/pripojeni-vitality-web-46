@@ -184,7 +184,7 @@ const InternetBohumin = () => {
                     <span>Internet 1000 Mbps</span>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-gray-300 line-through text-sm">440 Kč</span>
-                      <span className="font-bold text-poda-orange">250 Kč/měs</span>
+                      <span className="font-bold text-poda-orange">300 Kč/měs</span>
                     </div>
                   </div>
                   <Collapsible open={openPromoInfo} onOpenChange={setOpenPromoInfo} className="mt-1">
@@ -196,7 +196,7 @@ const InternetBohumin = () => {
                     }} />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-2 text-xs text-white/80 bg-white/10 p-2 rounded-md">
-                      Promo cena 250 Kč/měs platí prvních 12 měsíců. Od 13. měsíce standardní cena 440 Kč/měs. Bez závaznosti.
+                      Promo cena 300 Kč/měs platí prvních 12 měsíců. Od 13. měsíce standardní cena 440 Kč/měs. Bez závaznosti.
                     </CollapsibleContent>
                   </Collapsible>
                   <div className="flex justify-between items-center">

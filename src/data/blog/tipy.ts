@@ -67,7 +67,7 @@ export const tipyPosts: BlogPost[] = [
               <td class="py-2">PODA</td>
               <td class="py-2">PODA TV</td>
               <td class="py-2">160+</td>
-              <td class="py-2">390 Kč</td>
+              <td class="py-2">440 Kč</td>
             </tr>
             <tr class="border-b">
               <td class="py-2">Skylink</td>

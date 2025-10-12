@@ -7,8 +7,8 @@ export const generateCustomerEmailHTML = (formData: any): string => {
       name: 'Internet + TV Basic',
       speed: '1000/1000 Mbps',
       technology: 'GPON optická technologie',
-      price: '250 Kč',
-      priceNote: 'měsíčně + 50 Kč za zařízení',
+      price: '300 Kč',
+      priceNote: 'měsíčně',
       tvChannels: 'Více než 85 TV programů',
       features: ['Symetrická rychlost', 'TV automaticky v ceně', 'PODA net.TV pro 4 zařízení']
     },
@@ -16,8 +16,8 @@ export const generateCustomerEmailHTML = (formData: any): string => {
       name: 'Internet + TV Mých 10',
       speed: '1000/1000 Mbps', 
       technology: 'GPON optická technologie',
-      price: '390 Kč',
-      priceNote: 'měsíčně + 50 Kč za zařízení',
+      price: '440 Kč',
+      priceNote: 'měsíčně',
       tvChannels: 'Více než 100 TV programů',
       features: ['Symetrická rychlost', 'Výběr 10 vlastních stanic', 'PODA net.TV pro 4 zařízení'],
       recommended: true
@@ -27,8 +27,8 @@ export const generateCustomerEmailHTML = (formData: any): string => {
       name: 'Internet + TV Basic',
       speed: '1000/200 Mbps',
       technology: 'Bezdrátový internet',
-      price: '250 Kč',
-      priceNote: 'měsíčně + 50 Kč za zařízení',
+      price: '300 Kč',
+      priceNote: 'měsíčně',
       tvChannels: 'Více než 85 TV programů',
       features: ['Rychlost optického internetu', 'TV automaticky v ceně', 'PODA net.TV pro 4 zařízení']
     },
@@ -36,8 +36,8 @@ export const generateCustomerEmailHTML = (formData: any): string => {
       name: 'Internet + TV Mých 10',
       speed: '1000/200 Mbps',
       technology: 'Bezdrátový internet', 
-      price: '390 Kč',
-      priceNote: 'měsíčně + 50 Kč za zařízení',
+      price: '440 Kč',
+      priceNote: 'měsíčně',
       tvChannels: 'Více než 100 TV programů',
       features: ['Rychlost optického internetu', 'Výběr 10 vlastních stanic', 'PODA net.TV pro 4 zařízení'],
       recommended: true

@@ -180,8 +180,8 @@ const GigaInternet = () => {
               <CardHeader className="text-center">
                 <Badge className="mx-auto mb-4 bg-green-100 text-green-700">Akční cena</Badge>
                 <CardTitle className="text-2xl text-poda-blue">Internet + TV Basic</CardTitle>
-                <div className="text-4xl font-bold text-poda-blue">250 Kč</div>
-                <div className="text-gray-600">měsíčně + 50 Kč za zařízení</div>
+                <div className="text-4xl font-bold text-poda-blue">300 Kč</div>
+                <div className="text-gray-600">měsíčně</div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center">
@@ -214,8 +214,8 @@ const GigaInternet = () => {
               <CardHeader className="text-center">
                 <Badge className="mx-auto mb-4 bg-green-100 text-green-700">Akční cena</Badge>
                 <CardTitle className="text-2xl text-poda-blue">Internet + TV Mých 10</CardTitle>
-                <div className="text-4xl font-bold text-poda-blue">390 Kč</div>
-                <div className="text-gray-600">měsíčně + 50 Kč za zařízení</div>
+                <div className="text-4xl font-bold text-poda-blue">440 Kč</div>
+                <div className="text-gray-600">měsíčně</div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center">

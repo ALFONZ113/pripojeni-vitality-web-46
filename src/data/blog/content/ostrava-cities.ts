@@ -101,7 +101,7 @@ export const bohuminSection = `
                 <h4 class="font-semibold mb-2">Mestská optika</h4>
                 <div class="space-y-1 text-sm text-purple-100">
                     <p>Internet 1000 Mbps</p>
-                    <p class="font-bold text-lg">250 Kč/měsíc</p>
+                    <p class="font-bold text-lg">300 Kč/měsíc</p>
                     <p>Vysokorychlostní připojení</p>
                     <p>Nízká latence do Polska</p>
                 </div>

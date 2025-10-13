@@ -5,10 +5,16 @@ import { Tv, ArrowRight } from 'lucide-react';
 
 const IPTVSection = () => {
   return (
-    <section className="section-padding bg-gradient-to-r from-poda-orange/10 to-red-50">
-      <div className="container-custom">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+    <section className="min-h-screen flex items-center py-20 bg-gradient-to-br from-orange-50/50 via-white to-poda-orange/5 relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute inset-0 opacity-25">
+        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-radial from-poda-orange/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-gradient-radial from-red-300/15 to-transparent rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container-custom relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 md:p-14 border border-white/40">
             <div className="bg-poda-orange/10 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
               <Tv className="h-10 w-10 text-poda-orange" />
             </div>

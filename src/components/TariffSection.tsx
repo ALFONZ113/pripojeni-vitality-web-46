@@ -33,16 +33,22 @@ const TariffSection = memo(() => {
   }, [activeTab]);
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-blue-50" id="tarify">
-      <div className="container-custom">
+    <section className="min-h-screen flex items-center py-20 bg-white relative overflow-hidden" id="tarify">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-radial from-poda-blue/10 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-radial from-poda-orange/10 to-transparent rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container-custom relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block bg-gradient-to-r from-poda-blue/10 to-poda-orange/10 text-poda-blue py-2 px-5 rounded-full text-sm font-semibold mb-6 border border-poda-blue/20">
             Naše nabídka
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-poda-blue mb-6 leading-tight">
             Internetové a televizní tarify
           </h2>
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 text-lg leading-relaxed">
             Nabízíme výkonné a cenově dostupné internetové a televizní balíčky pro byty i rodinné domy.
             Vyberte si tarif, který nejlépe odpovídá vašim potřebám.
           </p>
@@ -50,7 +56,7 @@ const TariffSection = memo(() => {
 
         <TariffTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {currentTariffData.map((tariff) => (
             <TariffCard
               key={tariff.id}

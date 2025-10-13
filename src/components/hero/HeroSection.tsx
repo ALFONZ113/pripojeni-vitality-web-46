@@ -16,7 +16,7 @@ const HeroSection = () => {
   };
   
   return (
-    <section className="relative pt-24 sm:pt-36 pb-20 sm:pb-32 overflow-hidden min-h-[90vh] flex items-center" aria-labelledby="hero-title">
+    <section className="relative pt-20 pb-16 overflow-hidden min-h-screen flex items-center" aria-labelledby="hero-title">
       <HeroContainer handleContactClick={handleContactClick} />
       
       {/* Quick Contact Modal */}

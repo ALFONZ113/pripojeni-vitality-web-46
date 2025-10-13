@@ -3,16 +3,19 @@ import React from 'react';
 
 const HeroBackground = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ contentVisibility: 'auto', willChange: 'auto' }}>
-      {/* Base gradient mesh background - optimized for LCP with faster rendering */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-secondary/5" style={{ transform: 'translate3d(0,0,0)' }}></div>
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      {/* Modern gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-orange-50"></div>
       
-      {/* Simplified animated orbs - reduce for LCP */}
-      <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-radial from-primary/15 via-primary/8 to-transparent rounded-full animate-float" style={{ willChange: 'transform' }}></div>
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-gradient-radial from-secondary/12 via-secondary/6 to-transparent rounded-full animate-float delay-1000" style={{ willChange: 'transform' }}></div>
+      {/* Floating gradient orbs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-poda-blue/10 to-transparent rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-radial from-poda-orange/10 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
       
-      {/* Simplified mesh overlay for better LCP */}
-      <div className="absolute inset-0 bg-gradient-mesh opacity-40"></div>
+      {/* Subtle pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{ 
+        backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--primary)) 1px, transparent 0)',
+        backgroundSize: '40px 40px'
+      }}></div>
     </div>
   );
 };

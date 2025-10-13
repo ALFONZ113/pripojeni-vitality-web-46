@@ -13,7 +13,7 @@ interface FastHeroContentProps {
  */
 const FastHeroContent = ({ handleContactClick }: FastHeroContentProps) => {
   return (
-    <div className="text-center lg:text-left">
+    <div className="text-center">
       <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
         Vaše cesta k nejlepšímu PODA internetu
       </span>
@@ -33,7 +33,7 @@ const FastHeroContent = ({ handleContactClick }: FastHeroContentProps) => {
         <span className="text-poda-orange block sm:inline"> připojení a smart TV</span>
       </h1>
       
-      <p className="text-gray-600 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+      <p className="text-gray-600 text-lg mb-8 leading-relaxed max-w-3xl mx-auto">
         Přinášíme Vám rychlé <span className="text-poda-blue"><span className="text-poda-orange">PO</span>DA</span> <span className="text-poda-blue"><span className="text-poda-orange">při</span>pojení</span> s garantovanou rychlostí až 1000 Mbps. Užívejte si internet i TV bez kompromisů.
       </p>
       
@@ -42,7 +42,7 @@ const FastHeroContent = ({ handleContactClick }: FastHeroContentProps) => {
         <CallbackForm />
       </div>
       
-      <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link 
           to="/tarify" 
           className="btn-primary group transition-all" 

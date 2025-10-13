@@ -34,6 +34,13 @@
     --ring: 210 50% 28%;
 
     --radius: 0.75rem;
+    
+    /* Premium gradient colors */
+    --gradient-luxury-start: 215 60% 16%;
+    --gradient-luxury-mid: 210 50% 35%;
+    --gradient-luxury-end: 25 100% 65%;
+    --glow-blue: 210 100% 70%;
+    --glow-orange: 25 100% 65%;
   }
 
   * {
@@ -53,13 +60,29 @@
     font-family: 'SF Pro Display', 'Inter', sans-serif;
   }
 
-  /* Advanced Gradient Mesh Styles */
+  /* Premium Luxury Gradients */
+  .bg-premium-gradient {
+    background: linear-gradient(135deg, 
+      hsl(215 60% 98%) 0%,
+      hsl(210 70% 96%) 25%,
+      hsl(200 60% 97%) 50%,
+      hsl(25 100% 97%) 75%,
+      hsl(30 100% 98%) 100%
+    );
+  }
+
   .bg-gradient-mesh {
     background-image: 
-      radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsl(var(--secondary) / 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 40% 80%, hsl(var(--primary) / 0.10) 0%, transparent 50%),
-      linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--secondary) / 0.08), hsl(var(--primary) / 0.06));
+      radial-gradient(circle at 20% 30%, hsl(var(--glow-blue) / 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, hsl(var(--glow-orange) / 0.2) 0%, transparent 45%),
+      radial-gradient(circle at 40% 80%, hsl(var(--glow-blue) / 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 90% 90%, hsl(var(--glow-orange) / 0.15) 0%, transparent 40%),
+      linear-gradient(135deg, 
+        hsl(215 60% 98%) 0%,
+        hsl(210 70% 96%) 30%,
+        hsl(200 60% 97%) 60%,
+        hsl(25 100% 97%) 90%
+      );
   }
   
   .bg-gradient-noise {
@@ -68,28 +91,39 @@
         90deg,
         transparent,
         transparent 2px,
-        hsl(var(--primary) / 0.03) 2px,
-        hsl(var(--primary) / 0.03) 4px
+        hsl(var(--primary) / 0.02) 2px,
+        hsl(var(--primary) / 0.02) 4px
       ),
       repeating-linear-gradient(
         0deg,
         transparent,
         transparent 2px,
-        hsl(var(--secondary) / 0.02) 2px,
-        hsl(var(--secondary) / 0.02) 4px
+        hsl(var(--secondary) / 0.015) 2px,
+        hsl(var(--secondary) / 0.015) 4px
       );
   }
 
   .bg-gradient-interactive {
     background-image: conic-gradient(from 0deg at 50% 50%, 
-      hsl(var(--primary) / 0.1) 0deg, 
-      hsl(var(--secondary) / 0.15) 120deg, 
-      hsl(var(--primary) / 0.12) 240deg, 
-      hsl(var(--primary) / 0.1) 360deg);
+      hsl(var(--glow-blue) / 0.08) 0deg, 
+      hsl(var(--glow-orange) / 0.12) 120deg, 
+      hsl(var(--glow-blue) / 0.1) 240deg, 
+      hsl(var(--glow-blue) / 0.08) 360deg);
   }
 
   .bg-gradient-radial {
     background-image: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+  
+  .bg-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--glow-blue) / 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 8s ease-in-out infinite;
   }
 }
 

@@ -179,7 +179,7 @@ const PromotionPopup = () => {
   
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto border-0 bg-gradient-to-br from-white via-blue-50/30 to-orange-50/30 backdrop-blur-xl shadow-2xl">
+      <DialogContent className="sm:max-w-lg border-0 bg-gradient-to-br from-white via-blue-50/30 to-orange-50/30 backdrop-blur-xl shadow-2xl">
         {/* Decorative gradient orbs */}
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-poda-blue/20 to-transparent rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-poda-orange/20 to-transparent rounded-full blur-3xl pointer-events-none" />

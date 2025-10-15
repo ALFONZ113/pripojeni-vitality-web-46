@@ -18,11 +18,38 @@ const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
 const RESET_FOR_TESTING = false; // Set to true only for testing
 
+// Function to calculate promotion end date automatically
+const getPromotionEndDate = () => {
+  const now = new Date();
+  const currentDay = now.getDate();
+  const currentMonth = now.getMonth(); // 0-11
+  const currentYear = now.getFullYear();
+  
+  let targetDate: Date;
+  
+  if (currentDay <= 14) {
+    // First half of month (1-14): show 15th of current month
+    targetDate = new Date(currentYear, currentMonth, 15);
+  } else {
+    // Second half of month (15-end): show last day of current month
+    // Get the first day of next month, then subtract one day to get last day of current month
+    targetDate = new Date(currentYear, currentMonth + 1, 0);
+  }
+  
+  // Format as DD.MM.YYYY
+  const day = targetDate.getDate().toString().padStart(2, '0');
+  const month = (targetDate.getMonth() + 1).toString().padStart(2, '0');
+  const year = targetDate.getFullYear();
+  
+  return `${day}.${month}.${year}`;
+};
+
 const PromotionPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [promotionEndDate] = useState(getPromotionEndDate());
   
   useEffect(() => {
     // Reset sessionStorage for testing (remove in production)
@@ -166,7 +193,7 @@ const PromotionPopup = () => {
             První měsíc ZDARMA!
           </DialogTitle>
           <div className="text-sm text-red-600 font-semibold mt-1">
-            Len do 15.10.2025!
+            Len do {promotionEndDate}!
           </div>
           <DialogDescription className="text-base text-gray-700">
             Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele?

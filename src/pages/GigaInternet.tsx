@@ -29,9 +29,49 @@ const GigaInternet = () => {
   const features = ['Symetrické rychlosti až 1000/200 Mbps', 'Latence pod 5ms pro gaming a video hovory', 'Podpora WiFi 6 technologie', 'Profesionální instalace zdarma', 'Televizní služby PODA net.TV v ceně', 'Více než 85 televizních programů', '24/7 technická podpora', 'Žádné aktivační ani ukončovací poplatky'];
   return <>
       <Helmet>
-        <title>Gigabitový internet do domu - 60GHz technologie | PODA</title>
-        <meta name="description" content="Nový gigabitový internet do rodinných domů pomocí 60GHz technologie. Symetrické rychlosti až 1000 Mbps, minimální latence a neomezené stahování." />
-        <meta name="keywords" content="gigabitový internet, 60GHz, rodinný dům, vysokorychlostní internet, PODA" />
+        <title>Gigabitový Internet 1000 Mbps - 60GHz Bezdrátová Technologie | PODA</title>
+        <meta name="description" content="Gigabitový internet do rodinných domů pomocí 60GHz technologie. Rychlosti až 1000 Mbps, TV zdarma, instalace zdarma. Bezdrátové připojení s výkonem optiky." />
+        <link rel="canonical" href="https://www.popri.cz/giga-internet" />
+        <meta name="keywords" content="gigabitový internet, 60GHz, rodinný dům, vysokorychlostní internet, PODA, bezdrátový internet, internet bez kabelu" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Gigabitový Internet 1000 Mbps - 60GHz Technologie" />
+        <meta property="og:description" content="Bezdrátový gigabitový internet do domu. 60GHz technologie s rychlostí až 1000 Mbps." />
+        <meta property="og:url" content="https://www.popri.cz/giga-internet" />
+        <meta property="og:type" content="product" />
+        <meta property="og:image" content="https://www.popri.cz/assets/60ghz-technology-hero.jpg" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gigabitový Internet - 60GHz Technologie" />
+        <meta name="twitter:description" content="Bezdrátový internet s rychlostí až 1000 Mbps" />
+        <meta name="twitter:image" content="https://www.popri.cz/assets/60ghz-technology-hero.jpg" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Gigabitový Internet PODA - 60GHz",
+            "description": "Bezdrátový gigabitový internet pomocí 60GHz technologie do rodinných domů",
+            "offers": {
+              "@type": "Offer",
+              "price": "300",
+              "priceCurrency": "CZK",
+              "availability": "https://schema.org/InStock",
+              "priceValidUntil": "2026-12-31"
+            },
+            "brand": {
+              "@type": "Brand",
+              "name": "PODA"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "reviewCount": "127"
+            }
+          })}
+        </script>
       </Helmet>
 
       {/* Hero sekce */}

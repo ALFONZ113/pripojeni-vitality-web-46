@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { ArrowRight, Tv, Monitor, Smartphone, Tablet, Clock, Download, Wifi, CheckCircle, Star, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { initAnimations } from '../utils/animation';
 
 const IPTV = () => {
@@ -18,6 +19,44 @@ const IPTV = () => {
 
   return (
     <div className="min-h-screen pt-24">
+      <Helmet>
+        <title>IPTV služba za 99 Kč měsíčně | 200+ kanálů | PODA | Popri.cz</title>
+        <meta name="description" content="IPTV od PODA za 99 Kč/měsíc. Více než 200 TV kanálů ve Full HD, timeshift 7 dní, sledování na všech zařízeních. Bez satelitu a antén." />
+        <link rel="canonical" href="https://www.popri.cz/iptv" />
+        <meta name="keywords" content="IPTV, televize přes internet, PODA TV, 200 kanálů, Full HD, timeshift, streaming TV, TV bez satelitu" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="IPTV za 99 Kč | 200+ kanálů | PODA" />
+        <meta property="og:description" content="IPTV od PODA - 200+ kanálů ve Full HD za 99 Kč měsíčně. Timeshift, všechna zařízení." />
+        <meta property="og:url" content="https://www.popri.cz/iptv" />
+        <meta property="og:type" content="product" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="IPTV za 99 Kč | 200+ kanálů" />
+        <meta name="twitter:description" content="IPTV od PODA za 99 Kč/měsíc s více než 200 kanály" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "IPTV služba PODA",
+            "description": "Více než 200 TV kanálů ve Full HD kvalitě s timeshift funkcí",
+            "offers": {
+              "@type": "Offer",
+              "price": "99",
+              "priceCurrency": "CZK",
+              "availability": "https://schema.org/InStock"
+            },
+            "brand": {
+              "@type": "Brand",
+              "name": "PODA"
+            }
+          })}
+        </script>
+      </Helmet>
+      
       {/* Hero section */}
       <section className="section-padding pt-16 bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">

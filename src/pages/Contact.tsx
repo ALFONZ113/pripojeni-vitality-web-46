@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Mail, MapPin } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import ContactForm from '../components/ContactForm';
 import { initAnimations } from '../utils/animation';
 import PhoneLink from '../components/ui/phone-link';
@@ -18,6 +19,45 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen pt-24">
+      <Helmet>
+        <title>Kontakt - PODA Internet | Popri.cz | 730 431 313</title>
+        <meta name="description" content="Kontaktujte nás pro objednávku PODA internetu a TV služeb. Telefon: 730 431 313, email: terc@obchod.poda.cz. Rychlá odpověď a profesionální poradenství." />
+        <link rel="canonical" href="https://www.popri.cz/kontakt" />
+        <meta name="keywords" content="kontakt PODA, objednávka internet, telefon PODA, email PODA, zákaznická podpora" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Kontakt - PODA Internet" />
+        <meta property="og:description" content="Kontaktujte nás pro objednávku PODA internetu. Tel: 730 431 313" />
+        <meta property="og:url" content="https://www.popri.cz/kontakt" />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Kontakt - PODA Internet" />
+        <meta name="twitter:description" content="Kontaktujte nás pro objednávku PODA internetu. Tel: 730 431 313" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Kontakt - PODA Internet",
+            "url": "https://www.popri.cz/kontakt",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "PODA",
+              "telephone": "+420730431313",
+              "email": "terc@obchod.poda.cz",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ostrava",
+                "addressCountry": "CZ"
+              }
+            }
+          })}
+        </script>
+      </Helmet>
+      
       {/* Hero section */}
       <section className="py-8 md:py-12 bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">

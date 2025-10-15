@@ -6,11 +6,8 @@
 /blog/105 /blog/iptv-vs-traditionalni-tv-porovnani 301
 /blog/106 /blog/pomalý-internet-riesenia-guide 301
 
-# Remove query parameters that create duplicate content
-/blog?tag=* /blog 302
-/blog?category=* /blog 302
-/blog?search=* /blog 302
-/blog/?* /blog 302
+# Clean URLs - Remove query parameters (for canonical purposes, not redirects)
+# These are handled by NoIndexMeta component, no redirect needed
 
 # Force www for popri.cz domain
 http://popri.cz/* https://www.popri.cz/:splat 301!

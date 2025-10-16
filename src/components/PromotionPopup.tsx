@@ -178,15 +178,20 @@ const PromotionPopup = () => {
   };
   
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      setIsOpen(open);
+      if (!open) {
+        try { sessionStorage.setItem(POPUP_STORAGE_KEY, 'closed'); } catch {}
+      }
+    }}>
       <DialogContent showClose={false} className="sm:max-w-lg rounded-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-orange-50/30 backdrop-blur-xl shadow-2xl overflow-hidden overflow-y-hidden overflow-x-hidden max-h-none">
         {/* Decorative gradient orbs */}
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-poda-blue/20 to-transparent rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-poda-orange/20 to-transparent rounded-full blur-3xl pointer-events-none" />
         
-        <DialogClose 
-          className="absolute right-4 top-4 z-10 rounded-full bg-white/80 backdrop-blur-sm p-2 opacity-70 ring-offset-background transition-all hover:opacity-100 hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-poda-blue focus:ring-offset-2 disabled:pointer-events-none" 
-          onClick={handleClose}
+        <DialogClose
+          type="button"
+          className="absolute right-4 top-4 z-50 pointer-events-auto rounded-full bg-white/80 backdrop-blur-sm p-2 opacity-70 ring-offset-background transition-all hover:opacity-100 hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-poda-blue focus:ring-offset-2 disabled:pointer-events-none"
         >
           <X className="h-4 w-4 text-gray-700" />
           <span className="sr-only">Zavřít</span>

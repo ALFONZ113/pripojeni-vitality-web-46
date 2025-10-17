@@ -51,10 +51,6 @@ const HeroContent = ({ handleContactClick }: HeroContentProps) => {
         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight"
         style={{ willChange: 'auto' }}
       >
-        <span className="bg-gradient-to-r from-poda-blue to-poda-blue-light bg-clip-text text-transparent">
-          PODA Internet
-        </span>
-        <br />
         <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-700">
           Prémiové optické gigabitové
         </span>

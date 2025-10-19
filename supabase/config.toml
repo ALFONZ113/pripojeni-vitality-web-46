@@ -1,6 +1,14 @@
-
 project_id = "yjzzhfvwbnzhecffuelt"
 
 [functions.send-email]
+verify_jwt = false
+
+[functions.ai-research]
+verify_jwt = false
+
+[functions.ai-generate-blog]
+verify_jwt = false
+
+[functions.ai-generate-image]
 verify_jwt = false
 

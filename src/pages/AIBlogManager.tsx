@@ -108,9 +108,23 @@ const AIBlogManager = () => {
   };
 
   const fetchStats = async () => {
-    const { data, error } = await supabase.rpc('get_ai_blog_stats' as any) as any;
-    if (!error && data) {
-      setStats(data);
+    // Calculate stats directly from posts data
+    const { data: allPosts } = await supabase
+      .from('ai_blog_posts' as any)
+      .select('status, seo_score, views_count, indexed_by_google');
+    
+    if (allPosts) {
+      const calculatedStats = {
+        total_posts: allPosts.length,
+        published: allPosts.filter((p: any) => p.status === 'published').length,
+        drafts: allPosts.filter((p: any) => p.status === 'draft').length,
+        avg_seo_score: Math.round(
+          allPosts.reduce((acc: number, p: any) => acc + (p.seo_score || 0), 0) / allPosts.length || 0
+        ),
+        indexed_posts: allPosts.filter((p: any) => p.indexed_by_google).length,
+        total_views: allPosts.reduce((acc: number, p: any) => acc + (p.views_count || 0), 0)
+      };
+      setStats(calculatedStats);
     }
   };
 

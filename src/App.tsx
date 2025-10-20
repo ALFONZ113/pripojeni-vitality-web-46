@@ -38,6 +38,8 @@ const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
 const GigaInternet = lazy(() => import('./pages/GigaInternet'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const AIBlogTest = lazy(() => import('./pages/AIBlogTest'));
+const AIBlogManager = lazy(() => import('./pages/AIBlogManager'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -98,6 +100,8 @@ function App() {
                   {/* Admin panel - hidden routes */}
                   <Route path="/admin-login-poda-2024" element={<AdminLogin />} />
                   <Route path="/admin-dashboard-poda-2024" element={<AdminDashboard />} />
+                  <Route path="/admin/ai-blog-test" element={<AIBlogTest />} />
+                  <Route path="/admin/ai-blog-manager" element={<AIBlogManager />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

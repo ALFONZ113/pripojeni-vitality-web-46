@@ -41,6 +41,176 @@ export type Database = {
         }
         Relationships: []
       }
+      ai_blog_posts: {
+        Row: {
+          ai_model: string | null
+          avg_time_on_page: number | null
+          bounce_rate: number | null
+          canonical_url: string | null
+          category: string
+          content: string
+          created_at: string
+          excerpt: string | null
+          generation_time_ms: number | null
+          header_image_alt: string | null
+          header_image_url: string | null
+          id: string
+          image_prompts: Json | null
+          indexed_at: string | null
+          indexed_by_google: boolean | null
+          indexnow_submitted_at: string | null
+          internal_links_count: number | null
+          meta_description: string | null
+          meta_keywords: string[] | null
+          meta_title: string | null
+          prompt_used: string | null
+          published_at: string | null
+          readability_score: number | null
+          research_data: Json | null
+          research_date: string | null
+          scheduled_for: string | null
+          seo_score: number | null
+          slug: string
+          status: string
+          submitted_to_indexnow: boolean | null
+          tags: string[] | null
+          target_keywords: string[] | null
+          title: string
+          updated_at: string
+          views_count: number | null
+          word_count: number | null
+        }
+        Insert: {
+          ai_model?: string | null
+          avg_time_on_page?: number | null
+          bounce_rate?: number | null
+          canonical_url?: string | null
+          category: string
+          content: string
+          created_at?: string
+          excerpt?: string | null
+          generation_time_ms?: number | null
+          header_image_alt?: string | null
+          header_image_url?: string | null
+          id?: string
+          image_prompts?: Json | null
+          indexed_at?: string | null
+          indexed_by_google?: boolean | null
+          indexnow_submitted_at?: string | null
+          internal_links_count?: number | null
+          meta_description?: string | null
+          meta_keywords?: string[] | null
+          meta_title?: string | null
+          prompt_used?: string | null
+          published_at?: string | null
+          readability_score?: number | null
+          research_data?: Json | null
+          research_date?: string | null
+          scheduled_for?: string | null
+          seo_score?: number | null
+          slug: string
+          status?: string
+          submitted_to_indexnow?: boolean | null
+          tags?: string[] | null
+          target_keywords?: string[] | null
+          title: string
+          updated_at?: string
+          views_count?: number | null
+          word_count?: number | null
+        }
+        Update: {
+          ai_model?: string | null
+          avg_time_on_page?: number | null
+          bounce_rate?: number | null
+          canonical_url?: string | null
+          category?: string
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          generation_time_ms?: number | null
+          header_image_alt?: string | null
+          header_image_url?: string | null
+          id?: string
+          image_prompts?: Json | null
+          indexed_at?: string | null
+          indexed_by_google?: boolean | null
+          indexnow_submitted_at?: string | null
+          internal_links_count?: number | null
+          meta_description?: string | null
+          meta_keywords?: string[] | null
+          meta_title?: string | null
+          prompt_used?: string | null
+          published_at?: string | null
+          readability_score?: number | null
+          research_data?: Json | null
+          research_date?: string | null
+          scheduled_for?: string | null
+          seo_score?: number | null
+          slug?: string
+          status?: string
+          submitted_to_indexnow?: boolean | null
+          tags?: string[] | null
+          target_keywords?: string[] | null
+          title?: string
+          updated_at?: string
+          views_count?: number | null
+          word_count?: number | null
+        }
+        Relationships: []
+      }
+      automation_logs: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          details: Json | null
+          duration_ms: number | null
+          error_message: string | null
+          estimated_cost_usd: number | null
+          id: string
+          related_post_id: string | null
+          started_at: string
+          status: string
+          task_type: string
+          tokens_used: number | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          details?: Json | null
+          duration_ms?: number | null
+          error_message?: string | null
+          estimated_cost_usd?: number | null
+          id?: string
+          related_post_id?: string | null
+          started_at?: string
+          status: string
+          task_type: string
+          tokens_used?: number | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          details?: Json | null
+          duration_ms?: number | null
+          error_message?: string | null
+          estimated_cost_usd?: number | null
+          id?: string
+          related_post_id?: string | null
+          started_at?: string
+          status?: string
+          task_type?: string
+          tokens_used?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automation_logs_related_post_id_fkey"
+            columns: ["related_post_id"]
+            isOneToOne: false
+            referencedRelation: "ai_blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       form_submissions: {
         Row: {
           address: string | null
@@ -95,12 +265,110 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_tracking: {
+        Row: {
+          clicks: number | null
+          created_at: string
+          ctr: number | null
+          device: string | null
+          difficulty_score: number | null
+          id: string
+          impressions: number | null
+          keyword: string
+          location: string | null
+          position: number | null
+          previous_position: number | null
+          search_volume: number | null
+          tracked_date: string
+          url: string
+        }
+        Insert: {
+          clicks?: number | null
+          created_at?: string
+          ctr?: number | null
+          device?: string | null
+          difficulty_score?: number | null
+          id?: string
+          impressions?: number | null
+          keyword: string
+          location?: string | null
+          position?: number | null
+          previous_position?: number | null
+          search_volume?: number | null
+          tracked_date?: string
+          url: string
+        }
+        Update: {
+          clicks?: number | null
+          created_at?: string
+          ctr?: number | null
+          device?: string | null
+          difficulty_score?: number | null
+          id?: string
+          impressions?: number | null
+          keyword?: string
+          location?: string | null
+          position?: number | null
+          previous_position?: number | null
+          search_volume?: number | null
+          tracked_date?: string
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      cron_job_status: {
+        Row: {
+          active: boolean | null
+          command: string | null
+          database: string | null
+          jobid: number | null
+          jobname: string | null
+          nodename: string | null
+          nodeport: number | null
+          schedule: string | null
+          username: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          command?: string | null
+          database?: string | null
+          jobid?: number | null
+          jobname?: string | null
+          nodename?: string | null
+          nodeport?: number | null
+          schedule?: string | null
+          username?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          command?: string | null
+          database?: string | null
+          jobid?: number | null
+          jobname?: string | null
+          nodename?: string | null
+          nodeport?: number | null
+          schedule?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      get_ai_blog_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
+      }
+      get_top_keywords: {
+        Args: { limit_count?: number }
+        Returns: {
+          avg_position: number
+          keyword: string
+          total_clicks: number
+          total_impressions: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

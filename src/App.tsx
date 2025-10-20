@@ -40,6 +40,7 @@ const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const AIBlogTest = lazy(() => import('./pages/AIBlogTest'));
 const AIBlogManager = lazy(() => import('./pages/AIBlogManager'));
+const AIAutomation = lazy(() => import('./pages/AIAutomation'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -102,6 +103,7 @@ function App() {
                   <Route path="/admin-dashboard-poda-2024" element={<AdminDashboard />} />
                   <Route path="/admin/ai-blog-test" element={<AIBlogTest />} />
                   <Route path="/admin/ai-blog-manager" element={<AIBlogManager />} />
+                  <Route path="/admin/ai-automation" element={<AIAutomation />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

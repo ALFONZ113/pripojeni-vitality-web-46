@@ -12,3 +12,6 @@ verify_jwt = false
 [functions.ai-generate-image]
 verify_jwt = false
 
+[functions.ai-workflow]
+verify_jwt = false
+

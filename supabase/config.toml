@@ -15,3 +15,6 @@ verify_jwt = false
 [functions.ai-workflow]
 verify_jwt = false
 
+[functions.ai-fetch-gsc-data]
+verify_jwt = false
+

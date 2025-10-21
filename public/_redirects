@@ -25,5 +25,8 @@ https://popri.cz/* https://www.popri.cz/:splat 301!
 /obchodni-podminky /index.html 200
 /cookies /index.html 200
 
+# Admin panel routes
+/admin/* /index.html 200
+
 # Catch all for SPA
 /* /index.html 200

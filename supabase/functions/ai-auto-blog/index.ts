@@ -54,7 +54,7 @@ Deno.serve(async (req) => {
       {
         body: {
           topic: topSuggestion.topic,
-          keywords: topSuggestion.keywords.join(', '),
+          keywords: topSuggestion.keywords,
           category: topSuggestion.category,
           mode: 'manual'
         }

@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import HeroBackground from './HeroBackground';
 import HeroContent from './HeroContent';
+import MobileFeatureCards from './MobileFeatureCards';
 
 interface HeroContainerProps {
   handleContactClick: (e: React.MouseEvent) => void;
@@ -30,8 +31,8 @@ const HeroContainer = ({ handleContactClick }: HeroContainerProps) => {
             <HeroContent handleContactClick={handleContactClick} />
           </div>
           
-          {/* Feature Cards - Premium Luxury Design */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {/* Feature Cards - Premium Luxury Design - Hidden on mobile, shown on md+ */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             <motion.div 
               variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} 
               className="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 border border-white/40 shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(15,76,129,0.3)] hover:border-poda-blue/40 transition-all duration-500"
@@ -89,6 +90,9 @@ const HeroContainer = ({ handleContactClick }: HeroContainerProps) => {
               </div>
             </motion.div>
           </div>
+          
+          {/* Mobile Feature Cards */}
+          <MobileFeatureCards />
         </motion.div>
       </div>
     </>

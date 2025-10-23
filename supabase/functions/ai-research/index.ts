@@ -22,9 +22,13 @@ serve(async (req) => {
     console.log('Starting research for topic:', topic);
 
     // Vytvoríme výskumný prompt
+    const keywordsText = Array.isArray(keywords) 
+      ? keywords.join(', ') 
+      : (typeof keywords === 'string' ? keywords : 'žiadne');
+    
     const researchPrompt = `Vykonaj podrobný výskum na túto tému: "${topic}"
 
-Kľúčové slová na zameranie: ${keywords?.join(', ') || 'žiadne'}
+Kľúčové slová na zameranie: ${keywordsText}
 
 Prosím poskytni:
 1. Aktuálne trendy a novinky v tejto oblasti

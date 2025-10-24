@@ -15,10 +15,12 @@ import { panelakOtazkyPost } from './panelak-otazky';
 import { iptvVsTradicionalniTvPost } from './iptv-vs-traditionalni-tv';
 
 import { o2NejPrevzatiePodaAlternativaPost } from './o2-nej-prevzatie-poda-alternativa';
+import { gponTechnologie } from './gpon-technologie';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  o2NejPrevzatiePodaAlternativaPost, // Najnovší článok - O2 Nej.cz prevzatie
+  gponTechnologie, // Najnovší článok - GPON technologie
+  o2NejPrevzatiePodaAlternativaPost, // O2 Nej.cz prevzatie
   iptvVsTradicionalniTvPost, // IPTV vs tradiční TV
   panelakOtazkyPost, // FAQ panelák
   polanka60ghzPost, // PODA Super 2025
@@ -50,3 +52,4 @@ export * from './polanka-60ghz';
 export * from './panelak-otazky';
 export * from './iptv-vs-traditionalni-tv';
 export * from './o2-nej-prevzatie-poda-alternativa';
+export * from './gpon-technologie';

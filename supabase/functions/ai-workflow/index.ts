@@ -58,26 +58,32 @@ serve(async (req) => {
 
     console.log('🚀 Starting AI workflow for:', selectedTopic);
 
-    // Step 1: Research
+    // Step 1: Research (optional - continue if fails)
     console.log('📚 Step 1: Researching topic...');
-    const researchResponse = await fetch(`${supabaseUrl}/functions/v1/ai-research`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${supabaseServiceKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        topic: selectedTopic,
-        keywords: selectedKeywords
-      })
-    });
+    let researchData = { research_data: null };
+    
+    try {
+      const researchResponse = await fetch(`${supabaseUrl}/functions/v1/ai-research`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${supabaseServiceKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          topic: selectedTopic,
+          keywords: selectedKeywords
+        })
+      });
 
-    if (!researchResponse.ok) {
-      throw new Error(`Research failed: ${await researchResponse.text()}`);
+      if (researchResponse.ok) {
+        researchData = await researchResponse.json();
+        console.log('✅ Research completed');
+      } else {
+        console.warn('⚠️ Research failed, continuing without research data');
+      }
+    } catch (researchError) {
+      console.warn('⚠️ Research error, continuing without research data:', researchError);
     }
-
-    const researchData = await researchResponse.json();
-    console.log('✅ Research completed');
 
     // Step 2: Generate blog content
     console.log('✍️ Step 2: Generating blog content...');

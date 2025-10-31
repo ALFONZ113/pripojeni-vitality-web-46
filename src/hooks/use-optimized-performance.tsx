@@ -43,12 +43,15 @@ const useOptimizedPerformance = (options: PerformanceOptions = {}) => {
     ];
 
     criticalResources.forEach(resource => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.href = resource.href;
-      link.as = resource.as;
-      link.crossOrigin = 'anonymous';
-      document.head.appendChild(link);
+      // Check if already preloaded to avoid duplicates
+      if (!document.querySelector(`link[rel="preload"][href="${resource.href}"]`)) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = resource.href;
+        link.as = resource.as;
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+      }
     });
   }, [enableCriticalResourcePreload]);
 
@@ -157,7 +160,7 @@ const useOptimizedPerformance = (options: PerformanceOptions = {}) => {
         clearInterval(reportingInterval);
       }
     };
-  }, [preloadCriticalResources, observeMetric, enableReporting, reportInterval, metrics]);
+  }, [preloadCriticalResources, observeMetric, enableReporting, reportInterval]);
 
   // Memoizované vysledky
   const performanceScore = useMemo(() => {

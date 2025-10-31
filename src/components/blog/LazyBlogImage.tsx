@@ -68,7 +68,6 @@ const LazyBlogImage = ({
           onError={handleError}
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
-          fetchPriority={priority ? "high" : "auto"}
         />
       )}
     </div>

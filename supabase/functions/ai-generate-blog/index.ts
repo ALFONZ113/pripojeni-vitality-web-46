@@ -52,15 +52,15 @@ Nepoužívaj <h1> tag. Generuj iba obsah článku v HTML formáte bez obaľujúc
 
     const startTime = Date.now();
 
-    // Volanie Lovable AI (Gemini)
-    const response = await fetch('https://lovable.app/api/ai/chat', {
+    // Volanie Lovable AI Gateway (Gemini)
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${lovableApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gemini-2.0-flash-exp',
+        model: 'google/gemini-2.5-flash',
         messages: [
           {
             role: 'system',

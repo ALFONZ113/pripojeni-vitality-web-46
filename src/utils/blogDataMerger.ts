@@ -43,8 +43,8 @@ export const transformAIPostToBlogPost = (aiPost: AIBlogPost, index: number): Bl
     }).replace(/\//g, '. ');
   };
 
-  // Use header image or fallback to default
-  const defaultImage = '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png';
+  // Use header image or fallback to verified existing image
+  const defaultImage = '/lovable-uploads/a06e6aff-dc10-4258-90a8-0d6c75fec61e.png';
   
   return {
     id: generatedId,

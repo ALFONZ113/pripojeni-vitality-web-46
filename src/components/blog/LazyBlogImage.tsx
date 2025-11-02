@@ -23,8 +23,8 @@ const LazyBlogImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [targetRef, isInView] = useIntersectionObserver({
-    threshold: 0.1,
-    rootMargin: '100px',
+    threshold: 0.01,
+    rootMargin: '200px',
     triggerOnce: true
   });
 
@@ -42,9 +42,13 @@ const LazyBlogImage = ({
     onError?.();
   };
 
-  // If error occurred, don't render anything to avoid broken image icon
+  // If error occurred, show placeholder
   if (hasError) {
-    return null;
+    return (
+      <div className={cn("w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center", className)}>
+        <span className="text-primary/50 text-sm">Obrázok nedostupný</span>
+      </div>
+    );
   }
 
   return (

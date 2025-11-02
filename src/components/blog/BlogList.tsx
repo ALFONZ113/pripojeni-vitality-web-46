@@ -69,8 +69,10 @@ const BlogList = memo(({ posts, onResetFilters }: BlogListProps) => {
     });
   }, [displayedPosts]);
 
+  console.log('[BlogList] Rendering', sortedPosts.length, 'posts:', sortedPosts.map(p => ({ id: p.id, title: p.title, image: p.image })));
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
       {sortedPosts.map((post) => (
         <BlogCard key={post.id} post={post} />
       ))}

@@ -57,9 +57,7 @@ export const transformAIPostToBlogPost = (aiPost: AIBlogPost, index: number): Bl
     date: formatDate(aiPost.published_at || aiPost.created_at),
     category: aiPost.category,
     tags: aiPost.tags || [],
-    metaDescription: aiPost.meta_description || undefined,
-    slug: aiPost.slug,
-    readTime: Math.ceil((aiPost.word_count || 1500) / 200) // Average reading speed 200 words/min
+    slug: aiPost.slug
   };
 };
 

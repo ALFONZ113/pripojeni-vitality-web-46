@@ -7,18 +7,55 @@ import BlogList from '../components/blog/BlogList';
 import { initAnimations } from '../utils/animation';
 import { Helmet } from 'react-helmet-async';
 import { preloadCriticalResources } from '../utils/performance-optimization';
+import { supabase } from '@/integrations/supabase/client';
+import { mergeBlogPosts } from '../utils/blogDataMerger';
+import type { BlogPost } from '../data/blog/types';
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState(blogPosts);
+  const [allPosts, setAllPosts] = useState<BlogPost[]>(blogPosts);
+  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(blogPosts);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [isLoadingAIPosts, setIsLoadingAIPosts] = useState(true);
   
   // Debug logging
   console.log('[Blog] Initial blogPosts count:', blogPosts.length);
+  console.log('[Blog] All posts count:', allPosts.length);
   console.log('[Blog] Current filteredPosts count:', filteredPosts.length);
   console.log('[Blog] Search term:', searchTerm);
   console.log('[Blog] Selected category:', selectedCategory);
+  
+  // Fetch AI-generated blog posts from database
+  useEffect(() => {
+    const fetchAIPosts = async () => {
+      try {
+        const { data: aiPosts, error } = await supabase
+          .from('ai_blog_posts')
+          .select('*')
+          .eq('status', 'published')
+          .order('published_at', { ascending: false });
+
+        if (error) {
+          console.error('Error fetching AI posts:', error);
+          setIsLoadingAIPosts(false);
+          return;
+        }
+
+        if (aiPosts && aiPosts.length > 0) {
+          const mergedPosts = mergeBlogPosts(blogPosts, aiPosts);
+          setAllPosts(mergedPosts);
+          console.log('✅ Merged posts:', mergedPosts.length, '(Static:', blogPosts.length, '+ AI:', aiPosts.length, ')');
+        }
+      } catch (error) {
+        console.error('Error in fetchAIPosts:', error);
+      } finally {
+        setIsLoadingAIPosts(false);
+      }
+    };
+
+    fetchAIPosts();
+  }, []);
   
   // Zvýraznění pro Porubu - přidání parametru pro automatické hledání Poruby
   useEffect(() => {
@@ -48,10 +85,11 @@ const Blog = () => {
     return () => cleanupAnimation();
   }, []);
   
+  
   useEffect(() => {
-    let filtered = blogPosts;
+    let filtered = allPosts;
     
-    console.log('[Blog] Starting filtering with', blogPosts.length, 'posts');
+    console.log('[Blog] Starting filtering with', allPosts.length, 'posts');
     
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(post => post.category === selectedCategory);
@@ -79,7 +117,7 @@ const Blog = () => {
     if (searchTerm.trim() !== '') newParams.set('search', searchTerm);
     setSearchParams(newParams, { replace: true });
     
-  }, [searchTerm, selectedCategory, setSearchParams]);
+  }, [searchTerm, selectedCategory, setSearchParams, allPosts]);
   
   const handleSearch = (value: string) => {
     setSearchTerm(value);

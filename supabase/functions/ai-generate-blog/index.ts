@@ -32,63 +32,23 @@ Kľúčové slová: ${keywords?.join(', ') || 'žiadne'}
 Výskumné dáta na použitie:
 ${researchContext}
 
-POŽIADAVKY NA SEO A OBSAH:
-1. Článok musí byť dlhý aspoň 1800-2500 slov pre lepšie SEO
-2. Použij HTML tagy (<h2>, <h3>, <p>, <ul>, <li>, <strong>, <em>, <blockquote>)
-3. Zahrň hlavné kľúčové slovo v prvých 100 slovách
-4. Kľúčové slová použi prirodzene s hustotou 1-2% (nie keyword stuffing)
-5. Vytvor zrozumiteľnú hierarchiu nadpisov (H2 → H3)
-6. Každý H2 nadpis by mal obsahovať variáciu kľúčového slova
-7. Pridaj praktické príklady, tipy, čísla a konkrétne dáta
-8. Zameraj sa na České a Slovenské prostredie (Ostrava, Karviná, Havířov, Poruba)
-9. Buď konkrétny a technicky presný
-10. Optimalizuj pre featured snippets (krátke, jasné odpovede)
+POŽIADAVKY:
+1. Článok musí byť dlhý aspoň 1500 slov
+2. Použij HTML tagy (<h2>, <h3>, <p>, <ul>, <li>, <strong>, <em>)
+3. Zahrň kľúčové slová prirodzene v texte
+4. Vytvor zrozumiteľnú štruktúru s podnadpismi
+5. Pridaj praktické príklady a tipy
+6. Zameraj sa na České a Slovenské prostredie
+7. Buď konkrétny a technicky presný
+8. Optimalizuj pre vyhľadávače (použij kľúčové slová v nadpisoch)
 
-LOKÁLNE SEO:
-- Spomeň lokality: Ostrava, Karviná, Havířov, Poruba, Bohumín
-- Pridaj lokálny kontext (panelák, rodinný dům, adresa)
-- Použij české výrazy a frázovanie
+ŠTRUKTÚRA:
+- Úvodný odsek (150-200 slov) vysvetľujúci tému
+- 3-5 hlavných sekcií s <h2> nadpismi
+- Každá sekcia s 2-4 podsekciami s <h3> nadpismi
+- Záverečný odsek so zhrnutím a výzvou k akcii
 
-INTERNÉ LINKY (spomeň ak je relevantné):
-- "Gigabitový internet v Ostravě"
-- "IPTV služby"
-- "60GHz technologie v Porube"
-- "Internet do paneláku"
-- "PODA tarify"
-
-FAQ SEKCIA (POVINNÁ):
-Vytvor sekciu s 3-5 najčastejšími otázkami a odpoveďami v tomto formáte:
-<h2>Často kladené otázky</h2>
-<h3>Otázka 1?</h3>
-<p>Jasná, stručná odpoveď (2-3 vety).</p>
-
-ŠTRUKTÚRA ČLÁNKU:
-1. Úvodný odsek (200-250 slov):
-   - Jasne vysvetli problém/tému
-   - Uveď prečo je dôležité
-   - Naznač čo čitateľ získa z článku
-
-2. Hlavné sekcie (3-5 sekcií):
-   - Každá sekcia s H2 nadpisom obsahujúcim keyword varianty
-   - Podsekcie s H3 nadpismi pre detaily
-   - Bullet listy pre prehľadnosť
-   - Príklady a konkrétne čísla
-
-3. FAQ sekcia (povinná)
-
-4. Záverečný odsek (150 slov):
-   - Zhrnutie hlavných bodov
-   - Výzva k akcii (kontaktujte PODA, overíme dostupnosť)
-
-TAGY A ATRIBUTY:
-- Použi <strong> pre dôležité termíny
-- <em> pre zvýraznenie
-- <ul> a <li> pre zoznamy
-- <blockquote> pre citáty alebo dôležité fakty
-
-JAZYK: Píš v češtine, profesionálnym ale zrozumiteľným štýlom.
-
-Nepoužívaj <h1> tag. Generuj iba obsah článku v HTML formáte bez obaľujúcich <html>, <body> alebo <article> tagov.`;
+Nepoužívaj <h1> tag. Generuj iba obsah článku v HTML formáte bez obaľujúcich tagov.`;
 
     const startTime = Date.now();
 

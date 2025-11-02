@@ -8,7 +8,6 @@ const corsHeaders = {
 
 // Predefined topics for automatic rotation
 const BLOG_TOPICS = [
-  // Existujúce témy
   { topic: "Gigabitový internet v Ostravě", keywords: ["gigabit", "ostrava", "rychlý internet"], category: "Technologie" },
   { topic: "IPTV vs klasická televize", keywords: ["iptv", "televize", "streaming"], category: "IPTV" },
   { topic: "Pokrytie 60GHz v Porube", keywords: ["60ghz", "poruba", "bezdrátový internet"], category: "Technologie" },
@@ -16,19 +15,7 @@ const BLOG_TOPICS = [
   { topic: "Internetové připojení pro panelák", keywords: ["panelák", "připojení", "byt"], category: "Tipy" },
   { topic: "PODA vs konkurence v Havířově", keywords: ["havirov", "srovnání", "poskytovatel"], category: "Recenzie" },
   { topic: "Jak zrychlit domácí internet", keywords: ["zrychlení", "wifi", "router"], category: "Tipy" },
-  { topic: "Internetové tarify pro rodiny", keywords: ["rodina", "tarify", "balíček"], category: "Služby" },
-  
-  // Nové SEO-optimalizované témy
-  { topic: "Pomalý internet v Ostravě? Zjistěte příčiny a řešení", keywords: ["pomalý internet", "ostrava", "řešení", "wifi problém"], category: "Tipy a rady" },
-  { topic: "FTTH vs DOCSIS: Jaká je nejlepší technologie pro domácnost?", keywords: ["ftth", "docsis", "optika", "kabel", "srovnání"], category: "Technologie" },
-  { topic: "Internet do paneláku Ostrava - Kompletní průvodce 2025", keywords: ["panelák", "ostrava", "připojení", "instalace"], category: "Tipy a rady" },
-  { topic: "Gigabitový internet pro domácnost - Co potřebujete vědět", keywords: ["gigabit", "domácnost", "rychlost", "router"], category: "Služby" },
-  { topic: "Jak zrychlit Wi-Fi v paneláku: 7 ověřených tipů", keywords: ["wifi", "zrychlení", "panelák", "signál"], category: "Tipy a rady" },
-  { topic: "Optické připojení v Karviné: Porovnání poskytovatelů", keywords: ["karvina", "optika", "poskytovatel", "cena"], category: "Recenze" },
-  { topic: "IPTV vs klasická satelitní TV: Co se vyplatí v roce 2025?", keywords: ["iptv", "satelit", "televize", "srovnání"], category: "Technologie" },
-  { topic: "Internetové pokrytí v Havířově: Kde najdete nejlepší tarify", keywords: ["havirov", "pokrytí", "tarify", "internet"], category: "Recenze" },
-  { topic: "Wi-Fi 6 vs Wi-Fi 5: Stojí upgrade za to?", keywords: ["wifi 6", "wifi 5", "upgrade", "rychlost"], category: "Technologie" },
-  { topic: "Jak vybrat internetového poskytovatele v Ostravě 2025", keywords: ["ostrava", "poskytovatel", "výběr", "porovnání"], category: "Tipy a rady" }
+  { topic: "Internetové tarify pro rodiny", keywords: ["rodina", "tarify", "balíček"], category: "Služby" }
 ];
 
 serve(async (req) => {

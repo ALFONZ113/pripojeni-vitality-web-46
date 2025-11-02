@@ -356,7 +356,10 @@ export type Database = {
       }
     }
     Functions: {
-      get_ai_blog_stats: { Args: never; Returns: Json }
+      get_ai_blog_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
+      }
       get_top_keywords: {
         Args: { limit_count?: number }
         Returns: {

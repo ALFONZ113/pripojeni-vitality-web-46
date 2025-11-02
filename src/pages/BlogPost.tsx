@@ -5,8 +5,6 @@ import { blogPosts } from '../data/blog';
 import { initAnimations } from '../utils/animation';
 import { findBlogPost } from '../utils/blogRouting';
 import { createSlug } from '../utils/slugGenerator';
-import { supabase } from '@/integrations/supabase/client';
-import { findBlogPostBySlug } from '../utils/blogDataMerger';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
@@ -35,52 +33,39 @@ const BlogPostPage = () => {
     const cleanupAnimation = initAnimations();
     window.scrollTo(0, 0);
     
-    // Use new slug-based routing - check static posts first, then AI posts
-    const loadPost = async () => {
-      let foundPost: BlogPost | undefined;
-      
-      if (slugOrId) {
-        // First try to find in static posts
-        foundPost = findBlogPost(blogPosts, slugOrId);
-        
-        // If not found in static posts, try AI posts in database
-        if (!foundPost) {
-          const aiPost = await findBlogPostBySlug(blogPosts, slugOrId, supabase);
-          if (aiPost) {
-            foundPost = aiPost;
-          }
-        }
-      }
-      
-      if (foundPost) {
-        setPost(foundPost);
-        
-        // Generate clean canonical URL using slug
-        const slug = foundPost.slug || createSlug(foundPost.title);
-        const canonicalUrl = `https://www.popri.cz/blog/${slug}`;
-        
-        // Update meta tags for better SEO
-        const linkElement = document.querySelector('link[rel="canonical"]');
-        if (linkElement) {
-          linkElement.setAttribute('href', canonicalUrl);
-        } else {
-          const newCanonical = document.createElement('link');
-          newCanonical.rel = 'canonical';
-          newCanonical.href = canonicalUrl;
-          document.head.appendChild(newCanonical);
-        }
-        
-        // Remove query parameters from URL if present (clean URL)
-        const url = new URL(window.location.href);
-        if (url.search) {
-          window.history.replaceState({}, '', url.pathname);
-        }
-      } else {
-        navigate('/blog', { replace: true });
-      }
-    };
+    // Use new slug-based routing
+    let foundPost: BlogPost | undefined;
     
-    loadPost();
+    if (slugOrId) {
+      foundPost = findBlogPost(blogPosts, slugOrId);
+    }
+    
+    if (foundPost) {
+      setPost(foundPost);
+      
+      // Generate clean canonical URL using slug
+      const slug = foundPost.slug || createSlug(foundPost.title);
+      const canonicalUrl = `https://www.popri.cz/blog/${slug}`;
+      
+      // Update meta tags for better SEO
+      const linkElement = document.querySelector('link[rel="canonical"]');
+      if (linkElement) {
+        linkElement.setAttribute('href', canonicalUrl);
+      } else {
+        const newCanonical = document.createElement('link');
+        newCanonical.rel = 'canonical';
+        newCanonical.href = canonicalUrl;
+        document.head.appendChild(newCanonical);
+      }
+      
+      // Remove query parameters from URL if present (clean URL)
+      const url = new URL(window.location.href);
+      if (url.search) {
+        window.history.replaceState({}, '', url.pathname);
+      }
+    } else {
+      navigate('/blog', { replace: true });
+    }
     
     return () => {
       cleanupAnimation();

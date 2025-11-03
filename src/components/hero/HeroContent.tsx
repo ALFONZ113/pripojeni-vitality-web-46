@@ -61,7 +61,9 @@ const HeroContent = ({ handleContactClick }: HeroContentProps) => {
       </motion.h1>
       
       <motion.p variants={item} className="text-gray-600 text-lg md:text-xl mb-10 leading-relaxed max-w-3xl mx-auto">
-        Připojte svůj domov k budoucnosti – stabilní gigabitové připojení až <span className="font-bold text-poda-blue">1000 Mbps</span> s <span className="font-semibold text-poda-blue">TV zdarma</span>. Surfujte, sledujte, bavte se, kolik chcete.
+        Připojte svůj domov k budoucnosti – stabilní gigabitové připojení až <span className="font-bold text-poda-blue">1000 Mbps</span>
+        <br />
+        s <span className="font-bold text-poda-blue bg-gradient-to-r from-poda-blue/10 to-poda-orange/10 px-2 py-1 rounded">TV zdarma</span>. Surfujte, sledujte, bavte se, kolik chcete.
       </motion.p>
       
       {/* Callback Form */}

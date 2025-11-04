@@ -157,9 +157,9 @@
   }
   
   .btn-primary {
-    @apply bg-poda-blue hover:bg-poda-blue/90 text-white px-6 py-3 rounded-lg 
-           font-medium transition-all duration-300 transform hover:translate-y-[-2px]
-           hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-poda-blue/50;
+    @apply bg-poda-orange hover:bg-[#E64A19] text-white px-6 py-3 rounded-lg 
+           font-medium transition-all duration-300 transform hover:translate-y-[-2px] hover:scale-110
+           hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-poda-orange/50 active:scale-105;
   }
   
   .btn-secondary {

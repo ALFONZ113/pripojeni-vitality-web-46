@@ -13,8 +13,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { usePopupTriggers } from '@/hooks/use-popup-triggers';
+import { 
+  trackPopupImpression, 
+  trackPopupConversion, 
+  trackPopupClose, 
+  getPopupVariant 
+} from '@/utils/popupTracking';
 
-const POPUP_DELAY_MS = 20000; // 20 seconds delay before showing popup
 const POPUP_STORAGE_KEY = 'poda_promotion_popup_session';
 const RESET_FOR_TESTING = false; // Set to true only for testing
 
@@ -50,54 +56,39 @@ const PromotionPopup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [promotionEndDate] = useState(getPromotionEndDate());
+  const [variant] = useState(() => getPopupVariant());
+  
+  // Use intelligent popup triggers hook
+  const { shouldShow, triggerSource, isMobile } = usePopupTriggers({
+    scrollThreshold: 50, // 50% scroll
+    timeDelay: 60000, // 60 seconds
+    enableExitIntent: true, // Desktop only
+    enableEngagement: true // Track clicks on tariffs/TV
+  });
   
   useEffect(() => {
     // Reset sessionStorage for testing (remove in production)
     if (RESET_FOR_TESTING) {
       sessionStorage.removeItem(POPUP_STORAGE_KEY);
-      if (RESET_FOR_TESTING) console.log('PromotionPopup: Testing mode - sessionStorage reset');
+      console.log('PromotionPopup: Testing mode - sessionStorage reset');
     }
+  }, []);
+  
+  // Show popup when triggers are met
+  useEffect(() => {
+    const hasShownInSession = sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
     
-    // Check if we've shown the popup in this session
-    const hasShownInSession = () => {
-      const hasShown = sessionStorage.getItem(POPUP_STORAGE_KEY) !== null;
-      if (RESET_FOR_TESTING) console.log('PromotionPopup: Has shown in session:', hasShown);
-      return hasShown;
-    };
-
-    const showPopup = () => {
-      if (!hasShownInSession() && !isOpen) {
-        if (RESET_FOR_TESTING) console.log('PromotionPopup: Showing popup');
-        setIsOpen(true);
-        // Save that we've shown the popup in this session
-        sessionStorage.setItem(POPUP_STORAGE_KEY, 'shown');
+    if (shouldShow && !hasShownInSession && !isOpen) {
+      console.log('PromotionPopup: Showing popup via trigger:', triggerSource);
+      setIsOpen(true);
+      sessionStorage.setItem(POPUP_STORAGE_KEY, 'shown');
+      
+      // Track popup impression
+      if (triggerSource) {
+        trackPopupImpression(triggerSource, variant);
       }
-    };
-    
-    // Show popup after delay if not shown in this session
-    if (!hasShownInSession()) {
-      if (RESET_FOR_TESTING) console.log('PromotionPopup: Setting timer for', POPUP_DELAY_MS, 'ms');
-      const timer = setTimeout(showPopup, POPUP_DELAY_MS);
-      
-      // Exit intent detection
-      const handleMouseLeave = (e: MouseEvent) => {
-        // Only trigger if mouse leaves from the top of the window (user wants to close tab/navigate away)
-        if (e.clientY <= 0 && e.relatedTarget === null) {
-          showPopup();
-        }
-      };
-      
-      document.addEventListener('mouseleave', handleMouseLeave);
-      
-      return () => {
-        if (RESET_FOR_TESTING) console.log('PromotionPopup: Cleaning up');
-        clearTimeout(timer);
-        document.removeEventListener('mouseleave', handleMouseLeave);
-      };
-    } else {
-      if (RESET_FOR_TESTING) console.log('PromotionPopup: Already shown in this session');
     }
-  }, []); // Run only once on mount
+  }, [shouldShow, triggerSource, isOpen, variant]);
   
   // Add manual reset function for testing (only in development)
   useEffect(() => {
@@ -118,8 +109,10 @@ const PromotionPopup = () => {
   
   const handleClose = () => {
     setIsOpen(false);
-    // Save that we've interacted with the popup in this session
     sessionStorage.setItem(POPUP_STORAGE_KEY, 'closed');
+    
+    // Track popup close
+    trackPopupClose(triggerSource, variant);
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
@@ -150,6 +143,11 @@ const PromotionPopup = () => {
         setIsSuccess(true);
         setPhoneNumber('');
         
+        // Track conversion
+        if (triggerSource) {
+          trackPopupConversion(triggerSource, variant, phoneNumber);
+        }
+        
         toast({
           title: "Děkujeme za Váš zájem",
           description: "Brzy Vás budeme kontaktovat ohledně nabídky prvního měsíce zdarma.",
@@ -159,7 +157,6 @@ const PromotionPopup = () => {
         // Close popup after 3 seconds
         setTimeout(() => {
           setIsOpen(false);
-          // Reset success state after popup closes
           setTimeout(() => {
             setIsSuccess(false);
           }, 300);
@@ -181,7 +178,10 @@ const PromotionPopup = () => {
     <Dialog open={isOpen} onOpenChange={(open) => {
       setIsOpen(open);
       if (!open) {
-        try { sessionStorage.setItem(POPUP_STORAGE_KEY, 'closed'); } catch {}
+        try { 
+          sessionStorage.setItem(POPUP_STORAGE_KEY, 'closed');
+          trackPopupClose(triggerSource, variant);
+        } catch {}
       }
     }}>
       <DialogContent showClose={false} className="sm:max-w-lg rounded-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-orange-50/30 backdrop-blur-xl shadow-2xl overflow-hidden overflow-y-hidden overflow-x-hidden max-h-none">

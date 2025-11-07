@@ -121,6 +121,7 @@ export const trackBeginCheckout = (value: number, currency: string = 'CZK') => {
 // Declare gtag for TypeScript
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
+    gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
   }
 }

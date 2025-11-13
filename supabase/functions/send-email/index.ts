@@ -58,35 +58,39 @@ serve(async (req) => {
 
     console.log("📧 Preparing email with data:", { to, subject, formData, emailType });
     
-    // Save form data to database first
-    try {
-      console.log("💾 Saving form data to database");
-      const { data: submissionData, error: dbError } = await supabase
-        .from('form_submissions')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          address: formData.address || null,
-          city: formData.city || null,
-          zip: formData.zip || null,
-          property_type: formData.propertyType || null,
-          current_provider: formData.currentProvider || null,
-          current_price: formData.currentPrice || null,
-          message: formData.message || null,
-          status: 'new'
-        }])
-        .select();
+    // Save form data to database ONLY for admin emails (to avoid duplicates)
+    if (emailType === "admin") {
+      try {
+        console.log("💾 Saving form data to database");
+        const { data: submissionData, error: dbError } = await supabase
+          .from('form_submissions')
+          .insert([{
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address || null,
+            city: formData.city || null,
+            zip: formData.zip || null,
+            property_type: formData.propertyType || null,
+            current_provider: formData.currentProvider || null,
+            current_price: formData.currentPrice || null,
+            message: formData.message || null,
+            status: 'new'
+          }])
+          .select();
 
-      if (dbError) {
-        console.error("❌ Database error:", dbError);
+        if (dbError) {
+          console.error("❌ Database error:", dbError);
+          // Continue with email sending even if DB fails
+        } else {
+          console.log("✅ Form data saved to database:", submissionData);
+        }
+      } catch (dbError) {
+        console.error("❌ Error saving to database:", dbError);
         // Continue with email sending even if DB fails
-      } else {
-        console.log("✅ Form data saved to database:", submissionData);
       }
-    } catch (dbError) {
-      console.error("❌ Error saving to database:", dbError);
-      // Continue with email sending even if DB fails
+    } else {
+      console.log("📧 Skipping database save for customer email (already saved with admin email)");
     }
     
     let htmlContent: string;

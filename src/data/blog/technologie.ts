@@ -145,6 +145,7 @@ export const technologiePosts: BlogPost[] = [
   },
   {
     id: 3,
+    slug: "jak-vybrat-spravny-router-domov-kompletni-pruvodce-2025",
     title: "Jak vybrat správný router pro váš domov: Kompletní průvodce 2025",
     excerpt: "Vše, co potřebujete vědět o výběru routeru pro domácí použití. Porovnání funkcí, výkonu a cen nejlepších modelů na trhu.",
     content: `
@@ -205,6 +206,7 @@ export const technologiePosts: BlogPost[] = [
   },
   {
     id: 4,
+    slug: "mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov",
     title: "Mesh systémy vs. klasické routery: Co je lepší pro váš domov?",
     excerpt: "Mesh systémy vs. klasické routery - kompletní porovnání pro váš domov. Zjistěte, která technologie je ideální pro vaši domácnost od PODA.",
     content: `
@@ -274,6 +276,7 @@ export const technologiePosts: BlogPost[] = [
   },
   {
     id: 5,
+    slug: "zabezpeceni-domaci-wifi-site-kompletni-pruvodce-bezpecnosti",
     title: "Zabezpečení domácí Wi-Fi sítě: Kompletní průvodce bezpečností",
     excerpt: "Ochrana domácí Wi-Fi sítě před hackery a útoky. Praktické tipy pro maximální bezpečnost vašeho internetového připojení PODA radí.",
     content: `

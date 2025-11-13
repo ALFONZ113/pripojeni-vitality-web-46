@@ -28,6 +28,9 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   const canonicalUrl = generateCanonicalUrl(canonicalPath);
   const hreflangTags = generateHreflangTags(canonicalPath);
   
+  // Detect if current URL is ID-based (e.g., /blog/102)
+  const isIdBasedUrl = typeof window !== 'undefined' && /^\/blog\/\d+/.test(window.location.pathname);
+  
   // Extract location for geo-specific optimization
   const extractLocation = (text: string): string | null => {
     const locations = ['Ostrava', 'Karviná', 'Bohumín', 'Frýdek-Místek', 'Havířov', 'Poruba', 'Orlová'];
@@ -63,9 +66,19 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       
       {/* Enhanced meta tags */}
       <meta name="author" content={post.author} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-      <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
-      <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      {isIdBasedUrl ? (
+        <>
+          <meta name="robots" content="noindex, follow" />
+          <meta name="googlebot" content="noindex, follow" />
+          <meta name="bingbot" content="noindex, follow" />
+        </>
+      ) : (
+        <>
+          <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+          <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+          <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        </>
+      )}
       
       {/* Indexing optimization signals */}
       <meta name="indexnow-key" content="a1b2c3d4e5f6g7h8i9j0" />

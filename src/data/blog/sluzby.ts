@@ -3,6 +3,7 @@ import { BlogPost } from './types';
 export const sluzbyPosts: BlogPost[] = [
   {
     id: 2,
+    slug: "gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu",
     title: "GPON technologie v Moravskoslezském regionu: Revoluce optického internetu",
     excerpt: "Komplexní přehled GPON technologie a jejích výhod pro domácnosti v Ostravě, Karviné a okolí. Proč je považována za standard budoucnosti pro domácí internetové připojení.",
     content: `
@@ -264,6 +265,7 @@ export const sluzbyPosts: BlogPost[] = [
   },
   {
     id: 100,
+    slug: "internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast",
     title: "Internet PODA v Ostravě-Porubě: Gigabitové připojení pro největší městskou část",
     excerpt: "Kompletní informace o optickém připojení PODA v Ostravě-Porubě. Pokrytí, instalace, ceny a výhody oproti konkurenci.",
     content: `

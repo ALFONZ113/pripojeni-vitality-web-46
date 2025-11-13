@@ -43,10 +43,11 @@ Disallow: */admin/
 Disallow: /wp-admin/
 Disallow: /wp-content/
 
-# Block old ID-based blog URLs (redirect to slug-based)
-Disallow: /blog/[0-9]
-Disallow: /blog/[0-9][0-9]
-Disallow: /blog/[0-9][0-9][0-9]
+# Allow old ID-based blog URLs (they redirect 301 to slug-based)
+# Google can follow 301 redirects to discover canonical URLs
+Allow: /blog/[0-9]
+Allow: /blog/[0-9][0-9]
+Allow: /blog/[0-9][0-9][0-9]
 
 # Block parameterized blog URLs
 Disallow: /blog/*?*

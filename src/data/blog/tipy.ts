@@ -3,6 +3,7 @@ import { BlogPost } from './types';
 export const tipyPosts: BlogPost[] = [
   {
     id: 6,
+    slug: "jak-vybrat-nejlepsi-tv-balicek-vasi-rodinu",
     title: "Jak vybrat nejlepší TV balíček pro vaši rodinu",
     excerpt: "Praktický průvodce výběrem televizního balíčku. Poradíme vám, jak ušetřit peníze a získat přesně to, co potřebujete.",
     content: `
@@ -118,6 +119,7 @@ export const tipyPosts: BlogPost[] = [
   },
   {
     id: 7,
+    slug: "nejlepsi-zpusob-sledovani-sportu-online-pruvodce-fanoušky",
     title: "Nejlepší způsob sledování sportu online: Průvodce pro fanoušky",
     excerpt: "Kompletní přehled možností sledování sportovních přenosů online. Od tradičních TV kanálů po moderní streaming služby.",
     content: `
@@ -229,6 +231,7 @@ export const tipyPosts: BlogPost[] = [
   },
   {
     id: 8,
+    slug: "jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje",
     title: "Jak otestovat rychlost internetu: Praktické tipy a nejlepší nástroje",
     excerpt: "Zjistěte, jak správně otestovat rychlost vašeho internetového připojení a co dělat, když rychlost neodpovídá slíbenému.",
     content: `

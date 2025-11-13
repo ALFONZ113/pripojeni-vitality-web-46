@@ -4,6 +4,7 @@ import { BlogPost } from './types';
 export const novinyPosts: BlogPost[] = [
   {
     id: 11,
+    slug: "novinky-poda-sluzby-nove-moznosti-zakaznici",
     title: "Novinky v PODA službách: Nové možnosti pro zákazníky",
     excerpt: "Objevte nejnovější vylepšení a nové funkce v PODA službách, které přinášejí ještě lepší zážitek z internetu a televize.",
     content: `
@@ -64,6 +65,7 @@ export const novinyPosts: BlogPost[] = [
   },
   {
     id: 12,
+    slug: "rozsireni-pokryti-poda-nove-oblasti-opticky-internet",
     title: "Rozšíření pokrytí PODA: Nové oblasti s optickým internetem",
     excerpt: "Informace o rozšíření optické sítě PODA do nových oblastí Moravskoslezského kraje a plány na nejbližší měsíce.",
     content: `

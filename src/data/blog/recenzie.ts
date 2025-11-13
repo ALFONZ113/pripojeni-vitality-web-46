@@ -4,6 +4,7 @@ import { BlogPost } from './types';
 export const recenziePosts: BlogPost[] = [
   {
     id: 13,
+    slug: "recenze-zakazniku-poda-skutecne-zkusenosti-sluzby",
     title: "Recenze zákazníků PODA: Skutečné zkušenosti s našimi službami",
     excerpt: "Přečtěte si autentické recenze a hodnocení od našich spokojených zákazníků z celého Moravskoslezského kraje.",
     content: `

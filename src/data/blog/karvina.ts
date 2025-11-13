@@ -3,6 +3,7 @@ import { BlogPost } from './types';
 
 export const karvinaPost: BlogPost = {
   id: 10,
+  slug: "rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda",
   title: "Rychlý internet v Karviné: Revoluce v připojení domácností díky PODA",
   excerpt: "Karviná vstupuje do digitální budoucnosti díky lokálnímu poskytovateli PODA, který přináší gigabitové optické připojení za bezkonkurenční ceny. Objevte kompletní pokrytí města a výhody objednání přes popri.cz.",
   content: `

@@ -43,20 +43,8 @@ const BlogPostPage = () => {
     if (foundPost) {
       setPost(foundPost);
       
-      // Generate clean canonical URL using slug
-      const slug = foundPost.slug || createSlug(foundPost.title);
-      const canonicalUrl = `https://www.popri.cz/blog/${slug}`;
-      
-      // Update meta tags for better SEO
-      const linkElement = document.querySelector('link[rel="canonical"]');
-      if (linkElement) {
-        linkElement.setAttribute('href', canonicalUrl);
-      } else {
-        const newCanonical = document.createElement('link');
-        newCanonical.rel = 'canonical';
-        newCanonical.href = canonicalUrl;
-        document.head.appendChild(newCanonical);
-      }
+      // Canonical tag is already handled by BlogPostSEO component via Helmet
+      // Remove manual DOM manipulation to avoid duplicates
       
       // Remove query parameters from URL if present (clean URL)
       const url = new URL(window.location.href);

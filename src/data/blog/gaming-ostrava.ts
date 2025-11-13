@@ -3,6 +3,7 @@ import type { BlogPost } from './types';
 
 export const gamingOstravaPost: BlogPost = {
   id: 31,
+  slug: "internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda",
   title: "Internetové připojení pro online hráče v Ostravě: Rychlosti, ping a spolehlivost s PODA",
   excerpt: "Objevte, jak dosáhnout nejnižšího pingu a nejvyšší stability pro online hraní v Ostravě. Kompletní průvodce pro gamery s PODA připojením.",
   content: `

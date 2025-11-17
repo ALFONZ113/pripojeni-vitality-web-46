@@ -29,31 +29,69 @@ Deno.serve(async (req) => {
     const fallbackTopics = [
       {
         category: 'Internet',
-        keywords: ['rychlý internet Ostrava', 'gigabitové připojení', 'optický internet', 'fiber internet Česko'],
+        keywords: [
+          'rychlý internet Ostrava', 'gigabitové připojení', 'optický internet', 'fiber internet Česko',
+          'optika vs metalický internet', 'nejrýchlejší internet Ostrava 2025', 'domácí internet bez FUP',
+          'symetrické připojení', 'internet pro firmy Ostrava', 'co je GPON technologie',
+          'fiber optika výhody', 'internet pro streamování', 'stabilní připojení domů',
+          'internet bez agregace', 'jak funguje optický kabel', 'výhody optického internetu',
+          'gigabit internet cena', 'nejlevnější optický internet', 'internet 1000 Mbps',
+          'rychlý upload internet'
+        ],
         baseClicks: 150,
         priority: 1
       },
       {
         category: 'IPTV',
-        keywords: ['IPTV Česko', 'internetová televize', 'smart TV aplikace', 'TV přes internet'],
+        keywords: [
+          'IPTV Česko', 'internetová televize', 'smart TV aplikace', 'TV přes internet',
+          'IPTV vs Netflix', 'nejlepší IPTV aplikace', 'IPTV na Smart TV', 'živá televize internet',
+          'IPTV set-top box', 'televize bez satelitu', 'IPTV kanály ČR', 'jak nastavit IPTV',
+          'IPTV vs kabelová televize', 'archiv pořadů IPTV', 'IPTV na telefonu',
+          'IPTV bez smlouvy', 'IPTV HD kvalita', 'IPTV timeshift funkce',
+          'české IPTV služby', 'IPTV kontrola rodičů'
+        ],
         baseClicks: 120,
         priority: 2
       },
       {
         category: 'Lokální SEO',
-        keywords: ['internet Poruba', 'připojení Havířov', 'internet Karviná', 'PODA Bohumín'],
+        keywords: [
+          'internet Poruba', 'připojení Havířov', 'internet Karviná', 'PODA Bohumín',
+          'internet Ostrava Zábřeh', 'připojení Ostrava Jih', 'internet Ostrava Vítkovice',
+          'rychlý internet Polanka', 'internet Petřvald', 'připojení Orlová',
+          'internet Ostrava Mariánské Hory', 'internet Ostrava Slezská Ostrava', 'připojení Vratimov',
+          'internet Paskov', 'internet Rychvald', 'připojení Doubrava',
+          'internet Ostrava Hrabová', 'internet Ostrava Muglinov', 'připojení Šenov',
+          'internet Ostrava centrum'
+        ],
         baseClicks: 100,
         priority: 3
       },
       {
         category: 'Technologie',
-        keywords: ['60GHz technologie', 'wireless internet', '5G vs fiber', 'rychlost internetu'],
+        keywords: [
+          '60GHz technologie', 'wireless internet', '5G vs fiber', 'rychlost internetu',
+          'co je FTTH', 'GPON vs EPON', 'jak funguje 60GHz', 'bezdrátové optické připojení',
+          'latence internetu', 'ping pro gaming', 'jitter co to je', 'packet loss problém',
+          'IPv6 vs IPv4', 'dual stack internet', 'wifi 6 technologie', 'mesh síť doma',
+          'Router pro optiku', 'ONT zařízení', 'jak měřit rychlost internetu',
+          'QoS nastavení'
+        ],
         baseClicks: 90,
         priority: 4
       },
       {
         category: 'Průvodce',
-        keywords: ['jak vybrat internet', 'porovnání tarifů', 'levný internet', 'nejlepší připojení 2025'],
+        keywords: [
+          'jak vybrat internet', 'porovnání tarifů', 'levný internet', 'nejlepší připojení 2025',
+          'co potřebuji pro rychlý internet', 'jak změnit poskytovatele', 'výpovědní lhůta internet',
+          'smlouva na dobu určitou vs neurčitou', 'povinné poplatky internet', 'skryté náklady internet',
+          'jak zjistit pokrytí', 'jaký internet pro domácnost', 'internet pro gaming',
+          'internet pro práci z domova', 'kolik stojí instalace', 'jak dlouho trvá připojení',
+          'co je agregace internetu', 'jak poznat dobrého poskytovatele', 'recenze poskytovatelů',
+          'co dělat při pomalém internetu'
+        ],
         baseClicks: 110,
         priority: 5
       }
@@ -71,11 +109,11 @@ Deno.serve(async (req) => {
     const keywords = topKeywords && topKeywords.length > 0 ? topKeywords : [];
     console.log(`📊 Found ${keywords.length} keywords from GSC`);
 
-    // Get existing AI blog posts to avoid duplicates
+    // Get existing AI blog posts to avoid duplicates (last 180 days for rotation)
     const { data: existingPosts, error: postsError } = await supabase
       .from('ai_blog_posts')
-      .select('title, target_keywords, category')
-      .gte('created_at', new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString());
+      .select('title, target_keywords, category, created_at')
+      .gte('created_at', new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toISOString());
 
     if (postsError) {
       console.error('Error fetching existing posts:', postsError);
@@ -93,13 +131,15 @@ Deno.serve(async (req) => {
       console.log('🎯 Generating suggestions from fallback topics...');
       
       for (const fallback of fallbackTopics) {
-        // Zkontroluj, zda už v této kategorii máme články
+        // Zkontroluj články v kategorii za posledních 180 dní
+        const cutoffDate = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toISOString();
         const recentInCategory = existingPosts?.filter(p => 
-          p.category === fallback.category
+          p.category === fallback.category && 
+          p.created_at >= cutoffDate
         ).length || 0;
 
-        if (recentInCategory >= 3) {
-          console.log(`⏭️ Skipping ${fallback.category} - již má ${recentInCategory} článků`);
+        if (recentInCategory >= 10) {
+          console.log(`⏭️ Skipping ${fallback.category} - již má ${recentInCategory} článků za posledních 180 dní`);
           continue;
         }
 

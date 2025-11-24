@@ -16,10 +16,12 @@ import { iptvVsTradicionalniTvPost } from './iptv-vs-traditionalni-tv';
 
 import { o2NejPrevzatiePodaAlternativaPost } from './o2-nej-prevzatie-poda-alternativa';
 import { gponTechnologie } from './gpon-technologie';
+import { internetVyberChybyPost } from './internet-vyber-chyby';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  gponTechnologie, // Najnovší článok - GPON technologie
+  internetVyberChybyPost, // Najnovší článok - Ako si vybrať internet do bytu
+  gponTechnologie, // GPON technologie
   o2NejPrevzatiePodaAlternativaPost, // O2 Nej.cz prevzatie
   iptvVsTradicionalniTvPost, // IPTV vs tradiční TV
   panelakOtazkyPost, // FAQ panelák
@@ -53,3 +55,4 @@ export * from './panelak-otazky';
 export * from './iptv-vs-traditionalni-tv';
 export * from './o2-nej-prevzatie-poda-alternativa';
 export * from './gpon-technologie';
+export * from './internet-vyber-chyby';

@@ -3,11 +3,77 @@
 /**
  * SEO Build Script
  * Generates static HTML snapshots and sitemaps for better SEO
+ * Includes automatic IndexNow notifications for new blog posts
  */
 
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import https from 'https';
+
+/**
+ * Submit URLs to IndexNow for immediate indexing
+ * Sends to all 3 major IndexNow endpoints
+ */
+async function submitToIndexNow(urls) {
+  if (!urls || urls.length === 0) return false;
+
+  const indexNowEndpoints = [
+    'api.indexnow.org',
+    'www.bing.com',
+    'yandex.com'
+  ];
+
+  const submission = {
+    host: 'www.popri.cz',
+    key: 'a1b2c3d4e5f6g7h8i9j0',
+    keyLocation: 'https://www.popri.cz/a1b2c3d4e5f6g7h8i9j0.txt',
+    urlList: urls
+  };
+
+  const postData = JSON.stringify(submission);
+  let successCount = 0;
+
+  for (const host of indexNowEndpoints) {
+    try {
+      await new Promise((resolve, reject) => {
+        const options = {
+          hostname: host,
+          port: 443,
+          path: '/indexnow',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(postData),
+            'User-Agent': 'PODA-IndexNow/1.0'
+          }
+        };
+
+        const req = https.request(options, (res) => {
+          if (res.statusCode === 200 || res.statusCode === 202) {
+            console.log(`✅ IndexNow: ${host} accepted ${urls.length} URLs`);
+            successCount++;
+          } else {
+            console.warn(`⚠️ IndexNow: ${host} returned ${res.statusCode}`);
+          }
+          resolve();
+        });
+
+        req.on('error', (e) => {
+          console.error(`❌ IndexNow error for ${host}:`, e.message);
+          resolve(); // Continue to next endpoint
+        });
+
+        req.write(postData);
+        req.end();
+      });
+    } catch (error) {
+      console.error(`❌ IndexNow failed for ${host}:`, error.message);
+    }
+  }
+
+  return successCount > 0;
+}
 
 // Routes to prerender for SEO
 const SEO_ROUTES = [
@@ -204,7 +270,7 @@ Sitemap: https://www.popri.cz/sitemap.xml
   return robots;
 }
 
-function buildSEO() {
+async function buildSEO() {
   console.log('🚀 Building SEO optimizations...');
 
   // Ensure public directories exist
@@ -349,7 +415,39 @@ function buildSEO() {
     fs.writeFileSync('public/sitemap.xml', sitemapXml);
     console.log('✅ sitemap.xml updated');
 
-    // 2) Build server-side 301 redirects for old ID-based URLs
+    // 2) IndexNow: Submit new blog post URLs
+    const cacheFile = 'public/indexnow-cache.json';
+    let previousUrls = [];
+    
+    try {
+      if (fs.existsSync(cacheFile)) {
+        previousUrls = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+      }
+    } catch (e) {
+      console.warn('⚠️ Could not read IndexNow cache, treating all as new');
+    }
+
+    const currentUrls = posts.map(p => {
+      const slug = p.slug || createSlug(p.title);
+      return `https://www.popri.cz/blog/${slug}`;
+    });
+
+    const newUrls = currentUrls.filter(url => !previousUrls.includes(url));
+
+    if (newUrls.length > 0) {
+      console.log(`📡 Submitting ${newUrls.length} new blog URLs to IndexNow...`);
+      const submitted = await submitToIndexNow(newUrls);
+      
+      if (submitted) {
+        // Update cache with all current URLs
+        fs.writeFileSync(cacheFile, JSON.stringify(currentUrls, null, 2));
+        console.log('✅ IndexNow cache updated');
+      }
+    } else {
+      console.log('ℹ️ No new blog URLs to submit to IndexNow');
+    }
+
+    // 3) Build server-side 301 redirects for old ID-based URLs
     const netlifyLines = posts.map((p) => `/blog/${p.id} /blog/${(p.slug || createSlug(p.title))} 301`);
     const apacheLines = posts.map((p) => `Redirect 301 /blog/${p.id} /blog/${(p.slug || createSlug(p.title))}`);
 
@@ -376,7 +474,7 @@ function buildSEO() {
     );
     console.log('✅ public/.htaccess updated');
 
-    // 3) Structured data JSON files (kept from legacy)
+    // 4) Structured data JSON files (kept from legacy)
     const organizationSchema = {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -421,9 +519,12 @@ function buildSEO() {
   }
 }
 
-// Run if called directly
+// Run if called directly (make it async-compatible)
 if (import.meta.url === `file://${process.argv[1]}`) {
-  buildSEO();
+  buildSEO().catch(err => {
+    console.error('Build failed:', err);
+    process.exit(1);
+  });
 }
 
 export { buildSEO, generateSitemap, generateRobotsTxt, SEO_ROUTES, BLOG_POSTS };

@@ -1,11 +1,11 @@
 
-import { generateSitemap, validateSitemapXML } from './sitemapGenerator';
+import { generateSitemap, generateCleanSitemapAsync, validateSitemapXML } from './sitemapGenerator';
 
 /**
- * Export clean XML sitemap as downloadable file
+ * Export clean XML sitemap as downloadable file (with AI blog posts)
  */
-export const downloadSitemap = (baseUrl: string = 'https://www.popri.cz') => {
-  const sitemapContent = generateSitemap(baseUrl);
+export const downloadSitemap = async (baseUrl: string = 'https://www.popri.cz') => {
+  const sitemapContent = await generateCleanSitemapAsync(baseUrl);
   
   // Validate before download
   if (!validateSitemapXML(sitemapContent)) {
@@ -32,10 +32,10 @@ export const downloadSitemap = (baseUrl: string = 'https://www.popri.cz') => {
 };
 
 /**
- * Copy clean XML sitemap to clipboard
+ * Copy clean XML sitemap to clipboard (with AI blog posts)
  */
 export const copySitemapToClipboard = async (baseUrl: string = 'https://www.popri.cz') => {
-  const sitemapContent = generateSitemap(baseUrl);
+  const sitemapContent = await generateCleanSitemapAsync(baseUrl);
   
   // Validate before copying
   if (!validateSitemapXML(sitemapContent)) {
@@ -53,10 +53,10 @@ export const copySitemapToClipboard = async (baseUrl: string = 'https://www.popr
 };
 
 /**
- * Log clean XML sitemap to console
+ * Log clean XML sitemap to console (with AI blog posts)
  */
-export const logSitemapToConsole = (baseUrl: string = 'https://www.popri.cz') => {
-  const sitemapContent = generateSitemap(baseUrl);
+export const logSitemapToConsole = async (baseUrl: string = 'https://www.popri.cz') => {
+  const sitemapContent = await generateCleanSitemapAsync(baseUrl);
   
   // Validate before logging
   const isValid = validateSitemapXML(sitemapContent);

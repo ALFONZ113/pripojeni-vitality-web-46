@@ -3,6 +3,54 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { createRequire } from "module";
+import fs from "fs";
+
+// Generate slug from title (matching slugGenerator.ts logic)
+const createSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+// Get top 20 blog posts for pre-rendering by reading blog data files
+const getTopBlogRoutes = (): string[] => {
+  try {
+    // Manually defined top 20 blog post slugs for pre-rendering
+    // Update this list when adding important new blog posts
+    const topBlogSlugs = [
+      'ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi',
+      'gpon-technologie-budoucnost-internetoveho-pripojeni',
+      'o2-nej-prevzatie-poda-alternativa-zakaznici',
+      'iptv-vs-traditionalni-tv-kompletni-pruvodce-2025',
+      'panelak-internet-faq-vsechny-odpovedi',
+      'polanka-60ghz-poda-super-2025',
+      'gaming-ostrava-nejlepsi-internet-hry',
+      'pomaly-internet-jak-zrychlit-pripojeni',
+      'jak-vybrat-spravny-internet-domacnost-pruvodce',
+      'ostrava-internet-pripojeni-srovnani',
+      'karvina-internet-provider-srovnani',
+      'optika-vs-med-proc-ostravsko-dostava-internet-21-stoleti',
+      'wifi-6-co-prinese-nova-generace-bezdratu',
+      'symetricke-pripojeni-proc-je-upload-dulezity',
+      'jak-merit-rychlost-internetu-spravne',
+      'stabilita-vs-rychlost-co-je-dulezitejsi',
+      'smart-home-jake-pripojeni-potrebujete',
+      'jak-funguje-opticke-pripojeni',
+      'cloud-gaming-jake-pripojeni-je-idealni',
+      'home-office-pozadavky-internet'
+    ];
+    
+    return topBlogSlugs.map(slug => `/blog/${slug}`);
+  } catch (error) {
+    console.warn('Could not load blog posts for pre-rendering:', error);
+    return [];
+  }
+};
+
+const TOP_BLOG_ROUTES = getTopBlogRoutes();
 
 // Precompute routes for prerendering (safe static routes only)
 const STATIC_ROUTES = [
@@ -26,6 +74,8 @@ const STATIC_ROUTES = [
   "/obchodni-podminky",
   "/cookies",
   "/giga-internet",
+  // Top 20 blog posts for better SEO indexing
+  ...TOP_BLOG_ROUTES,
 ];
 
 // https://vitejs.dev/config/

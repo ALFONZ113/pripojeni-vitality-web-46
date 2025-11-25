@@ -5,6 +5,7 @@
 import { BlogPost } from '../data/blog/types';
 import { createSlug } from './slugGenerator';
 import { blogPosts } from '../data/blog';
+import { supabase } from '../integrations/supabase/client';
 
 interface SitemapUrl {
   loc: string;
@@ -20,7 +21,164 @@ interface SitemapUrl {
 }
 
 /**
- * Generate clean sitemap with only indexable URLs
+ * Fetch AI-generated blog posts from Supabase
+ */
+const fetchAIBlogPosts = async (): Promise<BlogPost[]> => {
+  try {
+    const { data, error } = await supabase
+      .from('ai_blog_posts')
+      .select('*')
+      .eq('status', 'published')
+      .order('published_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching AI blog posts:', error);
+      return [];
+    }
+
+    // Transform AI blog posts to BlogPost format
+    return (data || []).map(post => ({
+      id: parseInt(post.id) || 0,
+      title: post.title,
+      slug: post.slug,
+      excerpt: post.excerpt || '',
+      content: post.content,
+      date: new Date(post.published_at || post.created_at).toLocaleDateString('cs-CZ'),
+      author: 'PODA AI',
+      category: post.category,
+      image: post.header_image_url || '',
+      alt: post.header_image_alt || post.title,
+      tags: post.tags || []
+    }));
+  } catch (error) {
+    console.error('Failed to fetch AI blog posts:', error);
+    return [];
+  }
+};
+
+/**
+ * Generate clean sitemap with only indexable URLs (async version with AI posts)
+ */
+export const generateCleanSitemapAsync = async (baseUrl: string = 'https://www.popri.cz'): Promise<string> => {
+  const today = new Date().toISOString().split('T')[0];
+  const urls: SitemapUrl[] = [];
+
+  // Main pages (highest priority)
+  urls.push({
+    loc: `${baseUrl}/`,
+    lastmod: today,
+    changefreq: 'weekly',
+    priority: 1.0,
+    images: [
+      {
+        loc: `${baseUrl}/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png`,
+        caption: 'PODA Internet rychlé gigabitové připojení',
+        title: 'PODA Internet - Prémiové optické připojení',
+        geo_location: 'Ostrava, Česká republika'
+      }
+    ]
+  });
+
+  // Service pages
+  const servicePages = [
+    { path: '/tarify', priority: 0.9, changefreq: 'weekly' as const },
+    { path: '/internet-tv', priority: 0.9, changefreq: 'weekly' as const },
+    { path: '/iptv', priority: 0.8, changefreq: 'monthly' as const },
+    { path: '/programy', priority: 0.7, changefreq: 'weekly' as const },
+    { path: '/kontakt', priority: 0.8, changefreq: 'monthly' as const },
+  ];
+
+  servicePages.forEach(page => {
+    urls.push({
+      loc: `${baseUrl}${page.path}`,
+      lastmod: today,
+      changefreq: page.changefreq,
+      priority: page.priority
+    });
+  });
+
+  // Regional pages
+  const regionalPages = [
+    '/internet-ostrava',
+    '/internet-karvina', 
+    '/internet-bohumin',
+    '/internet-havirov',
+    '/internet-poruba'
+  ];
+
+  regionalPages.forEach(path => {
+    urls.push({
+      loc: `${baseUrl}${path}`,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: 0.9
+    });
+  });
+
+  // Blog main page
+  urls.push({
+    loc: `${baseUrl}/blog`,
+    lastmod: today,
+    changefreq: 'daily',
+    priority: 0.8
+  });
+
+  // Fetch AI blog posts
+  const aiBlogPosts = await fetchAIBlogPosts();
+  
+  // Combine static and AI blog posts
+  const allBlogPosts = [...blogPosts, ...aiBlogPosts];
+
+  // Blog posts - ONLY slug-based URLs
+  allBlogPosts.forEach(post => {
+    const slug = post.slug || createSlug(post.title);
+    const postUrl = `${baseUrl}/blog/${slug}`;
+    
+    // Calculate priority based on recency and category
+    let priority = 0.6;
+    if (post.category === 'Novinky') priority = 0.8;
+    if (post.category === 'Technologie') priority = 0.7;
+    
+    const url: SitemapUrl = {
+      loc: postUrl,
+      lastmod: convertDateToISOString(post.date),
+      changefreq: 'monthly',
+      priority
+    };
+
+    // Add images if available
+    if (post.image) {
+      url.images = [{
+        loc: post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`,
+        caption: post.alt || post.excerpt.substring(0, 100),
+        title: post.title
+      }];
+    }
+
+    urls.push(url);
+  });
+
+  // Legal pages (lowest priority)
+  const legalPages = [
+    '/ochrana-soukromi',
+    '/obchodni-podminky', 
+    '/cookies'
+  ];
+
+  legalPages.forEach(path => {
+    urls.push({
+      loc: `${baseUrl}${path}`,
+      lastmod: today,
+      changefreq: 'yearly',
+      priority: 0.3
+    });
+  });
+
+  return generateSitemapXML(urls);
+};
+
+/**
+ * Generate clean sitemap with only indexable URLs (sync version - static posts only)
  */
 export const generateCleanSitemap = (baseUrl: string = 'https://www.popri.cz'): string => {
   const today = new Date().toISOString().split('T')[0];

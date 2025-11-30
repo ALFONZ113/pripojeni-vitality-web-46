@@ -1,8 +1,13 @@
 # Netlify build configuration
-# Force Node + npm and generate SEO assets before build
+# Force Node + npm and generate SEO + AI static assets before build
 [build]
-  command = "npm ci && node scripts/build-seo.js || true && npm run build"
+  command = "npm ci && node scripts/build-seo.js || true && node scripts/generate-ai-pages.js || true && npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Edge Functions configuration for AI bot detection
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/*"

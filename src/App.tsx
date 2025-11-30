@@ -36,6 +36,7 @@ const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
 const SEODashboard = lazy(() => import('./pages/SEODashboard'));
 const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
 const GigaInternet = lazy(() => import('./pages/GigaInternet'));
+const CanonicalDiagnostic = lazy(() => import('./pages/CanonicalDiagnostic'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const AIBlogTest = lazy(() => import('./pages/AIBlogTest'));
@@ -97,6 +98,7 @@ function App() {
                   <Route path="/seo-dashboard" element={<SEODashboard />} />
                   <Route path="/migration-center" element={<MigrationCenter />} />
                   <Route path="/giga-internet" element={<GigaInternet />} />
+                  <Route path="/canonical-diagnostic" element={<CanonicalDiagnostic />} />
                   
                   {/* Admin panel - hidden routes */}
                   <Route path="/admin-login-poda-2024" element={<AdminLogin />} />

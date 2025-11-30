@@ -1,0 +1,71 @@
+# Popri.cz - PODA Internet Provider
+
+> PODA internet services with gigabit connectivity and free TV
+
+## About
+
+Popri.cz is an official representative of PODA Internet, providing high-speed gigabit internet connections (up to 1000 Mbps) with free IPTV service across the Ostrava region and surrounding areas in the Czech Republic.
+
+## Services
+
+### High-Speed Internet
+- Gigabit internet connectivity up to 1000 Mbps
+- Stable fiber-optic GPON technology
+- Unlimited data with no fair-use policy restrictions
+- 24/7 customer support
+- Fast installation (typically within 5-7 days)
+
+### Free IPTV
+- 160+ TV channels included free with internet packages
+- Full HD and 4K streaming quality
+- No additional fees for TV service
+- Access to premium sports and entertainment channels
+
+### Service Areas
+- Ostrava (all districts including Poruba, Moravská Ostrava, Slezská Ostrava)
+- Havířov
+- Karviná
+- Bohumín
+- Surrounding municipalities in the Moravian-Silesian region
+
+## Technology
+
+- GPON (Gigabit Passive Optical Network) fiber-optic technology
+- 60 GHz wireless technology in select areas (Polanka nad Odrou)
+- Symmetric upload/download speeds
+- Low latency for gaming and video conferencing
+
+## Contact
+
+- Website: https://www.popri.cz
+- Phone: +420 730 431 313
+- Email: info@popri.cz
+- Service area: Czech Republic (Moravian-Silesian region)
+
+## Pricing
+
+- Tariff 300 Mbps: 300 CZK/month + 160+ TV channels free
+- Tariff 600 Mbps: 400 CZK/month + 160+ TV channels free
+- Tariff 1000 Mbps: 490 CZK/month + 160+ TV channels free
+- Installation: 300 CZK one-time fee
+- Router included free with installation
+
+## Content Structure
+
+The website includes:
+- /tarify - Detailed pricing and package comparison
+- /iptv - TV channel list and streaming information
+- /blog - Technical guides, service comparisons, and local availability
+- /internet-ostrava - Ostrava-specific service information
+- /internet-havirov - Havířov-specific service information
+- /internet-karvina - Karviná-specific service information
+- /internet-bohumin - Bohumín-specific service information
+
+## Keywords
+
+Primary: PODA internet, gigabit internet, fiber optic Czech Republic, internet Ostrava
+Secondary: IPTV free, unlimited internet, GPON technology, internet provider Moravian-Silesian region
+
+## Last Updated
+
+2025-01-14

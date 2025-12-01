@@ -26,7 +26,18 @@ const AI_STATIC_PATHS = [
   '/internet-poruba',
   '/blog',
   '/iptv',
-  '/kontakt'
+  '/kontakt',
+  // Top 10 blog articles
+  '/blog/internet-vyber-chyby',
+  '/blog/gpon-technologie',
+  '/blog/o2-nej-prevzatie-poda-alternativa-zakaznici',
+  '/blog/iptv-vs-traditionalni-tv',
+  '/blog/panelak-internet-otazky',
+  '/blog/polanka-60ghz-poda-super-2025',
+  '/blog/gaming-internet-ostrava',
+  '/blog/pomaly-internet-riesenia',
+  '/blog/internet-ostrava-pruvodce',
+  '/blog/karvina-internet-provider'
 ];
 
 export default async (request: Request, context: Context) => {

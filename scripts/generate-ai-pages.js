@@ -10,6 +10,20 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Top 10 blog articles for AI indexing
+const TOP_BLOG_ARTICLES = [
+  { slug: 'internet-vyber-chyby', title: '5 Chýb Pri Výbere Internetu', description: 'Najčastejšie chyby pri výbere internetového pripojenia a ako sa im vyhnúť.' },
+  { slug: 'gpon-technologie', title: 'GPON Technológie - Budúcnosť Optického Internetu', description: 'Kompletný sprievodca GPON technológiou a jej výhodami pre domácnosti.' },
+  { slug: 'o2-nej-prevzatie-poda-alternativa-zakaznici', title: 'O2 Nej Převzetí - PODA Alternativa', description: 'Prevzatie O2 Nej zákazníkov - prečo je PODA lepšia alternatíva.' },
+  { slug: 'iptv-vs-traditionalni-tv', title: 'IPTV vs Tradičná TV - Porovnanie', description: 'Komplexné porovnanie IPTV a tradičnej TV - výhody, nevýhody, ceny.' },
+  { slug: 'panelak-internet-otazky', title: 'Internet Do Paneláku - Najčastejšie Otázky', description: 'FAQ k internetovému pripojeniu v panelovom dome.' },
+  { slug: 'polanka-60ghz-poda-super-2025', title: 'PODA Super 2025 - 60GHz Technológia', description: 'Revolučná 60GHz bezdrôtová technológia pre ultrarýchle pripojenie.' },
+  { slug: 'gaming-internet-ostrava', title: 'Gaming Internet Ostrava - Najlepšie Pripojenie', description: 'Najlepšie internetové pripojenie pre hráčov v Ostrave.' },
+  { slug: 'pomaly-internet-riesenia', title: 'Pomalý Internet? 10 Riešení', description: '10 overených spôsobov ako zrýchliť pomalé internetové pripojenie.' },
+  { slug: 'internet-ostrava-pruvodce', title: 'Internet v Ostrave - Komplexný Průvodce', description: 'Úplný sprievodca internetovým pripojením v Ostrave a okolí.' },
+  { slug: 'karvina-internet-provider', title: 'Internet v Karviné - PODA Poskytovateľ', description: 'Rýchle a stabilné internetové pripojenie v Karviné.' }
+];
+
 // AI-optimized content for each page
 const AI_PAGES = {
   '/': {
@@ -305,6 +319,42 @@ const AI_PAGES = {
     `
   }
 };
+
+// Generate AI pages for top blog articles
+TOP_BLOG_ARTICLES.forEach(article => {
+  AI_PAGES[`/blog/${article.slug}`] = {
+    title: `${article.title} | Blog Popri.cz`,
+    description: article.description,
+    content: `
+      <h1>${article.title}</h1>
+      <p>${article.description}</p>
+      
+      <h2>Obsah článku</h2>
+      <p>Tento článok poskytuje podrobné informácie o téme: ${article.title.toLowerCase()}.</p>
+      
+      <h2>Prečo je toto dôležité?</h2>
+      <p>V dnešnej dobe rýchleho internetového pripojenia je kľúčové rozumieť možnostiam a technológiám, ktoré sú k dispozícii. Naša služba PODA internet poskytuje riešenia prispôsobené vašim potrebám.</p>
+      
+      <h2>Naše služby PODA</h2>
+      <ul>
+        <li>Gigabitový internet až 1000 Mb/s</li>
+        <li>TV vysílanie zdarma (70+ kanálů)</li>
+        <li>Stabilní připojení s 99,9% dostupností</li>
+        <li>Profesionální technická podpora 24/7</li>
+      </ul>
+      
+      <h2>Zaujalo vás to?</h2>
+      <p>Kontaktujte nás na telefónnom čísle +420 739 065 142 alebo navštívte našu webovú stránku pre viac informácií o našich tarifoch a dostupnosti vo vašej lokalite.</p>
+      
+      <h2>Súvisiace články</h2>
+      <ul>
+        <li><a href="https://www.popri.cz/blog">Všetky blog články</a></li>
+        <li><a href="https://www.popri.cz/tarify">Cenové balíčky</a></li>
+        <li><a href="https://www.popri.cz/internet-ostrava">Internet v Ostrave</a></li>
+      </ul>
+    `
+  };
+});
 
 function generateAIStaticHTML(path, data) {
   return `<!DOCTYPE html>

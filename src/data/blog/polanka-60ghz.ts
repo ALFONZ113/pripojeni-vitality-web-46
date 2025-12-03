@@ -9,7 +9,7 @@ export const polanka60ghzPost: BlogPost = {
   content: `
     <h2>PODA 2025: Revoluce v připojení Polanky nad Odrou</h2>
     
-    <p>Společnost PODA v rámci projektu <strong>PODA 2025</strong> úspěšně připojila obec Polanka nad Odrou k nejmodernější 60 GHz bezdrátové technologii. Tato inovativní technologie přináší mieszkańcom rychlé a spolehlivé internetové připojení přímo do jejich domovů.</p>
+    <p>Společnost PODA v rámci projektu <strong>PODA 2025</strong> úspěšně připojila obec Polanka nad Odrou k nejmodernější 60 GHz bezdrátové technologii. Tato inovativní technologie přináší obyvatelům rychlé a spolehlivé internetové připojení přímo do jejich domovů.</p>
     
     <h3>60 GHz technologie - budoucnost je zde</h3>
     <p>Nová <strong>60 GHz technologie</strong> představuje průlom v oblasti bezdrátového připojení:</p>

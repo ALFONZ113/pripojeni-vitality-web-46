@@ -366,107 +366,107 @@ export const technologiePosts: BlogPost[] = [
   },
   {
     id: 103,
-    title: "Prechod od O2 k PODA po akvizícii Nej.cz a Netboxu: Príležitosť pre lepšie služby v Moravskoslezskom regióne",
-    excerpt: "Analýza dopadu akvizície Nej.cz a Netboxu spoločnosťou O2 na zákazníkov v Moravskoslezskom regióne a výhody prechodu k regionálnemu poskytovateľovi PODA s garantovanými cenami a optickým pripojením.",
+    title: "Přechod od O2 k PODA po akvizici Nej.cz a Netboxu: Příležitost pro lepší služby v Moravskoslezském regionu",
+    excerpt: "Analýza dopadu akvizice Nej.cz a Netboxu společností O2 na zákazníky v Moravskoslezském regionu a výhody přechodu k regionálnímu poskytovateli PODA s garantovanými cenami a optickým připojením.",
     content: `
       <div class="prose-content">
-        <h2>Úvod: Veľké zmeny na telekomunikačnom trhu ČR</h2>
-        <p>V telekomunikačnom sektore Českej republiky došlo k významným zmenám, ktoré výrazne ovplyvnia zákazníkov v Moravskoslezskom regióne. Spoločnosť O2 dokončila akvizíciu poskytovateľa internetu Nej.cz, pričom zákaznícka základňa prešla pod O2, zatiaľ čo infraštruktúru prevzal CETIN. Zároveň sa Netbox, ktorý poskytuje internetové pripojenie viac ako 40 tisícom zákazníkov predovšetkým v Brne a Jihlave, stal súčasťou O2.</p>
+        <h2>Úvod: Velké změny na telekomunikačním trhu ČR</h2>
+        <p>V telekomunikačním sektoru České republiky došlo k významným změnám, které výrazně ovlivní zákazníky v Moravskoslezském regionu. Společnost O2 dokončila akvizici poskytovatele internetu Nej.cz, přičemž zákaznická základna přešla pod O2, zatímco infrastrukturu převzal CETIN. Zároveň se Netbox, který poskytuje internetové připojení více než 40 tisícům zákazníků především v Brně a Jihlavě, stal součástí O2.</p>
 
-        <h2>Geografický dopad akvizíciami</h2>
-        <h3>Ovplyvnené oblasti v Moravskoslezskom regióne</h3>
+        <h2>Geografický dopad akvizic</h2>
+        <h3>Ovlivněné oblasti v Moravskoslezském regionu</h3>
         <ul>
-          <li><strong>Ostrava a okolie:</strong> Tisíce zákazníkov Nej.cz v procese migrácie</li>
-          <li><strong>Karviná:</strong> Zmeny v možnostiach výberu poskytovateľov</li>
-          <li><strong>Havířov:</strong> Konsolidácia trhu a cenové zmeny</li>
-          <li><strong>Frýdek-Místek:</strong> Nové príležitosti pre alternatívnych poskytovateľov</li>
+          <li><strong>Ostrava a okolí:</strong> Tisíce zákazníků Nej.cz v procesu migrace</li>
+          <li><strong>Karviná:</strong> Změny v možnostech výběru poskytovatelů</li>
+          <li><strong>Havířov:</strong> Konsolidace trhu a cenové změny</li>
+          <li><strong>Frýdek-Místek:</strong> Nové příležitosti pro alternativní poskytovatele</li>
         </ul>
 
-        <h2>Analýza zmien po akvizíciách</h2>
-        <h3>Čo sa mení pre zákazníkov Nej.cz</h3>
-        <p><strong>Postupné zmeny v službách:</strong></p>
+        <h2>Analýza změn po akvizicích</h2>
+        <h3>Co se mění pro zákazníky Nej.cz</h3>
+        <p><strong>Postupné změny ve službách:</strong></p>
         <ul>
-          <li><strong>Migrácia na O2 tarify:</strong> Postupný prechod na drahšie balíčky</li>
-          <li><strong>Zmeny v zákazníckom servise:</strong> Centralizácia na call centrá</li>
-          <li><strong>Nové zmluvné podmienky:</strong> Možné zavádzanie závazkov</li>
-          <li><strong>Zdražovanie:</strong> Harmonizácia s O2 cenníkom</li>
+          <li><strong>Migrace na O2 tarify:</strong> Postupný přechod na dražší balíčky</li>
+          <li><strong>Změny v zákaznickém servisu:</strong> Centralizace na call centra</li>
+          <li><strong>Nové smluvní podmínky:</strong> Možné zavádění závazků</li>
+          <li><strong>Zdražování:</strong> Harmonizace s O2 ceníkem</li>
         </ul>
 
-        <h3>Dopad na zákazníkov Netboxu</h3>
-        <p><strong>Riziká pre používateľov:</strong></p>
+        <h3>Dopad na zákazníky Netboxu</h3>
+        <p><strong>Rizika pro uživatele:</strong></p>
         <ul>
-          <li><strong>Strata lokálneho charakteru:</strong> Koniec personalizovaných služieb</li>
-          <li><strong>Technické zmeny:</strong> Možné problémy počas migrácie</li>
-          <li><strong>Cenové úpravy:</strong> Pravdepodobné zvýšenie cien</li>
-          <li><strong>Služby:</strong> Možné obmedzenia v technickej podpore</li>
+          <li><strong>Ztráta lokálního charakteru:</strong> Konec personalizovaných služeb</li>
+          <li><strong>Technické změny:</strong> Možné problémy během migrace</li>
+          <li><strong>Cenové úpravy:</strong> Pravděpodobné zvýšení cen</li>
+          <li><strong>Služby:</strong> Možná omezení v technické podpoře</li>
         </ul>
 
-        <h2>Prípadová štúdia: Zákazník v procese migrácie</h2>
+        <h2>Případová studie: Zákazník v procesu migrace</h2>
         <blockquote class="border-l-4 border-poda-blue pl-4 italic my-6">
-          <p>"Bol som spokojný zákazník Nej.cz v Ostrave-Vítkovice s internetom za 299 Kč/mesiac. Po prechode pod O2 mi prišiel list o zvýšení ceny na 599 Kč a nutnosti podpísania nových zmluvných podmienok s 24-mesačným závazkom. Po konzultácii s PODA som zistil, že môžem mať optický internet 1000 Mbps za 300 Kč bez závazkov. Rozhodnutie bolo jednoduché."</p>
+          <p>"Byl jsem spokojený zákazník Nej.cz v Ostravě-Vítkovicích s internetem za 299 Kč/měsíc. Po přechodu pod O2 mi přišel dopis o zvýšení ceny na 599 Kč a nutnosti podepsání nových smluvních podmínek s 24-měsíčním závazkem. Po konzultaci s PODA jsem zjistil, že mohu mít optický internet 1000 Mbps za 300 Kč bez závazků. Rozhodnutí bylo jednoduché."</p>
           <footer class="mt-2 text-sm text-gray-600">
             <strong>Tomáš Svoboda, Ostrava-Vítkovice</strong><br>
-            Bývalý zákazník Nej.cz, teraz PODA
+            Bývalý zákazník Nej.cz, nyní PODA
           </footer>
         </blockquote>
 
-        <h3>Porovnanie služieb pred a po zmene:</h3>
+        <h3>Srovnání služeb před a po změně:</h3>
         <div class="grid md:grid-cols-2 gap-6 my-8">
           <div class="bg-red-50 p-6 rounded-lg">
-            <h4>Nej.cz → O2 (po akvizícii)</h4>
+            <h4>Nej.cz → O2 (po akvizici)</h4>
             <ul class="space-y-1">
-              <li>🔴 Zvýšenie ceny z 299 na 599 Kč</li>
-              <li>🔴 Zavedenie 24-mesačného závazku</li>
-              <li>🔴 Rýchlosť 100/20 Mbps (asymetrické)</li>
-              <li>🔴 Call centrum namiesto lokálnej podpory</li>
-              <li>🔴 Komplikované podmienky ukončenia</li>
+              <li>🔴 Zvýšení ceny z 299 na 599 Kč</li>
+              <li>🔴 Zavedení 24-měsíčního závazku</li>
+              <li>🔴 Rychlost 100/20 Mbps (asymetrické)</li>
+              <li>🔴 Call centrum místo lokální podpory</li>
+              <li>🔴 Komplikované podmínky ukončení</li>
             </ul>
           </div>
           <div class="bg-green-50 p-6 rounded-lg">
-            <h4>PODA (regionálna alternatíva)</h4>
+            <h4>PODA (regionální alternativa)</h4>
             <ul class="space-y-1">
-              <li>✅ Stabilná cena 300 Kč/mesiac</li>
-              <li>✅ Bez závazkov, ukončenie kedykoľvek</li>
-              <li>✅ Rýchlosť 1000/1000 Mbps (symetrické)</li>
-              <li>✅ Lokálna technická podpora</li>
-              <li>✅ Transparentné podmienky</li>
+              <li>✅ Stabilní cena 300 Kč/měsíc</li>
+              <li>✅ Bez závazků, ukončení kdykoli</li>
+              <li>✅ Rychlost 1000/1000 Mbps (symetrické)</li>
+              <li>✅ Lokální technická podpora</li>
+              <li>✅ Transparentní podmínky</li>
             </ul>
           </div>
         </div>
 
-        <h2>Prečo zvážiť prechod k PODA</h2>
-        <h3>Regionálne výhody lokálneho poskytovateľa</h3>
+        <h2>Proč zvážit přechod k PODA</h2>
+        <h3>Regionální výhody lokálního poskytovatele</h3>
         <div class="bg-blue-50 p-6 rounded-lg my-8">
-          <h4>Špecifické výhody pre Moravskoslezský región:</h4>
+          <h4>Specifické výhody pro Moravskoslezský region:</h4>
           <ul class="space-y-2 mt-4">
-            <li><strong>Lokálna podpora:</strong> Technickí špecialisti v Ostrave a Havířove</li>
-            <li><strong>Znalosť regiónu:</strong> Chápanie špecifík panelových domov a infraštruktúry</li>
-            <li><strong>Rýchla reakcia:</strong> Servis do 24 hodín</li>
-            <li><strong>Stabilné ceny:</strong> Žiadne nečakané navýšenia</li>
-            <li><strong>Personálny prístup:</strong> Nie call centrum robotizácia</li>
+            <li><strong>Lokální podpora:</strong> Techničtí specialisté v Ostravě a Havířově</li>
+            <li><strong>Znalost regionu:</strong> Pochopení specifik panelových domů a infrastruktury</li>
+            <li><strong>Rychlá reakce:</strong> Servis do 24 hodin</li>
+            <li><strong>Stabilní ceny:</strong> Žádná neočekávaná navýšení</li>
+            <li><strong>Osobní přístup:</strong> Žádná robotizace call center</li>
           </ul>
         </div>
 
         <h3>Technické výhody PODA</h3>
         <ul>
-          <li><strong>GPON technológia:</strong> Najmodernejšia optická infraštruktúra</li>
-          <li><strong>Garantovaná rýchlosť:</strong> Skutočných 1000 Mbps bez "až"</li>
-          <li><strong>Symetrické pripojenie:</strong> Rovnaká rýchlosť download aj upload</li>
-          <li><strong>Nízka latencia:</strong> Ideálne pre gaming a video konferencie</li>
-          <li><strong>99,9% dostupnosť:</strong> Minimálne výpadky</li>
+          <li><strong>GPON technologie:</strong> Nejmodernější optická infrastruktura</li>
+          <li><strong>Garantovaná rychlost:</strong> Skutečných 1000 Mbps bez "až"</li>
+          <li><strong>Symetrické připojení:</strong> Stejná rychlost download i upload</li>
+          <li><strong>Nízká latence:</strong> Ideální pro gaming a videokonference</li>
+          <li><strong>99,9% dostupnost:</strong> Minimální výpadky</li>
         </ul>
 
-        <h2>Ekonomická analýza prechodu</h2>
+        <h2>Ekonomická analýza přechodu</h2>
         <div class="bg-gray-50 p-6 rounded-lg my-8">
-          <h3>Porovnanie mesačných nákladov:</h3>
+          <h3>Srovnání měsíčních nákladů:</h3>
           <table class="w-full mt-4 text-sm">
             <thead>
               <tr class="border-b">
-                <th class="text-left py-2">Poskytovateľ</th>
-                <th class="text-left py-2">Rýchlosť</th>
-                <th class="text-left py-2">Cena/mesiac</th>
-                <th class="text-left py-2">Závazok</th>
-                <th class="text-left py-2">Ročne</th>
+                <th class="text-left py-2">Poskytovatel</th>
+                <th class="text-left py-2">Rychlost</th>
+                <th class="text-left py-2">Cena/měsíc</th>
+                <th class="text-left py-2">Závazek</th>
+                <th class="text-left py-2">Ročně</th>
               </tr>
             </thead>
             <tbody>
@@ -481,32 +481,32 @@ export const technologiePosts: BlogPost[] = [
                 <td class="py-2">Vodafone (Liberty)</td>
                 <td class="py-2">500/50 Mbps</td>
                 <td class="py-2 text-red-600">899 Kč</td>
-                <td class="py-2 text-red-600">24 mesiacov</td>
+                <td class="py-2 text-red-600">24 měsíců</td>
                 <td class="py-2">7 188 Kč</td>
               </tr>
               <tr class="border-b">
                 <td class="py-2">O2</td>
                 <td class="py-2">100/20 Mbps</td>
                 <td class="py-2 text-orange-600">699 Kč</td>
-                <td class="py-2 text-orange-600">24 mesiacov</td>
+                <td class="py-2 text-orange-600">24 měsíců</td>
                 <td class="py-2">7 188 Kč</td>
               </tr>
               <tr>
                 <td class="py-2">T-Mobile</td>
                 <td class="py-2">50/10 Mbps</td>
                 <td class="py-2 text-red-600">799 Kč</td>
-                <td class="py-2 text-red-600">24 mesiacov</td>
+                <td class="py-2 text-red-600">24 měsíců</td>
                 <td class="py-2">7 188 Kč</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <h3>Ročná úspora oproti konkurencii</h3>
+        <h3>Roční úspora oproti konkurenci</h3>
         <ul>
-          <li><strong>Oproti Vodafone:</strong> 7 788 Kč ročne + dvojnásobok rýchlosti</li>
-          <li><strong>Oproti O2:</strong> 5 388 Kč ročne + 10x vyššia rýchlosť</li>
-          <li><strong>Oproti T-Mobile:</strong> 6 588 Kč ročne + 20x vyššia rýchlosť</li>
+          <li><strong>Oproti Vodafone:</strong> 7 788 Kč ročně + dvojnásobek rychlosti</li>
+          <li><strong>Oproti O2:</strong> 5 388 Kč ročně + 10x vyšší rychlost</li>
+          <li><strong>Oproti T-Mobile:</strong> 6 588 Kč ročně + 20x vyšší rychlost</li>
           <li><strong>Celková úspora za 2 roky:</strong> 10 000 - 15 000 Kč</li>
         </ul>
 
@@ -569,7 +569,7 @@ export const technologiePosts: BlogPost[] = [
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
-              Zavolať teraz
+              Zavolat nyní
             </a>
             <a href="/kontakt" class="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-6 py-3 rounded-lg font-medium transition-all duration-300 text-center inline-flex items-center justify-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -580,17 +580,17 @@ export const technologiePosts: BlogPost[] = [
           </div>
         </div>
 
-        <p class="text-center mt-8 font-medium">Transformujte akvizičné zmeny na príležitosť pre lepšie internetové služby v Moravskoslezskom regióne.</p>
+        <p class="text-center mt-8 font-medium">Transformujte akviziční změny na příležitost pro lepší internetové služby v Moravskoslezském regionu.</p>
 
-        <p class="text-sm text-gray-500 mt-8 italic">PODA - stabilná voľba v čase zmien na telekomunikačnom trhu.</p>
+        <p class="text-sm text-gray-500 mt-8 italic">PODA - stabilní volba v čase změn na telekomunikačním trhu.</p>
       </div>
     `,
     date: "8. 5. 2025",
     author: "Technický poradce",
     category: "Technologie",
     image: "/lovable-uploads/9ce3244c-96d6-4078-9808-3edc99d0e01b.png",
-    alt: "Futuristická vizualizácia prepojenia telekomunikačných sietí, symbolizujúca zmeny na trhu poskytovateľov internetu",
-    tags: ["O2", "Nej.cz", "Netbox", "PODA", "Migrácia", "Ostrava", "Akvizícia", "Telekomunikácie"]
+    alt: "Futuristická vizualizace propojení telekomunikačních sítí, symbolizující změny na trhu poskytovatelů internetu",
+    tags: ["O2", "Nej.cz", "Netbox", "PODA", "Migrace", "Ostrava", "Akvizice", "Telekomunikace"]
   },
   {
     id: 104,

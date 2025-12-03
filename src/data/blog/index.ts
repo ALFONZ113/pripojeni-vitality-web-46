@@ -59,3 +59,5 @@ export * from './o2-nej-prevzatie-poda-alternativa';
 export * from './gpon-technologie';
 export * from './internet-vyber-chyby';
 export * from './wifi-signal-zlepsenie';
+
+// Note: WiFi blog slug changed to Czech: jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025

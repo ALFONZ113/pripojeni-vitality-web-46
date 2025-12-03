@@ -10,19 +10,19 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Top 11 blog articles for AI indexing
+// Top 11 blog articles for AI indexing (Czech language)
 const TOP_BLOG_ARTICLES = [
-  { slug: 'ako-zlepsit-wifi-signal-doma-10-overnych-trikov-2025', title: 'Ako zlepšiť WiFi signál doma - 10 overených trikov', description: '10 praktických trikov ako zlepšiť WiFi signál doma v roku 2025 - od zadarmo riešení až po mesh systémy.' },
-  { slug: 'internet-vyber-chyby', title: '5 Chýb Pri Výbere Internetu', description: 'Najčastejšie chyby pri výbere internetového pripojenia a ako sa im vyhnúť.' },
-  { slug: 'gpon-technologie', title: 'GPON Technológie - Budúcnosť Optického Internetu', description: 'Kompletný sprievodca GPON technológiou a jej výhodami pre domácnosti.' },
-  { slug: 'o2-nej-prevzatie-poda-alternativa-zakaznici', title: 'O2 Nej Převzetí - PODA Alternativa', description: 'Prevzatie O2 Nej zákazníkov - prečo je PODA lepšia alternatíva.' },
-  { slug: 'iptv-vs-traditionalni-tv', title: 'IPTV vs Tradičná TV - Porovnanie', description: 'Komplexné porovnanie IPTV a tradičnej TV - výhody, nevýhody, ceny.' },
-  { slug: 'panelak-internet-otazky', title: 'Internet Do Paneláku - Najčastejšie Otázky', description: 'FAQ k internetovému pripojeniu v panelovom dome.' },
-  { slug: 'polanka-60ghz-poda-super-2025', title: 'PODA Super 2025 - 60GHz Technológia', description: 'Revolučná 60GHz bezdrôtová technológia pre ultrarýchle pripojenie.' },
-  { slug: 'gaming-internet-ostrava', title: 'Gaming Internet Ostrava - Najlepšie Pripojenie', description: 'Najlepšie internetové pripojenie pre hráčov v Ostrave.' },
-  { slug: 'pomaly-internet-riesenia', title: 'Pomalý Internet? 10 Riešení', description: '10 overených spôsobov ako zrýchliť pomalé internetové pripojenie.' },
-  { slug: 'internet-ostrava-pruvodce', title: 'Internet v Ostrave - Komplexný Průvodce', description: 'Úplný sprievodca internetovým pripojením v Ostrave a okolí.' },
-  { slug: 'karvina-internet-provider', title: 'Internet v Karviné - PODA Poskytovateľ', description: 'Rýchle a stabilné internetové pripojenie v Karviné.' }
+  { slug: 'jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025', title: 'Jak zlepšit WiFi signál doma - 10 ověřených triků', description: '10 praktických triků jak zlepšit WiFi signál doma v roce 2025 - od řešení zdarma až po mesh systémy.' },
+  { slug: 'jak-si-vybrat-internet-do-bytu-5-chyb', title: '5 Chyb Při Výběru Internetu', description: 'Nejčastější chyby při výběru internetového připojení a jak se jim vyhnout.' },
+  { slug: 'gpon-technologie-opticky-internet-jak-funguje', title: 'GPON Technologie - Budoucnost Optického Internetu', description: 'Kompletní průvodce GPON technologií a jejími výhodami pro domácnosti.' },
+  { slug: 'o2-nej-prevzatie-poda-alternativa-zakaznici', title: 'O2 Nej Převzetí - PODA Alternativa', description: 'Převzetí O2 Nej zákazníků - proč je PODA lepší alternativa.' },
+  { slug: 'iptv-vs-tradicni-televize-co-je-lepsi-2025', title: 'IPTV vs Tradiční TV - Srovnání', description: 'Komplexní srovnání IPTV a tradiční TV - výhody, nevýhody, ceny.' },
+  { slug: 'internet-do-panelaku-nejcastejsi-otazky', title: 'Internet Do Paneláku - Nejčastější Otázky', description: 'FAQ k internetovému připojení v panelovém domě.' },
+  { slug: 'polanka-nad-odrou-60ghz-pripojeni-2025', title: 'PODA Super 2025 - 60GHz Technologie', description: 'Revoluční 60GHz bezdrátová technologie pro ultrarychlé připojení.' },
+  { slug: 'gaming-internet-ostrava-2025-nejlepsi-pripojeni-pro-hrace', title: 'Gaming Internet Ostrava - Nejlepší Připojení', description: 'Nejlepší internetové připojení pro hráče v Ostravě.' },
+  { slug: 'pomaly-internet-8-zpusobu-jak-vyriesit-msk-2025', title: 'Pomalý Internet? 10 Řešení', description: '10 ověřených způsobů jak zrychlit pomalé internetové připojení.' },
+  { slug: 'nejlepsi-internet-ostrava-karvina-havirov-2025', title: 'Internet v Ostravě - Komplexní Průvodce', description: 'Úplný průvodce internetovým připojením v Ostravě a okolí.' },
+  { slug: 'internet-poda-karvina-optika-rychly-internet-2025', title: 'Internet v Karviné - PODA Poskytovatel', description: 'Rychlé a stabilní internetové připojení v Karviné.' }
 ];
 
 // AI-optimized content for each page

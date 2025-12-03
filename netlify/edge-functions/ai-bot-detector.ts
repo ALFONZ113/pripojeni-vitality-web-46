@@ -27,7 +27,8 @@ const AI_STATIC_PATHS = [
   '/blog',
   '/iptv',
   '/kontakt',
-  // Top 10 blog articles
+  // Top 11 blog articles
+  '/blog/ako-zlepsit-wifi-signal-doma-10-overnych-trikov-2025',
   '/blog/internet-vyber-chyby',
   '/blog/gpon-technologie',
   '/blog/o2-nej-prevzatie-poda-alternativa-zakaznici',

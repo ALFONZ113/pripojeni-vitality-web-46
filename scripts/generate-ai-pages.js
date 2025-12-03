@@ -10,8 +10,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Top 10 blog articles for AI indexing
+// Top 11 blog articles for AI indexing
 const TOP_BLOG_ARTICLES = [
+  { slug: 'ako-zlepsit-wifi-signal-doma-10-overnych-trikov-2025', title: 'Ako zlepšiť WiFi signál doma - 10 overených trikov', description: '10 praktických trikov ako zlepšiť WiFi signál doma v roku 2025 - od zadarmo riešení až po mesh systémy.' },
   { slug: 'internet-vyber-chyby', title: '5 Chýb Pri Výbere Internetu', description: 'Najčastejšie chyby pri výbere internetového pripojenia a ako sa im vyhnúť.' },
   { slug: 'gpon-technologie', title: 'GPON Technológie - Budúcnosť Optického Internetu', description: 'Kompletný sprievodca GPON technológiou a jej výhodami pre domácnosti.' },
   { slug: 'o2-nej-prevzatie-poda-alternativa-zakaznici', title: 'O2 Nej Převzetí - PODA Alternativa', description: 'Prevzatie O2 Nej zákazníkov - prečo je PODA lepšia alternatíva.' },

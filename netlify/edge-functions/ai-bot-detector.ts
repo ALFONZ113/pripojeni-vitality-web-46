@@ -15,7 +15,7 @@ const AI_BOT_PATTERNS = [
   'You.com-Bot'
 ];
 
-// Pages to serve AI-optimized versions for
+// Pages to serve AI-optimized versions for (Czech language)
 const AI_STATIC_PATHS = [
   '/',
   '/tarify',
@@ -27,18 +27,18 @@ const AI_STATIC_PATHS = [
   '/blog',
   '/iptv',
   '/kontakt',
-  // Top 11 blog articles
-  '/blog/ako-zlepsit-wifi-signal-doma-10-overnych-trikov-2025',
-  '/blog/internet-vyber-chyby',
-  '/blog/gpon-technologie',
+  // Top 11 blog articles (Czech slugs)
+  '/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025',
+  '/blog/jak-si-vybrat-internet-do-bytu-5-chyb',
+  '/blog/gpon-technologie-opticky-internet-jak-funguje',
   '/blog/o2-nej-prevzatie-poda-alternativa-zakaznici',
-  '/blog/iptv-vs-traditionalni-tv',
-  '/blog/panelak-internet-otazky',
-  '/blog/polanka-60ghz-poda-super-2025',
-  '/blog/gaming-internet-ostrava',
-  '/blog/pomaly-internet-riesenia',
-  '/blog/internet-ostrava-pruvodce',
-  '/blog/karvina-internet-provider'
+  '/blog/iptv-vs-tradicni-televize-co-je-lepsi-2025',
+  '/blog/internet-do-panelaku-nejcastejsi-otazky',
+  '/blog/polanka-nad-odrou-60ghz-pripojeni-2025',
+  '/blog/gaming-internet-ostrava-2025-nejlepsi-pripojeni-pro-hrace',
+  '/blog/pomaly-internet-8-zpusobu-jak-vyriesit-msk-2025',
+  '/blog/nejlepsi-internet-ostrava-karvina-havirov-2025',
+  '/blog/internet-poda-karvina-optika-rychly-internet-2025'
 ];
 
 export default async (request: Request, context: Context) => {

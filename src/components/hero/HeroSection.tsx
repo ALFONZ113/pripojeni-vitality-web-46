@@ -5,6 +5,8 @@ import { ArrowRight, ChevronDown, Phone, Play, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
+import heroImage from '@/assets/hero-family-tv.jpg';
+import routerImage from '@/assets/router-premium.png';
 
 const HeroSection = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -188,18 +190,30 @@ const HeroSection = () => {
               transition={{ duration: 0.4 }}
             />
             
-            {/* Main Image Placeholder */}
+            {/* Main Image */}
             <motion.div 
               className="relative bg-card rounded-3xl border border-border/50 overflow-hidden group aspect-video"
               style={{ scale: imageScale }}
             >
-              {/* Placeholder gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary via-card to-muted flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Play className="w-16 h-16 text-primary/50 mx-auto mb-4" />
-                  <p className="text-muted-foreground text-sm">Hero Image</p>
-                </div>
-              </div>
+              <img 
+                src={heroImage} 
+                alt="Rodina sledující televizi" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                loading="eager"
+              />
+              
+              {/* Play Button Overlay */}
+              <motion.div 
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <motion.div 
+                  className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer shadow-xl shadow-primary/30"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Play className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" />
+                </motion.div>
+              </motion.div>
               
               {/* Stats Bar */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/95 to-transparent p-3 md:p-6 pt-8 md:pt-16">
@@ -233,14 +247,18 @@ const HeroSection = () => {
                 od 399 Kč/měs
               </motion.div>
               
-              {/* Router Thumbnail Placeholder */}
+              {/* Router Thumbnail */}
               <motion.div 
-                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 w-16 h-16 md:w-28 md:h-28 bg-card rounded-xl md:rounded-2xl border border-border/50 p-2 md:p-3 shadow-xl overflow-hidden flex items-center justify-center"
+                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 w-16 h-16 md:w-28 md:h-28 bg-card rounded-xl md:rounded-2xl border border-border/50 p-2 md:p-3 shadow-xl overflow-hidden"
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.9 }}
               >
-                <div className="text-muted-foreground text-xs text-center">Router</div>
+                <img 
+                  src={routerImage} 
+                  alt="Premium WiFi Router" 
+                  className="w-full h-full object-contain"
+                />
               </motion.div>
             </motion.div>
           </motion.div>

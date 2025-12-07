@@ -4,14 +4,14 @@ import PageMetadata from '../components/page/PageMetadata';
 import CityHeroSection from '../components/hero/CityHeroSection';
 import CitySpecificSection from '../components/sections/CitySpecificSection';
 import TariffSection from '../components/TariffSection';
-import WhyPopriSection from '../components/hero/WhyPopriSection';
-import ContactSection from '../components/ContactSection';
+import FeatureShowcase from '../components/sections/FeatureShowcase';
+import ContactCTA from '../components/sections/ContactCTA';
 import PromotionPopup from '../components/PromotionPopup';
 import { Toaster } from '@/components/ui/toaster';
 
 const InternetBohumin = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <PageMetadata 
         title="Internet PODA Bohumín | Gigabitové optické připojení | Tel: 730 431 313"
         description="Nejrychlejší internet PODA v Bohumíně s optickou technologií GPON. Rychlost až 2000 Mbps, bezplatná instalace. Pokrytí: Starý Bohumín, Nový Bohumín, Skřečoň."
@@ -104,8 +104,8 @@ const InternetBohumin = () => {
       />
 
       <TariffSection />
-      <WhyPopriSection />
-      <ContactSection />
+      <FeatureShowcase />
+      <ContactCTA />
       <PromotionPopup />
       <Toaster />
     </div>

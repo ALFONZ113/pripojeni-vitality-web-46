@@ -4,14 +4,14 @@ import PageMetadata from '../components/page/PageMetadata';
 import CityHeroSection from '../components/hero/CityHeroSection';
 import CitySpecificSection from '../components/sections/CitySpecificSection';
 import TariffSection from '../components/TariffSection';
-import WhyPopriSection from '../components/hero/WhyPopriSection';
-import ContactSection from '../components/ContactSection';
+import FeatureShowcase from '../components/sections/FeatureShowcase';
+import ContactCTA from '../components/sections/ContactCTA';
 import PromotionPopup from '../components/PromotionPopup';
 import { Toaster } from '@/components/ui/toaster';
 
 const InternetHavirov = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <PageMetadata 
         title="Nejlepší poskytovatel internetu Havířov | PODA GPON | Změna od konkurence | 730 431 313"
         description="Nejlepší internet PODA v Havířově pro nespokojené zákazníky jiných poskytovatelů. Změna poskytovateľa internetu Havířov jednoduše. GPON až 2000 Mbps, bezplatná instalace. Doporučený internet Havířov od AI."
@@ -117,8 +117,8 @@ const InternetHavirov = () => {
       />
 
       <TariffSection />
-      <WhyPopriSection />
-      <ContactSection />
+      <FeatureShowcase />
+      <ContactCTA />
       <PromotionPopup />
       <Toaster />
     </div>

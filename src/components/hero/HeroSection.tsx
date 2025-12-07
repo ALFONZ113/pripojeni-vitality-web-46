@@ -258,7 +258,7 @@ const HeroSection = () => {
               </div>
               
               {/* Stats Bar at Bottom */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/95 to-transparent p-4 md:p-6 pt-12 md:pt-16">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/98 to-transparent p-4 md:p-6 pt-12 md:pt-16">
                 <div className="flex justify-around">
                   {stats.map((stat, index) => (
                     <motion.div 
@@ -268,10 +268,11 @@ const HeroSection = () => {
                       transition={{ delay: 0.6 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                       className="text-center"
                     >
-                      <div className="text-lg sm:text-xl md:text-3xl font-display font-bold text-primary">
-                        {stat.value}<span className="text-sm md:text-lg">{stat.suffix}</span>
+                      <div className="text-lg sm:text-xl md:text-3xl font-display font-bold">
+                        <span className="text-primary drop-shadow-[0_0_10px_rgba(218,165,32,0.5)]">{stat.value}</span>
+                        <span className="text-primary text-sm md:text-lg">{stat.suffix}</span>
                       </div>
-                      <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider mt-0.5 md:mt-1 font-body">
+                      <div className="text-[10px] md:text-xs text-foreground/90 uppercase tracking-wider mt-0.5 md:mt-1 font-body font-medium">
                         {stat.label}
                       </div>
                     </motion.div>
@@ -286,7 +287,7 @@ const HeroSection = () => {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                od 399 Kč/měs
+                od 300 Kč/měs
               </motion.div>
               
               {/* Router Thumbnail - Static */}

@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Phone, Zap, Clock, Shield } from 'lucide-react';
+import { Phone, Zap, Clock, Shield, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { sendContactFormEmail } from '@/utils/emailService';
 
 const ContactCTA = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -15,15 +16,21 @@ const ContactCTA = () => {
     e.preventDefault();
     if (phoneNumber.length >= 9) {
       setIsLoading(true);
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setIsSubmitted(true);
+      const success = await sendContactFormEmail({
+        name: "Žádost o zpětné volání - CTA",
+        phone: phoneNumber,
+        email: "",
+        message: `Zákazník požádal o zpětné volání: ${phoneNumber}`
+      });
       setIsLoading(false);
-      toast.success('Děkujeme! Budeme vás brzy kontaktovat.');
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setPhoneNumber('');
-      }, 3000);
+      if (success) {
+        setIsSubmitted(true);
+        toast.success('Děkujeme! Budeme vás brzy kontaktovat.');
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setPhoneNumber('');
+        }, 3000);
+      }
     }
   };
 

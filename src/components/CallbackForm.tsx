@@ -1,4 +1,3 @@
-
 import React, { memo, useCallback } from 'react';
 import { Check, Phone, Loader2 } from 'lucide-react';
 import { sendContactFormEmail } from '../utils/emailService';
@@ -53,19 +52,19 @@ const CallbackForm = memo(() => {
   
   
   return (
-    <div className="bg-white bg-opacity-90 backdrop-blur-md rounded-xl p-4 shadow-lg border border-gray-100">
+    <div className="glass-card rounded-xl p-4 glow-gold-subtle">
       <div className="flex flex-col">
-        <div className="flex items-center mb-2">
-          <Phone className="h-5 w-5 text-poda-orange mr-2 flex-shrink-0" />
-          <h3 className="font-semibold text-poda-blue">
-            Potřebujete připojit internet a TV nebo změnit stávajícího poskytovatele?
+        <div className="flex items-center mb-3">
+          <Phone className="h-5 w-5 text-primary mr-2 flex-shrink-0" />
+          <h3 className="font-display font-semibold text-foreground text-sm">
+            Potřebujete připojit internet a TV?
           </h3>
         </div>
         
         {formState.success ? (
-          <div className="flex items-center bg-green-50 p-3 rounded-lg">
-            <Check className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
-            <p className="text-sm text-green-700">Děkujeme, brzy Vás budeme kontaktovat!</p>
+          <div className="flex items-center bg-green-500/10 border border-green-500/20 p-3 rounded-lg">
+            <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+            <p className="text-sm text-green-400 font-body">Děkujeme, brzy Vás budeme kontaktovat!</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
@@ -77,14 +76,14 @@ const CallbackForm = memo(() => {
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 disabled={formState.loading}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-poda-blue focus:border-poda-blue transition-colors text-sm"
+                className="w-full px-4 py-3 bg-secondary/70 border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-sm font-body"
                 aria-label="Vaše telefonní číslo pro zpětné volání"
               />
             </div>
             <button
               type="submit"
               disabled={formState.loading}
-              className="relative bg-poda-orange text-white px-4 py-2 rounded-md font-medium text-sm flex items-center justify-center overflow-hidden transition-all duration-300 hover:scale-105 shadow-[0_0_15px_rgba(255,107,53,0.5),inset_0_0_15px_rgba(255,107,53,0.2)] hover:shadow-[0_0_25px_rgba(255,107,53,0.8),inset_0_0_25px_rgba(255,107,53,0.4)] before:absolute before:inset-0 before:rounded-md before:p-[2px] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:bg-[length:200%_100%] hover:before:animate-shimmer before:-z-10"
+              className="bg-primary text-primary-foreground px-5 py-3 rounded-xl font-semibold text-sm flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/30 hover:shadow-primary/50 disabled:opacity-50 disabled:cursor-not-allowed font-body"
             >
               {formState.loading ? (
                 <>
@@ -98,7 +97,7 @@ const CallbackForm = memo(() => {
           </form>
         )}
         
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2 font-body">
           Zadáním svého telefonního čísla souhlasíte s kontaktováním ohledně služeb PODA.
         </p>
       </div>

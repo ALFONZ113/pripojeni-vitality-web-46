@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import ContactForm from '../components/ContactForm';
 import { initAnimations } from '../utils/animation';
@@ -7,36 +7,18 @@ import PhoneLink from '../components/ui/phone-link';
 
 const Contact = () => {
   useEffect(() => {
-    // Initialize scroll animations
     const cleanupAnimation = initAnimations();
-
-    // Scroll to top on component mount
     window.scrollTo(0, 0);
-    return () => {
-      cleanupAnimation();
-    };
+    return () => cleanupAnimation();
   }, []);
 
   return (
-    <div className="min-h-screen pt-24">
+    <div className="min-h-screen pt-24 bg-background">
       <Helmet>
         <title>Kontakt - PODA Internet | Popri.cz | 730 431 313</title>
-        <meta name="description" content="Kontaktujte nás pro objednávku PODA internetu a TV služeb. Telefon: 730 431 313, email: terc@obchod.poda.cz. Rychlá odpověď a profesionální poradenství." />
+        <meta name="description" content="Kontaktujte nás pro objednávku PODA internetu a TV služeb. Telefon: 730 431 313, email: terc@obchod.poda.cz." />
         <link rel="canonical" href="https://www.popri.cz/kontakt" />
-        <meta name="keywords" content="kontakt PODA, objednávka internet, telefon PODA, email PODA, zákaznická podpora" />
         
-        {/* Open Graph */}
-        <meta property="og:title" content="Kontakt - PODA Internet" />
-        <meta property="og:description" content="Kontaktujte nás pro objednávku PODA internetu. Tel: 730 431 313" />
-        <meta property="og:url" content="https://www.popri.cz/kontakt" />
-        <meta property="og:type" content="website" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Kontakt - PODA Internet" />
-        <meta name="twitter:description" content="Kontaktujte nás pro objednávku PODA internetu. Tel: 730 431 313" />
-        
-        {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -47,40 +29,35 @@ const Contact = () => {
               "@type": "Organization",
               "name": "PODA",
               "telephone": "+420730431313",
-              "email": "terc@obchod.poda.cz",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Ostrava",
-                "addressCountry": "CZ"
-              }
+              "email": "terc@obchod.poda.cz"
             }
           })}
         </script>
       </Helmet>
       
-      {/* Hero section */}
-      <section className="py-8 md:py-12 bg-gradient-to-b from-white to-blue-50">
+      {/* Hero */}
+      <section className="py-12 bg-background">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-3 reveal-animation">
+            <span className="inline-block bg-primary/10 text-primary py-1 px-4 rounded-full text-sm font-medium mb-4 border border-primary/20 reveal-animation">
               Kontaktujte nás
             </span>
-            <h1 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4 leading-tight reveal-animation delay-100">
-              Kontakt
+            <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4 leading-tight reveal-animation delay-100">
+              <span className="text-gradient-gold">Kontakt</span>
             </h1>
-            <p className="text-gray-600 text-base mb-6 leading-relaxed reveal-animation delay-200">
+            <p className="text-muted-foreground text-lg mb-6 leading-relaxed reveal-animation delay-200">
               Máte zájem o naše služby? Kontaktujte nás a vytvoříme pro vás objednávku.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Mobile-first layout: Form first, then contact info */}
-      <section className="section-padding bg-white">
+      {/* Content */}
+      <section className="section-padding bg-background">
         <div className="container-custom">
-          {/* Mobile: Show form first */}
+          {/* Mobile Layout */}
           <div className="lg:hidden mb-12">
-            <h2 className="text-2xl font-bold text-poda-blue mb-6 text-center reveal-animation">
+            <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center reveal-animation">
               Kontaktní formulář
             </h2>
             <div className="reveal-animation delay-100">
@@ -88,97 +65,84 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Mobile: Contact info card - simplified */}
           <div className="lg:hidden mb-12">
-            <div className="bg-gradient-to-r from-poda-blue to-poda-blue-light p-6 rounded-2xl text-white relative overflow-hidden shadow-xl reveal-animation delay-200">
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full translate-x-12 -translate-y-12"></div>
-              <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full -translate-x-8 translate-y-8"></div>
+            <div className="glass p-6 rounded-2xl border border-primary/20 relative overflow-hidden reveal-animation delay-200">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full translate-x-12 -translate-y-12"></div>
               
               <div className="relative text-center">
-                <span className="inline-block bg-white/20 text-white py-1 px-3 rounded-full text-sm font-medium mb-3">
+                <span className="inline-block bg-primary/20 text-primary py-1 px-3 rounded-full text-sm font-medium mb-3">
                   Obchodní zástupce
                 </span>
-                <h3 className="text-2xl font-bold mb-4">Váš kontakt</h3>
+                <h3 className="text-2xl font-heading font-bold text-foreground mb-4">Váš kontakt</h3>
                 
                 <div className="space-y-3">
                   <div className="flex items-center justify-center">
-                    <div className="bg-white/20 p-2 rounded-full mr-3">
-                      <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                      </svg>
+                    <div className="bg-primary/20 p-2 rounded-full mr-3">
+                      <Phone className="h-4 w-4 text-primary" />
                     </div>
-                    <div>
-                      <PhoneLink 
-                        phone="+420730431313" 
-                        className="text-lg font-medium hover:text-poda-orange transition-colors" 
-                        displayNumber="+420 730 431 313" 
-                      />
-                    </div>
+                    <PhoneLink 
+                      phone="+420730431313" 
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors" 
+                      displayNumber="+420 730 431 313" 
+                    />
                   </div>
                   
                   <div className="flex items-center justify-center">
-                    <div className="bg-white/20 p-2 rounded-full mr-3">
-                      <Mail className="h-4 w-4 text-white" />
+                    <div className="bg-primary/20 p-2 rounded-full mr-3">
+                      <Mail className="h-4 w-4 text-primary" />
                     </div>
-                    <div>
-                      <a href="mailto:terc@obchod.poda.cz" className="text-lg font-medium hover:text-poda-orange transition-colors">
-                        terc@obchod.poda.cz
-                      </a>
-                    </div>
+                    <a href="mailto:terc@obchod.poda.cz" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                      terc@obchod.poda.cz
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Desktop layout: Original grid layout */}
-          <div className="hidden lg:grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Contact info */}
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-4 reveal-animation">
-              <div className="bg-gradient-to-r from-poda-blue to-poda-blue-light p-8 rounded-2xl text-white relative overflow-hidden shadow-xl mb-8">
-                {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full translate-x-16 -translate-y-16"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -translate-x-12 translate-y-12"></div>
+              <div className="glass p-8 rounded-2xl border border-primary/20 relative overflow-hidden mb-8">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full translate-x-16 -translate-y-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full -translate-x-12 translate-y-12"></div>
                 
                 <div className="relative">
-                  <span className="inline-block bg-white/20 text-white py-1 px-3 rounded-full text-sm font-medium mb-4">
+                  <span className="inline-block bg-primary/20 text-primary py-1 px-3 rounded-full text-sm font-medium mb-4">
                     Obchodní zástupce
                   </span>
-                  <h2 className="text-3xl font-bold mb-6">Váš obchodní zástupce</h2>
+                  <h2 className="text-3xl font-heading font-bold text-foreground mb-6">Váš obchodní zástupce</h2>
                   
                   <div className="space-y-5 mb-8">
                     <div className="flex items-center">
-                      <div className="bg-white/20 p-3 rounded-full mr-4">
-                        <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                        </svg>
+                      <div className="bg-primary/20 p-3 rounded-full mr-4">
+                        <Phone className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-blue-100">Telefon</p>
-                        <PhoneLink phone="+420730431313" className="text-xl font-medium hover:text-poda-orange transition-colors" displayNumber="+420 730 431 313" />
+                        <p className="text-sm text-muted-foreground">Telefon</p>
+                        <PhoneLink phone="+420730431313" className="text-xl font-medium text-foreground hover:text-primary transition-colors" displayNumber="+420 730 431 313" />
                       </div>
                     </div>
                     
                     <div className="flex items-center">
-                      <div className="bg-white/20 p-3 rounded-full mr-4">
-                        <Mail className="h-5 w-5 text-white" />
+                      <div className="bg-primary/20 p-3 rounded-full mr-4">
+                        <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-blue-100">E-mail</p>
-                        <a href="mailto:terc@obchod.poda.cz" className="text-xl font-medium hover:text-poda-orange transition-colors">
+                        <p className="text-sm text-muted-foreground">E-mail</p>
+                        <a href="mailto:terc@obchod.poda.cz" className="text-xl font-medium text-foreground hover:text-primary transition-colors">
                           terc@obchod.poda.cz
                         </a>
                       </div>
                     </div>
                     
                     <div className="flex items-center">
-                      <div className="bg-white/20 p-3 rounded-full mr-4">
-                        <MapPin className="h-5 w-5 text-white" />
+                      <div className="bg-primary/20 p-3 rounded-full mr-4">
+                        <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-blue-100">Adresa</p>
-                        <address className="not-italic font-medium">
+                        <p className="text-sm text-muted-foreground">Adresa</p>
+                        <address className="not-italic font-medium text-foreground">
                           Popri.cz<br />
                           Ostrava, Česká republika
                         </address>
@@ -188,34 +152,25 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
-                <h3 className="text-xl font-semibold text-poda-blue mb-4">Proč nás kontaktovat</h3>
+              <div className="glass p-6 rounded-xl border border-border">
+                <h3 className="text-xl font-heading font-semibold text-foreground mb-4">Proč nás kontaktovat</h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-poda-orange rounded-full mr-2 mt-2.5"></span>
-                    <span className="text-gray-700">Informace o dostupnosti připojení</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-poda-orange rounded-full mr-2 mt-2.5"></span>
-                    <span className="text-gray-700">Poradenství při výběru tarifu</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-poda-orange rounded-full mr-2 mt-2.5"></span>
-                    <span className="text-gray-700">Pomoc s přechodem od konkurence</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-poda-orange rounded-full mr-2 mt-2.5"></span>
-                    <span className="text-gray-700">Technická podpora</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-poda-orange rounded-full mr-2 mt-2.5"></span>
-                    <span className="text-gray-700">Objednávka služeb</span>
-                  </li>
+                  {[
+                    "Informace o dostupnosti připojení",
+                    "Poradenství při výběru tarifu",
+                    "Pomoc s přechodem od konkurence",
+                    "Technická podpora",
+                    "Objednávka služeb"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2 mt-2.5"></span>
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
             
-            {/* Contact form */}
             <div className="lg:col-span-8 reveal-animation delay-200">
               <ContactForm />
             </div>
@@ -223,22 +178,21 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map or additional info */}
-      <section className="section-padding bg-gray-50">
+      {/* Map */}
+      <section className="section-padding bg-secondary/30">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold text-poda-blue mb-4 reveal-animation">
-              Mapa pokrytí
+            <h2 className="text-3xl font-heading font-bold text-foreground mb-4 reveal-animation">
+              Mapa <span className="text-gradient-gold">pokrytí</span>
             </h2>
-            <p className="text-gray-600 leading-relaxed reveal-animation delay-100">
-              Poskytujeme služby v mnoha lokalitách po celé České republice. 
-              Zkontrolujte dostupnost ve vaší oblasti nebo nás kontaktujte pro ověření.
+            <p className="text-muted-foreground leading-relaxed reveal-animation delay-100">
+              Poskytujeme služby v mnoha lokalitách po celé České republice.
             </p>
           </div>
           
-          <div className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 h-96 reveal-animation delay-200">
-            <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-              <p className="text-gray-500">Mapa pokrytí (ilustrační)</p>
+          <div className="glass rounded-xl overflow-hidden border border-border h-96 reveal-animation delay-200">
+            <div className="w-full h-full bg-secondary/50 flex items-center justify-center">
+              <p className="text-muted-foreground">Mapa pokrytí (ilustrační)</p>
             </div>
           </div>
         </div>

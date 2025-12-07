@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, CheckCircle, Clock, Shield, Users, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -7,26 +6,10 @@ import PhoneLink from '../components/ui/phone-link';
 
 const PomocPrechodem = () => {
   const steps = [
-    {
-      icon: Phone,
-      title: "1. Kontaktujte nás",
-      description: "Zavolejte nám na +420 730 431 313 nebo vyplňte kontaktní formulář"
-    },
-    {
-      icon: Users,
-      title: "2. Konzultace zdarma",
-      description: "Projdeme s vámi současnou smlouvu a najdeme nejlepší řešení"
-    },
-    {
-      icon: CheckCircle,
-      title: "3. Vyřídíme vše za vás",
-      description: "Postaráme se o výpověď u současného poskytovatele i novou instalaci"
-    },
-    {
-      icon: Shield,
-      title: "4. Bezproblémový přechod",
-      description: "Zajistíme kontinuitu služeb bez výpadku internetu"
-    }
+    { icon: Phone, title: "1. Kontaktujte nás", description: "Zavolejte nám na +420 730 431 313 nebo vyplňte kontaktní formulář" },
+    { icon: Users, title: "2. Konzultace zdarma", description: "Projdeme s vámi současnou smlouvu a najdeme nejlepší řešení" },
+    { icon: CheckCircle, title: "3. Vyřídíme vše za vás", description: "Postaráme se o výpověď u současného poskytovatele i novou instalaci" },
+    { icon: Shield, title: "4. Bezproblémový přechod", description: "Zajistíme kontinuitu služeb bez výpadku internetu" }
   ];
 
   const benefits = [
@@ -39,33 +22,33 @@ const PomocPrechodem = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <PageMetadata 
         title="Pomoc s přechodem od jiného poskytovatele | PODA Internet"
-        description="Vyřídíme za vás přechod od současného poskytovatele internetu. Bezplatná konzultace, výpověď smlouvy a koordinace instalace. Zavolejte +420 730 431 313"
+        description="Vyřídíme za vás přechod od současného poskytovatele internetu. Bezplatná konzultace."
       />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-b from-blue-50 to-white">
+      {/* Hero */}
+      <section className="pt-24 pb-16 bg-background">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-poda-blue mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6">
               Pomůžeme vám s přechodem
-              <span className="text-poda-orange block">od jiného poskytovatele</span>
+              <span className="text-gradient-gold block">od jiného poskytovatele</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Nestarajte se o složité vyřizování. Postaráme se o vše - od výpovědi současné smlouvy 
+            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              Nestarejte se o složité vyřizování. Postaráme se o vše - od výpovědi současné smlouvy 
               až po instalaci nového PODA připojení. Vše zdarma a bez starostí.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <PhoneLink 
                 phoneNumber="+420730431313"
-                className="btn-primary inline-flex items-center justify-center"
+                className="btn-gold inline-flex items-center justify-center"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Zavolat hned +420 730 431 313
+                Zavolat +420 730 431 313
               </PhoneLink>
-              <Link to="/kontakt" className="btn-outline inline-flex items-center justify-center">
+              <Link to="/kontakt" className="btn-noir inline-flex items-center justify-center">
                 Kontaktní formulář
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -74,14 +57,14 @@ const PomocPrechodem = () => {
         </div>
       </section>
 
-      {/* Process Steps */}
-      <section className="py-16">
+      {/* Steps */}
+      <section className="py-16 bg-secondary/30">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
-              Jak přechod probíhá?
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              Jak přechod <span className="text-gradient-gold">probíhá</span>?
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Celý proces je jednoduchý a rychlý. Vyřídíme vše za vás během několika dní.
             </p>
           </div>
@@ -89,35 +72,32 @@ const PomocPrechodem = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-poda-blue rounded-full flex items-center justify-center">
-                  <step.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-full flex items-center justify-center glow-gold">
+                  <step.icon className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-poda-blue mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
+                <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Benefits */}
+      <section className="py-16 bg-background">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
-                Co za vás vyřídíme?
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                Co za vás <span className="text-gradient-gold">vyřídíme</span>?
               </h2>
-              <p className="text-xl text-gray-600">
-                Postaráme se o každý detail vašeho přechodu
-              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start">
-                  <CheckCircle className="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                  <span className="text-gray-700 text-lg">{benefit}</span>
+                  <CheckCircle className="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <span className="text-muted-foreground text-lg">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -125,82 +105,55 @@ const PomocPrechodem = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16">
+      {/* FAQ */}
+      <section className="py-16 bg-secondary/30">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-12 text-center">
-              Často kladené otázky
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-12 text-center">
+              Často kladené <span className="text-gradient-gold">otázky</span>
             </h2>
 
-            <div className="space-y-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-poda-blue mb-3">
-                  Kolik stojí přechod od jiného poskytovatele?
-                </h3>
-                <p className="text-gray-600">
-                  Naše služby spojené s přechodem jsou zcela zdarma. Neúčtujeme žádne poplatky 
-                  za vyřízení výpovědi ani za koordinaci přechodu.
-                </p>
-              </div>
-
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-poda-blue mb-3">
-                  Jak dlouho přechod trvá?
-                </h3>
-                <p className="text-gray-600">
-                  Celý proces obvykle trvá 7-14 dní. Závisí na výpovědní lhůtě u vašeho současného 
-                  poskytovatele a dostupnosti našich techniků pro instalaci.
-                </p>
-              </div>
-
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-poda-blue mb-3">
-                  Budu mít výpadek internetu?
-                </h3>
-                <p className="text-gray-600">
-                  Ne, koordinujeme termíny tak, aby byla kontinuita služeb zachována. 
-                  Nové připojení instalujeme před odpojením toho současného.
-                </p>
-              </div>
-
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-poda-blue mb-3">
-                  Můžu si ponechat své telefonní číslo?
-                </h3>
-                <p className="text-gray-600">
-                  Ano, přenos telefonního čísla zajistíme zdarma. Váše číslo zůstane stejné 
-                  a všechny služby budou fungovat bez změny.
-                </p>
-              </div>
+            <div className="space-y-6">
+              {[
+                { q: "Kolik stojí přechod od jiného poskytovatele?", a: "Naše služby spojené s přechodem jsou zcela zdarma." },
+                { q: "Jak dlouho přechod trvá?", a: "Celý proces obvykle trvá 7-14 dní." },
+                { q: "Budu mít výpadek internetu?", a: "Ne, koordinujeme termíny tak, aby byla kontinuita služeb zachována." },
+                { q: "Můžu si ponechat své telefonní číslo?", a: "Ano, přenos telefonního čísla zajistíme zdarma." }
+              ].map((faq, index) => (
+                <div key={index} className="card-luxury">
+                  <h3 className="text-xl font-heading font-semibold text-foreground mb-3">{faq.q}</h3>
+                  <p className="text-muted-foreground">{faq.a}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-poda-blue">
-        <div className="container-custom">
+      {/* CTA */}
+      <section className="py-16 bg-secondary/50 relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        
+        <div className="container-custom relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gradient-gold mb-6">
               Začněte ještě dnes
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Zavolejte nám nebo vyplňte kontaktní formulář. Poradíme vám zdarma 
-              a vyřídíme vše potřebné pro váš přechod.
+            <p className="text-xl text-muted-foreground mb-8">
+              Zavolejte nám nebo vyplňte kontaktní formulář.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <PhoneLink 
                 phoneNumber="+420730431313"
-                className="bg-poda-orange hover:bg-poda-orange/90 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 inline-flex items-center justify-center text-lg"
+                className="btn-gold inline-flex items-center justify-center text-lg"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 +420 730 431 313
               </PhoneLink>
               <Link 
                 to="/kontakt" 
-                className="bg-white hover:bg-gray-100 text-poda-blue px-8 py-4 rounded-lg font-medium transition-all duration-300 inline-flex items-center justify-center text-lg"
+                className="btn-noir inline-flex items-center justify-center text-lg"
               >
                 <Mail className="mr-2 h-5 w-5" />
                 Kontaktní formulář

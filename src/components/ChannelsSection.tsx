@@ -1,4 +1,3 @@
-
 import { ArrowRight, Tv } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ChannelLogo from './tv/ChannelLogo';
@@ -28,18 +27,18 @@ const ChannelsSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-b from-blue-50 to-white" aria-labelledby="channels-heading">
+    <section className="section-padding bg-background" aria-labelledby="channels-heading">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block bg-blue-100 text-poda-blue py-1 px-3 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block bg-primary/10 text-primary py-1 px-4 rounded-full text-sm font-medium mb-4 border border-primary/20">
             TV programy
           </span>
-          <h2 id="channels-heading" className="text-3xl md:text-4xl font-bold text-poda-blue mb-4">
-            Bohatá programová nabídka
+          <h2 id="channels-heading" className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+            Bohatá <span className="text-gradient-gold">programová</span> nabídka
           </h2>
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed">
             Nabízíme více než 85 televizních kanálů v základní nabídce a další prémiové
-            balíčky pro náročnější diváky. Vyberte si z široké škály filmů, seriálů, sportu a dokumentů.
+            balíčky pro náročnější diváky.
           </p>
         </div>
 
@@ -47,18 +46,20 @@ const ChannelsSection = () => {
           {channelCategories.map((category, index) => (
             <article 
               key={index} 
-              className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg border border-gray-100"
+              className="card-luxury group"
             >
-              <div className="bg-poda-blue/10 rounded-full w-12 h-12 flex items-center justify-center mb-4" aria-hidden="true">
-                <Tv className="h-6 w-6 text-poda-blue" />
+              <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
+                <Tv className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-poda-blue mb-2">{category.name}</h3>
-              <p className="text-gray-600 mb-4 text-sm">{category.description}</p>
+              <h3 className="text-xl font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                {category.name}
+              </h3>
+              <p className="text-muted-foreground mb-4 text-sm">{category.description}</p>
               <div className="space-y-3 mb-4" aria-label={`Kanály v kategorii ${category.name}`}>
                 {category.channels.map((channel, i) => (
                   <div key={i} className="flex items-center">
                     <ChannelLogo channelName={channel} className="w-8 h-5 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 text-sm">{channel}</span>
+                    <span className="text-muted-foreground text-sm">{channel}</span>
                   </div>
                 ))}
               </div>
@@ -69,10 +70,11 @@ const ChannelsSection = () => {
         <div className="flex justify-center">
           <Link 
             to="/programy" 
-            className="btn-outline flex items-center"
+            className="btn-noir inline-flex items-center"
             aria-label="Zobrazit všechny programy"
           >
-            Zobrazit všechny programy <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+            Zobrazit všechny programy 
+            <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
           </Link>
         </div>
       </div>

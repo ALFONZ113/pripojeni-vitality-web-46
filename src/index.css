@@ -1,4 +1,4 @@
-/* Luxury Noir + Gold Theme */
+/* Luxury Noir + Gold Design System */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -37,7 +37,7 @@
     --ring: 38 92% 50%;
 
     --radius: 0.75rem;
-
+    
     /* Custom Luxury Tokens */
     --gold: 38 92% 50%;
     --gold-soft: 38 70% 60%;
@@ -71,14 +71,13 @@
     font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* IMPORTANT: All headings use Playfair Display serif font */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
   }
 }
 
 @layer components {
-  /* Glassmorphism Effect */
+  /* Glass Effect */
   .glass {
     @apply bg-secondary/40 backdrop-blur-xl border border-border/50;
   }
@@ -98,7 +97,7 @@
     background-image: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(28, 85%, 45%) 100%);
   }
 
-  /* Animated Link Underline */
+  /* Link Underline Animation */
   .link-underline {
     @apply relative;
   }
@@ -151,6 +150,12 @@
            hover:bg-primary/10 hover:-translate-y-1;
   }
 
+  /* Badge */
+  .badge-gold {
+    @apply inline-block bg-primary/10 border border-primary/20 
+           text-primary py-2 px-5 rounded-full text-sm font-medium;
+  }
+
   /* Luxury Card */
   .card-luxury {
     @apply bg-card rounded-2xl border border-border/50 p-8
@@ -158,19 +163,7 @@
            hover:shadow-[0_20px_60px_-15px_hsl(38,92%,50%,0.2)];
   }
 
-  /* Gold Badge */
-  .badge-gold {
-    @apply inline-block bg-primary/10 border border-primary/20 
-           text-primary py-2 px-5 rounded-full text-sm font-medium;
-  }
-
-  /* Scroll Progress Bar */
-  .scroll-progress {
-    @apply fixed top-0 left-0 h-0.5 bg-primary z-[100];
-    transform-origin: left;
-  }
-
-  /* Legacy component support - updated for noir theme */
+  /* Legacy component support */
   .hero-gradient {
     @apply bg-gradient-to-b from-background to-noir-light;
   }
@@ -210,11 +203,6 @@
   .tariff-header {
     @apply px-6 py-4 bg-gradient-to-r from-primary to-gold-soft text-primary-foreground;
   }
-  
-  .recommended-badge {
-    @apply absolute top-0 right-0 bg-primary text-primary-foreground text-xs uppercase py-1 px-3 
-           tracking-wider transform rotate-45 translate-x-[30%] translate-y-[-10%] shadow-md;
-  }
 
   /* Text highlights */
   .text-highlight-poda {
@@ -226,16 +214,10 @@
   }
 }
 
-/* Keyframes */
+/* Animation Keyframes */
 @keyframes fade-up {
-  from { 
-    opacity: 0; 
-    transform: translateY(40px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fade-in {
@@ -244,12 +226,8 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { 
-    box-shadow: 0 0 20px hsl(38, 92%, 50%, 0.4), inset 0 0 20px hsl(38, 92%, 50%, 0.1);
-  }
-  50% { 
-    box-shadow: 0 0 30px hsl(38, 92%, 50%, 0.8), inset 0 0 30px hsl(38, 92%, 50%, 0.3);
-  }
+  0%, 100% { box-shadow: 0 0 20px hsl(38, 92%, 50%, 0.4); }
+  50% { box-shadow: 0 0 30px hsl(38, 92%, 50%, 0.8); }
 }
 
 @keyframes shimmer {
@@ -257,12 +235,7 @@
   100% { background-position: 200% 0; }
 }
 
-@keyframes bounce-subtle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-/* Reveal Animation Classes */
+/* Reveal Animation */
 .reveal-animation {
   opacity: 0;
   transform: translateY(40px);
@@ -283,22 +256,10 @@
 .delay-500 { transition-delay: 500ms; }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(0, 0%, 7%);
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 20%);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(38, 92%, 50%);
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: hsl(0, 0%, 7%); }
+::-webkit-scrollbar-thumb { background: hsl(0, 0%, 20%); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(38, 92%, 50%); }
 
 /* Selection Color */
 ::selection {
@@ -315,7 +276,7 @@
   box-shadow: 0 4px 30px hsl(0, 0%, 0%, 0.3);
 }
 
-/* Phone link optimizations for mobile devices */
+/* Phone link optimizations */
 .phone-link {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -328,7 +289,6 @@
   transform: scale(0.95);
 }
 
-/* Prevent zoom on input focus for mobile */
 @media screen and (max-width: 768px) {
   input, select, textarea {
     font-size: 16px !important;
@@ -343,7 +303,6 @@
   }
 }
 
-/* Additional mobile touch optimizations */
 @media (hover: none) and (pointer: coarse) {
   .phone-link:hover {
     background-color: transparent;

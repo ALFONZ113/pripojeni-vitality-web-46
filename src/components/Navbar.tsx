@@ -38,7 +38,12 @@ const Navbar = memo(() => {
     >
       <div className="container-custom flex items-center justify-between">
         <Link to="/" className="flex items-center group">
-          <Logo size="md" />
+          <div className="flex flex-col">
+            <Logo size="md" />
+            <span className="hidden md:block text-[10px] text-muted-foreground/70 font-body tracking-wide -mt-0.5">
+              Autorizovaný partner <span className="text-primary font-medium">PODA</span>
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}

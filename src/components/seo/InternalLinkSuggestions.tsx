@@ -41,27 +41,27 @@ const InternalLinkSuggestions = ({ currentPost, maxSuggestions = 3 }: InternalLi
   if (relatedPosts.length === 0) return null;
   
   return (
-    <div className="bg-blue-50 p-6 rounded-lg mt-8">
-      <h3 className="text-lg font-semibold text-poda-blue mb-4">
-        Súvisiace články
+    <div className="bg-card border border-border/30 p-6 rounded-lg mt-8">
+      <h3 className="text-lg font-serif font-semibold text-foreground mb-4">
+        Související články
       </h3>
       <div className="space-y-3">
         {relatedPosts.map(post => (
           <Link
             key={post.id}
             to={getBlogPostUrl(post)}
-            className="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group"
+            className="block p-3 bg-secondary/50 border border-border/30 rounded-lg hover:bg-secondary hover:border-primary/20 transition-all group"
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <h4 className="font-medium text-gray-900 group-hover:text-poda-blue transition-colors line-clamp-2">
+                <h4 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
                   {post.title}
                 </h4>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   {post.category} • {post.date}
                 </p>
               </div>
-              <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-poda-blue ml-2 flex-shrink-0" />
+              <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary ml-2 flex-shrink-0" />
             </div>
           </Link>
         ))}

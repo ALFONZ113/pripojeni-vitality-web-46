@@ -62,17 +62,17 @@ const BlogPostPage = () => {
   
   if (!post) {
     return (
-      <div className="min-h-screen pt-24 flex items-center justify-center">
+      <div className="min-h-screen pt-24 flex items-center justify-center bg-background">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-poda-blue mx-auto mb-4"></div>
-          <p className="text-gray-600">Načítavanie článku...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Načítavání článku...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-24">
+    <div className="min-h-screen pt-24 bg-background">
       {/* Enhanced SEO metadata */}
       <BlogPostSEO post={post} prevPost={prevPost} nextPost={nextPost} />
       
@@ -83,7 +83,7 @@ const BlogPostPage = () => {
       <BlogPostImage post={post} />
 
       {/* Main content area - blog content and sidebar */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-background">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <BlogPostContent post={post} />

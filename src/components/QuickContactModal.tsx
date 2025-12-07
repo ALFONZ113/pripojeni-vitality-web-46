@@ -1,5 +1,3 @@
-
-import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import ContactForm from './ContactForm';
 
@@ -13,9 +11,9 @@ const QuickContactModal = ({ isOpen, onClose }: QuickContactModalProps) => {
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open) onClose();
     }}>
-      <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto bg-card/95 backdrop-blur-xl border-border">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-poda-blue">
+          <DialogTitle className="text-2xl font-heading font-bold text-gradient-gold">
             Kontaktní formulář
           </DialogTitle>
         </DialogHeader>

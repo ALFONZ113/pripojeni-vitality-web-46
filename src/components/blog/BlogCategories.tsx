@@ -1,4 +1,3 @@
-
 import { categories } from '../../data/blog';
 
 interface BlogCategoriesProps {
@@ -12,10 +11,10 @@ const BlogCategories = ({ selectedCategory, onCategoryChange }: BlogCategoriesPr
       {categories.map((category) => (
         <button
           key={category.id}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
             selectedCategory === category.id
-              ? 'bg-poda-blue text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              ? 'bg-primary text-primary-foreground glow-gold'
+              : 'bg-secondary text-foreground hover:bg-muted border border-border'
           }`}
           onClick={() => onCategoryChange(category.id)}
         >

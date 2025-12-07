@@ -1,13 +1,21 @@
-/* Luxury Noir + Gold Design System */
+/* ═══════════════════════════════════════════════════════════════════════════
+   LUXURY NOIR + GOLD EDITORIAL DESIGN SYSTEM
+   Inspired by Felix Haas, Awwwards Winners
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE LAYER - CSS VARIABLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 @layer base {
   :root {
-    /* Noir + Gold Luxury Palette */
+    /* Noir Luxury Palette */
     --background: 0 0% 4%;
     --foreground: 45 20% 95%;
 
@@ -17,11 +25,12 @@
     --popover: 0 0% 7%;
     --popover-foreground: 45 20% 95%;
 
+    /* Warm Amber Gold - Primary */
     --primary: 38 92% 50%;
     --primary-foreground: 0 0% 4%;
 
     --secondary: 0 0% 12%;
-    --secondary-foreground: 45 20% 95%;
+    --secondary-foreground: 45 20% 85%;
 
     --muted: 0 0% 15%;
     --muted-foreground: 45 10% 55%;
@@ -46,8 +55,12 @@
     --noir: 0 0% 4%;
     --noir-light: 0 0% 8%;
     --noir-lighter: 0 0% 12%;
+    --noir-medium: 0 0% 12%;
 
-    /* Sidebar (keeping for compatibility) */
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(28, 85%, 45%) 100%);
+
+    /* Sidebar (for compatibility) */
     --sidebar-background: 0 0% 7%;
     --sidebar-foreground: 45 20% 95%;
     --sidebar-primary: 38 92% 50%;
@@ -73,13 +86,26 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
+    @apply font-bold tracking-tight;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPONENTS LAYER - REUSABLE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 @layer components {
   /* Glass Effect */
   .glass {
     @apply bg-secondary/40 backdrop-blur-xl border border-border/50;
+  }
+
+  .glass-card {
+    background: hsl(0, 0%, 7%, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(0, 0%, 18%, 0.4);
+    box-shadow: 0 8px 32px hsl(0, 0%, 0%, 0.3);
   }
 
   /* Gold Glow Effects */
@@ -89,6 +115,10 @@
 
   .glow-gold-subtle {
     box-shadow: 0 0 40px hsl(38, 92%, 50%, 0.15);
+  }
+
+  .glow-gold-intense {
+    box-shadow: 0 0 80px hsl(38, 92%, 50%, 0.4);
   }
 
   /* Gold Gradient Text */
@@ -131,17 +161,20 @@
     @apply py-20 lg:py-32 px-4 sm:px-8;
   }
 
-  /* Button Variants */
+  /* ═══════════════════════════════════════════════════════════════════════
+     BUTTON VARIANTS
+     ═══════════════════════════════════════════════════════════════════════ */
+  
   .btn-gold {
-    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium 
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold 
            transition-all duration-300 hover:shadow-[0_0_30px_hsl(38,92%,50%,0.4)]
-           hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50;
+           hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/50;
   }
 
   .btn-noir {
     @apply bg-secondary text-foreground px-6 py-3 rounded-lg font-medium 
            border border-border transition-all duration-300 
-           hover:bg-muted hover:-translate-y-1;
+           hover:bg-muted hover:-translate-y-1 hover:border-primary/30;
   }
 
   .btn-outline-gold {
@@ -150,20 +183,37 @@
            hover:bg-primary/10 hover:-translate-y-1;
   }
 
-  /* Badge */
+  .btn-glass {
+    @apply bg-transparent backdrop-blur-xl border border-border/50 text-foreground
+           px-6 py-3 rounded-lg font-medium transition-all duration-300
+           hover:bg-secondary/40 hover:-translate-y-1;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     BADGE & CARD STYLES
+     ═══════════════════════════════════════════════════════════════════════ */
+  
   .badge-gold {
-    @apply inline-block bg-primary/10 border border-primary/20 
-           text-primary py-2 px-5 rounded-full text-sm font-medium;
+    @apply inline-flex items-center gap-2 bg-primary/10 border border-primary/20 
+           text-primary py-2 px-5 rounded-full text-sm font-medium backdrop-blur-sm;
   }
 
-  /* Luxury Card */
   .card-luxury {
-    @apply bg-card rounded-2xl border border-border/50 p-8
+    @apply bg-card rounded-2xl border border-border/50 p-6 md:p-8
            transition-all duration-500 hover:border-primary/30
-           hover:shadow-[0_20px_60px_-15px_hsl(38,92%,50%,0.2)];
+           hover:shadow-[0_20px_60px_-15px_hsl(38,92%,50%,0.15)];
   }
 
-  /* Legacy component support */
+  .card-feature {
+    @apply bg-card/50 rounded-2xl border border-border/30 p-6
+           transition-all duration-300 hover:bg-card hover:border-primary/20
+           cursor-default;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     LEGACY COMPONENT SUPPORT
+     ═══════════════════════════════════════════════════════════════════════ */
+  
   .hero-gradient {
     @apply bg-gradient-to-b from-background to-noir-light;
   }
@@ -173,7 +223,8 @@
   }
   
   .promo-tag {
-    @apply text-xs uppercase tracking-wider bg-primary text-primary-foreground px-2 py-0.5 rounded-full font-medium;
+    @apply text-xs uppercase tracking-wider bg-primary text-primary-foreground 
+           px-2 py-0.5 rounded-full font-semibold;
   }
   
   .animate-on-scroll {
@@ -201,10 +252,9 @@
   }
   
   .tariff-header {
-    @apply px-6 py-4 bg-gradient-to-r from-primary to-gold-soft text-primary-foreground;
+    @apply px-6 py-4 bg-gradient-to-r from-primary to-gold-soft text-primary-foreground rounded-t-2xl;
   }
 
-  /* Text highlights */
   .text-highlight-poda {
     @apply text-primary;
   }
@@ -212,12 +262,31 @@
   .text-highlight-pripojeni {
     @apply text-primary;
   }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     EDITORIAL INDEX NUMBERS (01, 02, 03...)
+     ═══════════════════════════════════════════════════════════════════════ */
+  
+  .editorial-index {
+    @apply text-[8rem] md:text-[12rem] font-display font-bold text-foreground/5 
+           absolute -top-8 md:-top-12 left-0 leading-none select-none pointer-events-none;
+  }
 }
 
-/* Animation Keyframes */
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATION KEYFRAMES
+   Simple, elegant - fade + translateY + scale only
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0; 
+    transform: translateY(40px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
 
 @keyframes fade-in {
@@ -226,13 +295,28 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px hsl(38, 92%, 50%, 0.4); }
-  50% { box-shadow: 0 0 30px hsl(38, 92%, 50%, 0.8); }
+  0%, 100% { 
+    box-shadow: 0 0 20px hsl(38, 92%, 50%, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 40px hsl(38, 92%, 50%, 0.5); 
+  }
 }
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.5; 
+    transform: scale(1.5); 
+  }
 }
 
 /* Reveal Animation */
@@ -255,28 +339,36 @@
 .delay-400 { transition-delay: 400ms; }
 .delay-500 { transition-delay: 500ms; }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: hsl(0, 0%, 7%); }
-::-webkit-scrollbar-thumb { background: hsl(0, 0%, 20%); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: hsl(38, 92%, 50%); }
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLLBAR & SELECTION
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Selection Color */
+::-webkit-scrollbar { 
+  width: 8px; 
+}
+
+::-webkit-scrollbar-track { 
+  background: hsl(0, 0%, 7%); 
+}
+
+::-webkit-scrollbar-thumb { 
+  background: hsl(0, 0%, 20%); 
+  border-radius: 4px; 
+}
+
+::-webkit-scrollbar-thumb:hover { 
+  background: hsl(38, 92%, 50%); 
+}
+
 ::selection {
   background: hsl(38, 92%, 50%, 0.3);
   color: hsl(45, 20%, 95%);
 }
 
-/* Glass card effect */
-.glass-card {
-  background: hsl(0, 0%, 7%, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid hsl(0, 0%, 18%, 0.3);
-  box-shadow: 0 4px 30px hsl(0, 0%, 0%, 0.3);
-}
+/* ═══════════════════════════════════════════════════════════════════════════
+   PHONE LINK OPTIMIZATIONS (Mobile Touch)
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Phone link optimizations */
 .phone-link {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -306,5 +398,23 @@
 @media (hover: none) and (pointer: coarse) {
   .phone-link:hover {
     background-color: transparent;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION SUPPORT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
   }
 }

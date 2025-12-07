@@ -7,7 +7,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
 import { sendContactFormEmail } from '@/utils/emailService';
 import heroImage from '@/assets/hero-family-tv.jpg';
-import routerImage from '@/assets/router-premium.png';
+
 
 const HeroSection = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -241,8 +241,8 @@ const HeroSection = () => {
             <div className="relative bg-card rounded-3xl border border-border/50 overflow-hidden group aspect-video">
               <img 
                 src={heroImage} 
-                alt="Rodina sledující televizi" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                alt="Rodina sledující televizi s PODA internetem" 
+                className="w-full h-full object-cover animate-ken-burns"
                 loading="eager"
               />
               
@@ -290,20 +290,6 @@ const HeroSection = () => {
                 od 300 Kč/měs
               </motion.div>
               
-              {/* Router Thumbnail - Static */}
-              <motion.div 
-                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 w-16 h-16 md:w-24 md:h-24 bg-card rounded-xl md:rounded-2xl border border-border/50 p-2 md:p-3 shadow-xl overflow-hidden"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                <img 
-                  src={routerImage} 
-                  alt="Premium WiFi Router" 
-                  className="w-full h-full object-contain"
-                  loading="lazy"
-                />
-              </motion.div>
             </div>
           </motion.div>
         </div>

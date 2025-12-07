@@ -418,3 +418,108 @@
     scroll-behavior: auto;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOG CONTENT - NOIR THEME
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.blog-content {
+  @apply text-foreground/90;
+}
+
+.blog-content h1 {
+  @apply text-foreground font-serif text-3xl md:text-4xl mt-8 mb-4 font-bold;
+}
+
+.blog-content h2 {
+  @apply text-foreground font-serif text-2xl md:text-3xl mt-8 mb-4 font-semibold;
+}
+
+.blog-content h3 {
+  @apply text-foreground font-serif text-xl md:text-2xl mt-6 mb-3 font-semibold;
+}
+
+.blog-content h4 {
+  @apply text-foreground font-serif text-lg md:text-xl mt-6 mb-3 font-medium;
+}
+
+.blog-content p {
+  @apply mb-4 leading-relaxed text-foreground/90;
+}
+
+.blog-content a {
+  @apply text-primary hover:underline transition-colors;
+}
+
+.blog-content strong,
+.blog-content b {
+  @apply text-foreground font-semibold;
+}
+
+.blog-content ul,
+.blog-content ol {
+  @apply my-4 ml-6 text-foreground/90;
+}
+
+.blog-content ul {
+  @apply list-disc;
+}
+
+.blog-content ol {
+  @apply list-decimal;
+}
+
+.blog-content li {
+  @apply mb-2;
+}
+
+.blog-content li::marker {
+  @apply text-primary;
+}
+
+.blog-content blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-muted-foreground my-6 bg-card/50 py-3 pr-4 rounded-r-lg;
+}
+
+.blog-content code {
+  @apply bg-secondary px-2 py-1 rounded text-primary text-sm;
+}
+
+.blog-content pre {
+  @apply bg-card p-4 rounded-lg overflow-x-auto my-6 border border-border/30;
+}
+
+.blog-content pre code {
+  @apply bg-transparent p-0;
+}
+
+.blog-content table {
+  @apply w-full border-collapse my-6;
+}
+
+.blog-content th {
+  @apply bg-secondary text-foreground px-4 py-2 text-left border border-border font-serif;
+}
+
+.blog-content td {
+  @apply px-4 py-2 border border-border text-foreground/90;
+}
+
+.blog-content img {
+  @apply rounded-lg my-6 border border-border/30;
+}
+
+.blog-content hr {
+  @apply border-border my-8;
+}
+
+/* CTA box a tip box v článkoch */
+.blog-content .tip-box,
+.blog-content .cta-box,
+.blog-content .info-box {
+  @apply bg-card border-l-4 border-primary p-6 rounded-r-lg my-6;
+}
+
+.blog-content .warning-box {
+  @apply bg-card border-l-4 border-destructive p-6 rounded-r-lg my-6;
+}

@@ -12,7 +12,7 @@ interface BlogPostPaginationProps {
 
 const BlogPostPagination = ({ prevPost, nextPost }: BlogPostPaginationProps) => {
   return (
-    <section className="section-padding pt-4 pb-12 bg-blue-50">
+    <section className="section-padding pt-4 pb-12 bg-secondary/30 border-t border-border/30">
       <div className="container-custom">
         <Pagination>
           <PaginationContent>
@@ -21,12 +21,13 @@ const BlogPostPagination = ({ prevPost, nextPost }: BlogPostPaginationProps) => 
                 <PaginationPrevious 
                   href={`${getBlogPostUrl(prevPost)}${getPageTrackingParams(prevPost.id, prevPost.category)}`}
                   aria-label={`Předchozí článek: ${prevPost.title}`}
+                  className="text-foreground hover:text-primary hover:bg-card border-border"
                 />
               </PaginationItem>
             )}
             
             <PaginationItem>
-              <PaginationLink href="/blog" aria-label="Všechny články">
+              <PaginationLink href="/blog" aria-label="Všechny články" className="text-foreground hover:text-primary hover:bg-card border-border">
                 Všechny články
               </PaginationLink>
             </PaginationItem>
@@ -36,6 +37,7 @@ const BlogPostPagination = ({ prevPost, nextPost }: BlogPostPaginationProps) => 
                 <PaginationNext 
                   href={`${getBlogPostUrl(nextPost)}${getPageTrackingParams(nextPost.id, nextPost.category)}`}
                   aria-label={`Další článek: ${nextPost.title}`}
+                  className="text-foreground hover:text-primary hover:bg-card border-border"
                 />
               </PaginationItem>
             )}

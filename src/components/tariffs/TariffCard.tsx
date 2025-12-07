@@ -1,14 +1,13 @@
-
-import { Check, Info, ChevronDown } from 'lucide-react';
+import { Check, Info, ChevronDown, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Button } from '@/components/ui/button';
 
 interface TariffFeature {
   title: string;
   description: string;
 }
 
-// Define the expected shape of the openPromoInfo object
 interface PromoInfoState {
   bytyBasic: boolean;
   bytyMych10: boolean;
@@ -42,56 +41,91 @@ const TariffCard = ({
   promoInfoText
 }: TariffCardProps) => {
   return (
-    <div className="tariff-card group">
-      {isPromo && (
-        <div className="absolute top-4 left-4">
-          <span className="promo-tag">Promo tarif</span>
-        </div>
-      )}
+    <div className={`relative bg-card rounded-2xl border transition-all duration-500 overflow-hidden group h-full ${
+      isRecommended 
+        ? 'border-primary/50 shadow-[0_0_60px_-15px_hsl(38,92%,50%,0.3)]' 
+        : 'border-border/50 hover:border-primary/30'
+    }`}>
+      {/* Recommended Glow */}
       {isRecommended && (
-        <div className="recommended-badge px-[22px] mx-[15px] my-[36px] py-0">Doporučujeme</div>
+        <div className="absolute -inset-px bg-gradient-to-b from-primary/20 via-transparent to-transparent rounded-2xl pointer-events-none" />
       )}
-      <div className="tariff-header">
-        <h3 className="text-xl font-bold">{title}</h3>
-      </div>
-      <div className="p-6">
-        <div className="mb-6 flex items-center justify-center">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-poda-blue">{price}</div>
-            <div className="text-gray-500 text-sm">{priceNote}</div>
-            <Collapsible
-              open={openPromoInfo[promoId]}
-              onOpenChange={() => onPromoInfoToggle(promoId)}
-              className="mt-1"
-            >
-              <CollapsibleTrigger className="flex items-center justify-center mx-auto text-gray-400 hover:text-gray-600 transition-colors">
-                <Info className="h-3.5 w-3.5 mr-1" />
-                <span className="text-xs">Více o ceně</span>
-                <ChevronDown 
-                  className="h-3 w-3 ml-1 transition-transform duration-200" 
-                  style={{ transform: openPromoInfo[promoId] ? 'rotate(180deg)' : 'rotate(0deg)' }} 
-                />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded-md">
-                {promoInfoText}
-              </CollapsibleContent>
-            </Collapsible>
-          </div>
+      
+      {/* Promo Badge */}
+      {isPromo && (
+        <div className="absolute top-4 left-4 z-10">
+          <span className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 text-primary py-1.5 px-3 rounded-full text-xs font-medium">
+            <Sparkles className="w-3 h-3" />
+            Promo tarif
+          </span>
         </div>
+      )}
+      
+      {/* Recommended Badge */}
+      {isRecommended && (
+        <div className="absolute top-4 right-4 z-10">
+          <span className="bg-primary text-primary-foreground py-1.5 px-3 rounded-full text-xs font-bold uppercase tracking-wide">
+            Doporučujeme
+          </span>
+        </div>
+      )}
+      
+      {/* Header */}
+      <div className={`px-6 py-5 ${isRecommended ? 'bg-gradient-to-r from-primary/10 to-transparent' : ''}`}>
+        <h3 className="text-xl md:text-2xl font-display font-bold text-foreground">{title}</h3>
+      </div>
+      
+      {/* Content */}
+      <div className="p-6">
+        {/* Price */}
+        <div className="mb-6 text-center">
+          <div className="text-4xl md:text-5xl font-display font-bold text-primary mb-1">{price}</div>
+          <div className="text-muted-foreground text-sm">{priceNote}</div>
+          
+          <Collapsible
+            open={openPromoInfo[promoId]}
+            onOpenChange={() => onPromoInfoToggle(promoId)}
+            className="mt-2"
+          >
+            <CollapsibleTrigger className="flex items-center justify-center mx-auto text-muted-foreground hover:text-foreground transition-colors">
+              <Info className="h-3.5 w-3.5 mr-1" />
+              <span className="text-xs">Více o ceně</span>
+              <ChevronDown 
+                className={`h-3 w-3 ml-1 transition-transform duration-200 ${openPromoInfo[promoId] ? 'rotate-180' : ''}`}
+              />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="mt-3 text-xs text-muted-foreground bg-secondary/50 p-3 rounded-lg border border-border/50">
+              {promoInfoText}
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
+        
+        {/* Features */}
         <div className="space-y-4 mb-8">
           {features.map((feature, index) => (
-            <div key={index} className="flex items-start">
-              <Check className="h-5 w-5 text-poda-orange mr-3 mt-0.5" />
+            <div key={index} className="flex items-start group/feature">
+              <div className="bg-primary/10 rounded-lg p-1.5 mr-3 mt-0.5 group-hover/feature:bg-primary/20 transition-colors">
+                <Check className="h-4 w-4 text-primary" />
+              </div>
               <div>
-                <p className="font-medium">{feature.title}</p>
-                <p className="text-gray-500 text-sm">{feature.description}</p>
+                <p className="font-medium text-foreground">{feature.title}</p>
+                <p className="text-muted-foreground text-sm">{feature.description}</p>
               </div>
             </div>
           ))}
         </div>
-        <Link to="/kontakt" className={`btn-${isRecommended ? 'secondary' : 'primary'} w-full flex justify-center`}>
-          Mám zájem
-        </Link>
+        
+        {/* CTA Button */}
+        <Button 
+          variant={isRecommended ? 'gold' : 'noir'} 
+          size="lg" 
+          className="w-full" 
+          asChild
+        >
+          <Link to="/kontakt">
+            Mám zájem
+          </Link>
+        </Button>
       </div>
     </div>
   );

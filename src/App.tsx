@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ui/scroll-to-top';
 import FloatingCallButton from './components/ui/floating-call-button';
+import ScrollProgressBar from './components/ui/scroll-progress-bar';
 import { NoIndexMeta } from './components/seo/NoIndexMeta';
 
 // Direct import for Home to eliminate loading delay
@@ -58,7 +59,8 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <Router>
-          <div className="min-h-screen bg-white flex flex-col">
+          <div className="min-h-screen bg-background flex flex-col">
+            <ScrollProgressBar />
             <ScrollToTop />
             <NoIndexMeta />
             <Navbar />

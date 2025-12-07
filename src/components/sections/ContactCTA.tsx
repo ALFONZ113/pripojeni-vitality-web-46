@@ -2,17 +2,24 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Phone, Zap, Clock, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 const ContactCTA = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (phoneNumber.length >= 9) {
+      setIsLoading(true);
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
       setIsSubmitted(true);
+      setIsLoading(false);
+      toast.success('Děkujeme! Budeme vás brzy kontaktovat.');
       setTimeout(() => {
         setIsSubmitted(false);
         setPhoneNumber('');
@@ -77,6 +84,7 @@ const ContactCTA = () => {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     className="w-full bg-secondary/70 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all font-body"
                     required
+                    disabled={isSubmitted}
                   />
                 </div>
                 <Button 
@@ -84,9 +92,9 @@ const ContactCTA = () => {
                   variant="gold" 
                   size="xl"
                   className="shadow-lg shadow-primary/30 w-full sm:w-auto"
-                  disabled={isSubmitted}
+                  disabled={isSubmitted || isLoading}
                 >
-                  {isSubmitted ? 'Odesláno ✓' : 'Zavolejte mi'}
+                  {isLoading ? 'Odesílám...' : isSubmitted ? 'Odesláno ✓' : 'Zavolejte mi'}
                 </Button>
               </div>
             </div>

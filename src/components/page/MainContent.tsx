@@ -1,23 +1,24 @@
-
 import React from 'react';
 import HeroSection from '../hero/HeroSection';
 import TariffSection from '../TariffSection';
-import WhyPopriSection from '../hero/WhyPopriSection';
-import DisclaimerText from '../hero/DisclaimerText';
+import FeatureShowcase from '../sections/FeatureShowcase';
+import CitySection from '../sections/CitySection';
+import TestimonialsSection from '../sections/TestimonialsSection';
 import FeaturedBlogPosts from '../blog/FeaturedBlogPosts';
-import SocialProof from '../SocialProof';
-import ContactSection from '../ContactSection';
+import ContactCTA from '../sections/ContactCTA';
+import IPTVSection from '../sections/IPTVSection';
 
 const MainContent = () => {
   return (
     <>
       <HeroSection />
       <TariffSection />
-      <WhyPopriSection />
-      <DisclaimerText />
+      <FeatureShowcase />
+      <CitySection />
+      <TestimonialsSection />
       <FeaturedBlogPosts />
-      <SocialProof />
-      <ContactSection />
+      <ContactCTA />
+      <IPTVSection />
     </>
   );
 };

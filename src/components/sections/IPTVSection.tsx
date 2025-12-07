@@ -1,62 +1,99 @@
-
-import React from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Tv, ArrowRight } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { Tv, ArrowRight, Play, Monitor, Clock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const IPTVSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const stats = [
+    { icon: Tv, value: '200+', label: 'TV kanálů' },
+    { icon: Clock, value: '7 dní', label: 'Timeshift archív' },
+    { icon: Monitor, value: 'Full HD', label: 'až 4K kvalita' },
+  ];
+
   return (
-    <section className="min-h-screen flex items-center py-20 bg-gradient-to-br from-orange-50/50 via-white to-poda-orange/5 relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute inset-0 opacity-25">
-        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-radial from-poda-orange/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-gradient-radial from-red-300/15 to-transparent rounded-full blur-3xl"></div>
-      </div>
+    <section ref={ref} className="py-20 lg:py-32 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary/50 via-background to-primary/5" />
       
+      {/* Glow effect */}
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[200px] translate-x-1/2 translate-y-1/2" />
+
       <div className="container-custom relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 md:p-14 border border-white/40">
-            <div className="bg-poda-orange/10 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-              <Tv className="h-10 w-10 text-poda-orange" />
-            </div>
-            
-            <span className="inline-block bg-poda-orange text-white py-2 px-4 rounded-full text-sm font-medium mb-4">
-              Novinka
-            </span>
-            
-            <h2 className="text-3xl md:text-4xl font-bold text-poda-blue mb-6">
-              IPTV služba už od <span className="text-poda-orange">99 Kč</span> mesačne
-            </h2>
-            
-            <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-              Sledujte viac ako 200 TV kanálov vo Full HD kvalite bez satelitných parabôl. 
-              Kompatibilné so všetkými zariadeniami - Smart TV, mobil, tablet, počítač.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <div className="font-bold text-2xl text-poda-blue">200+</div>
-                <div className="text-gray-600">TV kanálov</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-2xl text-poda-blue">7 dní</div>
-                <div className="text-gray-600">Timeshift archív</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-2xl text-poda-blue">Full HD</div>
-                <div className="text-gray-600">až 4K kvalita</div>
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/iptv" className="btn-primary inline-flex items-center justify-center">
-                Zistiť viac o IPTV <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link to="/kontakt" className="btn-outline inline-flex items-center justify-center">
-                Objednať teraz
-              </Link>
-            </div>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          {/* Badge */}
+          <span className="badge-gold mb-6 inline-block">
+            <Play className="w-4 h-4" />
+            Novinka
+          </span>
+
+          {/* Icon */}
+          <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-8">
+            <Tv className="w-10 h-10 text-primary" />
           </div>
-        </div>
+
+          {/* Headline */}
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            IPTV služba už od <span className="text-gradient-gold">99 Kč</span>
+          </h2>
+
+          {/* Description */}
+          <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-2xl mx-auto font-body leading-relaxed">
+            Sledujte více ako 200 TV kanálů vo Full HD kvalitě bez satelitních parabolů. 
+            Kompatibilní se všemi zařízeními - Smart TV, mobil, tablet, počítač.
+          </p>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="grid grid-cols-3 gap-4 md:gap-6 mb-12 max-w-2xl mx-auto"
+          >
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="glass-card rounded-xl p-4 md:p-6 text-center"
+              >
+                <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
+                <div className="font-display text-2xl md:text-3xl font-bold text-foreground mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-muted-foreground text-sm font-body">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Button variant="gold" size="xl" asChild>
+              <Link to="/iptv">
+                Zjistit více o IPTV
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </Button>
+            <Button variant="noir" size="xl" asChild>
+              <Link to="/kontakt">
+                Objednat teď
+              </Link>
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

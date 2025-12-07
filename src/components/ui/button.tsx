@@ -8,21 +8,31 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-1 hover:shadow-[0_0_30px_hsl(38,92%,50%,0.4)]",
-        outline: "border border-border bg-transparent hover:bg-secondary hover:text-foreground hover:-translate-y-1",
-        secondary: "bg-secondary text-secondary-foreground border border-border hover:bg-muted hover:-translate-y-1",
-        ghost: "hover:bg-secondary hover:text-foreground",
+        // Primary Gold CTA
+        default: "bg-primary text-primary-foreground font-semibold hover:shadow-[0_0_30px_hsl(38,92%,50%,0.4)] hover:-translate-y-1 hover:scale-[1.02]",
+        gold: "bg-primary text-primary-foreground font-semibold hover:shadow-[0_0_30px_hsl(38,92%,50%,0.5)] hover:-translate-y-1 hover:scale-[1.02]",
+        
+        // Noir Secondary
+        noir: "bg-secondary text-foreground border border-border hover:bg-muted hover:-translate-y-1 hover:border-primary/30",
+        secondary: "bg-secondary text-secondary-foreground border border-border hover:bg-muted hover:-translate-y-1 hover:border-primary/30",
+        
+        // Glass Effect
+        glass: "bg-transparent backdrop-blur-xl border border-border/50 text-foreground hover:bg-secondary/40 hover:-translate-y-1",
+        
+        // Outline Variants
+        outline: "border border-border bg-transparent text-foreground hover:bg-secondary hover:-translate-y-1 hover:border-primary/30",
+        heroOutline: "border-2 border-primary/50 text-primary bg-transparent hover:bg-primary/10 hover:-translate-y-1",
+        
+        // Utility Variants
+        ghost: "text-foreground hover:bg-secondary hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        gold: "bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(38,92%,50%,0.5)] hover:-translate-y-1 hover:scale-[1.02]",
-        noir: "bg-secondary text-foreground border border-border hover:bg-muted hover:-translate-y-1",
-        heroOutline: "border-2 border-primary/50 text-primary bg-transparent hover:bg-primary/10 hover:-translate-y-1",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
+        sm: "h-9 rounded-md px-3 text-xs",
         lg: "h-12 rounded-lg px-8 text-base",
-        xl: "h-14 rounded-lg px-10 text-lg",
+        xl: "h-14 rounded-lg px-10 text-lg font-semibold",
         icon: "h-10 w-10",
       },
     },

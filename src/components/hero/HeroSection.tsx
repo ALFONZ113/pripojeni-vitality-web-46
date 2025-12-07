@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown, Phone, Play, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronDown, Phone, Play, Sparkles, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
+import { sendContactFormEmail } from '@/utils/emailService';
 import heroImage from '@/assets/hero-family-tv.jpg';
 import routerImage from '@/assets/router-premium.png';
 
@@ -13,6 +14,7 @@ const HeroSection = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const { scrollY } = useScroll();
@@ -29,12 +31,22 @@ const HeroSection = () => {
     }
   };
 
-  const handlePhoneSubmit = (e: React.FormEvent) => {
+  const handlePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (phoneNumber.length >= 9) {
-      setIsSubmitted(true);
-      // Reset after 3 seconds
-      setTimeout(() => setIsSubmitted(false), 3000);
+      setIsLoading(true);
+      const success = await sendContactFormEmail({
+        name: "Žádost o zpětné volání - Hero",
+        phone: phoneNumber,
+        email: "",
+        message: `Zákazník požádal o zpětné volání: ${phoneNumber}`
+      });
+      setIsLoading(false);
+      if (success) {
+        setIsSubmitted(true);
+        setPhoneNumber('');
+        setTimeout(() => setIsSubmitted(false), 3000);
+      }
     }
   };
 
@@ -148,9 +160,14 @@ const HeroSection = () => {
                     variant="gold" 
                     size="lg" 
                     className="shadow-lg shadow-primary/20 w-full sm:w-auto"
-                    disabled={isSubmitted}
+                    disabled={isSubmitted || isLoading}
                   >
-                    {isSubmitted ? 'Odesláno ✓' : 'Zavolejte mi'}
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Odesílám...
+                      </>
+                    ) : isSubmitted ? 'Odesláno ✓' : 'Zavolejte mi'}
                   </Button>
                 </div>
               </div>

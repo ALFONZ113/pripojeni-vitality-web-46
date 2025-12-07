@@ -1,217 +1,127 @@
-
 import React, { memo, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, Info, ArrowRight, HandHeart } from 'lucide-react';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
+import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, HandHeart, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 const Navbar = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   
-  const isActivePath = (path: string) => {
-    return location.pathname === path;
-  };
+  const isActivePath = (path: string) => location.pathname === path;
   
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-  
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
+  useEffect(() => { setIsMobileMenuOpen(false); }, [location]);
+
+  const navLinks = [
+    { path: '/', label: 'Domů', icon: null },
+    { path: '/internet-tv', label: 'Internet & TV', icon: Wifi },
+    { path: '/programy', label: 'TV Programy', icon: Tv },
+    { path: '/pomoc-s-prechodem', label: 'Pomoc s přechodem', icon: HandHeart },
+    { path: '/blog', label: 'Blog', icon: FileText },
+    { path: '/kontakt', label: 'Kontakt', icon: MessageSquare },
+  ];
   
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'glass py-3' 
+          ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 py-3' 
           : 'bg-transparent py-5'
-      }`} 
-      role="banner"
+      }`}
     >
       <div className="container-custom flex items-center justify-between">
-        <div className="flex flex-col items-start">
-          <Link to="/" className="text-2xl font-display font-bold text-foreground flex items-center" aria-label="Popri.cz - Domovská stránka">
-            <span className="text-gradient-gold">P</span>o<span className="text-foreground">pri</span>
-            <span className="text-gradient-gold">.cz</span>
-          </Link>
-          <Popover>
-            <PopoverTrigger asChild>
-              <button className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors mt-1">
-                <Info className="h-3 w-3 mr-1" />
-                <span>Info o službe</span>
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80 p-4 bg-card border-border">
-              <div className="space-y-2">
-                <h3 className="font-medium text-sm text-primary font-display">
-                  Popri.cz - PODA připojení
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Jsme specialisté na PODA připojení. Zajistíme vám nejlepší a nejlevnější internetové připojení na trhu.
-                </p>
-                <Link 
-                  to="/kontakt"
-                  className="inline-flex items-center text-sm text-primary hover:text-gold-soft transition-colors mt-2"
-                >
-                  Kontaktujte nás pro více informací
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-            </PopoverContent>
-          </Popover>
-        </div>
+        <Link to="/" className="flex items-center group">
+          <Logo size="md" />
+        </Link>
 
-        <nav className="hidden lg:flex items-center space-x-8" aria-label="Hlavní navigace">
-          <Link 
-            to="/" 
-            className={`${isActivePath('/') ? 'text-primary' : 'text-foreground/80 hover:text-foreground'} font-medium transition-colors link-underline`}
-            aria-current={isActivePath('/') ? 'page' : undefined}
-          >
-            Domů
-          </Link>
-          <Link 
-            to="/internet-tv" 
-            className={`${isActivePath('/internet-tv') ? 'text-primary' : 'text-foreground/80 hover:text-foreground'} font-medium transition-colors link-underline flex items-center`}
-            aria-current={isActivePath('/internet-tv') ? 'page' : undefined}
-          >
-            <Wifi className="mr-1 h-4 w-4" aria-hidden="true" /> Internet & TV
-          </Link>
-          <Link 
-            to="/programy" 
-            className={`${isActivePath('/programy') ? 'text-primary' : 'text-foreground/80 hover:text-foreground'} font-medium transition-colors link-underline flex items-center`}
-            aria-current={isActivePath('/programy') ? 'page' : undefined}
-          >
-            <Tv className="mr-1 h-4 w-4" aria-hidden="true" /> TV Programy
-          </Link>
-          <Link 
-            to="/pomoc-s-prechodem" 
-            className={`${isActivePath('/pomoc-s-prechodem') ? 'text-primary' : 'text-foreground/80 hover:text-foreground'} font-medium transition-colors link-underline flex items-center`}
-            aria-current={isActivePath('/pomoc-s-prechodem') ? 'page' : undefined}
-          >
-            <HandHeart className="mr-1 h-4 w-4" aria-hidden="true" /> Pomoc s přechodem
-          </Link>
-          <Link 
-            to="/blog" 
-            className={`${isActivePath('/blog') ? 'text-primary' : 'text-foreground/80 hover:text-foreground'} font-medium transition-colors link-underline flex items-center`}
-            aria-current={isActivePath('/blog') ? 'page' : undefined}
-          >
-            <FileText className="mr-1 h-4 w-4" aria-hidden="true" /> Blog
-          </Link>
-          <Link 
-            to="/kontakt" 
-            className={`${isActivePath('/kontakt') ? 'text-primary' : 'text-foreground/80 hover:text-foreground'} font-medium transition-colors link-underline flex items-center`}
-            aria-current={isActivePath('/kontakt') ? 'page' : undefined}
-          >
-            <MessageSquare className="mr-1 h-4 w-4" aria-hidden="true" /> Kontakt
-          </Link>
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.path}
+              to={link.path} 
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+                isActivePath(link.path) ? 'text-primary' : 'text-foreground/80 hover:text-primary'
+              }`}
+            >
+              {link.icon && <link.icon className="mr-1.5 h-4 w-4" />}
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="hidden lg:flex items-center">
-          <a href="tel:+420730431313" className="flex items-center text-foreground hover:text-primary transition-colors font-medium mr-6">
-            <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
+        {/* Desktop CTA */}
+        <div className="hidden lg:flex items-center gap-6">
+          <a href="tel:+420730431313" className="flex items-center text-foreground/80 hover:text-primary transition-colors font-medium">
+            <Phone className="mr-2 h-4 w-4" />
             +420 730 431 313
           </a>
-          <Button variant="gold" size="sm" asChild>
-            <Link to="/kontakt">Kontakt</Link>
-          </Button>
+          <Link to="/kontakt" className="btn-gold px-6 py-2.5 rounded-lg text-sm font-semibold">
+            Kontakt
+          </Link>
         </div>
 
-        <button 
-          className="lg:hidden text-foreground" 
-          onClick={toggleMobileMenu} 
-          aria-label={isMobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+        {/* Mobile Menu Button */}
+        <button className="lg:hidden text-foreground p-2 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      <div 
-        id="mobile-menu"
-        className={`fixed inset-0 z-40 bg-background pt-20 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
-        aria-hidden={!isMobileMenuOpen}
-      >
-        <div className="container px-4 py-6 flex flex-col">
-          <nav className="flex flex-col space-y-6" aria-label="Mobilní navigace">
-            <Link 
-              to="/" 
-              className={`${isActivePath('/') ? 'text-primary' : 'text-foreground hover:text-primary'} font-medium text-xl transition-colors`}
-              aria-current={isActivePath('/') ? 'page' : undefined}
-            >
-              Domů
-            </Link>
-            <Link 
-              to="/internet-tv" 
-              className={`${isActivePath('/internet-tv') ? 'text-primary' : 'text-foreground hover:text-primary'} font-medium text-xl transition-colors flex items-center`}
-              aria-current={isActivePath('/internet-tv') ? 'page' : undefined}
-            >
-              <Wifi className="mr-2 h-5 w-5" aria-hidden="true" /> Internet & TV
-            </Link>
-            <Link 
-              to="/programy" 
-              className={`${isActivePath('/programy') ? 'text-primary' : 'text-foreground hover:text-primary'} font-medium text-xl transition-colors flex items-center`}
-              aria-current={isActivePath('/programy') ? 'page' : undefined}
-            >
-              <Tv className="mr-2 h-5 w-5" aria-hidden="true" /> TV Programy
-            </Link>
-            <Link 
-              to="/pomoc-s-prechodem" 
-              className={`${isActivePath('/pomoc-s-prechodem') ? 'text-primary' : 'text-foreground hover:text-primary'} font-medium text-xl transition-colors flex items-center`}
-              aria-current={isActivePath('/pomoc-s-prechodem') ? 'page' : undefined}
-            >
-              <HandHeart className="mr-2 h-5 w-5" aria-hidden="true" /> Pomoc s přechodem
-            </Link>
-            <Link 
-              to="/blog" 
-              className={`${isActivePath('/blog') ? 'text-primary' : 'text-foreground hover:text-primary'} font-medium text-xl transition-colors flex items-center`}
-              aria-current={isActivePath('/blog') ? 'page' : undefined}
-            >
-              <FileText className="mr-2 h-5 w-5" aria-hidden="true" /> Blog
-            </Link>
-            <Link 
-              to="/kontakt" 
-              className={`${isActivePath('/kontakt') ? 'text-primary' : 'text-foreground hover:text-primary'} font-medium text-xl transition-colors flex items-center`}
-              aria-current={isActivePath('/kontakt') ? 'page' : undefined}
-            >
-              <MessageSquare className="mr-2 h-5 w-5" aria-hidden="true" /> Kontakt
-            </Link>
-            
-            <div className="border-t border-border pt-6 mt-4">
-              <a href="tel:+420730431313" className="flex items-center text-foreground hover:text-primary transition-colors font-medium text-xl mb-6">
-                <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
-                +420 730 431 313
-              </a>
-              <Button variant="gold" className="w-full" asChild>
-                <Link to="/kontakt">Kontaktní formulář</Link>
-              </Button>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-background pt-20 lg:hidden"
+          >
+            <div className="container px-6 py-8 flex flex-col h-full">
+              <nav className="flex flex-col space-y-2">
+                {navLinks.map((link, index) => (
+                  <motion.div key={link.path} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.1 }}>
+                    <Link 
+                      to={link.path} 
+                      className={`flex items-center justify-between p-4 rounded-xl transition-all ${
+                        isActivePath(link.path) ? 'bg-primary/10 text-primary border border-primary/20' : 'text-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      <span className="flex items-center font-medium text-lg">
+                        {link.icon && <link.icon className="mr-3 h-5 w-5" />}
+                        {link.label}
+                      </span>
+                      <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+              
+              <div className="mt-auto pt-8 border-t border-border">
+                <a href="tel:+420730431313" className="flex items-center text-foreground hover:text-primary font-medium text-lg mb-6">
+                  <div className="bg-primary/10 p-3 rounded-full mr-4">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  +420 730 431 313
+                </a>
+                <Link to="/kontakt" className="btn-gold w-full flex justify-center py-4 text-lg rounded-xl">
+                  Kontaktujte nás
+                </Link>
+              </div>
             </div>
-          </nav>
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 });
 
 Navbar.displayName = 'Navbar';
-
 export default Navbar;

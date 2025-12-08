@@ -82,26 +82,11 @@ const HeroSection = () => {
   return (
     <section 
       ref={ref}
-      className="relative min-h-[100svh] flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center pt-20 md:pt-28 pb-12 md:pb-24 overflow-hidden bg-background"
       aria-labelledby="hero-title"
     >
-      {/* ═══════════════════════════════════════════════════════════════
-          FULL-SCREEN BACKGROUND IMAGE
-         ═══════════════════════════════════════════════════════════════ */}
-      <motion.div 
-        className="absolute inset-0 z-0"
-        style={{ scale: imageScale }}
-      >
-        <img 
-          src={heroImage} 
-          alt="Rodina sledující televizi s PODA internetem" 
-          className="w-full h-full object-cover object-center"
-          loading="eager"
-        />
-        {/* Lighter Overlay - image more visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
-      </motion.div>
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/30" />
 
       {/* Content Container */}
       <div className="container-custom relative z-10 py-20 md:py-28">
@@ -231,40 +216,55 @@ const HeroSection = () => {
           </motion.div>
 
           {/* ═══════════════════════════════════════════════════════════════
-              STATS COLUMN - RIGHT SIDE (visible on desktop)
+              IMAGE COLUMN - RIGHT SIDE
              ═══════════════════════════════════════════════════════════════ */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="hidden lg:flex flex-col items-end justify-center gap-6"
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="relative"
           >
-            {/* Stats Cards */}
-            <div className="glass rounded-2xl p-6 border border-primary/20">
-              <div className="flex gap-8">
-                {stats.map((stat, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.6 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="text-center"
-                  >
-                    <div className="text-2xl md:text-3xl font-display font-bold">
-                      <span className="text-primary drop-shadow-[0_0_10px_rgba(218,165,32,0.5)]">{stat.value}</span>
-                      <span className="text-primary text-lg">{stat.suffix}</span>
-                    </div>
-                    <div className="text-xs text-foreground/80 uppercase tracking-wider mt-1 font-body font-medium">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
+            {/* Hero Image */}
+            <motion.div 
+              className="relative bg-card rounded-2xl md:rounded-3xl border border-border/50 overflow-hidden group"
+              style={{ scale: imageScale }}
+            >
+              <div className="aspect-[4/3] md:aspect-video">
+                <img 
+                  src={heroImage} 
+                  alt="Rodina sledující televizi s PODA internetem" 
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
               </div>
-            </div>
+              
+              {/* Stats overlay at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/90 to-transparent p-4 md:p-6 pt-12">
+                <div className="flex justify-around items-center">
+                  {stats.map((stat, index) => (
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: 0.6 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="text-center"
+                    >
+                      <div className="text-xl md:text-2xl font-display font-bold">
+                        <span className="text-primary drop-shadow-[0_0_10px_rgba(218,165,32,0.5)]">{stat.value}</span>
+                        <span className="text-primary text-sm">{stat.suffix}</span>
+                      </div>
+                      <div className="text-[10px] md:text-xs text-foreground/80 uppercase tracking-wider mt-1 font-body">
+                        {stat.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
 
             {/* Price Badge */}
             <motion.div 
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg shadow-primary/30"
+              className="absolute -bottom-4 right-4 md:right-8 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-bold text-base md:text-lg shadow-lg shadow-primary/30"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}

@@ -54,7 +54,7 @@ const TariffCard = ({
       {/* Promo Badge */}
       {isPromo && (
         <div className="absolute top-4 left-4 z-10">
-          <span className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 text-primary py-1.5 px-3 rounded-full text-xs font-medium">
+          <span className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground py-1.5 px-3 rounded-full text-xs font-bold shadow-lg">
             <Sparkles className="w-3 h-3" />
             Promo tarif
           </span>

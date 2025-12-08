@@ -238,11 +238,11 @@ const HeroSection = () => {
             />
             
             {/* Main Image Container */}
-            <div className="relative bg-card rounded-3xl border border-border/50 overflow-hidden group aspect-video">
+            <div className="relative bg-card rounded-3xl border border-border/50 overflow-hidden group aspect-[4/3] sm:aspect-video">
               <img 
                 src={heroImage} 
                 alt="Rodina sledující televizi s PODA internetem" 
-                className="w-full h-full object-cover animate-ken-burns"
+                className="w-full h-full object-cover object-center animate-ken-burns"
                 loading="eager"
               />
               

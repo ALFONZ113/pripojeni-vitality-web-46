@@ -40,7 +40,7 @@ const Navbar = memo(() => {
         <Link to="/" className="flex items-center group">
           <div className="flex flex-col">
             <Logo size="md" />
-            <span className="hidden md:block text-[10px] text-muted-foreground/70 font-body tracking-wide -mt-0.5">
+            <span className="text-[8px] md:text-[10px] text-muted-foreground/70 font-body tracking-wide -mt-0.5">
               Autorizovaný partner <span className="text-primary font-medium">PODA</span>
             </span>
           </div>

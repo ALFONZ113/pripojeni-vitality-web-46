@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown, Phone, Play, Sparkles, Loader2 } from 'lucide-react';
+import { ArrowRight, ChevronDown, Phone, Sparkles, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
@@ -246,16 +246,6 @@ const HeroSection = () => {
                 loading="eager"
               />
               
-              {/* Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <motion.div 
-                  className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer shadow-xl shadow-primary/30"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Play className="w-6 h-6 md:w-8 md:h-8 text-primary-foreground ml-1" fill="currentColor" />
-                </motion.div>
-              </div>
               
               {/* Stats Bar at Bottom */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/98 to-transparent p-4 md:p-6 pt-12 md:pt-16">

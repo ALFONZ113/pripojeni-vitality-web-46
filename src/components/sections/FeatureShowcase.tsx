@@ -109,7 +109,7 @@ const FeatureItem = ({ feature, index }: FeatureItemProps) => {
             <Icon className="w-6 h-6 text-primary" />
           </div>
           <span className="text-muted-foreground font-body text-sm uppercase tracking-widest">
-            Feature 0{index + 1}
+            Výhoda 0{index + 1}
           </span>
         </div>
         

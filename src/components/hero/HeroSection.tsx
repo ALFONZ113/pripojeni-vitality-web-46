@@ -134,55 +134,55 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Headlines - LARGER */}
+            {/* Headlines - EXTRA LARGE */}
             <motion.h1 
               id="hero-title"
               variants={itemVariants}
-              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-[1.05] tracking-tight"
+              className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 md:mb-8 leading-[1.0] tracking-tight"
             >
               <span className="text-foreground block">Internet, který</span>
               <span className="text-gradient-gold block">nikdy nezklame</span>
             </motion.h1>
 
-            {/* Subtitle */}
+            {/* Subtitle - LARGER */}
             <motion.p 
               variants={itemVariants}
-              className="text-foreground/80 text-sm sm:text-base md:text-lg mb-4 md:mb-6 max-w-lg mx-auto lg:mx-0 leading-relaxed font-body"
+              className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body"
             >
               Připojte svůj domov k budoucnosti. Gigabitový optický internet až{' '}
               <span className="text-primary font-semibold">1000 Mbps</span> s{' '}
               <span className="text-primary font-semibold">TV zdarma</span>.
             </motion.p>
 
-            {/* Phone Input Form - Compact */}
+            {/* Phone Input Form - LARGER */}
             <motion.form 
               variants={itemVariants} 
               onSubmit={handlePhoneSubmit}
-              className="mb-4 md:mb-6"
+              className="mb-6 md:mb-8"
             >
-              <div className="glass rounded-xl p-2 sm:p-3 max-w-md mx-auto lg:mx-0">
-                <div className="flex flex-col sm:flex-row gap-2">
+              <div className="glass rounded-2xl p-3 sm:p-4 max-w-lg mx-auto lg:mx-0">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <div className="flex-1 relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <input
                       type="tel"
                       placeholder="Vaše telefonní číslo"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="w-full bg-secondary/50 border border-border rounded-lg pl-9 pr-3 py-2.5 sm:py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all font-body"
+                      className="w-full bg-secondary/50 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all font-body"
                       required
                     />
                   </div>
                   <Button 
                     type="submit" 
                     variant="gold" 
-                    size="default"
-                    className="shadow-lg shadow-primary/20 w-full sm:w-auto whitespace-nowrap"
+                    size="lg"
+                    className="shadow-lg shadow-primary/20 w-full sm:w-auto whitespace-nowrap px-8 py-4 text-base"
                     disabled={isSubmitted || isLoading}
                   >
                     {isLoading ? (
                       <>
-                        <Loader2 className="h-4 w-4 mr-1.5 animate-spin" />
+                        <Loader2 className="h-5 w-5 mr-2 animate-spin" />
                         Odesílám
                       </>
                     ) : isSubmitted ? 'Odesláno ✓' : 'Zavolejte mi'}
@@ -191,20 +191,20 @@ const HeroSection = () => {
               </div>
             </motion.form>
 
-            {/* Trust Points - Hidden on smallest mobile */}
+            {/* Trust Points - LARGER */}
             <motion.div 
               variants={itemVariants} 
-              className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-2 mb-4 md:mb-6"
+              className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3"
             >
               {trustPoints.map((point, index) => (
                 <motion.span 
                   key={index}
-                  className="flex items-center text-xs md:text-sm text-foreground/80 font-body"
+                  className="flex items-center text-sm md:text-base text-foreground/80 font-body"
                   initial={{ opacity: 0, x: -10 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.5 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5 shadow-sm shadow-green-500/50" />
+                  <span className="w-2 h-2 rounded-full bg-green-500 mr-2 shadow-sm shadow-green-500/50" />
                   {point}
                 </motion.span>
               ))}
@@ -220,42 +220,42 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="hidden lg:flex flex-col items-end justify-center gap-4"
+            className="hidden lg:flex flex-col items-end justify-center gap-5"
           >
-            {/* Stats Cards - Vertical Layout like reference image */}
+            {/* Stats Cards - LARGER */}
             {stats.map((stat, index) => (
               <motion.div 
                 key={index}
                 initial={{ opacity: 0, x: 30 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.5 + index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="glass rounded-xl px-6 py-4 border border-primary/30 min-w-[200px] flex items-center gap-4 hover:border-primary/50 transition-colors"
+                className="glass rounded-2xl px-8 py-5 border border-primary/30 min-w-[240px] flex items-center gap-5 hover:border-primary/50 transition-colors"
               >
                 {/* Icon circle */}
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <div className="w-3 h-3 rounded-full bg-primary shadow-[0_0_12px_rgba(218,165,32,0.8)]" />
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                  <div className="w-4 h-4 rounded-full bg-primary shadow-[0_0_16px_rgba(218,165,32,0.8)]" />
                 </div>
                 {/* Text */}
                 <div>
-                  <div className="text-xl font-display font-bold text-foreground">
+                  <div className="text-2xl font-display font-bold text-foreground">
                     <span className="text-primary drop-shadow-[0_0_8px_rgba(218,165,32,0.4)]">{stat.value}</span>
-                    <span className="text-primary text-sm ml-0.5">{stat.suffix}</span>
+                    <span className="text-primary text-base ml-1">{stat.suffix}</span>
                   </div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider font-body font-medium">
+                  <div className="text-sm text-muted-foreground uppercase tracking-wider font-body font-medium">
                     {stat.label}
                   </div>
                 </div>
               </motion.div>
             ))}
 
-            {/* Price Badge */}
+            {/* Price Badge - LARGER */}
             <motion.div 
-              className="text-center mt-2"
+              className="text-center mt-4"
               initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <span className="text-3xl font-display font-bold text-foreground">
+              <span className="text-4xl xl:text-5xl font-display font-bold text-foreground">
                 OD <span className="text-primary">300 Kč</span>/měs
               </span>
             </motion.div>

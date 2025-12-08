@@ -210,30 +210,7 @@ const HeroSection = () => {
               ))}
             </motion.div>
 
-            {/* CTA Buttons - Stack on mobile */}
-            <motion.div 
-              variants={itemVariants} 
-              className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start"
-            >
-              <Button 
-                variant="gold" 
-                size="lg" 
-                asChild 
-                className="shadow-lg shadow-primary/30" 
-                onClick={handleContactClick}
-              >
-                <Link to="/kontakt">
-                  Mám zájem
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button variant="heroOutline" size="lg" asChild className="hidden sm:inline-flex">
-                <a href="tel:+420730431313">
-                  <Phone className="mr-2 h-4 w-4" />
-                  +420 730 431 313
-                </a>
-              </Button>
-            </motion.div>
+            {/* CTA Buttons removed - now in Navbar */}
           </motion.div>
 
           {/* ═══════════════════════════════════════════════════════════════

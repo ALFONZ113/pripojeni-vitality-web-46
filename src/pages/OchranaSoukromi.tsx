@@ -1,15 +1,13 @@
-
 import React from 'react';
 import { Shield } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 const OchranaSoukromi = () => {
-  // Aktuální datum pro dynamickou aktualizaci metadat
   const currentDate = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="py-24 min-h-screen bg-gray-50">
+    <div className="py-24 min-h-screen bg-background">
       <Helmet>
         <title>Ochrana soukromí | PODA Internet od Popri.cz</title>
         <meta name="description" content="Zásady ochrany osobních údajů při využívání služeb PODA internetu. Informace o zpracování osobních údajů, vašich právech a způsobech jejich uplatnění." />
@@ -25,7 +23,6 @@ const OchranaSoukromi = () => {
         <meta name="keywords" content="ochrana soukromí, GDPR, PODA internet, osobní údaje, zpracování dat, Popri.cz" />
         <meta name="last-updated" content={currentDate} />
 
-        {/* Strukturovaná data pro stránku s dokumentací */}
         <script type="application/ld+json">
           {`
             {
@@ -63,34 +60,34 @@ const OchranaSoukromi = () => {
       
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
-          <nav className="flex mb-6 text-sm text-gray-500" aria-label="Breadcrumb">
+          <nav className="flex mb-6 text-sm text-muted-foreground" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2">
               <li className="inline-flex items-center">
-                <Link to="/" className="hover:text-poda-blue">Úvod</Link>
+                <Link to="/" className="hover:text-primary transition-colors">Úvod</Link>
               </li>
               <li className="flex items-center">
-                <span className="mx-1">/</span>
-                <span className="text-gray-700">Ochrana soukromí</span>
+                <span className="mx-1 text-muted-foreground/50">/</span>
+                <span className="text-foreground">Ochrana soukromí</span>
               </li>
             </ol>
           </nav>
 
           <div className="flex items-center gap-3 mb-8">
-            <Shield className="h-8 w-8 text-poda-blue" />
-            <h1 className="text-4xl font-bold text-poda-blue">Ochrana soukromí</h1>
+            <Shield className="h-8 w-8 text-primary" />
+            <h1 className="text-4xl font-display font-bold text-gradient-gold">Ochrana soukromí</h1>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-8 space-y-6">
+          <div className="glass rounded-xl p-8 space-y-6 border border-border">
             <section>
-              <h2 className="text-2xl font-semibold text-poda-blue mb-4">1. Úvod</h2>
-              <p className="text-gray-700 leading-relaxed">
+              <h2 className="text-2xl font-display font-semibold text-foreground mb-4">1. Úvod</h2>
+              <p className="text-muted-foreground leading-relaxed">
                 Ochrana vašeho soukromí je pro nás velmi důležitá. Tento dokument vysvětluje, jak zpracováváme a chráníme vaše osobní údaje při využívání našich služeb.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-poda-blue mb-4">2. Jaké údaje shromažďujeme</h2>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
+              <h2 className="text-2xl font-display font-semibold text-foreground mb-4">2. Jaké údaje shromažďujeme</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li>Kontaktní údaje (jméno, email, telefon)</li>
                 <li>Adresa pro instalaci služeb</li>
                 <li>Technické údaje potřebné pro poskytování služeb</li>
@@ -99,11 +96,11 @@ const OchranaSoukromi = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-poda-blue mb-4">3. Jak údaje používáme</h2>
-              <p className="text-gray-700 leading-relaxed">
+              <h2 className="text-2xl font-display font-semibold text-foreground mb-4">3. Jak údaje používáme</h2>
+              <p className="text-muted-foreground leading-relaxed">
                 Vaše údaje používáme především pro:
               </p>
-              <ul className="list-disc list-inside space-y-2 text-gray-700 mt-2">
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mt-2">
                 <li>Poskytování našich služeb</li>
                 <li>Komunikaci s vámi</li>
                 <li>Zlepšování našich služeb</li>
@@ -112,18 +109,18 @@ const OchranaSoukromi = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-poda-blue mb-4">4. Zabezpečení údajů</h2>
-              <p className="text-gray-700 leading-relaxed">
+              <h2 className="text-2xl font-display font-semibold text-foreground mb-4">4. Zabezpečení údajů</h2>
+              <p className="text-muted-foreground leading-relaxed">
                 Implementujeme vhodná technická a organizační opatření k ochraně vašich osobních údajů. Pravidelně kontrolujeme a aktualizujeme naše bezpečnostní systémy.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-poda-blue mb-4">5. Vaše práva</h2>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <h2 className="text-2xl font-display font-semibold text-foreground mb-4">5. Vaše práva</h2>
+              <p className="text-muted-foreground leading-relaxed mb-2">
                 Máte právo na:
               </p>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li>Přístup k vašim údajům</li>
                 <li>Opravu nepřesných údajů</li>
                 <li>Výmaz údajů</li>
@@ -133,14 +130,14 @@ const OchranaSoukromi = () => {
               </ul>
             </section>
             
-            <div className="mt-10 pt-6 border-t border-gray-200">
-              <p className="text-gray-600">
+            <div className="mt-10 pt-6 border-t border-border">
+              <p className="text-muted-foreground">
                 Máte-li jakékoli otázky ohledně zpracování vašich osobních údajů,
-                <Link to="/kontakt" className="text-poda-blue hover:text-poda-orange ml-1">
+                <Link to="/kontakt" className="text-primary hover:text-primary/80 ml-1 transition-colors">
                   kontaktujte nás
                 </Link>.
               </p>
-              <p className="text-gray-600 mt-2">
+              <p className="text-muted-foreground mt-2">
                 Poslední aktualizace: {new Date().toLocaleDateString('cs-CZ')}
               </p>
             </div>

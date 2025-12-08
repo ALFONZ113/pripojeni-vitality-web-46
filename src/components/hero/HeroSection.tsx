@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
 import { sendContactFormEmail } from '@/utils/emailService';
-import heroImage from '@/assets/hero-family-tv.jpg';
+import heroImage from '@/assets/hero-background-new.jpg';
 
 
 const HeroSection = () => {

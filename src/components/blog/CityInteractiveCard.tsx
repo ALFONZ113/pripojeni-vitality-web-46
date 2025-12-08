@@ -1,7 +1,6 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { Phone, MapPin, Wifi, Star } from 'lucide-react';
+import { Phone, MapPin, Wifi, Star, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface CityInteractiveCardProps {
@@ -11,46 +10,8 @@ interface CityInteractiveCardProps {
   price: string;
   specialOffer?: string;
   features: string[];
-  color: 'blue' | 'green' | 'purple' | 'orange' | 'amber';
+  color?: 'blue' | 'green' | 'purple' | 'orange' | 'amber'; // kept for backwards compatibility but ignored
 }
-
-const colorVariants = {
-  blue: {
-    gradient: 'from-blue-500 to-blue-700',
-    bg: 'bg-blue-50',
-    border: 'border-blue-200',
-    text: 'text-blue-800',
-    button: 'bg-blue-600 hover:bg-blue-700'
-  },
-  green: {
-    gradient: 'from-green-500 to-green-700',
-    bg: 'bg-green-50',
-    border: 'border-green-200',
-    text: 'text-green-800',
-    button: 'bg-green-600 hover:bg-green-700'
-  },
-  purple: {
-    gradient: 'from-purple-500 to-purple-700',
-    bg: 'bg-purple-50',
-    border: 'border-purple-200',
-    text: 'text-purple-800',
-    button: 'bg-purple-600 hover:bg-purple-700'
-  },
-  orange: {
-    gradient: 'from-orange-500 to-orange-700',
-    bg: 'bg-orange-50',
-    border: 'border-orange-200',
-    text: 'text-orange-800',
-    button: 'bg-orange-600 hover:bg-orange-700'
-  },
-  amber: {
-    gradient: 'from-amber-500 to-amber-700',
-    bg: 'bg-amber-50',
-    border: 'border-amber-200',
-    text: 'text-amber-800',
-    button: 'bg-amber-600 hover:bg-amber-700'
-  }
-};
 
 const CityInteractiveCard = ({
   cityName,
@@ -58,20 +19,17 @@ const CityInteractiveCard = ({
   speed,
   price,
   specialOffer,
-  features,
-  color
+  features
 }: CityInteractiveCardProps) => {
-  const colors = colorVariants[color];
-
   return (
-    <Card className={`${colors.bg} ${colors.border} hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}>
-      <CardHeader className={`bg-gradient-to-r ${colors.gradient} text-white`}>
-        <CardTitle className="flex items-center gap-2">
-          <MapPin className="h-5 w-5" />
+    <Card className="bg-card border border-border/30 hover:border-primary/30 hover:shadow-gold-glow/30 transition-all duration-300 hover:-translate-y-1">
+      <CardHeader className="bg-gradient-to-r from-primary/20 to-primary/10 border-b border-border/30">
+        <CardTitle className="flex items-center gap-2 font-heading text-foreground">
+          <MapPin className="h-5 w-5 text-primary" />
           {cityName}
         </CardTitle>
         {specialOffer && (
-          <div className="bg-white/20 px-2 py-1 rounded text-sm font-medium">
+          <div className="bg-primary/20 text-primary px-2 py-1 rounded text-sm font-medium">
             🎯 {specialOffer}
           </div>
         )}
@@ -80,32 +38,32 @@ const CityInteractiveCard = ({
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center">
-              <div className="flex items-center justify-center mb-1">
+              <div className="flex items-center justify-center mb-1 text-muted-foreground">
                 <Wifi className="h-4 w-4 mr-1" />
                 <span className="text-sm font-medium">Pokrytí</span>
               </div>
-              <div className="text-lg font-bold text-green-600">{coverage}</div>
+              <div className="text-lg font-bold text-primary">{coverage}</div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center mb-1">
+              <div className="flex items-center justify-center mb-1 text-muted-foreground">
                 <Star className="h-4 w-4 mr-1" />
                 <span className="text-sm font-medium">Rychlost</span>
               </div>
-              <div className="text-lg font-bold text-poda-blue">{speed}</div>
+              <div className="text-lg font-bold text-foreground">{speed}</div>
             </div>
           </div>
           
           <div className="text-center">
-            <div className="text-sm text-gray-600">Cena od</div>
-            <div className="text-2xl font-bold text-poda-orange">{price}</div>
+            <div className="text-sm text-muted-foreground">Cena od</div>
+            <div className="text-2xl font-bold text-primary">{price}</div>
           </div>
           
-          <div className={`${colors.bg} p-3 rounded-lg`}>
-            <h4 className={`font-semibold text-sm ${colors.text} mb-2`}>Výhody:</h4>
+          <div className="bg-secondary/50 p-3 rounded-lg border border-border/30">
+            <h4 className="font-semibold text-sm text-foreground mb-2">Výhody:</h4>
             <ul className="space-y-1">
               {features.map((feature, index) => (
-                <li key={index} className="text-xs flex items-center gap-1">
-                  <span className="text-green-500">✅</span>
+                <li key={index} className="text-xs flex items-center gap-2 text-muted-foreground">
+                  <Check className="h-3 w-3 text-primary flex-shrink-0" />
                   {feature}
                 </li>
               ))}
@@ -114,7 +72,7 @@ const CityInteractiveCard = ({
           
           <div className="flex gap-2">
             <Link to="/kontakt" className="flex-1">
-              <EnhancedButton className={`w-full ${colors.button} text-white`} size="sm">
+              <EnhancedButton variant="gold" className="w-full" size="sm">
                 💬 Získat nabídku
               </EnhancedButton>
             </Link>

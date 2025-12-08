@@ -533,3 +533,43 @@
 .blog-content .warning-box {
   @apply bg-card border-l-4 border-destructive p-6 rounded-r-lg my-6;
 }
+
+/* Fix white/light background boxes - force noir theme */
+.blog-content div[style*="background"],
+.blog-content div[class*="bg-white"],
+.blog-content div[class*="bg-gray"],
+.blog-content div[class*="bg-blue"],
+.blog-content div[class*="bg-slate"],
+.blog-content .bg-white,
+.blog-content .bg-gray-50,
+.blog-content .bg-gray-100,
+.blog-content .bg-blue-50,
+.blog-content .bg-blue-100,
+.blog-content .bg-slate-50,
+.blog-content .bg-slate-100 {
+  @apply !bg-card !text-foreground border border-border/30 rounded-lg;
+}
+
+.blog-content div[style*="background"] *,
+.blog-content div[class*="bg-white"] *,
+.blog-content div[class*="bg-gray"] *,
+.blog-content div[class*="bg-blue"] *,
+.blog-content div[class*="bg-slate"] * {
+  @apply !text-foreground;
+}
+
+.blog-content div[style*="background"] strong,
+.blog-content div[class*="bg-white"] strong,
+.blog-content div[class*="bg-gray"] strong,
+.blog-content div[class*="bg-blue"] strong,
+.blog-content div[class*="bg-slate"] strong {
+  @apply !text-primary;
+}
+
+.blog-content div[style*="background"] li::marker,
+.blog-content div[class*="bg-white"] li::marker,
+.blog-content div[class*="bg-gray"] li::marker,
+.blog-content div[class*="bg-blue"] li::marker,
+.blog-content div[class*="bg-slate"] li::marker {
+  @apply !text-primary;
+}

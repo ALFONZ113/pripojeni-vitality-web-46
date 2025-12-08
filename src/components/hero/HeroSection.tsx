@@ -129,14 +129,14 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Headlines - FORCED MAXIMUM SIZE with inline clamp() */}
+            {/* Headlines - Balanced elegant size */}
             <motion.h1 
               id="hero-title" 
               variants={itemVariants} 
               className="font-display font-bold mb-8 md:mb-12 tracking-tighter"
               style={{ 
-                fontSize: 'clamp(3rem, 10vw, 12rem)',
-                lineHeight: '0.85'
+                fontSize: 'clamp(2.5rem, 6vw, 6rem)',
+                lineHeight: '0.95'
               }}
             >
               <span className="text-foreground block">Internet, který</span>

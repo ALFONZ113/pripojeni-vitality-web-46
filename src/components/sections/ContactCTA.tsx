@@ -35,7 +35,7 @@ const ContactCTA = () => {
   };
 
   const trustBadges = [
-    { icon: Clock, text: 'Instalace do 48h' },
+    { icon: Clock, text: 'Rychlá instalace' },
     { icon: Shield, text: 'Bez závazků' },
     { icon: Zap, text: 'Rychlá aktivace' }
   ];
@@ -58,7 +58,7 @@ const ContactCTA = () => {
           {/* Badge */}
           <span className="badge-gold mb-4 md:mb-6 inline-block">
             <Zap className="w-4 h-4" />
-            Rychlá instalace do 48 hodin
+            Rychlá profesionální instalace
           </span>
 
           {/* Headline */}

@@ -17,7 +17,7 @@ export interface PageSEOData {
 export const OPTIMIZED_PAGE_SEO: Record<string, PageSEOData> = {
   '/': {
     title: 'PODA Internet | Rychlé Optické Připojení + TV | Tel: 730 431 313',
-    description: 'Nejrychlejší PODA internet v Moravskoslezském kraji. Gigabitové optické připojení s TV zdarma. Bez závazků, rychlá instalace do 48h. Tel: 730 431 313.',
+    description: 'Nejrychlejší PODA internet v Moravskoslezském kraji. Gigabitové optické připojení s TV zdarma. Bez závazků, rychlá instalace. Tel: 730 431 313.',
     keywords: ['PODA internet', 'optické připojení', 'rychlý internet', 'Moravskoslezský kraj', 'gigabit internet', 'TV zdarma', 'popri.cz'],
     canonical: 'https://www.popri.cz/',
     robots: 'index, follow',
@@ -26,7 +26,7 @@ export const OPTIMIZED_PAGE_SEO: Record<string, PageSEOData> = {
   
   '/internet-ostrava': {
     title: 'Internet Ostrava | PODA Gigabit + TV Zdarma | Tel: 730 431 313',
-    description: 'PODA internet Ostrava - gigabitové připojení GPON s TV zdarma. Pokrytí celé Ostravy včetně Poruby, instalace do 24h. Bez závazků od 250 Kč/měsíc. Tel: 730 431 313.',
+    description: 'PODA internet Ostrava - gigabitové připojení GPON s TV zdarma. Pokrytí celé Ostravy včetně Poruby, rychlá instalace. Bez závazků od 250 Kč/měsíc. Tel: 730 431 313.',
     keywords: ['internet Ostrava', 'PODA Ostrava', 'optické připojení Ostrava', 'gigabitový internet Ostrava', 'GPON Ostrava', 'internet Poruba'],
     canonical: 'https://www.popri.cz/internet-ostrava'
   },

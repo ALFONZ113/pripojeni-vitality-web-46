@@ -40,7 +40,7 @@ export const orderingSection = `
             <li>Vyberte tarif podle potřeb domácnosti/firmy</li>
             <li>Ověřte dostupnost na konkrétní adrese</li>
             <li>Objednejte online nebo zavolejte na regionální linku <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a></li>
-            <li>Instalace do 3-5 dní</li>
+            <li>Rychlá profesionální instalace</li>
         </ol>
     </div>
 
@@ -51,7 +51,7 @@ export const orderingSection = `
             <li>Kontaktujte regionálního specialistu pro Karviná na <a href="tel:+420730431313" class="text-poda-blue font-medium">730 431 313</a></li>
             <li>Konzultace zdarma telefonicky</li>
             <li>Výběr optimálního tarifu pro vaši lokalitu</li>
-            <li>Rychlá instalace do 2-4 dní</li>
+            <li>Rychlá profesionální instalace</li>
         </ul>
     </div>
 

@@ -111,7 +111,7 @@ export const karvinaPost: BlogPost = {
         <li><strong>Výběr balíčku</strong> - přehledné porovnání možností</li>
         <li><strong>Online objednávka</strong> - bezpečný formulář</li>
         <li><strong>Potvrzení termínu</strong> - flexibilní plánování instalace</li>
-        <li><strong>Profesionální instalace</strong> - obvykle do 48 hodin</li>
+        <li><strong>Profesionální instalace</strong> - rychle a profesionálně</li>
       </ol>
 
       <h2>Závěr: Digitální transformace Karviné</h2>

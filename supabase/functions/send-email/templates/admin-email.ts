@@ -30,7 +30,7 @@ export const generateAdminEmailHTML = (formData: any): string => {
           <!-- Header with Gold Gradient -->
           <div style="background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 50%, ${colors.gold} 100%); padding: 32px 24px; text-align: center;">
             <h1 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: ${colors.noir}; margin: 0;">
-              📞 Žádost o zpětné volání
+              Žádost o zpětné volání
             </h1>
           </div>
 
@@ -87,7 +87,7 @@ export const generateAdminEmailHTML = (formData: any): string => {
           <!-- Header with Gold Gradient -->
           <div style="background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 50%, ${colors.gold} 100%); padding: 32px 24px; text-align: center;">
             <h1 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: ${colors.noir}; margin: 0;">
-              ✨ Nový kontakt z webu
+              Nový kontakt z webu
             </h1>
           </div>
 
@@ -130,7 +130,7 @@ export const generateAdminEmailHTML = (formData: any): string => {
               ${formData.propertyType ? `
               <div style="margin-bottom: 16px;">
                 <p style="color: ${colors.creamMuted}; font-size: 12px; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 1px;">Typ</p>
-                <p style="color: ${colors.cream}; font-size: 16px; margin: 0; font-weight: 500;">${formData.propertyType === 'byty' ? '🏢 Byt/bytovka' : '🏠 Rodinný dům'}</p>
+                <p style="color: ${colors.cream}; font-size: 16px; margin: 0; font-weight: 500;">${formData.propertyType === 'byty' ? 'Byt / bytovka' : 'Rodinný dům'}</p>
               </div>
               ` : ''}
               
@@ -184,7 +184,7 @@ export const generateAdminEmailHTML = (formData: any): string => {
             ${formData.message ? `
             <div style="background: ${colors.noirCard}; border: 1px solid ${colors.border}; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
               <h2 style="font-family: 'Playfair Display', serif; font-size: 20px; color: ${colors.cream}; margin: 0 0 16px 0;">
-                💬 Zpráva
+                Zpráva
               </h2>
               <p style="color: ${colors.cream}; font-size: 15px; line-height: 1.6; margin: 0; white-space: pre-line;">${formData.message}</p>
             </div>
@@ -193,10 +193,10 @@ export const generateAdminEmailHTML = (formData: any): string => {
             <!-- Action Buttons -->
             <div style="text-align: center;">
               <a href="tel:${formData.phone}" style="display: inline-block; background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%); color: ${colors.noir}; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 10px 30px rgba(212, 165, 23, 0.3); margin-right: 12px;">
-                📞 Zavolat
+                Zavolat
               </a>
               <a href="mailto:${formData.email}" style="display: inline-block; background: ${colors.noirCard}; border: 1px solid ${colors.gold}; color: ${colors.gold}; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px;">
-                ✉️ Email
+                Napsat email
               </a>
             </div>
           </div>

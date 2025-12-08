@@ -19,48 +19,61 @@ serve(async (req) => {
       throw new Error('LOVABLE_API_KEY not configured');
     }
 
-    console.log('Generating image for prompt:', prompt);
+    console.log('Generating image with Gemini model for prompt:', prompt);
 
     // Vylepšíme prompt pre lepšie výsledky
-    const enhancedPrompt = `${prompt}. Professional, high-quality, modern design. 16:9 aspect ratio. Ultra high resolution. Hero image style.`;
+    const enhancedPrompt = `${prompt}. Professional photography, high-quality, modern design, 16:9 aspect ratio, ultra high resolution, editorial style.`;
 
-    // Volanie Lovable Image API (Flux)
-    const response = await fetch('https://lovable.app/api/ai/image/generate', {
+    // Volanie Lovable AI Gateway s Gemini modelom (Nano banana)
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${lovableApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'flux.dev',
-        prompt: enhancedPrompt,
-        width: 1920,
-        height: 1080,
+        model: 'google/gemini-2.5-flash-image-preview',
+        messages: [
+          {
+            role: 'user',
+            content: enhancedPrompt
+          }
+        ],
+        modalities: ['image', 'text']
       }),
     });
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('Image generation API error:', errorData);
-      throw new Error(`Image generation API error: ${response.status}`);
+      console.error('Gemini API error:', response.status, errorData);
+      throw new Error(`Gemini API error: ${response.status} - ${errorData}`);
     }
 
     const data = await response.json();
-    const imageUrl = data.url;
+    console.log('Gemini response received');
     
-    console.log('Image generated successfully:', imageUrl);
+    // Získame base64 obrázok z odpovede
+    const imageBase64 = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    
+    if (!imageBase64) {
+      console.error('No image in response:', JSON.stringify(data));
+      throw new Error('No image generated in response');
+    }
+
+    console.log('Image generated successfully with Gemini model');
 
     // Uložíme obrázok do Supabase Storage
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
     
     if (!supabaseUrl || !supabaseKey) {
-      console.log('Supabase credentials not found, returning URL only');
+      console.log('Supabase credentials not found, returning base64 only');
       return new Response(
         JSON.stringify({
           success: true,
-          image_url: imageUrl,
-          stored: false
+          image_url: imageBase64,
+          stored: false,
+          model: 'google/gemini-2.5-flash-image-preview'
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -68,10 +81,9 @@ serve(async (req) => {
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Stihneme obrázok
-    const imageResponse = await fetch(imageUrl);
-    const imageBlob = await imageResponse.blob();
-    const imageBuffer = await imageBlob.arrayBuffer();
+    // Konvertujeme base64 na buffer
+    const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+    const imageBuffer = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
 
     // Vytvoríme bucket ak neexistuje
     const { data: buckets } = await supabase.storage.listBuckets();
@@ -85,11 +97,11 @@ serve(async (req) => {
     }
 
     // Uložíme obrázok
-    const fileName = `${slug || Date.now()}-${Math.random().toString(36).substring(7)}.jpg`;
+    const fileName = `${slug || Date.now()}-${Math.random().toString(36).substring(7)}.png`;
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('ai-blog-images')
       .upload(fileName, imageBuffer, {
-        contentType: 'image/jpeg',
+        contentType: 'image/png',
         upsert: false
       });
 
@@ -98,9 +110,10 @@ serve(async (req) => {
       return new Response(
         JSON.stringify({
           success: true,
-          image_url: imageUrl,
+          image_url: imageBase64,
           stored: false,
-          error: uploadError.message
+          error: uploadError.message,
+          model: 'google/gemini-2.5-flash-image-preview'
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -116,9 +129,10 @@ serve(async (req) => {
       JSON.stringify({
         success: true,
         image_url: publicUrlData.publicUrl,
-        original_url: imageUrl,
+        original_base64: imageBase64,
         stored: true,
-        file_name: fileName
+        file_name: fileName,
+        model: 'google/gemini-2.5-flash-image-preview'
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
@@ -128,7 +142,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: error.message 
+        error: error.message,
+        model: 'google/gemini-2.5-flash-image-preview'
       }),
       { 
         status: 500,

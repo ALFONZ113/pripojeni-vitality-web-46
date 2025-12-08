@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
 import { sendContactFormEmail } from '@/utils/emailService';
-import heroImage from '@/assets/hero-family-tv.jpg';
+import heroBgMobile from '@/assets/hero-bg-mobile.png';
+import heroBgDesktop from '@/assets/hero-bg-desktop.png';
 
 
 const HeroSection = () => {
@@ -92,12 +93,17 @@ const HeroSection = () => {
         className="absolute inset-0 z-0"
         style={{ scale: imageScale }}
       >
-        <img 
-          src={heroImage} 
-          alt="Rodina sledující televizi s PODA internetem" 
-          className="w-full h-full object-cover object-center"
-          loading="eager"
-        />
+        <picture>
+          {/* Desktop/Tablet - od 768px */}
+          <source media="(min-width: 768px)" srcSet={heroBgDesktop} />
+          {/* Mobile - default (vertikálny obrázok) */}
+          <img 
+            src={heroBgMobile} 
+            alt="Abstraktní optická vlákna - PODA internet" 
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </picture>
         {/* Dark Overlay - stronger gradient for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />

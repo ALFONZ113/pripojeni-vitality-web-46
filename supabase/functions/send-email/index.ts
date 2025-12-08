@@ -114,7 +114,7 @@ serve(async (req) => {
     
     try {
       const emailResponse = await resend.emails.send({
-        from: "PODA <onboarding@resend.dev>",
+        from: "PODA <info@popri.cz>",
         to: [to],
         subject: subject,
         html: htmlContent,

@@ -29,7 +29,7 @@ const TariffSection = memo(() => {
     { icon: Wifi, value: '1000', unit: 'Mbps', label: 'Max rychlost' },
     { icon: Tv, value: '160+', unit: '', label: 'TV kanálů' },
     { icon: Shield, value: '99.9', unit: '%', label: 'Dostupnost' },
-    { icon: Zap, value: '48', unit: 'h', label: 'Instalace' }
+    { icon: Zap, value: '⚡', unit: '', label: 'Rychlá instalace' }
   ];
 
   return (

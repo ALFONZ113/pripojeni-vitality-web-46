@@ -129,8 +129,8 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Headlines - EXTRA LARGE */}
-            <motion.h1 id="hero-title" variants={itemVariants} className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 md:mb-8 leading-[1.0] tracking-tight">
+            {/* Headlines - MAXIMUM SIZE */}
+            <motion.h1 id="hero-title" variants={itemVariants} className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-bold mb-8 md:mb-12 leading-[0.9] tracking-tighter">
               <span className="text-foreground block">Internet, který</span>
               <span className="text-gradient-gold block">nikdy nezklame</span>
             </motion.h1>

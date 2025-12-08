@@ -11,7 +11,6 @@ import heroImage from '@/assets/hero-family-tv.jpg';
 
 const HeroSection = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [isHovering, setIsHovering] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +20,7 @@ const HeroSection = () => {
   const isMobile = useIsMobile();
   
   // Parallax effects
-  const imageY = useTransform(scrollY, [0, 500], [0, 30]);
+  const imageScale = useTransform(scrollY, [0, 500], [1, 1.1]);
   const scrollOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   const handleContactClick = (e: React.MouseEvent) => {
@@ -72,40 +71,53 @@ const HeroSection = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
     }
   };
   
   return (
     <section 
       ref={ref}
-      className="relative min-h-screen flex items-center pt-20 md:pt-28 pb-12 md:pb-24 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center overflow-hidden"
       aria-labelledby="hero-title"
     >
-      {/* Subtle Background Glow */}
-      <div className="absolute inset-0 bg-background">
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] opacity-50" />
-        <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] opacity-40" />
-      </div>
+      {/* ═══════════════════════════════════════════════════════════════
+          FULL-SCREEN BACKGROUND IMAGE
+         ═══════════════════════════════════════════════════════════════ */}
+      <motion.div 
+        className="absolute inset-0 z-0"
+        style={{ scale: imageScale }}
+      >
+        <img 
+          src={heroImage} 
+          alt="Rodina sledující televizi s PODA internetem" 
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+        />
+        {/* Dark Overlay - stronger gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
+      </motion.div>
 
-      <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      {/* Content Container */}
+      <div className="container-custom relative z-10 py-20 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           
           {/* ═══════════════════════════════════════════════════════════════
-              CONTENT COLUMN
+              CONTENT COLUMN - LEFT SIDE
              ═══════════════════════════════════════════════════════════════ */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="text-center lg:text-left px-4 lg:px-0"
+            className="text-center lg:text-left"
           >
             {/* Badge with pulsing dot */}
-            <motion.div variants={itemVariants} className="mb-6 md:mb-8">
+            <motion.div variants={itemVariants} className="mb-4 md:mb-6">
               <span className="badge-gold">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -116,11 +128,11 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Headlines - NO 3D rotations */}
+            {/* Headlines */}
             <motion.h1 
               id="hero-title"
               variants={itemVariants}
-              className="font-display text-4xl sm:text-5xl md:text-5xl xl:text-7xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
+              className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold mb-3 md:mb-5 leading-[1.1] tracking-tight"
             >
               <span className="text-foreground block">Internet, který</span>
               <span className="text-gradient-gold block">nikdy nezklame</span>
@@ -129,43 +141,43 @@ const HeroSection = () => {
             {/* Subtitle */}
             <motion.p 
               variants={itemVariants}
-              className="text-muted-foreground text-base md:text-lg lg:text-xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body"
+              className="text-foreground/80 text-sm sm:text-base md:text-lg mb-4 md:mb-6 max-w-lg mx-auto lg:mx-0 leading-relaxed font-body"
             >
               Připojte svůj domov k budoucnosti. Gigabitový optický internet až{' '}
               <span className="text-primary font-semibold">1000 Mbps</span> s{' '}
               <span className="text-primary font-semibold">TV zdarma</span>.
             </motion.p>
 
-            {/* Phone Input Form */}
+            {/* Phone Input Form - Compact */}
             <motion.form 
               variants={itemVariants} 
               onSubmit={handlePhoneSubmit}
-              className="mb-6 md:mb-8"
+              className="mb-4 md:mb-6"
             >
-              <div className="glass rounded-2xl p-3 md:p-4 max-w-md mx-auto lg:mx-0">
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+              <div className="glass rounded-xl p-2 sm:p-3 max-w-md mx-auto lg:mx-0">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <div className="flex-1 relative">
-                    <Phone className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <input
                       type="tel"
                       placeholder="Vaše telefonní číslo"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="w-full bg-secondary/50 border border-border rounded-xl pl-10 md:pl-12 pr-4 py-3 md:py-3.5 text-sm md:text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all font-body"
+                      className="w-full bg-secondary/50 border border-border rounded-lg pl-9 pr-3 py-2.5 sm:py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all font-body"
                       required
                     />
                   </div>
                   <Button 
                     type="submit" 
                     variant="gold" 
-                    size="lg" 
-                    className="shadow-lg shadow-primary/20 w-full sm:w-auto"
+                    size="default"
+                    className="shadow-lg shadow-primary/20 w-full sm:w-auto whitespace-nowrap"
                     disabled={isSubmitted || isLoading}
                   >
                     {isLoading ? (
                       <>
-                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Odesílám...
+                        <Loader2 className="h-4 w-4 mr-1.5 animate-spin" />
+                        Odesílám
                       </>
                     ) : isSubmitted ? 'Odesláno ✓' : 'Zavolejte mi'}
                   </Button>
@@ -173,10 +185,10 @@ const HeroSection = () => {
               </div>
             </motion.form>
 
-            {/* Trust Points with green dots */}
+            {/* Trust Points - Hidden on smallest mobile */}
             <motion.div 
               variants={itemVariants} 
-              className="flex flex-wrap justify-center lg:justify-start gap-x-4 md:gap-x-6 gap-y-2 md:gap-y-3 mb-8 md:mb-10"
+              className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-2 mb-4 md:mb-6"
             >
               {trustPoints.map((point, index) => (
                 <motion.span 
@@ -186,16 +198,16 @@ const HeroSection = () => {
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.5 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <span className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-green-500 mr-1.5 md:mr-2 shadow-sm shadow-green-500/50" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5 shadow-sm shadow-green-500/50" />
                   {point}
                 </motion.span>
               ))}
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Stack on mobile */}
             <motion.div 
               variants={itemVariants} 
-              className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start"
             >
               <Button 
                 variant="gold" 
@@ -206,12 +218,12 @@ const HeroSection = () => {
               >
                 <Link to="/kontakt">
                   Mám zájem
-                  <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button variant="heroOutline" size="lg" asChild>
+              <Button variant="heroOutline" size="lg" asChild className="hidden sm:inline-flex">
                 <a href="tel:+420730431313">
-                  <Phone className="mr-2 h-4 w-4 md:h-5 md:w-5" />
+                  <Phone className="mr-2 h-4 w-4" />
                   +420 730 431 313
                 </a>
               </Button>
@@ -219,85 +231,89 @@ const HeroSection = () => {
           </motion.div>
 
           {/* ═══════════════════════════════════════════════════════════════
-              IMAGE COLUMN
+              STATS COLUMN - RIGHT SIDE (visible on desktop)
              ═══════════════════════════════════════════════════════════════ */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            style={{ y: imageY }}
-            className="relative px-4 lg:px-0"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="hidden lg:flex flex-col items-end justify-center gap-6"
           >
-            {/* Glow Effect */}
-            <motion.div 
-              className="absolute -inset-4 bg-primary/15 rounded-3xl blur-3xl"
-              animate={isHovering ? { opacity: 0.6 } : { opacity: 0.3 }}
-              transition={{ duration: 0.4 }}
-            />
-            
-            {/* Main Image Container */}
-            <div className="relative bg-card rounded-3xl border border-border/50 overflow-hidden group aspect-[4/3] sm:aspect-video">
-              <img 
-                src={heroImage} 
-                alt="Rodina sledující televizi s PODA internetem" 
-                className="w-full h-full object-cover object-center animate-ken-burns"
-                loading="eager"
-              />
-              
-              
-              {/* Stats Bar at Bottom */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/98 to-transparent p-4 md:p-6 pt-12 md:pt-16">
-                <div className="flex justify-around">
-                  {stats.map((stat, index) => (
-                    <motion.div 
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ delay: 0.6 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className="text-center"
-                    >
-                      <div className="text-lg sm:text-xl md:text-3xl font-display font-bold">
-                        <span className="text-primary drop-shadow-[0_0_10px_rgba(218,165,32,0.5)]">{stat.value}</span>
-                        <span className="text-primary text-sm md:text-lg">{stat.suffix}</span>
-                      </div>
-                      <div className="text-[10px] md:text-xs text-foreground/90 uppercase tracking-wider mt-0.5 md:mt-1 font-body font-medium">
-                        {stat.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+            {/* Stats Cards */}
+            <div className="glass rounded-2xl p-6 border border-primary/20">
+              <div className="flex gap-8">
+                {stats.map((stat, index) => (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.6 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="text-center"
+                  >
+                    <div className="text-2xl md:text-3xl font-display font-bold">
+                      <span className="text-primary drop-shadow-[0_0_10px_rgba(218,165,32,0.5)]">{stat.value}</span>
+                      <span className="text-primary text-lg">{stat.suffix}</span>
+                    </div>
+                    <div className="text-xs text-foreground/80 uppercase tracking-wider mt-1 font-body font-medium">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-
-              {/* Price Badge - Static, no aggressive animation */}
-              <motion.div 
-                className="absolute -top-2 -right-2 md:-top-3 md:-right-3 bg-primary text-primary-foreground px-3 md:px-5 py-1.5 md:py-2.5 rounded-full font-bold text-xs md:text-sm shadow-lg shadow-primary/30"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                od 300 Kč/měs
-              </motion.div>
-              
             </div>
+
+            {/* Price Badge */}
+            <motion.div 
+              className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg shadow-primary/30"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              od 300 Kč/měs
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Mobile Stats Bar - Bottom of screen */}
         <motion.div 
-          style={{ opacity: scrollOpacity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="lg:hidden mt-6 glass rounded-xl p-3 border border-primary/20"
         >
-          <span className="text-xs text-muted-foreground uppercase tracking-widest mb-2 font-body">Scroll</span>
-          <motion.div 
-            animate={{ y: [0, 8, 0] }} 
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="h-5 w-5 text-primary" />
-          </motion.div>
+          <div className="flex justify-around items-center">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-lg font-display font-bold">
+                  <span className="text-primary">{stat.value}</span>
+                  <span className="text-primary text-xs">{stat.suffix}</span>
+                </div>
+                <div className="text-[10px] text-foreground/70 uppercase tracking-wider font-body">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+            <div className="text-center pl-3 border-l border-border">
+              <div className="text-sm font-bold text-primary">od 300 Kč</div>
+              <div className="text-[10px] text-foreground/70 uppercase">měsíčně</div>
+            </div>
+          </div>
         </motion.div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        style={{ opacity: scrollOpacity }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center z-10"
+      >
+        <span className="text-xs text-foreground/60 uppercase tracking-widest mb-2 font-body">Scroll</span>
+        <motion.div 
+          animate={{ y: [0, 8, 0] }} 
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="h-5 w-5 text-primary" />
+        </motion.div>
+      </motion.div>
 
       {/* Quick Contact Modal for Mobile */}
       <QuickContactModal 

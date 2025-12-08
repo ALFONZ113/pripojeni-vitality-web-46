@@ -62,7 +62,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
       <div style="background: ${colors.noirCard}; border: 1px solid ${tariff.recommended ? colors.gold : colors.border}; border-radius: 16px; padding: 24px; margin-bottom: 16px; position: relative; ${tariff.recommended ? `box-shadow: 0 0 40px rgba(212, 165, 23, 0.15);` : ''}">
         ${tariff.recommended ? `
         <div style="position: absolute; top: -1px; right: 24px; background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%); color: ${colors.noir}; padding: 6px 16px; border-radius: 0 0 8px 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-          ⭐ Doporučujeme
+          Doporučujeme
         </div>` : ''}
         
         <h3 style="font-family: 'Playfair Display', serif; color: ${colors.cream}; font-size: 22px; font-weight: 600; margin: ${tariff.recommended ? '20px 0 20px 0' : '0 0 20px 0'};">${tariff.name}</h3>
@@ -73,9 +73,9 @@ export const generateCustomerEmailHTML = (formData: any): string => {
         </div>
         
         <div style="background: ${colors.noir}; padding: 16px; border-radius: 12px; margin-bottom: 20px; border-left: 3px solid ${colors.gold};">
-          <div style="margin-bottom: 8px; font-weight: 600; color: ${colors.cream}; font-size: 15px;">🌐 Internet: ${tariff.speed}</div>
+          <div style="margin-bottom: 8px; font-weight: 600; color: ${colors.cream}; font-size: 15px;">Internet: ${tariff.speed}</div>
           <div style="margin-bottom: 8px; color: ${colors.creamMuted}; font-size: 13px;">${tariff.technology}</div>
-          <div style="margin-bottom: 0; font-weight: 600; color: ${colors.cream}; font-size: 15px;">📺 Televize: ${tariff.tvChannels}</div>
+          <div style="margin-bottom: 0; font-weight: 600; color: ${colors.cream}; font-size: 15px;">Televize: ${tariff.tvChannels}</div>
         </div>
         
         <div style="margin-bottom: 16px;">
@@ -98,11 +98,11 @@ export const generateCustomerEmailHTML = (formData: any): string => {
   };
 
   const benefits = [
-    { icon: '⚡', title: 'Garantovaná rychlost', desc: 'bez omezení a zpomalení' },
-    { icon: '📺', title: 'TV automaticky v ceně', desc: 'žádné extra poplatky' },
-    { icon: '🚀', title: 'Rychlá instalace', desc: 'do 7 pracovních dnů' },
-    { icon: '🛠️', title: 'Non-stop technická podpora', desc: '24/7 dostupnost' },
-    { icon: '💰', title: 'Bez skrytých poplatků', desc: 'transparentní ceny' }
+    { title: 'Garantovaná rychlost', desc: 'bez omezení a zpomalení' },
+    { title: 'TV automaticky v ceně', desc: 'žádné extra poplatky' },
+    { title: 'Rychlá instalace', desc: 'do 7 pracovních dnů' },
+    { title: 'Non-stop technická podpora', desc: '24/7 dostupnost' },
+    { title: 'Bez skrytých poplatků', desc: 'transparentní ceny' }
   ];
 
   return `
@@ -142,10 +142,10 @@ export const generateCustomerEmailHTML = (formData: any): string => {
           <!-- Location info -->
           ${formData.address || formData.city ? `
           <div style="background: ${colors.noirCard}; padding: 20px 24px; border-radius: 12px; margin-bottom: 32px; border-left: 4px solid ${colors.gold};">
-            <div style="font-weight: 600; color: ${colors.gold}; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">📍 Vaše adresa</div>
+            <div style="font-weight: 600; color: ${colors.gold}; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Vaše adresa</div>
             <div style="color: ${colors.cream}; font-size: 16px; margin-bottom: 8px;">${formData.address ? formData.address + ', ' : ''}${formData.city || ''}</div>
             <div style="color: ${colors.creamMuted}; font-size: 14px;">
-              Typ: ${isApartment ? '🏢 Byt/bytový dům - GPON' : '🏠 Rodinný dům - Bezdrátový internet'}
+              Typ: ${isApartment ? 'Byt / bytový dům — GPON' : 'Rodinný dům — Bezdrátový internet'}
             </div>
           </div>
           ` : ''}
@@ -153,7 +153,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
           <!-- Tariffs -->
           <div style="margin-bottom: 32px;">
             <h3 style="font-family: 'Playfair Display', serif; color: ${colors.cream}; font-size: 24px; margin-bottom: 24px; font-weight: 600; text-align: center;">
-              ✨ Dostupné služby
+              Dostupné služby
             </h3>
             ${generateTariffCards()}
           </div>
@@ -165,10 +165,10 @@ export const generateCustomerEmailHTML = (formData: any): string => {
             </h3>
             ${benefits.map(benefit => `
             <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 8px 0;">
-              <div style="font-size: 20px; margin-right: 16px; flex-shrink: 0;">${benefit.icon}</div>
+              <div style="width: 10px; height: 10px; background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%); border-radius: 50%; margin-right: 16px; flex-shrink: 0; margin-top: 5px;"></div>
               <div>
                 <strong style="color: ${colors.gold}; font-size: 15px;">${benefit.title}</strong>
-                <span style="color: ${colors.creamMuted}; font-size: 14px;"> - ${benefit.desc}</span>
+                <span style="color: ${colors.creamMuted}; font-size: 14px;"> — ${benefit.desc}</span>
               </div>
             </div>
             `).join('')}
@@ -177,7 +177,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
           <!-- Next steps -->
           <div style="background: linear-gradient(135deg, ${colors.gold}15 0%, ${colors.goldLight}10 100%); border: 1px solid ${colors.gold}30; padding: 28px; border-radius: 16px; margin-bottom: 32px;">
             <h3 style="font-family: 'Playfair Display', serif; margin: 0 0 16px 0; color: ${colors.cream}; font-size: 22px; font-weight: 600; text-align: center;">
-              🚀 Další kroky
+              Další kroky
             </h3>
             <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; text-align: center; color: ${colors.creamMuted};">
               Náš obchodní zástupce vás bude kontaktovat do <strong style="color: ${colors.gold};">24 hodin</strong>
@@ -198,7 +198,7 @@ export const generateCustomerEmailHTML = (formData: any): string => {
             
             <div style="text-align: center;">
               <a href="tel:+420730431313" style="display: inline-block; background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 100%); color: ${colors.noir}; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px; box-shadow: 0 10px 30px rgba(212, 165, 23, 0.3);">
-                📞 Zavolat: +420 730 431 313
+                Zavolat: +420 730 431 313
               </a>
             </div>
           </div>

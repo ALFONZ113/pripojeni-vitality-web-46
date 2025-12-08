@@ -441,7 +441,7 @@ export const technologiePosts: BlogPost[] = [
           <ul class="space-y-2 mt-4">
             <li><strong>Lokální podpora:</strong> Techničtí specialisté v Ostravě a Havířově</li>
             <li><strong>Znalost regionu:</strong> Pochopení specifik panelových domů a infrastruktury</li>
-            <li><strong>Rychlá reakce:</strong> Servis do 24 hodin</li>
+            <li><strong>Rychlá reakce:</strong> Operativní servisní zásahy</li>
             <li><strong>Stabilní ceny:</strong> Žádná neočekávaná navýšení</li>
             <li><strong>Osobní přístup:</strong> Žádná robotizace call center</li>
           </ul>

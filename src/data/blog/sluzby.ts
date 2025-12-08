@@ -377,7 +377,7 @@ export const sluzbyPosts: BlogPost[] = [
           <h4>Technická podpora v regionu:</h4>
           <ul class="space-y-1">
             <li><strong>Poloha:</strong> Servisní centrum v Ostravě-centru</li>
-            <li><strong>Doba reakce:</strong> Do 4 hodin v pracovní dny</li>
+            <li><strong>Doba reakce:</strong> Rychlá reakce v pracovní dny</li>
             <li><strong>Víkendový servis:</strong> Dostupný pro kritické případy</li>
             <li><strong>Preventivní údržba:</strong> Pravidelné kontroly sítě</li>
           </ul>

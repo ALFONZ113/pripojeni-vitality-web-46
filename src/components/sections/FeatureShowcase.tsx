@@ -20,7 +20,7 @@ const features: Feature[] = [
   {
     title: 'Profesionální instalace',
     description: 'Náš technik vám vše nastaví a vysvětlí. Připojení bez starostí a komplikací.',
-    stat: '48h',
+    stat: 'Rychlá',
     statLabel: 'Instalace',
     icon: Clock,
     image: featureInstallation,

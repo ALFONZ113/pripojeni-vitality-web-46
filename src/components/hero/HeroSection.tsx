@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
 import { sendContactFormEmail } from '@/utils/emailService';
-import heroBackground from '@/assets/hero-fullscreen-bg.jpg';
+import heroImage from '@/assets/hero-family-tv.jpg';
 
 
 const HeroSection = () => {
@@ -20,7 +20,7 @@ const HeroSection = () => {
   const isMobile = useIsMobile();
   
   // Parallax effects
-  const imageScale = useTransform(scrollY, [0, 500], [1, 1.15]);
+  const imageScale = useTransform(scrollY, [0, 500], [1, 1.1]);
   const scrollOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   const handleContactClick = (e: React.MouseEvent) => {
@@ -61,12 +61,12 @@ const HeroSection = () => {
     { value: '24/7', suffix: '', label: 'Podpora' }
   ];
 
-  // Animation variants
+  // Animation variants - simple fade + translateY only
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 }
     }
   };
 
@@ -93,19 +93,23 @@ const HeroSection = () => {
         style={{ scale: imageScale }}
       >
         <img 
-          src={heroBackground} 
-          alt="PODA internet pozadie" 
-          className="w-full h-full object-cover"
+          src={heroImage} 
+          alt="Rodina sledující televizi s PODA internetem" 
+          className="w-full h-full object-cover object-center"
           loading="eager"
         />
-        {/* Subtle overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-transparent" />
+        {/* Dark Overlay - stronger gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
       </motion.div>
 
       {/* Content Container */}
-      <div className="container-custom relative z-10 py-16 md:py-24">
-        <div className="max-w-2xl">
+      <div className="container-custom relative z-10 py-20 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          
+          {/* ═══════════════════════════════════════════════════════════════
+              CONTENT COLUMN - LEFT SIDE
+             ═══════════════════════════════════════════════════════════════ */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -128,7 +132,7 @@ const HeroSection = () => {
             <motion.h1 
               id="hero-title"
               variants={itemVariants}
-              className="font-display text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-[1.1] tracking-tight"
+              className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold mb-3 md:mb-5 leading-[1.1] tracking-tight"
             >
               <span className="text-foreground block">Internet, který</span>
               <span className="text-gradient-gold block">nikdy nezklame</span>
@@ -137,20 +141,20 @@ const HeroSection = () => {
             {/* Subtitle */}
             <motion.p 
               variants={itemVariants}
-              className="text-foreground/90 text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-body"
+              className="text-foreground/80 text-sm sm:text-base md:text-lg mb-4 md:mb-6 max-w-lg mx-auto lg:mx-0 leading-relaxed font-body"
             >
               Připojte svůj domov k budoucnosti. Gigabitový optický internet až{' '}
               <span className="text-primary font-semibold">1000 Mbps</span> s{' '}
               <span className="text-primary font-semibold">TV zdarma</span>.
             </motion.p>
 
-            {/* Phone Input Form */}
+            {/* Phone Input Form - Compact */}
             <motion.form 
               variants={itemVariants} 
               onSubmit={handlePhoneSubmit}
-              className="mb-6 md:mb-8"
+              className="mb-4 md:mb-6"
             >
-              <div className="glass rounded-xl p-3 max-w-md mx-auto lg:mx-0 border border-primary/20">
+              <div className="glass rounded-xl p-2 sm:p-3 max-w-md mx-auto lg:mx-0">
                 <div className="flex flex-col sm:flex-row gap-2">
                   <div className="flex-1 relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -159,7 +163,7 @@ const HeroSection = () => {
                       placeholder="Vaše telefonní číslo"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="w-full bg-secondary/80 border border-border rounded-lg pl-9 pr-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all font-body"
+                      className="w-full bg-secondary/50 border border-border rounded-lg pl-9 pr-3 py-2.5 sm:py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all font-body"
                       required
                     />
                   </div>
@@ -167,7 +171,7 @@ const HeroSection = () => {
                     type="submit" 
                     variant="gold" 
                     size="default"
-                    className="shadow-lg shadow-primary/30 w-full sm:w-auto whitespace-nowrap"
+                    className="shadow-lg shadow-primary/20 w-full sm:w-auto whitespace-nowrap"
                     disabled={isSubmitted || isLoading}
                   >
                     {isLoading ? (
@@ -181,29 +185,29 @@ const HeroSection = () => {
               </div>
             </motion.form>
 
-            {/* Trust Points */}
+            {/* Trust Points - Hidden on smallest mobile */}
             <motion.div 
               variants={itemVariants} 
-              className="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 mb-6 md:mb-8"
+              className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-2 mb-4 md:mb-6"
             >
               {trustPoints.map((point, index) => (
                 <motion.span 
                   key={index}
-                  className="flex items-center text-sm text-foreground/90 font-body"
+                  className="flex items-center text-xs md:text-sm text-foreground/80 font-body"
                   initial={{ opacity: 0, x: -10 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.5 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-green-500 mr-2 shadow-sm shadow-green-500/50" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5 shadow-sm shadow-green-500/50" />
                   {point}
                 </motion.span>
               ))}
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Stack on mobile */}
             <motion.div 
               variants={itemVariants} 
-              className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start"
             >
               <Button 
                 variant="gold" 
@@ -217,37 +221,50 @@ const HeroSection = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button variant="heroOutline" size="lg" asChild>
+              <Button variant="heroOutline" size="lg" asChild className="hidden sm:inline-flex">
                 <a href="tel:+420730431313">
                   <Phone className="mr-2 h-4 w-4" />
                   +420 730 431 313
                 </a>
               </Button>
             </motion.div>
+          </motion.div>
 
-            {/* Stats Row */}
-            <motion.div 
-              variants={itemVariants}
-              className="mt-10 md:mt-12 glass rounded-xl p-4 border border-primary/20 max-w-md mx-auto lg:mx-0"
-            >
-              <div className="flex justify-around items-center">
+          {/* ═══════════════════════════════════════════════════════════════
+              STATS COLUMN - RIGHT SIDE (visible on desktop)
+             ═══════════════════════════════════════════════════════════════ */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="hidden lg:flex flex-col items-end justify-center gap-6"
+          >
+            {/* Stats Cards */}
+            <div className="glass rounded-2xl p-6 border border-primary/20">
+              <div className="flex gap-8">
                 {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-xl md:text-2xl font-display font-bold">
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.6 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="text-center"
+                  >
+                    <div className="text-2xl md:text-3xl font-display font-bold">
                       <span className="text-primary drop-shadow-[0_0_10px_rgba(218,165,32,0.5)]">{stat.value}</span>
-                      <span className="text-primary text-sm">{stat.suffix}</span>
+                      <span className="text-primary text-lg">{stat.suffix}</span>
                     </div>
-                    <div className="text-[10px] md:text-xs text-foreground/70 uppercase tracking-wider mt-1 font-body">
+                    <div className="text-xs text-foreground/80 uppercase tracking-wider mt-1 font-body font-medium">
                       {stat.label}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            {/* Price Badge - Desktop */}
+            {/* Price Badge */}
             <motion.div 
-              className="hidden lg:inline-block mt-6 bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg shadow-primary/30"
+              className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg shadow-primary/30"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -256,6 +273,32 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
         </div>
+
+        {/* Mobile Stats Bar - Bottom of screen */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="lg:hidden mt-6 glass rounded-xl p-3 border border-primary/20"
+        >
+          <div className="flex justify-around items-center">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-lg font-display font-bold">
+                  <span className="text-primary">{stat.value}</span>
+                  <span className="text-primary text-xs">{stat.suffix}</span>
+                </div>
+                <div className="text-[10px] text-foreground/70 uppercase tracking-wider font-body">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+            <div className="text-center pl-3 border-l border-border">
+              <div className="text-sm font-bold text-primary">od 300 Kč</div>
+              <div className="text-[10px] text-foreground/70 uppercase">měsíčně</div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Scroll Indicator */}

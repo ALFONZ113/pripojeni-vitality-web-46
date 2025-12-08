@@ -25,7 +25,6 @@ const Navbar = memo(() => {
     { path: '/programy', label: 'TV Programy', icon: Tv },
     { path: '/pomoc-s-prechodem', label: 'Pomoc s přechodem', icon: HandHeart },
     { path: '/blog', label: 'Blog', icon: FileText },
-    { path: '/kontakt', label: 'Kontakt', icon: MessageSquare },
   ];
   
   return (
@@ -63,13 +62,13 @@ const Navbar = memo(() => {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center gap-6">
-          <a href="tel:+420730431313" className="flex items-center text-foreground/80 hover:text-primary transition-colors font-medium">
-            <Phone className="mr-2 h-4 w-4" />
+        <div className="hidden lg:flex items-center gap-4">
+          <a href="tel:+420730431313" className="flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary px-4 py-2 rounded-lg hover:bg-primary/20 transition-colors font-semibold">
+            <Phone className="h-4 w-4" />
             +420 730 431 313
           </a>
           <Link to="/kontakt" className="btn-gold px-6 py-2.5 rounded-lg text-sm font-semibold">
-            Kontakt
+            Mám zájem
           </Link>
         </div>
 

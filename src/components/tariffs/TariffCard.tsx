@@ -40,23 +40,25 @@ const TariffCard = ({
       {/* Recommended Glow */}
       {isRecommended && <div className="absolute -inset-px bg-gradient-to-b from-primary/20 via-transparent to-transparent rounded-2xl pointer-events-none" />}
       
-      {/* Promo Badge */}
-      {isPromo && <div className="absolute top-4 left-4 z-10">
-          <span className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground py-1.5 px-3 rounded-full text-xs font-bold shadow-lg">
-            <Sparkles className="w-3 h-3" />
-            Promo tarif
-          </span>
-        </div>}
-      
-      {/* Recommended Badge */}
-      {isRecommended && <div className="absolute top-4 right-4 z-10">
-          <span className="bg-primary text-primary-foreground py-1.5 px-3 rounded-full text-xs font-bold uppercase tracking-wide">
-            Doporučujeme
-          </span>
-        </div>}
-      
-      {/* Header */}
-      <div className={`px-6 py-5 ${isRecommended ? 'bg-gradient-to-r from-primary/10 to-transparent' : ''}`}>
+      {/* Header with Badges */}
+      <div className={`px-6 pt-5 pb-3 ${isRecommended ? 'bg-gradient-to-r from-primary/10 to-transparent' : ''}`}>
+        {/* Badges Row */}
+        {(isPromo || isRecommended) && (
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            {isPromo && (
+              <span className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground py-1.5 px-3 rounded-full text-xs font-bold shadow-lg">
+                <Sparkles className="w-3 h-3" />
+                Promo tarif
+              </span>
+            )}
+            {isRecommended && (
+              <span className="bg-primary text-primary-foreground py-1.5 px-3 rounded-full text-xs font-bold uppercase tracking-wide">
+                Doporučujeme
+              </span>
+            )}
+          </div>
+        )}
+        {/* Title */}
         <h3 className="text-xl md:text-2xl font-display font-bold text-foreground">{title}</h3>
       </div>
       

@@ -218,8 +218,8 @@ const generateOptimizedTitle = (url: string): string => {
  */
 const generateOptimizedDescription = (url: string): string => {
   const descriptions: Record<string, string> = {
-    '/': 'Nejrychlejší PODA internet v Moravskoslezském kraji. Gigabitové optické připojení s TV zdarma. Bez závazků, rychlá instalace do 48h. Tel: 730 431 313.',
-    '/internet-ostrava': 'PODA internet Ostrava - gigabitové připojení GPON s TV zdarma. Pokrytí celé Ostravy, instalace do 24h. Bez závazků od 250 Kč/měsíc. Objednat: 730 431 313.',
+    '/': 'Nejrychlejší PODA internet v Moravskoslezském kraji. Gigabitové optické připojení s TV zdarma. Bez závazků, rychlá instalace. Tel: 730 431 313.',
+    '/internet-ostrava': 'PODA internet Ostrava - gigabitové připojení GPON s TV zdarma. Pokrytí celé Ostravy, rychlá instalace. Bez závazků od 250 Kč/měsíc. Objednat: 730 431 313.',
     '/internet-karvina': 'Rychlý PODA internet v Karviné. Optické připojení až 1000 Mbps + TV balíčky. Kompletní pokrytí města. Instalace zdarma. Kontakt: 730 431 313.',
     '/internet-havirov': 'PODA internet Havířov - moderní GPON síť s TV službami. Rychlost až 1 Gbit/s, spolehlivé připojení pro domácnosti i firmy. Tel: 730 431 313.',
     '/internet-bohumin': 'Internet PODA Bohumín - fiber optické připojení na trojmezí. Rychlá instalace, nízké ceny, TV zdarma. Bez závazků. Objednat: 730 431 313.',
@@ -232,7 +232,7 @@ const generateOptimizedDescription = (url: string): string => {
     '/blog': 'PODA blog - praktické tipy pro internet a TV. Technické návody, srovnání poskytovatelů, optimalizace sítě. Experní rady pro lepší připojení.'
   };
   
-  return descriptions[url] || 'PODA internet - nejlepší optické připojení v Moravskoslezském kraji. Gigabitové rychlosti, TV zdarma, instalace do 48h. Tel: 730 431 313.';
+  return descriptions[url] || 'PODA internet - nejlepší optické připojení v Moravskoslezském kraji. Gigabitové rychlosti, TV zdarma, rychlá instalace. Tel: 730 431 313.';
 };
 
 /**

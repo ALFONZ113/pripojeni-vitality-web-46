@@ -70,7 +70,7 @@ const Index = () => {
         ]}
         location="Ostrava, Karviná, Havířov, Bohumín, Poruba"
         keyPoints={[
-          'Rychlá instalace do 48 hodin',
+          'Rychlá profesionální instalace',
           'Bez závazků a skrytých poplatků',
           'Stabilní připojení s 99,9% dostupností',
           'Výhodné cenové balíčky',

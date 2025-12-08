@@ -188,7 +188,7 @@ export const iptvVsTradicionalniTvPost: BlogPost = {
             <ul class="space-y-1">
               <li>Gigabitové rychlosti až 1000 Mb/s</li>
               <li>Stabilita 99,9% bez výpadků</li>
-              <li>Rychlá instalace do 48 hodin</li>
+              <li>Rychlá profesionální instalace</li>
               <li>Transparentní ceny</li>
             </ul>
           </div>

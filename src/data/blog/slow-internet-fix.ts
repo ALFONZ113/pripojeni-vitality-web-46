@@ -122,7 +122,7 @@ export const slowInternetFixPost: BlogPost = {
           <li>🏠 <strong>Rodinné domy:</strong> Internet až 1000 Gbps přímo do vašeho domu</li>
           <li>🌐 <strong>Stabilita:</strong> 99,9% dostupnost bez výpadků</li>
           <li>💰 <strong>Transparentní ceny:</strong> Bez skrytých poplatků</li>
-          <li>🚀 <strong>Rychlá instalace:</strong> Během 48 hodin</li>
+          <li>🚀 <strong>Rychlá instalace:</strong> Profesionální a rychlá</li>
         </ul>
         <p class="mb-0">📞 <a href="tel:+420730431313" class="text-white font-bold underline hover:text-yellow-200 transition-colors">730 431 313</a> - Zavolejte pro ověření dostupnosti | 🌐 <a href="https://popri.cz" target="_blank" rel="noopener noreferrer" class="text-white font-bold underline hover:text-yellow-200 transition-colors">popri.cz</a> - Objednejte online</p>
       </div>
@@ -165,7 +165,7 @@ export const slowInternetFixPost: BlogPost = {
             <ul class="space-y-1">
               <li>• Gigabitové rychlosti až 1000 Gb/s</li>
               <li>• Stabilita 99,9% bez výpadků</li>
-              <li>• Rychlá instalace do 48 hodin</li>
+              <li>• Rychlá profesionální instalace</li>
               <li>• Transparentní ceny</li>
             </ul>
           </div>

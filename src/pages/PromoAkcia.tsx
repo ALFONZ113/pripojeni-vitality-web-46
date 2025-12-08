@@ -122,7 +122,7 @@ const PromoAkcia = () => {
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-poda-orange rounded-full mr-3"></div>
-                Rychlá instalace do 48 hodin
+                Rychlá profesionální instalace
               </li>
               <li className="flex items-center">
                 <div className="w-2 h-2 bg-poda-orange rounded-full mr-3"></div>

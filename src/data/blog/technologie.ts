@@ -651,7 +651,7 @@ export const technologiePosts: BlogPost[] = [
             <li><strong>2. Zavolejte na 730 431 313</strong><br>
                Preferujete osobní kontakt? Ochotný personál popri.cz vám rád poradí a pomůže s výběrem toho nejlepšího řešení pro vaše potřeby.</li>
             <li><strong>3. Profesionální instalace</strong><br>
-               Naši technici se postarají o rychlou a bezproblémovou instalaci přímo u vás doma.</li>
+               Technici PODA se postarají o rychlou a bezproblémovou instalaci přímo u vás doma.</li>
           </ol>
         </div>
 

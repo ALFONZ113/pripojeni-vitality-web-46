@@ -49,7 +49,7 @@ const HeroSection = () => {
       }
     }
   };
-  const trustPoints = ['Instalace do 48h', 'Bez závazků', '2000+ zákazníků'];
+  const trustPoints = ['Rychlá instalace', 'Bez závazků', '2000+ zákazníků'];
   const stats = [{
     value: '1000',
     suffix: 'Mbps',

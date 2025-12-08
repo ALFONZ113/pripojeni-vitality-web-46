@@ -98,9 +98,9 @@ const HeroSection = () => {
           className="w-full h-full object-cover object-center"
           loading="eager"
         />
-        {/* Dark Overlay - stronger gradient for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
+        {/* Lighter Overlay - image more visible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
       </motion.div>
 
       {/* Content Container */}

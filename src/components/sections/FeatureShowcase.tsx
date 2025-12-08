@@ -97,7 +97,7 @@ const FeatureItem = ({ feature, index }: FeatureItemProps) => {
         </div>
         
         {/* Index number */}
-        <div className="absolute -top-8 -left-4 lg:-left-8 font-display text-8xl lg:text-9xl font-bold text-foreground/5 select-none pointer-events-none">
+        <div className="absolute -top-4 left-0 lg:-top-8 lg:-left-4 font-display text-6xl sm:text-7xl lg:text-9xl font-bold text-foreground/5 select-none pointer-events-none">
           0{index + 1}
         </div>
       </div>

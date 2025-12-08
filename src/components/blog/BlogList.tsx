@@ -39,14 +39,14 @@ const BlogList = memo(({ posts, onResetFilters }: BlogListProps) => {
     console.log('[BlogList] No posts to display - showing empty state');
     return (
       <div className="text-center py-12">
-        <Bookmark className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold text-gray-600 mb-2">Žádné články nenalezeny</h3>
-        <p className="text-gray-500">
+        <Bookmark className="h-12 w-12 text-muted-foreground/50 mx-auto mb-4" />
+        <h3 className="text-xl font-semibold text-foreground mb-2">Žádné články nenalezeny</h3>
+        <p className="text-muted-foreground">
           Zkuste změnit vyhledávací kritéria nebo vybrat jinou kategorii.
         </p>
         <button
           onClick={handleResetFilters}
-          className="mt-4 text-poda-blue hover:text-poda-orange font-medium"
+          className="mt-4 text-primary hover:text-primary/80 font-medium min-h-[44px] px-4 transition-colors"
         >
           Zobrazit všechny články
         </button>
@@ -70,7 +70,7 @@ const BlogList = memo(({ posts, onResetFilters }: BlogListProps) => {
   }, [displayedPosts]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
       {sortedPosts.map((post) => (
         <BlogCard key={post.id} post={post} />
       ))}

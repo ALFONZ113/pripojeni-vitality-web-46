@@ -95,7 +95,7 @@ export const panelakOtazkyPost: BlogPost = {
         <li><strong>Projektová dokumentace:</strong> 1-2 týdny</li>
         <li><strong>Získání povolení:</strong> 1-3 týdny</li>
         <li><strong>Samotná instalace:</strong> 1-3 dny</li>
-        <li><strong>Aktivace služby:</strong> Do 24 hodin</li>
+        <li><strong>Aktivace služby:</strong> Rychlá aktivace po instalaci</li>
       </ul>
 
       <h2>6. Co když mají sousedé jiného operátora?</h2>

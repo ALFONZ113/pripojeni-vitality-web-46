@@ -54,7 +54,7 @@ export const OPTIMIZED_PAGE_SEO: Record<string, PageSEOData> = {
 
   '/internet-poruba': {
     title: 'Internet Poruba | PODA Gigabit Ostrava-Poruba | Tel: 730 431 313',
-    description: 'PODA internet Ostrava-Poruba. Nejhustší optická síť v regionu. Gigabitové rychlosti + IPTV. Studentské slevy pro VŠB. Same-day instalace. Tel: 730 431 313.',
+    description: 'PODA internet Ostrava-Poruba. Nejhustší optická síť v regionu. Gigabitové rychlosti + IPTV. Studentské slevy pro VŠB. Rychlá profesionální instalace. Tel: 730 431 313.',
     keywords: ['internet Poruba', 'PODA Poruba', 'Ostrava-Poruba internet', 'optické připojení Poruba', 'internet VŠB'],
     canonical: 'https://www.popri.cz/internet-poruba' 
   },

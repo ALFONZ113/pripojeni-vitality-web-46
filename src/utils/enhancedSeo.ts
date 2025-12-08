@@ -97,7 +97,7 @@ export const generateGeoPageMeta = (city: string, baseUrl: string) => {
       population: '67 000',
       districts: ['Ostrava-Poruba'],
       description: 'Najväčšia mestská časť Ostravy s najhustejšou optickou sieťou v regióne',
-      specialties: ['Najväčšia MČ', 'Študentské zľavy', 'Same-day inštalácia']
+      specialties: ['Najväčšia MČ', 'Študentské zľavy', 'Rýchla inštalácia']
     }
   };
 

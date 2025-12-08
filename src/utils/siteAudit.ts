@@ -188,7 +188,7 @@ class SiteAuditor {
     // Simulácia analýzy obsahu na základe URL
     if (url === '/') {
       analysis.title = 'Popri.cz - Rýchly internet a IPTV v Ostrave';
-      analysis.metaDescription = 'Najrýchlejší optický internet a IPTV v Moravskoslezskom kraji. Pripojenie do 24 hodín.';
+      analysis.metaDescription = 'Najrýchlejší optický internet a IPTV v Moravskoslezskom kraji. Rychlá profesionální instalace.';
       analysis.hasContent = true;
     } else if (url.startsWith('/blog/')) {
       analysis.title = 'Blog článok';

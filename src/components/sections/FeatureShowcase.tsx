@@ -19,7 +19,7 @@ interface Feature {
 const features: Feature[] = [
   {
     title: 'Profesionální instalace',
-    description: 'Náš technik vám vše nastaví a vysvětlí. Připojení bez starostí a komplikací.',
+    description: 'Technik PODA vám vše nastaví a vysvětlí. Připojení bez starostí a komplikací.',
     stat: 'Rychlá',
     statLabel: 'Instalace',
     icon: Clock,

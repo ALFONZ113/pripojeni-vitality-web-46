@@ -132,7 +132,7 @@ const TestimonialsSection = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative"
           >
-            <div className="glass-card rounded-2xl p-8 md:p-10 relative overflow-hidden min-h-[320px]">
+            <div className="glass-card rounded-2xl p-6 sm:p-8 md:p-10 relative overflow-hidden min-h-[280px] sm:min-h-[300px] md:min-h-[320px]">
               {/* Quote icon */}
               <Quote className="absolute top-6 right-6 w-12 h-12 text-primary/20" />
               
@@ -196,14 +196,14 @@ const TestimonialsSection = () => {
               <div className="flex gap-2">
                 <button
                   onClick={goToPrev}
-                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all"
+                  className="w-11 h-11 sm:w-10 sm:h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={goToNext}
-                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all"
+                  className="w-11 h-11 sm:w-10 sm:h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight className="w-5 h-5" />

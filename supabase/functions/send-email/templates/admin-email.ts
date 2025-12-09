@@ -29,7 +29,9 @@ export const generateAdminEmailHTML = (formData: any): string => {
           
           <!-- Header with Gold Gradient -->
           <div style="background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 50%, ${colors.gold} 100%); padding: 28px 24px; text-align: center;">
-            <img src="https://popri.cz/lovable-uploads/f7b6e6d7-9120-4a1a-953f-5d4fef70e34e.png" alt="Popri.cz" width="140" style="display: block; margin: 0 auto 12px auto; max-width: 140px; height: auto;" />
+            <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">
+              <span style="color: #D4A517;">popri</span><span style="color: #0A0A0A;">.cz</span>
+            </div>
             <p style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: ${colors.noir}; margin: 0;">Žádost o zpětné volání</p>
           </div>
 
@@ -85,7 +87,9 @@ export const generateAdminEmailHTML = (formData: any): string => {
           
           <!-- Header with Gold Gradient -->
           <div style="background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 50%, ${colors.gold} 100%); padding: 28px 24px; text-align: center;">
-            <img src="https://popri.cz/lovable-uploads/f7b6e6d7-9120-4a1a-953f-5d4fef70e34e.png" alt="Popri.cz" width="140" style="display: block; margin: 0 auto 12px auto; max-width: 140px; height: auto;" />
+            <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">
+              <span style="color: #D4A517;">popri</span><span style="color: #0A0A0A;">.cz</span>
+            </div>
             <p style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: ${colors.noir}; margin: 0;">Nový kontakt z webu</p>
           </div>
 

@@ -118,10 +118,8 @@ export const generateCustomerEmailHTML = (formData: any): string => {
       
       <!-- Header with Gold Gradient -->
       <div style="background: linear-gradient(135deg, ${colors.gold} 0%, ${colors.goldLight} 50%, ${colors.gold} 100%); padding: 40px 24px; text-align: center;">
-        <h1 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: ${colors.noir}; margin: 0 0 8px 0;">
-          Popri.cz
-        </h1>
-        <p style="color: ${colors.noir}; margin: 0; font-size: 16px; font-weight: 500; opacity: 0.8;">Váš partner pro PODA internet a TV</p>
+        <img src="https://popri.cz/lovable-uploads/f7b6e6d7-9120-4a1a-953f-5d4fef70e34e.png" alt="Popri.cz" width="180" style="display: block; margin: 0 auto 12px auto; max-width: 180px; height: auto;" />
+        <p style="color: ${colors.noir}; margin: 0; font-size: 14px; font-weight: 500; opacity: 0.8;">Autorizovaný partner PODA</p>
       </div>
 
       <div style="max-width: 600px; margin: 0 auto; background: ${colors.noirLight};">

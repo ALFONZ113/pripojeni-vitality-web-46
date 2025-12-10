@@ -139,14 +139,13 @@ const HeroSection = () => {
                 lineHeight: '0.95'
               }}
             >
-              <span className="text-foreground block">Internet, který</span>
-              <span className="text-gradient-gold block">nikdy nezklame</span>
+              <span className="text-foreground block">Připojení, na které</span>
+              <span className="text-gradient-gold block">se můžete spolehnout</span>
             </motion.h1>
 
             {/* Subtitle - LARGER */}
             <motion.p variants={itemVariants} className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
-              Připojte svůj domov k budoucnosti. Gigabitový optický internet až{' '}
-              <span className="text-primary font-semibold">1000 Mbps</span> s{' '}
+              Gigabitová optika PODA s{' '}
               <span className="text-primary font-semibold">TV zdarma</span>.
             </motion.p>
 

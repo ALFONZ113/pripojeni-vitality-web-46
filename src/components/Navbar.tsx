@@ -1,15 +1,28 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, MessageSquare, HandHeart, ChevronRight } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, HandHeart, ChevronRight, ChevronDown, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
+import { cities } from '@/data/cities/citiesData';
+
+// Group cities by region
+const citiesByRegion = cities.reduce((acc, city) => {
+  if (!acc[city.region]) acc[city.region] = [];
+  acc[city.region].push(city);
+  return acc;
+}, {} as Record<string, typeof cities>);
+
+const regionOrder = ['Moravskoslezský kraj', 'Jihomoravský kraj', 'Pardubický kraj', 'Královéhradecký kraj'];
 
 const Navbar = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCoverageOpen, setIsCoverageOpen] = useState(false);
+  const [isMobileCoverageOpen, setIsMobileCoverageOpen] = useState(false);
   const location = useLocation();
   
   const isActivePath = (path: string) => location.pathname === path;
+  const isCityPath = location.pathname.startsWith('/internet-') && location.pathname !== '/internet-tv';
   
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -17,7 +30,11 @@ const Navbar = memo(() => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  useEffect(() => { setIsMobileMenuOpen(false); }, [location]);
+  useEffect(() => { 
+    setIsMobileMenuOpen(false); 
+    setIsCoverageOpen(false);
+    setIsMobileCoverageOpen(false);
+  }, [location]);
 
   const navLinks = [
     { path: '/', label: 'Domů', icon: null },
@@ -59,6 +76,70 @@ const Navbar = memo(() => {
               {link.label}
             </Link>
           ))}
+          
+          {/* Coverage Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsCoverageOpen(true)}
+            onMouseLeave={() => setIsCoverageOpen(false)}
+          >
+            <button 
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+                isCityPath ? 'text-primary' : 'text-foreground/80 hover:text-primary'
+              }`}
+            >
+              <MapPin className="mr-1.5 h-4 w-4" />
+              Pokrytí
+              <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${isCoverageOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            <AnimatePresence>
+              {isCoverageOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-background/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-2xl overflow-hidden z-50"
+                >
+                  <div className="p-4 max-h-[70vh] overflow-y-auto">
+                    {regionOrder.map((region) => (
+                      citiesByRegion[region] && (
+                        <div key={region} className="mb-4 last:mb-0">
+                          <h4 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2 px-2">
+                            {region}
+                          </h4>
+                          <div className="space-y-1">
+                            {citiesByRegion[region].map((city) => (
+                              <Link
+                                key={city.slug}
+                                to={`/internet-${city.slug}`}
+                                className={`flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-200 group ${
+                                  location.pathname === `/internet-${city.slug}` 
+                                    ? 'bg-primary/10 text-primary' 
+                                    : 'hover:bg-secondary text-foreground/80 hover:text-foreground'
+                                }`}
+                              >
+                                <span className="font-medium">{city.name}</span>
+                                <span className={`text-xs flex items-center gap-1.5 ${
+                                  city.status === 'full' ? 'text-green-500' : 'text-amber-500'
+                                }`}>
+                                  {city.coverage}%
+                                  <span className={`w-2 h-2 rounded-full ${
+                                    city.status === 'full' ? 'bg-green-500' : 'bg-amber-500'
+                                  }`} />
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </nav>
 
         {/* Desktop CTA */}
@@ -89,7 +170,7 @@ const Navbar = memo(() => {
             className="fixed inset-0 z-40 bg-background pt-20 lg:hidden"
           >
             <div className="container px-6 py-8 flex flex-col h-full">
-              <nav className="flex flex-col space-y-2">
+              <nav className="flex flex-col space-y-2 overflow-y-auto">
                 {navLinks.map((link, index) => (
                   <motion.div key={link.path} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.1 }}>
                     <Link 
@@ -106,6 +187,69 @@ const Navbar = memo(() => {
                     </Link>
                   </motion.div>
                 ))}
+                
+                {/* Mobile Coverage Accordion */}
+                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: navLinks.length * 0.1 }}>
+                  <button 
+                    onClick={() => setIsMobileCoverageOpen(!isMobileCoverageOpen)}
+                    className={`w-full flex items-center justify-between p-4 rounded-xl transition-all ${
+                      isCityPath ? 'bg-primary/10 text-primary border border-primary/20' : 'text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    <span className="flex items-center font-medium text-lg">
+                      <MapPin className="mr-3 h-5 w-5" />
+                      Pokrytí
+                    </span>
+                    <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${isMobileCoverageOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {isMobileCoverageOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-2 ml-4 pl-4 border-l-2 border-primary/30 space-y-4">
+                          {regionOrder.map((region) => (
+                            citiesByRegion[region] && (
+                              <div key={region}>
+                                <h4 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
+                                  {region}
+                                </h4>
+                                <div className="space-y-1">
+                                  {citiesByRegion[region].map((city) => (
+                                    <Link
+                                      key={city.slug}
+                                      to={`/internet-${city.slug}`}
+                                      className={`flex items-center justify-between py-2 px-3 rounded-lg transition-all ${
+                                        location.pathname === `/internet-${city.slug}` 
+                                          ? 'bg-primary/10 text-primary' 
+                                          : 'text-foreground/80 hover:bg-secondary hover:text-foreground'
+                                      }`}
+                                    >
+                                      <span className="font-medium">{city.name}</span>
+                                      <span className={`text-xs flex items-center gap-1.5 ${
+                                        city.status === 'full' ? 'text-green-500' : 'text-amber-500'
+                                      }`}>
+                                        {city.coverage}%
+                                        <span className={`w-2 h-2 rounded-full ${
+                                          city.status === 'full' ? 'bg-green-500' : 'bg-amber-500'
+                                        }`} />
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            )
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               </nav>
               
               <div className="mt-auto pt-8 border-t border-border">

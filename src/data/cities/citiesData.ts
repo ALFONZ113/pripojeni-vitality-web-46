@@ -39,6 +39,7 @@ export interface CityData {
   };
   highlight?: string;
   priceRange: string;
+  heroImage?: string;
 }
 
 export const cities: CityData[] = [
@@ -54,6 +55,7 @@ export const cities: CityData[] = [
     coordinates: { lat: 49.8175, lng: 18.2624 },
     priceRange: '250-520 CZK',
     highlight: 'Regionální centrum s plným pokrytím',
+    heroImage: '/src/assets/ostrava-vitkovice.jpg',
     stats: [
       { value: '285k+', label: 'obyvatel' },
       { value: '98%', label: 'pokrytí' },

@@ -68,6 +68,7 @@ const CityTemplate = () => {
         highlight={city.highlight}
         coverage={city.coverage}
         districts={city.districts}
+        heroImage={city.heroImage}
       />
 
       <ContactCTA />

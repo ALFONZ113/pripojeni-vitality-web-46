@@ -80,7 +80,6 @@ function App() {
                   
                   {/* Geographic pages - Dynamic route for all cities */}
                   <Route path="/internet-ostrava" element={<CityTemplate />} />
-                  <Route path="/internet-poruba" element={<CityTemplate />} />
                   <Route path="/internet-karvina" element={<CityTemplate />} />
                   <Route path="/internet-havirov" element={<CityTemplate />} />
                   <Route path="/internet-bohumin" element={<CityTemplate />} />

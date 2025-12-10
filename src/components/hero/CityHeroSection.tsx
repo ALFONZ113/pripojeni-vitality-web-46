@@ -1,27 +1,22 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { MapPin, Phone, Zap, Tv, Wrench } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
 
-interface CityHeroSectionProps {
-  cityName: string;
-  title: string;
-  subtitle: string;
-  stats: Array<{
-    value: string;
-    label: string;
-  }>;
-  features: Array<{
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    gradient: 'blue' | 'orange';
-  }>;
+interface CityDistrict {
+  name: string;
+  coverage: string;
 }
 
-const CityHeroSection = ({ cityName, title, subtitle, stats, features }: CityHeroSectionProps) => {
+interface CityHeroSectionProps {
+  cityName: string;
+  highlight?: string;
+  coverage: number;
+  districts: CityDistrict[];
+}
+
+const CityHeroSection = ({ cityName, highlight, coverage, districts }: CityHeroSectionProps) => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isMobile = useIsMobile();
   
@@ -39,15 +34,21 @@ const CityHeroSection = ({ cityName, title, subtitle, stats, features }: CityHer
       transition: { staggerChildren: 0.05, delayChildren: 0 }
     }
   };
+
+  const benefits = [
+    { icon: <Zap className="h-5 w-5" />, text: '1000 Mbps' },
+    { icon: <Tv className="h-5 w-5" />, text: '85+ programů' },
+    { icon: <Wrench className="h-5 w-5" />, text: 'Instalace 0 Kč' }
+  ];
   
   return (
-    <section className="relative pt-20 pb-16 overflow-hidden min-h-screen flex items-center bg-background" aria-labelledby="hero-title">
+    <section className="relative pt-24 pb-16 overflow-hidden min-h-[80vh] flex items-center bg-background" aria-labelledby="hero-title">
       {/* Background effects */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
 
       <div className="container-custom relative z-10">
-        <motion.div initial="hidden" animate="show" variants={container}>
+        <motion.div initial="hidden" animate="show" variants={container} className="max-w-4xl mx-auto text-center">
           {/* City Badge */}
           <motion.div 
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
@@ -56,27 +57,46 @@ const CityHeroSection = ({ cityName, title, subtitle, stats, features }: CityHer
             <div className="inline-flex items-center glass px-6 py-3 rounded-full border border-primary/20">
               <MapPin className="h-5 w-5 text-primary mr-2" />
               <span className="text-lg font-semibold text-foreground">{cityName}</span>
+              <span className="ml-3 text-sm text-primary font-medium">{coverage}% pokrytí</span>
             </div>
           </motion.div>
 
-          {/* Title */}
-          <motion.h1 
-            id="hero-title"
+          {/* Main Price Headline */}
+          <motion.div 
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-            className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-center mb-6 text-foreground leading-tight"
+            className="mb-6"
           >
-            {title.split(' ').map((word, i) => 
-              i === 1 ? <span key={i} className="text-gradient-gold">{word} </span> : word + ' '
-            )}
-          </motion.h1>
-          
-          {/* Subtitle */}
-          <motion.p 
+            <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-foreground leading-tight mb-4">
+              Gigabit jen za{' '}
+              <span className="text-gradient-gold">300 Kč</span>
+            </h1>
+            <p className="text-2xl md:text-3xl text-muted-foreground font-medium">
+              měsíčně s TV v ceně
+            </p>
+          </motion.div>
+
+          {/* Benefits Row */}
+          <motion.div 
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-            className="text-xl md:text-2xl text-center text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed"
+            className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8"
           >
-            {subtitle}
-          </motion.p>
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex items-center gap-2 text-foreground">
+                <span className="text-primary">{benefit.icon}</span>
+                <span className="font-semibold">{benefit.text}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Highlight text */}
+          {highlight && (
+            <motion.p 
+              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+              className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto"
+            >
+              {highlight}
+            </motion.p>
+          )}
 
           {/* CTA Buttons */}
           <motion.div 
@@ -86,54 +106,43 @@ const CityHeroSection = ({ cityName, title, subtitle, stats, features }: CityHer
             <a 
               href="tel:+420730431313" 
               onClick={handleContactClick}
-              className="btn-gold inline-flex items-center justify-center"
+              className="btn-gold inline-flex items-center justify-center text-lg px-8 py-4"
             >
               <Phone className="mr-2 h-5 w-5" />
               730 431 313
             </a>
-            <Link 
-              to="/kontakt" 
-              className="btn-noir inline-flex items-center justify-center"
+            <button 
+              onClick={() => setIsContactModalOpen(true)}
+              className="btn-noir inline-flex items-center justify-center text-lg px-8 py-4"
             >
-              Nezávazná nabídka
-            </Link>
+              Mám zájem
+            </button>
           </motion.div>
 
-          {/* Stats Grid */}
-          <motion.div 
-            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
-          >
-            {stats.map((stat, index) => (
-              <div key={index} className="glass rounded-2xl p-6 text-center border border-border">
-                <div className="font-heading font-bold text-3xl text-primary mb-2">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+          {/* Districts Preview */}
+          {districts.length > 0 && (
+            <motion.div 
+              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+              className="glass rounded-2xl p-6 border border-border/50"
+            >
+              <p className="text-sm text-muted-foreground mb-3">Pokryté oblasti:</p>
+              <div className="flex flex-wrap justify-center gap-2">
+                {districts.slice(0, 6).map((district, index) => (
+                  <span 
+                    key={index} 
+                    className="px-3 py-1.5 bg-primary/10 text-foreground rounded-full text-sm font-medium border border-primary/20"
+                  >
+                    {district.name}
+                  </span>
+                ))}
+                {districts.length > 6 && (
+                  <span className="px-3 py-1.5 text-muted-foreground text-sm">
+                    +{districts.length - 6} dalších
+                  </span>
+                )}
               </div>
-            ))}
-          </motion.div>
-          
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {features.map((feature, index) => (
-              <motion.div 
-                key={index}
-                variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} 
-                className="card-luxury group"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="bg-primary/10 p-5 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary/20">
-                    <div className="text-primary">
-                      {feature.icon}
-                    </div>
-                  </div>
-                  <h3 className="font-heading font-bold text-xl text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            </motion.div>
+          )}
         </motion.div>
       </div>
 

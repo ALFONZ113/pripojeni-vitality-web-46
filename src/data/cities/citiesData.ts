@@ -99,59 +99,6 @@ export const cities: CityData[] = [
     }
   },
   {
-    slug: 'poruba',
-    name: 'Poruba',
-    nameLocative: 'v Porubě',
-    region: 'Moravskoslezský kraj',
-    population: '65 000',
-    coverage: 100,
-    status: 'full',
-    coordinates: { lat: 49.8271, lng: 18.1726 },
-    priceRange: '250-520 CZK',
-    highlight: 'Největší městský obvod Ostravy',
-    stats: [
-      { value: '65k+', label: 'obyvatel' },
-      { value: '100%', label: 'pokrytí GPON' },
-      { value: '24/7', label: 'stabilita' },
-      { value: '0 Kč', label: 'instalace' }
-    ],
-    features: [
-      {
-        icon: 'wifi',
-        title: 'Kompletní pokrytí',
-        description: 'Celá Poruba pokryta optickou sítí GPON s rychlostí až 1000 Mbps.',
-        gradient: 'blue'
-      },
-      {
-        icon: 'zap',
-        title: 'Express instalace',
-        description: 'Rychlá aktivace služeb díky husté síti optických rozvodů.',
-        gradient: 'orange'
-      },
-      {
-        icon: 'activity',
-        title: 'Maximální stabilita',
-        description: 'Výjimečná síťová stabilita díky moderní infrastruktuře.',
-        gradient: 'blue'
-      }
-    ],
-    districts: [
-      { name: 'Poruba I', residents: '15 000', coverage: '100%', note: 'Historické centrum' },
-      { name: 'Poruba II', residents: '18 000', coverage: '100%', note: 'Rezidenční oblast' },
-      { name: 'Poruba III', residents: '12 000', coverage: '100%', note: 'Moderní zástavba' },
-      { name: 'Poruba-Ves', residents: '8 000', coverage: '100%', note: 'Původní vesnice' },
-      { name: 'Pustkovecká', residents: '12 000', coverage: '100%', note: 'Nová výstavba' }
-    ],
-    seo: {
-      title: 'Internet PODA Poruba | Gigabitové optické připojení | Tel: 730 431 313',
-      description: 'Nejrychlejší internet PODA v Porubě s optickou technologií GPON. Rychlost až 1000 Mbps, bezplatná instalace. 100% pokrytí všech částí Poruby.',
-      keywords: [
-        'internet Poruba', 'PODA Poruba', 'optické připojení Poruba',
-        'gigabitový internet Poruba', 'rychlý internet Poruba', 'GPON Poruba'
-      ]
-    }
-  },
-  {
     slug: 'karvina',
     name: 'Karviná',
     nameLocative: 'v Karviné',

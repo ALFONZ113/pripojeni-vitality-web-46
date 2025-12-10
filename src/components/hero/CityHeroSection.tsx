@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Zap, Tv, Wrench } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
 import defaultHeroImage from '@/assets/city-hero-family.jpg';
 import ostravaHeroImage from '@/assets/ostrava-vitkovice.jpg';
+import { getPhoneProps } from '@/utils/phoneOptimization';
 
 interface CityDistrict {
   name: string;
@@ -21,20 +21,12 @@ interface CityHeroSectionProps {
 
 const CityHeroSection = ({ cityName, highlight, coverage, districts, heroImage }: CityHeroSectionProps) => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const isMobile = useIsMobile();
   
   // Mapovanie obrázkov podľa mesta
   const cityImages: Record<string, string> = {
     'Ostrava': ostravaHeroImage,
   };
   const displayImage = cityImages[cityName] || defaultHeroImage;
-  
-  const handleContactClick = (e: React.MouseEvent) => {
-    if (isMobile) {
-      e.preventDefault();
-      setIsContactModalOpen(true);
-    }
-  };
   
   const container = {
     hidden: { opacity: 0 },
@@ -124,8 +116,7 @@ const CityHeroSection = ({ cityName, highlight, coverage, districts, heroImage }
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
             >
               <a 
-                href="tel:+420730431313" 
-                onClick={handleContactClick}
+                {...getPhoneProps('+420730431313')}
                 className="btn-gold inline-flex items-center justify-center text-lg px-8 py-4"
               >
                 <Phone className="mr-2 h-5 w-5" />

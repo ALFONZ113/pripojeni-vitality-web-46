@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { MapPin, Users, Check, ArrowRight, TrendingUp } from 'lucide-react';
+import { MapPin, Users, Check, ArrowRight, TrendingUp, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cities as citiesData } from '@/data/cities/citiesData';
 
@@ -14,7 +14,7 @@ interface CityCardData {
 }
 
 // Transformuj dáta z citiesData pre CitySection
-const cities: CityCardData[] = citiesData.slice(0, 6).map(city => ({
+const cities: CityCardData[] = citiesData.map(city => ({
   name: city.name,
   coverage: city.coverage,
   population: city.population,
@@ -31,16 +31,16 @@ const CityCard = ({ city, index }: { city: CityCardData; index: number }) => {
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.5, delay: index * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <Link
         to={city.link}
-        className="block glass-card rounded-xl p-5 hover:border-primary/30 transition-all duration-300 group"
+        className="block glass-card rounded-xl p-4 hover:border-primary/30 transition-all duration-300 group"
       >
-        <div className="flex items-start justify-between mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4 text-primary" />
-            <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+            <h3 className="font-display text-base font-semibold text-foreground group-hover:text-primary transition-colors">
               {city.name}
             </h3>
           </div>
@@ -51,16 +51,16 @@ const CityCard = ({ city, index }: { city: CityCardData; index: number }) => {
         </div>
 
         {/* Progress bar */}
-        <div className="mb-3">
-          <div className="flex justify-between text-sm mb-1">
+        <div className="mb-2">
+          <div className="flex justify-between text-xs mb-1">
             <span className="text-muted-foreground font-body">Pokrytí</span>
             <span className="font-semibold text-foreground">{city.coverage}%</span>
           </div>
-          <div className="h-2 bg-secondary rounded-full overflow-hidden">
+          <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               animate={isInView ? { width: `${city.coverage}%` } : {}}
-              transition={{ duration: 1, delay: 0.3 + index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 1, delay: 0.3 + index * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
             />
           </div>
@@ -83,6 +83,7 @@ const CityCard = ({ city, index }: { city: CityCardData; index: number }) => {
 };
 
 const CitySection = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
@@ -111,7 +112,7 @@ const CitySection = () => {
       </motion.div>
 
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left - Content */}
           <motion.div
             ref={headerRef}
@@ -121,7 +122,7 @@ const CitySection = () => {
           >
             <span className="badge-gold mb-4 inline-block">
               <MapPin className="w-4 h-4" />
-              Moravskoslezský kraj
+              4 kraje • 12 měst
             </span>
             
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
@@ -129,8 +130,7 @@ const CitySection = () => {
             </h2>
             
             <p className="text-muted-foreground text-lg md:text-xl mb-8 font-body leading-relaxed">
-              Optický internet dostupný ve všech hlavních městech Moravskoslezského kraje. 
-              Ověřte si dostupnost na vaší adrese.
+              Optický internet dostupný ve všech hlavních městech Moravskoslezského, Jihomoravského, Pardubického a Královéhradeckého kraje.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -148,11 +148,52 @@ const CitySection = () => {
             </div>
           </motion.div>
 
-          {/* Right - City Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {cities.map((city, index) => (
-              <CityCard key={city.name} city={city} index={index} />
-            ))}
+          {/* Right - Collapsible City Grid */}
+          <div>
+            {/* Toggle Button */}
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-full glass-card rounded-xl p-5 mb-4 flex items-center justify-between hover:border-primary/30 transition-all duration-300 group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <div className="text-left">
+                  <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                    Zobrazit všechna města
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {cities.length} měst ve 4 krajích
+                  </p>
+                </div>
+              </div>
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown className="w-6 h-6 text-primary" />
+              </motion.div>
+            </button>
+
+            {/* Expandable City Grid */}
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="overflow-hidden"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {cities.map((city, index) => (
+                      <CityCard key={city.name} city={city} index={index} />
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

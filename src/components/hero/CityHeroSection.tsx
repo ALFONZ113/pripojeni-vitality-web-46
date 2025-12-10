@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { MapPin, Phone, Zap, Tv, Wrench } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
-import cityHeroImage from '@/assets/city-hero-family.jpg';
+import defaultHeroImage from '@/assets/city-hero-family.jpg';
+import ostravaHeroImage from '@/assets/ostrava-vitkovice.jpg';
 
 interface CityDistrict {
   name: string;
@@ -15,11 +16,18 @@ interface CityHeroSectionProps {
   highlight?: string;
   coverage: number;
   districts: CityDistrict[];
+  heroImage?: string;
 }
 
-const CityHeroSection = ({ cityName, highlight, coverage, districts }: CityHeroSectionProps) => {
+const CityHeroSection = ({ cityName, highlight, coverage, districts, heroImage }: CityHeroSectionProps) => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isMobile = useIsMobile();
+  
+  // Mapovanie obrázkov podľa mesta
+  const cityImages: Record<string, string> = {
+    'Ostrava': ostravaHeroImage,
+  };
+  const displayImage = cityImages[cityName] || defaultHeroImage;
   
   const handleContactClick = (e: React.MouseEvent) => {
     if (isMobile) {
@@ -164,20 +172,20 @@ const CityHeroSection = ({ cityName, highlight, coverage, districts }: CityHeroS
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative">
+            <div className="relative max-w-md lg:max-w-lg mx-auto">
               {/* Gold glow effect behind image */}
-              <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl opacity-50"></div>
+              <div className="absolute -inset-3 bg-primary/15 rounded-2xl blur-xl opacity-50"></div>
               
               {/* Main image */}
-              <div className="relative overflow-hidden rounded-2xl border border-primary/20 shadow-2xl">
+              <div className="relative overflow-hidden rounded-xl border border-primary/20 shadow-xl">
                 <img 
-                  src={cityHeroImage}
-                  alt="Rodina sledující televizi s PODA internetem"
-                  className="w-full h-auto object-cover aspect-square lg:aspect-[4/3]"
+                  src={displayImage}
+                  alt={`Internet PODA ${cityName}`}
+                  className="w-full h-auto object-cover aspect-video"
                   loading="eager"
                 />
                 {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
               </div>
             </div>
           </motion.div>

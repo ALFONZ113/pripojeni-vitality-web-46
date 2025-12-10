@@ -2,8 +2,8 @@
 <browserconfig>
     <msapplication>
         <tile>
-            <square150x150logo src="/poda-favicon-192x192.png"/>
-            <TileColor>#1e40af</TileColor>
+            <square150x150logo src="/popri-favicon.png"/>
+            <TileColor>#0a0a0a</TileColor>
         </tile>
     </msapplication>
 </browserconfig>

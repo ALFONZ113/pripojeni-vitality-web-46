@@ -1,10 +1,11 @@
 import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { MapPin, Users, Check, ArrowRight } from 'lucide-react';
+import { MapPin, Users, Check, ArrowRight, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cities as citiesData } from '@/data/cities/citiesData';
 
-interface City {
+interface CityCardData {
   name: string;
   coverage: number;
   population: string;
@@ -12,16 +13,16 @@ interface City {
   link: string;
 }
 
-const cities: City[] = [
-  { name: 'Ostrava', coverage: 98, population: '285 000', status: 'Plné pokrytí', link: '/internet-ostrava' },
-  { name: 'Karviná', coverage: 95, population: '52 000', status: 'Plné pokrytí', link: '/internet-karvina' },
-  { name: 'Havířov', coverage: 92, population: '71 000', status: 'Rozšiřujeme', link: '/internet-havirov' },
-  { name: 'Bohumín', coverage: 90, population: '21 000', status: 'Rozšiřujeme', link: '/internet-bohumin' },
-  { name: 'Poruba', coverage: 99, population: '65 000', status: 'Plné pokrytí', link: '/internet-poruba' },
-  { name: 'Orlová', coverage: 88, population: '29 000', status: 'Rozšiřujeme', link: '/internet-karvina' },
-];
+// Transformuj dáta z citiesData pre CitySection
+const cities: CityCardData[] = citiesData.slice(0, 6).map(city => ({
+  name: city.name,
+  coverage: city.coverage,
+  population: city.population,
+  status: city.status === 'full' ? 'Plné pokrytí' : 'Rozšiřujeme',
+  link: `/internet-${city.slug}`
+}));
 
-const CityCard = ({ city, index }: { city: City; index: number }) => {
+const CityCard = ({ city, index }: { city: CityCardData; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -67,7 +68,11 @@ const CityCard = ({ city, index }: { city: City; index: number }) => {
 
         <div className="flex items-center justify-between">
           <span className="text-xs text-primary flex items-center gap-1">
-            <Check className="w-3 h-3" />
+            {city.status === 'Plné pokrytí' ? (
+              <Check className="w-3 h-3" />
+            ) : (
+              <TrendingUp className="w-3 h-3" />
+            )}
             {city.status}
           </span>
           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />

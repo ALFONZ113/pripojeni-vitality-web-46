@@ -53,40 +53,92 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- REGIONÁLNÍ STRÁNKY -->
+  <!-- REGIONÁLNÍ STRÁNKY - Moravskoslezský kraj -->
   <url>
     <loc>https://www.popri.cz/internet-ostrava</loc>
-    <lastmod>2025-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://www.popri.cz/internet-karvina</loc>
-    <lastmod>2025-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://www.popri.cz/internet-bohumin</loc>
-    <lastmod>2025-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://www.popri.cz/internet-havirov</loc>
-    <lastmod>2025-11-13</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.popri.cz/internet-poruba</loc>
-    <lastmod>2025-11-13</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-karvina</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-havirov</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-bohumin</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-frydek-mistek</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-orlova</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- REGIONÁLNÍ STRÁNKY - Jihomoravský kraj -->
+  <url>
+    <loc>https://www.popri.cz/internet-brno</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- REGIONÁLNÍ STRÁNKY - Pardubický kraj -->
+  <url>
+    <loc>https://www.popri.cz/internet-svitavy</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-policka</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-vysoke-myto</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- REGIONÁLNÍ STRÁNKY - Královéhradecký kraj -->
+  <url>
+    <loc>https://www.popri.cz/internet-tyniste-nad-orlici</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- BLOG -->

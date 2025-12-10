@@ -19,11 +19,7 @@ const InternetTV = lazy(() => import('./pages/InternetTV'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
-const InternetOstrava = lazy(() => import('./pages/InternetOstrava'));
-const InternetKarvina = lazy(() => import('./pages/InternetKarvina'));
-const InternetBohumin = lazy(() => import('./pages/InternetBohumin'));
-const InternetHavirov = lazy(() => import('./pages/InternetHavirov'));
-const InternetPoruba = lazy(() => import('./pages/InternetPoruba'));
+const CityTemplate = lazy(() => import('./pages/CityTemplate'));
 const Tarify = lazy(() => import('./pages/Tarify'));
 const Programy = lazy(() => import('./pages/TvPrograms'));
 const IPTV = lazy(() => import('./pages/IPTV'));
@@ -82,12 +78,19 @@ function App() {
                   <Route path="/promo-akce" element={<PromoAkcia />} />
                   <Route path="/pomoc-s-prechodem" element={<PomocPrechodem />} />
                   
-                  {/* Geographic pages */}
-                  <Route path="/internet-ostrava" element={<InternetOstrava />} />
-                  <Route path="/internet-karvina" element={<InternetKarvina />} />
-                  <Route path="/internet-bohumin" element={<InternetBohumin />} />
-                  <Route path="/internet-havirov" element={<InternetHavirov />} />
-                  <Route path="/internet-poruba" element={<InternetPoruba />} />
+                  {/* Geographic pages - Dynamic route for all cities */}
+                  <Route path="/internet-ostrava" element={<CityTemplate />} />
+                  <Route path="/internet-poruba" element={<CityTemplate />} />
+                  <Route path="/internet-karvina" element={<CityTemplate />} />
+                  <Route path="/internet-havirov" element={<CityTemplate />} />
+                  <Route path="/internet-bohumin" element={<CityTemplate />} />
+                  <Route path="/internet-frydek-mistek" element={<CityTemplate />} />
+                  <Route path="/internet-orlova" element={<CityTemplate />} />
+                  <Route path="/internet-brno" element={<CityTemplate />} />
+                  <Route path="/internet-svitavy" element={<CityTemplate />} />
+                  <Route path="/internet-policka" element={<CityTemplate />} />
+                  <Route path="/internet-vysoke-myto" element={<CityTemplate />} />
+                  <Route path="/internet-tyniste-nad-orlici" element={<CityTemplate />} />
                   
                   {/* Legal pages */}
                   <Route path="/ochrana-soukromi" element={<PrivacyPolicy />} />

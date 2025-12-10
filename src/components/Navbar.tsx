@@ -3,8 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X, Wifi, Tv, FileText, HandHeart, ChevronRight, ChevronDown, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
-import { cities, CityData } from '@/data/cities/citiesData';
-import CityPreviewCard from './navigation/CityPreviewCard';
+import { cities } from '@/data/cities/citiesData';
 
 // Group cities by region
 const citiesByRegion = cities.reduce((acc, city) => {
@@ -20,8 +19,7 @@ const Navbar = memo(() => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoverageOpen, setIsCoverageOpen] = useState(false);
   const [isMobileCoverageOpen, setIsMobileCoverageOpen] = useState(false);
-  const [hoveredCity, setHoveredCity] = useState<CityData | null>(null);
-  const [expandedMobileCity, setExpandedMobileCity] = useState<string | null>(null);
+  const [isCoverageExpanded, setIsCoverageExpanded] = useState(false);
   const location = useLocation();
   
   const isActivePath = (path: string) => location.pathname === path;
@@ -37,7 +35,7 @@ const Navbar = memo(() => {
     setIsMobileMenuOpen(false); 
     setIsCoverageOpen(false);
     setIsMobileCoverageOpen(false);
-    setExpandedMobileCity(null);
+    setIsCoverageExpanded(false);
   }, [location]);
 
   const navLinks = [
@@ -47,17 +45,9 @@ const Navbar = memo(() => {
     { path: '/blog', label: 'Blog', icon: FileText },
   ];
 
-  const handleMobileCityClick = (citySlug: string) => {
-    if (expandedMobileCity === citySlug) {
-      setExpandedMobileCity(null);
-    } else {
-      setExpandedMobileCity(citySlug);
-    }
-  };
-
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    setExpandedMobileCity(null);
+    setIsCoverageExpanded(false);
   };
   
   return (
@@ -95,7 +85,6 @@ const Navbar = memo(() => {
             onMouseEnter={() => setIsCoverageOpen(true)}
             onMouseLeave={() => {
               setIsCoverageOpen(false);
-              setHoveredCity(null);
             }}
           >
             <button 
@@ -115,81 +104,79 @@ const Navbar = memo(() => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 mt-2 flex bg-background/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-2xl overflow-hidden z-50"
+                  className="absolute top-full left-0 mt-2 bg-background border border-border/50 rounded-xl shadow-2xl overflow-hidden z-50 min-w-[280px]"
                 >
-                  {/* Main Links + City List */}
-                  <div className="w-72 p-4 max-h-[70vh] overflow-y-auto border-r border-border/30">
-                    {/* Main Internet & TV Link */}
+                  <div className="p-3">
+                    {/* Přehled služeb - Link */}
                     <Link 
                       to="/internet-tv"
-                      className="flex items-center gap-2 px-3 py-3 rounded-lg bg-primary/10 text-primary font-medium mb-4 hover:bg-primary/20 transition-colors"
+                      className="flex items-center gap-2 px-3 py-3 rounded-lg bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
                     >
                       <Wifi className="h-4 w-4" />
                       Přehled služeb
                     </Link>
                     
-                    {/* Coverage Section */}
-                    <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-                      <MapPin className="h-3.5 w-3.5" />
-                      Pokrytí podle města
-                    </h4>
-                    
-                    {regionOrder.map((region) => (
-                      citiesByRegion[region] && (
-                        <div key={region} className="mb-4 last:mb-0">
-                          <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2 px-2">
-                            {region}
-                          </h5>
-                          <div className="space-y-1">
-                            {citiesByRegion[region].map((city) => (
-                              <div
-                                key={city.slug}
-                                onMouseEnter={() => setHoveredCity(city)}
-                                className={`flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer ${
-                                  hoveredCity?.slug === city.slug
-                                    ? 'bg-primary/10 text-primary'
-                                    : location.pathname === `/internet-${city.slug}` 
-                                      ? 'bg-primary/10 text-primary' 
-                                      : 'hover:bg-secondary text-foreground/80 hover:text-foreground'
-                                }`}
-                              >
-                                <Link 
-                                  to={`/internet-${city.slug}`}
-                                  className="flex-1 font-medium"
-                                >
-                                  {city.name}
-                                </Link>
-                                <span className={`text-xs flex items-center gap-1.5 ${
-                                  city.status === 'full' ? 'text-green-500' : 'text-amber-500'
-                                }`}>
-                                  {city.coverage}%
-                                  <span className={`w-2 h-2 rounded-full ${
-                                    city.status === 'full' ? 'bg-green-500' : 'bg-amber-500'
-                                  }`} />
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )
-                    ))}
-                  </div>
-
-                  {/* Preview Panel */}
-                  <AnimatePresence mode="wait">
-                    {hoveredCity && (
-                      <motion.div
-                        key={hoveredCity.slug}
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 10 }}
-                        transition={{ duration: 0.15 }}
-                        className="bg-secondary/30"
+                    {/* Pokrytí - Expandable */}
+                    <div className="mt-2">
+                      <button
+                        onClick={() => setIsCoverageExpanded(!isCoverageExpanded)}
+                        className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                       >
-                        <CityPreviewCard city={hoveredCity} variant="desktop" />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        <span className="flex items-center gap-2 font-medium">
+                          <MapPin className="h-4 w-4" />
+                          Pokrytí podle města
+                        </span>
+                        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isCoverageExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      <AnimatePresence>
+                        {isCoverageExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="mt-2 ml-3 pl-3 border-l-2 border-primary/30 max-h-[50vh] overflow-y-auto">
+                              {regionOrder.map((region) => (
+                                citiesByRegion[region] && (
+                                  <div key={region} className="mb-3 last:mb-0">
+                                    <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2 px-2">
+                                      {region}
+                                    </h5>
+                                    <div className="space-y-1">
+                                      {citiesByRegion[region].map((city) => (
+                                        <Link
+                                          key={city.slug}
+                                          to={`/internet-${city.slug}`}
+                                          className={`flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-200 ${
+                                            location.pathname === `/internet-${city.slug}` 
+                                              ? 'bg-primary/10 text-primary' 
+                                              : 'hover:bg-secondary text-foreground/80 hover:text-foreground'
+                                          }`}
+                                        >
+                                          <span className="font-medium">{city.name}</span>
+                                          <span className={`text-xs flex items-center gap-1.5 ${
+                                            city.status === 'full' ? 'text-green-500' : 'text-amber-500'
+                                          }`}>
+                                            {city.coverage}%
+                                            <span className={`w-2 h-2 rounded-full ${
+                                              city.status === 'full' ? 'bg-green-500' : 'bg-amber-500'
+                                            }`} />
+                                          </span>
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -275,82 +262,76 @@ const Navbar = memo(() => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="mt-2 ml-4 pl-4 border-l-2 border-primary/30 space-y-4">
-                          {/* Main Internet & TV Link */}
+                        <div className="mt-2 ml-4 pl-4 border-l-2 border-primary/30 space-y-2">
+                          {/* Přehled služeb - Link */}
                           <Link 
                             to="/internet-tv"
                             onClick={closeMobileMenu}
-                            className="flex items-center gap-2 py-2 px-3 rounded-lg bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
+                            className="flex items-center gap-2 py-3 px-3 rounded-lg bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
                           >
                             <Wifi className="h-4 w-4" />
                             Přehled služeb
                           </Link>
                           
-                          {/* Coverage Section */}
-                          <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                            <MapPin className="h-3.5 w-3.5" />
-                            Pokrytí
-                          </h4>
+                          {/* Pokrytí - Expandable */}
+                          <button
+                            onClick={() => setIsCoverageExpanded(!isCoverageExpanded)}
+                            className="w-full flex items-center justify-between py-3 px-3 rounded-lg text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                          >
+                            <span className="flex items-center gap-2 font-medium">
+                              <MapPin className="h-4 w-4" />
+                              Pokrytí podle města
+                            </span>
+                            <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isCoverageExpanded ? 'rotate-180' : ''}`} />
+                          </button>
                           
-                          {regionOrder.map((region) => (
-                            citiesByRegion[region] && (
-                              <div key={region}>
-                                <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
-                                  {region}
-                                </h5>
-                                <div className="space-y-1">
-                                  {citiesByRegion[region].map((city) => (
-                                    <div key={city.slug}>
-                                      <button
-                                        onClick={() => handleMobileCityClick(city.slug)}
-                                        className={`w-full flex items-center justify-between py-2 px-3 rounded-lg transition-all ${
-                                          expandedMobileCity === city.slug
-                                            ? 'bg-primary/10 text-primary'
-                                            : location.pathname === `/internet-${city.slug}` 
-                                              ? 'bg-primary/10 text-primary' 
-                                              : 'text-foreground/80 hover:bg-secondary hover:text-foreground'
-                                        }`}
-                                      >
-                                        <span className="font-medium">{city.name}</span>
-                                        <div className="flex items-center gap-2">
-                                          <span className={`text-xs flex items-center gap-1.5 ${
-                                            city.status === 'full' ? 'text-green-500' : 'text-amber-500'
-                                          }`}>
-                                            {city.coverage}%
-                                            <span className={`w-2 h-2 rounded-full ${
-                                              city.status === 'full' ? 'bg-green-500' : 'bg-amber-500'
-                                            }`} />
-                                          </span>
-                                          <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${
-                                            expandedMobileCity === city.slug ? 'rotate-180' : ''
-                                          }`} />
+                          <AnimatePresence>
+                            {isCoverageExpanded && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="ml-3 pl-3 border-l-2 border-primary/20 space-y-3">
+                                  {regionOrder.map((region) => (
+                                    citiesByRegion[region] && (
+                                      <div key={region}>
+                                        <h5 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
+                                          {region}
+                                        </h5>
+                                        <div className="space-y-1">
+                                          {citiesByRegion[region].map((city) => (
+                                            <Link
+                                              key={city.slug}
+                                              to={`/internet-${city.slug}`}
+                                              onClick={closeMobileMenu}
+                                              className={`flex items-center justify-between py-2 px-3 rounded-lg transition-all ${
+                                                location.pathname === `/internet-${city.slug}` 
+                                                  ? 'bg-primary/10 text-primary' 
+                                                  : 'text-foreground/80 hover:bg-secondary hover:text-foreground'
+                                              }`}
+                                            >
+                                              <span className="font-medium">{city.name}</span>
+                                              <span className={`text-xs flex items-center gap-1.5 ${
+                                                city.status === 'full' ? 'text-green-500' : 'text-amber-500'
+                                              }`}>
+                                                {city.coverage}%
+                                                <span className={`w-2 h-2 rounded-full ${
+                                                  city.status === 'full' ? 'bg-green-500' : 'bg-amber-500'
+                                                }`} />
+                                              </span>
+                                            </Link>
+                                          ))}
                                         </div>
-                                      </button>
-                                      
-                                      {/* Mobile City Preview Card */}
-                                      <AnimatePresence>
-                                        {expandedMobileCity === city.slug && (
-                                          <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: 'auto', opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.2 }}
-                                            className="overflow-hidden"
-                                          >
-                                            <CityPreviewCard 
-                                              city={city} 
-                                              variant="mobile" 
-                                              onNavigate={closeMobileMenu}
-                                            />
-                                          </motion.div>
-                                        )}
-                                      </AnimatePresence>
-                                    </div>
+                                      </div>
+                                    )
                                   ))}
                                 </div>
-                              </div>
-                            )
-                          ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
                       </motion.div>
                     )}

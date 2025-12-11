@@ -17,7 +17,7 @@ export const channelLogos: Record<string, ChannelLogo> = {
   // Dětské a mládež
   'ČT :D (Déčko)': {
     name: 'ČT :D (Déčko)',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/%C4%8CT_%3AD_logo_2012.svg/120px-%C4%8CT_%3AD_logo_2012.svg.png',
+    logoUrl: 'https://cdn-0.tvprofil.com/img/kanali-logo/ctd_40.png',
     fallbackInitials: 'ČT:D'
   },
   'Disney Channel': {
@@ -54,7 +54,7 @@ export const channelLogos: Record<string, ChannelLogo> = {
   // Zpravodajství
   'ČT24': {
     name: 'ČT24',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/%C4%8CT24_logo_2012.svg/120px-%C4%8CT24_logo_2012.svg.png',
+    logoUrl: 'https://cdn-0.tvprofil.com/img/kanali-logo/ct24_40.png',
     fallbackInitials: 'ČT24'
   },
   'CNN Prima News': {
@@ -91,7 +91,7 @@ export const channelLogos: Record<string, ChannelLogo> = {
   },
   'ČT art': {
     name: 'ČT art',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/%C4%8CT_art_logo_2012.svg/120px-%C4%8CT_art_logo_2012.svg.png',
+    logoUrl: 'https://cdn-0.tvprofil.com/img/kanali-logo/ctart_40.png',
     fallbackInitials: 'ART'
   },
   'Spektrum': {
@@ -138,7 +138,7 @@ export const channelLogos: Record<string, ChannelLogo> = {
   },
   'ČT sport': {
     name: 'ČT sport',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/%C4%8CT_sport_logo_2012.svg/120px-%C4%8CT_sport_logo_2012.svg.png',
+    logoUrl: 'https://cdn-0.tvprofil.com/img/kanali-logo/ctsport_40.png',
     fallbackInitials: 'ČTS'
   },
   'Arena Sport 1': {
@@ -229,9 +229,9 @@ export const handleLogoError = (
   const parent = target.parentElement;
   
   if (parent) {
-    // Replace img with styled div showing initials
+    // Replace img with styled div showing initials - noir+gold theme
     const fallbackDiv = document.createElement('div');
-    fallbackDiv.className = 'w-12 h-8 bg-gradient-to-br from-poda-blue to-poda-blue-light rounded flex items-center justify-center text-white text-xs font-bold';
+    fallbackDiv.className = 'w-12 h-8 bg-gradient-to-br from-amber-600 to-amber-500 rounded flex items-center justify-center text-white text-xs font-bold';
     fallbackDiv.textContent = fallbackInitials;
     fallbackDiv.setAttribute('aria-label', `Logo ${target.alt}`);
     

@@ -12,7 +12,7 @@ const ChannelLogo: React.FC<ChannelLogoProps> = ({ channelName, className = "w-1
   const logoInfo = getChannelLogo(channelName);
 
   return (
-    <div className={`${className} bg-gray-50 rounded flex items-center justify-center overflow-hidden`}>
+    <div className={`${className} bg-card rounded flex items-center justify-center overflow-hidden border border-border/20`}>
       <img
         {...responsiveImageProps(logoInfo.logoUrl, `Logo ${logoInfo.name}`, 48, 32)}
         className="w-full h-full object-contain"

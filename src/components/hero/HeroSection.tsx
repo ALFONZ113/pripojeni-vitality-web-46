@@ -130,15 +130,10 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Headlines - Balanced elegant size */}
-            <motion.h1 
-              id="hero-title" 
-              variants={itemVariants} 
-              className="font-display font-bold mb-8 md:mb-12 tracking-tighter"
-              style={{ 
-                fontSize: 'clamp(2.5rem, 6vw, 6rem)',
-                lineHeight: '0.95'
-              }}
-            >
+            <motion.h1 id="hero-title" variants={itemVariants} className="font-display font-bold mb-8 md:mb-12 tracking-tighter" style={{
+            fontSize: 'clamp(2.5rem, 6vw, 6rem)',
+            lineHeight: '0.95'
+          }}>
               <span className="text-foreground block">Připojení, na které</span>
               <span className="text-gradient-gold block">se můžete spolehnout</span>
             </motion.h1>
@@ -146,7 +141,7 @@ const HeroSection = () => {
             {/* Subtitle - LARGER */}
             <motion.p variants={itemVariants} className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
               Nechte svůj domov fungovat na plný výkon.<br className="hidden sm:block" />
-              <span className="text-primary font-semibold">Gigabit 1000 Mbps + TV zdarma</span> ve špičkové kvalitě.
+              <span className="text-primary font-semibold">Gigabit 1000 Mbps + TV zdarma</span> ​
             </motion.p>
 
 

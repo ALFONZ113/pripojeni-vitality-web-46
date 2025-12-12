@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ArrowRight, Download, Upload, Tv, Monitor, Smartphone, Tablet, Wifi, CheckCircle } from 'lucide-react';
+import { ArrowRight, Download, Upload, Tv, Monitor, Smartphone, Tablet, Wifi, CheckCircle, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TariffSection from '../components/TariffSection';
 import { initAnimations } from '../utils/animation';
@@ -162,9 +162,49 @@ const InternetTV = () => {
                 <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/5 rounded-full filter blur-3xl"></div>
                 
                 <div className="relative glass rounded-xl p-5 border border-border">
-                  <div className="aspect-video relative rounded-lg overflow-hidden mb-4 bg-secondary/50">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-muted-foreground font-medium">Preview PODA net.TV</span>
+                  {/* TV Mockup */}
+                  <div className="aspect-video relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-secondary via-secondary/80 to-secondary/60 border border-border/50">
+                    {/* TV Header Bar */}
+                    <div className="absolute top-0 left-0 right-0 h-8 bg-background/80 backdrop-blur-sm flex items-center justify-between px-3 border-b border-border/30">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+                        <span className="text-xs font-medium text-foreground">ŽIVĚ</span>
+                      </div>
+                      <span className="text-xs text-muted-foreground">PODA net.TV</span>
+                    </div>
+                    
+                    {/* Main Content Area */}
+                    <div className="absolute inset-0 top-8 p-3 flex gap-2">
+                      {/* Main Channel Display */}
+                      <div className="flex-1 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-lg flex items-center justify-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent"></div>
+                        <Play className="h-10 w-10 text-primary/60" />
+                      </div>
+                      
+                      {/* Channel Sidebar */}
+                      <div className="w-16 flex flex-col gap-1.5">
+                        {[1, 2, 3, 4].map((i) => (
+                          <div 
+                            key={i} 
+                            className={`flex-1 rounded ${i === 1 ? 'bg-primary/30 border border-primary/50' : 'bg-secondary/80'} flex items-center justify-center transition-all hover:bg-primary/20`}
+                          >
+                            <Tv className="h-3 w-3 text-primary/70" />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Control Bar */}
+                    <div className="absolute bottom-0 left-0 right-0 h-6 bg-background/60 backdrop-blur-sm flex items-center justify-center gap-4 px-3">
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-3 bg-primary/60 rounded-full"></div>
+                        <div className="w-1 h-4 bg-primary/80 rounded-full"></div>
+                        <div className="w-1 h-2 bg-primary/40 rounded-full"></div>
+                      </div>
+                      <div className="h-1 flex-1 bg-secondary rounded-full overflow-hidden">
+                        <div className="h-full w-1/3 bg-primary rounded-full"></div>
+                      </div>
+                      <span className="text-[10px] text-muted-foreground">HD</span>
                     </div>
                   </div>
                   

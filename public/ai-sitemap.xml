@@ -7,18 +7,18 @@
   <!-- Homepage with AI metadata -->
   <url>
     <loc>https://www.popri.cz/</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <ai:contentType>homepage</ai:contentType>
-    <ai:description>PODA internet služby v Ostravě - rychlé připojení s TV zdarma</ai:description>
-    <ai:keywords>PODA internet, Ostrava, rychlé připojení, TV zdarma</ai:keywords>
+    <ai:description>Optické připojení PODA - rychlý a spolehlivý internet pro vaše město</ai:description>
+    <ai:keywords>internet, PODA internet, optické připojení, gigabitový internet</ai:keywords>
   </url>
 
   <!-- Service pages -->
   <url>
     <loc>https://www.popri.cz/internet-tv</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <ai:contentType>service</ai:contentType>
@@ -28,7 +28,7 @@
 
   <url>
     <loc>https://www.popri.cz/iptv</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <ai:contentType>service</ai:contentType>
@@ -38,7 +38,7 @@
 
   <url>
     <loc>https://www.popri.cz/tarify</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <ai:contentType>pricing</ai:contentType>
@@ -49,63 +49,140 @@
   <!-- Regional pages -->
   <url>
     <loc>https://www.popri.cz/internet-ostrava</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <ai:contentType>regional</ai:contentType>
-    <ai:description>PODA internet v Ostravě - rychlé připojení pro domácnosti i firmy</ai:description>
+    <ai:description>Rychlé a stabilní optické připojení v Ostravě na síti PODA</ai:description>
     <ai:keywords>internet Ostrava, PODA Ostrava, připojení Ostrava</ai:keywords>
     <ai:location>Ostrava, Moravskoslezský kraj</ai:location>
   </url>
 
   <url>
     <loc>https://www.popri.cz/internet-karvina</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <ai:contentType>regional</ai:contentType>
-    <ai:description>PODA internet v Karviné - spolehlivé připojení s TV zdarma</ai:description>
+    <ai:description>Rychlé a stabilní optické připojení v Karviné na síti PODA</ai:description>
     <ai:keywords>internet Karviná, PODA Karviná, připojení Karviná</ai:keywords>
     <ai:location>Karviná, Moravskoslezský kraj</ai:location>
   </url>
 
   <url>
     <loc>https://www.popri.cz/internet-havirov</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <ai:contentType>regional</ai:contentType>
-    <ai:description>PODA internet v Havířově - gigabitové rychlosti pro domovy</ai:description>
+    <ai:description>Rychlé a stabilní optické připojení v Havířově na síti PODA</ai:description>
     <ai:keywords>internet Havířov, PODA Havířov, připojení Havířov</ai:keywords>
     <ai:location>Havířov, Moravskoslezský kraj</ai:location>
   </url>
 
   <url>
     <loc>https://www.popri.cz/internet-bohumin</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <ai:contentType>regional</ai:contentType>
-    <ai:description>PODA internet v Bohumíně - rychlá instalace a podpora</ai:description>
+    <ai:description>Rychlé a stabilní optické připojení v Bohumíně na síti PODA</ai:description>
     <ai:keywords>internet Bohumín, PODA Bohumín, připojení Bohumín</ai:keywords>
     <ai:location>Bohumín, Moravskoslezský kraj</ai:location>
   </url>
 
   <url>
     <loc>https://www.popri.cz/internet-poruba</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <ai:contentType>regional</ai:contentType>
-    <ai:description>PODA internet v Porubě - moderní připojení pro městskou část Ostravy</ai:description>
+    <ai:description>Rychlé a stabilní optické připojení v Porubě na síti PODA</ai:description>
     <ai:keywords>internet Poruba, PODA Poruba, připojení Poruba Ostrava</ai:keywords>
     <ai:location>Poruba, Ostrava</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-frydek-mistek</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>Rychlé a stabilní optické připojení ve Frýdku-Místku na síti PODA</ai:description>
+    <ai:keywords>internet Frýdek-Místek, PODA Frýdek-Místek, připojení Frýdek-Místek</ai:keywords>
+    <ai:location>Frýdek-Místek, Moravskoslezský kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-orlova</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>Rychlé a stabilní optické připojení v Orlové na síti PODA</ai:description>
+    <ai:keywords>internet Orlová, PODA Orlová, připojení Orlová</ai:keywords>
+    <ai:location>Orlová, Moravskoslezský kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-brno</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>Rychlé a stabilní optické připojení v Brně na síti PODA</ai:description>
+    <ai:keywords>internet Brno, PODA Brno, připojení Brno</ai:keywords>
+    <ai:location>Brno, Jihomoravský kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-svitavy</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>Rychlé a stabilní optické připojení ve Svitavách na síti PODA</ai:description>
+    <ai:keywords>internet Svitavy, PODA Svitavy, připojení Svitavy</ai:keywords>
+    <ai:location>Svitavy, Pardubický kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-policka</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>Rychlé a stabilní optické připojení v Poličce na síti PODA</ai:description>
+    <ai:keywords>internet Polička, PODA Polička, připojení Polička</ai:keywords>
+    <ai:location>Polička, Pardubický kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-vysoke-myto</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>Rychlé a stabilní optické připojení ve Vysokém Mýtě na síti PODA</ai:description>
+    <ai:keywords>internet Vysoké Mýto, PODA Vysoké Mýto, připojení Vysoké Mýto</ai:keywords>
+    <ai:location>Vysoké Mýto, Pardubický kraj</ai:location>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/internet-tyniste-nad-orlici</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <ai:contentType>regional</ai:contentType>
+    <ai:description>Rychlé a stabilní optické připojení v Týništi nad Orlicí na síti PODA</ai:description>
+    <ai:keywords>internet Týniště nad Orlicí, PODA Týniště nad Orlicí, připojení Týniště</ai:keywords>
+    <ai:location>Týniště nad Orlicí, Královéhradecký kraj</ai:location>
   </url>
 
   <!-- Blog section -->
   <url>
     <loc>https://www.popri.cz/blog</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
     <ai:contentType>blog</ai:contentType>
@@ -116,7 +193,7 @@
   <!-- Contact and support -->
   <url>
     <loc>https://www.popri.cz/kontakt</loc>
-    <lastmod>2025-01-14</lastmod>
+    <lastmod>2025-12-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <ai:contentType>contact</ai:contentType>

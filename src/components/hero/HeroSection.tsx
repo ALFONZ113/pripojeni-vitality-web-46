@@ -145,8 +145,9 @@ const HeroSection = () => {
 
             {/* Subtitle - LARGER */}
             <motion.p variants={itemVariants} className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
-              Optická rychlost pro celou rodinu.{' '}
-              <span className="text-primary font-semibold">TV zdarma v ceně</span>.
+              Nechte svůj domov fungovat na plný výkon.{' '}
+              <span className="text-primary font-semibold">Gigabit 1000 Mbps + TV zdarma</span>{' '}
+              ve špičkové kvalitě.
             </motion.p>
 
             {/* Phone Input Form - LARGER */}

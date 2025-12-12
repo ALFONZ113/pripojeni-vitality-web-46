@@ -43,17 +43,16 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="Popri.cz – Rychlý PODA Internet s TV Zdarma | Gigabitové Připojení"
-        description="Hledáte spolehlivý PODA internet? Popri.cz vám nabízí gigabitové připojení s TV zdarma a non-stop podporou. Rychlá instalace."
+        title="Internet ve Vašem Městě | Optická Síť PODA 1 Gb/s"
+        description="Rychlé a spolehlivé optické připojení pro vaše město. Internet na síti PODA s vysokou stabilitou, moderní technologií a profesionální instalací."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
         currentDate="2025-01-14"
         faviconVersion="3.1"
         aiOptimized={true}
         pageType="website"
         keywords={[
-          'PODA internet', 'gigabitové připojení', 'internet Ostrava', 
-          'TV zdarma', 'rychlý internet', 'optické připojení',
-          'internet Karviná', 'internet Havířov', 'internet Bohumín'
+          'internet', 'PODA internet', 'optické připojení', 
+          'gigabitový internet', 'rychlý internet', 'stabilní internet'
         ]}
         location="Ostrava, Moravskoslezský kraj"
       />

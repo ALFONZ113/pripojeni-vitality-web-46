@@ -267,7 +267,7 @@ const PromotionPopup = () => {
                       Odesílání...
                     </>
                   ) : (
-                    'Zavolejte mi'
+                    'Chci internet'
                   )}
                 </Button>
               </div>

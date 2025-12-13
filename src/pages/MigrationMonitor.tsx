@@ -1,12 +1,26 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+
+// Add noindex meta tag on mount
+const useNoIndex = () => {
+  useEffect(() => {
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    document.head.appendChild(metaRobots);
+    return () => {
+      document.head.removeChild(metaRobots);
+    };
+  }, []);
+};
 import MigrationDashboard from '../components/migration/MigrationDashboard';
 import SEOAudit from '../components/migration/SEOAudit';
 import RedirectTester from '../components/migration/RedirectTester';
 import PageMetadata from '../components/page/PageMetadata';
 
 const MigrationMonitor = () => {
+  useNoIndex();
   return (
     <div className="min-h-screen pt-24 bg-gray-50">
       <PageMetadata

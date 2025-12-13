@@ -1,6 +1,19 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageMetadata from '../components/page/PageMetadata';
+
+// Add noindex meta tag on mount
+const useNoIndex = () => {
+  useEffect(() => {
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    document.head.appendChild(metaRobots);
+    return () => {
+      document.head.removeChild(metaRobots);
+    };
+  }, []);
+};
 import Breadcrumb from '../components/common/Breadcrumb';
 import SEOAudit from '../components/migration/SEOAudit';
 import IndexingFixCenter from '../components/indexing/IndexingFixCenter';
@@ -13,6 +26,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { BarChart3, Search, Globe, AlertTriangle, FileSearch, Settings } from 'lucide-react';
 
 const IndexingDashboard = () => {
+  useNoIndex();
   const totalPosts = blogPosts.length;
   const recentPosts = blogPosts.filter(post => {
     const postDate = new Date(post.date.split('. ').reverse().join('-'));

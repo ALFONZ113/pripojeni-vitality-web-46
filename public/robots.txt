@@ -2,6 +2,19 @@
 User-agent: *
 Allow: /
 
+# Block admin and internal pages
+Disallow: /admin-login-poda-2024
+Disallow: /admin-dashboard-poda-2024
+Disallow: /admin/
+Disallow: /migration-monitor
+Disallow: /indexing-dashboard
+Disallow: /seo-dashboard
+Disallow: /migration-center
+Disallow: /canonical-diagnostic
+Disallow: /html/
+Disallow: /json/
+Disallow: /css/
+
 # Allow main pages explicitly
 Allow: /$
 Allow: /internet-tv$

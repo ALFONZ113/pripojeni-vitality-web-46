@@ -3,8 +3,21 @@
  * Helps identify pages without proper canonical tags
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
+// Add noindex meta tag on mount
+const useNoIndex = () => {
+  useEffect(() => {
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    document.head.appendChild(metaRobots);
+    return () => {
+      document.head.removeChild(metaRobots);
+    };
+  }, []);
+};
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -22,6 +35,7 @@ interface DiagnosticResult {
 }
 
 const CanonicalDiagnostic = () => {
+  useNoIndex();
   const [testUrl, setTestUrl] = useState('');
   const [results, setResults] = useState<DiagnosticResult[]>([]);
   const [isChecking, setIsChecking] = useState(false);

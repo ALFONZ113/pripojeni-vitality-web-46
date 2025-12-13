@@ -44,7 +44,7 @@ const Index = () => {
     <div className="min-h-screen">
       <PageMetadata 
         title="Internet ve Vašem Městě | Optická Síť PODA 1 Gb/s"
-        description="Rychlé a spolehlivé optické připojení pro vaše město. Internet na síti PODA s vysokou stabilitou, moderní technologií a profesionální instalací."
+        description="Využíváme moderní optickou technologii GPON, která přináší gigabitový internet až 1000 Mbps přímo do vašeho bytu. Stabilní připojení s TV zdarma a profesionální instalací."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
         currentDate="2025-01-14"
         faviconVersion="3.1"
@@ -58,8 +58,8 @@ const Index = () => {
       />
       
       <AIContentSummary
-        title="PODA Internet s TV Zdarma - Popri.cz"
-        summary="Poskytujeme rychlé a spolehlivé internetové připojení PODA v Ostravě a okolí. Nabízíme gigabitové rychlosti, televizní vysílání zdarma, profesionální instalaci a non-stop technickou podporu."
+        title="PODA Internet s TV Zdarma"
+        summary="Využíváme moderní optickou technologii GPON, která přináší gigabitový internet až 1000 Mbps přímo do vašeho bytu. Nabízíme televizní vysílání zdarma, profesionální instalaci a non-stop technickou podporu."
         services={[
           'Gigabitový internet PODA',
           'Televizní vysílání zdarma',

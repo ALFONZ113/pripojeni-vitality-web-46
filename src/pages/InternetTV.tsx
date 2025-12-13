@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Download, Upload, Tv, Monitor, Smartphone, Tablet, Wifi, CheckCircle, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TariffSection from '../components/TariffSection';
@@ -13,6 +14,12 @@ const InternetTV = () => {
 
   return (
     <div className="min-h-screen pt-24 bg-background">
+      <Helmet>
+        <title>Internet a TV služby | Gigabitová optika PODA s TV zdarma</title>
+        <meta name="description" content="Optické připojení GPON s rychlostí až 1000 Mbps a 85+ TV programů v ceně. Sledujte televizi na 4 zařízeních současně s PODA net.TV aplikací." />
+        <link rel="canonical" href="https://www.popri.cz/internet-tv" />
+      </Helmet>
+      
       {/* Hero */}
       <section className="section-padding pt-16 bg-background">
         <div className="container-custom">

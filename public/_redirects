@@ -1,3 +1,6 @@
+# 301 redirects - removed /internet-poruba (Poruba is district of Ostrava)
+/internet-poruba /internet-ostrava 301
+
 # 301 redirects - old blog ID URLs to new slug URLs
 /blog/10 /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda 301
 /blog/30 /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025 301

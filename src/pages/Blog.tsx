@@ -87,7 +87,7 @@ const Blog = () => {
   const locations = getAllLocations();
   
   const generateMetaDescription = () => {
-    const baseDescription = "Blog o internetových službách PODA - články o technologiích, tipy pro lepší využití internetu a televize";
+    const baseDescription = "Praktické rady a tipy pro výběr internetu, nastavení WiFi a využití TV služeb. Novinky z technologického světa a průvodce pro domácnosti";
     if (selectedCategory !== 'all') return `${baseDescription}. Kategorie: ${selectedCategory}`;
     if (searchTerm) return `${baseDescription}. Hledání: ${searchTerm}`;
     return `${baseDescription}. Aktuálně ${blogPosts.length} článků.`;
@@ -98,7 +98,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen pt-24 bg-background">
       <Helmet>
-        <title>Blog o internetu a technologiích | PODA | Popri.cz</title>
+        <title>Blog | Tipy pro internet, WiFi a TV | Průvodce pro domácnosti</title>
         <meta name="description" content={generateMetaDescription()} />
         <link rel="canonical" href="https://www.popri.cz/blog" />
         <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, ${allTags.join(', ')}, ${locations.join(', ')}`} />

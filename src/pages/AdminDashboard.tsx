@@ -1,6 +1,19 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+
+// Add noindex meta tag on mount
+const useNoIndex = () => {
+  useEffect(() => {
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    document.head.appendChild(metaRobots);
+    return () => {
+      document.head.removeChild(metaRobots);
+    };
+  }, []);
+};
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -67,6 +80,7 @@ interface FormSubmission {
 }
 
 const AdminDashboard = () => {
+  useNoIndex();
   const [user, setUser] = useState<any>(null);
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
   const [filteredSubmissions, setFilteredSubmissions] = useState<FormSubmission[]>([]);

@@ -1,5 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+
+// Add noindex meta tag on mount
+const useNoIndex = () => {
+  useEffect(() => {
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    document.head.appendChild(metaRobots);
+    return () => {
+      document.head.removeChild(metaRobots);
+    };
+  }, []);
+};
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,6 +22,7 @@ import { toast } from "@/hooks/use-toast";
 import { Loader2, Search, FileText, Image as ImageIcon, Save } from "lucide-react";
 
 const AIBlogTest = () => {
+  useNoIndex();
   const [topic, setTopic] = useState("");
   const [keywords, setKeywords] = useState("");
   const [researchData, setResearchData] = useState<any>(null);

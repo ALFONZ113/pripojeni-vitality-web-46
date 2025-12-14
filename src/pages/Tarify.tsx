@@ -8,8 +8,8 @@ const Tarify = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Ceník Internet a TV | Tarify PODA od 300 Kč měsíčně</title>
-        <meta name="description" content="Přehled internetových tarifů s gigabitovou rychlostí až 1000 Mbps. Ceny od 300 Kč měsíčně včetně TV zdarma, bez závazků a skrytých poplatků." />
+        <title>Ceník Gigabitového Internetu + TV Zdarma | Výhodné Balíčky</title>
+        <meta name="description" content="Přehled internetových balíčků s gigabitovou rychlostí 1000 Mbps. TV zdarma, bez závazků a skrytých poplatků. Férová cena pro každou domácnost. Zavolejte 730 431 313!" />
         <link rel="canonical" href="https://www.popri.cz/tarify" />
         
         <script type="application/ld+json">

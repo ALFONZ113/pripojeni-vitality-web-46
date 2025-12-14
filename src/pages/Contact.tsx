@@ -15,8 +15,8 @@ const Contact = () => {
   return (
     <div className="min-h-screen pt-24 bg-background">
       <Helmet>
-        <title>Kontakt | Objednejte Internet PODA | 730 431 313</title>
-        <meta name="description" content="Objednejte si gigabitový internet PODA s TV zdarma. Volejte 730 431 313 nebo vyplňte formulář. Profesionální instalace a non-stop podpora." />
+        <title>Kontakt | Objednejte Gigabitový Internet + TV Zdarma</title>
+        <meta name="description" content="Objednejte optické připojení ještě dnes. Zavolejte 730 431 313 nebo vyplňte formulář. Rychlá instalace, férová cena, bez závazků. Jsme tu pro vás!" />
         <link rel="canonical" href="https://www.popri.cz/kontakt" />
         
         <script type="application/ld+json">

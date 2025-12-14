@@ -203,7 +203,7 @@ export const panelakOtazkyPost: BlogPost = {
   `,
   date: "27. 8. 2025",
   author: "Tomáš Krejčí",
-  category: "Tipy",
+  category: "Tipy a rady",
   image: "/lovable-uploads/fdaf29a8-01a5-4fd4-82b1-457e07f40576.png",
   alt: "PODA technik při instalaci internetového vybavení v technické místnosti panelového domu",
   tags: ["Panelový dům", "Instalace internetu", "Optické připojení", "SVJ", "PODA"]

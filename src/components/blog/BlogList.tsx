@@ -1,9 +1,7 @@
-
-import React, { memo, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { memo, useMemo, useCallback } from 'react';
 import { Bookmark } from 'lucide-react';
 import BlogCard from './BlogCard';
 import type { BlogPost } from '../../data/blog/types';
-import { useSearchParams } from 'react-router-dom';
 
 interface BlogListProps {
   posts: BlogPost[];
@@ -11,24 +9,8 @@ interface BlogListProps {
 }
 
 const BlogList = memo(({ posts, onResetFilters }: BlogListProps) => {
-  const [searchParams] = useSearchParams();
-  
-  // Memoizované filtrovanie postov
-  const displayedPosts = useMemo(() => {
-    const tag = searchParams.get('tag');
-    const category = searchParams.get('category');
-    
-    if (tag) {
-      return posts.filter(post => 
-        post.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
-      );
-    } else if (category) {
-      return posts.filter(post => 
-        post.category.toLowerCase() === category.toLowerCase()
-      );
-    }
-    return posts;
-  }, [searchParams, posts]);
+  // Posts sú už prefiltrované v Blog.tsx - nefiltrujeme znova
+  const displayedPosts = posts;
 
   // Memoizovaný callback pre reset
   const handleResetFilters = useCallback(() => {

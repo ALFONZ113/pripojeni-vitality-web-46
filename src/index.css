@@ -587,7 +587,19 @@
 .blog-content .bg-blue-50,
 .blog-content .bg-blue-100,
 .blog-content .bg-slate-50,
-.blog-content .bg-slate-100 {
+.blog-content .bg-slate-100,
+.blog-content .bg-orange-50,
+.blog-content .bg-orange-100,
+.blog-content .bg-green-50,
+.blog-content .bg-green-100,
+.blog-content .bg-red-50,
+.blog-content .bg-red-100,
+.blog-content .bg-yellow-50,
+.blog-content .bg-yellow-100,
+.blog-content div[class*="bg-orange"],
+.blog-content div[class*="bg-green"],
+.blog-content div[class*="bg-red"],
+.blog-content div[class*="bg-yellow"] {
   @apply !bg-card !text-foreground border border-border/30 rounded-lg;
 }
 
@@ -595,7 +607,11 @@
 .blog-content div[class*="bg-white"] *,
 .blog-content div[class*="bg-gray"] *,
 .blog-content div[class*="bg-blue"] *,
-.blog-content div[class*="bg-slate"] * {
+.blog-content div[class*="bg-slate"] *,
+.blog-content div[class*="bg-orange"] *,
+.blog-content div[class*="bg-green"] *,
+.blog-content div[class*="bg-red"] *,
+.blog-content div[class*="bg-yellow"] * {
   @apply !text-foreground;
 }
 
@@ -603,7 +619,11 @@
 .blog-content div[class*="bg-white"] strong,
 .blog-content div[class*="bg-gray"] strong,
 .blog-content div[class*="bg-blue"] strong,
-.blog-content div[class*="bg-slate"] strong {
+.blog-content div[class*="bg-slate"] strong,
+.blog-content div[class*="bg-orange"] strong,
+.blog-content div[class*="bg-green"] strong,
+.blog-content div[class*="bg-red"] strong,
+.blog-content div[class*="bg-yellow"] strong {
   @apply !text-primary;
 }
 
@@ -611,6 +631,45 @@
 .blog-content div[class*="bg-white"] li::marker,
 .blog-content div[class*="bg-gray"] li::marker,
 .blog-content div[class*="bg-blue"] li::marker,
-.blog-content div[class*="bg-slate"] li::marker {
+.blog-content div[class*="bg-slate"] li::marker,
+.blog-content div[class*="bg-orange"] li::marker,
+.blog-content div[class*="bg-green"] li::marker,
+.blog-content div[class*="bg-red"] li::marker,
+.blog-content div[class*="bg-yellow"] li::marker {
   @apply !text-primary;
+}
+
+/* Fix text colors in colored boxes */
+.blog-content .text-orange-700,
+.blog-content .text-orange-800,
+.blog-content .text-blue-700,
+.blog-content .text-blue-800,
+.blog-content .text-green-700,
+.blog-content .text-green-800,
+.blog-content .text-red-700,
+.blog-content .text-red-800,
+.blog-content .text-yellow-700,
+.blog-content .text-yellow-800,
+.blog-content .text-gray-600,
+.blog-content .text-gray-700,
+.blog-content .text-gray-800 {
+  @apply !text-foreground/90;
+}
+
+/* Fix heading colors in colored boxes */
+.blog-content h4[class*="text-orange"],
+.blog-content h4[class*="text-blue"],
+.blog-content h4[class*="text-green"],
+.blog-content h4[class*="text-red"],
+.blog-content h4[class*="text-yellow"] {
+  @apply !text-primary;
+}
+
+/* Fix border colors on tip boxes */
+.blog-content .border-orange-400,
+.blog-content .border-red-400,
+.blog-content .border-yellow-400,
+.blog-content .border-green-400,
+.blog-content .border-blue-400 {
+  @apply !border-primary;
 }

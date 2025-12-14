@@ -15,8 +15,8 @@ const InternetTV = () => {
   return (
     <div className="min-h-screen pt-24 bg-background">
       <Helmet>
-        <title>Internet a TV služby | Gigabitová optika PODA s TV zdarma</title>
-        <meta name="description" content="Optické připojení GPON s rychlostí až 1000 Mbps a 85+ TV programů v ceně. Sledujte televizi na 4 zařízeních současně s PODA net.TV aplikací." />
+        <title>Internet a TV služby | Gigabitová optika + TV zdarma</title>
+        <meta name="description" content="Optické připojení GPON 1000 Mbps a 85+ TV programů zdarma. Sledujte televizi na 4 zařízeních současně. Zavolejte 730 431 313!" />
         <link rel="canonical" href="https://www.popri.cz/internet-tv" />
       </Helmet>
       

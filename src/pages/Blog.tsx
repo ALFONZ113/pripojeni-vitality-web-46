@@ -99,7 +99,7 @@ const Blog = () => {
     <div className="min-h-screen pt-24 bg-background">
       <Helmet>
         <title>Blog | Tipy pro internet, WiFi a TV | Průvodce pro domácnosti</title>
-        <meta name="description" content={generateMetaDescription()} />
+        <meta name="description" content="Praktické rady pro výběr internetu, nastavení WiFi a využití TV služeb. Novinky z technologického světa. Máte dotaz? Zavolejte 730 431 313!" />
         <link rel="canonical" href="https://www.popri.cz/blog" />
         <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, ${allTags.join(', ')}, ${locations.join(', ')}`} />
         

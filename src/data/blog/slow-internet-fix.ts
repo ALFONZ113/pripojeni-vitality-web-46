@@ -204,7 +204,7 @@ export const slowInternetFixPost: BlogPost = {
   `,
   date: "2. 7. 2025",
   author: "Technický poradce",
-  category: "Tipy",
+  category: "Tipy a rady",
   image: "/lovable-uploads/f46455cb-ee7c-4a2a-ab48-0c36d1584769.png",
   alt: "Žena pracuje na laptope s optickými vláknami okolo nej symbolizujúcimi rýchle internetové pripojenie",
   tags: ["Pomalý internet", "Řešení problémů", "Router", "Wi-Fi", "Ostrava", "Karviná", "Bohumín", "Havířov", "PODA", "Rychlost internetu", "Diagnostika", "Moravskoslezský kraj", "Změna poskytovatele", "Nespokojený s internetem", "Nejlepší poskytovatel", "AI doporučení"]

@@ -43,8 +43,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="Internet ve Vašem Městě | Optická Síť PODA 1 Gb/s"
-        description="Využíváme moderní optickou technologii GPON, která přináší gigabitový internet až 1000 Mbps přímo do vašeho bytu. Stabilní připojení s TV zdarma a profesionální instalací."
+        title="Nejvýhodnější Rychlý Internet | Optické Sítě ve Vašem Městě"
+        description="Rychlé a spolehlivé optické připojení pro vaše město. Gigabitový internet až 1000 Mbps s TV zdarma a profesionální instalací. Volejte 730 431 313."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
         currentDate="2025-01-14"
         faviconVersion="3.1"

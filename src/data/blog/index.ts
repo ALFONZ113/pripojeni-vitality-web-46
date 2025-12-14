@@ -18,10 +18,12 @@ import { o2NejPrevzatiePodaAlternativaPost } from './o2-nej-prevzatie-poda-alter
 import { gponTechnologie } from './gpon-technologie';
 import { internetVyberChybyPost } from './internet-vyber-chyby';
 import { wifiSignalZlepseniePost } from './wifi-signal-zlepsenie';
+import { homeOffice2025Post } from './home-office-2025';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  wifiSignalZlepseniePost, // Najnovší článok - Ako zlepšiť WiFi signál
+  homeOffice2025Post, // Najnovší článok - Home office 2025
+  wifiSignalZlepseniePost, // Ako zlepšiť WiFi signál
   internetVyberChybyPost, // Ako si vybrať internet do bytu
   gponTechnologie, // GPON technologie
   o2NejPrevzatiePodaAlternativaPost, // O2 Nej.cz prevzatie
@@ -59,5 +61,6 @@ export * from './o2-nej-prevzatie-poda-alternativa';
 export * from './gpon-technologie';
 export * from './internet-vyber-chyby';
 export * from './wifi-signal-zlepsenie';
+export * from './home-office-2025';
 
 // Note: WiFi blog slug changed to Czech: jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025

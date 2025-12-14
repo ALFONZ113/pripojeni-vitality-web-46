@@ -91,8 +91,8 @@ export const cities: CityData[] = [
       { name: 'Vítkovice', residents: '8 000', coverage: '100%', note: 'Průmyslová zóna' }
     ],
     seo: {
-      title: 'Internet Ostrava | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Ostravě na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Ostrava 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Hledáte spolehlivý internet v Ostravě? Optické připojení 1000 Mbps + TV zdarma. 98% pokrytí města, férová cena. Zavolejte 730 431 313!',
       keywords: [
         'internet Ostrava', 'PODA Ostrava', 'optické připojení Ostrava',
         'gigabitový internet Ostrava', 'rychlý internet Ostrava', 'GPON Ostrava'
@@ -144,8 +144,8 @@ export const cities: CityData[] = [
       { name: 'Mizerov', residents: '5 000', coverage: '95%', note: 'Rezidenční část' }
     ],
     seo: {
-      title: 'Internet Karviná | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Karviné na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Karviná 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Stabilní gigabitový internet pro Karvinou. 1000 Mbps, TV zdarma, bez limitů. Žádné skryté poplatky. Zavolejte 730 431 313!',
       keywords: [
         'internet Karviná', 'PODA Karviná', 'optické připojení Karviná',
         'gigabitový internet Karviná', 'rychlý internet Karviná', 'GPON Karviná'
@@ -197,8 +197,8 @@ export const cities: CityData[] = [
       { name: 'Bludovice', residents: '4 000', coverage: '95%', note: 'Vilová čtvrť' }
     ],
     seo: {
-      title: 'Internet Havířov | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Havířově na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Havířov 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Potřebujete rychlý internet v Havířově? 1000 Mbps optika + TV programy zdarma. Férová cena, rychlá instalace. Zavolejte 730 431 313!',
       keywords: [
         'internet Havířov', 'PODA Havířov', 'optické připojení Havířov',
         'gigabitový internet Havířov', 'rychlý internet Havířov', 'GPON Havířov'
@@ -248,8 +248,8 @@ export const cities: CityData[] = [
       { name: 'Skřečoň', residents: '3 000', coverage: '100%', note: 'Přírodní lokalita u řeky' }
     ],
     seo: {
-      title: 'Internet Bohumín | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Bohumíně na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Bohumín 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Gigabitový internet pro Bohumín. 100% pokrytí, optika 1000 Mbps + TV zdarma. Bez závazků. Objednejte ještě dnes - 730 431 313!',
       keywords: [
         'internet Bohumín', 'PODA Bohumín', 'optické připojení Bohumín',
         'gigabitový internet Bohumín', 'rychlý internet Bohumín', 'GPON Bohumín'
@@ -301,8 +301,8 @@ export const cities: CityData[] = [
       { name: 'Lískovec', residents: '2 000', coverage: '80%', note: 'Vilová zástavba' }
     ],
     seo: {
-      title: 'Internet Frýdek-Místek | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení ve Frýdku-Místku na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Frýdek-Místek 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Optický internet pro Frýdek-Místek. 1000 Mbps, TV zdarma, rozšiřujeme pokrytí. Férová cena. Zavolejte 730 431 313!',
       keywords: [
         'internet Frýdek-Místek', 'PODA Frýdek-Místek', 'optické připojení Frýdek-Místek',
         'gigabitový internet Frýdek-Místek', 'rychlý internet Frýdek-Místek'
@@ -353,8 +353,8 @@ export const cities: CityData[] = [
       { name: 'Lazy', residents: '2 000', coverage: '80%', note: 'Okrajová oblast' }
     ],
     seo: {
-      title: 'Internet Orlová | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Orlové na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Orlová 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Rychlý a stabilní internet pro Orlovou. 1000 Mbps, TV zdarma, férová cena. Žádné limity. Zavolejte 730 431 313!',
       keywords: [
         'internet Orlová', 'PODA Orlová', 'optické připojení Orlová',
         'gigabitový internet Orlová', 'rychlý internet Orlová'
@@ -408,8 +408,8 @@ export const cities: CityData[] = [
       { name: 'Bystrc', residents: '25 000', coverage: '50%', note: 'Moderní zástavba' }
     ],
     seo: {
-      title: 'Internet Brno | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Brně na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Brno 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Hledáte rychlý internet v Brně? Gigabitová optika 1000 Mbps + TV zdarma. Rozšiřujeme pokrytí. Zavolejte 730 431 313!',
       keywords: [
         'internet Brno', 'PODA Brno', 'optické připojení Brno',
         'gigabitový internet Brno', 'rychlý internet Brno'
@@ -461,8 +461,8 @@ export const cities: CityData[] = [
       { name: 'Předměstí', residents: '3 000', coverage: '70%', note: 'Okrajová část' }
     ],
     seo: {
-      title: 'Internet Svitavy | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení ve Svitavách na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Svitavy 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Optický internet pro Svitavy. 1000 Mbps, TV zdarma, spolehlivé připojení. Férová cena. Zavolejte 730 431 313!',
       keywords: [
         'internet Svitavy', 'PODA Svitavy', 'optické připojení Svitavy',
         'gigabitový internet Svitavy', 'rychlý internet Svitavy'
@@ -512,8 +512,8 @@ export const cities: CityData[] = [
       { name: 'Dolní předměstí', residents: '1 500', coverage: '65%', note: 'Okrajová oblast' }
     ],
     seo: {
-      title: 'Internet Polička | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Poličce na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Polička 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Gigabitový internet pro Poličku. 1000 Mbps optika + TV zdarma. Bez závazků, férová cena. Zavolejte 730 431 313!',
       keywords: [
         'internet Polička', 'PODA Polička', 'optické připojení Polička',
         'gigabitový internet Polička', 'rychlý internet Polička'
@@ -563,8 +563,8 @@ export const cities: CityData[] = [
       { name: 'Pražské předměstí', residents: '2 000', coverage: '60%', note: 'Průmyslová zóna' }
     ],
     seo: {
-      title: 'Internet Vysoké Mýto | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení ve Vysokém Mýtě na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Vysoké Mýto 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Optický internet pro Vysoké Mýto. 1000 Mbps, TV zdarma, rozšiřujeme síť. Zavolejte 730 431 313!',
       keywords: [
         'internet Vysoké Mýto', 'PODA Vysoké Mýto', 'optické připojení Vysoké Mýto',
         'gigabitový internet Vysoké Mýto', 'rychlý internet Vysoké Mýto'
@@ -616,8 +616,8 @@ export const cities: CityData[] = [
       { name: 'Okrajové části', residents: '1 000', coverage: '50%', note: 'Rozvíjející se oblast' }
     ],
     seo: {
-      title: 'Internet Týniště nad Orlicí | Optické Připojení PODA 1 Gb/s',
-      description: 'Rychlé a stabilní optické připojení v Týništi nad Orlicí na síti PODA. Spolehlivý internet pro práci, zábavu i chytrou domácnost s profesionální instalací.',
+      title: 'Internet Týniště nad Orlicí 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Rychlý internet pro Týniště nad Orlicí. 1000 Mbps optika + TV zdarma. Férová cena. Zavolejte 730 431 313!',
       keywords: [
         'internet Týniště nad Orlicí', 'PODA Týniště nad Orlicí', 'optické připojení Týniště',
         'gigabitový internet Týniště', 'rychlý internet Týniště nad Orlicí'

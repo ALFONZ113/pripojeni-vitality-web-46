@@ -42,7 +42,7 @@ const Navbar = memo(() => {
     { path: '/', label: 'Domů', icon: null },
     { path: '/programy', label: 'TV Programy', icon: Tv },
     { path: '/pomoc-s-prechodem', label: 'Pomoc s přechodem', icon: HandHeart },
-    { path: '/blog', label: 'Blog', icon: FileText },
+    { path: '/blog', label: 'Články', icon: FileText },
   ];
 
   const closeMobileMenu = () => {

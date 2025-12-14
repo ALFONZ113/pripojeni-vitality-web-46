@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, HandHeart, ChevronRight, ChevronDown, MapPin } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, HandHeart, ChevronRight, ChevronDown, MapPin, Newspaper, Cpu, Lightbulb, Star, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
 import { cities } from '@/data/cities/citiesData';
@@ -14,16 +14,28 @@ const citiesByRegion = cities.reduce((acc, city) => {
 
 const regionOrder = ['Moravskoslezský kraj', 'Jihomoravský kraj', 'Pardubický kraj', 'Královéhradecký kraj'];
 
+// Blog categories
+const blogCategories = [
+  { label: 'Novinky', slug: 'Novinky', icon: Newspaper },
+  { label: 'Technologie', slug: 'Technologie', icon: Cpu },
+  { label: 'Tipy a rady', slug: 'Tipy a rady', icon: Lightbulb },
+  { label: 'Recenze', slug: 'Recenze', icon: Star },
+  { label: 'Služby', slug: 'Služby', icon: Briefcase },
+];
+
 const Navbar = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoverageOpen, setIsCoverageOpen] = useState(false);
   const [isMobileCoverageOpen, setIsMobileCoverageOpen] = useState(false);
   const [isCoverageExpanded, setIsCoverageExpanded] = useState(false);
+  const [isArticlesOpen, setIsArticlesOpen] = useState(false);
+  const [isMobileArticlesOpen, setIsMobileArticlesOpen] = useState(false);
   const location = useLocation();
   
   const isActivePath = (path: string) => location.pathname === path;
   const isCityPath = location.pathname.startsWith('/internet-') && location.pathname !== '/internet-tv';
+  const isBlogPath = location.pathname.startsWith('/blog');
   
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -36,13 +48,14 @@ const Navbar = memo(() => {
     setIsCoverageOpen(false);
     setIsMobileCoverageOpen(false);
     setIsCoverageExpanded(false);
+    setIsArticlesOpen(false);
+    setIsMobileArticlesOpen(false);
   }, [location]);
 
   const navLinks = [
     { path: '/', label: 'Domů', icon: null },
     { path: '/programy', label: 'TV Programy', icon: Tv },
     { path: '/pomoc-s-prechodem', label: 'Pomoc s přechodem', icon: HandHeart },
-    { path: '/blog', label: 'Články', icon: FileText },
   ];
 
   const closeMobileMenu = () => {
@@ -194,6 +207,60 @@ const Navbar = memo(() => {
               {link.label}
             </Link>
           ))}
+
+          {/* Články Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsArticlesOpen(true)}
+            onMouseLeave={() => setIsArticlesOpen(false)}
+          >
+            <button 
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+                isBlogPath ? 'text-primary' : 'text-foreground/80 hover:text-primary'
+              }`}
+            >
+              <FileText className="mr-1.5 h-4 w-4" />
+              Články
+              <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${isArticlesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            <AnimatePresence>
+              {isArticlesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full left-0 mt-2 bg-background border border-border/50 rounded-xl shadow-2xl overflow-hidden z-50 min-w-[220px]"
+                >
+                  <div className="p-3">
+                    {/* Všechny články */}
+                    <Link 
+                      to="/blog"
+                      className="flex items-center gap-2 px-3 py-3 rounded-lg bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Všechny články
+                    </Link>
+                    
+                    {/* Kategorie */}
+                    <div className="mt-2 space-y-1">
+                      {blogCategories.map((category) => (
+                        <Link
+                          key={category.slug}
+                          to={`/blog?category=${encodeURIComponent(category.slug)}`}
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors"
+                        >
+                          <category.icon className="h-4 w-4 text-primary" />
+                          <span className="font-medium">{category.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </nav>
 
         {/* Desktop CTA */}
@@ -342,6 +409,7 @@ const Navbar = memo(() => {
                   <motion.div key={link.path} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: (index + 2) * 0.1 }}>
                     <Link 
                       to={link.path} 
+                      onClick={closeMobileMenu}
                       className={`flex items-center justify-between p-4 rounded-xl transition-all ${
                         isActivePath(link.path) ? 'bg-primary/10 text-primary border border-primary/20' : 'text-foreground hover:bg-secondary'
                       }`}
@@ -354,6 +422,59 @@ const Navbar = memo(() => {
                     </Link>
                   </motion.div>
                 ))}
+
+                {/* Články Accordion */}
+                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
+                  <button 
+                    onClick={() => setIsMobileArticlesOpen(!isMobileArticlesOpen)}
+                    className={`w-full flex items-center justify-between p-4 rounded-xl transition-all ${
+                      isBlogPath ? 'bg-primary/10 text-primary border border-primary/20' : 'text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    <span className="flex items-center font-medium text-lg">
+                      <FileText className="mr-3 h-5 w-5" />
+                      Články
+                    </span>
+                    <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${isMobileArticlesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {isMobileArticlesOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-2 ml-4 pl-4 border-l-2 border-primary/30 space-y-2">
+                          {/* Všechny články */}
+                          <Link 
+                            to="/blog"
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-2 py-3 px-3 rounded-lg bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
+                          >
+                            <FileText className="h-4 w-4" />
+                            Všechny články
+                          </Link>
+                          
+                          {/* Kategorie */}
+                          {blogCategories.map((category) => (
+                            <Link
+                              key={category.slug}
+                              to={`/blog?category=${encodeURIComponent(category.slug)}`}
+                              onClick={closeMobileMenu}
+                              className="flex items-center gap-2 py-3 px-3 rounded-lg text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors"
+                            >
+                              <category.icon className="h-4 w-4 text-primary" />
+                              <span className="font-medium">{category.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               </nav>
               
               <div className="mt-auto pt-8 border-t border-border">

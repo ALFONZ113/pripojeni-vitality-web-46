@@ -1,10 +1,11 @@
-
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Copy, ExternalLink, Search, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { blogPosts } from '@/data/blog';
+import { createSlug } from '@/utils/slugGenerator';
 
 interface IndexingAction {
   id: string;
@@ -16,6 +17,14 @@ interface IndexingAction {
 }
 
 const IndexingHelper = () => {
+  // Generate blog URLs dynamically using slugs
+  const blogUrls = useMemo(() => {
+    return blogPosts.slice(0, 10).map(post => {
+      const slug = post.slug || createSlug(post.title);
+      return `https://www.popri.cz/blog/${slug}`;
+    });
+  }, []);
+
   const [actions, setActions] = useState<IndexingAction[]>([
     {
       id: 'gsc-property',
@@ -52,17 +61,10 @@ const IndexingHelper = () => {
     {
       id: 'request-indexing',
       title: 'Požádat o indexování',
-      description: 'Manuálně požádat o indexování blog postů',
+      description: 'Manuálně požádat o indexování blog postů (slug-based URLs)',
       status: 'pending',
       action: () => {
-        const urls = [
-          'https://www.popri.cz/blog/1',
-          'https://www.popri.cz/blog/2',
-          'https://www.popri.cz/blog/3',
-          'https://www.popri.cz/blog/4',
-          'https://www.popri.cz/blog/5'
-        ];
-        navigator.clipboard.writeText(urls.join('\n'));
+        navigator.clipboard.writeText(blogUrls.join('\n'));
         toast.success('URL seznam zkopírován. Použijte "Inspect URL" v GSC pro každou URL.');
         updateActionStatus('request-indexing', 'in-progress');
       }
@@ -107,19 +109,19 @@ const IndexingHelper = () => {
       <CardContent>
         <div className="space-y-4">
           {actions.map((action) => (
-            <div key={action.id} className="flex items-center justify-between p-4 border rounded-lg">
+            <div key={action.id} className="flex items-center justify-between p-4 border border-border/30 rounded-lg bg-card">
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-gray-900">{action.title}</h3>
+                  <h3 className="font-semibold text-foreground">{action.title}</h3>
                   {getStatusBadge(action.status)}
                 </div>
-                <p className="text-sm text-gray-600 mb-2">{action.description}</p>
+                <p className="text-sm text-muted-foreground mb-2">{action.description}</p>
                 {action.url && (
                   <a 
                     href={action.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-xs text-blue-600 hover:text-blue-800 flex items-center"
+                    className="text-xs text-primary hover:text-primary/80 flex items-center"
                   >
                     {action.url} <ExternalLink className="w-3 h-3 ml-1" />
                   </a>
@@ -137,14 +139,24 @@ const IndexingHelper = () => {
           ))}
         </div>
         
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-          <h4 className="font-semibold text-blue-900 mb-2">Důležité poznámky:</h4>
-          <ul className="text-sm text-blue-800 space-y-1">
+        <div className="mt-6 p-4 bg-secondary/30 rounded-lg border border-border/30">
+          <h4 className="font-semibold text-foreground mb-2">Důležité poznámky:</h4>
+          <ul className="text-sm text-muted-foreground space-y-1">
             <li>• Indexování může trvat 1-7 dní</li>
             <li>• Pravidelně kontrolujte GSC Coverage report</li>
             <li>• Požádejte o indexování nových článků hned po publikování</li>
             <li>• Monitorujte organic traffic v GSC Performance</li>
+            <li>• Všechny blog URL jsou nyní slug-based (např. /blog/nazov-clanku)</li>
           </ul>
+        </div>
+        
+        <div className="mt-4 p-4 bg-card rounded-lg border border-border/30">
+          <h4 className="font-semibold text-foreground mb-2">Blog URL pro indexování:</h4>
+          <div className="text-xs text-muted-foreground space-y-1 max-h-32 overflow-y-auto">
+            {blogUrls.map((url, i) => (
+              <div key={i} className="truncate">{url}</div>
+            ))}
+          </div>
         </div>
       </CardContent>
     </Card>

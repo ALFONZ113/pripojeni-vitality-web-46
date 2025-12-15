@@ -56,6 +56,11 @@ The website includes:
 - /tarify - Detailed pricing and package comparison
 - /iptv - TV channel list and streaming information
 - /blog - Technical guides, service comparisons, and local availability
+  - /blog/home-office-2025-nastaveni-domaci-kancelare-produktivita - Home office setup guide
+  - /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 - WiFi signal optimization
+  - /blog/o2-nej-prevzatie-poda-alternativa-zakaznici - O2 Nej.cz transition guide
+  - /blog/polanka-nad-odrou-60ghz-pripojeni-2025 - 60GHz technology overview
+  - /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 - Regional internet guide
 - /internet-ostrava - Ostrava-specific service information
 - /internet-havirov - Havířov-specific service information
 - /internet-karvina - Karviná-specific service information

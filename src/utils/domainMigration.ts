@@ -126,10 +126,19 @@ export const getMigrationChecklist = () => {
   };
 };
 
+import { blogPosts } from '../data/blog';
+import { createSlug } from './slugGenerator';
+
 /**
- * Generate URLs for manual indexing requests
+ * Generate URLs for manual indexing requests - uses dynamic slug-based URLs
  */
 export const getIndexingUrls = () => {
+  // Generate blog URLs dynamically from blogPosts with slug-based URLs
+  const blogUrls = blogPosts.slice(0, 20).map(post => {
+    const slug = post.slug || createSlug(post.title);
+    return `https://www.popri.cz/blog/${slug}`;
+  });
+
   return {
     critical: [
       'https://www.popri.cz/',
@@ -142,23 +151,10 @@ export const getIndexingUrls = () => {
       'https://www.popri.cz/internet-karvina',
       'https://www.popri.cz/internet-bohumin',
       'https://www.popri.cz/internet-havirov',
-      'https://www.popri.cz/internet-poruba'
+      'https://www.popri.cz/internet-frydek-mistek',
+      'https://www.popri.cz/internet-orlova',
+      'https://www.popri.cz/internet-brno'
     ],
-    blog: [
-      'https://www.popri.cz/blog/1',
-      'https://www.popri.cz/blog/2',
-      'https://www.popri.cz/blog/3',
-      'https://www.popri.cz/blog/4',
-      'https://www.popri.cz/blog/5',
-      'https://www.popri.cz/blog/6',
-      'https://www.popri.cz/blog/7',
-      'https://www.popri.cz/blog/8',
-      'https://www.popri.cz/blog/9',
-      'https://www.popri.cz/blog/10',
-      'https://www.popri.cz/blog/11',
-      'https://www.popri.cz/blog/12',
-      'https://www.popri.cz/blog/13',
-      'https://www.popri.cz/blog/100'
-    ]
+    blog: blogUrls
   };
 };

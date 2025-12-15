@@ -91,7 +91,7 @@ const HeroSection = () => {
       }
     }
   };
-  return <section ref={ref} className="relative min-h-[100svh] flex items-center overflow-hidden" aria-labelledby="hero-title">
+  return <section ref={ref} className="relative min-h-[80vh] md:min-h-[90vh] lg:min-h-[100svh] flex items-center overflow-hidden" aria-labelledby="hero-title">
       {/* ═══════════════════════════════════════════════════════════════
           FULL-SCREEN BACKGROUND IMAGE
          ═══════════════════════════════════════════════════════════════ */}

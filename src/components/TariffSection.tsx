@@ -33,7 +33,7 @@ const TariffSection = memo(() => {
   ];
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-background relative overflow-hidden" id="tarify">
+    <section ref={ref} className="py-10 md:py-20 lg:py-32 bg-background relative overflow-hidden" id="tarify">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-x-1/2" />
@@ -62,7 +62,7 @@ const TariffSection = memo(() => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-12 px-4"
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 px-4"
         >
           {stats.map((stat, index) => (
             <motion.div

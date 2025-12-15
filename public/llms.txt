@@ -1,10 +1,10 @@
-# Popri.cz - PODA Internet Provider
+# Nejvýhodnější Rychlý Internet | Optické Sítě ve Vašem Městě
 
-> PODA internet services with gigabit connectivity and free TV
+> Rychlé a spolehlivé optické připojení pro vaše město. Gigabitový internet až 1000 Mbps s TV zdarma a profesionální instalací.
 
 ## About
 
-Popri.cz is an official representative of PODA Internet, providing high-speed gigabit internet connections (up to 1000 Mbps) with free IPTV service across the Ostrava region and surrounding areas in the Czech Republic.
+Popri.cz nabízí vysokorychlostní gigabitové internetové připojení (až 1000 Mbps) s IPTV zdarma v Ostravě a okolí.
 
 ## Services
 

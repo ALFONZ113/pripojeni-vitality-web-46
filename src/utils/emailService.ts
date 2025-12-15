@@ -1,5 +1,5 @@
-
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface EmailFormData {
   name: string;
@@ -16,8 +16,38 @@ interface EmailFormData {
 
 export const sendContactFormEmail = async (formData: EmailFormData): Promise<boolean> => {
   try {
-    // Use direct URL to edge function
-    const functionUrl = "https://yjzzhfvwbnzhecffuelt.supabase.co/functions/v1/send-email";
+    // Send admin email using Supabase client
+    const { data: adminData, error: adminError } = await supabase.functions.invoke('send-email', {
+      body: {
+        to: "junkert@seznam.cz",
+        subject: formData.name.includes("Žádost o zpětné volání") 
+          ? "Žádost o zpětné volání - popri.cz" 
+          : "Nový kontakt z pripojeni-poda.cz",
+        formData: formData,
+        emailType: "admin"
+      }
+    });
+    
+    if (adminError) {
+      console.error("Admin email API error:", adminError);
+      throw new Error(`Failed to send admin email: ${adminError.message}`);
+    }
+    
+    // Send customer email using Supabase client
+    const { error: customerError } = await supabase.functions.invoke('send-email', {
+      body: {
+        to: formData.email,
+        subject: "Děkujeme za váš zájem o PODA služby - Popri.cz",
+        formData: formData,
+        emailType: "customer"
+      }
+    });
+    
+    if (customerError) {
+      console.error("Customer email API error:", customerError);
+      // Don't throw error for customer email, admin email is more important
+      console.warn("Customer email failed but continuing...");
+    }
     
     // Send admin email
     const adminResponse = await fetch(functionUrl, {

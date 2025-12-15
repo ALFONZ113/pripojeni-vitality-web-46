@@ -1,5 +1,5 @@
-
-import React from 'react';
+import React, { useMemo } from 'react';
+import DOMPurify from 'dompurify';
 import type { BlogPost } from '../../data/blog/types';
 import InternalLinkSuggestions from '../seo/InternalLinkSuggestions';
 import Breadcrumb from '../common/Breadcrumb';
@@ -9,6 +9,17 @@ interface BlogPostContentProps {
 }
 
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
+  // Sanitize HTML content to prevent XSS attacks
+  const sanitizedContent = useMemo(() => {
+    return DOMPurify.sanitize(post.content, {
+      ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 
+                     'ul', 'ol', 'li', 'a', 'img', 'blockquote', 'code', 'pre', 'table', 'thead', 
+                     'tbody', 'tr', 'th', 'td', 'div', 'span', 'section', 'article', 'figure', 'figcaption'],
+      ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'id', 'target', 'rel', 'width', 'height'],
+      ALLOW_DATA_ATTR: false,
+    });
+  }, [post.content]);
+
   return (
     <div className="lg:col-span-8">
       {/* Breadcrumb navigation */}
@@ -26,7 +37,7 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
       <article className="prose prose-lg prose-invert max-w-none" itemScope itemType="https://schema.org/BlogPosting">
         <div 
           className="blog-content"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
           itemProp="articleBody"
         />
       </article>

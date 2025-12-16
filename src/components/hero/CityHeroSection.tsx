@@ -136,31 +136,19 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               ))}
             </motion.div>
 
-            {/* Social Proof */}
-            <motion.p 
-              variants={itemVariants}
-              className="text-lg text-primary font-semibold mb-4"
-            >
-              <span className="inline-flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                Přes 2000 domácností {locationText} už má gigabit.
-              </span>
-            </motion.p>
-
-            {/* Mini Stats */}
+            {/* Trust Badge - Clean Stats */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-wrap justify-center lg:justify-start gap-6 mb-8"
+              className="inline-flex items-center gap-4 px-4 py-2 bg-card/50 border border-border/30 rounded-xl mb-8"
             >
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-primary" />
-                <span className="text-primary font-bold">2000+</span>
-                <span className="text-muted-foreground">spokojených zákazníků</span>
+                <span className="text-sm"><span className="font-bold text-foreground">2000+</span> <span className="text-muted-foreground">zákazníků</span></span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
-                <Star className="h-4 w-4 text-primary" />
-                <span className="text-primary font-bold">4.8/5</span>
-                <span className="text-muted-foreground">hodnocení</span>
+              <div className="w-px h-4 bg-border"></div>
+              <div className="flex items-center gap-2">
+                <Star className="h-4 w-4 text-primary fill-primary" />
+                <span className="text-sm"><span className="font-bold text-foreground">4.8/5</span> <span className="text-muted-foreground">hodnocení</span></span>
               </div>
             </motion.div>
 

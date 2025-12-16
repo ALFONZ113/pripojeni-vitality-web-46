@@ -137,11 +137,11 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
             {/* Main Price Headline */}
             <motion.div variants={itemVariants} className="mb-4">
               <h1 id="hero-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-extrabold text-foreground leading-tight mb-2 lg:mb-4">
-                Gigabit za{' '}
-                <span className="text-gradient-gold">nejvýhodnější cenu</span>
+                Gigabit{' '}
+                <span className="text-gradient-gold">s TV zdarma</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium">
-                měsíčně s TV v ceně
+                měsíčně
               </p>
             </motion.div>
 

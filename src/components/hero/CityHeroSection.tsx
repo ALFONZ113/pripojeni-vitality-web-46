@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Zap, Tv, Wrench } from 'lucide-react';
+import { MapPin, Phone, Zap, Tv, Wrench, Users, Star, ArrowRight } from 'lucide-react';
 import QuickContactModal from '../QuickContactModal';
 import defaultHeroImage from '@/assets/city-hero-family.jpg';
-import ostravaHeroImage from '@/assets/ostrava-vitkovice.jpg';
 import { getPhoneProps } from '@/utils/phoneOptimization';
+import { sendContactFormEmail } from '@/utils/emailService';
+import { toast } from 'sonner';
 
 interface CityDistrict {
   name: string;
@@ -13,20 +14,20 @@ interface CityDistrict {
 
 interface CityHeroSectionProps {
   cityName: string;
+  nameLocative?: string;
   highlight?: string;
   coverage: number;
   districts: CityDistrict[];
   heroImage?: string;
 }
 
-const CityHeroSection = ({ cityName, highlight, coverage, districts, heroImage }: CityHeroSectionProps) => {
+const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, districts, heroImage }: CityHeroSectionProps) => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // Mapovanie obrázkov podľa mesta
-  const cityImages: Record<string, string> = {
-    'Ostrava': ostravaHeroImage,
-  };
-  const displayImage = cityImages[cityName] || defaultHeroImage;
+  // Používame lifestyle obrázok pre všetky mestá
+  const displayImage = defaultHeroImage;
   
   const container = {
     hidden: { opacity: 0 },
@@ -46,6 +47,31 @@ const CityHeroSection = ({ cityName, highlight, coverage, districts, heroImage }
     { icon: <Tv className="h-5 w-5" />, text: '85+ programů' },
     { icon: <Wrench className="h-5 w-5" />, text: 'Instalace 0 Kč' }
   ];
+
+  const handlePhoneSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!phoneNumber || phoneNumber.length < 9) {
+      toast.error('Zadejte platné telefonní číslo');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    try {
+      await sendContactFormEmail({
+        name: `Callback z ${cityName}`,
+        email: "city-page@popri.cz",
+        phone: phoneNumber,
+        message: `Žádost o zpětné volání z městské stránky ${cityName}`
+      });
+      toast.success('Děkujeme! Zavoláme Vám co nejdříve.');
+      setPhoneNumber('');
+    } catch (error) {
+      toast.error('Něco se pokazilo. Zkuste to prosím znovu.');
+    }
+    setIsSubmitting(false);
+  };
+
+  const locationText = nameLocative || `v městě ${cityName}`;
   
   return (
     <section className="relative pt-24 pb-16 overflow-hidden min-h-[80vh] flex items-center bg-background" aria-labelledby="hero-title">
@@ -77,14 +103,24 @@ const CityHeroSection = ({ cityName, highlight, coverage, districts, heroImage }
             </motion.div>
 
             {/* Main Price Headline */}
-            <motion.div variants={itemVariants} className="mb-6">
+            <motion.div variants={itemVariants} className="mb-4">
               <h1 id="hero-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-foreground leading-tight mb-4">
-                Gigabit jen za{' '}
-                <span className="text-gradient-gold">300 Kč</span>
+                Gigabit za{' '}
+                <span className="text-gradient-gold">nejvýhodnější cenu</span>
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium">
                 měsíčně s TV v ceně
               </p>
+            </motion.div>
+
+            {/* Urgency Badge */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <span className="inline-flex items-center gap-3 px-5 py-2.5 bg-primary/10 border border-primary/30 rounded-full text-sm font-semibold">
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                <span className="text-primary">Akční cena</span>
+                <span className="text-muted-foreground">•</span>
+                <span className="text-foreground">Instalace zdarma jen do konce měsíce</span>
+              </span>
             </motion.div>
 
             {/* Benefits Row */}
@@ -100,34 +136,75 @@ const CityHeroSection = ({ cityName, highlight, coverage, districts, heroImage }
               ))}
             </motion.div>
 
-            {/* Highlight text */}
-            {highlight && (
-              <motion.p 
-                variants={itemVariants}
-                className="text-base sm:text-lg text-muted-foreground mb-8 max-w-lg mx-auto lg:mx-0"
-              >
-                {highlight}
-              </motion.p>
-            )}
+            {/* Social Proof */}
+            <motion.p 
+              variants={itemVariants}
+              className="text-lg text-primary font-semibold mb-4"
+            >
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                Přes 2000 domácností {locationText} už má gigabit.
+              </span>
+            </motion.p>
 
-            {/* CTA Buttons */}
+            {/* Mini Stats */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+              className="flex flex-wrap justify-center lg:justify-start gap-6 mb-8"
             >
+              <div className="flex items-center gap-2 text-sm">
+                <Users className="h-4 w-4 text-primary" />
+                <span className="text-primary font-bold">2000+</span>
+                <span className="text-muted-foreground">spokojených zákazníků</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Star className="h-4 w-4 text-primary" />
+                <span className="text-primary font-bold">4.8/5</span>
+                <span className="text-muted-foreground">hodnocení</span>
+              </div>
+            </motion.div>
+
+            {/* Inline Phone Form */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <form onSubmit={handlePhoneSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
+                <div className="relative flex-grow">
+                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary" />
+                  <input
+                    type="tel"
+                    placeholder="Váš telefon"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 bg-secondary/50 border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 text-foreground placeholder:text-muted-foreground transition-all"
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-gold px-8 py-4 font-bold inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {isSubmitting ? 'Odesílám...' : (
+                    <>
+                      Zavolejte mi
+                      <ArrowRight className="h-4 w-4" />
+                    </>
+                  )}
+                </button>
+              </form>
+              <p className="text-sm text-muted-foreground mt-3 text-center lg:text-left">
+                Zavoláme Vám do 30 minut
+              </p>
+            </motion.div>
+
+            {/* Secondary CTA */}
+            <motion.div variants={itemVariants} className="flex justify-center lg:justify-start mb-8">
               <a 
                 {...getPhoneProps('+420730431313')}
-                className="btn-gold inline-flex items-center justify-center text-lg px-8 py-4"
+                className="text-primary hover:underline font-medium inline-flex items-center gap-2"
               >
-                <Phone className="mr-2 h-5 w-5" />
-                730 431 313
+                <Phone className="h-4 w-4" />
+                Nebo zavolejte přímo: 730 431 313
               </a>
-              <button 
-                onClick={() => setIsContactModalOpen(true)}
-                className="btn-noir inline-flex items-center justify-center text-lg px-8 py-4"
-              >
-                Mám zájem
-              </button>
             </motion.div>
 
             {/* Districts Preview */}

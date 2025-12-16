@@ -102,7 +102,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               transition={{ delay: 0.4 }}
               className="text-xl md:text-2xl text-muted-foreground font-light mb-10"
             >
-              měsíčně s TV v ceně
+              TV v ceně
             </motion.p>
 
             {/* CTA Form */}
@@ -146,7 +146,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
                 transition={{ delay: 0.7 }}
                 className="text-sm text-muted-foreground mt-3"
               >
-                Zavoláme Vám do 30 minut
+                Zavoláme Vám do 30 minut <span className="text-primary font-medium">nebo zavolejte vy nám</span>
               </motion.p>
             </motion.div>
 

@@ -102,7 +102,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               transition={{ delay: 0.4 }}
               className="text-xl md:text-2xl text-muted-foreground font-light mb-10"
             >
-              TV v ceně
+              TV Basic v ceně
             </motion.p>
 
             {/* CTA Form */}
@@ -146,7 +146,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
                 transition={{ delay: 0.7 }}
                 className="text-sm text-muted-foreground mt-3"
               >
-                Zavoláme Vám do 30 minut <span className="text-primary font-medium">nebo zavolejte vy nám</span>
+                Zavoláme Vám do 30 minut nebo zavolejte vy nám
               </motion.p>
             </motion.div>
 
@@ -171,7 +171,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
             >
               <a 
                 {...getPhoneProps('+420730431313')}
-                className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 text-sm"
+                className="text-primary font-medium hover:text-primary/80 transition-colors inline-flex items-center gap-2 text-sm"
               >
                 <Phone className="h-4 w-4" />
                 Nebo volejte: 730 431 313

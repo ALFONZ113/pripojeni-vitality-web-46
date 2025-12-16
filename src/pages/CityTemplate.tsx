@@ -65,6 +65,7 @@ const CityTemplate = () => {
 
       <CityHeroSection
         cityName={city.name}
+        nameLocative={city.nameLocative}
         highlight={city.highlight}
         coverage={city.coverage}
         districts={city.districts}

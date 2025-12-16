@@ -90,71 +90,87 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
             variants={container} 
             className="order-2 lg:order-1 text-center lg:text-left"
           >
+            {/* Mobile Phone Form - Show First on Mobile */}
+            <motion.div variants={itemVariants} className="mb-6 lg:hidden">
+              <form onSubmit={handlePhoneSubmit} className="flex flex-col gap-3">
+                <div className="relative">
+                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary" />
+                  <input
+                    type="tel"
+                    placeholder="Váš telefon"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 bg-secondary/50 border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 text-foreground placeholder:text-muted-foreground transition-all text-lg"
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-gold px-8 py-4 font-bold inline-flex items-center justify-center gap-2 disabled:opacity-50 w-full"
+                >
+                  {isSubmitting ? 'Odesílám...' : (
+                    <>
+                      Zavolejte mi
+                      <ArrowRight className="h-4 w-4" />
+                    </>
+                  )}
+                </button>
+              </form>
+              <p className="text-sm text-muted-foreground mt-2 text-center">
+                Zavoláme Vám do 30 minut
+              </p>
+            </motion.div>
+
             {/* City Badge */}
             <motion.div 
               variants={itemVariants}
-              className="flex items-center justify-center lg:justify-start mb-6"
+              className="flex items-center justify-center lg:justify-start mb-4 lg:mb-6"
             >
-              <div className="inline-flex items-center glass px-6 py-3 rounded-full border border-primary/20">
-                <MapPin className="h-5 w-5 text-primary mr-2" />
-                <span className="text-lg font-semibold text-foreground">{cityName}</span>
-                <span className="ml-3 text-sm text-primary font-medium">{coverage}% pokrytí</span>
+              <div className="inline-flex items-center glass px-4 lg:px-6 py-2 lg:py-3 rounded-full border border-primary/20">
+                <MapPin className="h-4 w-4 lg:h-5 lg:w-5 text-primary mr-2" />
+                <span className="text-base lg:text-lg font-semibold text-foreground">{cityName}</span>
+                <span className="ml-2 lg:ml-3 text-xs lg:text-sm text-primary font-medium">{coverage}% pokrytí</span>
               </div>
             </motion.div>
 
             {/* Main Price Headline */}
             <motion.div variants={itemVariants} className="mb-4">
-              <h1 id="hero-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-foreground leading-tight mb-4">
+              <h1 id="hero-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-extrabold text-foreground leading-tight mb-2 lg:mb-4">
                 Gigabit za{' '}
                 <span className="text-gradient-gold">nejvýhodnější cenu</span>
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium">
                 měsíčně s TV v ceně
               </p>
             </motion.div>
 
             {/* Urgency Badge */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-flex items-center gap-3 px-5 py-2.5 bg-primary/10 border border-primary/30 rounded-full text-sm font-semibold">
+            <motion.div variants={itemVariants} className="mb-4 lg:mb-6">
+              <span className="inline-flex items-center gap-2 lg:gap-3 px-4 lg:px-5 py-2 lg:py-2.5 bg-primary/10 border border-primary/30 rounded-full text-xs lg:text-sm font-semibold">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
                 <span className="text-primary">Akční cena</span>
                 <span className="text-muted-foreground">•</span>
-                <span className="text-foreground">Instalace zdarma jen do konce měsíce</span>
+                <span className="text-foreground">Instalace zdarma</span>
               </span>
             </motion.div>
 
             {/* Benefits Row */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 mb-6"
+              className="flex flex-wrap justify-center lg:justify-start gap-3 lg:gap-6 mb-4 lg:mb-6"
             >
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center gap-2 text-foreground">
+                <div key={index} className="flex items-center gap-1.5 lg:gap-2 text-foreground text-sm lg:text-base">
                   <span className="text-primary">{benefit.icon}</span>
                   <span className="font-semibold">{benefit.text}</span>
                 </div>
               ))}
             </motion.div>
 
-            {/* Trust Badge - Clean Stats */}
-            <motion.div 
-              variants={itemVariants}
-              className="inline-flex items-center gap-4 px-4 py-2 bg-card/50 border border-border/30 rounded-xl mb-8"
-            >
-              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-primary" />
-                <span className="text-sm"><span className="font-bold text-foreground">2000+</span> <span className="text-muted-foreground">zákazníků</span></span>
-              </div>
-              <div className="w-px h-4 bg-border"></div>
-              <div className="flex items-center gap-2">
-                <Star className="h-4 w-4 text-primary fill-primary" />
-                <span className="text-sm"><span className="font-bold text-foreground">4.8/5</span> <span className="text-muted-foreground">hodnocení</span></span>
-              </div>
-            </motion.div>
-
-            {/* Inline Phone Form */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <form onSubmit={handlePhoneSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
+            {/* Desktop Phone Form - Hidden on Mobile */}
+            <motion.div variants={itemVariants} className="mb-4 hidden lg:block">
+              <form onSubmit={handlePhoneSubmit} className="flex flex-row gap-3 max-w-md">
                 <div className="relative flex-grow">
                   <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary" />
                   <input
@@ -179,9 +195,25 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
                   )}
                 </button>
               </form>
-              <p className="text-sm text-muted-foreground mt-3 text-center lg:text-left">
+              <p className="text-sm text-muted-foreground mt-3">
                 Zavoláme Vám do 30 minut
               </p>
+            </motion.div>
+
+            {/* Trust Badge - Below CTA */}
+            <motion.div 
+              variants={itemVariants}
+              className="inline-flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2 bg-card/50 border border-border/30 rounded-xl mb-4 lg:mb-6"
+            >
+              <div className="flex items-center gap-1.5 lg:gap-2">
+                <Users className="h-3.5 w-3.5 lg:h-4 lg:w-4 text-primary" />
+                <span className="text-xs lg:text-sm"><span className="font-bold text-foreground">2000+</span> <span className="text-muted-foreground">zákazníků</span></span>
+              </div>
+              <div className="w-px h-3 lg:h-4 bg-border"></div>
+              <div className="flex items-center gap-1.5 lg:gap-2">
+                <Star className="h-3.5 w-3.5 lg:h-4 lg:w-4 text-primary fill-primary" />
+                <span className="text-xs lg:text-sm"><span className="font-bold text-foreground">4.8/5</span> <span className="text-muted-foreground">hodnocení</span></span>
+              </div>
             </motion.div>
 
             {/* Secondary CTA */}

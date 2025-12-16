@@ -113,29 +113,41 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               className="mb-8"
             >
               <form onSubmit={handlePhoneSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg">
-                <div className="relative flex-grow">
-                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <motion.div 
+                  className="relative flex-grow"
+                  whileFocus={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.01 }}
+                >
+                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-primary" />
                   <input
                     type="tel"
                     placeholder="Váš telefon"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-card border border-border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-foreground placeholder:text-muted-foreground transition-all"
+                    className="w-full pl-12 pr-4 py-4 bg-card border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:shadow-[0_0_20px_rgba(212,165,23,0.15)] text-foreground placeholder:text-muted-foreground transition-all duration-300"
                     disabled={isSubmitting}
                   />
-                </div>
-                <button
+                </motion.div>
+                <motion.button
                   type="submit"
                   disabled={isSubmitting}
                   className="btn-gold px-8 py-4 font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   {isSubmitting ? 'Odesílám...' : 'Zavolejte mi'}
                   {!isSubmitting && <ArrowRight className="h-4 w-4" />}
-                </button>
+                </motion.button>
               </form>
-              <p className="text-sm text-muted-foreground mt-3">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="text-sm text-muted-foreground mt-3"
+              >
                 Zavoláme Vám do 30 minut
-              </p>
+              </motion.p>
             </motion.div>
 
             {/* Features - Minimal */}

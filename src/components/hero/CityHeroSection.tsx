@@ -183,7 +183,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
                   className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 text-sm group"
                 >
                   <Mail className="h-4 w-4" />
-                  Radši napsat?
+                  Radši napsat? Kontaktní formulář
                   <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>

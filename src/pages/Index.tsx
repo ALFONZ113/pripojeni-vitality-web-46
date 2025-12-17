@@ -43,7 +43,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="Nejvýhodnější Rychlý Internet | Optické Sítě ve Vašem Městě"
+        title="Nejvýhodnější PODA Internet + TV | Tel: 730 431 313"
         description="Rychlé a spolehlivé optické připojení pro vaše město. Gigabitový internet až 1000 Mbps s TV zdarma a profesionální instalací. Volejte 730 431 313."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
         currentDate="2025-01-14"

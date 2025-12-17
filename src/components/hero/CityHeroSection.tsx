@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, ArrowRight, Mail } from 'lucide-react';
 import QuickContactModal from '../QuickContactModal';
 import defaultHeroImage from '@/assets/city-hero-family.jpg';
 import { getPhoneProps } from '@/utils/phoneOptimization';
@@ -162,12 +163,12 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               <span>Instalace zdarma</span>
             </motion.div>
 
-            {/* Secondary Phone Link */}
+            {/* Secondary Contact Options */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="mt-8 pt-8 border-t border-border/50"
+              className="mt-8 pt-8 border-t border-border/50 space-y-3"
             >
               <a 
                 {...getPhoneProps('+420730431313')}
@@ -176,6 +177,16 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
                 <Phone className="h-4 w-4" />
                 Nebo volejte: 730 431 313
               </a>
+              <div>
+                <Link 
+                  to="/kontakt"
+                  className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 text-sm group"
+                >
+                  <Mail className="h-4 w-4" />
+                  Radši napsat?
+                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
             </motion.div>
           </motion.div>
 

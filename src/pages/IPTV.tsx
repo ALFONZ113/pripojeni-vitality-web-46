@@ -17,21 +17,21 @@ const IPTV = () => {
   return (
     <div className="min-h-screen pt-24 bg-background">
       <Helmet>
-        <title>IPTV služba za 99 Kč měsíčně | 200+ kanálů | PODA | Popri.cz</title>
-        <meta name="description" content="IPTV od PODA za 99 Kč/měsíc. Více než 200 TV kanálů ve Full HD, timeshift 7 dní, sledování na všech zařízeních. Bez satelitu a antén." />
+        <title>IPTV služba za 99 Kč měsíčně | 95+ kanálů | PODA | Popri.cz</title>
+        <meta name="description" content="IPTV od PODA za 99 Kč/měsíc. Více než 95 TV kanálů ve Full HD, timeshift 7 dní, sledování na všech zařízeních. Bez satelitu a antén." />
         <link rel="canonical" href="https://www.popri.cz/iptv" />
-        <meta name="keywords" content="IPTV, televize přes internet, PODA TV, 200 kanálů, Full HD, timeshift, streaming TV, TV bez satelitu" />
+        <meta name="keywords" content="IPTV, televize přes internet, PODA TV, 95 kanálů, Full HD, timeshift, streaming TV, TV bez satelitu" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="IPTV za 99 Kč | 200+ kanálů | PODA" />
-        <meta property="og:description" content="IPTV od PODA - 200+ kanálů ve Full HD za 99 Kč měsíčně. Timeshift, všechna zařízení." />
+        <meta property="og:title" content="IPTV za 99 Kč | 95+ kanálů | PODA" />
+        <meta property="og:description" content="IPTV od PODA - 95+ kanálů ve Full HD za 99 Kč měsíčně. Timeshift, všechna zařízení." />
         <meta property="og:url" content="https://www.popri.cz/iptv" />
         <meta property="og:type" content="product" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="IPTV za 99 Kč | 200+ kanálů" />
-        <meta name="twitter:description" content="IPTV od PODA za 99 Kč/měsíc s více než 200 kanály" />
+        <meta name="twitter:title" content="IPTV za 99 Kč | 95+ kanálů" />
+        <meta name="twitter:description" content="IPTV od PODA za 99 Kč/měsíc s více než 95 kanály" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -39,7 +39,7 @@ const IPTV = () => {
             "@context": "https://schema.org",
             "@type": "Product",
             "name": "IPTV služba PODA",
-            "description": "Více než 200 TV kanálů ve Full HD kvalitě s timeshift funkcí",
+            "description": "Více než 95 TV kanálů ve Full HD kvalitě s timeshift funkcí",
             "offers": {
               "@type": "Offer",
               "price": "99",
@@ -66,7 +66,7 @@ const IPTV = () => {
                 IPTV služba za <span className="text-gradient-gold">99 Kč</span> měsíčně
               </h1>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 reveal-animation delay-100">
-                Sledujte oblíbené programy kdykoliv a kdekoliv. Více než 200 kanálů ve Full HD kvalitě bez satelitních parabol.
+                Sledujte oblíbené programy kdykoliv a kdekoliv. Více než 95 kanálů ve Full HD kvalitě bez satelitních parabol.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal-animation delay-200">
                 <Button variant="gold" size="lg" asChild>
@@ -87,7 +87,7 @@ const IPTV = () => {
                 <div className="bg-primary/10 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
                   <Tv className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-foreground">200+ kanálů</h3>
+                <h3 className="font-semibold text-lg mb-2 text-foreground">95+ kanálů</h3>
                 <p className="text-muted-foreground">České, slovenské a mezinárodní kanály</p>
               </div>
               
@@ -146,7 +146,7 @@ const IPTV = () => {
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-primary mr-3" />
-                    <span className="text-foreground">200+ TV kanálů</span>
+                    <span className="text-foreground">95+ TV kanálů</span>
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-primary mr-3" />
@@ -182,7 +182,7 @@ const IPTV = () => {
               Kanálová nabídka
             </h2>
             <p className="text-muted-foreground text-lg">
-              Více než 200 kanálů rozdělených do kategorií pro celou rodinu
+              Více než 95 kanálů rozdělených do kategorií pro celou rodinu
             </p>
           </div>
 
@@ -422,7 +422,7 @@ const IPTV = () => {
               Začněte sledovat IPTV ještě dnes
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Kontaktujte nás a získejte přístup k více než 200 TV kanálům za pouhých 99 Kč měsíčně.
+              Kontaktujte nás a získejte přístup k více než 95 TV kanálům za pouhých 99 Kč měsíčně.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="gold" size="lg" asChild>

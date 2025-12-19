@@ -9,7 +9,7 @@ const IPTVSection = () => {
   const isInView = useInView(ref, { once: true });
 
   const stats = [
-    { icon: Tv, value: '200+', label: 'TV kanálů' },
+    { icon: Tv, value: '95+', label: 'TV kanálů' },
     { icon: Clock, value: '7 dní', label: 'Timeshift archív' },
     { icon: Monitor, value: 'Full HD', label: 'až 4K kvalita' },
   ];
@@ -47,7 +47,7 @@ const IPTVSection = () => {
 
           {/* Description */}
           <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-2xl mx-auto font-body leading-relaxed">
-            Sledujte více ako 200 TV kanálů vo Full HD kvalitě bez satelitních parabolů. 
+            Sledujte více ako 95 TV kanálů vo Full HD kvalitě bez satelitních parabolů. 
             Kompatibilní se všemi zařízeními - Smart TV, mobil, tablet, počítač.
           </p>
 

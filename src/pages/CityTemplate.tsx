@@ -5,7 +5,6 @@ import PageMetadata from '@/components/page/PageMetadata';
 import CityHeroSection from '@/components/hero/CityHeroSection';
 import ContactCTA from '@/components/sections/ContactCTA';
 import PromotionPopup from '@/components/PromotionPopup';
-import { Toaster } from '@/components/ui/toaster';
 
 const CityTemplate = () => {
   const location = window.location.pathname;
@@ -74,7 +73,6 @@ const CityTemplate = () => {
 
       <ContactCTA />
       <PromotionPopup />
-      <Toaster />
     </div>
   );
 };

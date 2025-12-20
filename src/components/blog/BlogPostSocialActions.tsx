@@ -1,6 +1,6 @@
 
 import { Share2, Bookmark } from 'lucide-react';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from '@/hooks/use-toast';
 import { useState, useEffect } from 'react';
 
 interface BlogPostSocialActionsProps {

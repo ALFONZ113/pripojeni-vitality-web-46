@@ -6,7 +6,6 @@ import MainContent from '../components/page/MainContent';
 import PromotionPopup from '../components/PromotionPopup';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { useEnhancedTracking } from '../hooks/use-enhanced-tracking';
-import { Toaster } from '@/components/ui/toaster';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
 import { AIContentSummary } from '../components/seo/AIContentSummary';
@@ -89,8 +88,6 @@ const Index = () => {
 
       {/* Popup will show once isLoading is false (which should be very quick) */}
       {!isLoading && <PromotionPopup />}
-
-      <Toaster />
     </div>
   );
 };

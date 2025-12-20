@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { Check, Phone, Loader2 } from 'lucide-react';
 import { sendContactFormEmail } from '../utils/emailService';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { useOptimizedForm } from '../hooks/use-optimized-form';
 
 const CallbackForm = memo(() => {
@@ -29,10 +29,8 @@ const CallbackForm = memo(() => {
     });
 
     if (emailSent) {
-      toast({
-        title: "Žádost odeslána",
+      toast.success('Žádost odeslána', {
         description: "Budeme vás kontaktovat co nejdříve na uvedeném čísle.",
-        variant: "default"
       });
       return true;
     }

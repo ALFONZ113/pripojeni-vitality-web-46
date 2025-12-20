@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Check, Phone, Loader2 } from 'lucide-react';
 import { sendContactFormEmail } from '../utils/emailService';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { trackPromoFormSubmission } from '../utils/googleAdsTracking';
@@ -26,10 +26,8 @@ const PromoForm = ({
     
     // Basic validation
     if (!phoneNumber || phoneNumber.length < 9) {
-      toast({
-        title: "Neplatné telefonní číslo",
+      toast.error('Neplatné telefonní číslo', {
         description: "Prosím zadejte platné telefonní číslo pro zpětné volání.",
-        variant: "destructive"
       });
       return;
     }
@@ -52,10 +50,8 @@ const PromoForm = ({
         setIsSuccess(true);
         setPhoneNumber('');
         
-        toast({
-          title: "Děkujeme za Váš zájem",
+        toast.success('Děkujeme za Váš zájem', {
           description: "Brzy Vás budeme kontaktovat ohledně nabídky prvního měsíce zdarma.",
-          variant: "default"
         });
         
         if (onSuccess) {
@@ -64,10 +60,8 @@ const PromoForm = ({
       }
     } catch (error) {
       console.error("Error submitting promo callback request:", error);
-      toast({
-        title: "Chyba při odeslání",
+      toast.error('Chyba při odeslání', {
         description: "Nepodařilo se odeslat žádost o zpětné volání. Zkuste to prosím později.",
-        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);

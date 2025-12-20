@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { 
   LogOut, 
   Search, 
@@ -117,10 +117,8 @@ const AdminDashboard = () => {
       .order('created_at', { ascending: false });
 
     if (error) {
-      toast({
-        title: "Chyba načítání",
+      toast.error('Chyba načítání', {
         description: "Nepodařilo se načíst data",
-        variant: "destructive",
       });
     } else {
       setSubmissions(data || []);
@@ -153,14 +151,11 @@ const AdminDashboard = () => {
       .eq('id', id);
 
     if (error) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Nepodařilo se změnit stav",
-        variant: "destructive",
       });
     } else {
-      toast({
-        title: "Úspěch",
+      toast.success('Úspěch', {
         description: "Stav byl změněn",
       });
       fetchSubmissions();
@@ -176,14 +171,11 @@ const AdminDashboard = () => {
       .eq('id', selectedSubmission.id);
 
     if (error) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Nepodařilo se uložit poznámky",
-        variant: "destructive",
       });
     } else {
-      toast({
-        title: "Úspěch",
+      toast.success('Úspěch', {
         description: "Poznámky byly uloženy",
       });
       fetchSubmissions();
@@ -200,14 +192,11 @@ const AdminDashboard = () => {
       .eq('id', id);
 
     if (error) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Nepodařilo se smazat kontakt",
-        variant: "destructive",
       });
     } else {
-      toast({
-        title: "Úspěch",
+      toast.success('Úspěch', {
         description: "Kontakt byl smazán",
       });
       fetchSubmissions();

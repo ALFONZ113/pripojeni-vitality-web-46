@@ -1,6 +1,6 @@
 import React, { memo, useRef, useEffect, useCallback } from 'react';
 import { Check, AlertTriangle, Loader2 } from 'lucide-react';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { sendContactFormEmail } from '../utils/emailService';
 import { initMapySuggester, parseAddressComponents } from '../utils/mapyService';
 import { trackFormSubmission } from '../utils/googleAdsTracking';
@@ -36,10 +36,8 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
     const emailSent = await sendContactFormEmail(data);
     if (emailSent) {
       trackFormSubmission('contact');
-      toast({
-        title: "Formulář odeslán",
+      toast.success('Formulář odeslán', {
         description: "Děkujeme za váš zájem. Budeme vás kontaktovat co nejdříve.",
-        variant: "default"
       });
       return true;
     }
@@ -70,10 +68,8 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
       updateField('zip', addressComponents.zip || formData.zip);
       
       if (addressComponents.street && addressComponents.city) {
-        toast({
-          title: "Adresa byla doplněna",
+        toast.success('Adresa byla doplněna', {
           description: "Adresa byla úspěšně doplněna z Mapy.cz",
-          variant: "default"
         });
       }
     }
@@ -90,10 +86,8 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
   }, [handleAddressSuggestion]);
 
   if (formState.error) {
-    toast({
-      title: "Kontrola formuláře",
+    toast.error('Kontrola formuláře', {
       description: formState.error,
-      variant: "destructive"
     });
   }
 

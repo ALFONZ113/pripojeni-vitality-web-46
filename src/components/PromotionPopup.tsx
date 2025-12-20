@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Check, Phone, Loader2, X } from 'lucide-react';
 import { sendContactFormEmail } from '../utils/emailService';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -120,10 +120,8 @@ const PromotionPopup = () => {
     
     // Basic validation
     if (!phoneNumber || phoneNumber.length < 9) {
-      toast({
-        title: "Neplatné telefonní číslo",
+      toast.error('Neplatné telefonní číslo', {
         description: "Prosím zadejte platné telefonní číslo pro zpětné volání.",
-        variant: "destructive"
       });
       return;
     }
@@ -148,12 +146,10 @@ const PromotionPopup = () => {
           trackPopupConversion(triggerSource, variant, phoneNumber);
         }
         
-        toast({
-          title: "Děkujeme za Váš zájem",
+        toast.success('Děkujeme za Váš zájem', {
           description: "Brzy Vás budeme kontaktovat ohledně nabídky prvního měsíce zdarma.",
-          variant: "default"
         });
-        
+
         // Close popup after 3 seconds
         setTimeout(() => {
           setIsOpen(false);
@@ -164,10 +160,8 @@ const PromotionPopup = () => {
       }
     } catch (error) {
       console.error("Error submitting promo callback request:", error);
-      toast({
-        title: "Chyba při odeslání",
+      toast.error('Chyba při odeslání', {
         description: "Nepodařilo se odeslat žádost o zpětné volání. Zkuste to prosím později.",
-        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);

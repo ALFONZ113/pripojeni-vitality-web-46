@@ -18,7 +18,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { Loader2, Search, FileText, Image as ImageIcon, Save } from "lucide-react";
 
 const AIBlogTest = () => {
@@ -35,10 +35,8 @@ const AIBlogTest = () => {
 
   const handleResearch = async () => {
     if (!topic.trim()) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Zadajte tému výskumu",
-        variant: "destructive",
       });
       return;
     }
@@ -55,16 +53,13 @@ const AIBlogTest = () => {
       if (error) throw error;
 
       setResearchData(data);
-      toast({
-        title: "Úspech",
+      toast.success('Úspech', {
         description: "Výskum dokončený",
       });
     } catch (error: any) {
       console.error('Research error:', error);
-      toast({
-        title: "Chyba výskumu",
+      toast.error('Chyba výskumu', {
         description: error.message || "Nepodarilo sa vykonať výskum",
-        variant: "destructive",
       });
     } finally {
       setIsResearching(false);
@@ -73,10 +68,8 @@ const AIBlogTest = () => {
 
   const handleGenerateBlog = async () => {
     if (!researchData) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Najprv vykonajte výskum",
-        variant: "destructive",
       });
       return;
     }
@@ -96,16 +89,13 @@ const AIBlogTest = () => {
       if (error) throw error;
 
       setBlogContent(data);
-      toast({
-        title: "Úspech",
+      toast.success('Úspech', {
         description: "Článok vygenerovaný",
       });
     } catch (error: any) {
       console.error('Generate error:', error);
-      toast({
-        title: "Chyba generovania",
+      toast.error('Chyba generovania', {
         description: error.message || "Nepodarilo sa vygenerovať článok",
-        variant: "destructive",
       });
     } finally {
       setIsGenerating(false);
@@ -114,10 +104,8 @@ const AIBlogTest = () => {
 
   const handleGenerateImage = async () => {
     if (!topic.trim()) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Zadajte tému pre obrázok",
-        variant: "destructive",
       });
       return;
     }
@@ -134,16 +122,13 @@ const AIBlogTest = () => {
       if (error) throw error;
 
       setImageUrl(data.imageUrl || data.url);
-      toast({
-        title: "Úspech",
+      toast.success('Úspech', {
         description: "Obrázok vygenerovaný",
       });
     } catch (error: any) {
       console.error('Image generation error:', error);
-      toast({
-        title: "Chyba generovania obrázka",
+      toast.error('Chyba generovania obrázka', {
         description: error.message || "Nepodarilo sa vygenerovať obrázok",
-        variant: "destructive",
       });
     } finally {
       setIsGeneratingImage(false);
@@ -152,10 +137,8 @@ const AIBlogTest = () => {
 
   const handleSaveToDatabase = async () => {
     if (!blogContent) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Najprv vygenerujte článok",
-        variant: "destructive",
       });
       return;
     }
@@ -188,8 +171,7 @@ const AIBlogTest = () => {
 
       if (error) throw error;
 
-      toast({
-        title: "Úspech",
+      toast.success('Úspech', {
         description: "Článok uložený do databázy",
       });
 
@@ -201,10 +183,8 @@ const AIBlogTest = () => {
       setImageUrl("");
     } catch (error: any) {
       console.error('Save error:', error);
-      toast({
-        title: "Chyba uloženia",
+      toast.error('Chyba uloženia', {
         description: error.message || "Nepodarilo sa uložiť článok",
-        variant: "destructive",
       });
     } finally {
       setIsSaving(false);

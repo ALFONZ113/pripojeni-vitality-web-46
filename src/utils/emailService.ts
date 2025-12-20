@@ -1,4 +1,4 @@
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 interface EmailFormData {
@@ -49,20 +49,16 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       console.warn("Customer email failed but continuing...");
     }
     
-    toast({
-      title: "Formulář odeslán",
+    toast.success('Formulář odeslán', {
       description: "Děkujeme za vyplnění formuláře. Brzy vás budeme kontaktovat.",
-      variant: "default"
     });
     
     return true;
   } catch (error) {
     console.error("Failed to send email:", error);
     
-    toast({
-      title: "Chyba při odesílání",
+    toast.error('Chyba při odesílání', {
       description: "Nepodařilo se odeslat formulář. Zkuste to prosím později nebo nás kontaktujte telefonicky.",
-      variant: "destructive"
     });
     
     return false;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { Loader2, Sparkles, TrendingUp, FileText, Calendar } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
@@ -21,7 +21,6 @@ const useNoIndex = () => {
 
 const AIAutomation = () => {
   useNoIndex();
-  const { toast } = useToast();
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [suggestions, setSuggestions] = useState<any[]>([]);
@@ -43,17 +42,14 @@ const AIAutomation = () => {
       if (data.success) {
         setSuggestions(data.suggestions || []);
         setAnalysis(data.analysis);
-        toast({
-          title: "Analýza dokončena",
+        toast.success('Analýza dokončena', {
           description: `Nalezeno ${data.suggestions?.length || 0} návrhů na články`,
         });
       }
     } catch (error: any) {
       console.error('Error analyzing topics:', error);
-      toast({
-        title: "Chyba při analýze",
+      toast.error('Chyba při analýze', {
         description: error.message,
-        variant: "destructive",
       });
     } finally {
       setIsAnalyzing(false);
@@ -73,22 +69,18 @@ const AIAutomation = () => {
 
       if (data.success && data.post_created) {
         setGeneratedPost(data);
-        toast({
-          title: "Článek vygenerován!",
+        toast.success('Článek vygenerován!', {
           description: `Vytvořen článek: ${data.topic}`,
         });
       } else {
-        toast({
-          title: "Žádné nové téma",
+        toast.info('Žádné nové téma', {
           description: "Nejsou k dispozici žádné nové návrhy na články",
         });
       }
     } catch (error: any) {
       console.error('Error generating auto blog:', error);
-      toast({
-        title: "Chyba při generování",
+      toast.error('Chyba při generování', {
         description: error.message,
-        variant: "destructive",
       });
     } finally {
       setIsGenerating(false);

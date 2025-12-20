@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { Lock, Mail } from "lucide-react";
 
 const AdminLogin = () => {
@@ -35,27 +35,22 @@ const AdminLogin = () => {
       });
 
       if (error) {
-        toast({
-          title: "Chyba přihlášení",
+        toast.error('Chyba přihlášení', {
           description: "Nesprávný email nebo heslo",
-          variant: "destructive",
         });
         return;
       }
 
       if (data.user) {
-        toast({
-          title: "Úspěšné přihlášení",
+        toast.success('Úspěšné přihlášení', {
           description: "Vítejte v administraci",
         });
         navigate("/admin-dashboard-poda-2024");
       }
     } catch (error) {
       console.error("Login error:", error);
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Něco se pokazilo",
-        variant: "destructive",
       });
     } finally {
       setIsLoading(false);

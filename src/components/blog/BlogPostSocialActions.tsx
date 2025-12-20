@@ -1,6 +1,6 @@
 
 import { Share2, Bookmark } from 'lucide-react';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { useState, useEffect } from 'react';
 
 interface BlogPostSocialActionsProps {
@@ -27,18 +27,11 @@ const BlogPostSocialActions = ({ postId, postTitle, postExcerpt }: BlogPostSocia
         });
       } else {
         await navigator.clipboard.writeText(window.location.href);
-        toast({
-          description: 'URL zkopírována do schránky',
-          duration: 2000
-        });
+        toast.success('URL zkopírována do schránky');
       }
     } catch (err) {
       console.error('Sdílení selhalo:', err);
-      toast({
-        variant: "destructive",
-        description: 'Sdílení selhalo',
-        duration: 2000
-      });
+      toast.error('Sdílení selhalo');
     }
   };
   
@@ -49,18 +42,12 @@ const BlogPostSocialActions = ({ postId, postTitle, postExcerpt }: BlogPostSocia
     if (isAlreadySaved) {
       const updatedSavedPosts = savedPosts.filter((savedPost: number) => savedPost !== postId);
       localStorage.setItem('savedPosts', JSON.stringify(updatedSavedPosts));
-      toast({
-        description: 'Článek byl odebrán z uložených',
-        duration: 2000
-      });
+      toast.success('Článek byl odebrán z uložených');
       setIsSaved(false);
     } else {
       savedPosts.push(postId);
       localStorage.setItem('savedPosts', JSON.stringify(savedPosts));
-      toast({
-        description: 'Článek byl uložen',
-        duration: 2000
-      });
+      toast.success('Článek byl uložen');
       setIsSaved(true);
     }
   };

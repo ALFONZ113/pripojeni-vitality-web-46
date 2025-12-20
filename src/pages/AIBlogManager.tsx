@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import {
   LogOut,
   Search,
@@ -110,10 +110,8 @@ const AIBlogManager = () => {
       .order('created_at', { ascending: false });
 
     if (error) {
-      toast({
-        title: "Chyba načítání",
+      toast.error('Chyba načítání', {
         description: "Nepodařilo se načíst články",
-        variant: "destructive",
       });
     } else {
       setPosts((data as any) || []);
@@ -171,14 +169,11 @@ const AIBlogManager = () => {
       .eq('id', id);
 
     if (error) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Nepodařilo se změnit stav",
-        variant: "destructive",
       });
     } else {
-      toast({
-        title: "Úspěch",
+      toast.success('Úspěch', {
         description: `Článok ${newStatus === 'published' ? 'publikovaný' : 'uložený ako koncept'}`,
       });
       fetchPosts();
@@ -195,14 +190,11 @@ const AIBlogManager = () => {
       .eq('id', id);
 
     if (error) {
-      toast({
-        title: "Chyba",
+      toast.error('Chyba', {
         description: "Nepodařilo se smazat článok",
-        variant: "destructive",
       });
     } else {
-      toast({
-        title: "Úspěch",
+      toast.success('Úspěch', {
         description: "Článok bol smazaný",
       });
       fetchPosts();

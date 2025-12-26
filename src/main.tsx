@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { preloadCriticalRoutes, optimizeChunkLoading, lazyLoadHeavyComponents, loadMapyWhenNeeded } from './utils/code-splitting'
-import { measureCoreWebVitals } from './utils/performance-optimization'
+import { measureCoreWebVitals } from './utils/performance'
 import { handleBlogRedirects } from './utils/redirectManager'
 import { initializeLCPOptimizations } from './utils/lcp-optimization'
 

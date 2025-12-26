@@ -1,6 +1,6 @@
-
 /**
- * Performance optimization utilities
+ * Consolidated performance optimization utilities
+ * Phase 3 of code audit refactoring
  */
 
 /**

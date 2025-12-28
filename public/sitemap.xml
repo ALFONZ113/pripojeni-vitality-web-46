@@ -6,7 +6,7 @@
   <!-- HLAVNÍ STRÁNKA -->
   <url>
     <loc>https://www.popri.cz/</loc>
-    <lastmod>2025-12-12</lastmod>
+    <lastmod>2025-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -138,7 +138,7 @@
   <!-- BLOG -->
   <url>
     <loc>https://www.popri.cz/blog</loc>
-    <lastmod>2025-12-12</lastmod>
+    <lastmod>2025-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -307,14 +307,21 @@
 
   <url>
     <loc>https://www.popri.cz/blog/internet-vyber-5-chyb-ktere-vas-stoji-penize</loc>
-    <lastmod>2025-12-12</lastmod>
+    <lastmod>2025-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.popri.cz/blog/wifi-signal-slaby-7-zpusobu-jak-zlepsit-pokryti-domacnosti</loc>
-    <lastmod>2025-12-12</lastmod>
+    <loc>https://www.popri.cz/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025</loc>
+    <lastmod>2025-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita</loc>
+    <lastmod>2025-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

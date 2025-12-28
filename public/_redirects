@@ -26,6 +26,10 @@
 /blog/7 /blog/nejlepsi-zpusob-sledovani-sportu-online-pruvodce-fanoušky 301
 /blog/8 /blog/jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje 301
 
+# New blog posts - Home office 2025 and WiFi signal improvement
+/blog/301 /blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita 301
+/blog/701 /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 301
+
 # Clean URLs - Remove query parameters (for canonical purposes, not redirects)
 # These are handled by NoIndexMeta component, no redirect needed
 

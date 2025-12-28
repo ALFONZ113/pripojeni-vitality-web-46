@@ -39,6 +39,12 @@ export const blogRedirectMap: Record<string, string> = {
   
   // Karvina post (ID 10)
   '/blog/10': '/blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda',
+  
+  // Home office 2025 (ID 301)
+  '/blog/301': '/blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita',
+  
+  // WiFi signal improvement (ID 701)
+  '/blog/701': '/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025',
 };
 
 /**

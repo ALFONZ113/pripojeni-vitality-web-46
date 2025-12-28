@@ -200,12 +200,7 @@
     <priority>0.6</priority>
   </url>
 
-  <url>
-    <loc>https://www.popri.cz/blog/gaming-internet-ostrava-2025</loc>
-    <lastmod>2025-01-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  <!-- Gaming Ostrava post - správny slug je v URL /blog/internetove-pripojeni-online-hraci-ostrava... -->
 
   <url>
     <loc>https://www.popri.cz/blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025</loc>
@@ -306,7 +301,7 @@
   </url>
 
   <url>
-    <loc>https://www.popri.cz/blog/internet-vyber-5-chyb-ktere-vas-stoji-penize</loc>
+    <loc>https://www.popri.cz/blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi</loc>
     <lastmod>2025-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

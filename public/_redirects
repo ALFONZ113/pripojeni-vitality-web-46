@@ -30,6 +30,10 @@
 /blog/301 /blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita 301
 /blog/701 /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 301
 
+# Opravené staré slugy
+/blog/gaming-internet-ostrava-2025 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301
+/blog/internet-vyber-5-chyb-ktere-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301
+
 # Clean URLs - Remove query parameters (for canonical purposes, not redirects)
 # These are handled by NoIndexMeta component, no redirect needed
 

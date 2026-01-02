@@ -132,7 +132,7 @@ const HeroSection = () => {
             {/* Headlines - Balanced elegant size */}
             <motion.h1 id="hero-title" variants={itemVariants} className="font-display font-bold mb-8 md:mb-12 tracking-tighter" style={{
             fontSize: 'clamp(2.5rem, 6vw, 6rem)',
-            lineHeight: '0.95'
+            lineHeight: '1.1'
           }}>
               <span className="text-foreground block">PODA Internet</span>
               <span className="text-gradient-gold block">na který se můžete spolehnout</span>

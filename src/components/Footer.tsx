@@ -50,6 +50,7 @@ const Footer = () => {
                 { to: '/internet-tv', label: 'Internet a TV pro byty' },
                 { to: '/internet-tv', label: 'Internet a TV pro domy' },
                 { to: '/programy', label: 'Programová nabídka' },
+                { to: '/blog/poda-internet-2026-opticka-era-2-gigabity-domacnosti-rodinne-domy', label: 'PODA internet 2026' },
                 { to: '/blog', label: 'Blog a novinky' },
                 { to: '/promo-akce', label: 'Promo akce' },
                 { to: '/giga-internet', label: 'Gigabitový internet' }

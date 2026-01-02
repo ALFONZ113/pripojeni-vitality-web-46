@@ -784,6 +784,45 @@ export const podaInternet2026Post: BlogPost = {
         <a href="/kontakt" class="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors">Objednat PODA internet →</a>
       </div>
 
+      <h2>Nejčastější otázky o PODA internetu 2026</h2>
+      
+      <div class="faq-schema" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="bg-card p-6 rounded-lg border border-border/30 my-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="text-lg font-bold text-primary mb-2">Co je PODA internet?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">PODA internet je optické připojení od českého poskytovatele PODA a.s. s 26letou tradicí. Nabízí rychlosti až 2 Gb/s, symetrické připojení 1000/1000 Mb/s pro byty a 1000/300 Mb/s pro rodinné domy. Služby jsou dostupné v Ostravě, Brně, Praze, Karviné, Havířově a dalších městech.</p>
+          </div>
+        </div>
+        
+        <div class="bg-card p-6 rounded-lg border border-border/30 my-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="text-lg font-bold text-primary mb-2">Kolik stojí PODA internet v roce 2026?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">PODA internet 2026 začíná od 300 Kč měsíčně za rychlost 100 Mb/s. Gigabitové připojení 1000/1000 Mb/s stojí od 440 Kč + 50 Kč pronájem, prémiové 2 Gb/s připojení pak od 520 Kč + 50 Kč. Všechny tarify jsou bez závazků a s možností TV zdarma.</p>
+          </div>
+        </div>
+        
+        <div class="bg-card p-6 rounded-lg border border-border/30 my-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="text-lg font-bold text-primary mb-2">Kde je dostupný PODA internet?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">PODA internet je dostupný v Moravskoslezském kraji (Ostrava, Karviná, Havířov, Bohumín, Frýdek-Místek, Orlová), v Brně, Praze a některých městech v Pardubickém a Královéhradeckém kraji. Pokrytí se neustále rozšiřuje, ověřit dostupnost můžete na webu nebo telefonicky.</p>
+          </div>
+        </div>
+        
+        <div class="bg-card p-6 rounded-lg border border-border/30 my-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="text-lg font-bold text-primary mb-2">Jaká je rychlost PODA internetu?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">PODA internet nabízí rychlosti od 100 Mb/s až do 2 Gb/s (2000 Mb/s). Pro bytové domy je k dispozici symetrické připojení 1000/1000 Mb/s s technologií GPON. Pro rodinné domy nabízí 1000/300 Mb/s pomocí technologie SpeedLink 60 GHz nebo DSL Opti.</p>
+          </div>
+        </div>
+        
+        <div class="bg-card p-6 rounded-lg border border-border/30 my-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="text-lg font-bold text-primary mb-2">Jak objednat PODA internet?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">PODA internet můžete objednat telefonicky na čísle 730 431 313, e-mailem na terc@obchod.poda.cz nebo přes kontaktní formulář na webu. Instalace probíhá obvykle do 7-14 dnů a je u většiny tarifů zdarma. Technik vše nainstaluje a nakonfiguruje přímo u vás doma.</p>
+          </div>
+        </div>
+      </div>
+
       <p class="text-sm text-muted-foreground mt-8">Poslední aktualizace: 2. ledna 2026 | Všechny ceny jsou uvedeny včetně DPH. Akční nabídky platí pro nové zákazníky. Dostupnost služeb se může lišit podle lokality.</p>
     </div>
   `,

@@ -19,10 +19,12 @@ import { gponTechnologie } from './gpon-technologie';
 import { internetVyberChybyPost } from './internet-vyber-chyby';
 import { wifiSignalZlepseniePost } from './wifi-signal-zlepsenie';
 import { homeOffice2025Post } from './home-office-2025';
+import { podaInternet2026Post } from './poda-internet-2026';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  homeOffice2025Post, // Najnovší článok - Home office 2025
+  podaInternet2026Post, // Najnovší článok - PODA internet 2026
+  homeOffice2025Post,
   wifiSignalZlepseniePost, // Ako zlepšiť WiFi signál
   internetVyberChybyPost, // Ako si vybrať internet do bytu
   gponTechnologie, // GPON technologie
@@ -62,5 +64,6 @@ export * from './gpon-technologie';
 export * from './internet-vyber-chyby';
 export * from './wifi-signal-zlepsenie';
 export * from './home-office-2025';
+export * from './poda-internet-2026';
 
 // Note: WiFi blog slug changed to Czech: jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { blogPosts } from '../data/blog';
@@ -12,6 +11,7 @@ import BlogPostImage from '../components/blog/BlogPostImage';
 import BlogPostPagination from '../components/blog/BlogPostPagination';
 import BlogPostCTA from '../components/blog/BlogPostCTA';
 import BlogPostSEO from '../components/blog/BlogPostSEO';
+import IndexNowSubmitter from '../components/seo/IndexNowSubmitter';
 import type { BlogPost } from '../data/blog/types';
 
 const BlogPostPage = () => {
@@ -75,6 +75,9 @@ const BlogPostPage = () => {
     <div className="min-h-screen pt-24 bg-background">
       {/* Enhanced SEO metadata */}
       <BlogPostSEO post={post} prevPost={prevPost} nextPost={nextPost} />
+      
+      {/* IndexNow submission for priority articles */}
+      <IndexNowSubmitter slug={post.slug} postId={post.id} priority={post.id === 401 ? 'high' : 'normal'} />
       
       {/* Blog header with title, author, date */}
       <BlogPostHeader post={post} />

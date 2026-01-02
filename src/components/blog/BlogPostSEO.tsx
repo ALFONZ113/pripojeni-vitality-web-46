@@ -46,6 +46,54 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
     ? generateReviewSchema(post.content, { "@type": "Organization", "name": "PODA", "url": baseUrl }) 
     : { reviews: [], aggregateRating: null };
 
+  // Dedicated FAQ schema for PODA internet 2026 article (ID 401)
+  const podaInternet2026FaqSchema = post.id === 401 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Co je PODA internet a jak se liší od ostatních poskytovatelů?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PODA je regionální český poskytovatel internetu s více než 26 lety zkušeností. Na rozdíl od velkých operátorů vlastní a provozuje vlastní optickou síť (509 km tras), což znamená rychlejší řešení problémů, lepší kontrolu kvality a férové ceny bez mezioperátorských poplatků. Obsluhuje přes 110 000 zákazníků v Ostravě, Brně, Praze a dalších městech."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jaká je maximální rychlost PODA internetu v roce 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PODA nabízí optické připojení až 2 Gb/s (2000/2000 Mb/s) pro náročné uživatele. Pro domácnosti v bytových domech je k dispozici symetrické připojení 1000/1000 Mb/s, pro rodinné domy asymetrické 1000/300 Mb/s. PODA modernizuje síť na XGS-PON technologii s kapacitou až 10 Gb/s."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kolik stojí PODA internet měsíčně?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ceny PODA internetu začínají na 440 Kč/měsíc za GPON 1 Giga (1000/1000 Mb/s) + 50 Kč pronájem routeru. S TV balíčkem od 520 Kč/měsíc. Prémiový tarif 2 Gb/s stojí 520 Kč/měsíc. Všechny tarify jsou bez závazků s možností výpovědi kdykoliv."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kde je PODA internet dostupný?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PODA internet je dostupný v Ostravě (včetně Poruby, Dubiny, Hrabůvky), Brně, Praze, Havířově, Karviné, Bohumíně, Frýdku-Místku, Orlové a dalších městech. Pokrytí se neustále rozšiřuje. Dostupnost na konkrétní adrese lze ověřit na webu popri.cz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jak rychle PODA nainstaluje internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PODA obvykle instaluje optiku do bytu během 7-14 dnů od objednávky. Instalace je většinou zdarma. Technici PODY (230+ odborníků) provádějí instalaci profesionálně s minimálním zásahem do bytu."
+        }
+      }
+    ]
+  } : null;
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -170,6 +218,13 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       {faqSchema && (
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+      )}
+
+      {/* Dedicated PODA internet 2026 FAQ schema for featured snippets */}
+      {podaInternet2026FaqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(podaInternet2026FaqSchema)}
         </script>
       )}
 

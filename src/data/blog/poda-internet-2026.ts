@@ -146,42 +146,38 @@ export const podaInternet2026Post: BlogPost = {
       <h3>Technologie dostupné v bytových domech</h3>
       <ul>
         <li><strong>GPON (FTTH):</strong> Optika přímo do bytu – standard PODY, nejstabilnější řešení</li>
-        <li><strong>FiberFast:</strong> Alternativa s optickým připojením, bez pronájmu zařízení</li>
-        <li><strong>Speedy:</strong> Bezdrátová varianta (rádio) – pro místa, kde je optika těžko dostupná</li>
       </ul>
 
-      <h3>Cenová nabídka pro 1000/1000 Mb/s</h3>
+      <h3>Aktuální cenová nabídka pro bytové domy</h3>
       <div class="overflow-x-auto my-8">
         <table class="w-full border-collapse bg-card rounded-lg overflow-hidden">
           <thead class="bg-primary/10">
             <tr>
               <th class="p-4 text-left font-bold">Tarif</th>
-              <th class="p-4 text-left font-bold">Cena bez TV</th>
-              <th class="p-4 text-left font-bold">Cena s TV</th>
-              <th class="p-4 text-left font-bold">Poznámka</th>
+              <th class="p-4 text-left font-bold">Rychlost</th>
+              <th class="p-4 text-left font-bold">PROMO cena</th>
+              <th class="p-4 text-left font-bold">Standardní cena</th>
             </tr>
           </thead>
           <tbody>
             <tr class="border-t border-border/30">
-              <td class="p-4">GPON 1 Giga</td>
-              <td class="p-4">440 Kč + 50 Kč pronájem</td>
-              <td class="p-4">520 Kč + 50 Kč</td>
-              <td class="p-4">Nejstabilnější, FTTH</td>
+              <td class="p-4"><strong>Internet + TV Basic</strong></td>
+              <td class="p-4">1000/1000 Mb/s</td>
+              <td class="p-4 text-green-600 dark:text-green-400 font-bold">300 Kč/měsíc</td>
+              <td class="p-4">440 Kč/měsíc</td>
             </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">FiberFast 1 Giga</td>
-              <td class="p-4">490 Kč</td>
-              <td class="p-4">570 Kč</td>
-              <td class="p-4">Bez pronájmu zařízení</td>
-            </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">Speedy 1G</td>
-              <td class="p-4">570 Kč</td>
-              <td class="p-4">650 Kč</td>
-              <td class="p-4">Bezdrátový (rádio)</td>
+            <tr class="border-t border-border/30 bg-primary/5">
+              <td class="p-4"><strong>Internet + TV Mých 10</strong> ⭐</td>
+              <td class="p-4">1000/1000 Mb/s</td>
+              <td class="p-4 text-green-600 dark:text-green-400 font-bold">440 Kč/měsíc</td>
+              <td class="p-4">520 Kč/měsíc</td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="bg-accent/10 p-4 rounded-lg my-4 border-l-4 border-primary">
+        <p class="text-sm"><strong>💡 PROMO ceny</strong> jsou určeny novým zákazníkům a platí 12 měsíců od aktivace. Oba tarify zahrnují TV služby (85+ nebo 100+ programů) a službu PODA net.TV až pro 4 zařízení.</p>
       </div>
 
       <h3>Reálné scénáře použití</h3>
@@ -239,55 +235,46 @@ export const podaInternet2026Post: BlogPost = {
 
       <h3>Technologie pro rodinné domy</h3>
       
-      <div class="grid md:grid-cols-2 gap-6 my-8">
-        <div class="bg-card p-6 rounded-lg border border-border/30">
-          <h4 class="text-primary font-bold mb-3">SpeedLink (60 GHz bezdrátová technologie)</h4>
-          <p class="text-sm mb-3">Revoluční bezdrátové připojení, které je až 20× rychlejší než běžné Wi-Fi. Používá frekvenční pásmo 60 GHz pro point-to-point spojení mezi anténou PODY a vaším domem.</p>
-          <ul class="text-sm space-y-1">
-            <li>✅ Rychlá instalace (není potřeba kopat příkopy)</li>
-            <li>✅ Stabilita blízká optickému připojení</li>
-            <li>✅ Dostupnost až 1 Gb/s</li>
-          </ul>
-        </div>
-        <div class="bg-card p-6 rounded-lg border border-border/30">
-          <h4 class="text-primary font-bold mb-3">DSL Opti & Speedy</h4>
-          <p class="text-sm mb-3"><strong>DSL Opti:</strong> Vylepšené xDSL připojení s vysokými rychlostmi, vhodné tam, kde je dostupná kvalitní telefonní infrastruktura.</p>
-          <p class="text-sm"><strong>Speedy:</strong> Klasické bezdrátové (rádio) připojení – alternativa pro vzdálenější lokality.</p>
-        </div>
+      <div class="bg-card p-6 rounded-lg border border-border/30 my-8">
+        <h4 class="text-primary font-bold mb-3">Bezdrátové připojení s rychlostí optického</h4>
+        <p class="text-sm mb-3">Pro rodinné domy PODA využívá moderní bezdrátové technologie, které dosahují rychlostí srovnatelných s optickým připojením. Instalace je rychlá bez nutnosti kopat příkopy.</p>
+        <ul class="text-sm space-y-1">
+          <li>✅ Rychlá instalace (není potřeba kopat příkopy)</li>
+          <li>✅ Stabilita blízká optickému připojení</li>
+          <li>✅ Dostupnost až 1 Gb/s download</li>
+        </ul>
       </div>
 
-      <h3>Cenová nabídka pro rodinné domy</h3>
+      <h3>Aktuální cenová nabídka pro rodinné domy</h3>
       <div class="overflow-x-auto my-8">
         <table class="w-full border-collapse bg-card rounded-lg overflow-hidden">
           <thead class="bg-primary/10">
             <tr>
               <th class="p-4 text-left font-bold">Tarif</th>
               <th class="p-4 text-left font-bold">Rychlost</th>
-              <th class="p-4 text-left font-bold">Cena bez TV</th>
-              <th class="p-4 text-left font-bold">Cena s TV</th>
+              <th class="p-4 text-left font-bold">PROMO cena</th>
+              <th class="p-4 text-left font-bold">Standardní cena</th>
             </tr>
           </thead>
           <tbody>
             <tr class="border-t border-border/30">
-              <td class="p-4">SpeedLink 1 Giga</td>
-              <td class="p-4">1000/300 Mb/s</td>
-              <td class="p-4">520 Kč</td>
-              <td class="p-4">600 Kč (TV Mých 10)</td>
+              <td class="p-4"><strong>Internet + TV Basic</strong></td>
+              <td class="p-4">1000/200 Mb/s</td>
+              <td class="p-4 text-green-600 dark:text-green-400 font-bold">300 Kč/měsíc</td>
+              <td class="p-4">440 Kč/měsíc</td>
             </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">DSL Opti 1000M</td>
-              <td class="p-4">1000/500 Mb/s</td>
-              <td class="p-4">700 Kč</td>
-              <td class="p-4">840 Kč (TV Mých 10)</td>
-            </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">Speedy 700M</td>
-              <td class="p-4">700/300 Mb/s</td>
-              <td class="p-4">490 Kč</td>
-              <td class="p-4">570 Kč</td>
+            <tr class="border-t border-border/30 bg-primary/5">
+              <td class="p-4"><strong>Internet + TV Mých 10</strong> ⭐</td>
+              <td class="p-4">1000/200 Mb/s</td>
+              <td class="p-4 text-green-600 dark:text-green-400 font-bold">440 Kč/měsíc</td>
+              <td class="p-4">520 Kč/měsíc</td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="bg-accent/10 p-4 rounded-lg my-4 border-l-4 border-primary">
+        <p class="text-sm"><strong>💡 PROMO ceny</strong> platí 12 měsíců od aktivace pro nové zákazníky. Bezdrátový internet s rychlostí optického. Oba tarify zahrnují TV služby a službu PODA net.TV až pro 4 zařízení.</p>
       </div>
 
       <h3>Reálné scénáře pro rodinné domy</h3>
@@ -355,54 +342,19 @@ export const podaInternet2026Post: BlogPost = {
         </div>
       </div>
 
-      <h3>Cenová nabídka TV služeb</h3>
-      <div class="overflow-x-auto my-8">
-        <table class="w-full border-collapse bg-card rounded-lg overflow-hidden">
-          <thead class="bg-primary/10">
-            <tr>
-              <th class="p-4 text-left font-bold">Balíček</th>
-              <th class="p-4 text-left font-bold">Cena samostatně</th>
-              <th class="p-4 text-left font-bold">Cena k internetu</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-t border-border/30">
-              <td class="p-4">TV START (90 kanálů)</td>
-              <td class="p-4">280 Kč</td>
-              <td class="p-4">+90 Kč</td>
-            </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">TV Mých 10</td>
-              <td class="p-4">-</td>
-              <td class="p-4">+120 Kč</td>
-            </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">TV Mých 30</td>
-              <td class="p-4">-</td>
-              <td class="p-4">+220-300 Kč</td>
-            </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">HBO (3 kanály)</td>
-              <td class="p-4">250 Kč</td>
-              <td class="p-4">250 Kč</td>
-            </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">Sport (9 kanálů)</td>
-              <td class="p-4">120 Kč</td>
-              <td class="p-4">120 Kč</td>
-            </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">Rodina (15 kanálů)</td>
-              <td class="p-4">120 Kč</td>
-              <td class="p-4">120 Kč</td>
-            </tr>
-          </tbody>
-        </table>
+      <h3>TV služby v ceně tarifů</h3>
+      <div class="bg-card p-6 rounded-lg my-8 border border-border/30">
+        <p class="mb-4">TV služby jsou již <strong>zahrnuty v ceně</strong> obou tarifů Internet + TV:</p>
+        <ul class="space-y-3">
+          <li><strong>Internet + TV Basic:</strong> Více než 85 TV programů automaticky v ceně</li>
+          <li><strong>Internet + TV Mých 10:</strong> Více než 100 TV programů s možností výběru 10 vlastních stanic</li>
+        </ul>
+        <p class="mt-4 text-sm text-muted-foreground">Služba PODA net.TV až pro 4 zařízení je součástí obou tarifů – sledujte TV na mobilu, tabletu, počítači nebo chytré TV.</p>
       </div>
 
       <div class="bg-gradient-to-r from-green-500/10 to-green-500/5 p-6 rounded-lg my-8 border border-green-500/20">
-        <h4 class="text-green-600 dark:text-green-400 font-bold mb-2">💰 Combo výhoda</h4>
-        <p>Když si objednáte internet + TV dohromady, ušetříte až 100 Kč měsíčně oproti samostatným službám. Plus máte jen jednu fakturu a jednoho kontaktu pro podporu.</p>
+        <h4 class="text-green-600 dark:text-green-400 font-bold mb-2">💰 Vše v jednom balíčku</h4>
+        <p>Internet + TV v jedné ceně od 300 Kč měsíčně. Žádné skryté poplatky, jedna faktura, jeden kontakt pro podporu.</p>
       </div>
 
       <h2>PODA Mobil – kompletní řešení pro celou domácnost</h2>
@@ -490,42 +442,42 @@ export const podaInternet2026Post: BlogPost = {
           <h4 class="text-primary font-bold mb-3">👨‍👩‍👧‍👦 Rodiny v bytových domech (1000/1000 Mb/s)</h4>
           <p class="text-sm mb-2"><strong>Typický profil:</strong> 4-5 členů rodiny, každý s vlastním zařízením.</p>
           <p class="text-sm mb-2"><strong>Potřeby:</strong> Streamování, online škola, home office, gaming – vše současně.</p>
-          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> GPON 1 Giga (490 Kč) + TV Mých 10 (120 Kč) = 610 Kč/měsíc</p>
+          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> Internet + TV Mých 10 (PROMO 440 Kč/měsíc)</p>
         </div>
         
         <div class="bg-card p-6 rounded-lg border border-border/30">
-          <h4 class="text-primary font-bold mb-3">🏡 Rodiny v rodinných domech (1000/300 Mb/s)</h4>
+          <h4 class="text-primary font-bold mb-3">🏡 Rodiny v rodinných domech (1000/200 Mb/s)</h4>
           <p class="text-sm mb-2"><strong>Typický profil:</strong> 3-4 osoby s moderním životním stylem, smart home.</p>
           <p class="text-sm mb-2"><strong>Potřeby:</strong> Home office, streamování 4K, bezpečnostní kamery, IoT zařízení.</p>
-          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> SpeedLink 1 Giga (520 Kč) + TV START (90 Kč) = 610 Kč/měsíc</p>
+          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> Internet + TV Basic (PROMO 300 Kč/měsíc) nebo Mých 10 (440 Kč)</p>
         </div>
         
         <div class="bg-card p-6 rounded-lg border border-border/30">
           <h4 class="text-primary font-bold mb-3">🎮 Gameři</h4>
           <p class="text-sm mb-2"><strong>Typický profil:</strong> Online hráči vyžadující nízký ping a stabilní připojení.</p>
           <p class="text-sm mb-2"><strong>Potřeby:</strong> Latence pod 10 ms, rychlé stahování her (50-100 GB), stabilita během turnajů.</p>
-          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> GPON 1 Giga nebo FiberFast 1 Giga (minimálně 1000/1000 Mb/s)</p>
+          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> Internet + TV Mých 10 (1000/1000 Mb/s pro byty)</p>
         </div>
         
         <div class="bg-card p-6 rounded-lg border border-border/30">
           <h4 class="text-primary font-bold mb-3">💼 Freelanceři a home office profesionálové</h4>
           <p class="text-sm mb-2"><strong>Typický profil:</strong> Grafici, video editoři, programátoři, architekti, konzultanti.</p>
           <p class="text-sm mb-2"><strong>Potřeby:</strong> Vysoký upload pro videokonference v 4K, nahrávání velkých souborů.</p>
-          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> GPON 1 Giga (symetrické 1000/1000) nebo DSL Opti 1000M (1000/500)</p>
+          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> Internet + TV Mých 10 (symetrické 1000/1000 pro byty)</p>
         </div>
         
         <div class="bg-card p-6 rounded-lg border border-border/30">
           <h4 class="text-primary font-bold mb-3">📹 Streameři a content creators</h4>
           <p class="text-sm mb-2"><strong>Typický profil:</strong> YouTubeři, Twitcheři, Instagram/TikTok influenceři.</p>
           <p class="text-sm mb-2"><strong>Potřeby:</strong> Extrémní upload pro živé přenosy ve vysoké kvalitě, rychlé nahrávání videí.</p>
-          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> GPON 2 Giga (2000/2000 Mb/s) – 570 Kč/měsíc</p>
+          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> GPON 2 Giga (2000/2000 Mb/s) pro maximální výkon</p>
         </div>
         
         <div class="bg-card p-6 rounded-lg border border-border/30">
           <h4 class="text-primary font-bold mb-3">👵 Senioři a běžní uživatelé</h4>
           <p class="text-sm mb-2"><strong>Typický profil:</strong> Méně technicky zdatní uživatelé hledající jednoduchou a spolehlivou službu.</p>
           <p class="text-sm mb-2"><strong>Potřeby:</strong> E-maily, prohlížení webu, YouTube, videohovory s rodinou.</p>
-          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> Speedy 250M nebo 500M (250-490 Kč) – plně dostačující</p>
+          <p class="text-sm text-green-600 dark:text-green-400"><strong>Doporučený tarif:</strong> Internet + TV Basic (PROMO 300 Kč/měsíc) – plně dostačující</p>
         </div>
       </div>
 
@@ -689,17 +641,18 @@ export const podaInternet2026Post: BlogPost = {
       
       <div class="grid md:grid-cols-2 gap-6 my-8">
         <div class="bg-card p-6 rounded-lg border border-border/30">
-          <h4 class="text-primary font-bold mb-3">Pro byty:</h4>
+          <h4 class="text-primary font-bold mb-3">Pro bytové domy (1000/1000 Mb/s):</h4>
           <ul class="text-sm space-y-2">
-            <li><strong>GPON 1 Giga</strong> (1000/1000 Mb/s) – 490 Kč – Nejstabilnější, optika FTTH</li>
-            <li><strong>GPON 2 Giga</strong> (2000/2000 Mb/s) – 570 Kč – Pro náročné uživatele</li>
+            <li><strong>Internet + TV Basic</strong> – PROMO 300 Kč/měsíc (85+ programů)</li>
+            <li><strong>Internet + TV Mých 10</strong> – PROMO 440 Kč/měsíc (100+ programů) ⭐</li>
+            <li><strong>GPON 2 Giga</strong> (2000/2000 Mb/s) – Pro náročné uživatele</li>
           </ul>
         </div>
         <div class="bg-card p-6 rounded-lg border border-border/30">
-          <h4 class="text-primary font-bold mb-3">Pro rodinné domy:</h4>
+          <h4 class="text-primary font-bold mb-3">Pro rodinné domy (1000/200 Mb/s):</h4>
           <ul class="text-sm space-y-2">
-            <li><strong>SpeedLink 1 Giga</strong> (1000/300 Mb/s) – 520 Kč – Bezdrátový (60 GHz), rychlá instalace</li>
-            <li><strong>DSL Opti 1000M</strong> (1000/500 Mb/s) – 700 Kč – Vyšší upload</li>
+            <li><strong>Internet + TV Basic</strong> – PROMO 300 Kč/měsíc (85+ programů)</li>
+            <li><strong>Internet + TV Mých 10</strong> – PROMO 440 Kč/měsíc (100+ programů) ⭐</li>
           </ul>
         </div>
       </div>
@@ -762,10 +715,10 @@ export const podaInternet2026Post: BlogPost = {
       <div class="bg-gradient-to-r from-primary/10 to-primary/5 p-6 rounded-xl my-8 border border-primary/20">
         <h3 class="text-primary font-bold mb-4">Proč PODA?</h3>
         <ul class="space-y-2">
-          <li>✅ <strong>Bytové domy:</strong> Symetrické připojení 1000/1000 Mb/s za 440-520 Kč – ideál pro home office, streaming, gaming</li>
-          <li>✅ <strong>Rodinné domy:</strong> Asymetrické 1000/300 Mb/s za 520 Kč – perfektní balance rychlosti a ceny</li>
+          <li>✅ <strong>Bytové domy:</strong> Internet + TV Basic od 300 Kč nebo Mých 10 od 440 Kč (1000/1000 Mb/s)</li>
+          <li>✅ <strong>Rodinné domy:</strong> Internet + TV Basic od 300 Kč nebo Mých 10 od 440 Kč (1000/200 Mb/s)</li>
           <li>✅ <strong>Prémiové připojení:</strong> Až 2 Gb/s pro extrémně náročné uživatele – budoucnost na dalších 10 let</li>
-          <li>✅ <strong>Technologie GPON a XGS-PON:</strong> Stabilita, minimální latence, připravenost na budoucnost</li>
+          <li>✅ <strong>TV v ceně:</strong> 85+ nebo 100+ programů + PODA net.TV až pro 4 zařízení</li>
           <li>✅ <strong>Férové podmínky:</strong> Bez závazků, bez skrytých poplatků, transparentní ceník</li>
           <li>✅ <strong>Regionální poskytovatel:</strong> Osobní přístup, rychlá podpora, lokální technici</li>
         </ul>

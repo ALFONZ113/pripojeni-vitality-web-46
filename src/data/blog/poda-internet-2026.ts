@@ -1,5 +1,5 @@
 import { BlogPost } from './types';
-import podaInternet2026Hero from '@/assets/poda-internet-2026-hero.jpg';
+import podaInternet2026Hero from '@/assets/poda-internet-2026-hero.webp';
 
 export const podaInternet2026Post: BlogPost = {
   id: 401,

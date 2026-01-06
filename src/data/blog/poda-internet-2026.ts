@@ -111,12 +111,6 @@ export const podaInternet2026Post: BlogPost = {
               <td class="p-4">520 Kč + 50 Kč pronájem</td>
               <td class="p-4">720 Kč + 50 Kč (TV Mých 30)</td>
             </tr>
-            <tr class="border-t border-border/30">
-              <td class="p-4">DSL Opti 2000M</td>
-              <td class="p-4">2000/1000 Mb/s</td>
-              <td class="p-4">800 Kč</td>
-              <td class="p-4">940 Kč (TV Mých 10)</td>
-            </tr>
           </tbody>
         </table>
       </div>

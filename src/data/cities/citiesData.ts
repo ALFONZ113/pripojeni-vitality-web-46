@@ -361,6 +361,60 @@ export const cities: CityData[] = [
       ]
     }
   },
+  {
+    slug: 'poruba',
+    name: 'Ostrava-Poruba',
+    nameLocative: 'v Porubě',
+    region: 'Moravskoslezský kraj',
+    population: '65 000',
+    coverage: 100,
+    status: 'full',
+    coordinates: { lat: 49.8276, lng: 18.1689 },
+    priceRange: '250-520 CZK',
+    highlight: 'Největší městský obvod Ostravy',
+    heroImage: '/src/assets/ostrava-vitkovice.jpg',
+    stats: [
+      { value: '65k+', label: 'obyvatel' },
+      { value: '100%', label: 'pokrytí' },
+      { value: '24/7', label: 'podpora' },
+      { value: '0 Kč', label: 'instalace' }
+    ],
+    features: [
+      {
+        icon: 'wifi',
+        title: 'Kompletní pokrytí',
+        description: 'Celá Poruba je pokryta optickou sítí PODA s rychlostí až 1000 Mbps.',
+        gradient: 'blue'
+      },
+      {
+        icon: 'zap',
+        title: 'Největší obvod Ostravy',
+        description: '65 000 obyvatel s přístupem k nejmodernějšímu připojení v regionu.',
+        gradient: 'orange'
+      },
+      {
+        icon: 'activity',
+        title: 'Stabilita 99.9%',
+        description: 'Redundantní síť zajišťuje nepřetržité připojení pro všechny domácnosti.',
+        gradient: 'blue'
+      }
+    ],
+    districts: [
+      { name: 'Poruba I', residents: '12 000', coverage: '100%', note: 'Historické centrum Poruby' },
+      { name: 'Poruba II', residents: '10 000', coverage: '100%', note: 'Rezidenční oblast' },
+      { name: 'Poruba III-V', residents: '15 000', coverage: '100%', note: 'Sídlištní zástavba' },
+      { name: 'Poruba VI-VIII', residents: '18 000', coverage: '100%', note: 'Moderní bytová výstavba' },
+      { name: 'Studentské koleje', residents: '10 000', coverage: '100%', note: 'VŠB-TU Ostrava' }
+    ],
+    seo: {
+      title: 'Internet Poruba 1000 Mbps | Optické Připojení + TV Zdarma',
+      description: 'Rychlý internet v Porubě? Optické připojení 1000 Mbps + TV zdarma. 100% pokrytí městského obvodu. Instalace zdarma. Volejte 730 431 313!',
+      keywords: [
+        'internet Poruba', 'PODA Poruba', 'optické připojení Poruba',
+        'internet Ostrava-Poruba', 'rychlý internet Poruba', 'GPON Poruba'
+      ]
+    }
+  },
 
   // === JIHOMORAVSKÝ KRAJ ===
   {

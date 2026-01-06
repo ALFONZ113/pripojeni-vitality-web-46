@@ -372,7 +372,7 @@ export const cities: CityData[] = [
     coordinates: { lat: 49.8276, lng: 18.1689 },
     priceRange: '250-520 CZK',
     highlight: 'Největší městský obvod Ostravy',
-    heroImage: '/src/assets/ostrava-vitkovice.jpg',
+    heroImage: '/src/assets/poruba-hero.jpg',
     stats: [
       { value: '65k+', label: 'obyvatel' },
       { value: '100%', label: 'pokrytí' },

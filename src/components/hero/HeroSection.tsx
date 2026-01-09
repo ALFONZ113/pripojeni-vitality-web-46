@@ -163,23 +163,6 @@ const HeroSection = () => {
               </div>
             </motion.form>
 
-            {/* Stats Points - Under Form */}
-            <motion.div variants={itemVariants} className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3">
-              {stats.map((stat, index) => <motion.span key={index} className="flex items-center text-sm md:text-base text-foreground/80 font-body" initial={{
-              opacity: 0,
-              x: -10
-            }} animate={isInView ? {
-              opacity: 1,
-              x: 0
-            } : {}} transition={{
-              delay: 0.5 + index * 0.1,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}>
-                  <span className="w-2 h-2 rounded-full bg-primary mr-2 shadow-sm shadow-primary/50" />
-                  <span className="font-semibold text-primary">{stat.value}{stat.suffix}</span>
-                  <span className="ml-1">{stat.label}</span>
-                </motion.span>)}
-            </motion.div>
 
           </motion.div>
 
@@ -261,6 +244,13 @@ const HeroSection = () => {
                   {stat.label}
                 </div>
               </div>)}
+          </div>
+          {/* PODA Network Badge - Mobile */}
+          <div className="flex justify-center mt-3 pt-3 border-t border-border/30">
+            <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
+              <span>Služby poskytované na optické síti PODA</span>
+            </div>
           </div>
         </motion.div>
       </div>

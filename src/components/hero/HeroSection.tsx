@@ -134,7 +134,7 @@ const HeroSection = () => {
             fontSize: 'clamp(2.5rem, 6vw, 6rem)',
             lineHeight: '1.1'
           }}>
-              <span className="text-foreground block">Optický internet</span>
+              <span className="text-foreground block">Internet</span>
               <span className="text-gradient-gold block">na který se můžete spolehnout</span>
             </motion.h1>
 
@@ -163,9 +163,9 @@ const HeroSection = () => {
               </div>
             </motion.form>
 
-            {/* Trust Points - LARGER */}
+            {/* Stats Points - Under Form */}
             <motion.div variants={itemVariants} className="hidden sm:flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3">
-              {trustPoints.map((point, index) => <motion.span key={index} className="flex items-center text-sm md:text-base text-foreground/80 font-body" initial={{
+              {stats.map((stat, index) => <motion.span key={index} className="flex items-center text-sm md:text-base text-foreground/80 font-body" initial={{
               opacity: 0,
               x: -10
             }} animate={isInView ? {
@@ -175,15 +175,16 @@ const HeroSection = () => {
               delay: 0.5 + index * 0.1,
               ease: [0.25, 0.46, 0.45, 0.94]
             }}>
-                  <span className="w-2 h-2 rounded-full bg-green-500 mr-2 shadow-sm shadow-green-500/50" />
-                  {point}
+                  <span className="w-2 h-2 rounded-full bg-primary mr-2 shadow-sm shadow-primary/50" />
+                  <span className="font-semibold text-primary">{stat.value}{stat.suffix}</span>
+                  <span className="ml-1">{stat.label}</span>
                 </motion.span>)}
             </motion.div>
 
-            {/* Network Info Badge */}
+            {/* Network Info Badge - Under Stats */}
             <motion.div 
               variants={itemVariants} 
-              className="mt-6 flex justify-center lg:justify-start"
+              className="mt-4 flex justify-center lg:justify-start"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/30 border border-border/50 text-xs text-muted-foreground">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />

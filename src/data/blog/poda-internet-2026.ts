@@ -67,7 +67,7 @@ export const podaInternet2026Post: BlogPost = {
       <div class="grid md:grid-cols-2 gap-6 my-8">
         <div class="bg-card p-6 rounded-lg border border-border/30">
           <h4 class="text-primary font-bold mb-3">GPON (Gigabit Passive Optical Network)</h4>
-          <p class="text-sm mb-3">Aktuální standard PODY pro většinu bytových připojení. Umožňuje rychlosti až 2,5 Gb/s downstream a 1,25 Gb/s upstream. Optické vlákno je vedeno přímo do vašeho bytu (FTTH – Fiber To The Home).</p>
+          <p class="text-sm mb-3">Aktuální standard PODY pro většinu bytových připojení. Umožňuje rychlosti až 2 Gb/s downstream a 1 Gb/s upload. Optické vlákno je vedeno přímo do vašeho bytu (FTTH – Fiber To The Home).</p>
           <ul class="text-sm space-y-1">
             <li>✅ Minimální latence (ping často pod 5 ms)</li>
             <li>✅ Stabilita bez výpadků</li>
@@ -394,7 +394,7 @@ export const podaInternet2026Post: BlogPost = {
       <h3>Výhody kombinace Internet + TV + Mobil</h3>
       <ul>
         <li>✅ <strong>Jedna faktura:</strong> Přehledné účtování všech služeb na jednom místě</li>
-        <li>✅ <strong>Jednotná podpora:</strong> Jeden telefon (730 430 430), jeden kontakt, rychlé řešení</li>
+        <li>✅ <strong>Jednotná podpora:</strong> Jeden telefon (730 431 313), jeden kontakt, rychlé řešení</li>
         <li>✅ <strong>Cenové zvýhodnění:</strong> Ušetříte až 2000 Kč ročně oproti nákupu služeb zvlášť</li>
         <li>✅ <strong>Snadný přenos čísla:</strong> Zachování vašeho stávajícího čísla</li>
         <li>✅ <strong>5G připojení:</strong> Dostupné u tarifů s více než 10 GB dat</li>
@@ -521,23 +521,25 @@ export const podaInternet2026Post: BlogPost = {
         <li>✅ Technická podpora – chat, tickety</li>
       </ul>
 
-      <h3>📞 Zákaznická podpora</h3>
+      <h3>📞 Zákaznická podpora – objednejte přes popri.cz</h3>
       <div class="bg-card p-6 rounded-lg my-8 border border-border/30">
+        <h4 class="text-primary font-bold mb-3">Autorizovaný partner PODA:</h4>
         <ul class="space-y-2">
-          <li><strong>Telefon:</strong> 730 430 430 (pracovní dny 8-18 hod)</li>
-          <li><strong>E-mail:</strong> info@poda.cz</li>
-          <li><strong>Chat:</strong> Dostupný na webu www.poda.cz</li>
+          <li><strong>Web:</strong> popri.cz</li>
+          <li><strong>Telefon:</strong> 730 431 313</li>
+          <li><strong>Kontaktní formulář:</strong> popri.cz/kontakt</li>
           <li><strong>Technická podpora:</strong> Řešení problémů obvykle do 24 hodin</li>
         </ul>
+        <p class="text-sm text-muted-foreground mt-3">Jako autorizovaný partner PODA vám zajistíme kompletní služby včetně poradenství a podpory.</p>
       </div>
 
       <h3>📍 Jak ověřit dostupnost na vaší adrese?</h3>
       <ol>
-        <li>Navštivte <strong>www.poda.cz</strong></li>
-        <li>Vyberte svou lokalitu (Ostrava, Brno, Praha, atd.)</li>
-        <li>Zadejte svou přesnou adresu do formuláře</li>
-        <li>Systém vám ukáže dostupné tarify a technologie</li>
-        <li>Můžete objednat online nebo zavolat na <strong>730 430 430</strong></li>
+        <li>Navštivte <strong>popri.cz</strong> nebo zavolejte na <strong>730 431 313</strong></li>
+        <li>Vyplňte kontaktní formulář nebo nám zavolejte</li>
+        <li>Zadejte svou přesnou adresu pro ověření dostupnosti</li>
+        <li>Náš tým vás kontaktuje do 24 hodin</li>
+        <li>Domluvíme termín instalace a vše vyřídíme za vás</li>
       </ol>
 
       <div class="bg-accent/10 p-6 rounded-lg my-8 border-l-4 border-primary">
@@ -621,14 +623,28 @@ export const podaInternet2026Post: BlogPost = {
       <h2>Jak objednat PODA internet? Průvodce v 5 krocích</h2>
 
       <div class="bg-gradient-to-r from-primary/10 to-primary/5 p-6 rounded-xl my-8 border border-primary/20">
-        <h3 class="text-primary font-bold mb-4">Krok 1: Ověřte dostupnost</h3>
+        <h3 class="text-primary font-bold mb-4">Krok 1: Ověřte dostupnost přes popri.cz</h3>
         <ol class="space-y-2">
-          <li>1. Navštivte <strong>www.poda.cz</strong></li>
-          <li>2. Klikněte na "Ověřit dostupnost" nebo "Chci PODU"</li>
-          <li>3. Vyberte svou lokalitu (Ostrava, Brno, Praha, Havířov, atd.)</li>
-          <li>4. Zadejte svou přesnou adresu (ulice, číslo popisné)</li>
-          <li>5. Systém vám zobrazí dostupné tarify a technologie</li>
+          <li>1. Navštivte <strong>popri.cz</strong> nebo zavolejte na <strong>730 431 313</strong></li>
+          <li>2. Vyplňte kontaktní formulář s vaší adresou</li>
+          <li>3. Náš tým ověří dostupnost PODA služeb</li>
+          <li>4. Kontaktujeme vás do 24 hodin s nabídkou</li>
+          <li>5. Poradíme vám s výběrem ideálního tarifu</li>
         </ol>
+      </div>
+
+      <div class="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-6 rounded-xl my-8">
+        <h4 class="text-xl font-bold mb-3">📞 Máte zájem o PODA internet?</h4>
+        <p class="mb-4 opacity-90">Kontaktujte nás – pomůžeme vám s výběrem tarifu a ověříme dostupnost na vaší adrese.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="tel:+420730431313" class="inline-flex items-center justify-center bg-white text-primary px-6 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors">
+            📞 730 431 313
+          </a>
+          <a href="/kontakt" class="inline-flex items-center justify-center bg-white/20 text-white px-6 py-3 rounded-lg font-bold hover:bg-white/30 transition-colors border border-white/30">
+            📧 Kontaktní formulář
+          </a>
+        </div>
+        <p class="text-sm mt-4 opacity-80">Web: popri.cz | Autorizovaný partner PODA</p>
       </div>
 
       <h3>Krok 2: Vyberte správný tarif</h3>
@@ -663,11 +679,12 @@ export const podaInternet2026Post: BlogPost = {
           </ul>
         </div>
         <div class="bg-card p-6 rounded-lg border border-border/30">
-          <h4 class="text-primary font-bold mb-3">Telefonická objednávka:</h4>
+          <h4 class="text-primary font-bold mb-3">Telefonická objednávka přes popri.cz:</h4>
           <ul class="text-sm space-y-1">
-            <li>• Zavolejte na <strong>730 430 430</strong></li>
-            <li>• Operátor vám poradí s výběrem tarifu</li>
-            <li>• Domluví se termín instalace</li>
+            <li>• Zavolejte na <strong>730 431 313</strong></li>
+            <li>• Poradíme vám s výběrem tarifu</li>
+            <li>• Domluvíme termín instalace</li>
+            <li>• Vše vyřídíme za vás jako autorizovaný partner</li>
           </ul>
         </div>
       </div>
@@ -692,14 +709,16 @@ export const podaInternet2026Post: BlogPost = {
         <li>Užívejte si stabilní a rychlé připojení</li>
       </ul>
 
-      <h3>📞 Kontakty PODA</h3>
-      <div class="bg-card p-6 rounded-lg my-8 border border-border/30">
+      <h3>📞 Objednejte přes popri.cz – autorizovaného partnera PODA</h3>
+      <div class="bg-gradient-to-r from-primary/10 to-primary/5 p-6 rounded-xl my-8 border border-primary/20">
+        <h4 class="text-primary font-bold mb-3">Kontaktujte nás:</h4>
         <ul class="space-y-2">
-          <li><strong>Web:</strong> www.poda.cz</li>
-          <li><strong>Telefon:</strong> 730 430 430 (Po-Pá 8-18 hod)</li>
-          <li><strong>E-mail:</strong> info@poda.cz</li>
-          <li><strong>Pokrytí:</strong> Ostrava, Brno, Praha, Havířov, Karviná, Bohumín, Frýdek-Místek, Havlíčkův Brod, Letovice, Nové Město na Moravě, Svitavy, Vysoké Mýto, Žďár nad Sázavou, Orlová, Znojmo, Polička a okolí</li>
+          <li><strong>Web:</strong> popri.cz</li>
+          <li><strong>Telefon:</strong> 730 431 313</li>
+          <li><strong>Kontaktní formulář:</strong> popri.cz/kontakt</li>
         </ul>
+        <p class="text-sm text-muted-foreground mt-4"><strong>Pokrytí PODA:</strong> Ostrava, Brno, Praha, Havířov, Karviná, Bohumín, Frýdek-Místek, Havlíčkův Brod, Letovice, Nové Město na Moravě, Svitavy, Vysoké Mýto, Žďár nad Sázavou, Orlová, Znojmo, Polička a okolí</p>
+        <p class="text-xs text-muted-foreground mt-2">Jako autorizovaný partner PODA vám zajistíme kompletní služby včetně poradenství, objednávky a podpory.</p>
       </div>
 
       <h2>Závěr: Optická éra je tady – buďte v ní s PODA</h2>
@@ -721,14 +740,18 @@ export const podaInternet2026Post: BlogPost = {
       <h3>Další kroky</h3>
       <p>Pokud vás PODA zaujala:</p>
       <ol>
-        <li><strong>Dnes:</strong> Zkontrolujte dostupnost na www.poda.cz</li>
+        <li><strong>Dnes:</strong> Kontaktujte nás na popri.cz nebo volejte 730 431 313</li>
         <li><strong>Využijte akci:</strong> Prvních 12 měsíců za akční cenu bez závazků</li>
-        <li><strong>Zeptejte se:</strong> Zavolejte na 730 430 430 a nechte si poradit</li>
+        <li><strong>Zeptejte se:</strong> Rádi vám poradíme s výběrem ideálního tarifu</li>
       </ol>
 
       <div class="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-8 rounded-xl my-8 text-center">
-        <h3 class="text-2xl font-bold mb-4">Optická éra je tady. Pojďte do ní s PODA.</h3>
-        <a href="/kontakt" class="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors">Objednat PODA internet →</a>
+        <h3 class="text-2xl font-bold mb-2">Optická éra je tady. Pojďte do ní s PODA.</h3>
+        <p class="mb-4 opacity-90">Kontaktujte nás na popri.cz nebo volejte 730 431 313</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+420730431313" class="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-white/90 transition-colors">📞 Zavolat teď</a>
+          <a href="/kontakt" class="inline-block bg-white/20 px-8 py-3 rounded-lg font-bold hover:bg-white/30 transition-colors border border-white/30">Kontaktní formulář →</a>
+        </div>
       </div>
 
       <h2>Nejčastější otázky o PODA internetu 2026</h2>
@@ -765,7 +788,7 @@ export const podaInternet2026Post: BlogPost = {
         <div class="bg-card p-6 rounded-lg border border-border/30 my-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <h3 itemprop="name" class="text-lg font-bold text-primary mb-2">Jak objednat PODA internet?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">PODA internet můžete objednat telefonicky na čísle 730 431 313, e-mailem na terc@obchod.poda.cz nebo přes kontaktní formulář na webu. Instalace probíhá obvykle do 7-14 dnů a je u většiny tarifů zdarma. Technik vše nainstaluje a nakonfiguruje přímo u vás doma.</p>
+            <p itemprop="text">PODA internet můžete objednat přes autorizovaného partnera na webu popri.cz nebo telefonicky na čísle 730 431 313. Instalace probíhá obvykle do 7-14 dnů a je u většiny tarifů zdarma. Technik vše nainstaluje a nakonfiguruje přímo u vás doma.</p>
           </div>
         </div>
       </div>

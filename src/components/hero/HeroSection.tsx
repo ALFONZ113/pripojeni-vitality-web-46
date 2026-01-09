@@ -181,16 +181,6 @@ const HeroSection = () => {
                 </motion.span>)}
             </motion.div>
 
-            {/* Network Info Badge - Under Stats */}
-            <motion.div 
-              variants={itemVariants} 
-              className="mt-4 flex justify-center lg:justify-start"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/30 border border-border/50 text-xs text-muted-foreground">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-                <span>Služby poskytované na optické síti PODA</span>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* ═══════════════════════════════════════════════════════════════
@@ -233,6 +223,19 @@ const HeroSection = () => {
                   </div>
                 </div>
               </motion.div>)}
+
+            {/* Network Info Badge - Under Stats Cards */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="mr-[100px] mt-2"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-secondary/40 border border-primary/20 text-xs text-muted-foreground backdrop-blur-sm">
+                <div className="w-2 h-2 rounded-full bg-primary/60 animate-pulse" />
+                <span>Služby poskytované na optické síti PODA</span>
+              </div>
+            </motion.div>
 
           </motion.div>
         </div>

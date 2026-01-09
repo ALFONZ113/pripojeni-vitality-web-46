@@ -134,7 +134,7 @@ const HeroSection = () => {
             fontSize: 'clamp(2.5rem, 6vw, 6rem)',
             lineHeight: '1.1'
           }}>
-              <span className="text-foreground block">PODA Internet</span>
+              <span className="text-foreground block">Optický internet</span>
               <span className="text-gradient-gold block">na který se můžete spolehnout</span>
             </motion.h1>
 
@@ -224,21 +224,6 @@ const HeroSection = () => {
                 </div>
               </motion.div>)}
 
-            {/* Price Badge - LARGER */}
-            <motion.div className="text-center mt-4" initial={{
-            opacity: 0,
-            y: 10
-          }} animate={isInView ? {
-            opacity: 1,
-            y: 0
-          } : {}} transition={{
-            delay: 1,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}>
-              <span className="text-4xl xl:text-5xl font-display font-bold text-foreground">
-                OD <span className="text-primary">300 Kč</span>/měs
-              </span>
-            </motion.div>
           </motion.div>
         </div>
 
@@ -263,10 +248,6 @@ const HeroSection = () => {
                   {stat.label}
                 </div>
               </div>)}
-            <div className="text-center pl-3 border-l border-border">
-              <div className="text-sm font-bold text-primary">od 300 Kč</div>
-              <div className="text-[10px] text-foreground/70 uppercase">měsíčně</div>
-            </div>
           </div>
         </motion.div>
       </div>

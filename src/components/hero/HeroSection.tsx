@@ -180,7 +180,16 @@ const HeroSection = () => {
                 </motion.span>)}
             </motion.div>
 
-            {/* CTA Buttons removed - now in Navbar */}
+            {/* Network Info Badge */}
+            <motion.div 
+              variants={itemVariants} 
+              className="mt-6 flex justify-center lg:justify-start"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/30 border border-border/50 text-xs text-muted-foreground">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
+                <span>Služby poskytované na optické síti PODA</span>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* ═══════════════════════════════════════════════════════════════

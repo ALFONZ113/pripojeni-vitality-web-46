@@ -76,7 +76,7 @@ const Navbar = memo(() => {
           <div className="flex flex-col">
             <Logo size="md" />
             <span className="text-[8px] md:text-[10px] text-muted-foreground/70 font-body tracking-wide -mt-0.5">
-              Váš lokální obchodní zástupce
+              Autorizovaný partner <span className="text-primary font-medium">PODA</span>
             </span>
           </div>
         </Link>

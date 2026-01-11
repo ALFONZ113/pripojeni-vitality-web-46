@@ -134,8 +134,9 @@ const HeroSection = () => {
             fontSize: 'clamp(2.5rem, 6vw, 6rem)',
             lineHeight: '1.1'
           }}>
-              <span className="text-foreground block">PODA Internet</span>
-              <span className="text-gradient-gold block text-[0.65em]">který nikdy nezpomalí</span>
+              <span className="block text-primary text-sm md:text-base uppercase tracking-[0.3em] font-semibold mb-2">PODA</span>
+              <span className="text-foreground block">Internet</span>
+              <span className="text-gradient-gold block text-[0.65em]">na který se můžete spolehnout</span>
             </motion.h1>
 
             {/* Subtitle - LARGER */}

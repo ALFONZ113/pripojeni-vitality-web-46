@@ -136,7 +136,8 @@ const HeroSection = () => {
           }}>
               <span className="block text-primary text-sm md:text-base uppercase tracking-[0.3em] font-semibold mb-2">PODA</span>
               <span className="text-foreground block">Internet</span>
-              <span className="text-gradient-gold block text-[0.65em]">na který se můžete spolehnout</span>
+              <span className="text-gradient-gold block text-[0.65em]">na který se můžete</span>
+              <span className="text-gradient-gold block text-[0.65em]">spolehnout</span>
             </motion.h1>
 
             {/* Subtitle - LARGER */}

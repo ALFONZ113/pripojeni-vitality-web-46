@@ -143,11 +143,8 @@ const HeroSection = () => {
               Nejvýhodnější připojení v Ostravě.<br className="hidden sm:block" />
               <span className="text-primary font-semibold">Gigabit 1000 Mbps, TV s 160 kanály v ceně.</span>
             </motion.p>
-            
-            {/* Partner text */}
-            <motion.span variants={itemVariants} className="block text-sm text-muted-foreground mb-6 md:mb-8">
-              Váš lokální partner pro PODA služby
-            </motion.span>
+
+
 
 
             {/* Phone Input Form - LARGER */}

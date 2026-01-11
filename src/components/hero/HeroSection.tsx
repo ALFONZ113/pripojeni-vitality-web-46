@@ -130,19 +130,24 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Headlines - Balanced elegant size */}
-            <motion.h1 id="hero-title" variants={itemVariants} className="font-display font-bold mb-8 md:mb-12 tracking-tighter" style={{
+            <motion.h1 id="hero-title" variants={itemVariants} className="font-display font-bold mb-6 md:mb-8 tracking-tighter" style={{
             fontSize: 'clamp(2.5rem, 6vw, 6rem)',
             lineHeight: '1.1'
           }}>
-              <span className="text-foreground block">Internet</span>
-              <span className="text-gradient-gold block">na který se můžete spolehnout</span>
+              <span className="text-foreground block">PODA Internet</span>
+              <span className="text-gradient-gold block text-[0.65em]">který nikdy nezpomalí</span>
             </motion.h1>
 
             {/* Subtitle - LARGER */}
-            <motion.p variants={itemVariants} className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
-              Nechte svůj domov fungovat na plný výkon.<br className="hidden sm:block" />
-              <span className="text-primary font-semibold">Gigabit 1000 Mbps + TV zdarma</span> ​
+            <motion.p variants={itemVariants} className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-5 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
+              Nejvýhodnější připojení v Ostravě.<br className="hidden sm:block" />
+              <span className="text-primary font-semibold">Gigabit 1000 Mbps, TV s 160 kanály v ceně.</span>
             </motion.p>
+            
+            {/* Partner text */}
+            <motion.span variants={itemVariants} className="block text-sm text-muted-foreground mb-6 md:mb-8">
+              Váš lokální partner pro PODA služby
+            </motion.span>
 
 
             {/* Phone Input Form - LARGER */}

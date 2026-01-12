@@ -129,15 +129,30 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Headlines - Balanced elegant size */}
-            <motion.h1 id="hero-title" variants={itemVariants} className="font-display font-bold mb-6 md:mb-8 tracking-tighter" style={{
-            fontSize: 'clamp(2.5rem, 6vw, 6rem)',
-            lineHeight: '1.1'
-          }}>
-              <span className="block text-primary text-sm md:text-base uppercase tracking-[0.3em] font-semibold mb-2">PODA</span>
-              <span className="text-foreground block">Internet</span>
-              <span className="text-gradient-gold block text-[0.65em]">na který se můžete</span>
-              <span className="text-gradient-gold block text-[0.65em]">spolehnout</span>
+            {/* Headlines - Optimized UX structure */}
+            <motion.h1 
+              id="hero-title" 
+              variants={itemVariants} 
+              className="font-display font-bold mb-6 md:mb-8" 
+              style={{
+                fontSize: 'clamp(2.25rem, 5vw, 5rem)',
+                lineHeight: '1.1'
+              }}
+            >
+              {/* Eyebrow - PODA label */}
+              <span className="block text-primary text-xs md:text-sm uppercase tracking-[0.25em] font-medium mb-3 md:mb-4">
+                PODA
+              </span>
+              
+              {/* Main headline - spojený na jeden riadok */}
+              <span className="text-foreground block tracking-tight">
+                Internet na který
+              </span>
+              
+              {/* Emotional subheadline */}
+              <span className="text-gradient-gold block text-[0.75em] tracking-normal mt-1">
+                se můžete spolehnout
+              </span>
             </motion.h1>
 
             {/* Subtitle - LARGER */}

@@ -12,6 +12,19 @@
   function = "ai-bot-detector"
   path = "/*"
 
+# CRITICAL: Domain canonicalization - MUST be before all other redirects
+[[redirects]]
+  from = "https://popri.cz/*"
+  to = "https://www.popri.cz/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://popri.cz/*"
+  to = "https://www.popri.cz/:splat"
+  status = 301
+  force = true
+
 # Global trailing slash normalization - redirect /path/ to /path
 [[redirects]]
   from = "/*/"

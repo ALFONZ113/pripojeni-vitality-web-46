@@ -1,3 +1,9 @@
+# CRITICAL: Domain redirects MUST be first - force www.popri.cz
+http://popri.cz/* https://www.popri.cz/:splat 301!
+https://popri.cz/* https://www.popri.cz/:splat 301!
+http://popri.cz/ https://www.popri.cz/ 301!
+https://popri.cz/ https://www.popri.cz/ 301!
+
 # Trailing slash normalizácia - presmerovať na verziu bez lomítka
 /internet-ostrava/ /internet-ostrava 301
 /internet-poruba/ /internet-poruba 301
@@ -44,14 +50,7 @@
 
 # Opravené staré slugy
 /blog/gaming-internet-ostrava-2025 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301
-/blog/internet-vyber-5-chyb-ktere-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301
-
-# Clean URLs - Remove query parameters (for canonical purposes, not redirects)
-# These are handled by NoIndexMeta component, no redirect needed
-
-# Force www for popri.cz domain
-http://popri.cz/* https://www.popri.cz/:splat 301!
-https://popri.cz/* https://www.popri.cz/:splat 301!
+/blog/internet-vyber-5-chyb-ktore-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301
 
 # SPA routing - serve index.html for all routes
 /blog/* /index.html 200

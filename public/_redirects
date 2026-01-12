@@ -1,3 +1,18 @@
+# Trailing slash normalizácia - presmerovať na verziu bez lomítka
+/internet-ostrava/ /internet-ostrava 301
+/internet-poruba/ /internet-poruba 301
+/internet-havirov/ /internet-havirov 301
+/internet-karvina/ /internet-karvina 301
+/internet-bohumin/ /internet-bohumin 301
+/internet-frydek-mistek/ /internet-frydek-mistek 301
+/internet-orlova/ /internet-orlova 301
+/internet-brno/ /internet-brno 301
+/blog/ /blog 301
+
+# Oprava chybných slug URL a chýbajúcich redirectov
+/blog/poda-super-2025-60ghz-internet-polanka /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301
+/blog/1 /blog 301
+
 # 301 redirects - old blog ID URLs to new slug URLs
 /blog/10 /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda 301
 /blog/30 /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025 301

@@ -42,8 +42,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMetadata 
-        title="Nejvýhodnější PODA Internet Ostrava | Gigabit + TV zdarma | 730 431 313"
-        description="Máte pomalý internet? PODA optika v Ostravě nabízí stabilních 1000 Mbps bez výpadků. TV zdarma, bez závazků, instalace do týdne. Váš lokální partner - 730 431 313."
+        title="PODA Internet Ostrava a okolí | Gigabit + TV zdarma | 730 431 313"
+        description="Máte pomalý internet? PODA optika v Ostravě, Karviné, Havířově a okolí nabízí stabilních 1000 Mbps bez výpadků. TV zdarma, bez závazků. Váš lokální partner - 730 431 313."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
         currentDate="2025-01-14"
         faviconVersion="3.1"

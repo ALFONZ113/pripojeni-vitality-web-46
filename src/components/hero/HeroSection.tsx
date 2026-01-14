@@ -157,10 +157,30 @@ const HeroSection = () => {
 
             {/* Subtitle - LARGER */}
             <motion.p variants={itemVariants} className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-5 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
-              Nejvýhodnější připojení v Ostravě.<br className="hidden sm:block" />
+              Nejvýhodnější optické připojení v regionu.<br className="hidden sm:block" />
               <span className="text-primary font-semibold">Gigabit 1000 Mbps, TV s 160 kanály v ceně.</span>
             </motion.p>
 
+            {/* Cities badges - shows regional availability */}
+            <motion.div variants={itemVariants} className="mb-4 md:mb-6">
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                <span className="text-xs text-muted-foreground bg-secondary/50 px-3 py-1.5 rounded-full border border-border/50">
+                  Ostrava
+                </span>
+                <span className="text-xs text-muted-foreground bg-secondary/50 px-3 py-1.5 rounded-full border border-border/50">
+                  Karviná
+                </span>
+                <span className="text-xs text-muted-foreground bg-secondary/50 px-3 py-1.5 rounded-full border border-border/50">
+                  Havířov
+                </span>
+                <Link 
+                  to="/kontakt#dostupnost" 
+                  className="text-xs text-primary bg-primary/10 px-3 py-1.5 rounded-full border border-primary/30 hover:bg-primary/20 transition-colors"
+                >
+                  + další města →
+                </Link>
+              </div>
+            </motion.div>
 
 
 

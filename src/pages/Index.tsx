@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import ErrorState from '../components/page/ErrorState';
@@ -9,6 +8,7 @@ import { useEnhancedTracking } from '../hooks/use-enhanced-tracking';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
 import IPTVSection from '../components/sections/IPTVSection';
 import { AIContentSummary } from '../components/seo/AIContentSummary';
+import { AIOptimizedSchema } from '../components/seo/AIOptimizedSchema';
 
 // Critical resources for LCP optimization
 const CRITICAL_IMAGES = [
@@ -55,6 +55,9 @@ const Index = () => {
         ]}
         location="Ostrava, Moravskoslezský kraj"
       />
+      
+      {/* AI-optimized structured data for Google AI Overviews and Gemini */}
+      <AIOptimizedSchema />
       
       <AIContentSummary
         title="PODA Internet s TV Zdarma"

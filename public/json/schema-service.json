@@ -1,16 +1,95 @@
-
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "PODA Internet od Popri.cz",
+  "@id": "https://www.popri.cz/#service",
+  "name": "PODA Internet",
+  "alternateName": "PODA Gigabit Internet Ostrava",
   "serviceType": "Internet Service Provider",
+  "description": "Spolehlivé PODA připojení k internetu s rychlostí až 1000/1000 Mbps a TV zdarma. Optická síť GPON v Moravskoslezském kraji.",
   "provider": {
     "@type": "Organization",
-    "name": "Popri.cz"
+    "name": "Popri.cz",
+    "url": "https://www.popri.cz",
+    "logo": "https://www.popri.cz/poda-logo.svg",
+    "telephone": "+420730431313"
   },
-  "description": "Spolehlivé PODA připojení k internetu s rychlostí až 1000 Mbps a TV zdarma",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Ostrava",
+      "containedInPlace": {
+        "@type": "AdministrativeArea",
+        "name": "Moravskoslezský kraj"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Karviná"
+    },
+    {
+      "@type": "City",
+      "name": "Havířov"
+    },
+    {
+      "@type": "City",
+      "name": "Bohumín"
+    },
+    {
+      "@type": "City",
+      "name": "Frýdek-Místek"
+    },
+    {
+      "@type": "City",
+      "name": "Orlová"
+    },
+    {
+      "@type": "City",
+      "name": "Opava"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "PODA Internet Tarify",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Internet + TV Basic",
+        "description": "Gigabitový internet 1000/1000 Mbps s 85+ TV kanály zdarma",
+        "price": "300",
+        "priceCurrency": "CZK",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "name": "Internet + TV Mých 10",
+        "description": "Gigabitový internet 1000/1000 Mbps se 100+ TV kanály a výběrem 10 prémiových stanic",
+        "price": "440",
+        "priceCurrency": "CZK",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "name": "Internet + TV Max",
+        "description": "Gigabitový internet 1000/1000 Mbps se 160+ TV kanály včetně všech prémiových balíčků",
+        "price": "520",
+        "priceCurrency": "CZK",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock"
+      }
+    ]
+  },
   "offers": {
-    "@type": "Offer",
-    "description": "Gigabitový optický internet s rychlostí až 1000/1000 Mbps a chytrou TV zdarma"
-  }
+    "@type": "AggregateOffer",
+    "lowPrice": "300",
+    "highPrice": "520",
+    "priceCurrency": "CZK",
+    "offerCount": "3"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "PODA"
+  },
+  "termsOfService": "https://www.popri.cz/obchodni-podminky"
 }

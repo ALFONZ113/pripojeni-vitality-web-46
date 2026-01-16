@@ -1,9 +1,19 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// Input validation schema
+const BlogInputSchema = z.object({
+  title: z.string().trim().min(5, "Název musí mít alespoň 5 znaků").max(200, "Název je příliš dlouhý"),
+  keywords: z.array(z.string().trim().max(50)).max(20, "Maximálně 20 klíčových slov").optional().nullable(),
+  research_data: z.any().optional().nullable(),
+  category: z.string().trim().max(100, "Kategorie je příliš dlouhá").optional().nullable(),
+  tone: z.enum(['professional', 'casual', 'technical']).optional().default('professional')
+});
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -11,7 +21,26 @@ serve(async (req) => {
   }
 
   try {
-    const { title, keywords, research_data, category, tone = 'professional' } = await req.json();
+    const requestBody = await req.json();
+    
+    // Validate input
+    const validationResult = BlogInputSchema.safeParse(requestBody);
+    if (!validationResult.success) {
+      console.error("❌ Validation error:", validationResult.error.issues);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Neplatná vstupní data",
+          details: validationResult.error.issues.map(i => i.message)
+        }),
+        { 
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    const { title, keywords, research_data, category, tone } = validationResult.data;
     
     const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
     if (!lovableApiKey) {
@@ -25,7 +54,7 @@ serve(async (req) => {
 
     const generatePrompt = `Napíš kompletný, SEO optimalizovaný blog článok na tému: "${title}"
 
-Kategória: ${category}
+Kategória: ${category || 'Obecné'}
 Tón: ${tone}
 Kľúčové slová: ${keywords?.join(', ') || 'žiadne'}
 

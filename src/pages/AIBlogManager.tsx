@@ -99,6 +99,24 @@ const AIBlogManager = () => {
       navigate("/admin-login-poda-2024");
       return;
     }
+
+    // Server-side admin role check using RLS-protected user_roles table
+    const { data: roleData, error: roleError } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', user.id)
+      .eq('role', 'admin')
+      .maybeSingle();
+
+    if (roleError || !roleData) {
+      toast.error('Nedostatečná oprávnění', {
+        description: 'Nemáte přístup do administrace. Kontaktujte správce.',
+      });
+      await supabase.auth.signOut();
+      navigate("/");
+      return;
+    }
+
     setUser(user);
   };
 

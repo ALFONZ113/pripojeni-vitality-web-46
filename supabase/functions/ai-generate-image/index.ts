@@ -1,10 +1,17 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4';
+import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// Input validation schema
+const ImageInputSchema = z.object({
+  prompt: z.string().trim().min(5, "Prompt musí mít alespoň 5 znaků").max(500, "Prompt je příliš dlouhý"),
+  slug: z.string().trim().regex(/^[a-z0-9-]*$/, "Slug může obsahovat pouze malá písmena, čísla a pomlčky").max(100, "Slug je příliš dlouhý").optional().nullable()
+});
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -12,7 +19,26 @@ serve(async (req) => {
   }
 
   try {
-    const { prompt, slug } = await req.json();
+    const requestBody = await req.json();
+    
+    // Validate input
+    const validationResult = ImageInputSchema.safeParse(requestBody);
+    if (!validationResult.success) {
+      console.error("❌ Validation error:", validationResult.error.issues);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Neplatná vstupní data",
+          details: validationResult.error.issues.map(i => i.message)
+        }),
+        { 
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    const { prompt, slug } = validationResult.data;
     
     const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
     if (!lovableApiKey) {
@@ -96,8 +122,10 @@ serve(async (req) => {
       });
     }
 
-    // Uložíme obrázok
-    const fileName = `${slug || Date.now()}-${Math.random().toString(36).substring(7)}.png`;
+    // Sanitize slug for filename
+    const safeSlug = slug ? slug.replace(/[^a-z0-9-]/g, '') : '';
+    const fileName = `${safeSlug || Date.now()}-${Math.random().toString(36).substring(7)}.png`;
+    
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('ai-blog-images')
       .upload(fileName, imageBuffer, {

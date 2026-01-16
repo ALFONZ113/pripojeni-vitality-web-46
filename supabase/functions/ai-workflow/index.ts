@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4';
+import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -18,6 +19,14 @@ const BLOG_TOPICS = [
   { topic: "Internetové tarify pro rodiny", keywords: ["rodina", "tarify", "balíček"], category: "Služby" }
 ];
 
+// Input validation schema
+const WorkflowInputSchema = z.object({
+  topic: z.string().trim().min(5, "Téma musí mít alespoň 5 znaků").max(200, "Téma je příliš dlouhé").optional().nullable(),
+  keywords: z.array(z.string().trim().max(50)).max(20, "Maximálně 20 klíčových slov").optional().nullable(),
+  category: z.string().trim().max(100, "Kategorie je příliš dlouhá").optional().nullable(),
+  mode: z.enum(['auto', 'manual']).optional().default('auto')
+});
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -30,7 +39,25 @@ serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { topic, keywords, category, mode = 'auto' } = body;
+    
+    // Validate input
+    const validationResult = WorkflowInputSchema.safeParse(body);
+    if (!validationResult.success) {
+      console.error("❌ Validation error:", validationResult.error.issues);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Neplatná vstupní data",
+          details: validationResult.error.issues.map(i => i.message)
+        }),
+        { 
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    const { topic, keywords, category, mode } = validationResult.data;
 
     // If mode is 'auto', pick next topic from rotation
     let selectedTopic = topic;
@@ -109,13 +136,14 @@ serve(async (req) => {
     const blogData = await blogResponse.json();
     console.log('✅ Blog content generated');
 
-    // Step 3: Generate slug
-    const slug = selectedTopic
+    // Step 3: Generate slug (sanitized)
+    const slug = (selectedTopic || 'post')
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
+      .replace(/^-|-$/g, '')
+      .substring(0, 100); // Limit length
 
     console.log('🔗 Generated slug:', slug);
 

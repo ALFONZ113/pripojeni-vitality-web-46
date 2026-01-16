@@ -25,38 +25,59 @@ export const OPTIMIZED_PAGE_SEO: Record<string, PageSEOData> = {
   },
   
   '/internet-ostrava': {
-    title: 'Internet Ostrava | PODA Gigabit + TV Zdarma | Tel: 730 431 313',
-    description: 'PODA internet Ostrava - gigabitové připojení GPON s TV zdarma. Pokrytí celé Ostravy včetně Poruby, rychlá instalace. Bez závazků od 250 Kč/měsíc. Tel: 730 431 313.',
-    keywords: ['internet Ostrava', 'PODA Ostrava', 'optické připojení Ostrava', 'gigabitový internet Ostrava', 'GPON Ostrava', 'internet Poruba'],
+    title: 'PODA Internet Ostrava | Gigabit 1000 Mbps + TV Zdarma',
+    description: 'PODA internet Ostrava - gigabitové optické připojení 1000/1000 Mbps + TV zdarma. 98% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Ostrava', 'PODA internet Ostrava', 'internet Ostrava', 'optické připojení Ostrava', 'gigabitový internet Ostrava', 'GPON Ostrava'],
     canonical: 'https://www.popri.cz/internet-ostrava'
   },
 
   '/internet-karvina': {
-    title: 'Internet Karviná | PODA Optické GPON + TV | Tel: 730 431 313',
-    description: 'Rychlý PODA internet v Karviné. Optické připojení až 1000 Mbps + TV balíčky. Kompletní pokrytí města včetně Ráj, Hranice. Instalace zdarma. Tel: 730 431 313.',
-    keywords: ['internet Karviná', 'PODA Karviná', 'optické připojení Karviná', 'rychlý internet Karviná', 'GPON Karviná'],
+    title: 'PODA Internet Karviná | Gigabit 1000 Mbps + TV Zdarma',
+    description: 'PODA internet Karviná - gigabitová optika 1000/1000 Mbps + TV zdarma. 95% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Karviná', 'PODA internet Karviná', 'internet Karviná', 'optické připojení Karviná', 'GPON Karviná'],
     canonical: 'https://www.popri.cz/internet-karvina'
   },
 
   '/internet-havirov': {
-    title: 'Internet Havířov | PODA GPON + TV Služby | Tel: 730 431 313',
-    description: 'PODA internet Havířov - moderní GPON síť s TV službami. Rychlost až 1 Gbit/s, spolehlivé připojení pro domácnosti i firmy. Šumbark, Město, Podlesí. Tel: 730 431 313.',
-    keywords: ['internet Havířov', 'PODA Havířov', 'optické připojení Havířov', 'GPON Havířov', 'rychlý internet Havířov'],
+    title: 'PODA Internet Havířov | Gigabit 1000 Mbps + TV Zdarma',
+    description: 'PODA internet Havířov - optické připojení 1000/1000 Mbps + TV zdarma. 96% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Havířov', 'PODA internet Havířov', 'internet Havířov', 'optické připojení Havířov', 'GPON Havířov'],
     canonical: 'https://www.popri.cz/internet-havirov'
   },
 
   '/internet-bohumin': {
-    title: 'Internet Bohumín | PODA Fiber Trojmezí | Tel: 730 431 313',
-    description: 'Internet PODA Bohumín - fiber optické připojení na trojmezí CZ/PL/SK. Rychlá instalace, nízké ceny, TV zdarma. Starý i Nový Bohumín. Bez závazků. Tel: 730 431 313.',
-    keywords: ['internet Bohumín', 'PODA Bohumín', 'optické připojení Bohumín', 'fiber internet Bohumín'],
+    title: 'PODA Internet Bohumín | Gigabit 1000 Mbps + TV Zdarma',
+    description: 'PODA internet Bohumín - optické připojení 1000/1000 Mbps + TV zdarma. 100% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Bohumín', 'PODA internet Bohumín', 'internet Bohumín', 'optické připojení Bohumín', 'GPON Bohumín'],
     canonical: 'https://www.popri.cz/internet-bohumin'
   },
 
   '/internet-poruba': {
-    title: 'Internet Poruba | PODA Gigabit Ostrava-Poruba | Tel: 730 431 313',
-    description: 'PODA internet Ostrava-Poruba. Nejhustší optická síť v regionu. Gigabitové rychlosti + IPTV. Studentské slevy pro VŠB. Rychlá profesionální instalace. Tel: 730 431 313.',
-    keywords: ['internet Poruba', 'PODA Poruba', 'Ostrava-Poruba internet', 'optické připojení Poruba', 'internet VŠB'],
+    title: 'PODA Internet Ostrava-Poruba | Gigabit + TV Zdarma',
+    description: 'PODA internet Ostrava-Poruba - optické připojení 1000/1000 Mbps + TV zdarma. 100% pokrytí Poruby I-VIII + VŠB. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Poruba', 'PODA internet Ostrava-Poruba', 'internet Poruba', 'optické připojení Poruba', 'internet VŠB'],
     canonical: 'https://www.popri.cz/internet-poruba' 
+  },
+
+  '/internet-frydek-mistek': {
+    title: 'PODA Internet Frýdek-Místek | Gigabit + TV Zdarma',
+    description: 'PODA internet Frýdek-Místek - optické připojení 1000/1000 Mbps + TV zdarma. Rozšiřujeme pokrytí. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Frýdek-Místek', 'PODA internet Frýdek-Místek', 'internet Frýdek-Místek', 'optické připojení Frýdek-Místek'],
+    canonical: 'https://www.popri.cz/internet-frydek-mistek'
+  },
+
+  '/internet-orlova': {
+    title: 'PODA Internet Orlová | Gigabit 1000 Mbps + TV Zdarma',
+    description: 'PODA internet Orlová - optické připojení 1000/1000 Mbps + TV zdarma. 90% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Orlová', 'PODA internet Orlová', 'internet Orlová', 'optické připojení Orlová'],
+    canonical: 'https://www.popri.cz/internet-orlova'
+  },
+
+  '/internet-brno': {
+    title: 'PODA Internet Brno | Gigabit 1000 Mbps + TV Zdarma',
+    description: 'PODA internet Brno - gigabitová optika 1000/1000 Mbps + TV zdarma. Rozšiřujeme pokrytí. Objednávka: 730 431 313 nebo www.popri.cz',
+    keywords: ['PODA Brno', 'PODA internet Brno', 'internet Brno', 'optické připojení Brno'],
+    canonical: 'https://www.popri.cz/internet-brno'
   },
 
   '/tarify': {

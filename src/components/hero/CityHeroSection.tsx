@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, ArrowRight, Mail } from 'lucide-react';
 import QuickContactModal from '../QuickContactModal';
-import defaultHeroImage from '@/assets/city-hero-family.jpg';
+import defaultHeroImage from '@/assets/city-hero-family-tv.webp';
 import { getPhoneProps } from '@/utils/phoneOptimization';
 import { sendContactFormEmail } from '@/utils/emailService';
 import { toast } from 'sonner';

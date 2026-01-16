@@ -91,10 +91,10 @@ export const cities: CityData[] = [
       { name: 'Vítkovice', residents: '8 000', coverage: '100%', note: 'Průmyslová zóna' }
     ],
     seo: {
-      title: 'Internet Ostrava 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Hledáte spolehlivý internet v Ostravě? Optické připojení 1000 Mbps + TV zdarma. 98% pokrytí města, férová cena. Zavolejte 730 431 313!',
+      title: 'PODA Internet Ostrava | Gigabit 1000 Mbps + TV Zdarma',
+      description: 'PODA internet Ostrava - gigabitové optické připojení 1000/1000 Mbps + TV zdarma. 98% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Ostrava', 'PODA Ostrava', 'optické připojení Ostrava',
+        'PODA Ostrava', 'PODA internet Ostrava', 'internet Ostrava', 'optické připojení Ostrava',
         'gigabitový internet Ostrava', 'rychlý internet Ostrava', 'GPON Ostrava'
       ]
     }
@@ -144,10 +144,10 @@ export const cities: CityData[] = [
       { name: 'Mizerov', residents: '5 000', coverage: '95%', note: 'Rezidenční část' }
     ],
     seo: {
-      title: 'Internet Karviná 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Stabilní gigabitový internet pro Karvinou. 1000 Mbps, TV zdarma, bez limitů. Žádné skryté poplatky. Zavolejte 730 431 313!',
+      title: 'PODA Internet Karviná | Gigabit 1000 Mbps + TV Zdarma',
+      description: 'PODA internet Karviná - gigabitová optika 1000/1000 Mbps + TV zdarma. 95% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Karviná', 'PODA Karviná', 'optické připojení Karviná',
+        'PODA Karviná', 'PODA internet Karviná', 'internet Karviná', 'optické připojení Karviná',
         'gigabitový internet Karviná', 'rychlý internet Karviná', 'GPON Karviná'
       ]
     }
@@ -197,10 +197,10 @@ export const cities: CityData[] = [
       { name: 'Bludovice', residents: '4 000', coverage: '95%', note: 'Vilová čtvrť' }
     ],
     seo: {
-      title: 'Internet Havířov 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Potřebujete rychlý internet v Havířově? 1000 Mbps optika + TV programy zdarma. Férová cena, rychlá instalace. Zavolejte 730 431 313!',
+      title: 'PODA Internet Havířov | Gigabit 1000 Mbps + TV Zdarma',
+      description: 'PODA internet Havířov - optické připojení 1000/1000 Mbps + TV zdarma. 96% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Havířov', 'PODA Havířov', 'optické připojení Havířov',
+        'PODA Havířov', 'PODA internet Havířov', 'internet Havířov', 'optické připojení Havířov',
         'gigabitový internet Havířov', 'rychlý internet Havířov', 'GPON Havířov'
       ]
     }
@@ -248,10 +248,10 @@ export const cities: CityData[] = [
       { name: 'Skřečoň', residents: '3 000', coverage: '100%', note: 'Přírodní lokalita u řeky' }
     ],
     seo: {
-      title: 'Internet Bohumín 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Gigabitový internet pro Bohumín. 100% pokrytí, optika 1000 Mbps + TV zdarma. Bez závazků. Objednejte ještě dnes - 730 431 313!',
+      title: 'PODA Internet Bohumín | Gigabit 1000 Mbps + TV Zdarma',
+      description: 'PODA internet Bohumín - optické připojení 1000/1000 Mbps + TV zdarma. 100% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Bohumín', 'PODA Bohumín', 'optické připojení Bohumín',
+        'PODA Bohumín', 'PODA internet Bohumín', 'internet Bohumín', 'optické připojení Bohumín',
         'gigabitový internet Bohumín', 'rychlý internet Bohumín', 'GPON Bohumín'
       ]
     }
@@ -301,10 +301,10 @@ export const cities: CityData[] = [
       { name: 'Lískovec', residents: '2 000', coverage: '80%', note: 'Vilová zástavba' }
     ],
     seo: {
-      title: 'Internet Frýdek-Místek 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Optický internet pro Frýdek-Místek. 1000 Mbps, TV zdarma, rozšiřujeme pokrytí. Férová cena. Zavolejte 730 431 313!',
+      title: 'PODA Internet Frýdek-Místek | Gigabit + TV Zdarma',
+      description: 'PODA internet Frýdek-Místek - optické připojení 1000/1000 Mbps + TV zdarma. Rozšiřujeme pokrytí. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Frýdek-Místek', 'PODA Frýdek-Místek', 'optické připojení Frýdek-Místek',
+        'PODA Frýdek-Místek', 'PODA internet Frýdek-Místek', 'internet Frýdek-Místek', 'optické připojení Frýdek-Místek',
         'gigabitový internet Frýdek-Místek', 'rychlý internet Frýdek-Místek'
       ]
     }
@@ -353,10 +353,10 @@ export const cities: CityData[] = [
       { name: 'Lazy', residents: '2 000', coverage: '80%', note: 'Okrajová oblast' }
     ],
     seo: {
-      title: 'Internet Orlová 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Rychlý a stabilní internet pro Orlovou. 1000 Mbps, TV zdarma, férová cena. Žádné limity. Zavolejte 730 431 313!',
+      title: 'PODA Internet Orlová | Gigabit 1000 Mbps + TV Zdarma',
+      description: 'PODA internet Orlová - optické připojení 1000/1000 Mbps + TV zdarma. 90% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Orlová', 'PODA Orlová', 'optické připojení Orlová',
+        'PODA Orlová', 'PODA internet Orlová', 'internet Orlová', 'optické připojení Orlová',
         'gigabitový internet Orlová', 'rychlý internet Orlová'
       ]
     }
@@ -407,11 +407,11 @@ export const cities: CityData[] = [
       { name: 'Studentské koleje', residents: '10 000', coverage: '100%', note: 'VŠB-TU Ostrava' }
     ],
     seo: {
-      title: 'Internet Poruba 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Rychlý internet v Porubě? Optické připojení 1000 Mbps + TV zdarma. 100% pokrytí městského obvodu. Instalace zdarma. Volejte 730 431 313!',
+      title: 'PODA Internet Ostrava-Poruba | Gigabit + TV Zdarma',
+      description: 'PODA internet Ostrava-Poruba - optické připojení 1000/1000 Mbps + TV zdarma. 100% pokrytí Poruby I-VIII + VŠB. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Poruba', 'PODA Poruba', 'optické připojení Poruba',
-        'internet Ostrava-Poruba', 'rychlý internet Poruba', 'GPON Poruba'
+        'PODA Poruba', 'PODA internet Ostrava-Poruba', 'internet Poruba', 'optické připojení Poruba',
+        'internet Ostrava-Poruba', 'rychlý internet Poruba', 'GPON Poruba', 'internet VŠB'
       ]
     }
   },
@@ -462,10 +462,10 @@ export const cities: CityData[] = [
       { name: 'Bystrc', residents: '25 000', coverage: '50%', note: 'Moderní zástavba' }
     ],
     seo: {
-      title: 'Internet Brno 1000 Mbps | Optické Připojení + TV Zdarma',
-      description: 'Hledáte rychlý internet v Brně? Gigabitová optika 1000 Mbps + TV zdarma. Rozšiřujeme pokrytí. Zavolejte 730 431 313!',
+      title: 'PODA Internet Brno | Gigabit 1000 Mbps + TV Zdarma',
+      description: 'PODA internet Brno - gigabitová optika 1000/1000 Mbps + TV zdarma. Rozšiřujeme pokrytí. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
-        'internet Brno', 'PODA Brno', 'optické připojení Brno',
+        'PODA Brno', 'PODA internet Brno', 'internet Brno', 'optické připojení Brno',
         'gigabitový internet Brno', 'rychlý internet Brno'
       ]
     }

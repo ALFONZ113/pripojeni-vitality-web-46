@@ -55,7 +55,7 @@ export const cities: CityData[] = [
     coordinates: { lat: 49.8175, lng: 18.2624 },
     priceRange: '250-520 CZK',
     highlight: 'Regionální centrum s plným pokrytím',
-    heroImage: '/src/assets/ostrava-vitkovice.jpg',
+    heroImage: '/src/assets/city-hero-family-tv.webp',
     stats: [
       { value: '285k+', label: 'obyvatel' },
       { value: '98%', label: 'pokrytí' },
@@ -372,7 +372,7 @@ export const cities: CityData[] = [
     coordinates: { lat: 49.8276, lng: 18.1689 },
     priceRange: '250-520 CZK',
     highlight: 'Největší městský obvod Ostravy',
-    heroImage: '/src/assets/poruba-hero.jpg',
+    heroImage: '/src/assets/city-hero-family-tv.webp',
     stats: [
       { value: '65k+', label: 'obyvatel' },
       { value: '100%', label: 'pokrytí' },

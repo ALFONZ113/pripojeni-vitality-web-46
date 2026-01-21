@@ -21,7 +21,13 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Input validation schema
 const FormDataSchema = z.object({
   name: z.string().trim().min(1, "Jméno je povinné").max(100, "Jméno je příliš dlouhé"),
-  email: z.string().trim().email("Neplatný email").max(255, "Email je příliš dlouhý"),
+  email: z.preprocess(
+    (val) => (val === "" || val === null || val === undefined ? "" : val),
+    z.string().trim().max(255, "Email je příliš dlouhý").refine(
+      (val) => val === "" || z.string().email().safeParse(val).success,
+      { message: "Neplatný email" }
+    )
+  ),
   phone: z.string().trim().min(9, "Telefon musí mít alespoň 9 znaků").max(20, "Telefon je příliš dlouhý"),
   address: z.string().trim().max(200, "Adresa je příliš dlouhá").optional().nullable(),
   city: z.string().trim().max(100, "Město je příliš dlouhé").optional().nullable(),

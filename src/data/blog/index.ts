@@ -20,10 +20,12 @@ import { internetVyberChybyPost } from './internet-vyber-chyby';
 import { wifiSignalZlepseniePost } from './wifi-signal-zlepsenie';
 import { homeOffice2025Post } from './home-office-2025';
 import { podaInternet2026Post } from './poda-internet-2026';
+import { mytyOptickyInternetPost } from './myty-opticky-internet';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  podaInternet2026Post, // Najnovší článok - PODA internet 2026
+  mytyOptickyInternetPost, // Nejnovší článok - Mýty o optickém internetu
+  podaInternet2026Post,
   homeOffice2025Post,
   wifiSignalZlepseniePost, // Ako zlepšiť WiFi signál
   internetVyberChybyPost, // Ako si vybrať internet do bytu
@@ -65,5 +67,6 @@ export * from './internet-vyber-chyby';
 export * from './wifi-signal-zlepsenie';
 export * from './home-office-2025';
 export * from './poda-internet-2026';
+export * from './myty-opticky-internet';
 
 // Note: WiFi blog slug changed to Czech: jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025

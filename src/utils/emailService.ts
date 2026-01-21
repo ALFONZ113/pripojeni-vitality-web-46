@@ -33,20 +33,22 @@ export const sendContactFormEmail = async (formData: EmailFormData): Promise<boo
       throw new Error(`Failed to send admin email: ${adminError.message}`);
     }
     
-    // Send customer email using Supabase client
-    const { error: customerError } = await supabase.functions.invoke('send-email', {
-      body: {
-        to: formData.email,
-        subject: "Děkujeme za váš zájem o PODA služby - Popri.cz",
-        formData: formData,
-        emailType: "customer"
+    // Send customer email only if email is provided
+    if (formData.email && formData.email.trim() !== "") {
+      const { error: customerError } = await supabase.functions.invoke('send-email', {
+        body: {
+          to: formData.email,
+          subject: "Děkujeme za váš zájem o PODA služby - Popri.cz",
+          formData: formData,
+          emailType: "customer"
+        }
+      });
+      
+      if (customerError) {
+        console.error("Customer email API error:", customerError);
+        // Don't throw error for customer email, admin email is more important
+        console.warn("Customer email failed but continuing...");
       }
-    });
-    
-    if (customerError) {
-      console.error("Customer email API error:", customerError);
-      // Don't throw error for customer email, admin email is more important
-      console.warn("Customer email failed but continuing...");
     }
     
     toast.success('Formulář odeslán', {

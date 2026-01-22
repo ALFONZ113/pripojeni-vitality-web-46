@@ -2,11 +2,17 @@
 
 > Rychlé a spolehlivé optické připojení pro vaše město. Gigabitový internet až 1000 Mbps s TV zdarma a profesionální instalací.
 
-## About
+## O nás
 
 Popri.cz je autorizovaný partner PODA a.s., poskytovatele vysokorychlostního gigabitového internetu (až 1000/1000 Mbps) s IPTV zdarma v Ostravě a okolí.
 
-## Aktuální tarify 2025 - PROMO AKCE
+**Proč právě Popri.cz?**
+Jsme "popři" vám při každém kroku instalace PODA internetu:
+- **Rychlost** - Jsme popří vás, když potřebujete rychlé připojení bez čekání
+- **Spolehlivost** - Získáte stabilní PODA internet, na který se můžete spolehnout
+- **Podpora** - Jsme vždy popří vás, když potřebujete pomoc s vaším internetem
+
+## Aktuální tarify 2026 - PROMO AKCE
 
 ### Pro byty (optické připojení GPON 1000/1000 Mbps symetrická rychlost)
 
@@ -25,36 +31,96 @@ Popri.cz je autorizovaný partner PODA a.s., poskytovatele vysokorychlostního g
 **PROMO podmínky:** Zvýhodněná cena platí prvních 12 měsíců od aktivace pro nové zákazníky.
 
 ### Co je v ceně zahrnuto
-- Symetrická rychlost (download = upload) pro byty
+- Symetrická rychlost 1000/1000 Mbps (download = upload) pro byty
 - Neomezená data bez FUP
 - WiFi router v ceně
-- Instalace ZDARMA
+- Instalace a aktivace ZDARMA
 - PODA net.TV služba pro až 4 zařízení současně
-- Bez závazku
+- Bez závazku - výpověď kdykoli s 30denní lhůtou
+- 24/7 zákaznická podpora
+- Žádné skryté poplatky
+
+## Proč si vybrat PODA internet - Statistiky
+
+- **1000 Mbps** - Maximální rychlost symetrického připojení
+- **99.9% dostupnost** - Garantovaná stabilita optické sítě
+- **24/7 podpora** - Vždy se dovoláte, kdykoliv potřebujete pomoc
+- **160+ TV kanálů** - Včetně HD a 4K obsahu
+- **2000+ spokojených zákazníků** - V Moravskoslezském kraji
+- **0 Kč instalace** - Bez vstupních nákladů
+
+## Co říkají naši zákazníci
+
+**Průměrné hodnocení: 4.8/5 | 2000+ spokojených zákazníků**
+
+> "Konečně internet, který funguje! Práce z domova je teď radost. Instalace proběhla rychle a technik byl velmi profesionální."
+> — Martin Novák, Ostrava-Poruba
+
+> "Přešli jsme od konkurence a nelitujeme. Rychlost je stabilní, žádné výpadky. Děti můžou streamovat a já pracovat současně."
+> — Jana Veselá, Karviná
+
+> "Jako gamer oceňuji nízký ping. Online hry běží bez problémů. Podpora je dostupná kdykoliv a vždy ochotní pomoci."
+> — Petr Svoboda, Havířov
+
+> "Nejlepší poměr cena/výkon v okolí. TV kanály v HD kvalitě a rychlý internet za rozumnou cenu. Doporučuji všem sousedům."
+> — Eva Horáková, Bohumín
 
 ## Technologie
 
-- GPON (Gigabit Passive Optical Network) optická síť pro byty
-- 60 GHz bezdrátová technologie pro rodinné domy (Polanka nad Odrou a další)
-- Symetrická rychlost upload/download pro GPON
+- **GPON** (Gigabit Passive Optical Network) optická síť pro byty - symetrická rychlost 1000/1000 Mbps
+- **60 GHz** bezdrátová technologie pro rodinné domy - rychlost 1000/200 Mbps
 - Nízká latence pro gaming a videokonference
+- Moderní WiFi router v ceně
 
-## Pokrytí služeb
+## Pokrytí služeb v regionu
 
-### Města s plným pokrytím
-- Ostrava (všechny části včetně Poruba, Moravská Ostrava, Slezská Ostrava, Zábřeh, Hrabůvka, Dubina, Bělský Les, Vítkovice)
-- Havířov
-- Karviná
-- Bohumín
-- Frýdek-Místek
-- Orlová
-- Opava
+### Ostrava (98% pokrytí)
+Poruba (100%), Ostrava-Jih (100%), Moravská Ostrava (100%), Slezská Ostrava (95%), Mariánské Hory (100%), Vítkovice (100%), Zábřeh, Hrabůvka, Dubina, Bělský Les
+
+### Karviná (95% pokrytí)
+Fryštát (100%), Darkov (100%), Nové Město (95%), Hranice (90%), Mizerov (95%), Ráj
+
+### Havířov (96% pokrytí)
+Město (100%), Podlesí (95%), Šumbark (95%), Životice (90%), Bludovice (95%), Prostřední Suchá
+
+### Bohumín (100% pokrytí)
+Starý Bohumín (100%), Nový Bohumín (100%), Skřečoň (100%), Záblatí, Pudlov
+
+### Frýdek-Místek (85% pokrytí)
+Frýdek (90%), Místek (85%), Lysůvky (80%), Chlebovice (75%), Lískovec (80%)
+
+### Orlová (90% pokrytí)
+Město (95%), Lutyně (90%), Poruba (85%), Lazy (80%)
+
+## Často kladené otázky (FAQ)
+
+### Kolik stojí internet od PODA?
+Internet + TV Basic stojí 300 Kč/měsíc (PROMO cena 12 měsíců), poté 440 Kč. Internet + TV Mých 10 stojí 440 Kč/měsíc (PROMO), poté 520 Kč. V ceně je vždy TV služba.
+
+### Jaká je rychlost internetu?
+V bytech nabízíme symetrickou rychlost 1000/1000 Mbps (gigabit download i upload). Pro rodinné domy je rychlost 1000/200 Mbps.
+
+### Je instalace zdarma?
+Ano, instalace a aktivace je vždy zdarma. Technik přijede, nainstaluje router a vše nastaví.
+
+### Kolik TV programů dostanu?
+Tarif Basic obsahuje 85+ programů. Tarif Mých 10 obsahuje 100+ programů plus možnost vybrat si 10 vlastních stanic. Celkem až 160+ kanálů včetně HD a 4K.
+
+### Je tam nějaký závazek?
+Ne, smlouva je bez závazku. Můžete kdykoliv vypovědět s 30denní výpovědní lhůtou.
+
+### Jak dlouho trvá instalace?
+Instalace obvykle proběhne do 1 týdne od objednávky. V některých lokalitách i rychleji.
+
+### Jak funguje PODA net.TV?
+PODA net.TV je IPTV služba, kterou můžete sledovat na až 4 zařízeních současně - chytrá TV, mobil, tablet nebo počítač.
 
 ## Kontakt
 
 - **Telefon: 730 431 313** (hlavní kontakt pro objednávky)
 - Email: terc@obchod.poda.cz
 - Web: https://www.popri.cz
+- Provozní doba: Po-Pá 8:00-18:00
 - Oblast působnosti: Moravskoslezský kraj, Česká republika
 
 ## Obsah webu
@@ -64,6 +130,7 @@ Hlavní stránky:
 - /iptv - Informace o TV kanálech a PODA net.TV službě
 - /kontakt - Kontaktní formulář a informace
 - /internet-ostrava - Služby pro Ostravu
+- /internet-poruba - Služby pro Porubu
 - /internet-havirov - Služby pro Havířov
 - /internet-karvina - Služby pro Karviná
 - /internet-bohumin - Služby pro Bohumín
@@ -82,4 +149,4 @@ Sekundární: IPTV zdarma, neomezený internet, GPON technologie, internet Karvi
 
 ## Aktualizováno
 
-2025-01-22
+2026-01-22

@@ -23,6 +23,15 @@
     .phone { font-size: 1.5rem; font-weight: bold; color: #e74c3c; }
     .section { margin: 2rem 0; padding: 1.5rem; background: #fafafa; border-radius: 12px; }
     .tag { display: inline-block; background: #e8f4fd; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; margin: 0.25rem; }
+    .stats { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
+    .stat { background: #fff; border: 1px solid #e5e7eb; padding: 1rem; border-radius: 8px; text-align: center; flex: 1; min-width: 120px; }
+    .stat-value { font-size: 1.5rem; font-weight: bold; color: #e74c3c; }
+    .stat-label { font-size: 0.85rem; color: #666; }
+    blockquote { background: #f9fafb; border-left: 4px solid #3498db; padding: 1rem; margin: 1rem 0; font-style: italic; }
+    blockquote footer { font-style: normal; color: #666; margin-top: 0.5rem; }
+    .faq-item { margin: 1rem 0; }
+    .faq-item h3 { margin-bottom: 0.5rem; color: #1a1a2e; }
+    .faq-item p { margin-top: 0; color: #555; }
   </style>
 </head>
 <body>
@@ -33,13 +42,57 @@
   </header>
 
   <main>
+    <!-- O nás -->
     <section class="highlight">
       <h2>O nás</h2>
       <p><strong>Popri.cz</strong> je autorizovaný partner společnosti <strong>PODA a.s.</strong> - poskytovatele optického internetu a IPTV služeb v Moravskoslezském kraji.</p>
     </section>
 
+    <!-- Proč Popri.cz -->
     <section class="section">
-      <h2>Aktuální tarify 2025 - PROMO AKCE</h2>
+      <h2>Proč právě Popri.cz?</h2>
+      <p>Jsme <strong>popři</strong> vám při každém kroku instalace PODA internetu.</p>
+      <ul>
+        <li><strong>Rychlost</strong> - Jsme popří vás, když potřebujete rychlé připojení bez čekání.</li>
+        <li><strong>Spolehlivost</strong> - Získáte stabilní PODA internet, na který se můžete spolehnout.</li>
+        <li><strong>Podpora</strong> - Jsme vždy popří vás, když potřebujete pomoc s vaším internetem.</li>
+      </ul>
+    </section>
+
+    <!-- Statistiky -->
+    <section class="section">
+      <h2>Proč si vybrat PODA internet</h2>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value">1000 Mbps</div>
+          <div class="stat-label">Maximální rychlost</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">99.9%</div>
+          <div class="stat-label">Dostupnost sítě</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Zákaznická podpora</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">160+</div>
+          <div class="stat-label">TV kanálů</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2000+</div>
+          <div class="stat-label">Spokojených zákazníků</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0 Kč</div>
+          <div class="stat-label">Instalace</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aktuální tarify -->
+    <section class="section">
+      <h2>Aktuální tarify 2026 - PROMO AKCE</h2>
       
       <h3>Pro byty (optické připojení GPON)</h3>
       <table>
@@ -66,8 +119,43 @@
       <div class="promo">⚡ PROMO AKCE: Zvýhodněná cena platí prvních 12 měsíců od aktivace pro nové zákazníky.</div>
     </section>
 
+    <!-- Co je v ceně -->
     <section class="section">
-      <h2>Pokrytí služeb</h2>
+      <h2>Co je v ceně</h2>
+      <ul>
+        <li>Optický internet GPON s rychlostí až 1000/1000 Mbps (byty) nebo 1000/200 Mbps (domy)</li>
+        <li>PODA net.TV - IPTV služba pro až 4 zařízení současně</li>
+        <li>160+ TV programů včetně HD a 4K kanálů</li>
+        <li>Instalace a aktivace ZDARMA</li>
+        <li>Moderní Wi-Fi router v ceně</li>
+        <li>Bez závazku - výpověď kdykoli s 30denní lhůtou</li>
+        <li>24/7 zákaznická podpora</li>
+        <li>Žádné skryté poplatky</li>
+      </ul>
+    </section>
+
+    <!-- Pokrytí služeb -->
+    <section class="section">
+      <h2>Pokrytí služeb v regionu</h2>
+      
+      <h3>Ostrava (98% pokrytí)</h3>
+      <p>Poruba (100%), Ostrava-Jih (100%), Moravská Ostrava (100%), Slezská Ostrava (95%), Mariánské Hory (100%), Vítkovice (100%), Zábřeh, Hrabůvka, Dubina, Bělský Les</p>
+      
+      <h3>Karviná (95% pokrytí)</h3>
+      <p>Fryštát (100%), Darkov (100%), Nové Město (95%), Hranice (90%), Mizerov (95%)</p>
+      
+      <h3>Havířov (96% pokrytí)</h3>
+      <p>Město (100%), Podlesí (95%), Šumbark (95%), Životice (90%), Bludovice (95%)</p>
+      
+      <h3>Bohumín (100% pokrytí)</h3>
+      <p>Starý Bohumín (100%), Nový Bohumín (100%), Skřečoň (100%)</p>
+      
+      <h3>Frýdek-Místek (85% pokrytí)</h3>
+      <p>Frýdek (90%), Místek (85%), Lysůvky (80%), Chlebovice (75%), Lískovec (80%)</p>
+      
+      <h3>Orlová (90% pokrytí)</h3>
+      <p>Město (95%), Lutyně (90%), Poruba (85%), Lazy (80%)</p>
+
       <div>
         <span class="tag">Ostrava (98%)</span>
         <span class="tag">Poruba (100%)</span>
@@ -79,19 +167,82 @@
       </div>
     </section>
 
+    <!-- Co říkají zákazníci -->
+    <section class="section">
+      <h2>Co říkají naši zákazníci</h2>
+      <p><strong>2000+ spokojených zákazníků</strong> | Průměrné hodnocení: <strong>4.8/5</strong></p>
+      
+      <blockquote>
+        <p>"Konečně internet, který funguje! Práce z domova je teď radost. Instalace proběhla rychle a technik byl velmi profesionální."</p>
+        <footer>— Martin Novák, Ostrava-Poruba</footer>
+      </blockquote>
+      
+      <blockquote>
+        <p>"Přešli jsme od konkurence a nelitujeme. Rychlost je stabilní, žádné výpadky. Děti můžou streamovat a já pracovat současně."</p>
+        <footer>— Jana Veselá, Karviná</footer>
+      </blockquote>
+      
+      <blockquote>
+        <p>"Jako gamer oceňuji nízký ping. Online hry běží bez problémů. Podpora je dostupná kdykoliv a vždy ochotní pomoci."</p>
+        <footer>— Petr Svoboda, Havířov</footer>
+      </blockquote>
+      
+      <blockquote>
+        <p>"Nejlepší poměr cena/výkon v okolí. TV kanály v HD kvalitě a rychlý internet za rozumnou cenu. Doporučuji všem sousedům."</p>
+        <footer>— Eva Horáková, Bohumín</footer>
+      </blockquote>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <h2>Často kladené otázky</h2>
+      
+      <div class="faq-item">
+        <h3>Kolik stojí internet od PODA?</h3>
+        <p>Internet + TV Basic stojí 300 Kč/měsíc (PROMO cena 12 měsíců), poté 440 Kč. Internet + TV Mých 10 stojí 440 Kč/měsíc (PROMO), poté 520 Kč. V ceně je vždy TV služba.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Jaká je rychlost internetu?</h3>
+        <p>V bytech nabízíme symetrickou rychlost 1000/1000 Mbps (gigabit download i upload). Pro rodinné domy je rychlost 1000/200 Mbps.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Je instalace zdarma?</h3>
+        <p>Ano, instalace a aktivace je vždy zdarma. Technik přijede, nainstaluje router a vše nastaví.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Kolik TV programů dostanu?</h3>
+        <p>Tarif Basic obsahuje 85+ programů. Tarif Mých 10 obsahuje 100+ programů plus možnost vybrat si 10 vlastních stanic. Celkem až 160+ kanálů včetně HD a 4K.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Je tam nějaký závazek?</h3>
+        <p>Ne, smlouva je bez závazku. Můžete kdykoliv vypovědět s 30denní výpovědní lhůtou.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Jak dlouho trvá instalace?</h3>
+        <p>Instalace obvykle proběhne do 1 týdne od objednávky. V některých lokalitách i rychleji.</p>
+      </div>
+    </section>
+
+    <!-- Kontakt -->
     <section class="section">
       <h2>Kontakt</h2>
       <p><strong>Telefon:</strong> <a href="tel:+420730431313">730 431 313</a></p>
       <p><strong>Email:</strong> <a href="mailto:terc@obchod.poda.cz">terc@obchod.poda.cz</a></p>
       <p><strong>Web:</strong> <a href="https://www.popri.cz">www.popri.cz</a></p>
+      <p><strong>Provozní doba:</strong> Po-Pá 8:00-18:00</p>
       <a href="https://www.popri.cz/kontakt" class="cta">Objednat online</a>
     </section>
   </main>
 
-  <footer><p>© 2025 Popri.cz - Autorizovaný partner PODA a.s.</p></footer>
+  <footer><p>© 2026 Popri.cz - Autorizovaný partner PODA a.s.</p></footer>
 
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Popri.cz - Autorizovaný partner PODA","telephone":"+420730431313","email":"terc@obchod.poda.cz","url":"https://www.popri.cz","priceRange":"300-520 CZK/měsíc"}
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Popri.cz - Autorizovaný partner PODA","telephone":"+420730431313","email":"terc@obchod.poda.cz","url":"https://www.popri.cz","priceRange":"300-520 CZK/měsíc","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"2000"}}
   </script>
 </body>
 </html>

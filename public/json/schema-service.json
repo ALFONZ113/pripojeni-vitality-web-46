@@ -32,7 +32,7 @@
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "PODA Internet Tarify 2025",
+    "name": "PODA Internet Tarify 2026",
     "itemListElement": [
       {
         "@type": "Offer",
@@ -40,7 +40,7 @@
         "description": "Gigabitový internet 1000/1000 Mbps s 85+ TV programy zdarma",
         "price": "300",
         "priceCurrency": "CZK",
-        "priceValidUntil": "2025-12-31",
+        "priceValidUntil": "2026-12-31",
         "availability": "https://schema.org/InStock",
         "priceSpecification": {
           "@type": "UnitPriceSpecification",
@@ -56,7 +56,7 @@
         "description": "Gigabitový internet 1000/1000 Mbps se 100+ TV programy a výběrem 10 vlastních stanic",
         "price": "440",
         "priceCurrency": "CZK",
-        "priceValidUntil": "2025-12-31",
+        "priceValidUntil": "2026-12-31",
         "availability": "https://schema.org/InStock",
         "priceSpecification": {
           "@type": "UnitPriceSpecification",

@@ -117,10 +117,10 @@ const AI_PAGES = {
     `
   },
   '/tarify': {
-    title: `Ceník PODA Internet + TV 2025 | Tarify od 300 Kč | Popri.cz`,
-    description: `Aktuální ceník PODA internet a TV 2025. Internet + TV Basic od 300 Kč, Internet + TV Mých 10 od 440 Kč. PROMO ceny pro nové zákazníky. Volejte ${CONTACT.phone}.`,
+    title: `Ceník PODA Internet + TV 2026 | Tarify od 300 Kč | Popri.cz`,
+    description: `Aktuální ceník PODA internet a TV 2026. Internet + TV Basic od 300 Kč, Internet + TV Mých 10 od 440 Kč. PROMO ceny pro nové zákazníky. Volejte ${CONTACT.phone}.`,
     content: `
-      <h1>Ceník PODA Internet + TV 2025</h1>
+      <h1>Ceník PODA Internet + TV 2026</h1>
       
       ${generateTariffTable('gpon')}
       ${generateTariffTable('60ghz')}
@@ -345,7 +345,7 @@ TOP_BLOG_ARTICLES.forEach(article => {
       <h1>${article.title}</h1>
       <p>${article.description}</p>
       
-      <h2>Aktuální tarify PODA 2025</h2>
+      <h2>Aktuální tarify PODA 2026</h2>
       ${generateTariffTable('gpon')}
       
       <p><strong>PROMO podmínky:</strong> Zvýhodněná cena platí prvních 12 měsíců od aktivace pro nové zákazníky.</p>
@@ -396,7 +396,7 @@ function generateAIStaticHTML(pagePath, data) {
   </main>
   
   <footer>
-    <p>© 2025 Popri.cz - Autorizovaný partner PODA a.s.</p>
+    <p>© 2026 Popri.cz - Autorizovaný partner PODA a.s.</p>
     <p>Kontakt: ${CONTACT.phone} | ${CONTACT.email}</p>
   </footer>
   

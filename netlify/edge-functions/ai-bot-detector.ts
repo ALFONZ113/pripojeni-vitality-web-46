@@ -12,7 +12,9 @@ const AI_BOT_PATTERNS = [
   'Bard-Bot',
   'SearchGPT',
   'Grok-Bot',
-  'You.com-Bot'
+  'You.com-Bot',
+  'Google-NotebookLM',
+  'NotebookLMBot'
 ];
 
 // Pages to serve AI-optimized versions for (Czech language)

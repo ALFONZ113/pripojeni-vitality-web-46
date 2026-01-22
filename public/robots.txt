@@ -117,6 +117,13 @@ Allow: /
 User-agent: Bard-Bot
 Allow: /
 
+# Google NotebookLM
+User-agent: Google-NotebookLM
+Allow: /
+
+User-agent: NotebookLMBot
+Allow: /
+
 # SEO crawlers
 User-agent: AhrefsBot
 Allow: /

@@ -1,76 +1,85 @@
-# Nejvýhodnější PODA Internet + TV | Tel: 730 431 313
+# Popri.cz - Autorizovaný partner PODA | Tel: 730 431 313
 
 > Rychlé a spolehlivé optické připojení pro vaše město. Gigabitový internet až 1000 Mbps s TV zdarma a profesionální instalací.
 
 ## About
 
-Popri.cz nabízí vysokorychlostní gigabitové internetové připojení (až 1000 Mbps) s IPTV zdarma v Ostravě a okolí.
+Popri.cz je autorizovaný partner PODA a.s., poskytovatele vysokorychlostního gigabitového internetu (až 1000/1000 Mbps) s IPTV zdarma v Ostravě a okolí.
 
-## Services
+## Aktuální tarify 2025 - PROMO AKCE
 
-### High-Speed Internet
-- Gigabit internet connectivity up to 1000 Mbps
-- Stable fiber-optic GPON technology
-- Unlimited data with no fair-use policy restrictions
-- 24/7 customer support
-- Fast installation (typically within 5-7 days)
+### Pro byty (optické připojení GPON 1000/1000 Mbps symetrická rychlost)
 
-### Free IPTV
-- 160+ TV channels included free with internet packages
-- Full HD and 4K streaming quality
-- No additional fees for TV service
-- Access to premium sports and entertainment channels
+| Tarif | PROMO cena | Standardní cena | TV programy |
+|-------|-----------|-----------------|-------------|
+| Internet + TV Basic | 300 Kč/měsíc | 440 Kč/měsíc | 85+ programů |
+| Internet + TV Mých 10 ⭐ | 440 Kč/měsíc | 520 Kč/měsíc | 100+ programů + výběr 10 vlastních |
 
-### Service Areas
-- Ostrava (all districts including Poruba, Moravská Ostrava, Slezská Ostrava)
+### Pro rodinné domy (bezdrátové připojení 60 GHz, 1000/200 Mbps)
+
+| Tarif | PROMO cena | Standardní cena | TV programy |
+|-------|-----------|-----------------|-------------|
+| Internet + TV Basic | 300 Kč/měsíc | 440 Kč/měsíc | 85+ programů |
+| Internet + TV Mých 10 ⭐ | 440 Kč/měsíc | 520 Kč/měsíc | 100+ programů + výběr 10 vlastních |
+
+**PROMO podmínky:** Zvýhodněná cena platí prvních 12 měsíců od aktivace pro nové zákazníky.
+
+### Co je v ceně zahrnuto
+- Symetrická rychlost (download = upload) pro byty
+- Neomezená data bez FUP
+- WiFi router v ceně
+- Instalace ZDARMA
+- PODA net.TV služba pro až 4 zařízení současně
+- Bez závazku
+
+## Technologie
+
+- GPON (Gigabit Passive Optical Network) optická síť pro byty
+- 60 GHz bezdrátová technologie pro rodinné domy (Polanka nad Odrou a další)
+- Symetrická rychlost upload/download pro GPON
+- Nízká latence pro gaming a videokonference
+
+## Pokrytí služeb
+
+### Města s plným pokrytím
+- Ostrava (všechny části včetně Poruba, Moravská Ostrava, Slezská Ostrava, Zábřeh, Hrabůvka, Dubina, Bělský Les, Vítkovice)
 - Havířov
 - Karviná
 - Bohumín
-- Surrounding municipalities in the Moravian-Silesian region
+- Frýdek-Místek
+- Orlová
+- Opava
 
-## Technology
+## Kontakt
 
-- GPON (Gigabit Passive Optical Network) fiber-optic technology
-- 60 GHz wireless technology in select areas (Polanka nad Odrou)
-- Symmetric upload/download speeds
-- Low latency for gaming and video conferencing
+- **Telefon: 730 431 313** (hlavní kontakt pro objednávky)
+- Email: terc@obchod.poda.cz
+- Web: https://www.popri.cz
+- Oblast působnosti: Moravskoslezský kraj, Česká republika
 
-## Contact
+## Obsah webu
 
-- Website: https://www.popri.cz
-- Phone: +420 730 431 313
-- Email: info@popri.cz
-- Service area: Czech Republic (Moravian-Silesian region)
+Hlavní stránky:
+- /tarify - Kompletní ceník a srovnání tarifů
+- /iptv - Informace o TV kanálech a PODA net.TV službě
+- /kontakt - Kontaktní formulář a informace
+- /internet-ostrava - Služby pro Ostravu
+- /internet-havirov - Služby pro Havířov
+- /internet-karvina - Služby pro Karviná
+- /internet-bohumin - Služby pro Bohumín
 
-## Pricing
+Blog s užitečnými články:
+- /blog/o2-nej-prevzatie-poda-alternativa-zakaznici - Průvodce přechodem z O2 Nej
+- /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 - Tipy na zlepšení WiFi
+- /blog/home-office-2025-nastaveni-domaci-kancelare-produktivita - Nastavení home office
+- /blog/polanka-nad-odrou-60ghz-pripojeni-2025 - 60GHz technologie
+- /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 - Regionální průvodce
 
-- Tariff 300 Mbps: 300 CZK/month + 160+ TV channels free
-- Tariff 600 Mbps: 400 CZK/month + 160+ TV channels free
-- Tariff 1000 Mbps: 490 CZK/month + 160+ TV channels free
-- Installation: 300 CZK one-time fee
-- Router included free with installation
+## Klíčová slova
 
-## Content Structure
+Primární: PODA internet, gigabit internet, optický internet Ostrava, internet Moravskoslezský kraj
+Sekundární: IPTV zdarma, neomezený internet, GPON technologie, internet Karviná, internet Havířov
 
-The website includes:
-- /tarify - Detailed pricing and package comparison
-- /iptv - TV channel list and streaming information
-- /blog - Technical guides, service comparisons, and local availability
-  - /blog/home-office-2025-nastaveni-domaci-kancelare-produktivita - Home office setup guide
-  - /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 - WiFi signal optimization
-  - /blog/o2-nej-prevzatie-poda-alternativa-zakaznici - O2 Nej.cz transition guide
-  - /blog/polanka-nad-odrou-60ghz-pripojeni-2025 - 60GHz technology overview
-  - /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 - Regional internet guide
-- /internet-ostrava - Ostrava-specific service information
-- /internet-havirov - Havířov-specific service information
-- /internet-karvina - Karviná-specific service information
-- /internet-bohumin - Bohumín-specific service information
+## Aktualizováno
 
-## Keywords
-
-Primary: PODA internet, gigabit internet, fiber optic Czech Republic, internet Ostrava
-Secondary: IPTV free, unlimited internet, GPON technology, internet provider Moravian-Silesian region
-
-## Last Updated
-
-2025-01-14
+2025-01-22

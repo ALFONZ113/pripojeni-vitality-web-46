@@ -2,10 +2,12 @@
  * Generate AI-optimized static HTML pages
  * These pages are served to AI bots for better content understanding
  * 
- * SPRÁVNE ÚDAJE (aktualizované):
+ * SPRÁVNE ÚDAJE (synchronizované s webem):
  * - Telefón: 730 431 313
- * - Ceny: PODA 100 = 300 Kč, PODA 300 = 440 Kč, PODA 500 = 490 Kč, PODA 1000 = 520 Kč
- * - TV kanály: 85+ (Basic), 95+ (celkovo)
+ * - Email: terc@obchod.poda.cz
+ * - Tarify:
+ *   - Internet + TV Basic: PROMO 300 Kč / standard 440 Kč, 1000/1000 Mbps (GPON) nebo 1000/200 Mbps (60GHz), 85+ TV programů
+ *   - Internet + TV Mých 10: PROMO 440 Kč / standard 520 Kč, 1000/1000 Mbps (GPON) nebo 1000/200 Mbps (60GHz), 100+ TV programů + výběr 10 vlastních
  */
 
 import fs from 'fs';
@@ -19,154 +21,136 @@ const __dirname = path.dirname(__filename);
 const CONTACT = {
   phone: '730 431 313',
   phoneFormatted: '+420 730 431 313',
+  email: 'terc@obchod.poda.cz',
   web: 'www.popri.cz'
 };
 
-// Správne ceny tarifov
+// Správne ceny tarifov - SYNCHRONIZOVANÉ S WEBEM
 const TARIFFS = {
-  poda100: { speed: '100 Mbps', price: '300 Kč/měsíc' },
-  poda300: { speed: '300 Mbps', price: '440 Kč/měsíc', tv: 'IPTV Basic zdarma' },
-  poda500: { speed: '500 Mbps', price: '490 Kč/měsíc', tv: 'IPTV Standard zdarma' },
-  poda1000: { speed: '1000 Mbps', price: '520 Kč/měsíc', tv: 'IPTV Premium zdarma' }
+  basic: { 
+    name: 'Internet + TV Basic',
+    speedGPON: '1000/1000 Mbps',
+    speed60GHz: '1000/200 Mbps',
+    pricePromo: '300 Kč/měsíc',
+    priceStandard: '440 Kč/měsíc',
+    tv: '85+ TV programů'
+  },
+  mych10: { 
+    name: 'Internet + TV Mých 10',
+    speedGPON: '1000/1000 Mbps',
+    speed60GHz: '1000/200 Mbps',
+    pricePromo: '440 Kč/měsíc',
+    priceStandard: '520 Kč/měsíc',
+    tv: '100+ TV programů + výběr 10 vlastních'
+  }
 };
 
-// Top 11 blog articles for AI indexing (Czech language)
+// Top blog articles for AI indexing (Czech language)
 const TOP_BLOG_ARTICLES = [
-  { slug: 'jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025', title: 'Jak zlepšit WiFi signál doma - 10 ověřených triků', description: '10 praktických triků jak zlepšit WiFi signál doma v roce 2025 - od řešení zdarma až po mesh systémy.' },
-  { slug: 'jak-si-vybrat-internet-do-bytu-5-chyb', title: '5 Chyb Při Výběru Internetu', description: 'Nejčastější chyby při výběru internetového připojení a jak se jim vyhnout.' },
-  { slug: 'gpon-technologie-opticky-internet-jak-funguje', title: 'GPON Technologie - Budoucnost Optického Internetu', description: 'Kompletní průvodce GPON technologií a jejími výhodami pro domácnosti.' },
-  { slug: 'o2-nej-prevzatie-poda-alternativa-zakaznici', title: 'O2 Nej Převzetí - PODA Alternativa', description: 'Převzetí O2 Nej zákazníků - proč je PODA lepší alternativa.' },
-  { slug: 'iptv-vs-tradicni-televize-co-je-lepsi-2025', title: 'IPTV vs Tradiční TV - Srovnání', description: 'Komplexní srovnání IPTV a tradiční TV - výhody, nevýhody, ceny.' },
-  { slug: 'internet-do-panelaku-nejcastejsi-otazky', title: 'Internet Do Paneláku - Nejčastější Otázky', description: 'FAQ k internetovému připojení v panelovém domě.' },
-  { slug: 'polanka-nad-odrou-60ghz-pripojeni-2025', title: 'PODA Super 2025 - 60GHz Technologie', description: 'Revoluční 60GHz bezdrátová technologie pro ultrarychlé připojení.' },
-  { slug: 'gaming-internet-ostrava-2025-nejlepsi-pripojeni-pro-hrace', title: 'Gaming Internet Ostrava - Nejlepší Připojení', description: 'Nejlepší internetové připojení pro hráče v Ostravě.' },
-  { slug: 'pomaly-internet-8-zpusobu-jak-vyriesit-msk-2025', title: 'Pomalý Internet? 10 Řešení', description: '10 ověřených způsobů jak zrychlit pomalé internetové připojení.' },
-  { slug: 'nejlepsi-internet-ostrava-karvina-havirov-2025', title: 'Internet v Ostravě - Komplexní Průvodce', description: 'Úplný průvodce internetovým připojením v Ostravě a okolí.' },
-  { slug: 'internet-poda-karvina-optika-rychly-internet-2025', title: 'Internet v Karviné - PODA Poskytovatel', description: 'Rychlé a stabilní internetové připojení v Karviné.' }
+  { slug: 'jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025', title: 'Jak zlepšit WiFi signál doma - 10 ověřených triků', description: '10 praktických triků jak zlepšit WiFi signál doma v roce 2025.' },
+  { slug: 'o2-nej-prevzatie-poda-alternativa-zakaznici', title: 'O2 Nej Převzetí - PODA Alternativa', description: 'Převzetí O2 Nej - proč je PODA lepší alternativa pro zákazníky.' },
+  { slug: 'gpon-technologie-jak-funguje-moderni-opticky-internet', title: 'GPON Technologie - Jak funguje optický internet', description: 'Kompletní průvodce GPON technologií a jejími výhodami.' },
+  { slug: 'polanka-nad-odrou-60ghz-pripojeni-2025', title: '60GHz Technologie - Internet pro rodinné domy', description: 'Revoluční 60GHz bezdrátová technologie pro ultrarychlé připojení.' },
+  { slug: 'pomaly-internet-8-sposobu-jak-vyresit-msk-2025', title: 'Pomalý Internet? 8 způsobů jak vyřešit', description: '8 ověřených způsobů jak zrychlit pomalé internetové připojení.' }
 ];
+
+// Generovat tarifovou tabulku HTML
+function generateTariffTable(type = 'gpon') {
+  const speed = type === 'gpon' ? 'speedGPON' : 'speed60GHz';
+  const title = type === 'gpon' ? 'Pro byty (optické připojení GPON)' : 'Pro rodinné domy (bezdrátové připojení 60 GHz)';
+  
+  return `
+    <h3>${title}</h3>
+    <table>
+      <thead>
+        <tr><th>Tarif</th><th>Rychlost</th><th>PROMO cena</th><th>Standardní cena</th><th>TV programy</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>${TARIFFS.basic.name}</strong></td>
+          <td>${TARIFFS.basic[speed]}</td>
+          <td><strong>${TARIFFS.basic.pricePromo}</strong></td>
+          <td>${TARIFFS.basic.priceStandard}</td>
+          <td>${TARIFFS.basic.tv}</td>
+        </tr>
+        <tr>
+          <td><strong>${TARIFFS.mych10.name}</strong> ⭐</td>
+          <td>${TARIFFS.mych10[speed]}</td>
+          <td><strong>${TARIFFS.mych10.pricePromo}</strong></td>
+          <td>${TARIFFS.mych10.priceStandard}</td>
+          <td>${TARIFFS.mych10.tv}</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+}
 
 // AI-optimized content for each page
 const AI_PAGES = {
   '/': {
-    title: 'Nejvýhodnější PODA Internet + TV | Tel: 730 431 313',
-    description: 'Rychlé a spolehlivé optické připojení pro vaše město. Gigabitový internet až 1000 Mbps s TV zdarma a profesionální instalací. Volejte 730 431 313.',
+    title: 'Popri.cz - Autorizovaný partner PODA | Gigabitový Internet + TV | 730 431 313',
+    description: `Gigabitový optický internet 1000 Mbps + TV zdarma od 300 Kč/měsíc. Ostrava, Karviná, Havířov a okolí. Volejte ${CONTACT.phone}.`,
     content: `
-      <h1>PODA Internet s TV Zdarma - Autorizovaný partner</h1>
-      <p>Poskytujeme rychlé a spolehlivé internetové připojení PODA v Ostravě a okolí s gigabitovými rychlostmi a televizním vysíláním zdarma.</p>
+      <h1>Popri.cz - Autorizovaný partner PODA</h1>
+      <p><strong>Gigabitový optický internet + TV zdarma v Moravskoslezském kraji</strong></p>
       
-      <h2>Naše služby</h2>
+      <h2>Aktuální tarify 2025 - PROMO AKCE</h2>
+      ${generateTariffTable('gpon')}
+      ${generateTariffTable('60ghz')}
+      
+      <p><strong>PROMO podmínky:</strong> Zvýhodněná cena platí prvních 12 měsíců od aktivace pro nové zákazníky.</p>
+      
+      <h2>Pokrytí služeb</h2>
       <ul>
-        <li>Gigabitový internet PODA až 1000 Mbps</li>
-        <li>Televizní vysílání zdarma (85+ kanálů)</li>
-        <li>IPTV služby s HD kvalitou</li>
-        <li>Optické připojení GPON s 99,9% dostupností</li>
-        <li>Technická podpora</li>
-      </ul>
-      
-      <h2>Cenové balíčky PODA 2025</h2>
-      <h3>PODA 100</h3>
-      <p>Cena: 300 Kč/měsíc | Rychlost: 100/100 Mbps</p>
-      
-      <h3>PODA 300</h3>
-      <p>Cena: 440 Kč/měsíc | Rychlost: 300/300 Mbps | TV Basic zdarma (40+ kanálů)</p>
-      
-      <h3>PODA 500</h3>
-      <p>Cena: 490 Kč/měsíc | Rychlost: 500/500 Mbps | TV Standard zdarma (60+ kanálů)</p>
-      
-      <h3>PODA 1000 ⭐ Nejoblíbenější</h3>
-      <p>Cena: 520 Kč/měsíc | Rychlost: 1000/1000 Mbps | TV Premium zdarma (85+ kanálů)</p>
-      
-      <h2>Pokrytí</h2>
-      <p>Poskytujeme služby v těchto lokalitách:</p>
-      <ul>
-        <li>Ostrava (Poruba, Zábřeh, Hrabůvka, Dubina, Bělský Les, Vítkovice)</li>
-        <li>Karviná (Hranice, Mizerov, Nové Město)</li>
-        <li>Havířov (Šumbark, Podlesí, Město)</li>
-        <li>Bohumín (Nový Bohumín, Skřečoň)</li>
-        <li>Frýdek-Místek, Orlová, Opava</li>
-      </ul>
-      
-      <h2>Výhody PODA internetu</h2>
-      <ul>
-        <li>Rychlá instalace</li>
-        <li>Bez závazků a skrytých poplatků</li>
-        <li>Stabilní připojení s 99,9% dostupností</li>
-        <li>TV vysílání v HD kvalitě zdarma</li>
-        <li>Symetrická rychlost (download = upload)</li>
+        <li>Ostrava (98%) - Poruba, Zábřeh, Hrabůvka, Dubina, Bělský Les, Vítkovice</li>
+        <li>Karviná (95%) - Hranice, Mizerov, Nové Město</li>
+        <li>Havířov (96%) - Šumbark, Podlesí, Město</li>
+        <li>Bohumín (100%)</li>
+        <li>Frýdek-Místek (85%)</li>
+        <li>Orlová (90%)</li>
       </ul>
       
       <h2>Kontakt</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
-      <p>Web: <a href="https://www.popri.cz">www.popri.cz</a></p>
-      <p>Oblast: Moravskoslezský kraj</p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
+      <p><strong>Email:</strong> <a href="mailto:${CONTACT.email}">${CONTACT.email}</a></p>
+      <p><strong>Web:</strong> <a href="https://${CONTACT.web}">${CONTACT.web}</a></p>
     `
   },
   '/tarify': {
-    title: 'Ceník PODA Internet 2025 | Tarify od 300 Kč | Popri.cz',
-    description: 'Kompletní ceník internetových tarifů PODA 2025. Internet od 300 Kč/měsíc. Gigabit za 520 Kč. IPTV zdarma k vyšším tarifům. Bez závazku.',
+    title: `Ceník PODA Internet + TV 2025 | Tarify od 300 Kč | Popri.cz`,
+    description: `Aktuální ceník PODA internet a TV 2025. Internet + TV Basic od 300 Kč, Internet + TV Mých 10 od 440 Kč. PROMO ceny pro nové zákazníky. Volejte ${CONTACT.phone}.`,
     content: `
-      <h1>Ceník PODA Internet 2025</h1>
-      <p>Všechny tarify od PODA 300 obsahují TV vysílání zdarma.</p>
+      <h1>Ceník PODA Internet + TV 2025</h1>
       
-      <h2>PODA 100</h2>
-      <ul>
-        <li>Rychlost: 100/100 Mbps (symetrická)</li>
-        <li>Cena: 300 Kč/měsíc</li>
-        <li>Instalace: 0 Kč</li>
-        <li>Bez závazků</li>
-      </ul>
+      ${generateTariffTable('gpon')}
+      ${generateTariffTable('60ghz')}
       
-      <h2>PODA 300</h2>
-      <ul>
-        <li>Rychlost: 300/300 Mbps (symetrická)</li>
-        <li>Cena: 440 Kč/měsíc</li>
-        <li>TV: IPTV Basic zdarma (40+ kanálů)</li>
-        <li>Instalace: 0 Kč</li>
-        <li>Bez závazků</li>
-      </ul>
-      
-      <h2>PODA 500</h2>
-      <ul>
-        <li>Rychlost: 500/500 Mbps (symetrická)</li>
-        <li>Cena: 490 Kč/měsíc</li>
-        <li>TV: IPTV Standard zdarma (60+ kanálů)</li>
-        <li>Instalace: 0 Kč</li>
-        <li>Bez závazků</li>
-      </ul>
-      
-      <h2>PODA 1000 - Gigabit ⭐ Nejoblíbenější</h2>
-      <ul>
-        <li>Rychlost: 1000/1000 Mbps (symetrická)</li>
-        <li>Cena: 520 Kč/měsíc</li>
-        <li>TV: IPTV Premium zdarma (85+ kanálů)</li>
-        <li>Instalace: 0 Kč</li>
-        <li>Bez závazků</li>
-      </ul>
+      <p><strong>PROMO podmínky:</strong> Zvýhodněná cena platí prvních 12 měsíců od aktivace. Instalace zdarma, bez závazku.</p>
       
       <h2>Co je v ceně zahrnuto</h2>
       <ul>
-        <li>Symetrické připojení (stejná rychlost nahoru i dolů)</li>
+        <li>Symetrická rychlost (download = upload) pro GPON</li>
         <li>Neomezená data bez FUP</li>
         <li>WiFi router v ceně</li>
-        <li>Profesionální instalace zdarma</li>
-        <li>Technická podpora</li>
-        <li>TV vysílání přes IPTV (od tarifu PODA 300)</li>
+        <li>Instalace ZDARMA</li>
+        <li>PODA net.TV služba pro až 4 zařízení</li>
+        <li>Bez závazku</li>
       </ul>
       
-      <h2>Objednat</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <h2>Kontakt pro objednávku</h2>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/internet-ostrava': {
-    title: 'Internet Ostrava | PODA Optické Připojení + TV Zdarma | 730 431 313',
-    description: 'Nejrychlejší optický internet v Ostravě. Gigabit až 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Pokrytí: Poruba, Zábřeh, Hrabůvka, Dubina. Volejte 730 431 313.',
+    title: `Internet Ostrava | PODA Optické Připojení + TV Zdarma | ${CONTACT.phone}`,
+    description: `Nejrychlejší optický internet v Ostravě. Gigabit 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Pokrytí: Poruba, Zábřeh, Hrabůvka, Dubina. Volejte ${CONTACT.phone}.`,
     content: `
       <h1>PODA Internet Ostrava</h1>
       <p>Poskytujeme rychlé optické internetové připojení ve všech obvodech Ostravy.</p>
       
-      <h2>Pokrytí v Ostravě</h2>
+      <h2>Pokrytí v Ostravě (98%)</h2>
       <ul>
-        <li>Poruba</li>
+        <li>Poruba (100%)</li>
         <li>Zábřeh</li>
         <li>Hrabůvka</li>
         <li>Dubina</li>
@@ -177,28 +161,20 @@ const AI_PAGES = {
       </ul>
       
       <h2>Dostupné tarify v Ostravě</h2>
-      <p>PODA 100: 300 Kč/měsíc | PODA 300: 440 Kč/měsíc | PODA 500: 490 Kč/měsíc | PODA 1000: 520 Kč/měsíc</p>
-      
-      <h2>Výhody</h2>
-      <ul>
-        <li>TV vysílání 85+ kanálů zdarma (od PODA 300)</li>
-        <li>Rychlá instalace</li>
-        <li>Bez instalačních poplatků</li>
-        <li>Symetrická rychlost</li>
-      </ul>
+      ${generateTariffTable('gpon')}
       
       <h2>Kontakt pro Ostravu</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/internet-karvina': {
-    title: 'Internet Karviná | PODA Optické Připojení + TV Zdarma | 730 431 313',
-    description: 'Nejrychlejší optický internet v Karviné. Gigabit až 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Pokrytí: Hranice, Mizerov, Nové Město. Volejte 730 431 313.',
+    title: `Internet Karviná | PODA Optické Připojení + TV Zdarma | ${CONTACT.phone}`,
+    description: `Nejrychlejší optický internet v Karviné. Gigabit 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Volejte ${CONTACT.phone}.`,
     content: `
       <h1>PODA Internet Karviná</h1>
       <p>Kvalitní optické internetové připojení v Karviné a okolí.</p>
       
-      <h2>Pokrytí v Karviné</h2>
+      <h2>Pokrytí v Karviné (95%)</h2>
       <ul>
         <li>Hranice</li>
         <li>Mizerov</li>
@@ -208,20 +184,20 @@ const AI_PAGES = {
       </ul>
       
       <h2>Tarify</h2>
-      <p>Od 300 Kč/měsíc. PODA 1000 (gigabit) za 520 Kč/měsíc včetně TV Premium zdarma.</p>
+      ${generateTariffTable('gpon')}
       
       <h2>Kontakt</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/internet-havirov': {
-    title: 'Internet Havířov | PODA Optické Připojení + TV Zdarma | 730 431 313',
-    description: 'Nejrychlejší optický internet v Havířově. Gigabit až 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Pokrytí: Šumbark, Podlesí, Město. Volejte 730 431 313.',
+    title: `Internet Havířov | PODA Optické Připojení + TV Zdarma | ${CONTACT.phone}`,
+    description: `Nejrychlejší optický internet v Havířově. Gigabit 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Volejte ${CONTACT.phone}.`,
     content: `
       <h1>PODA Internet Havířov</h1>
       <p>Rychlé a stabilní optické připojení v Havířově.</p>
       
-      <h2>Pokrytí</h2>
+      <h2>Pokrytí (96%)</h2>
       <ul>
         <li>Šumbark</li>
         <li>Podlesí</li>
@@ -231,21 +207,21 @@ const AI_PAGES = {
         <li>Prostřední Suchá</li>
       </ul>
       
-      <h2>Ceny</h2>
-      <p>PODA 100: 300 Kč | PODA 300: 440 Kč | PODA 500: 490 Kč | PODA 1000: 520 Kč/měsíc. TV zdarma od PODA 300.</p>
+      <h2>Tarify</h2>
+      ${generateTariffTable('gpon')}
       
       <h2>Kontakt</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/internet-bohumin': {
-    title: 'Internet Bohumín | PODA Optické Připojení + TV Zdarma | 730 431 313',
-    description: 'Nejrychlejší optický internet v Bohumíně. Gigabit až 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Pokrytí: Nový Bohumín, Skřečoň. Volejte 730 431 313.',
+    title: `Internet Bohumín | PODA Optické Připojení + TV Zdarma | ${CONTACT.phone}`,
+    description: `Nejrychlejší optický internet v Bohumíně. Gigabit 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Volejte ${CONTACT.phone}.`,
     content: `
       <h1>PODA Internet Bohumín</h1>
       <p>Poskytujeme internetové služby v Bohumíně a okolních obcích.</p>
       
-      <h2>Dostupnost</h2>
+      <h2>Dostupnost (100%)</h2>
       <ul>
         <li>Nový Bohumín</li>
         <li>Skřečoň</li>
@@ -255,120 +231,96 @@ const AI_PAGES = {
       </ul>
       
       <h2>Tarify</h2>
-      <p>Od 300 Kč/měsíc. Gigabit za 520 Kč včetně TV Premium.</p>
+      ${generateTariffTable('gpon')}
       
       <h2>Kontakt</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/internet-poruba': {
-    title: 'Internet Poruba | PODA Optické Připojení + TV Zdarma | 730 431 313',
-    description: 'Nejrychlejší optický internet v Porubě, Ostrava. Gigabit až 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Volejte 730 431 313.',
+    title: `Internet Poruba | PODA Optické Připojení + TV Zdarma | ${CONTACT.phone}`,
+    description: `Nejrychlejší optický internet v Porubě, Ostrava. Gigabit 1000 Mbps od 300 Kč/měsíc. IPTV zdarma. Volejte ${CONTACT.phone}.`,
     content: `
       <h1>PODA Internet Poruba</h1>
       <p>Specializujeme se na poskytování optického internetu v Porubě, největším obvodu Ostravy.</p>
       
-      <h2>Pokrytí v Porubě</h2>
+      <h2>Pokrytí v Porubě (100%)</h2>
       <ul>
         <li>Poruba I-VIII</li>
         <li>Všechny panelové domy</li>
         <li>Bytové domy</li>
       </ul>
       
-      <h2>Služby</h2>
-      <p>Internet 100-1000 Mbps, TV vysílání HD zdarma od tarifu PODA 300, rychlá instalace.</p>
-      
-      <h2>Ceny</h2>
-      <p>PODA 100: 300 Kč | PODA 300: 440 Kč | PODA 500: 490 Kč | PODA 1000: 520 Kč/měsíc</p>
+      <h2>Tarify</h2>
+      ${generateTariffTable('gpon')}
       
       <h2>Kontakt</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/iptv': {
-    title: 'IPTV - Televizní Vysílání Zdarma | Popri.cz',
-    description: 'IPTV televizní vysílání zdarma k internetu PODA. 85+ kanálů v HD kvalitě bez dodatečných poplatků. Volejte 730 431 313.',
+    title: `IPTV - TV Vysílání Zdarma k Internetu | Popri.cz`,
+    description: `IPTV televizní vysílání zdarma k internetu PODA. 85-100+ kanálů v HD kvalitě. PODA net.TV pro 4 zařízení. Volejte ${CONTACT.phone}.`,
     content: `
       <h1>IPTV - TV Vysílání Zdarma</h1>
-      <p>K internetu PODA od tarifu 300 dostanete televizní vysílání zdarma prostřednictvím IPTV.</p>
+      <p>K internetu PODA dostanete televizní vysílání zdarma prostřednictvím služby PODA net.TV.</p>
       
-      <h2>Co je IPTV?</h2>
-      <p>IPTV (Internet Protocol Television) je digitální televizní vysílání přenášené přes optické připojení. Nabízí lepší kvalitu obrazu a zvuku než klasické analogové nebo satelitní vysílání.</p>
+      <h2>TV balíčky</h2>
+      <h3>Internet + TV Basic</h3>
+      <p>85+ kanálů v HD kvalitě</p>
       
-      <h2>IPTV balíčky</h2>
-      <h3>IPTV Basic (zdarma k PODA 300)</h3>
-      <p>40+ kanálů v HD kvalitě</p>
+      <h3>Internet + TV Mých 10 ⭐</h3>
+      <p>100+ kanálů v HD kvalitě + výběr 10 vlastních prémiových stanic</p>
       
-      <h3>IPTV Standard (zdarma k PODA 500)</h3>
-      <p>60+ kanálů v HD kvalitě</p>
-      
-      <h3>IPTV Premium (zdarma k PODA 1000)</h3>
-      <p>85+ kanálů v HD kvalitě včetně HBO, Sport</p>
-      
-      <h2>Výhody IPTV</h2>
+      <h2>Výhody PODA net.TV</h2>
       <ul>
         <li>HD kvalita obrazu</li>
-        <li>Žádné dodatečné poplatky</li>
+        <li>Sledování na až 4 zařízeních současně</li>
         <li>Elektronický programový průvodce (EPG)</li>
         <li>Zpětné přehrávání (Archiv)</li>
+        <li>Mobilní aplikace</li>
       </ul>
       
-      <h2>Dostupné kanály</h2>
-      <p>ČT1, ČT2, ČT24, ČT Sport, Nova, Nova Cinema, Prima, Prima Cool, Sport1, Sport2, HBO, dokumentární, dětské a další.</p>
-      
       <h2>Kontakt</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/blog': {
-    title: 'Blog - Tipy a Novinky | Popri.cz',
-    description: 'Zajímavé články o internetu, IPTV a technologiích. Rady jak zlepšit připojení, přehledy tarifů a novinky. Volejte 730 431 313.',
+    title: `Blog - Tipy a Novinky | Popri.cz`,
+    description: `Zajímavé články o internetu, IPTV a technologiích. Rady jak zlepšit připojení a novinky. Volejte ${CONTACT.phone}.`,
     content: `
       <h1>Blog Popri.cz</h1>
       <p>Najdete zde užitečné články, tipy a novinky ze světa internetu a technologií.</p>
       
       <h2>Oblíbené články</h2>
       <ul>
-        <li><a href="/blog/o2-nej-prevzatie-poda-alternativa-zakaznici">O2 Nej Převzetí - PODA Alternativa pro Zákazníky</a></li>
-        <li><a href="/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025">Jak zlepšit WiFi signál - 10 triků</a></li>
-        <li><a href="/blog/gpon-technologie-opticky-internet-jak-funguje">GPON Technologie - Budoucnost Optického Internetu</a></li>
-        <li><a href="/blog/pomaly-internet-8-zpusobu-jak-vyriesit-msk-2025">Pomalý Internet? 10 Způsobů Jak Zrychlit</a></li>
-        <li><a href="/blog/iptv-vs-tradicni-televize-co-je-lepsi-2025">IPTV vs Tradiční TV - Co Je Lepší?</a></li>
+        ${TOP_BLOG_ARTICLES.map(a => `<li><a href="/blog/${a.slug}">${a.title}</a> - ${a.description}</li>`).join('\n        ')}
       </ul>
       
-      <h2>Kategorie</h2>
-      <ul>
-        <li>Internet - Rady a tipy k internetovému připojení</li>
-        <li>IPTV - Vše o televizním vysílání</li>
-        <li>Technologie - Novinky ze světa IT</li>
-        <li>Tipy - Praktické návody</li>
-      </ul>
+      <h2>Aktuální tarify</h2>
+      <p><strong>${TARIFFS.basic.name}:</strong> od ${TARIFFS.basic.pricePromo} (PROMO)</p>
+      <p><strong>${TARIFFS.mych10.name}:</strong> od ${TARIFFS.mych10.pricePromo} (PROMO)</p>
       
       <h2>Kontakt</h2>
-      <p><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></p>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
     `
   },
   '/kontakt': {
-    title: 'Kontakt | PODA Internet Ostrava | 730 431 313 | Popri.cz',
-    description: 'Kontaktujte nás pro sjednání PODA internetu. Telefon 730 431 313. Pokrytí: Ostrava, Karviná, Havířov, Bohumín. Odpovídáme do 24 hodin.',
+    title: `Kontakt | PODA Internet Ostrava | ${CONTACT.phone} | Popri.cz`,
+    description: `Kontaktujte nás pro sjednání PODA internetu. Telefon ${CONTACT.phone}. Pokrytí: Ostrava, Karviná, Havířov, Bohumín.`,
     content: `
       <h1>Kontakt</h1>
       
       <h2>Objednávky a dotazy</h2>
-      <p>Pro objednání služeb nebo dotazy ohledně připojení nás kontaktujte:</p>
       <ul>
-        <li><strong>Telefon: <a href="tel:+420730431313">730 431 313</a></strong></li>
-        <li>Web: <a href="https://www.popri.cz/kontakt">www.popri.cz/kontakt</a></li>
+        <li><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></li>
+        <li><strong>Email:</strong> <a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
+        <li><strong>Web:</strong> <a href="https://${CONTACT.web}">${CONTACT.web}</a></li>
         <li>Provozní doba: Po-Pá 8:00-18:00</li>
       </ul>
       
-      <h2>Co pro vás zařídíme</h2>
-      <ul>
-        <li>Zdarma ověříme dostupnost ve vaší adrese</li>
-        <li>Poradíme s výběrem optimálního tarifu</li>
-        <li>Zajistíme rychlou instalaci</li>
-        <li>Odpovídáme na dotazy do 24 hodin</li>
-      </ul>
+      <h2>Aktuální tarify</h2>
+      ${generateTariffTable('gpon')}
       
       <h2>Provozní oblasti</h2>
       <ul>
@@ -393,34 +345,22 @@ TOP_BLOG_ARTICLES.forEach(article => {
       <h1>${article.title}</h1>
       <p>${article.description}</p>
       
-      <h2>Obsah článku</h2>
-      <p>Tento článek poskytuje podrobné informace o tématu: ${article.title.toLowerCase()}.</p>
+      <h2>Aktuální tarify PODA 2025</h2>
+      ${generateTariffTable('gpon')}
       
-      <h2>Proč je toto důležité?</h2>
-      <p>V dnešní době rychlého internetového připojení je klíčové rozumět možnostem a technologiím, které jsou k dispozici. PODA internet poskytuje řešení přizpůsobená vašim potřebám.</p>
+      <p><strong>PROMO podmínky:</strong> Zvýhodněná cena platí prvních 12 měsíců od aktivace pro nové zákazníky.</p>
       
-      <h2>Tarify PODA 2025</h2>
-      <ul>
-        <li>PODA 100: 300 Kč/měsíc (100 Mbps)</li>
-        <li>PODA 300: 440 Kč/měsíc (300 Mbps + TV Basic)</li>
-        <li>PODA 500: 490 Kč/měsíc (500 Mbps + TV Standard)</li>
-        <li>PODA 1000: 520 Kč/měsíc (1000 Mbps + TV Premium)</li>
-      </ul>
-      
-      <h2>Zaujalo vás to?</h2>
-      <p>Kontaktujte nás na telefonním čísle <a href="tel:+420730431313">730 431 313</a> nebo navštivte <a href="https://www.popri.cz">www.popri.cz</a> pro více informací.</p>
-      
-      <h2>Další články</h2>
-      <ul>
-        <li><a href="https://www.popri.cz/blog">Všechny blog články</a></li>
-        <li><a href="https://www.popri.cz/tarify">Cenové balíčky</a></li>
-        <li><a href="https://www.popri.cz/internet-ostrava">Internet v Ostravě</a></li>
-      </ul>
+      <h2>Kontakt</h2>
+      <p><strong>Telefon:</strong> <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
+      <p><strong>Web:</strong> <a href="https://${CONTACT.web}">${CONTACT.web}</a></p>
     `
   };
 });
 
+// Generate HTML template for AI pages
 function generateAIStaticHTML(pagePath, data) {
+  const canonicalUrl = `https://www.popri.cz${pagePath === '/' ? '' : pagePath}`;
+  
   return `<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -429,114 +369,96 @@ function generateAIStaticHTML(pagePath, data) {
   <title>${data.title}</title>
   <meta name="description" content="${data.description}">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.popri.cz${pagePath}">
-  
-  <!-- AI Bot Meta Tags -->
   <meta name="ai:title" content="${data.title}">
   <meta name="ai:description" content="${data.description}">
   <meta name="ai-crawl-priority" content="high">
-  <meta name="ai-index-content" content="full">
+  <meta name="ai-index-content" content="true">
+  <link rel="canonical" href="${canonicalUrl}">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
+    h1 { color: #1a1a2e; font-size: 1.8rem; }
+    h2 { color: #16213e; margin-top: 2rem; }
+    h3 { color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+    th { background: #f8f9fa; }
+    a { color: #3498db; }
+    .phone { font-size: 1.5rem; font-weight: bold; color: #e74c3c; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="phone">📞 <a href="tel:+420${CONTACT.phone.replace(/\s/g, '')}">${CONTACT.phone}</a></p>
+  </header>
   
-  <!-- Structured Data -->
+  <main>
+    ${data.content}
+  </main>
+  
+  <footer>
+    <p>© 2025 Popri.cz - Autorizovaný partner PODA a.s.</p>
+    <p>Kontakt: ${CONTACT.phone} | ${CONTACT.email}</p>
+  </footer>
+  
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "${data.title}",
     "description": "${data.description}",
-    "url": "https://www.popri.cz${pagePath}",
-    "inLanguage": "cs",
+    "url": "${canonicalUrl}",
     "publisher": {
       "@type": "Organization",
-      "name": "Popri.cz - Autorizovaný partner PODA",
-      "url": "https://www.popri.cz",
-      "telephone": "+420730431313"
+      "name": "Popri.cz",
+      "telephone": "+420${CONTACT.phone.replace(/\s/g, '')}",
+      "email": "${CONTACT.email}"
     }
   }
   </script>
-  
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      color: #333;
-    }
-    h1 { color: #1a1a2e; font-size: 2rem; margin-bottom: 0.5em; }
-    h2 { color: #16213e; font-size: 1.5em; margin-top: 1.5em; }
-    h3 { color: #0f3460; font-size: 1.2em; }
-    ul { margin: 1em 0; padding-left: 2em; }
-    li { margin: 0.5em 0; }
-    p { margin: 1em 0; }
-    a { color: #e74c3c; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .phone { font-size: 1.5rem; font-weight: bold; color: #e74c3c; }
-    .cta { background: #e74c3c; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; display: inline-block; margin: 1rem 0; }
-  </style>
-</head>
-<body>
-  <main>
-    ${data.content}
-    
-    <hr style="margin: 3em 0; border: 1px solid #eee;">
-    
-    <section>
-      <h2>Kontaktní informace</h2>
-      <p class="phone">📞 <a href="tel:+420730431313">730 431 313</a></p>
-      <p><strong>Web:</strong> <a href="https://www.popri.cz">www.popri.cz</a></p>
-      <a href="https://www.popri.cz/kontakt" class="cta">Objednat online</a>
-    </section>
-    
-    <footer style="margin-top: 3em; padding-top: 2em; border-top: 1px solid #eee; color: #666;">
-      <p>© 2025 Popri.cz - Autorizovaný partner PODA a.s. | Moravskoslezský kraj</p>
-    </footer>
-  </main>
 </body>
 </html>`;
 }
 
-// Main execution
-console.log('🤖 Generating AI-optimized static pages...');
-console.log('📞 Using phone: 730 431 313');
-console.log('💰 Using prices: 300/440/490/520 Kč');
-
-const aiStaticDir = path.join(__dirname, '..', 'public', 'ai-static');
-
-// Create ai-static directory if it doesn't exist
-if (!fs.existsSync(aiStaticDir)) {
-  fs.mkdirSync(aiStaticDir, { recursive: true });
-  console.log('✅ Created ai-static directory');
-}
-
-// Generate HTML files for each page
-let generatedCount = 0;
-for (const [pagePath, pageData] of Object.entries(AI_PAGES)) {
-  // Handle nested paths like /blog/article-slug
-  let fileName;
-  if (pagePath === '/') {
-    fileName = 'index.html';
-  } else if (pagePath.startsWith('/blog/')) {
-    // Create blog subdirectory
-    const blogDir = path.join(aiStaticDir, 'blog');
-    if (!fs.existsSync(blogDir)) {
-      fs.mkdirSync(blogDir, { recursive: true });
-    }
-    const slug = pagePath.replace('/blog/', '');
-    fileName = `blog/${slug}.html`;
-  } else {
-    fileName = `${pagePath.slice(1)}.html`;
+// Generate all AI static pages
+function generateAllAIPages() {
+  const outputDir = path.resolve(__dirname, '../public/ai-static');
+  const blogOutputDir = path.resolve(outputDir, 'blog');
+  
+  // Ensure directories exist
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+  if (!fs.existsSync(blogOutputDir)) {
+    fs.mkdirSync(blogOutputDir, { recursive: true });
   }
   
-  const filePath = path.join(aiStaticDir, fileName);
-  const htmlContent = generateAIStaticHTML(pagePath, pageData);
+  let generatedCount = 0;
   
-  fs.writeFileSync(filePath, htmlContent);
-  generatedCount++;
-  console.log(`✅ Generated: ${fileName}`);
+  Object.entries(AI_PAGES).forEach(([pagePath, data]) => {
+    let fileName;
+    let outputPath;
+    
+    if (pagePath === '/') {
+      fileName = 'index.html';
+      outputPath = path.join(outputDir, fileName);
+    } else if (pagePath.startsWith('/blog/')) {
+      const slug = pagePath.replace('/blog/', '');
+      fileName = `${slug}.html`;
+      outputPath = path.join(blogOutputDir, fileName);
+    } else {
+      fileName = `${pagePath.slice(1)}.html`;
+      outputPath = path.join(outputDir, fileName);
+    }
+    
+    const htmlContent = generateAIStaticHTML(pagePath, data);
+    fs.writeFileSync(outputPath, htmlContent);
+    generatedCount++;
+    console.log(`Generated: ${outputPath}`);
+  });
+  
+  console.log(`\n✅ Generated ${generatedCount} AI-optimized static pages`);
+  console.log(`📁 Output directory: ${outputDir}`);
 }
 
-console.log(`\n🎉 Generated ${generatedCount} AI-optimized static pages`);
-console.log('📁 Location: public/ai-static/');
-console.log('🔗 Access via: /ai-static/index.html');
+// Run the generator
+generateAllAIPages();

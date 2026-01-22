@@ -11,7 +11,8 @@
     "name": "Popri.cz",
     "url": "https://www.popri.cz",
     "logo": "https://www.popri.cz/poda-logo.svg",
-    "telephone": "+420730431313"
+    "telephone": "+420730431313",
+    "email": "terc@obchod.poda.cz"
   },
   "areaServed": [
     {
@@ -22,61 +23,48 @@
         "name": "Moravskoslezský kraj"
       }
     },
-    {
-      "@type": "City",
-      "name": "Karviná"
-    },
-    {
-      "@type": "City",
-      "name": "Havířov"
-    },
-    {
-      "@type": "City",
-      "name": "Bohumín"
-    },
-    {
-      "@type": "City",
-      "name": "Frýdek-Místek"
-    },
-    {
-      "@type": "City",
-      "name": "Orlová"
-    },
-    {
-      "@type": "City",
-      "name": "Opava"
-    }
+    { "@type": "City", "name": "Karviná" },
+    { "@type": "City", "name": "Havířov" },
+    { "@type": "City", "name": "Bohumín" },
+    { "@type": "City", "name": "Frýdek-Místek" },
+    { "@type": "City", "name": "Orlová" },
+    { "@type": "City", "name": "Opava" }
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "PODA Internet Tarify",
+    "name": "PODA Internet Tarify 2025",
     "itemListElement": [
       {
         "@type": "Offer",
         "name": "Internet + TV Basic",
-        "description": "Gigabitový internet 1000/1000 Mbps s 85+ TV kanály zdarma",
+        "description": "Gigabitový internet 1000/1000 Mbps s 85+ TV programy zdarma",
         "price": "300",
         "priceCurrency": "CZK",
         "priceValidUntil": "2025-12-31",
-        "availability": "https://schema.org/InStock"
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "300",
+          "priceCurrency": "CZK",
+          "unitText": "měsíc",
+          "description": "PROMO cena (standardní 440 Kč/měsíc)"
+        }
       },
       {
         "@type": "Offer",
         "name": "Internet + TV Mých 10",
-        "description": "Gigabitový internet 1000/1000 Mbps se 100+ TV kanály a výběrem 10 prémiových stanic",
+        "description": "Gigabitový internet 1000/1000 Mbps se 100+ TV programy a výběrem 10 vlastních stanic",
         "price": "440",
         "priceCurrency": "CZK",
         "priceValidUntil": "2025-12-31",
-        "availability": "https://schema.org/InStock"
-      },
-      {
-        "@type": "Offer",
-        "name": "Internet + TV Max",
-        "description": "Gigabitový internet 1000/1000 Mbps se 160+ TV kanály včetně všech prémiových balíčků",
-        "price": "520",
-        "priceCurrency": "CZK",
-        "priceValidUntil": "2025-12-31",
-        "availability": "https://schema.org/InStock"
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "440",
+          "priceCurrency": "CZK",
+          "unitText": "měsíc",
+          "description": "PROMO cena (standardní 520 Kč/měsíc)"
+        }
       }
     ]
   },
@@ -85,7 +73,7 @@
     "lowPrice": "300",
     "highPrice": "520",
     "priceCurrency": "CZK",
-    "offerCount": "3"
+    "offerCount": "2"
   },
   "brand": {
     "@type": "Brand",

@@ -84,26 +84,8 @@ export default defineConfig(({ mode }) => {
   if (mode === "development") {
     plugins.push(componentTagger());
   }
-  if (mode === "production") {
-    try {
-      const require = createRequire(import.meta.url);
-      // Support both CJS and ESM export shapes
-      const mod: any = require("vite-plugin-prerender");
-      const prerender = mod?.default ?? mod;
-      if (typeof prerender === "function") {
-        plugins.push(
-          prerender({
-            staticDir: path.resolve(__dirname, "dist"),
-            routes: STATIC_ROUTES,
-          })
-        );
-      } else {
-        console.warn("[vite] vite-plugin-prerender loaded but is not a function; skipping.");
-      }
-    } catch (err) {
-      console.warn("[vite] vite-plugin-prerender not available; skipping.", err);
-    }
-  }
+// Prerendering disabled - using Netlify automatic prerendering instead
+  // Static AI pages are served from public/ai-static/ for AI crawlers
 
   return {
     server: {

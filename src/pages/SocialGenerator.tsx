@@ -15,6 +15,7 @@ import { StyleSelector, VisualStyle } from '@/components/social/StyleSelector';
 import { GeneratedContent } from '@/components/social/GeneratedContent';
 import { ContentCalendar } from '@/components/social/ContentCalendar';
 import { SocialPostHistory } from '@/components/social/SocialPostHistory';
+import { CreditUsageInfo } from '@/components/social/CreditUsageInfo';
 import { PostType, Platform } from '@/data/social/templates';
 
 interface PlatformContent {
@@ -329,6 +330,8 @@ export default function SocialGenerator() {
                       Zadaj špecifickú tému pre personalizovaný obsah
                     </p>
                   </div>
+
+                  <CreditUsageInfo platform={platform} />
 
                   <Button
                     onClick={generateContent}

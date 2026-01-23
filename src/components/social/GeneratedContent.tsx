@@ -165,24 +165,29 @@ export function GeneratedContent({
         {/* Image Generation */}
         <div className="space-y-3 pt-2 border-t border-border">
           {!content.imageUrl ? (
-            <Button
-              variant="outline"
-              onClick={onGenerateImage}
-              disabled={isGeneratingImage || !content.imagePrompt}
-              className="w-full"
-            >
-              {isGeneratingImage ? (
-                <>
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Generujem obrázok...
-                </>
-              ) : (
-                <>
-                  <ImageIcon className="h-4 w-4 mr-2" />
-                  Vygenerovať obrázok ({spec.dimensions})
-                </>
-              )}
-            </Button>
+            <div className="space-y-2">
+              <Button
+                variant="outline"
+                onClick={onGenerateImage}
+                disabled={isGeneratingImage || !content.imagePrompt}
+                className="w-full"
+              >
+                {isGeneratingImage ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Generujem obrázok...
+                  </>
+                ) : (
+                  <>
+                    <ImageIcon className="h-4 w-4 mr-2" />
+                    Vygenerovať obrázok ({spec.dimensions})
+                  </>
+                )}
+              </Button>
+              <p className="text-xs text-center text-muted-foreground">
+                ⚡ Generovanie obrázka = +1 AI požiadavka
+              </p>
+            </div>
           ) : (
             <div className="space-y-3">
               <div className="relative rounded-lg overflow-hidden border border-border">

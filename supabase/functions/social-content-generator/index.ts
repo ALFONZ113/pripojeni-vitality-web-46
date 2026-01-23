@@ -23,6 +23,18 @@ Typography: Elegant serif font (Playfair Display style) for headlines, clean san
 Visual effects: Subtle glassmorphism panels, golden fiber optic light trails, soft ambient lighting
 Mood: Premium, modern, trustworthy, sophisticated
 No watermarks, no text artifacts, photorealistic quality
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text, headlines, labels, and any written content visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language for visible text.
+Use proper Czech diacritics: ě, š, č, ř, ž, ý, á, í, é, ů, ú, ď, ť, ň.
+Examples of CORRECT Czech words to use:
+- "Jak" (NOT Slovak "Ako")
+- "Umístěte" (NOT Slovak "Umiestnite")  
+- "Změňte" (NOT Slovak "Zmeňte")
+- "Použijte" (NOT Slovak "Použite")
+- "Zlepšete" (NOT Slovak "Zlepšite")
+- "Tipy" (NOT Slovak "Tipy" - same but with Czech context)
 `;
 
 const postTemplates = {
@@ -42,7 +54,8 @@ Délka: 80-120 slov. Použij více emoji. Zakonči výzvou k akci.`,
 Golden price badge showing "od 300 Kč/měsíc" with glowing effect.
 Fiber optic cables with golden light trails on noir background.
 Modern router device with subtle golden rim lighting.
-16:9 aspect ratio for Facebook, professional marketing style.`,
+16:9 aspect ratio for Facebook, professional marketing style.
+ALL TEXT MUST BE IN CZECH: Use "Gigabit internet", "od 300 Kč/měsíc", "Rychlost", "Zdarma".`,
     hashtags: ['#internet', '#optickýinternet', '#gigabit', '#ostrava', '#poda', '#akce', '#rychlýinternet'],
   },
   blog: {
@@ -59,7 +72,8 @@ Délka: 60-100 slov. Zmíň "odkaz v bio".`,
 Clean editorial layout with elegant text overlay area.
 Subtle golden accent lines and borders on noir background.
 Professional photography style, technology/internet theme.
-Reading/knowledge visual elements, modern typography space.`,
+Reading/knowledge visual elements, modern typography space.
+ALL TEXT MUST BE IN CZECH: Use "Přečtěte si", "Jak na to", "Tipy", "Poradna".`,
     hashtags: ['#blog', '#tipy', '#internet', '#technologie', '#poradna', '#wifi', '#streaming'],
   },
   review: {
@@ -75,7 +89,8 @@ Délka: 60-100 slov.`,
 Large elegant quotation marks in gold color on noir background.
 Space for customer quote text in cream white.
 Five golden stars rating indicator with subtle glow.
-Trust and satisfaction theme, professional design.`,
+Trust and satisfaction theme, professional design.
+ALL TEXT MUST BE IN CZECH: Use "Spokojený zákazník", "Recenze", "Doporučuji".`,
     hashtags: ['#recenze', '#spokojený', '#zákazník', '#internet', '#doporučení', '#reference'],
   },
   tip: {
@@ -93,7 +108,8 @@ Délka: 60-100 slov.`,
 Lightbulb icon with golden glow effect on noir background.
 Clean numbered list or bullet point layout space.
 Tech/internet theme icons (router, WiFi signal, speed meter) in gold.
-Easy to read, informative modern design.`,
+Easy to read, informative modern design.
+ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete", "Umístěte", "Změňte".`,
     hashtags: ['#tip', '#wifi', '#internet', '#technologie', '#poradna', '#tipy', '#jakna'],
   },
   news: {
@@ -109,7 +125,8 @@ Délka: 60-100 slov.`,
 "NOVINKA" text badge with golden accent and glow on noir background.
 Modern, exciting design with dynamic golden light elements.
 Celebratory mood with subtle confetti or spark effects.
-Professional news broadcast aesthetic.`,
+Professional news broadcast aesthetic.
+ALL TEXT MUST BE IN CZECH: Use "Novinka", "Aktualita", "Nové", "Právě spuštěno".`,
     hashtags: ['#novinka', '#news', '#aktualita', '#internet', '#služby', '#update'],
   },
   custom: {
@@ -122,7 +139,8 @@ Krátký a poutavý s emoji. Délka: 60-120 slov.`,
     imagePrompt: `Custom social media graphic.
 Flexible design adaptable to various topics.
 Golden accents on noir background with cream text area.
-Professional, modern aesthetic.`,
+Professional, modern aesthetic.
+ALL TEXT MUST BE IN CZECH: Translate any Slovak text to Czech language.`,
     hashtags: ['#popri', '#internet', '#ostrava'],
   },
 };
@@ -204,7 +222,8 @@ serve(async (req) => {
       // Generate image prompt
       let imagePromptContent = template.imagePrompt;
       if (customTopic) {
-        imagePromptContent += `\nTopic/theme: ${customTopic}`;
+        imagePromptContent += `\nTopic/theme (translate to Czech if in Slovak or other language): ${customTopic}`;
+        imagePromptContent += `\nIMPORTANT: If the topic above is in Slovak or any other language, translate ALL visible text in the image to Czech (čeština). Slovak "Ako" = Czech "Jak", Slovak "Umiestnite" = Czech "Umístěte", etc.`;
       }
       imagePromptContent += `\n${brandingPrompt}`;
       imagePromptContent += `\nDimensions: ${dimensions}`;

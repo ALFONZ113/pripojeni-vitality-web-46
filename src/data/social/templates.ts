@@ -32,6 +32,11 @@ Typography: Elegant serif font (Playfair Display style) for headlines, clean san
 Visual effects: Subtle glassmorphism panels, golden fiber optic light trails, soft ambient lighting
 Mood: Premium, modern, trustworthy, sophisticated
 No watermarks, no text artifacts, photorealistic quality
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language.
+Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
 `.trim(),
 };
 
@@ -76,7 +81,8 @@ Délka: 80-120 slov. Použij více emoji. Zakonči výzvou k akci.`,
 Golden price badge showing "od 300 Kč/měsíc" with glowing effect.
 Fiber optic cables with golden light trails on noir background.
 Modern router device with subtle golden rim lighting.
-Text overlay area for headline "GIGABIT INTERNET + TV".`,
+Text overlay area for headline "GIGABIT INTERNET + TV".
+ALL TEXT MUST BE IN CZECH: Use "Rychlost", "Zdarma", "od 300 Kč/měsíc".`,
     suggestedHashtags: ['#internet', '#optickýinternet', '#gigabit', '#ostrava', '#poda', '#akce', '#slevy', '#rychlýinternet'],
   },
   blog: {
@@ -96,7 +102,8 @@ Délka: 60-100 slov. Zmíň "odkaz v bio".`,
 Clean editorial layout with text overlay area.
 Subtle golden accent lines and borders.
 Professional photography style background related to internet/technology.
-Reading/knowledge theme with elegant typography space.`,
+Reading/knowledge theme with elegant typography space.
+ALL TEXT MUST BE IN CZECH: Use "Přečtěte si", "Jak na to", "Tipy".`,
     suggestedHashtags: ['#blog', '#tipy', '#internet', '#technologie', '#poradna', '#wifi', '#streaming'],
   },
   review: {
@@ -117,7 +124,8 @@ Large quotation marks in gold color.
 Space for customer quote text in cream white.
 Five golden stars rating indicator.
 Professional portrait silhouette or abstract customer representation.
-Trust and satisfaction theme.`,
+Trust and satisfaction theme.
+ALL TEXT MUST BE IN CZECH: Use "Spokojený zákazník", "Recenze", "Doporučuji".`,
     suggestedHashtags: ['#recenze', '#spokojený', '#zákazník', '#internet', '#doporučení', '#reference', '#kvalita'],
   },
   tip: {
@@ -138,7 +146,8 @@ Délka: 60-100 slov.`,
 Lightbulb icon with golden glow effect.
 Clean numbered list or bullet point layout space.
 Tech/internet theme icons (router, WiFi signal, speed meter).
-Easy to read, informative design.`,
+Easy to read, informative design.
+ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete", "Umístěte", "Změňte".`,
     suggestedHashtags: ['#tip', '#wifi', '#internet', '#technologie', '#poradna', '#tipy', '#jakna', '#zlepšení'],
   },
   news: {
@@ -155,10 +164,11 @@ Délka: 100-150 slov.`,
 Krátký, vzrušující tón s emoji 🎉.
 Délka: 60-100 slov.`,
     imagePromptBase: `News announcement social media banner.
-"NOVINKA" or "NEWS" text badge with golden accent.
+"NOVINKA" text badge with golden accent.
 Modern, exciting design with dynamic elements.
 Celebratory mood with subtle confetti or spark effects.
-Professional news broadcast aesthetic.`,
+Professional news broadcast aesthetic.
+ALL TEXT MUST BE IN CZECH: Use "Novinka", "Aktualita", "Nové".`,
     suggestedHashtags: ['#novinka', '#news', '#aktualita', '#internet', '#služby', '#update', '#oznámení'],
   },
   custom: {
@@ -177,7 +187,8 @@ Délka: 60-120 slov.`,
 Flexible design adaptable to various topics.
 Golden accents on noir background.
 Professional, modern aesthetic.
-Space for custom text overlay.`,
+Space for custom text overlay.
+ALL TEXT MUST BE IN CZECH: Translate any Slovak input to Czech.`,
     suggestedHashtags: ['#popri', '#internet', '#ostrava'],
   },
 };

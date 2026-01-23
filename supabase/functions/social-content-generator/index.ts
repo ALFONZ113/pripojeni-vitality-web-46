@@ -201,10 +201,42 @@ ALL TEXT MUST BE IN CZECH: Translate any Slovak text to Czech language.`,
   },
 };
 
-// Generate image using Lovable AI
-async function generateImage(prompt: string, dimensions: string, apiKey: string): Promise<string | null> {
+// Generate unique scene description based on topic using AI
+async function generateSceneDescription(
+  topic: string, 
+  postType: string, 
+  visualStyle: string,
+  apiKey: string
+): Promise<string> {
+  const sceneSystemPrompt = `You are an expert at creating unique image scene descriptions for social media marketing.
+Based on the topic, create a SPECIFIC and UNIQUE scene description.
+
+CRITICAL RULES:
+1. DO NOT describe generic routers with light effects for everything
+2. CREATE UNIQUE scenes based on the actual topic
+3. ALWAYS include PEOPLE in realistic situations when using photo-realistic style
+4. Describe the SPECIFIC scene that matches the topic
+5. Scene must be visually interesting and suitable for social media
+
+Examples of good scene descriptions:
+- Topic "WiFi optimization" → Person adjusting router position, checking signal strength on smartphone
+- Topic "Tariff for seniors" → Elderly couple comfortably using tablet on sofa, video calling grandchildren
+- Topic "How to connect WiFi" → Person unpacking and setting up new router, reading quick start guide
+- Topic "Home office" → Woman working productively on laptop at home desk with coffee
+- Topic "Family internet" → Family of four watching movie together on TV in cozy living room
+- Topic "Gaming internet" → Young person at gaming setup with monitors and headphones
+- Topic "Fast streaming" → Couple enjoying movie night with popcorn, 4K TV visible
+- Topic "Price promotion" → Happy customer smiling while looking at phone showing good deal
+
+For luxury-gold style: Include stylized elegant elements, premium atmosphere
+For photo-realistic style: MUST show real people in authentic everyday situations
+For modern-noir style: Professional, clean, tech-forward atmosphere
+For minimalist style: Clean, simple, lots of whitespace
+
+Output ONLY the scene description in 2-3 sentences, nothing else.`;
+
   try {
-    console.log(`Generating image with dimensions ${dimensions}...`);
+    console.log(`Generating unique scene for topic: ${topic}, style: ${visualStyle}`);
     
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
@@ -213,29 +245,31 @@ async function generateImage(prompt: string, dimensions: string, apiKey: string)
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash-image-preview',
-        messages: [{ role: 'user', content: prompt }],
-        modalities: ['image', 'text'],
+        model: 'google/gemini-3-flash-preview',
+        messages: [
+          { role: 'system', content: sceneSystemPrompt },
+          { role: 'user', content: `Create unique image scene for:
+Topic: ${topic}
+Post type: ${postType}
+Visual style: ${visualStyle}
+
+Output a 2-3 sentence scene description in English that is SPECIFIC to this topic.` }
+        ],
       }),
     });
 
     if (!response.ok) {
-      console.error('Image generation error:', response.status);
-      return null;
+      console.error('Scene generation failed:', response.status);
+      return '';
     }
 
     const data = await response.json();
-    const imageUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
-    
-    if (imageUrl) {
-      console.log('Image generated successfully');
-      return imageUrl;
-    }
-    
-    return null;
+    const scene = data.choices?.[0]?.message?.content?.trim() || '';
+    console.log(`Generated scene: ${scene}`);
+    return scene;
   } catch (error) {
-    console.error('Image generation failed:', error);
-    return null;
+    console.error('Scene generation error:', error);
+    return '';
   }
 }
 
@@ -314,14 +348,42 @@ serve(async (req) => {
       const textData = await textResponse.json();
       const generatedText = textData.choices?.[0]?.message?.content || '';
 
-      // Generate image prompt
-      let imagePromptContent = template.imagePrompt;
-      if (customTopic) {
-        imagePromptContent += `\nTopic/theme (translate to Czech if in Slovak or other language): ${customTopic}`;
-        imagePromptContent += `\nIMPORTANT: If the topic above is in Slovak or any other language, translate ALL visible text in the image to Czech (čeština). Slovak "Ako" = Czech "Jak", Slovak "Umiestnite" = Czech "Umístěte", etc.`;
+      // Generate UNIQUE scene based on topic using AI
+      const topicForScene = customTopic || type;
+      const uniqueScene = await generateSceneDescription(
+        topicForScene, 
+        type, 
+        visualStyle, 
+        lovableApiKey
+      );
+
+      // Build dynamic image prompt with unique scene
+      let imagePromptContent = '';
+
+      if (uniqueScene) {
+        // Use AI-generated unique scene
+        imagePromptContent = `Social media image for ${isInstagram ? 'Instagram (1080x1080, square format)' : 'Facebook (1200x630, 16:9 aspect ratio)'}.
+
+SCENE: ${uniqueScene}
+
+Topic: ${topicForScene}
+`;
+      } else {
+        // Fallback to template if AI scene generation fails
+        console.log('Using fallback template for image prompt');
+        imagePromptContent = template.imagePrompt;
+        if (customTopic) {
+          imagePromptContent += `\nTopic/theme: ${customTopic}`;
+        }
       }
+
+      // Add branding style and language requirements
       imagePromptContent += `\n${brandingPrompt}`;
       imagePromptContent += `\nDimensions: ${dimensions}`;
+      imagePromptContent += `\n\nCRITICAL: Czech text overlay required. ALL visible text must be in Czech (čeština), not Slovak or English.`;
+      if (customTopic) {
+        imagePromptContent += `\nIf topic "${customTopic}" is in Slovak, translate to Czech for any visible text.`;
+      }
 
       result[plat] = {
         text: generatedText.trim(),

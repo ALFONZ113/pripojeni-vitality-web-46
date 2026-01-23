@@ -1,15 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import { Loader2, Sparkles, ArrowLeft, Save } from 'lucide-react';
+import { Loader2, Sparkles, ArrowLeft, Save, ImageIcon } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
 import { PostTypeSelector } from '@/components/social/PostTypeSelector';
 import { PlatformSelector } from '@/components/social/PlatformSelector';
+import { StyleSelector, VisualStyle } from '@/components/social/StyleSelector';
 import { GeneratedContent } from '@/components/social/GeneratedContent';
 import { ContentCalendar } from '@/components/social/ContentCalendar';
 import { SocialPostHistory } from '@/components/social/SocialPostHistory';
@@ -55,7 +57,9 @@ export default function SocialGenerator() {
   // Form state
   const [postType, setPostType] = useState<PostType>('promo');
   const [platform, setPlatform] = useState<Platform>('both');
+  const [visualStyle, setVisualStyle] = useState<VisualStyle>('luxury-gold');
   const [customTopic, setCustomTopic] = useState('');
+  const [generateImages, setGenerateImages] = useState(false);
 
   // Generated content
   const [result, setResult] = useState<GeneratedResult | null>(null);
@@ -167,7 +171,9 @@ export default function SocialGenerator() {
         body: {
           type: postType,
           platform,
+          visualStyle,
           customTopic: customTopic || null,
+          generateImages,
         },
       });
 
@@ -179,10 +185,16 @@ export default function SocialGenerator() {
 
       const newResult: GeneratedResult = {};
       if (data.facebook) {
-        newResult.facebook = data.facebook;
+        newResult.facebook = {
+          ...data.facebook,
+          imageUrl: data.facebook.imageUrl || undefined,
+        };
       }
       if (data.instagram) {
-        newResult.instagram = data.instagram;
+        newResult.instagram = {
+          ...data.instagram,
+          imageUrl: data.instagram.imageUrl || undefined,
+        };
       }
 
       setResult(newResult);
@@ -301,6 +313,7 @@ export default function SocialGenerator() {
                 <CardContent className="space-y-6">
                   <PostTypeSelector value={postType} onChange={setPostType} />
                   <PlatformSelector value={platform} onChange={setPlatform} />
+                  <StyleSelector value={visualStyle} onChange={setVisualStyle} />
 
                   {/* Custom Topic */}
                   <div className="space-y-2">
@@ -315,6 +328,24 @@ export default function SocialGenerator() {
                     <p className="text-xs text-muted-foreground">
                       Zadaj špecifickú tému pre personalizovaný obsah
                     </p>
+                  </div>
+
+                  {/* Generate Images Checkbox */}
+                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-muted/30 border border-border">
+                    <Checkbox
+                      id="generateImages"
+                      checked={generateImages}
+                      onCheckedChange={(checked) => setGenerateImages(checked === true)}
+                    />
+                    <div className="flex-1">
+                      <Label htmlFor="generateImages" className="flex items-center gap-2 cursor-pointer">
+                        <ImageIcon className="h-4 w-4 text-primary" />
+                        Generovať obrázky automaticky
+                      </Label>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        AI vygeneruje obrázky priamo pri tvorbe príspevku
+                      </p>
+                    </div>
                   </div>
 
                   <Button

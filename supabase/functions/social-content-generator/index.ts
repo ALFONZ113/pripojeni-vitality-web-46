@@ -10,11 +10,15 @@ const corsHeaders = {
 const InputSchema = z.object({
   type: z.enum(['promo', 'blog', 'review', 'tip', 'news', 'custom']),
   platform: z.enum(['facebook', 'instagram', 'both']),
+  visualStyle: z.enum(['luxury-gold', 'modern-noir', 'minimalist']).default('luxury-gold'),
   customTopic: z.string().max(500).optional().nullable(),
   blogTitle: z.string().max(200).optional().nullable(),
+  generateImages: z.boolean().default(false),
 });
 
-const brandingPrompt = `
+// Style-specific branding prompts
+const stylePrompts = {
+  'luxury-gold': `
 Style: Luxury noir and gold editorial design with professional photography quality
 Background: Deep black gradient starting from #0A0A0A
 Primary accent color: Rich gold/amber #D4A517 with subtle glow effects
@@ -25,17 +29,43 @@ Mood: Premium, modern, trustworthy, sophisticated
 No watermarks, no text artifacts, photorealistic quality
 
 CRITICAL LANGUAGE REQUIREMENT:
-All text, headlines, labels, and any written content visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language for visible text.
-Use proper Czech diacritics: ě, š, č, ř, ž, ý, á, í, é, ů, ú, ď, ť, ň.
-Examples of CORRECT Czech words to use:
-- "Jak" (NOT Slovak "Ako")
-- "Umístěte" (NOT Slovak "Umiestnite")  
-- "Změňte" (NOT Slovak "Zmeňte")
-- "Použijte" (NOT Slovak "Použite")
-- "Zlepšete" (NOT Slovak "Zlepšite")
-- "Tipy" (NOT Slovak "Tipy" - same but with Czech context)
-`;
+All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language.
+Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
+`,
+  'modern-noir': `
+Style: Modern dark editorial design with professional photography quality
+Background: Deep charcoal black gradient, subtle dark textures
+Primary accent color: Soft white #E8E8E8 with minimal color accents
+Text color: Clean white #FFFFFF
+Typography: Modern sans-serif font (Inter/Helvetica style) for all text
+Visual effects: Subtle shadows, clean lines, minimal glassmorphism, soft ambient lighting
+Mood: Professional, clean, modern, tech-forward, trustworthy
+No watermarks, no text artifacts, photorealistic quality
+Minimal use of gold - prefer grayscale with subtle blue or teal accents
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language.
+Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
+`,
+  'minimalist': `
+Style: Clean minimalist design with generous whitespace
+Background: Pure white or very light gray #FAFAFA with subtle gradients
+Primary accent color: Deep black #0A0A0A for text, subtle dark accents
+Text color: Charcoal black #1A1A1A
+Typography: Clean geometric sans-serif font (Inter style), bold headlines, light body text
+Visual effects: Clean lines, geometric shapes, no heavy shadows, subtle borders
+Mood: Clean, simple, modern, Scandinavian-inspired, professional
+No watermarks, no text artifacts, high contrast, lots of whitespace
+Minimal visual clutter - focus on typography and composition
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language.
+Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
+`,
+};
 
 const postTemplates = {
   promo: {
@@ -51,9 +81,9 @@ Délka: 150-250 slov. Použij 3-5 emoji.`,
 Gigabit internet + TV od 300 Kč/měsíc. Buď stručný a poutavý.
 Délka: 80-120 slov. Použij více emoji. Zakonči výzvou k akci.`,
     imagePrompt: `Promotional social media banner for fiber optic internet service.
-Golden price badge showing "od 300 Kč/měsíc" with glowing effect.
-Fiber optic cables with golden light trails on noir background.
-Modern router device with subtle golden rim lighting.
+Price badge showing "od 300 Kč/měsíc" with accent effect.
+Fiber optic cables with light trails on dark background.
+Modern router device with subtle rim lighting.
 16:9 aspect ratio for Facebook, professional marketing style.
 ALL TEXT MUST BE IN CZECH: Use "Gigabit internet", "od 300 Kč/měsíc", "Rychlost", "Zdarma".`,
     hashtags: ['#internet', '#optickýinternet', '#gigabit', '#ostrava', '#poda', '#akce', '#rychlýinternet'],
@@ -70,7 +100,6 @@ Krátký, poutavý teaser s emoji.
 Délka: 60-100 slov. Zmíň "odkaz v bio".`,
     imagePrompt: `Blog article social media card design.
 Clean editorial layout with elegant text overlay area.
-Subtle golden accent lines and borders on noir background.
 Professional photography style, technology/internet theme.
 Reading/knowledge visual elements, modern typography space.
 ALL TEXT MUST BE IN CZECH: Use "Přečtěte si", "Jak na to", "Tipy", "Poradna".`,
@@ -86,9 +115,9 @@ Délka: 100-150 slov. Zakonči pozvánkou pro nové zákazníky.`,
 Krátký citát s emoji ⭐. Autentický tón.
 Délka: 60-100 slov.`,
     imagePrompt: `Customer testimonial social media graphic.
-Large elegant quotation marks in gold color on noir background.
-Space for customer quote text in cream white.
-Five golden stars rating indicator with subtle glow.
+Large elegant quotation marks accent color on dark background.
+Space for customer quote text.
+Five stars rating indicator with subtle glow.
 Trust and satisfaction theme, professional design.
 ALL TEXT MUST BE IN CZECH: Use "Spokojený zákazník", "Recenze", "Doporučuji".`,
     hashtags: ['#recenze', '#spokojený', '#zákazník', '#internet', '#doporučení', '#reference'],
@@ -105,9 +134,9 @@ Krátký, praktický tip s emoji 💡.
 Formát seznamu nebo krátkých bodů.
 Délka: 60-100 slov.`,
     imagePrompt: `Educational tip social media infographic.
-Lightbulb icon with golden glow effect on noir background.
+Lightbulb icon with glow effect on dark background.
 Clean numbered list or bullet point layout space.
-Tech/internet theme icons (router, WiFi signal, speed meter) in gold.
+Tech/internet theme icons (router, WiFi signal, speed meter).
 Easy to read, informative modern design.
 ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete", "Umístěte", "Změňte".`,
     hashtags: ['#tip', '#wifi', '#internet', '#technologie', '#poradna', '#tipy', '#jakna'],
@@ -122,8 +151,8 @@ Délka: 100-150 slov.`,
 Krátký, vzrušující tón s emoji 🎉.
 Délka: 60-100 slov.`,
     imagePrompt: `News announcement social media banner.
-"NOVINKA" text badge with golden accent and glow on noir background.
-Modern, exciting design with dynamic golden light elements.
+"NOVINKA" text badge with accent and glow on dark background.
+Modern, exciting design with dynamic light elements.
 Celebratory mood with subtle confetti or spark effects.
 Professional news broadcast aesthetic.
 ALL TEXT MUST BE IN CZECH: Use "Novinka", "Aktualita", "Nové", "Právě spuštěno".`,
@@ -138,12 +167,50 @@ Přizpůsob styl a tón tématu. Délka: 100-200 slov.`,
 Krátký a poutavý s emoji. Délka: 60-120 slov.`,
     imagePrompt: `Custom social media graphic.
 Flexible design adaptable to various topics.
-Golden accents on noir background with cream text area.
+Accent colors on dark background with text area.
 Professional, modern aesthetic.
 ALL TEXT MUST BE IN CZECH: Translate any Slovak text to Czech language.`,
     hashtags: ['#popri', '#internet', '#ostrava'],
   },
 };
+
+// Generate image using Lovable AI
+async function generateImage(prompt: string, dimensions: string, apiKey: string): Promise<string | null> {
+  try {
+    console.log(`Generating image with dimensions ${dimensions}...`);
+    
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'google/gemini-2.5-flash-image-preview',
+        messages: [{ role: 'user', content: prompt }],
+        modalities: ['image', 'text'],
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Image generation error:', response.status);
+      return null;
+    }
+
+    const data = await response.json();
+    const imageUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    
+    if (imageUrl) {
+      console.log('Image generated successfully');
+      return imageUrl;
+    }
+    
+    return null;
+  } catch (error) {
+    console.error('Image generation failed:', error);
+    return null;
+  }
+}
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -167,15 +234,16 @@ serve(async (req) => {
       );
     }
 
-    const { type, platform, customTopic, blogTitle } = validationResult.data;
+    const { type, platform, visualStyle, customTopic, blogTitle, generateImages } = validationResult.data;
     const template = postTemplates[type];
+    const brandingPrompt = stylePrompts[visualStyle];
     
     const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
     if (!lovableApiKey) {
       throw new Error('LOVABLE_API_KEY not configured');
     }
 
-    console.log(`Generating social content: type=${type}, platform=${platform}`);
+    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}, generateImages=${generateImages}`);
 
     const result: Record<string, unknown> = {};
     const platforms = platform === 'both' ? ['facebook', 'instagram'] : [platform];
@@ -228,11 +296,18 @@ serve(async (req) => {
       imagePromptContent += `\n${brandingPrompt}`;
       imagePromptContent += `\nDimensions: ${dimensions}`;
 
+      // Generate image if requested
+      let imageUrl: string | null = null;
+      if (generateImages) {
+        imageUrl = await generateImage(imagePromptContent, dimensions, lovableApiKey);
+      }
+
       result[plat] = {
         text: generatedText.trim(),
         hashtags: template.hashtags.join(' '),
         imagePrompt: imagePromptContent.trim(),
         imageDimensions: dimensions,
+        imageUrl,
       };
     }
 

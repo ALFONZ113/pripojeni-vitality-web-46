@@ -162,6 +162,16 @@ const PageMetadata = ({
           <meta name="ai-crawl-priority" content="high" />
           <meta name="ai-index-content" content="full" />
           <meta name="ai-extract-entities" content="true" />
+          
+          {/* Design system description for AI */}
+          <meta name="ai:design-theme" content="Luxury Noir + Gold" />
+          <meta name="ai:design-style" content="Dark luxury, glassmorphism, golden accents, premium feel" />
+          <meta name="ai:color-scheme" content="dark" />
+          <meta name="ai:primary-colors" content="noir (HSL 0 0% 4%), cream (HSL 45 20% 95%), gold (HSL 38 92% 50%)" />
+          <meta name="ai:typography" content="Playfair Display (headings, serif), Inter (body, sans-serif)" />
+          <meta name="ai:visual-effects" content="glassmorphism, gold glow shadows, fade-up animations, gradient text" />
+          <meta name="ai:brand-aesthetic" content="Premium, trustworthy, modern, elegant, professional" />
+          
           {keywords.length > 0 && (
             <meta name="ai:keywords" content={keywords.join(', ')} />
           )}

@@ -36,9 +36,11 @@ interface SocialPost {
   custom_topic: string | null;
   facebook_text: string | null;
   facebook_hashtags: string | null;
+  facebook_image_prompt: string | null;
   facebook_image_url: string | null;
   instagram_text: string | null;
   instagram_hashtags: string | null;
+  instagram_image_prompt: string | null;
   instagram_image_url: string | null;
   is_published: boolean;
   published_at: string | null;

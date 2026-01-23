@@ -1,224 +1,145 @@
 
+# Plán: Oprava jazyka v generovaných obrázkoch
 
-## Hĺbková analýza: Čo vidia AI nástroje z webu popri.cz
+## Problém
 
-Na základe mojej analýzy som identifikoval **závažné rozdiely** medzi tým, čo zobrazuje React aplikácia používateľom, a tým, čo vidia AI nástroje (ChatGPT, Gemini, Perplexity, NotebookLM).
+Používateľ zadá tému v slovenčine (napr. "Ako optimalizovať WiFi signál v byte"), ale obrázok obsahuje slovenský text namiesto českého. Na screenshote vidíme:
+- "Ako optimalizovať signál WiFi v byte" (slovensky)
+- "Umiestnite router správne" (slovensky)
+- "Zmeňte WiFi kanál" (slovensky)
 
----
+Malo by byť:
+- "Jak optimalizovat signál WiFi v bytě" (česky)
+- "Umístěte router správně" (česky)
+- "Změňte WiFi kanál" (česky)
 
-## Súhrn problémov
+## Príčina
 
-### 1. Nesprávny rok (2025 namiesto 2026)
+V edge function `social-content-generator/index.ts` sa customTopic pridáva priamo do image promptu bez prekladu alebo jazykovej inštrukcie:
 
-| Súbor | Problém |
-|-------|---------|
-| `public/ai-static/kontakt.html` | Footer: © 2025 |
-| `public/ai-static/internet-poruba.html` | Footer: © 2025 |
-| `public/ai-static/internet-bohumin.html` | Footer: © 2025 |
-| `public/ai-static/internet-karvina.html` | Footer: © 2025 |
-| `public/ai-static/blog.html` | Footer: © 2025 |
-| `public/ai-static/blog/*.html` (5 článkov) | "Aktualizováno: Leden 2025" + footery |
-| `index.html` | Schema.org `dateModified: "2025-01-14"` |
-| `scripts/generate-ai-pages.js` | Riadok 97: "Aktuální tarify 2025" |
-
-### 2. Nesprávne tarify v index.html (noscript sekcia)
-
-**Čo vidia AI nástroje:**
-```
-- Tarif 300 Mbps: 300 Kč/měsíc
-- Tarif 600 Mbps: 400 Kč/měsíc  
-- Tarif 1000 Mbps: 490 Kč/měsíc
-- Jednorázový instalační poplatek: 300 Kč
+```javascript
+if (customTopic) {
+  imagePromptContent += `\nTopic/theme: ${customTopic}`;
+}
 ```
 
-**Čo je správne (podľa tariffData.ts):**
+Tiež chýba explicitná inštrukcia v `brandingPrompt`, že text v obrázkoch musí byť česky.
+
+---
+
+## Riešenie
+
+### 1. Aktualizovať `brandingPrompt` v edge function
+
+**Súbor:** `supabase/functions/social-content-generator/index.ts`
+
+Pridať explicitnú inštrukciu o českom jazyku:
+
+```javascript
+const brandingPrompt = `
+Style: Luxury noir and gold editorial design with professional photography quality
+Background: Deep black gradient starting from #0A0A0A
+Primary accent color: Rich gold/amber #D4A517 with subtle glow effects
+Text color: Warm cream white #F5F0E8
+Typography: Elegant serif font (Playfair Display style) for headlines, clean sans-serif for body text
+Visual effects: Subtle glassmorphism panels, golden fiber optic light trails, soft ambient lighting
+Mood: Premium, modern, trustworthy, sophisticated
+No watermarks, no text artifacts, photorealistic quality
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text, headlines, labels, and any written content visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language for visible text.
+Use proper Czech diacritics: ě, š, č, ř, ž, ý, á, í, é, ů, ú, ď, ť, ň.
+Examples: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte"), "Použijte" (not "Použite").
+`;
 ```
-- Internet + TV Basic: 300 Kč (PROMO) / 440 Kč (standard)
-- Internet + TV Mých 10: 440 Kč (PROMO) / 520 Kč (standard)
-- Rychlost: 1000/1000 Mbps (GPON) alebo 1000/200 Mbps (60 GHz)
-- Instalace: ZDARMA (0 Kč)
+
+### 2. Aktualizovať spracovanie customTopic
+
+**Súbor:** `supabase/functions/social-content-generator/index.ts`
+
+Zmeniť spôsob, akým sa téma pridáva do image promptu - pridať inštrukciu na preklad:
+
+```javascript
+// Aktuálne (riadky 204-210):
+let imagePromptContent = template.imagePrompt;
+if (customTopic) {
+  imagePromptContent += `\nTopic/theme: ${customTopic}`;
+}
+
+// Nové:
+let imagePromptContent = template.imagePrompt;
+if (customTopic) {
+  imagePromptContent += `\nTopic/theme (translate to Czech if needed): ${customTopic}`;
+  imagePromptContent += `\nIMPORTANT: If the topic above is in Slovak or any other language, translate ALL text in the image to Czech.`;
+}
 ```
 
-### 3. Nesprávny email v index.html
+### 3. Aktualizovať `brandingConfig` v templates.ts
 
-**Aktuálne:** `info@popri.cz`  
-**Správne:** `terc@obchod.poda.cz`
+**Súbor:** `src/data/social/templates.ts`
 
-### 4. Blog článkov so slugmi obsahujúcimi "2025"
+Pre konzistentnosť pridať rovnakú jazykovú inštrukciu aj do `imagePromptBase`:
 
-Tieto slugy sú použité v AI systéme aj na webe:
-- `jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025`
-- `pomaly-internet-8-sposobu-jak-vyresit-msk-2025`
-- `polanka-nad-odrou-60ghz-pripojeni-2025`
-- `nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025`
+```javascript
+export const brandingConfig = {
+  // ... existujúce farby a typografia ...
+  imagePromptBase: `
+Style: Luxury noir and gold editorial design with professional photography quality
+...
+CRITICAL: All visible text in the image MUST be in Czech language (čeština).
+`.trim(),
+};
+```
 
----
+### 4. Aktualizovať jednotlivé template imagePrompts
 
-## Podrobný zoznam súborov na opravu
+**Súbor:** `supabase/functions/social-content-generator/index.ts`
 
-### Kategória A: AI-Static HTML súbory (najvyššia priorita)
+Pridať do každého `imagePrompt` v `postTemplates` poznámku o českom jazyku, napríklad:
 
-Tieto súbory priamo ovplyvňujú, čo vidia AI boty:
-
-| Súbor | Opravy |
-|-------|--------|
-| `public/ai-static/kontakt.html:68` | 2025 → 2026 |
-| `public/ai-static/internet-poruba.html:126` | 2025 → 2026 |
-| `public/ai-static/internet-bohumin.html:66` | 2025 → 2026 |
-| `public/ai-static/internet-karvina.html:68` | 2025 → 2026 |
-| `public/ai-static/blog.html:76` | 2025 → 2026 |
-| `public/ai-static/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025.html` | Kompletná aktualizácia |
-| `public/ai-static/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025.html` | Kompletná aktualizácia |
-| `public/ai-static/blog/gpon-technologie-jak-funguje-moderni-opticky-internet.html` | 2025 → 2026 |
-| `public/ai-static/blog/o2-nej-prevzatie-poda-alternativa-zakaznici.html` | 2025 → 2026 |
-| `public/ai-static/blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi.html` | 2025 → 2026 |
-
-### Kategória B: Hlavný index.html
-
-| Lokácia | Oprava |
-|---------|--------|
-| Riadok 280 | `dateModified: "2025-01-14"` → `"2026-01-23"` |
-| Riadok 305 | `dateModified: "2025-01-14"` → `"2026-01-23"` |
-| Riadky 384-395 | Kompletne prepísať tarify na správne |
-| Riadok 410 | `info@popri.cz` → `terc@obchod.poda.cz` |
-
-### Kategória C: Generátor a Edge Function
-
-| Súbor | Oprava |
-|-------|--------|
-| `scripts/generate-ai-pages.js:97` | "Aktuální tarify 2025" → "Aktuální tarify 2026" |
-| `netlify/edge-functions/ai-bot-detector.ts:36,39` | Blog slugy obsahujú "2025" |
-
-### Kategória D: Blog dáta (nižšia priorita - pre úplnú konzistentnosť)
-
-| Súbor | Problém |
-|-------|---------|
-| `src/data/blog/slow-internet-fix.ts` | Slug a title obsahujú 2025 |
-| `src/data/blog/wifi-signal-zlepsenie.ts` | Slug a title obsahujú 2025 |
-| `src/data/blog/internet-guide.ts` | Title obsahuje 2025 |
-| `src/data/blog/content/ostrava-intro.ts` | Dátum "13. června 2025" |
-| `src/data/blog/content/ostrava-remaining.ts` | Text "rok 2025" |
-| `src/data/blog/content/ostrava-cities.ts` | "Plán na rok 2025" |
-
----
-
-## Plán opráv
-
-### Fáza 1: Kritické opravy AI-visible obsahu
-
-1. **Aktualizovať `index.html`**
-   - Opraviť Schema.org `dateModified` na 2026
-   - Kompletne prepísať noscript tarify na správne hodnoty
-   - Opraviť email na `terc@obchod.poda.cz`
-
-2. **Aktualizovať všetky `public/ai-static/*.html`**
-   - Zmeniť © 2025 → © 2026 v pätkách
-   - Aktualizovať "Aktualizováno: Leden 2025" → "Leden 2026"
-
-3. **Aktualizovať všetky `public/ai-static/blog/*.html`**
-   - Zmeniť roky v titulkoch a textoch
-   - Opraviť footery na © 2026
-
-### Fáza 2: Generátor a infraštruktúra
-
-4. **Opraviť `scripts/generate-ai-pages.js`**
-   - Riadok 97: 2025 → 2026
-
-5. **Synchronizovať `netlify/edge-functions/ai-bot-detector.ts`**
-   - Aktualizovať slugy ak sa budú meniť
-
-### Fáza 3: Blog dáta (voliteľné)
-
-6. **Aktualizovať blog content súbory**
-   - Toto je komplexnejšie, pretože zmena slugov vyžaduje:
-     - 301 redirecty zo starých URL
-     - Aktualizáciu sitemap
-     - Notifikáciu Search Console
-
----
-
-## Čo presne vidia AI nástroje
-
-### ChatGPT / Perplexity / NotebookLM
-
-Keď tieto nástroje navštívia popri.cz:
-
-1. **Netlify Edge Function** (`ai-bot-detector.ts`) detekuje AI User-Agent
-2. Namiesto React aplikácie im servíruje **statické HTML** z `/ai-static/`
-3. Tieto statické stránky obsahujú zastaralé informácie
-
-### Google Extended / Bard
-
-1. Majú prístup k `llms.txt` - tento súbor je **správne aktualizovaný** na 2026
-2. Ale ak crawlujú stránky, dostanú statické HTML so starými dátami
-
-### Prečo je to problém
-
-Keď sa používateľ opýta ChatGPT "Koľko stojí internet od PODA?", AI môže odpovedať:
-- "Tarif 1000 Mbps stojí 490 Kč/měsíc" (NESPRÁVNE)
-- "Instalace stojí 300 Kč" (NESPRÁVNE)
-
-Namiesto správnych informácií:
-- "Internet + TV Basic stojí 300 Kč/měsíc (promo) / 440 Kč (standard)"
-- "Instalace je ZDARMA"
-
----
-
-## Technické detaily opráv
-
-### Noscript sekcia v index.html - správna verzia
-
-Namiesto aktuálnych nesprávnych tarifov:
-
-```html
-<section style="margin-bottom: 2rem;">
-  <h2>Tarify a ceny 2026</h2>
-  <div class="ns-card">
-    <strong>Internet + TV Basic:</strong> 300 Kč/měsíc (PROMO) / 440 Kč (standard) - 85+ TV programů
-  </div>
-  <div class="ns-card">
-    <strong>Internet + TV Mých 10:</strong> 440 Kč/měsíc (PROMO) / 520 Kč (standard) - 100+ TV programů
-  </div>
-  <p class="ns-text">
-    Rychlost: 1000/1000 Mbps (byty) nebo 1000/200 Mbps (domy). 
-    Instalace ZDARMA. Bez závazku.
-  </p>
-</section>
-
-<section>
-  <h2>Kontakt</h2>
-  <p>
-    <strong>Telefon:</strong> +420 730 431 313<br>
-    <strong>Email:</strong> terc@obchod.poda.cz<br>
-    <strong>Web:</strong> www.popri.cz
-  </p>
-</section>
+```javascript
+tip: {
+  // ...
+  imagePrompt: `Educational tip social media infographic.
+Lightbulb icon with golden glow effect on noir background.
+Clean numbered list or bullet point layout space.
+Tech/internet theme icons (router, WiFi signal, speed meter) in gold.
+Easy to read, informative modern design.
+ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete" etc.`,
+  // ...
+}
 ```
 
 ---
 
-## Odporúčanie ohľadom blog slugov s "2025"
+## Súbory na úpravu
 
-Zmena blog slugov je **riziková** z hľadiska SEO, pretože:
-- Stránky sú už zaindexované v Google
-- Používatelia môžu mať uložené odkazy
-
-**Odporúčam:**
-- Ponechať existujúce slugy (sú časťou URL)
-- Aktualizovať len **obsah** článkov na rok 2026
-- Pri budúcich článkoch nepoužívať rok v slugu
+| Súbor | Zmeny |
+|-------|-------|
+| `supabase/functions/social-content-generator/index.ts` | Aktualizovať `brandingPrompt`, spracovanie `customTopic`, a všetky `imagePrompt` šablóny |
+| `src/data/social/templates.ts` | Aktualizovať `brandingConfig.imagePromptBase` a všetky `imagePromptBase` v šablónach |
 
 ---
 
-## Súhrn: Čo bude implementované
+## Výsledok po implementácii
 
-| Priorita | Akcia | Súbory |
-|----------|-------|--------|
-| 1 | Opraviť roky a tarify v index.html | 1 súbor |
-| 2 | Aktualizovať ai-static hlavné stránky | 5 súborov |
-| 3 | Aktualizovať ai-static blog články | 5 súborov |
-| 4 | Opraviť generátor | 1 súbor |
-| 5 | Aktualizovať blog content dáta | 8+ súborov |
+Keď používateľ zadá tému v slovenčine (napr. "Ako optimalizovať WiFi signál v byte"):
 
-**Celkovo: ~20 súborov na úpravu**
+1. Text príspevku bude v češtine ✅ (už funguje)
+2. Image prompt bude obsahovať explicitnú inštrukciu:
+   - "ALL TEXT MUST BE IN CZECH"
+   - Príklady správnych českých slov
+3. Vygenerovaný obrázok bude mať text v češtine:
+   - "Jak optimalizovat signál WiFi v bytě"
+   - "Umístěte router správně"
+   - "Změňte WiFi kanál"
+
+---
+
+## Technické poznámky
+
+- Gemini image model (google/gemini-2.5-flash-image-preview) rešpektuje jazykové inštrukcie v prompte
+- Explicitná zmienka o rozdiele medzi slovenčinou a češtinou pomáha AI rozlíšiť tieto podobné jazyky
+- Pridanie príkladov správnych českých slov zlepšuje presnosť
 

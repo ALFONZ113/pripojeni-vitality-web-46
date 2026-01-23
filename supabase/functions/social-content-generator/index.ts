@@ -13,7 +13,6 @@ const InputSchema = z.object({
   visualStyle: z.enum(['luxury-gold', 'photo-realistic', 'modern-noir', 'minimalist']).default('luxury-gold'),
   customTopic: z.string().max(500).optional().nullable(),
   blogTitle: z.string().max(200).optional().nullable(),
-  generateImages: z.boolean().default(false),
 });
 
 // Style-specific branding prompts
@@ -262,7 +261,7 @@ serve(async (req) => {
       );
     }
 
-    const { type, platform, visualStyle, customTopic, blogTitle, generateImages } = validationResult.data;
+    const { type, platform, visualStyle, customTopic, blogTitle } = validationResult.data;
     const template = postTemplates[type];
     const brandingPrompt = stylePrompts[visualStyle];
     
@@ -271,7 +270,7 @@ serve(async (req) => {
       throw new Error('LOVABLE_API_KEY not configured');
     }
 
-    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}, generateImages=${generateImages}`);
+    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}`);
 
     const result: Record<string, unknown> = {};
     const platforms = platform === 'both' ? ['facebook', 'instagram'] : [platform];
@@ -324,18 +323,11 @@ serve(async (req) => {
       imagePromptContent += `\n${brandingPrompt}`;
       imagePromptContent += `\nDimensions: ${dimensions}`;
 
-      // Generate image if requested
-      let imageUrl: string | null = null;
-      if (generateImages) {
-        imageUrl = await generateImage(imagePromptContent, dimensions, lovableApiKey);
-      }
-
       result[plat] = {
         text: generatedText.trim(),
         hashtags: template.hashtags.join(' '),
         imagePrompt: imagePromptContent.trim(),
         imageDimensions: dimensions,
-        imageUrl,
       };
     }
 

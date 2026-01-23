@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import { Loader2, Sparkles, ArrowLeft } from 'lucide-react';
+import { Loader2, Sparkles, ArrowLeft, Save } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,8 @@ import { PostTypeSelector } from '@/components/social/PostTypeSelector';
 import { PlatformSelector } from '@/components/social/PlatformSelector';
 import { GeneratedContent } from '@/components/social/GeneratedContent';
 import { ContentCalendar } from '@/components/social/ContentCalendar';
-import { PostType, Platform, platformSpecs } from '@/data/social/templates';
+import { SocialPostHistory } from '@/components/social/SocialPostHistory';
+import { PostType, Platform } from '@/data/social/templates';
 
 interface PlatformContent {
   text: string;
@@ -26,11 +27,29 @@ interface GeneratedResult {
   instagram?: PlatformContent;
 }
 
+interface SocialPost {
+  id: string;
+  post_type: string;
+  platform: string;
+  custom_topic: string | null;
+  facebook_text: string | null;
+  facebook_hashtags: string | null;
+  facebook_image_url: string | null;
+  instagram_text: string | null;
+  instagram_hashtags: string | null;
+  instagram_image_url: string | null;
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+}
+
 export default function SocialGenerator() {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [generatingImageFor, setGeneratingImageFor] = useState<string | null>(null);
 
   // Form state
@@ -41,9 +60,40 @@ export default function SocialGenerator() {
   // Generated content
   const [result, setResult] = useState<GeneratedResult | null>(null);
 
+  // History
+  const [posts, setPosts] = useState<SocialPost[]>([]);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+
+  const fetchHistory = useCallback(async () => {
+    if (!userId) return;
+    
+    setIsLoadingHistory(true);
+    try {
+      const { data, error } = await supabase
+        .from('social_posts')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
+        .limit(50);
+
+      if (error) throw error;
+      setPosts(data || []);
+    } catch (error) {
+      console.error('Fetch history error:', error);
+    } finally {
+      setIsLoadingHistory(false);
+    }
+  }, [userId]);
+
   useEffect(() => {
     checkAdminStatus();
   }, []);
+
+  useEffect(() => {
+    if (userId) {
+      fetchHistory();
+    }
+  }, [userId, fetchHistory]);
 
   const checkAdminStatus = async () => {
     try {
@@ -66,12 +116,45 @@ export default function SocialGenerator() {
         return;
       }
 
+      setUserId(user.id);
       setIsAdmin(true);
     } catch (error) {
       console.error('Auth error:', error);
       navigate('/admin-login-poda-2024');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const savePost = async () => {
+    if (!result || !userId) return;
+
+    setIsSaving(true);
+    try {
+      const { error } = await supabase.from('social_posts').insert({
+        user_id: userId,
+        post_type: postType,
+        platform,
+        custom_topic: customTopic || null,
+        facebook_text: result.facebook?.text || null,
+        facebook_hashtags: result.facebook?.hashtags || null,
+        facebook_image_prompt: result.facebook?.imagePrompt || null,
+        facebook_image_url: result.facebook?.imageUrl || null,
+        instagram_text: result.instagram?.text || null,
+        instagram_hashtags: result.instagram?.hashtags || null,
+        instagram_image_prompt: result.instagram?.imagePrompt || null,
+        instagram_image_url: result.instagram?.imageUrl || null,
+      });
+
+      if (error) throw error;
+
+      toast.success('Příspěvek uložen do historie!');
+      fetchHistory();
+    } catch (error) {
+      console.error('Save error:', error);
+      toast.error('Chyba při ukládání');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -257,36 +340,63 @@ export default function SocialGenerator() {
 
               {/* Generated Content */}
               {result && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {result.facebook && (
-                    <GeneratedContent
-                      platform="facebook"
-                      content={result.facebook}
-                      onTextChange={(v) => updateContent('facebook', 'text', v)}
-                      onHashtagsChange={(v) => updateContent('facebook', 'hashtags', v)}
-                      onImagePromptChange={(v) => updateContent('facebook', 'imagePrompt', v)}
-                      onGenerateImage={() => generateImage('facebook')}
-                      isGeneratingImage={generatingImageFor === 'facebook'}
-                    />
-                  )}
-                  {result.instagram && (
-                    <GeneratedContent
-                      platform="instagram"
-                      content={result.instagram}
-                      onTextChange={(v) => updateContent('instagram', 'text', v)}
-                      onHashtagsChange={(v) => updateContent('instagram', 'hashtags', v)}
-                      onImagePromptChange={(v) => updateContent('instagram', 'imagePrompt', v)}
-                      onGenerateImage={() => generateImage('instagram')}
-                      isGeneratingImage={generatingImageFor === 'instagram'}
-                    />
-                  )}
+                <div className="space-y-4">
+                  <div className="flex justify-end">
+                    <Button
+                      onClick={savePost}
+                      disabled={isSaving}
+                      variant="outline"
+                      className="gap-2"
+                    >
+                      {isSaving ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Ukládám...
+                        </>
+                      ) : (
+                        <>
+                          <Save className="h-4 w-4" />
+                          Uložit do historie
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {result.facebook && (
+                      <GeneratedContent
+                        platform="facebook"
+                        content={result.facebook}
+                        onTextChange={(v) => updateContent('facebook', 'text', v)}
+                        onHashtagsChange={(v) => updateContent('facebook', 'hashtags', v)}
+                        onImagePromptChange={(v) => updateContent('facebook', 'imagePrompt', v)}
+                        onGenerateImage={() => generateImage('facebook')}
+                        isGeneratingImage={generatingImageFor === 'facebook'}
+                      />
+                    )}
+                    {result.instagram && (
+                      <GeneratedContent
+                        platform="instagram"
+                        content={result.instagram}
+                        onTextChange={(v) => updateContent('instagram', 'text', v)}
+                        onHashtagsChange={(v) => updateContent('instagram', 'hashtags', v)}
+                        onImagePromptChange={(v) => updateContent('instagram', 'imagePrompt', v)}
+                        onGenerateImage={() => generateImage('instagram')}
+                        isGeneratingImage={generatingImageFor === 'instagram'}
+                      />
+                    )}
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 space-y-6">
               <ContentCalendar onSelectType={setPostType} />
+              <SocialPostHistory 
+                posts={posts} 
+                isLoading={isLoadingHistory} 
+                onRefresh={fetchHistory} 
+              />
             </div>
           </div>
         </div>

@@ -289,6 +289,66 @@ export type Database = {
         }
         Relationships: []
       }
+      social_posts: {
+        Row: {
+          created_at: string
+          custom_topic: string | null
+          facebook_hashtags: string | null
+          facebook_image_prompt: string | null
+          facebook_image_url: string | null
+          facebook_text: string | null
+          id: string
+          instagram_hashtags: string | null
+          instagram_image_prompt: string | null
+          instagram_image_url: string | null
+          instagram_text: string | null
+          is_published: boolean
+          platform: string
+          post_type: string
+          published_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          custom_topic?: string | null
+          facebook_hashtags?: string | null
+          facebook_image_prompt?: string | null
+          facebook_image_url?: string | null
+          facebook_text?: string | null
+          id?: string
+          instagram_hashtags?: string | null
+          instagram_image_prompt?: string | null
+          instagram_image_url?: string | null
+          instagram_text?: string | null
+          is_published?: boolean
+          platform: string
+          post_type: string
+          published_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          custom_topic?: string | null
+          facebook_hashtags?: string | null
+          facebook_image_prompt?: string | null
+          facebook_image_url?: string | null
+          facebook_text?: string | null
+          id?: string
+          instagram_hashtags?: string | null
+          instagram_image_prompt?: string | null
+          instagram_image_url?: string | null
+          instagram_text?: string | null
+          is_published?: boolean
+          platform?: string
+          post_type?: string
+          published_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

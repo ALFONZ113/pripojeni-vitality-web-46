@@ -11,7 +11,8 @@ import {
   Eye,
   CheckCircle,
   Clock,
-  Loader2
+  Loader2,
+  Copy
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -44,9 +45,11 @@ interface SocialPost {
   custom_topic: string | null;
   facebook_text: string | null;
   facebook_hashtags: string | null;
+  facebook_image_prompt: string | null;
   facebook_image_url: string | null;
   instagram_text: string | null;
   instagram_hashtags: string | null;
+  instagram_image_prompt: string | null;
   instagram_image_url: string | null;
   is_published: boolean;
   published_at: string | null;
@@ -310,6 +313,30 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                       className="mt-3 rounded-lg max-w-full"
                     />
                   )}
+                  {selectedPost.facebook_image_prompt && (
+                    <div className="mt-3 p-3 rounded bg-background border border-border">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-medium text-muted-foreground">
+                          🖼️ Image Prompt
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 px-2"
+                          onClick={() => {
+                            navigator.clipboard.writeText(selectedPost.facebook_image_prompt!);
+                            toast.success('Prompt skopírovaný!');
+                          }}
+                        >
+                          <Copy className="h-3 w-3 mr-1" />
+                          Kopírovať
+                        </Button>
+                      </div>
+                      <p className="text-xs font-mono text-muted-foreground whitespace-pre-wrap max-h-32 overflow-y-auto">
+                        {selectedPost.facebook_image_prompt}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -329,6 +356,30 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                       alt="Instagram obrázek"
                       className="mt-3 rounded-lg max-w-full"
                     />
+                  )}
+                  {selectedPost.instagram_image_prompt && (
+                    <div className="mt-3 p-3 rounded bg-background border border-border">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-medium text-muted-foreground">
+                          🖼️ Image Prompt
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 px-2"
+                          onClick={() => {
+                            navigator.clipboard.writeText(selectedPost.instagram_image_prompt!);
+                            toast.success('Prompt skopírovaný!');
+                          }}
+                        >
+                          <Copy className="h-3 w-3 mr-1" />
+                          Kopírovať
+                        </Button>
+                      </div>
+                      <p className="text-xs font-mono text-muted-foreground whitespace-pre-wrap max-h-32 overflow-y-auto">
+                        {selectedPost.instagram_image_prompt}
+                      </p>
+                    </div>
                   )}
                 </div>
               )}

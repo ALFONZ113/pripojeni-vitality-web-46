@@ -94,7 +94,7 @@ const AI_PAGES = {
       <h1>Popri.cz - Autorizovaný partner PODA</h1>
       <p><strong>Gigabitový optický internet + TV zdarma v Moravskoslezském kraji</strong></p>
       
-      <h2>Aktuální tarify 2025 - PROMO AKCE</h2>
+      <h2>Aktuální tarify 2026 - PROMO AKCE</h2>
       ${generateTariffTable('gpon')}
       ${generateTariffTable('60ghz')}
       

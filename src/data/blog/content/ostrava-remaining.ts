@@ -129,13 +129,13 @@ export const reviewsSection = `
 export const futureSection = `
     <h2 class="text-2xl font-bold text-poda-blue mt-8 mb-4">Budoucnost internetu v Moravskoslezském kraji</h2>
     
-    <h3 class="text-xl font-semibold text-gray-800 mb-3">Plány rozvoje PODA 2025-2026</h3>
+    <h3 class="text-xl font-semibold text-gray-800 mb-3">Plány rozvoje PODA 2026-2027</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div class="bg-gray-50 p-4 rounded-lg">
             <p class="font-semibold text-poda-blue mb-2">Investice do regionu:</p>
             <ul class="text-gray-700 space-y-1">
                 <li>200 milionů Kč do rozšíření optické sítě</li>
-                <li>Nové datové centrum v Karviné (2025)</li>
+                <li>Nové datové centrum v Karviné (2026)</li>
                 <li>5G hybrid řešení pro venkovské oblasti</li>
                 <li>Smart city projekty v Havířově a Ostravě</li>
             </ul>
@@ -143,11 +143,11 @@ export const futureSection = `
         <div class="bg-blue-50 p-4 rounded-lg">
             <p class="font-semibold text-poda-blue mb-2">Cíle pokrytí:</p>
             <ul class="text-gray-700 space-y-1">
-                <li>Ostrava: 98% pokrytí do konce 2025</li>
+                <li>Ostrava: 98% pokrytí do konce 2026</li>
                 <li>Karviná: 95% pokrytí včetně všech místních částí</li>
                 <li>Havířov: kompletní pokrytí města</li>
                 <li>Bohumín: rozšíření do průmyslových zón</li>
-                <li>Orlová: 80% pokrytí do roku 2026</li>
+                <li>Orlová: 80% pokrytí do roku 2027</li>
             </ul>
         </div>
     </div>`;
@@ -155,7 +155,7 @@ export const futureSection = `
 export const conclusionSection = `
     <h2 class="text-2xl font-bold text-poda-blue mt-8 mb-4">Závěr: Proč PODA přes Popri.cz v Moravskoslezském kraji</h2>
     
-    <p class="text-gray-700 mb-4">Moravskoslezský kraj má v PODA a Popri.cz ideálního partnera pro internetové služby. Regionální specializace, nejnižší ceny na trhu a nejvyšší kvalita služeb činí z této kombinace jasnou volbu pro rok 2025.</p>
+    <p class="text-gray-700 mb-4">Moravskoslezský kraj má v PODA a Popri.cz ideálního partnera pro internetové služby. Regionální specializace, nejnižší ceny na trhu a nejvyšší kvalita služeb činí z této kombinace jasnou volbu pro rok 2026.</p>
     
     <div class="bg-gradient-to-r from-poda-blue to-blue-700 text-white p-6 rounded-lg mb-6">
         <p class="font-semibold mb-3">Shrnutí výhod pro region:</p>
@@ -180,4 +180,4 @@ export const conclusionSection = `
         </ul>
     </div>
     
-    <p class="text-sm text-gray-500 italic">Článek aktuální k 13. červnu 2025. Ceny a dostupnost se mohou lišit podle konkrétní lokality. Pro nejnovější informace navštivte Popri.cz</p>`;
+    <p class="text-sm text-gray-500 italic">Článek aktuální k 23. lednu 2026. Ceny a dostupnost se mohou lišit podle konkrétní lokality. Pro nejnovější informace navštivte Popri.cz</p>`;

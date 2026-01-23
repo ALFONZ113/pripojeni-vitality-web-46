@@ -139,8 +139,8 @@ Blog s užitečnými články:
 - /blog/o2-nej-prevzatie-poda-alternativa-zakaznici - Průvodce přechodem z O2 Nej
 - /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 - Tipy na zlepšení WiFi
 - /blog/home-office-2025-nastaveni-domaci-kancelare-produktivita - Nastavení home office
-- /blog/polanka-nad-odrou-60ghz-pripojeni-2025 - 60GHz technologie
-- /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 - Regionální průvodce
+- /blog/polanka-nad-odrou-60ghz-pripojeni-2025 - 60GHz technologie pro rodinné domy
+- /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 - Regionální průvodce internetem
 
 ## Klíčová slova
 
@@ -149,4 +149,4 @@ Sekundární: IPTV zdarma, neomezený internet, GPON technologie, internet Karvi
 
 ## Aktualizováno
 
-2026-01-22
+2026-01-23

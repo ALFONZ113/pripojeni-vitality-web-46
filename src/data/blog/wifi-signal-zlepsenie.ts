@@ -3,7 +3,7 @@ import type { BlogPost } from './types';
 export const wifiSignalZlepseniePost: BlogPost = {
   id: 701,
   slug: "jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025",
-  title: 'Jak zlepšit WiFi signál doma: 10 ověřených triků na rok 2025',
+  title: 'Jak zlepšit WiFi signál doma: 10 ověřených triků na rok 2026',
   excerpt: 'Pomalé WiFi, mrtvé zóny v bytě a neustálé odpojování? Známe to všichni. V tomto článku vám ukážeme 10 praktických triků, jak vylepšit WiFi signál bez toho, abyste museli kupovat nový router.',
   content: `
     <div class="space-y-8">

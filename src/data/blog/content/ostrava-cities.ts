@@ -73,7 +73,7 @@ export const havirovSection = `
                     </div>
                     <div class="flex justify-between">
                         <span>Havířov-Šumbark</span>
-                        <span class="text-gray-300">plánované 2025</span>
+                        <span class="text-gray-300">plánované 2026</span>
                     </div>
                 </div>
                 <div class="mt-3">
@@ -127,7 +127,7 @@ export const orlovaSection = `
                 <h4 class="font-semibold mb-2">Stav pokrytí v Orlové</h4>
                 <div class="space-y-1 text-sm">
                     <p>Současné pokrytí: <span class="font-bold">65%</span></p>
-                    <p>Plán na rok 2025: <span class="font-bold">80%</span></p>
+                    <p>Plán na rok 2026: <span class="font-bold">80%</span></p>
                     <p>Investice: 45 mil. Kč</p>
                 </div>
                 <div class="mt-3">

@@ -3,12 +3,12 @@ import type { BlogPost } from './types';
 
 export const internetGuidePost: BlogPost = {
   id: 206,
-  title: "Jak najít nejlepší internet v Ostravě, Karviné a Havířově: Kompletní průvodce pro rok 2025",
+  title: "Jak najít nejlepší internet v Ostravě, Karviné a Havířově: Kompletní průvodce pro rok 2026",
   slug: "nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025",
-  excerpt: "Kompletní průvodce výběrem nejlepšího internetového připojení v Ostravě, Karviné a Havířově pro rok 2025. Porovnání technologií, poskytovatelů a praktické tipy pro domácnosti i firmy.",
+  excerpt: "Kompletní průvodce výběrem nejlepšího internetového připojení v Ostravě, Karviné a Havířově pro rok 2026. Porovnání technologií, poskytovatelů a praktické tipy pro domácnosti i firmy.",
   content: `
     <div class="max-w-4xl mx-auto">
-      <img src="/lovable-uploads/4f53eb71-2c7a-4280-9b37-19e17047d420.png" alt="Jak najít nejlepší internet v Ostravě, Karviné a Havířově - kompletní průvodce 2025" class="w-full h-auto rounded-lg shadow-lg mb-8" />
+      <img src="/lovable-uploads/4f53eb71-2c7a-4280-9b37-19e17047d420.png" alt="Jak najít nejlepší internet v Ostravě, Karviné a Havířově - kompletní průvodce 2026" class="w-full h-auto rounded-lg shadow-lg mb-8" />
       
       <p class="text-lg text-gray-700 mb-6">V dnešní době je kvalitní internetové připojení nezbytností pro každou domácnost i firmu. Pokud hledáte internet v Ostravě, Karviné nebo Havířově, stojíte před nelehkým rozhodnutím mezi různými poskytovateli a technologiemi. V tomto článku si projdeme vše, co potřebujete vědět o výběru správného internetového připojení v těchto městech, včetně podrobného pohledu na služby firmy PODA.</p>
 
@@ -257,18 +257,18 @@ export const internetGuidePost: BlogPost = {
       </div>
     </div>
   `,
-  date: "23. 6. 2025",
+  date: "23. 1. 2026",
   author: "Internetový poradce",
   category: "Tipy a rady",
   image: "/lovable-uploads/4f53eb71-2c7a-4280-9b37-19e17047d420.png",
-  alt: "Jak najít nejlepší internet v Ostravě, Karviné a Havířově - kompletní průvodce 2025",
+  alt: "Jak najít nejlepší internet v Ostravě, Karviné a Havířově - kompletní průvodce 2026",
   tags: [
     "internet Ostrava",
     "internet Karviná", 
     "internet Havířov",
     "PODA internet",
     "optické připojení",
-    "průvodce 2025",
+    "průvodce 2026",
     "rychlý internet",
     "internetový poskytovatel",
     "srovnání internetu",

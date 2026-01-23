@@ -1,7 +1,7 @@
 
 export const introSection = `
     <div class="bg-blue-50 border-l-4 border-poda-blue p-4 rounded-r-lg mb-6">
-        <p class="text-sm text-gray-600"><em>Aktualizováno: 13. června 2025 | Regionální průvodce internetem pro Ostravsko</em></p>
+        <p class="text-sm text-gray-600"><em>Aktualizováno: 23. ledna 2026 | Regionální průvodce internetem pro Ostravsko</em></p>
     </div>
     
     <div class="prose-lg leading-relaxed mb-8">
@@ -12,7 +12,7 @@ export const introSection = `
             <a href="/kontakt" class="text-white no-underline hover:underline">Získať ponuku</a>
         </div>
         
-        <p class="mt-6">Tento komplexní průvodce vám ukáže, proč je právě tato kombinace ideální volbou pro rok 2025.</p>
+        <p class="mt-6">Tento komplexní průvodce vám ukáže, proč je právě tato kombinace ideální volbou pro rok 2026.</p>
     </div>
 
     <div class="bg-gradient-to-br from-poda-blue to-blue-800 text-white p-6 rounded-xl mb-8">

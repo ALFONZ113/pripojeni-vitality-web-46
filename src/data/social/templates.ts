@@ -1,5 +1,6 @@
 export type PostType = 'promo' | 'blog' | 'review' | 'tip' | 'news' | 'custom';
 export type Platform = 'facebook' | 'instagram' | 'both';
+export type VisualStyle = 'luxury-gold' | 'modern-noir' | 'minimalist';
 
 export interface PostTemplate {
   name: string;
@@ -23,7 +24,11 @@ export const brandingConfig = {
     headline: 'Playfair Display',
     body: 'Inter',
   },
-  imagePromptBase: `
+};
+
+// Style-specific image prompt bases
+export const stylePrompts: Record<VisualStyle, string> = {
+  'luxury-gold': `
 Style: Luxury noir and gold editorial design with professional photography quality
 Background: Deep black gradient starting from #0A0A0A
 Primary accent color: Rich gold/amber #D4A517 with subtle glow effects
@@ -32,6 +37,40 @@ Typography: Elegant serif font (Playfair Display style) for headlines, clean san
 Visual effects: Subtle glassmorphism panels, golden fiber optic light trails, soft ambient lighting
 Mood: Premium, modern, trustworthy, sophisticated
 No watermarks, no text artifacts, photorealistic quality
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language.
+Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
+`.trim(),
+
+  'modern-noir': `
+Style: Modern dark editorial design with professional photography quality
+Background: Deep charcoal black gradient, subtle dark textures
+Primary accent color: Soft white #E8E8E8 with minimal color accents
+Text color: Clean white #FFFFFF
+Typography: Modern sans-serif font (Inter/Helvetica style) for all text
+Visual effects: Subtle shadows, clean lines, minimal glassmorphism, soft ambient lighting
+Mood: Professional, clean, modern, tech-forward, trustworthy
+No watermarks, no text artifacts, photorealistic quality
+Minimal use of gold - prefer grayscale with subtle blue or teal accents
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language.
+Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
+`.trim(),
+
+  'minimalist': `
+Style: Clean minimalist design with generous whitespace
+Background: Pure white or very light gray #FAFAFA with subtle gradients
+Primary accent color: Deep black #0A0A0A for text, subtle dark accents
+Text color: Charcoal black #1A1A1A
+Typography: Clean geometric sans-serif font (Inter style), bold headlines, light body text
+Visual effects: Clean lines, geometric shapes, no heavy shadows, subtle borders
+Mood: Clean, simple, modern, Scandinavian-inspired, professional
+No watermarks, no text artifacts, high contrast, lots of whitespace
+Minimal visual clutter - focus on typography and composition
 
 CRITICAL LANGUAGE REQUIREMENT:
 All text, headlines, labels visible in the image MUST be in CZECH language (čeština).

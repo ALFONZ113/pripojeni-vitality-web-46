@@ -39,6 +39,7 @@ const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const AIBlogTest = lazy(() => import('./pages/AIBlogTest'));
 const AIBlogManager = lazy(() => import('./pages/AIBlogManager'));
 const AIAutomation = lazy(() => import('./pages/AIAutomation'));
+const SocialGenerator = lazy(() => import('./pages/SocialGenerator'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -111,6 +112,7 @@ function App() {
                   <Route path="/admin/ai-blog-test" element={<AIBlogTest />} />
                   <Route path="/admin/ai-blog-manager" element={<AIBlogManager />} />
                   <Route path="/admin/ai-automation" element={<AIAutomation />} />
+                  <Route path="/admin/social-generator" element={<SocialGenerator />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

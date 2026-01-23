@@ -2,129 +2,196 @@
 
 # Plán: Oprava image promptov - Dynamické scény podľa témy
 
-## Problém
+## Identifikovaný problém
 
-Image prompt pre každý typ príspevku je **statický** - vždy opisuje router so svetelnými efektmi:
+V súbore `supabase/functions/social-content-generator/index.ts` (riadky 317-324):
 
-```text
-"Fiber optic cables with light trails on dark background.
-Modern router device with subtle rim lighting."
+```typescript
+// PROBLÉM: Statický základ promptu
+let imagePromptContent = template.imagePrompt; // ← VŽDY rovnaký router!
+if (customTopic) {
+  imagePromptContent += `\nTopic/theme: ${customTopic}`; // ← Len pridá tému ako text
+}
+imagePromptContent += `\n${brandingPrompt}`; // ← Pridá štýl
 ```
 
-Aj keď zadáte inú tému (napr. "WiFi optimalizace", "Home office"), prompt stále vytvorí router s efektmi a len zmení text.
+Výsledok: **Vždy rovnaký obrázok** (router s optickými káblami), len s iným textom.
 
 ## Riešenie
 
-Upraviť edge function tak, aby AI **dynamicky generovala scénu podľa témy** namiesto použitia statického opisu.
+Nahradiť statický `template.imagePrompt` **dynamickým generovaním scény pomocou AI** podľa témy.
 
 ## Technické zmeny
 
-### 1. Aktualizovať edge function
+### Súbor: `supabase/functions/social-content-generator/index.ts`
 
-**Súbor:** `supabase/functions/social-content-generator/index.ts`
-
-Pridať **druhú AI požiadavku**, ktorá vygeneruje špecifický image prompt podľa témy:
+**1. Pridať novú funkciu na generovanie unikátnej scény (pred riadok 242):**
 
 ```typescript
-// Najprv AI vygeneruje kreatívny popis scény podľa témy
-const sceneResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
-  // ...
-  body: JSON.stringify({
-    model: 'google/gemini-3-flash-preview',
-    messages: [
-      {
-        role: 'system',
-        content: `You are an expert at creating detailed image prompts for AI image generators.
-Based on the topic, create a UNIQUE scene description.
-DO NOT just use a router with light effects for everything.
+async function generateSceneDescription(
+  topic: string, 
+  postType: string, 
+  visualStyle: string,
+  apiKey: string
+): Promise<string> {
+  const sceneSystemPrompt = `You are an expert at creating unique image scene descriptions.
+Based on the topic, create a SPECIFIC and UNIQUE scene description.
 
-For different topics, create different scenes:
-- WiFi tips → person adjusting router position, checking signal on phone
-- Home office → woman/man working comfortably from home with laptop
-- Family internet → family together on sofa watching TV
-- Gaming/streaming → young person at gaming setup
-- Speed/performance → creative visualization of speed (not just cables)
-- Price promotion → focus on value, happy customer
+CRITICAL RULES:
+1. DO NOT describe generic routers with light effects for everything
+2. CREATE UNIQUE scenes based on the actual topic
+3. ALWAYS include PEOPLE in realistic situations when using photo-realistic style
+4. Describe the SPECIFIC scene that matches the topic
 
-ALWAYS describe PEOPLE and REAL SCENES, not just abstract routers with effects.`
+Examples of good scene descriptions:
+- Topic "WiFi optimization" → Person adjusting router position, checking signal on phone
+- Topic "Tariff for seniors" → Elderly couple comfortably using tablet on sofa
+- Topic "How to connect WiFi" → Person unpacking and setting up new router
+- Topic "Home office" → Woman working productively on laptop at home desk
+- Topic "Family internet" → Family watching movie together on TV
+- Topic "Gaming internet" → Young person at gaming setup with fast connection
+
+For luxury-gold style: Can include stylized elements but still vary the scene
+For photo-realistic style: MUST show real people in authentic situations
+
+Output ONLY the scene description, nothing else.`;
+
+  try {
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
       },
-      {
-        role: 'user',
-        content: `Create unique image scene for topic: ${customTopic || type}
-Style: ${visualStyle}
-Platform: ${plat}`
-      }
-    ],
-  }),
-});
+      body: JSON.stringify({
+        model: 'google/gemini-3-flash-preview',
+        messages: [
+          { role: 'system', content: sceneSystemPrompt },
+          { role: 'user', content: `Create unique image scene for:
+Topic: ${topic}
+Post type: ${postType}
+Visual style: ${visualStyle}
+Output a 2-3 sentence scene description in English.` }
+        ],
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Scene generation failed:', response.status);
+      return ''; // Fallback to default
+    }
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content?.trim() || '';
+  } catch (error) {
+    console.error('Scene generation error:', error);
+    return '';
+  }
+}
 ```
 
-### 2. Nová logika generovania image promptu
+**2. Aktualizovať logiku generovania image promptu (riadky 317-324):**
 
-**Pred (aktuálne):**
+**Pred:**
+```typescript
+let imagePromptContent = template.imagePrompt;
+if (customTopic) {
+  imagePromptContent += `\nTopic/theme: ${customTopic}`;
+  // ...
+}
+```
+
+**Po:**
+```typescript
+// Generate unique scene based on topic
+const topicForScene = customTopic || type;
+const uniqueScene = await generateSceneDescription(
+  topicForScene, 
+  type, 
+  visualStyle, 
+  lovableApiKey
+);
+
+// Build dynamic image prompt
+let imagePromptContent = '';
+
+if (uniqueScene) {
+  // Use AI-generated unique scene
+  imagePromptContent = `Social media image for ${plat === 'instagram' ? 'Instagram (1080x1080, square)' : 'Facebook (1200x630, 16:9 aspect ratio)'}.
+
+SCENE: ${uniqueScene}
+
+Topic: ${topicForScene}
+`;
+} else {
+  // Fallback to template if AI fails
+  imagePromptContent = template.imagePrompt;
+  if (customTopic) {
+    imagePromptContent += `\nTopic/theme: ${customTopic}`;
+  }
+}
+
+// Add branding style and language requirements
+imagePromptContent += `\n${brandingPrompt}`;
+imagePromptContent += `\nDimensions: ${dimensions}`;
+imagePromptContent += `\n\nCzech text overlay required. ALL visible text must be in Czech (čeština).`;
+```
+
+## Príklady výstupu po oprave
+
+### Téma: "Výhodný taríf pro důchodce"
+
+**Teraz (zlé):**
 ```text
-1. Vezmi statický imagePrompt z template (vždy router)
-2. Pridaj tému na koniec
-3. Pridaj branding štýl
-→ Výsledok: Vždy podobný obrázok
+Fiber optic cables with light trails on dark background.
+Modern router device with subtle rim lighting.
+Topic: Výhodný taríf pro důchodce
 ```
 
-**Po (nové):**
+**Po oprave (správne):**
 ```text
-1. AI vygeneruje unikátnu scénu podľa témy
-2. Kombinuj s branding štýlom (luxury-gold / photo-realistic)
-3. Pridaj technické požiadavky (rozmery, jazyk)
-→ Výsledok: Rôzne obrázky pre rôzne témy
+SCENE: Elderly Czech couple in their 70s sitting comfortably on a 
+cozy sofa in warm living room. They are smiling while video calling 
+their grandchildren on a tablet. Soft natural lighting from window, 
+family photos on wall. Relaxed, happy atmosphere showing technology 
+connecting generations.
+
+Topic: Výhodný taríf pro důchodce
+Czech text overlay: "Internet pro seniory od 300 Kč"
 ```
 
-### 3. Príklady vygenerovaných scén
+### Téma: "Ako zapojiť wifi"
 
-**Téma: "WiFi optimalizace"**
+**Teraz (zlé):**
 ```text
-SCENE: Young woman in modern apartment checking WiFi signal strength 
-on her smartphone. She's standing near a window, adjusting the 
-position of a small router on a shelf. Natural daylight, modern 
-minimalist interior with plants.
-Czech headline: "Tipy pro lepší WiFi signál"
+Fiber optic cables with light trails on dark background.
+Modern router device with subtle rim lighting.
+Topic: Ako zapojiť wifi
 ```
 
-**Téma: "Home office internet"**
+**Po oprave (správne):**
 ```text
-SCENE: Professional woman in her 30s working from home office. 
-Comfortable desk setup with laptop, coffee mug. Large window 
-with natural light. She looks relaxed and productive, video 
-call visible on screen.
-Czech headline: "Stabilní internet pro práci z domova"
+SCENE: Young person in casual clothes unpacking a new WiFi router 
+from box. They are reading the quick start guide while connecting 
+cables to the device. Modern apartment setting, router on desk with 
+ethernet cable in hand. Step-by-step setup moment captured.
+
+Topic: Jak připojit WiFi
+Czech text overlay: "Jak připojit WiFi krok za krokem"
 ```
 
-**Téma: "Rodinný internet"**
-```text
-SCENE: Happy Czech family of four sitting together on comfortable 
-sofa. Parents with two children watching movie on large TV. 
-Cozy living room, evening lighting. Everyone smiling, relaxed 
-family atmosphere.
-Czech headline: "Gigabit internet pro celou rodinu"
-```
-
-## Aktualizované súbory
+## Zmeny v súboroch
 
 | Súbor | Zmeny |
 |-------|-------|
-| `supabase/functions/social-content-generator/index.ts` | Pridať AI generovanie scény, aktualizovať system prompt pre dynamické scény |
+| `supabase/functions/social-content-generator/index.ts` | Pridať `generateSceneDescription()` funkciu, aktualizovať logiku generovania image promptu |
 
 ## Výsledok
 
-- **Rôzne témy = Rôzne obrázky** (nie len zmena textu)
-- **Ľudia a reálne scény** namiesto abstraktných routerov
-- **Photo-realistic štýl** bude mať vždy ľudí v reálnych situáciách
-- **Luxury-gold štýl** môže mať aj ľudí, ale s luxusnými efektmi
-
-## Príklad porovnania
-
-| Téma | Teraz (rovnaký obrázok) | Po úprave (unikátny) |
-|------|------------------------|---------------------|
-| WiFi tipy | Router + svetelné efekty | Osoba nastavujúca router |
-| Home office | Router + svetelné efekty | Žena pracujúca z domu |
-| Rodina | Router + svetelné efekty | Rodina na gauči u TV |
-| Gaming | Router + svetelné efekty | Gamer pri počítači |
+- **Každá téma = Unikátna scéna** (nie len zmena textu)
+- **Photo-realistic štýl** bude mať vždy ľudí v správnej situácii
+- **Dôchodcovia** = starší pár na gauči
+- **WiFi pripojenie** = osoba nastavujúca router
+- **Home office** = žena pracujúca z domu
+- **Rodina** = rodina pozerajúca TV
 

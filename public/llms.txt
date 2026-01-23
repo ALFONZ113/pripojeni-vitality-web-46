@@ -142,6 +142,42 @@ Blog s užitečnými články:
 - /blog/polanka-nad-odrou-60ghz-pripojeni-2025 - 60GHz technologie pro rodinné domy
 - /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 - Regionální průvodce internetem
 
+## Vizuální design webu
+
+Web Popri.cz používá luxusní designový systém "Luxury Noir + Gold":
+
+### Barevná paleta
+- **Pozadí:** Téměř černá (HSL 0 0% 4%) - elegantní tmavé pozadí
+- **Text:** Teplá krémová (HSL 45 20% 95%) - vysoký kontrast, příjemná čitelnost
+- **Primární akcent:** Zlatá (HSL 38 92% 50%) - luxusní zlaté akcenty pro CTA tlačítka, nadpisy, ikony
+- **Sekundární:** Tmavě šedá (HSL 0 0% 10%) - karty a sekce
+
+### Typografie
+- **Nadpisy:** Playfair Display (serif) - elegantní, luxusní vzhled pro všechny H1-H6
+- **Tělo textu:** Inter (sans-serif) - moderní, čitelné písmo pro odstavce
+- **Gradient text:** Zlatý gradient na hlavních nadpisech (text-gradient-gold)
+
+### Efekty a styly
+- **Glassmorphism:** Poloprůhledné karty s rozmazaným pozadím (backdrop-blur)
+- **Zlatá záře:** Jemné zlaté stíny kolem CTA prvků (shadow-gold-glow)
+- **Animace:** Fade-up efekty, plynulé přechody, hover glow na tlačítkách
+- **Zaoblené rohy:** Konzistentní border-radius na všech kartách
+
+### Komponenty
+- **Hero sekce:** Celostránková s tmavým overlay, zlaté nadpisy, animované feature karty
+- **Tarifové karty:** Luxusní noir styl s golden border na hover
+- **Navigace:** Fixní navbar s glass efektem, zlaté podtržení aktivních odkazů
+- **Footer:** Tmavý s krémovým textem, zlaté ikony sociálních sítí
+- **Formuláře:** Tmavá pole s golden focus ring
+
+### Responzivita
+- Desktop: Plná šířka hero, 3-4 sloupce grid
+- Tablet: 2 sloupce, kompaktnější spacing
+- Mobil: Jednoslovcový layout, hamburger menu, touch-optimized
+
+### Celkový dojem
+Web působí prémiově, důvěryhodně a moderně. Kombinace tmavého pozadí se zlatými akcenty evokuje luxus a profesionalitu, zatímco serif nadpisy dodávají eleganci a odlišují značku od konkurence.
+
 ## Klíčová slova
 
 Primární: PODA internet, gigabit internet, optický internet Ostrava, internet Moravskoslezský kraj

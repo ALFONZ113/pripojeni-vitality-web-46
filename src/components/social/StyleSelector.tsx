@@ -1,8 +1,8 @@
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Sparkles, Moon, Zap } from 'lucide-react';
+import { Sparkles, Moon, Zap, Camera } from 'lucide-react';
 
-export type VisualStyle = 'luxury-gold' | 'modern-noir' | 'minimalist';
+export type VisualStyle = 'luxury-gold' | 'photo-realistic' | 'modern-noir' | 'minimalist';
 
 interface StyleSelectorProps {
   value: VisualStyle;
@@ -15,6 +15,12 @@ const styles: { value: VisualStyle; label: string; description: string; icon: Re
     label: 'Luxury Gold',
     description: 'Zlaté akcenty, luxusní vzhled',
     icon: <Sparkles className="h-4 w-4 text-primary" />,
+  },
+  {
+    value: 'photo-realistic',
+    label: 'Foto realistický',
+    description: 'Realistické fotky s lidmi, domácí atmosféra',
+    icon: <Camera className="h-4 w-4 text-emerald-500" />,
   },
   {
     value: 'modern-noir',
@@ -37,7 +43,7 @@ export function StyleSelector({ value, onChange }: StyleSelectorProps) {
       <RadioGroup
         value={value}
         onValueChange={(v) => onChange(v as VisualStyle)}
-        className="grid grid-cols-3 gap-3"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3"
       >
         {styles.map((style) => (
           <Label

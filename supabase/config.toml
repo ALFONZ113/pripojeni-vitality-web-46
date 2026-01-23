@@ -24,3 +24,6 @@ verify_jwt = false
 [functions.ai-fetch-gsc-data]
 verify_jwt = false
 
+[functions.social-content-generator]
+verify_jwt = false
+

@@ -1,100 +1,130 @@
 
-# Plán: Úprava Social Media Generátora - Dva typy promptov
 
-## Čo chcete
+# Plán: Oprava image promptov - Dynamické scény podľa témy
 
-1. **Odstrániť** checkbox "Generovať obrázky automaticky"
-2. **Zachovať** 4 vizuálne štýly ako voľbu **typu promptu**:
-   - 🌟 **Luxury Gold** - zlaté akcenty, luxusný dizajn
-   - 📷 **Foto realistický** - fotografie s ľuďmi, domáca atmosféra
-   - 🌙 **Modern Noir** - tmavý, profesionálny
-   - ⚡ **Minimalistický** - čistý, jednoduchý
-3. Výstup = text + hashtags + **kompletný image prompt na skopírovanie** do Google AI Studio
+## Problém
 
-## Zmeny v súboroch
-
-### 1. Odstrániť checkbox pre automatické generovanie
-
-**Súbor:** `src/pages/SocialGenerator.tsx`
+Image prompt pre každý typ príspevku je **statický** - vždy opisuje router so svetelnými efektmi:
 
 ```text
-ODSTRÁNIŤ (riadky 333-349):
-- Celú sekciu s Checkbox "Generovať obrázky automaticky"
-- State premennú generateImages a setGenerateImages
-- Parameter generateImages z volania edge function
+"Fiber optic cables with light trails on dark background.
+Modern router device with subtle rim lighting."
 ```
 
-**Pred:**
-```tsx
-{/* Generate Images Checkbox */}
-<div className="flex items-center space-x-3 p-4 rounded-lg bg-muted/30 border border-border">
-  <Checkbox ... />
-  ...
-</div>
-```
+Aj keď zadáte inú tému (napr. "WiFi optimalizace", "Home office"), prompt stále vytvorí router s efektmi a len zmení text.
 
-**Po:**
-```tsx
-(Táto sekcia bude úplne odstránená)
-```
+## Riešenie
 
-### 2. Aktualizovať edge function
-
-**Súbor:** `supabase/functions/social-content-generator/index.ts`
-
-```text
-ODSTRÁNIŤ:
-- generateImages parameter z InputSchema
-- generateImages logiku (riadky 327-331)
-- Funkciu generateImage (voliteľne, ak sa nebude používať)
-
-PONECHAŤ:
-- Generovanie textu
-- Generovanie kompletného imagePrompt podľa zvoleného štýlu
-- Všetky 4 štýly s ich špecifickými promptami
-```
-
-### 3. Zachovať StyleSelector bez zmien
-
-**Súbor:** `src/components/social/StyleSelector.tsx`
-
-Tento súbor zostáva bez zmien - 4 štýly sú správne definované:
-- `luxury-gold` - Luxury Gold
-- `photo-realistic` - Foto realistický  
-- `modern-noir` - Moderní Noir
-- `minimalist` - Minimalistický
-
----
-
-## Workflow po zmene
-
-1. Vyberiete **typ príspevku** (promo, tip, blog...)
-2. Vyberiete **platformu** (Facebook, Instagram, oboje)
-3. Vyberiete **štýl/typ promptu**:
-   - 🌟 Luxury Gold → image prompt s zlatými akcentmi
-   - 📷 Foto realistický → image prompt s fotkou ľudí, rodiny
-4. Zadáte **tému** (voliteľné)
-5. Kliknete **"Generovať obsah"**
-6. Dostanete:
-   - ✅ Český text príspevku
-   - ✅ Hashtagy
-   - ✅ **Kompletný image prompt** (na skopírovanie do Google AI Studio)
-7. **Žiadne automatické generovanie obrázkov**
-
----
+Upraviť edge function tak, aby AI **dynamicky generovala scénu podľa témy** namiesto použitia statického opisu.
 
 ## Technické zmeny
 
-| Súbor | Akcia |
-|-------|-------|
-| `src/pages/SocialGenerator.tsx` | Odstrániť checkbox a `generateImages` state |
-| `supabase/functions/social-content-generator/index.ts` | Odstrániť `generateImages` parameter a logiku |
+### 1. Aktualizovať edge function
 
----
+**Súbor:** `supabase/functions/social-content-generator/index.ts`
+
+Pridať **druhú AI požiadavku**, ktorá vygeneruje špecifický image prompt podľa témy:
+
+```typescript
+// Najprv AI vygeneruje kreatívny popis scény podľa témy
+const sceneResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+  // ...
+  body: JSON.stringify({
+    model: 'google/gemini-3-flash-preview',
+    messages: [
+      {
+        role: 'system',
+        content: `You are an expert at creating detailed image prompts for AI image generators.
+Based on the topic, create a UNIQUE scene description.
+DO NOT just use a router with light effects for everything.
+
+For different topics, create different scenes:
+- WiFi tips → person adjusting router position, checking signal on phone
+- Home office → woman/man working comfortably from home with laptop
+- Family internet → family together on sofa watching TV
+- Gaming/streaming → young person at gaming setup
+- Speed/performance → creative visualization of speed (not just cables)
+- Price promotion → focus on value, happy customer
+
+ALWAYS describe PEOPLE and REAL SCENES, not just abstract routers with effects.`
+      },
+      {
+        role: 'user',
+        content: `Create unique image scene for topic: ${customTopic || type}
+Style: ${visualStyle}
+Platform: ${plat}`
+      }
+    ],
+  }),
+});
+```
+
+### 2. Nová logika generovania image promptu
+
+**Pred (aktuálne):**
+```text
+1. Vezmi statický imagePrompt z template (vždy router)
+2. Pridaj tému na koniec
+3. Pridaj branding štýl
+→ Výsledok: Vždy podobný obrázok
+```
+
+**Po (nové):**
+```text
+1. AI vygeneruje unikátnu scénu podľa témy
+2. Kombinuj s branding štýlom (luxury-gold / photo-realistic)
+3. Pridaj technické požiadavky (rozmery, jazyk)
+→ Výsledok: Rôzne obrázky pre rôzne témy
+```
+
+### 3. Príklady vygenerovaných scén
+
+**Téma: "WiFi optimalizace"**
+```text
+SCENE: Young woman in modern apartment checking WiFi signal strength 
+on her smartphone. She's standing near a window, adjusting the 
+position of a small router on a shelf. Natural daylight, modern 
+minimalist interior with plants.
+Czech headline: "Tipy pro lepší WiFi signál"
+```
+
+**Téma: "Home office internet"**
+```text
+SCENE: Professional woman in her 30s working from home office. 
+Comfortable desk setup with laptop, coffee mug. Large window 
+with natural light. She looks relaxed and productive, video 
+call visible on screen.
+Czech headline: "Stabilní internet pro práci z domova"
+```
+
+**Téma: "Rodinný internet"**
+```text
+SCENE: Happy Czech family of four sitting together on comfortable 
+sofa. Parents with two children watching movie on large TV. 
+Cozy living room, evening lighting. Everyone smiling, relaxed 
+family atmosphere.
+Czech headline: "Gigabit internet pro celou rodinu"
+```
+
+## Aktualizované súbory
+
+| Súbor | Zmeny |
+|-------|-------|
+| `supabase/functions/social-content-generator/index.ts` | Pridať AI generovanie scény, aktualizovať system prompt pre dynamické scény |
 
 ## Výsledok
 
-- **Jednoduchšie UI** - bez checkboxu pre automatické generovanie
-- **4 typy promptov** na výber podľa štýlu
-- **Kompletný image prompt** vždy v odpovedi (bez generovania obrázkov)
-- Používateľ si prompt **skopíruje** a vloží do Google AI Studio manuálne
+- **Rôzne témy = Rôzne obrázky** (nie len zmena textu)
+- **Ľudia a reálne scény** namiesto abstraktných routerov
+- **Photo-realistic štýl** bude mať vždy ľudí v reálnych situáciách
+- **Luxury-gold štýl** môže mať aj ľudí, ale s luxusnými efektmi
+
+## Príklad porovnania
+
+| Téma | Teraz (rovnaký obrázok) | Po úprave (unikátny) |
+|------|------------------------|---------------------|
+| WiFi tipy | Router + svetelné efekty | Osoba nastavujúca router |
+| Home office | Router + svetelné efekty | Žena pracujúca z domu |
+| Rodina | Router + svetelné efekty | Rodina na gauči u TV |
+| Gaming | Router + svetelné efekty | Gamer pri počítači |
+

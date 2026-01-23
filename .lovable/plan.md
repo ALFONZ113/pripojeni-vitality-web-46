@@ -1,123 +1,147 @@
 
 
-# Plán: Pridanie image promptov do histórie príspevkov
+# Plán: Upozornenie o spotrebe kreditov v Social Generatore
 
-## Problém
+## Prehľad
 
-Image prompty sa **už ukladajú** do databázy (`facebook_image_prompt`, `instagram_image_prompt`), ale:
-1. V komponente `SocialPostHistory.tsx` **chýbajú** tieto polia v interface
-2. V detaile príspevku sa **nezobrazujú** prompty na skopírovanie
+Pridať informatívny panel do Social Generátora, ktorý upozorní používateľa na spotrebu AI kreditov pri generovaní obsahu.
 
-## Riešenie
+## Čo pridáme
 
-### 1. Aktualizovať interface SocialPost
+### 1. Nový komponent: CreditUsageInfo
 
-**Súbor:** `src/components/social/SocialPostHistory.tsx`
+**Súbor:** `src/components/social/CreditUsageInfo.tsx`
 
-Pridať chýbajúce polia do interface:
+Informatívny panel zobrazujúci:
+- Koľko AI požiadaviek spotrebuje každá akcia
+- Tip na šetrenie kreditov
+- Odkaz na správu workspace kreditov
 
-```typescript
-interface SocialPost {
-  id: string;
-  post_type: string;
-  platform: string;
-  custom_topic: string | null;
-  facebook_text: string | null;
-  facebook_hashtags: string | null;
-  facebook_image_prompt: string | null;  // ← PRIDAŤ
-  facebook_image_url: string | null;
-  instagram_text: string | null;
-  instagram_hashtags: string | null;
-  instagram_image_prompt: string | null;  // ← PRIDAŤ
-  instagram_image_url: string | null;
-  is_published: boolean;
-  published_at: string | null;
-  created_at: string;
+```tsx
+import { AlertCircle, Zap, ExternalLink } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
+interface CreditUsageInfoProps {
+  platform: 'facebook' | 'instagram' | 'both';
+}
+
+export function CreditUsageInfo({ platform }: CreditUsageInfoProps) {
+  // Calculate estimated requests based on platform
+  const textRequests = platform === 'both' ? 2 : 1; // Text generation
+  const sceneRequests = platform === 'both' ? 2 : 1; // Scene generation
+  const totalRequests = textRequests + sceneRequests;
+  
+  return (
+    <Alert className="border-amber-500/50 bg-amber-500/10">
+      <Zap className="h-4 w-4 text-amber-500" />
+      <AlertTitle className="text-amber-600 dark:text-amber-400">
+        Spotreba AI kreditov
+      </AlertTitle>
+      <AlertDescription className="text-sm space-y-2">
+        <div className="flex flex-col gap-1 mt-2">
+          <div className="flex justify-between text-muted-foreground">
+            <span>Generovanie textu:</span>
+            <span className="font-medium">{textRequests} požiadaviek</span>
+          </div>
+          <div className="flex justify-between text-muted-foreground">
+            <span>Generovanie scény:</span>
+            <span className="font-medium">{sceneRequests} požiadaviek</span>
+          </div>
+          <div className="flex justify-between font-medium text-foreground border-t pt-1 mt-1">
+            <span>Celkom na príspevok:</span>
+            <span className="text-amber-600">{totalRequests} AI požiadaviek</span>
+          </div>
+        </div>
+        
+        <p className="text-xs text-muted-foreground mt-3">
+          💡 Tip: Generuj len pre jednu platformu naraz, aby si ušetril kredity.
+        </p>
+        
+        <a 
+          href="https://lovable.dev/settings" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2"
+        >
+          <ExternalLink className="h-3 w-3" />
+          Skontrolovať využitie kreditov
+        </a>
+      </AlertDescription>
+    </Alert>
+  );
 }
 ```
 
-### 2. Pridať zobrazenie image promptov v detaile
-
-**Súbor:** `src/components/social/SocialPostHistory.tsx`
-
-Pre Facebook sekciu (za riadok 312):
-```tsx
-{selectedPost.facebook_image_prompt && (
-  <div className="mt-3 p-3 rounded bg-background border border-border">
-    <div className="flex items-center justify-between mb-2">
-      <span className="text-xs font-medium text-muted-foreground">
-        🖼️ Image Prompt
-      </span>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="h-6 px-2"
-        onClick={() => {
-          navigator.clipboard.writeText(selectedPost.facebook_image_prompt!);
-          toast.success('Prompt skopírovaný!');
-        }}
-      >
-        <Copy className="h-3 w-3 mr-1" />
-        Kopírovať
-      </Button>
-    </div>
-    <p className="text-xs font-mono text-muted-foreground whitespace-pre-wrap">
-      {selectedPost.facebook_image_prompt}
-    </p>
-  </div>
-)}
-```
-
-Podobne pre Instagram sekciu (za riadok 332).
-
-### 3. Pridať import ikony Copy
-
-```typescript
-import { Copy } from 'lucide-react';
-```
-
-### 4. Aktualizovať interface v SocialGenerator.tsx
+### 2. Pridať komponent do SocialGenerator.tsx
 
 **Súbor:** `src/pages/SocialGenerator.tsx`
 
-Pridať rovnaké polia do interface:
-```typescript
-interface SocialPost {
-  // ... existujúce polia
-  facebook_image_prompt: string | null;  // ← PRIDAŤ
-  instagram_image_prompt: string | null;  // ← PRIDAŤ
-}
+Pridať import a komponent pred tlačidlo "Generovať obsah":
+
+```tsx
+// Import
+import { CreditUsageInfo } from '@/components/social/CreditUsageInfo';
+
+// V CardContent, pred Button
+<CreditUsageInfo platform={platform} />
+
+<Button
+  onClick={generateContent}
+  disabled={isGenerating}
+  className="w-full"
+  size="lg"
+>
+  ...
+</Button>
 ```
 
----
+### 3. Pridať upozornenie o generovaní obrázkov
 
-## Výsledok
+Ak používateľ generuje obrázok, pridať info že to tiež spotrebuje kredity:
 
-Po otvorení detailu príspevku v histórii uvidíte:
+```tsx
+// V GeneratedContent komponente alebo priamo v SocialGenerator
+<p className="text-xs text-muted-foreground">
+  ⚡ Generovanie obrázka = +1 AI požiadavka
+</p>
+```
+
+## Vizuálny náhľad
 
 ```text
-┌─────────────────────────────────────────┐
-│ 📘 Facebook text                        │
-│ [text príspevku...]                     │
-│ #hashtagy                               │
-│                                         │
-│ ┌─────────────────────────────────────┐ │
-│ │ 🖼️ Image Prompt      [Kopírovať]  │ │
-│ │ Social media image for Facebook... │ │
-│ │ SCENE: Elderly couple sitting...   │ │
-│ │ Topic: Tarif pro důchodce          │ │
-│ └─────────────────────────────────────┘ │
-└─────────────────────────────────────────┘
+┌─────────────────────────────────────────────────┐
+│ ⚡ Spotreba AI kreditov                          │
+├─────────────────────────────────────────────────┤
+│ Generovanie textu:        2 požiadaviek         │
+│ Generovanie scény:        2 požiadaviek         │
+│ ───────────────────────────────────────────     │
+│ Celkom na príspevok:      4 AI požiadaviek      │
+│                                                 │
+│ 💡 Tip: Generuj len pre jednu platformu         │
+│    naraz, aby si ušetril kredity.               │
+│                                                 │
+│ 🔗 Skontrolovať využitie kreditov →             │
+└─────────────────────────────────────────────────┘
 ```
 
-- Prompt na obrázok bude zobrazený v čitateľnom formáte
-- Tlačidlo **Kopírovať** pre rýchle skopírovanie do schránky
-- Rovnako pre Facebook aj Instagram sekciu
-
-## Technické zmeny
+## Zmeny v súboroch
 
 | Súbor | Zmeny |
 |-------|-------|
-| `src/components/social/SocialPostHistory.tsx` | Rozšíriť interface, pridať zobrazenie promptov s kopírovaním |
-| `src/pages/SocialGenerator.tsx` | Rozšíriť interface o image_prompt polia |
+| `src/components/social/CreditUsageInfo.tsx` | **Nový súbor** - informatívny panel o spotrebe kreditov |
+| `src/pages/SocialGenerator.tsx` | Import a zobrazenie CreditUsageInfo pred tlačidlom generovania |
+
+## Dynamické počítanie
+
+Panel automaticky počíta požiadavky podľa zvolenej platformy:
+- **Obe platformy**: 4 AI požiadavky (2× text + 2× scéna)
+- **Jedna platforma**: 2 AI požiadavky (1× text + 1× scéna)
+- **+ Generovanie obrázka**: +1 požiadavka za každý obrázok
+
+## Výhody
+
+- Používateľ vie, koľko kreditov spotrebuje pred generovaním
+- Jasný tip na šetrenie kreditov
+- Priamy odkaz na kontrolu využitia v Lovable dashboard
+- Dynamické zobrazenie podľa zvolenej platformy
 

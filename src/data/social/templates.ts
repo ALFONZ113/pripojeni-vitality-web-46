@@ -1,6 +1,6 @@
 export type PostType = 'promo' | 'blog' | 'review' | 'tip' | 'news' | 'custom';
 export type Platform = 'facebook' | 'instagram' | 'both';
-export type VisualStyle = 'luxury-gold' | 'modern-noir' | 'minimalist';
+export type VisualStyle = 'luxury-gold' | 'photo-realistic' | 'modern-noir' | 'minimalist';
 
 export interface PostTemplate {
   name: string;
@@ -41,6 +41,35 @@ No watermarks, no text artifacts, photorealistic quality
 CRITICAL LANGUAGE REQUIREMENT:
 All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
 Do NOT use Slovak, English or any other language.
+Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
+`.trim(),
+
+  'photo-realistic': `
+Style: Realistic lifestyle photography with natural lighting and authentic scenes
+Background: Real interior environments - cozy living rooms, modern home offices, family spaces
+
+Photo subjects - include ONE of these realistic scenes based on post type:
+- Happy Czech family watching TV together on comfortable sofa (for promo posts)
+- Woman working from home on laptop, relaxed and productive in home office (for tips)
+- Young professional streaming or gaming with fast internet connection (for custom)
+- Parents with children enjoying online content together (for news)
+- Modern person using tablet/smartphone with stable connection (for blog)
+
+Lighting: Warm natural light from windows, soft indoor ambient lighting
+Colors: Warm neutrals (beige, cream, soft brown), natural wood tones, soft whites
+Minimal gold accents - only if absolutely necessary, prefer natural warm colors
+NO heavy gold effects - keep colors natural and authentic
+Mood: Authentic, relatable, comfortable, trustworthy, aspirational but realistic
+Photography style: Editorial lifestyle magazine quality, candid feel, Czech family aesthetic
+
+Text overlay: Small, elegant Czech headline in corner or bottom third of image
+Typography: Clean sans-serif (Inter style), white or cream text with subtle shadow for readability
+No heavy graphics, no over-designed elements, focus on the authentic photo
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text visible in the image MUST be in CZECH language (čeština).
+Do NOT use Slovak, English or any other language.
+Examples: "Rychlý internet pro celou rodinu", "Práce z domova bez výpadků", "Streamujte v nejvyší kvalitě"
 Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
 `.trim(),
 

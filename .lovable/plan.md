@@ -1,145 +1,164 @@
 
-# Plán: Oprava jazyka v generovaných obrázkoch
 
-## Problém
+# Plán: Pridanie nového štýlu "Foto realistický" do Social Media Generátora
 
-Používateľ zadá tému v slovenčine (napr. "Ako optimalizovať WiFi signál v byte"), ale obrázok obsahuje slovenský text namiesto českého. Na screenshote vidíme:
-- "Ako optimalizovať signál WiFi v byte" (slovensky)
-- "Umiestnite router správne" (slovensky)
-- "Zmeňte WiFi kanál" (slovensky)
+## Cieľ
 
-Malo by byť:
-- "Jak optimalizovat signál WiFi v bytě" (česky)
-- "Umístěte router správně" (česky)
-- "Změňte WiFi kanál" (česky)
+Pridať nový vizuálny štýl **"Foto realistický"** vedľa existujúcich štýlov, ktorý:
+- Generuje **kompletný image prompt s popisom fotografie** (ľudia, domáca atmosféra)
+- Používa **menej zlatej farby** - prirodzené, teplé tóny
+- Zachováva **český text** v obrázkoch
+- Prompt si potom skopírujete do Google AI Studio
 
-## Príčina
+## Zmeny v súboroch
 
-V edge function `social-content-generator/index.ts` sa customTopic pridáva priamo do image promptu bez prekladu alebo jazykovej inštrukcie:
+### 1. Aktualizovať StyleSelector komponent
 
-```javascript
-if (customTopic) {
-  imagePromptContent += `\nTopic/theme: ${customTopic}`;
-}
+**Súbor:** `src/components/social/StyleSelector.tsx`
+
+```text
+Aktuálne štýly: luxury-gold, modern-noir, minimalist
+Nový štýl: photo-realistic
+
+Pridať:
+- Import ikony Camera z lucide-react
+- Nový typ: 'photo-realistic'
+- Nová karta v UI:
+  - Label: "Foto realistický"
+  - Popis: "Realistické fotky s lidmi, domácí atmosféra"
+  - Ikona: Camera
 ```
 
-Tiež chýba explicitná inštrukcia v `brandingPrompt`, že text v obrázkoch musí byť česky.
-
----
-
-## Riešenie
-
-### 1. Aktualizovať `brandingPrompt` v edge function
-
-**Súbor:** `supabase/functions/social-content-generator/index.ts`
-
-Pridať explicitnú inštrukciu o českom jazyku:
-
-```javascript
-const brandingPrompt = `
-Style: Luxury noir and gold editorial design with professional photography quality
-Background: Deep black gradient starting from #0A0A0A
-Primary accent color: Rich gold/amber #D4A517 with subtle glow effects
-Text color: Warm cream white #F5F0E8
-Typography: Elegant serif font (Playfair Display style) for headlines, clean sans-serif for body text
-Visual effects: Subtle glassmorphism panels, golden fiber optic light trails, soft ambient lighting
-Mood: Premium, modern, trustworthy, sophisticated
-No watermarks, no text artifacts, photorealistic quality
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text, headlines, labels, and any written content visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language for visible text.
-Use proper Czech diacritics: ě, š, č, ř, ž, ý, á, í, é, ů, ú, ď, ť, ň.
-Examples: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte"), "Použijte" (not "Použite").
-`;
-```
-
-### 2. Aktualizovať spracovanie customTopic
-
-**Súbor:** `supabase/functions/social-content-generator/index.ts`
-
-Zmeniť spôsob, akým sa téma pridáva do image promptu - pridať inštrukciu na preklad:
-
-```javascript
-// Aktuálne (riadky 204-210):
-let imagePromptContent = template.imagePrompt;
-if (customTopic) {
-  imagePromptContent += `\nTopic/theme: ${customTopic}`;
-}
-
-// Nové:
-let imagePromptContent = template.imagePrompt;
-if (customTopic) {
-  imagePromptContent += `\nTopic/theme (translate to Czech if needed): ${customTopic}`;
-  imagePromptContent += `\nIMPORTANT: If the topic above is in Slovak or any other language, translate ALL text in the image to Czech.`;
-}
-```
-
-### 3. Aktualizovať `brandingConfig` v templates.ts
+### 2. Aktualizovať typy a štýlové prompty
 
 **Súbor:** `src/data/social/templates.ts`
 
-Pre konzistentnosť pridať rovnakú jazykovú inštrukciu aj do `imagePromptBase`:
-
-```javascript
-export const brandingConfig = {
-  // ... existujúce farby a typografia ...
-  imagePromptBase: `
-Style: Luxury noir and gold editorial design with professional photography quality
-...
-CRITICAL: All visible text in the image MUST be in Czech language (čeština).
-`.trim(),
-};
+```text
+Zmeny:
+- Rozšíriť VisualStyle o 'photo-realistic'
+- Pridať nový stylePrompts['photo-realistic']:
+  
+  - Realistické fotografie s ľuďmi
+  - Scény: rodina u TV, žena v home office, streamer pri PC
+  - Prirodzené osvetlenie, teplé farby
+  - Minimálna zlatá - len jemné akcenty ak vôbec
+  - Český text overlay
 ```
 
-### 4. Aktualizovať jednotlivé template imagePrompts
+### 3. Aktualizovať edge function
 
 **Súbor:** `supabase/functions/social-content-generator/index.ts`
 
-Pridať do každého `imagePrompt` v `postTemplates` poznámku o českom jazyku, napríklad:
+```text
+Zmeny:
+- Pridať 'photo-realistic' do InputSchema validácie
+- Pridať nový stylePrompts['photo-realistic']
+- Pre tento štýl generovať image prompt s konkrétnou scénou:
 
-```javascript
-tip: {
-  // ...
-  imagePrompt: `Educational tip social media infographic.
-Lightbulb icon with golden glow effect on noir background.
-Clean numbered list or bullet point layout space.
-Tech/internet theme icons (router, WiFi signal, speed meter) in gold.
-Easy to read, informative modern design.
-ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete" etc.`,
-  // ...
-}
+  Príklad výstupu pre typ "promo":
+  "Realistic lifestyle photograph of happy Czech family
+   watching TV in cozy living room. Natural warm lighting,
+   comfortable sofa, children excited. Subtle WiFi router
+   visible. Czech text overlay: 'Gigabit internet pro celou
+   rodinu'. Magazine editorial photography quality..."
+
+  Príklad pre typ "tip":
+  "Young woman working from home on laptop, comfortable
+   home office setup, natural daylight from window.
+   Relaxed productive mood. Czech text: 'Stabilní WiFi
+   pro práci z domova'. Natural photography style..."
 ```
 
 ---
 
-## Súbory na úpravu
+## Nový "photo-realistic" prompt
+
+```text
+Style: Realistic lifestyle photography with natural lighting and authentic scenes
+Background: Real interior environments - cozy living rooms, modern home offices, family spaces
+
+Photo subjects - include ONE of these realistic scenes based on post type:
+- Happy family watching TV together on comfortable sofa (for promo)
+- Woman working from home on laptop, relaxed and productive (for tips)
+- Young professional streaming or gaming with fast internet (for custom)
+- Parents with children enjoying online content together (for news)
+- Modern person using tablet/smartphone with stable connection (for blog)
+
+Lighting: Warm natural light from windows, soft indoor ambient lighting
+Colors: Warm neutrals (beige, cream, soft brown), natural wood tones, soft whites
+Minimal gold accents - only if absolutely necessary, prefer natural warm colors
+Mood: Authentic, relatable, comfortable, trustworthy, aspirational but realistic
+Photography style: Editorial lifestyle magazine quality, candid feel, Czech family aesthetic
+
+Text overlay: Small, elegant Czech headline in corner or bottom third
+Typography: Clean sans-serif (Inter style), subtle shadow for readability
+No heavy graphics, no over-designed elements, focus on the authentic photo
+
+CRITICAL LANGUAGE REQUIREMENT:
+All text visible in the image MUST be in CZECH language (čeština).
+Examples: "Rychlý internet pro celou rodinu", "Práce z domova bez výpadků"
+```
+
+---
+
+## Príklad vygenerovaného image promptu
+
+Keď zadáte tému "WiFi optimalizácia" so štýlom "Foto realistický":
+
+```text
+Create a realistic lifestyle photograph for Facebook social media post.
+
+SCENE: Young woman sitting comfortably on modern sofa with laptop,
+checking wifi signal strength on smartphone. Bright, airy living room
+with large windows, natural daylight streaming in. Modern WiFi router
+with subtle LED lights visible on shelf nearby. Relaxed, productive
+home atmosphere. Plants and cozy decor.
+
+Style: Editorial lifestyle photography, warm natural tones, soft shadows
+Lighting: Natural window light mixed with warm interior lamps
+Colors: Soft whites, warm wood tones, beige and cream, touches of green plants
+NO gold accents - keep colors natural and warm
+
+Text overlay placement: Bottom third of image
+Czech headline text: "Stabilní WiFi v každém koutě bytu"
+Czech subtext: "Tipy pro lepší signál"
+Typography: Clean Inter font, white text with subtle shadow
+
+Dimensions: 1200x630 (Facebook 16:9)
+No watermarks, photorealistic quality, magazine editorial style
+
+IMPORTANT: All visible text MUST be in Czech language (čeština).
+Slovak "Ako" = Czech "Jak", Slovak "signál" = Czech "signál"
+```
+
+---
+
+## Výsledný workflow
+
+1. Vyberiete typ príspevku (promo, tip, blog...)
+2. Vyberiete platformu (Facebook, Instagram)
+3. **Vyberiete štýl:**
+   - 🌟 Luxury Gold (zlaté akcenty, luxusný)
+   - 📷 **Foto realistický** ← NOVÝ (fotky s ľuďmi, prirodzené)
+   - 🌙 Modern Noir (tmavý, profesionálny)
+   - ⚡ Minimalistický (čistý, jednoduchý)
+4. Zadáte tému
+5. Kliknete "Generovať obsah"
+6. Dostanete:
+   - Český text príspevku
+   - Hashtagy
+   - **Kompletný image prompt** s popisom fotky a českým textom
+7. Skopírujete prompt do Google AI Studio
+
+---
+
+## Technické detaily
 
 | Súbor | Zmeny |
 |-------|-------|
-| `supabase/functions/social-content-generator/index.ts` | Aktualizovať `brandingPrompt`, spracovanie `customTopic`, a všetky `imagePrompt` šablóny |
-| `src/data/social/templates.ts` | Aktualizovať `brandingConfig.imagePromptBase` a všetky `imagePromptBase` v šablónach |
+| `src/components/social/StyleSelector.tsx` | Pridať 'photo-realistic' s Camera ikonou |
+| `src/data/social/templates.ts` | Rozšíriť VisualStyle, pridať stylePrompts |
+| `supabase/functions/social-content-generator/index.ts` | Pridať do validácie, nový stylePrompt, logika pre scény podľa typu |
 
----
-
-## Výsledok po implementácii
-
-Keď používateľ zadá tému v slovenčine (napr. "Ako optimalizovať WiFi signál v byte"):
-
-1. Text príspevku bude v češtine ✅ (už funguje)
-2. Image prompt bude obsahovať explicitnú inštrukciu:
-   - "ALL TEXT MUST BE IN CZECH"
-   - Príklady správnych českých slov
-3. Vygenerovaný obrázok bude mať text v češtine:
-   - "Jak optimalizovat signál WiFi v bytě"
-   - "Umístěte router správně"
-   - "Změňte WiFi kanál"
-
----
-
-## Technické poznámky
-
-- Gemini image model (google/gemini-2.5-flash-image-preview) rešpektuje jazykové inštrukcie v prompte
-- Explicitná zmienka o rozdiele medzi slovenčinou a češtinou pomáha AI rozlíšiť tieto podobné jazyky
-- Pridanie príkladov správnych českých slov zlepšuje presnosť
+Všetky ostatné funkcie zostanú nezmenené - automatické generovanie obrázkov, ukladanie do histórie, atď.
 

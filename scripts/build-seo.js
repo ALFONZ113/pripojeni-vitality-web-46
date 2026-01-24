@@ -480,7 +480,7 @@ async function buildSEO() {
       "@type": "Organization",
       name: "Popri.cz - PODA Internet",
       url: "https://www.popri.cz",
-      logo: "https://www.popri.cz/poda-logo.svg",
+      logo: "https://www.popri.cz/popri-logo.png",
       description: "Poskytovatel PODA internetových služeb s gigabitovým připojením a TV zdarma",
       contactPoint: {
         "@type": "ContactPoint",

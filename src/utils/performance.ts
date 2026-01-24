@@ -10,8 +10,8 @@ export const preloadCriticalResources = () => {
   if (typeof document === 'undefined') return;
 
   const criticalResources = [
-    { href: '/poda-logo.svg', as: 'image' },
-    { href: '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png', as: 'image' }
+    { href: '/popri-logo.png', as: 'image' },
+    { href: '/popri-favicon.png', as: 'image' }
   ];
 
   criticalResources.forEach(resource => {

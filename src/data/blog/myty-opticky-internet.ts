@@ -1,5 +1,4 @@
 import { BlogPost } from './types';
-import mytyOptickyInternetHero from '../../assets/myty-opticky-internet-hero.jpg';
 
 export const mytyOptickyInternetPost: BlogPost = {
   id: 30,
@@ -218,7 +217,7 @@ export const mytyOptickyInternetPost: BlogPost = {
       </section>
     </article>
   `,
-  image: mytyOptickyInternetHero,
+  image: '/blog-images/myty-opticky-internet.jpg',
   alt: "Optické vlákno s otazníky symbolizující mýty o optickém internetu",
   date: "21. 01. 2026",
   author: "PODA Tým",

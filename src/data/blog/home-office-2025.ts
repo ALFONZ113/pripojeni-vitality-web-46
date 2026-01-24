@@ -1,5 +1,4 @@
 import { BlogPost } from './types';
-import homeOfficeImage from '@/assets/home-office-2025.jpg';
 
 export const homeOffice2025Post: BlogPost = {
   id: 301,
@@ -185,7 +184,7 @@ export const homeOffice2025Post: BlogPost = {
   date: "14. 12. 2025",
   author: "Tým PODA",
   category: "Tipy a rady",
-  image: homeOfficeImage,
+  image: '/blog-images/home-office-2025.jpg',
   alt: "Profesionální home office pracoviště s moderním vybavením a rychlým internetem",
   tags: ["Home office", "Práce z domova", "Produktivita", "Internet", "Ergonomie", "Video hovory", "2025"]
 };

@@ -1,5 +1,4 @@
 import { BlogPost } from './types';
-import podaInternet2026Hero from '@/assets/poda-internet-2026-hero.webp';
 
 export const podaInternet2026Post: BlogPost = {
   id: 401,
@@ -799,7 +798,7 @@ export const podaInternet2026Post: BlogPost = {
   date: "2. 1. 2026",
   author: "Tým PODA",
   category: "Technologie",
-  image: podaInternet2026Hero,
+  image: '/blog-images/poda-internet-2026-hero.webp',
   alt: "PODA internet 2026 - moderní česká rodina využívající gigabitové optické připojení pro streaming, gaming a home office",
   tags: [
     "PODA",

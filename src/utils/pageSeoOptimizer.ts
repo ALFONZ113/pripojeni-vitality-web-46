@@ -21,7 +21,7 @@ export const OPTIMIZED_PAGE_SEO: Record<string, PageSEOData> = {
     keywords: ['PODA internet', 'optické připojení', 'rychlý internet', 'Moravskoslezský kraj', 'gigabit internet', 'TV zdarma', 'popri.cz'],
     canonical: 'https://www.popri.cz/',
     robots: 'index, follow',
-    ogImage: '/poda-favicon-192x192.png'
+    ogImage: '/popri-logo.png'
   },
   
   '/internet-ostrava': {

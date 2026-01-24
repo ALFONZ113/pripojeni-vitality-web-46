@@ -4,7 +4,7 @@
   "@type": "Organization",
   "name": "Popri.cz - PODA Internet",
   "url": "https://www.popri.cz",
-  "logo": "https://www.popri.cz/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png",
+  "logo": "https://www.popri.cz/popri-logo.png",
   "description": "Poskytovatel rychlého optického internetu PODA s garantovanou rychlostí až 1000 Mbps a TV zdarma",
   "contactPoint": {
     "@type": "ContactPoint",
@@ -18,7 +18,7 @@
     "addressCountry": "CZ"
   },
   "sameAs": [
-    "https://www.facebook.com/podacz/",
+    "https://www.facebook.com/profile.php?id=61586889543817",
     "https://www.instagram.com/poda.cz/",
     "https://www.linkedin.com/company/poda-a-s-/"
   ]

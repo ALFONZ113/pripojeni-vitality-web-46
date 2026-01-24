@@ -77,14 +77,14 @@ const PageMetadata = ({
       <meta property="og:url" content={migrationSafeCanonicalUrl} />
       <meta property="og:site_name" content="Popri.cz" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="https://www.popri.cz/og-image.png" />
+      <meta property="og:image" content="https://www.popri.cz/popri-logo.png" />
       <meta property="og:updated_time" content={`${currentDate}T12:00:00Z`} />
       
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://www.popri.cz/og-image.png" />
+      <meta name="twitter:image" content="https://www.popri.cz/popri-logo.png" />
       <meta name="last-updated" content={currentDate} />
       
       {/* Hreflang tags for domain migration */}
@@ -97,10 +97,10 @@ const PageMetadata = ({
       <meta name="cache-version" content="1747302000000" />
       
       {/* Favicon links with updated cache version */}
-      <link rel="icon" href={`/poda-favicon.ico?v=${faviconVersion}&t=1747302000`} type="image/x-icon" />
-      <link rel="icon" href={`/poda-favicon-16x16.png?v=${faviconVersion}&t=1747302000`} sizes="16x16" type="image/png" />
-      <link rel="icon" href={`/poda-favicon-32x32.png?v=${faviconVersion}&t=1747302000`} sizes="32x32" type="image/png" />
-      <link rel="apple-touch-icon" href={`/poda-apple-touch-icon.png?v=${faviconVersion}&t=1747302000`} />
+      <link rel="icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} type="image/png" />
+      <link rel="icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} sizes="32x32" type="image/png" />
+      <link rel="icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} sizes="192x192" type="image/png" />
+      <link rel="apple-touch-icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} />
       <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}&t=1747302000`} />
 
       {/* Font preloading */}
@@ -132,7 +132,7 @@ const PageMetadata = ({
             "@type": "Organization",
             "name": "Popri.cz - PODA Internet",
             "url": "https://www.popri.cz",
-            "logo": "https://www.popri.cz/poda-logo.svg",
+            "logo": "https://www.popri.cz/popri-logo.png",
             "description": "${description}",
             "contactPoint": {
               "@type": "ContactPoint",

@@ -17,8 +17,8 @@ export const AIOptimizedSchema: React.FC = () => {
     alternateName: 'PODA Internet Ostrava',
     description: 'Lokální poskytovatel gigabitového optického internetu a IPTV služeb v Moravskoslezském kraji. Rychlost až 1000/1000 Mbps, TV s 85+ kanály zdarma.',
     url: baseUrl,
-    logo: `${baseUrl}/poda-logo.svg`,
-    image: `${baseUrl}/og-image.png`,
+    logo: `${baseUrl}/popri-logo.png`,
+    image: `${baseUrl}/popri-logo.png`,
     telephone: '+420730431313',
     email: 'info@popri.cz',
     address: {

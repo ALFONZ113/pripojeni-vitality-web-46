@@ -19,9 +19,9 @@ const RESOURCES = {
     '/index.html',
     '/assets/index.js',
     '/assets/index.css',
-    '/poda-logo.svg',
+    '/popri-logo.png',
     '/placeholder.svg',
-    '/og-image.png'
+    '/popri-favicon.png'
   ],
   
   // Critical assets with long expiry
@@ -32,14 +32,8 @@ const RESOURCES = {
   
   // Favicon files to never cache
   FAVICON: [
-    '/poda-favicon.ico',
-    '/poda-favicon-16x16.png',
-    '/poda-favicon-32x32.png',
-    '/poda-favicon-48x48.png',
-    '/poda-favicon-96x96.png',
-    '/poda-favicon-192x192.png',
-    '/poda-favicon-512x512.png',
-    '/poda-apple-touch-icon.png',
+    '/popri-favicon.png',
+    '/popri-logo.png',
     '/site.webmanifest',
     '/apple-touch-icon.png',
     '/favicon.ico',

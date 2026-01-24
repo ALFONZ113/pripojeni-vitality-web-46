@@ -71,7 +71,7 @@ export const generateCleanSitemapAsync = async (baseUrl: string = 'https://www.p
     priority: 1.0,
     images: [
       {
-        loc: `${baseUrl}/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png`,
+        loc: `${baseUrl}/popri-logo.png`,
         caption: 'PODA Internet rychlé gigabitové připojení',
         title: 'PODA Internet - Prémiové optické připojení',
         geo_location: 'Ostrava, Česká republika'
@@ -192,7 +192,7 @@ export const generateCleanSitemap = (baseUrl: string = 'https://www.popri.cz'): 
     priority: 1.0,
     images: [
       {
-        loc: `${baseUrl}/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png`,
+        loc: `${baseUrl}/popri-logo.png`,
         caption: 'PODA Internet rychlé gigabitové připojení',
         title: 'PODA Internet - Prémiové optické připojení',
         geo_location: 'Ostrava, Česká republika'

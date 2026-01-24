@@ -12,13 +12,13 @@ import { AIOptimizedSchema } from '../components/seo/AIOptimizedSchema';
 
 // Critical resources for LCP optimization
 const CRITICAL_IMAGES = [
-  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png',
-  '/poda-logo.svg'
+  '/popri-logo.png',
+  '/popri-favicon.png'
 ];
 
 const CRITICAL_RESOURCES = [
-  '/poda-logo.svg',
-  '/lovable-uploads/44bcfe01-0562-4f9b-bdad-f09e7d283aa0.png'
+  '/popri-logo.png',
+  '/popri-favicon.png'
 ];
 
 const Index = () => {

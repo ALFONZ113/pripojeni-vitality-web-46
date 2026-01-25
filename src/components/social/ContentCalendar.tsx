@@ -51,7 +51,7 @@ export function ContentCalendar({ onSelectType }: ContentCalendarProps) {
                 variant="ghost"
                 onClick={() => onSelectType(item.type)}
                 className={`
-                  w-full justify-start h-auto py-2 px-3 
+                  w-full justify-start h-auto py-3 sm:py-2 px-3 min-h-[44px]
                   ${isToday ? 'bg-primary/10 border border-primary/30' : 'hover:bg-muted'}
                 `}
               >

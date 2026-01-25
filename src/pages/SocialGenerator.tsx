@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { PostTypeSelector } from '@/components/social/PostTypeSelector';
 import { PlatformSelector } from '@/components/social/PlatformSelector';
 import { StyleSelector, VisualStyle } from '@/components/social/StyleSelector';
+import { PersonToggle, IncludePerson } from '@/components/social/PersonToggle';
 import { GeneratedContent } from '@/components/social/GeneratedContent';
 import { ContentCalendar } from '@/components/social/ContentCalendar';
 import { SocialPostHistory } from '@/components/social/SocialPostHistory';
@@ -61,6 +62,7 @@ export default function SocialGenerator() {
   const [postType, setPostType] = useState<PostType>('promo');
   const [platform, setPlatform] = useState<Platform>('both');
   const [visualStyle, setVisualStyle] = useState<VisualStyle>('luxury-gold');
+  const [includePerson, setIncludePerson] = useState<IncludePerson>('with-person');
   const [customTopic, setCustomTopic] = useState('');
 
   // Generated content
@@ -174,6 +176,7 @@ export default function SocialGenerator() {
           type: postType,
           platform,
           visualStyle,
+          includePerson,
           customTopic: customTopic || null,
         },
       });
@@ -315,6 +318,7 @@ export default function SocialGenerator() {
                   <PostTypeSelector value={postType} onChange={setPostType} />
                   <PlatformSelector value={platform} onChange={setPlatform} />
                   <StyleSelector value={visualStyle} onChange={setVisualStyle} />
+                  <PersonToggle value={includePerson} onChange={setIncludePerson} />
 
                   {/* Custom Topic */}
                   <div className="space-y-2">

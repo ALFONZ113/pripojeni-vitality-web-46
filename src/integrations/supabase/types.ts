@@ -298,6 +298,7 @@ export type Database = {
           facebook_image_url: string | null
           facebook_text: string | null
           id: string
+          include_person: string | null
           instagram_hashtags: string | null
           instagram_image_prompt: string | null
           instagram_image_url: string | null
@@ -308,6 +309,7 @@ export type Database = {
           published_at: string | null
           updated_at: string
           user_id: string
+          visual_style: string | null
         }
         Insert: {
           created_at?: string
@@ -317,6 +319,7 @@ export type Database = {
           facebook_image_url?: string | null
           facebook_text?: string | null
           id?: string
+          include_person?: string | null
           instagram_hashtags?: string | null
           instagram_image_prompt?: string | null
           instagram_image_url?: string | null
@@ -327,6 +330,7 @@ export type Database = {
           published_at?: string | null
           updated_at?: string
           user_id: string
+          visual_style?: string | null
         }
         Update: {
           created_at?: string
@@ -336,6 +340,7 @@ export type Database = {
           facebook_image_url?: string | null
           facebook_text?: string | null
           id?: string
+          include_person?: string | null
           instagram_hashtags?: string | null
           instagram_image_prompt?: string | null
           instagram_image_url?: string | null
@@ -346,6 +351,7 @@ export type Database = {
           published_at?: string | null
           updated_at?: string
           user_id?: string
+          visual_style?: string | null
         }
         Relationships: []
       }

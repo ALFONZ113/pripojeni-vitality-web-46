@@ -1,110 +1,87 @@
 
 
-## Plán: Pridať ukladanie vizuálneho štýlu a prepínača osôb do histórie
+## Plán: Oprava zobrazenia vizuálneho štýlu v histórii
 
-### Súhrn
-Rozšírim databázu a kód o ukladanie `visual_style` a `include_person` parametrov, aby sa v histórii zobrazovalo, akým štýlom bol príspevok vytvorený.
+### Diagnóza problému
 
----
+Skontroloval som databázu a kód:
 
-### Zmeny
-
-#### 1. Databázová migrácia - pridať nové stĺpce
-
-Vytvorím migráciu pre tabuľku `social_posts`:
-
+**✅ Databáza je správna:**
 ```sql
-ALTER TABLE social_posts 
-ADD COLUMN visual_style TEXT DEFAULT 'luxury-gold',
-ADD COLUMN include_person TEXT DEFAULT 'with-person';
+-- Všetky príspevky majú správne hodnoty:
+visual_style: 'luxury-gold'
+include_person: 'with-person'
 ```
 
----
+**✅ Kód je správny:**
+- Badges pre štýl a osobu sú implementované v `SocialPostHistory.tsx` (riadky 202-214)
+- Mapa štýlov `visualStyleLabels` obsahuje všetkých 8 štýlov
 
-#### 2. `src/pages/SocialGenerator.tsx` - ukladať nové polia
+### Možný problém
 
-**Aktuálny kód (riadky 143-156):**
+Badges môžu byť **príliš malé** alebo **skryté**. Na vašom screenshote nevidím badges, čo môže byť spôsobené:
+
+1. **Príliš malý text** - `text-[10px]` je veľmi malý
+2. **Nedostatočný kontrast** - amber farba na tmavom pozadí
+
+### Navrhované opravy
+
+#### 1. Zväčšiť badges pre lepšiu viditeľnosť
+
+**Súčasný kód:**
 ```typescript
-const { error } = await supabase.from('social_posts').insert({
-  user_id: userId,
-  post_type: postType,
-  platform,
-  custom_topic: customTopic || null,
-  // ... texty a prompty
-});
+<Badge className={`text-[10px] ${visualStyleLabels[post.visual_style].color}`}>
 ```
 
-**Nový kód:**
+**Navrhovaná zmena:**
 ```typescript
-const { error } = await supabase.from('social_posts').insert({
-  user_id: userId,
-  post_type: postType,
-  platform,
-  visual_style: visualStyle,        // NOVÉ
-  include_person: includePerson,    // NOVÉ
-  custom_topic: customTopic || null,
-  // ... texty a prompty
-});
+<Badge className={`text-xs font-medium ${visualStyleLabels[post.visual_style].color}`}>
 ```
 
----
+#### 2. Pridať výraznejšie farby pre lepší kontrast
 
-#### 3. `src/pages/SocialGenerator.tsx` - aktualizovať interface
-
-**Rozšíriť `SocialPost` interface:**
+**Aktuálne farby:**
 ```typescript
-interface SocialPost {
-  // ... existujúce polia
-  visual_style: string | null;      // NOVÉ
-  include_person: string | null;    // NOVÉ
-}
+'luxury-gold': { label: 'Luxury', color: 'bg-amber-500/20 text-amber-500' }
 ```
 
----
+**Navrhované farby:**
+```typescript
+'luxury-gold': { label: 'Luxury', color: 'bg-amber-500/30 text-amber-400 border border-amber-500/40' }
+```
 
-#### 4. `src/components/social/SocialPostHistory.tsx` - zobraziť štýl v histórii
+#### 3. Zobraziť badges aj keď sú default hodnoty
 
-Pridať badge so štýlom ku každému príspevku v histórii:
+Pridať fallback zobrazenie pre staré príspevky bez hodnôt:
+
+```typescript
+{/* Vždy zobraziť vizuálny štýl */}
+<Badge className={`text-xs font-medium ${
+  visualStyleLabels[post.visual_style || 'luxury-gold']?.color || 'bg-primary/20 text-primary'
+}`}>
+  🎨 {visualStyleLabels[post.visual_style || 'luxury-gold']?.label || 'Default'}
+</Badge>
+```
+
+### Súbory na úpravu
+
+| Súbor | Zmena |
+|-------|-------|
+| `src/components/social/SocialPostHistory.tsx` | Zväčšiť badges, lepšie farby, fallback pre NULL hodnoty |
+
+### Vizuálna zmena
 
 ```text
-┌────────────────────────────────────────────┐
-│ 📢 Promo | Facebook                        │
-│ 🎨 Tech Blue | 👤 S osobou                 │  ← NOVÉ
-│ 15. ledna 2024                             │
-│ [Kopírovat] [Otevřít]                      │
-└────────────────────────────────────────────┘
+PRED (text-[10px]):
+┌─────────────────────────────────────┐
+│ Tip │ FB │ IG          Nepublikováno│
+│ [veľmi malé badges - ťažko čitateľné]│
+└─────────────────────────────────────┘
+
+PO (text-xs, výraznejšie farby):
+┌─────────────────────────────────────┐
+│ Tip │ FB │ IG          Nepublikováno│
+│ 🎨 Luxury │ 👤 S osobou              │ ← Väčšie, lepšie viditeľné
+└─────────────────────────────────────┘
 ```
-
----
-
-### Technické detaily
-
-| Súbor/Položka | Zmena |
-|---------------|-------|
-| Supabase migrácia | Pridať stĺpce `visual_style`, `include_person` |
-| `SocialGenerator.tsx` | Rozšíriť interface, ukladať nové polia |
-| `SocialPostHistory.tsx` | Zobraziť badge so štýlom a prepínačom osôb |
-| `src/integrations/supabase/types.ts` | Aktualizovať TypeScript typy |
-
----
-
-### Mapa štýlov na ikony/texty
-
-Pre zobrazenie v histórii:
-
-| Štýl | Skrátený názov | Farba badge |
-|------|----------------|-------------|
-| `luxury-gold` | Luxury Gold | amber |
-| `photo-realistic` | Foto | emerald |
-| `modern-noir` | Noir | gray |
-| `minimalist` | Minimal | slate |
-| `gradient-modern` | Gradient | violet |
-| `tech-blue` | Tech Blue | blue |
-| `bright-bold` | Bold | orange |
-| `vintage-retro` | Vintage | amber |
-
-| Osoba | Ikona | Text |
-|-------|-------|------|
-| `with-person` | 👤 | S osobou |
-| `without-person` | 🖼️ | Bez osob |
 

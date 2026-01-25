@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import { Loader2, Sparkles, ArrowLeft, Save } from 'lucide-react';
+import { Loader2, Sparkles, ArrowLeft, Save, Calendar } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -289,18 +290,43 @@ export default function SocialGenerator() {
       <div className="min-h-screen bg-background pt-24 pb-12">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-6 sm:mb-8">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate('/admin-dashboard-poda-2024')}
+              className="h-10 w-10 sm:h-9 sm:w-9"
             >
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Social Media Generator</h1>
-              <p className="text-muted-foreground">Generuj obsah pre Facebook a Instagram</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Social Media Generator</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">Generuj obsah pre Facebook a Instagram</p>
             </div>
+          </div>
+
+          {/* Mobile Today Indicator */}
+          <div className="lg:hidden mb-4">
+            <Badge variant="outline" className="gap-1.5 py-1.5 px-3">
+              <Calendar className="h-3.5 w-3.5" />
+              <span className="text-xs">
+                Dnes doporučený typ: {
+                  (() => {
+                    const days = ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'];
+                    const suggestions: Record<string, string> = {
+                      'pondělí': 'Promo',
+                      'úterý': 'Tip',
+                      'středa': 'Blog',
+                      'čtvrtek': 'Reference',
+                      'pátek': 'Novinka',
+                      'sobota': 'Promo',
+                      'neděle': 'Tip'
+                    };
+                    return suggestions[days[new Date().getDay()]] || 'Promo';
+                  })()
+                }
+              </span>
+            </Badge>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">

@@ -89,20 +89,20 @@ export function GeneratedContent({
               variant="ghost"
               size="sm"
               onClick={() => copyToClipboard(content.text, 'text')}
-              className="h-8 px-2"
+              className="h-9 sm:h-8 px-3 sm:px-2 min-w-[44px]"
             >
               {copiedField === 'text' ? (
                 <Check className="h-4 w-4 text-green-500" />
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              <span className="ml-1 text-xs">Kopírovať</span>
+              <span className="ml-1 text-xs hidden sm:inline">Kopírovať</span>
             </Button>
           </div>
           <Textarea
             value={content.text}
             onChange={(e) => onTextChange(e.target.value)}
-            className="min-h-[150px] resize-none bg-muted/50"
+            className="min-h-[120px] sm:min-h-[150px] resize-none bg-muted/50"
             placeholder="Vygenerovaný text..."
           />
           <p className="text-xs text-muted-foreground text-right">
@@ -118,14 +118,14 @@ export function GeneratedContent({
               variant="ghost"
               size="sm"
               onClick={() => copyToClipboard(content.hashtags, 'hashtags')}
-              className="h-8 px-2"
+              className="h-9 sm:h-8 px-3 sm:px-2 min-w-[44px]"
             >
               {copiedField === 'hashtags' ? (
                 <Check className="h-4 w-4 text-green-500" />
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              <span className="ml-1 text-xs">Kopírovať</span>
+              <span className="ml-1 text-xs hidden sm:inline">Kopírovať</span>
             </Button>
           </div>
           <Textarea
@@ -144,14 +144,14 @@ export function GeneratedContent({
               variant="ghost"
               size="sm"
               onClick={() => copyToClipboard(content.imagePrompt, 'prompt')}
-              className="h-8 px-2"
+              className="h-9 sm:h-8 px-3 sm:px-2 min-w-[44px]"
             >
               {copiedField === 'prompt' ? (
                 <Check className="h-4 w-4 text-green-500" />
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              <span className="ml-1 text-xs">Kopírovať</span>
+              <span className="ml-1 text-xs hidden sm:inline">Kopírovať</span>
             </Button>
           </div>
           <Textarea

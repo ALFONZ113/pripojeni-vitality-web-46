@@ -151,7 +151,7 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
               Zatím žádné příspěvky
             </p>
           ) : (
-            <ScrollArea className="h-[400px] pr-4">
+            <ScrollArea className="h-[300px] sm:h-[400px] pr-4">
               <div className="space-y-3">
                 {posts.map((post) => (
                   <div
@@ -199,7 +199,7 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-7 w-7"
+                          className="h-9 w-9 sm:h-7 sm:w-7"
                           onClick={() => setSelectedPost(post)}
                         >
                           <Eye className="h-4 w-4" />
@@ -207,7 +207,7 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-7 w-7"
+                          className="h-9 w-9 sm:h-7 sm:w-7"
                           onClick={() => togglePublished(post)}
                           disabled={isUpdating === post.id}
                         >
@@ -224,7 +224,7 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-7 w-7 text-destructive hover:text-destructive"
+                              className="h-9 w-9 sm:h-7 sm:w-7 text-destructive hover:text-destructive"
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>

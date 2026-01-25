@@ -75,14 +75,14 @@ export function StyleSelector({ value, onChange }: StyleSelectorProps) {
       <RadioGroup
         value={value}
         onValueChange={(v) => onChange(v as VisualStyle)}
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3"
       >
         {styles.map((style) => (
           <Label
             key={style.value}
             htmlFor={style.value}
             className={`
-              flex flex-col items-center gap-2 p-3 rounded-lg border cursor-pointer transition-all
+              flex flex-col items-center gap-1.5 sm:gap-2 p-2.5 sm:p-3 rounded-lg border cursor-pointer transition-all min-h-[88px]
               ${value === style.value 
                 ? 'border-primary bg-primary/10 ring-1 ring-primary' 
                 : 'border-border bg-muted/30 hover:bg-muted/50'}
@@ -91,7 +91,7 @@ export function StyleSelector({ value, onChange }: StyleSelectorProps) {
             <RadioGroupItem value={style.value} id={style.value} className="sr-only" />
             {style.icon}
             <span className="font-medium text-xs text-center">{style.label}</span>
-            <span className="text-[10px] text-muted-foreground text-center leading-tight">{style.description}</span>
+            <span className="text-[11px] sm:text-xs text-muted-foreground text-center leading-tight">{style.description}</span>
           </Label>
         ))}
       </RadioGroup>

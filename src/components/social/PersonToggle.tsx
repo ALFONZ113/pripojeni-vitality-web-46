@@ -38,7 +38,7 @@ export function PersonToggle({ value, onChange }: PersonToggleProps) {
             key={option.value}
             htmlFor={option.value}
             className={`
-              flex flex-col items-center gap-2 p-4 rounded-lg border cursor-pointer transition-all
+              flex flex-col items-center gap-1.5 sm:gap-2 p-2.5 sm:p-3 rounded-lg border cursor-pointer transition-all
               ${value === option.value 
                 ? 'border-primary bg-primary/10 ring-1 ring-primary' 
                 : 'border-border bg-muted/30 hover:bg-muted/50'}

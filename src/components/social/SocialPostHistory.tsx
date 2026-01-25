@@ -58,16 +58,16 @@ interface SocialPost {
   created_at: string;
 }
 
-// Mapa štýlov na skrátené názvy a farby
+// Mapa štýlov na skrátené názvy a farby - výraznejšie pre lepšiu viditeľnosť
 const visualStyleLabels: Record<string, { label: string; color: string }> = {
-  'luxury-gold': { label: 'Luxury', color: 'bg-amber-500/20 text-amber-500' },
-  'photo-realistic': { label: 'Foto', color: 'bg-emerald-500/20 text-emerald-500' },
-  'modern-noir': { label: 'Noir', color: 'bg-gray-500/20 text-gray-400' },
-  'minimalist': { label: 'Minimal', color: 'bg-slate-500/20 text-slate-400' },
-  'gradient-modern': { label: 'Gradient', color: 'bg-violet-500/20 text-violet-500' },
-  'tech-blue': { label: 'Tech Blue', color: 'bg-blue-500/20 text-blue-500' },
-  'bright-bold': { label: 'Bold', color: 'bg-orange-500/20 text-orange-500' },
-  'vintage-retro': { label: 'Vintage', color: 'bg-amber-600/20 text-amber-600' },
+  'luxury-gold': { label: 'Luxury', color: 'bg-amber-500/30 text-amber-400 border border-amber-500/50' },
+  'photo-realistic': { label: 'Foto', color: 'bg-emerald-500/30 text-emerald-400 border border-emerald-500/50' },
+  'modern-noir': { label: 'Noir', color: 'bg-gray-500/30 text-gray-300 border border-gray-500/50' },
+  'minimalist': { label: 'Minimal', color: 'bg-slate-500/30 text-slate-300 border border-slate-500/50' },
+  'gradient-modern': { label: 'Gradient', color: 'bg-violet-500/30 text-violet-400 border border-violet-500/50' },
+  'tech-blue': { label: 'Tech Blue', color: 'bg-blue-500/30 text-blue-400 border border-blue-500/50' },
+  'bright-bold': { label: 'Bold', color: 'bg-orange-500/30 text-orange-400 border border-orange-500/50' },
+  'vintage-retro': { label: 'Vintage', color: 'bg-amber-600/30 text-amber-500 border border-amber-600/50' },
 };
 
 interface SocialPostHistoryProps {
@@ -199,18 +199,16 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                       </div>
                     </div>
 
-                    {/* Vizuálny štýl a osoba badges */}
-                    <div className="flex items-center gap-1.5 mb-2 flex-wrap">
-                      {post.visual_style && visualStyleLabels[post.visual_style] && (
-                        <Badge className={`text-[10px] ${visualStyleLabels[post.visual_style].color}`}>
-                          🎨 {visualStyleLabels[post.visual_style].label}
-                        </Badge>
-                      )}
-                      {post.include_person && (
-                        <Badge variant="secondary" className="text-[10px]">
-                          {post.include_person === 'with-person' ? '👤 S osobou' : '🖼️ Bez osob'}
-                        </Badge>
-                      )}
+                    {/* Vizuálny štýl a osoba badges - vždy zobrazené */}
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <Badge className={`text-xs font-medium px-2 py-0.5 ${
+                        visualStyleLabels[post.visual_style || 'luxury-gold']?.color || 'bg-primary/30 text-primary border border-primary/50'
+                      }`}>
+                        🎨 {visualStyleLabels[post.visual_style || 'luxury-gold']?.label || 'Default'}
+                      </Badge>
+                      <Badge variant="secondary" className="text-xs font-medium px-2 py-0.5">
+                        {(post.include_person || 'with-person') === 'with-person' ? '👤 S osobou' : '🖼️ Bez osob'}
+                      </Badge>
                     </div>
 
                     {post.custom_topic && (

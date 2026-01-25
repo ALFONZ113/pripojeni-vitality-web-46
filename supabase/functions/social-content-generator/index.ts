@@ -11,6 +11,7 @@ const InputSchema = z.object({
   type: z.enum(['promo', 'blog', 'review', 'tip', 'news', 'custom']),
   platform: z.enum(['facebook', 'instagram', 'both']),
   visualStyle: z.enum(['luxury-gold', 'photo-realistic', 'modern-noir', 'minimalist']).default('luxury-gold'),
+  includePerson: z.enum(['with-person', 'without-person']).default('with-person'),
   customTopic: z.string().max(500).optional().nullable(),
   blogTitle: z.string().max(200).optional().nullable(),
 });
@@ -206,19 +207,36 @@ async function generateSceneDescription(
   topic: string, 
   postType: string, 
   visualStyle: string,
+  includePerson: string,
   apiKey: string
 ): Promise<string> {
+  // Build person-specific rules based on toggle
+  const personRules = includePerson === 'without-person' 
+    ? `CRITICAL RULES FOR NO PEOPLE:
+1. DO NOT include any people, humans, faces, hands, or body parts in the scene
+2. Focus ONLY on objects, devices, environments, technology, and abstract concepts
+3. Show technology, routers, devices, fiber optic cables, home interiors WITHOUT any people
+4. Describe scenes with objects only: devices on desks, routers with light effects, cable setups, empty rooms with technology
+5. NO human presence whatsoever - not even silhouettes, shadows, or partial body parts`
+    : `CRITICAL RULES FOR PEOPLE:
+1. ALWAYS include PEOPLE in realistic situations
+2. Show authentic human interactions with technology
+3. Include real people: families, individuals, couples in everyday situations
+4. Describe people's activities, expressions, and their environment`;
+
   const sceneSystemPrompt = `You are an expert at creating unique image scene descriptions for social media marketing.
 Based on the topic, create a SPECIFIC and UNIQUE scene description.
 
-CRITICAL RULES:
+${personRules}
+
+ADDITIONAL RULES:
 1. DO NOT describe generic routers with light effects for everything
 2. CREATE UNIQUE scenes based on the actual topic
-3. ALWAYS include PEOPLE in realistic situations when using photo-realistic style
-4. Describe the SPECIFIC scene that matches the topic
-5. Scene must be visually interesting and suitable for social media
+3. Describe the SPECIFIC scene that matches the topic
+4. Scene must be visually interesting and suitable for social media
 
-Examples of good scene descriptions:
+Examples of good scene descriptions ${includePerson === 'with-person' ? '(WITH PEOPLE)' : '(WITHOUT PEOPLE)'}:
+${includePerson === 'with-person' ? `
 - Topic "WiFi optimization" → Person adjusting router position, checking signal strength on smartphone
 - Topic "Tariff for seniors" → Elderly couple comfortably using tablet on sofa, video calling grandchildren
 - Topic "How to connect WiFi" → Person unpacking and setting up new router, reading quick start guide
@@ -226,10 +244,18 @@ Examples of good scene descriptions:
 - Topic "Family internet" → Family of four watching movie together on TV in cozy living room
 - Topic "Gaming internet" → Young person at gaming setup with monitors and headphones
 - Topic "Fast streaming" → Couple enjoying movie night with popcorn, 4K TV visible
-- Topic "Price promotion" → Happy customer smiling while looking at phone showing good deal
+- Topic "Price promotion" → Happy customer smiling while looking at phone showing good deal` : `
+- Topic "WiFi optimization" → Modern router on wooden desk with WiFi signal waves visualization, smartphone showing signal meter app
+- Topic "Fiber internet" → Sleek fiber optic cables with blue light trails connecting to premium router, dark background
+- Topic "How to connect WiFi" → New router in box with quick start guide, ethernet cables neatly arranged on clean desk
+- Topic "Home office setup" → Clean home office desk with laptop, monitor, coffee cup - no people, warm ambient lighting
+- Topic "High-speed internet" → Speed meter display showing 1000 Mbps, fiber optic strands with light effects
+- Topic "Gaming setup" → Gaming monitors, RGB keyboard, high-end router - empty gaming station
+- Topic "Smart home" → Smart home devices arranged elegantly: router, smart speaker, connected devices with subtle glow
+- Topic "Internet technology" → Abstract visualization of data transfer, fiber optic light trails on dark background`}
 
 For luxury-gold style: Include stylized elegant elements, premium atmosphere
-For photo-realistic style: MUST show real people in authentic everyday situations
+For photo-realistic style: ${includePerson === 'with-person' ? 'MUST show real people in authentic everyday situations' : 'Show realistic environments and objects without any people'}
 For modern-noir style: Professional, clean, tech-forward atmosphere
 For minimalist style: Clean, simple, lots of whitespace
 
@@ -295,7 +321,7 @@ serve(async (req) => {
       );
     }
 
-    const { type, platform, visualStyle, customTopic, blogTitle } = validationResult.data;
+    const { type, platform, visualStyle, includePerson, customTopic, blogTitle } = validationResult.data;
     const template = postTemplates[type];
     const brandingPrompt = stylePrompts[visualStyle];
     
@@ -304,7 +330,7 @@ serve(async (req) => {
       throw new Error('LOVABLE_API_KEY not configured');
     }
 
-    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}`);
+    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}, includePerson=${includePerson}`);
 
     const result: Record<string, unknown> = {};
     const platforms = platform === 'both' ? ['facebook', 'instagram'] : [platform];
@@ -353,7 +379,8 @@ serve(async (req) => {
       const uniqueScene = await generateSceneDescription(
         topicForScene, 
         type, 
-        visualStyle, 
+        visualStyle,
+        includePerson,
         lovableApiKey
       );
 

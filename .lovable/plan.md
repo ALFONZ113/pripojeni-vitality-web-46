@@ -1,87 +1,151 @@
 
 
-## Plán: Oprava zobrazenia vizuálneho štýlu v histórii
+## Plán: Pridať rýchlu navigáciu do Admin Dashboardu
 
-### Diagnóza problému
+### Súhrn
+Pridám navigačné tlačidlá do headeru Admin Dashboardu pre rýchly prístup k Social Generatoru a ďalším admin nástrojom bez potreby písania URL.
 
-Skontroloval som databázu a kód:
+---
 
-**✅ Databáza je správna:**
-```sql
--- Všetky príspevky majú správne hodnoty:
-visual_style: 'luxury-gold'
-include_person: 'with-person'
+### Riešenie
+
+Pridám panel s rýchlymi odkazmi do headeru Admin Dashboardu:
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ Administrace PODA                                           │
+│ Správa formulářových žádostí                                │
+│                                                             │
+│ [📱 Social Generator] [📝 AI Blog] [🤖 Automácie] [Odhlásit]│
+└─────────────────────────────────────────────────────────────┘
 ```
 
-**✅ Kód je správny:**
-- Badges pre štýl a osobu sú implementované v `SocialPostHistory.tsx` (riadky 202-214)
-- Mapa štýlov `visualStyleLabels` obsahuje všetkých 8 štýlov
+---
 
-### Možný problém
+### Zmeny v súboroch
 
-Badges môžu byť **príliš malé** alebo **skryté**. Na vašom screenshote nevidím badges, čo môže byť spôsobené:
+#### `src/pages/AdminDashboard.tsx`
 
-1. **Príliš malý text** - `text-[10px]` je veľmi malý
-2. **Nedostatočný kontrast** - amber farba na tmavom pozadí
-
-### Navrhované opravy
-
-#### 1. Zväčšiť badges pre lepšiu viditeľnosť
-
-**Súčasný kód:**
+**1. Pridať import ikony:**
 ```typescript
-<Badge className={`text-[10px] ${visualStyleLabels[post.visual_style].color}`}>
+import { 
+  // ... existujúce ikony
+  Share2,  // pre Social Generator
+  BookOpen, // pre AI Blog
+  Bot,     // pre Automácie
+} from "lucide-react";
 ```
 
-**Navrhovaná zmena:**
+**2. Upraviť header (riadky 293-303):**
+
+Súčasný kód:
 ```typescript
-<Badge className={`text-xs font-medium ${visualStyleLabels[post.visual_style].color}`}>
+<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+  <div>
+    <h1 className="text-3xl font-bold">Administrace PODA</h1>
+    <p className="text-muted-foreground">Správa formulářových žádostí</p>
+  </div>
+  <Button variant="outline" onClick={handleLogout}>
+    <LogOut className="h-4 w-4 mr-2" />
+    Odhlásit se
+  </Button>
+</div>
 ```
 
-#### 2. Pridať výraznejšie farby pre lepší kontrast
-
-**Aktuálne farby:**
+Nový kód:
 ```typescript
-'luxury-gold': { label: 'Luxury', color: 'bg-amber-500/20 text-amber-500' }
+<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+  <div>
+    <h1 className="text-3xl font-bold">Administrace PODA</h1>
+    <p className="text-muted-foreground">Správa formulářových žádostí</p>
+  </div>
+  
+  {/* Rýchla navigácia */}
+  <div className="flex flex-wrap items-center gap-2">
+    <Button 
+      variant="default" 
+      onClick={() => navigate('/admin/social-generator')}
+      className="gap-2"
+    >
+      <Share2 className="h-4 w-4" />
+      <span className="hidden sm:inline">Social Generator</span>
+      <span className="sm:hidden">Social</span>
+    </Button>
+    
+    <Button 
+      variant="outline" 
+      onClick={() => navigate('/admin/ai-blog-manager')}
+      className="gap-2"
+    >
+      <BookOpen className="h-4 w-4" />
+      <span className="hidden sm:inline">AI Blog</span>
+    </Button>
+    
+    <Button 
+      variant="outline" 
+      onClick={() => navigate('/admin/ai-automation')}
+      className="gap-2"
+    >
+      <Bot className="h-4 w-4" />
+      <span className="hidden sm:inline">Automácie</span>
+    </Button>
+    
+    <Button variant="ghost" onClick={handleLogout}>
+      <LogOut className="h-4 w-4" />
+      <span className="hidden sm:inline ml-2">Odhlásit se</span>
+    </Button>
+  </div>
+</div>
 ```
 
-**Navrhované farby:**
-```typescript
-'luxury-gold': { label: 'Luxury', color: 'bg-amber-500/30 text-amber-400 border border-amber-500/40' }
-```
-
-#### 3. Zobraziť badges aj keď sú default hodnoty
-
-Pridať fallback zobrazenie pre staré príspevky bez hodnôt:
-
-```typescript
-{/* Vždy zobraziť vizuálny štýl */}
-<Badge className={`text-xs font-medium ${
-  visualStyleLabels[post.visual_style || 'luxury-gold']?.color || 'bg-primary/20 text-primary'
-}`}>
-  🎨 {visualStyleLabels[post.visual_style || 'luxury-gold']?.label || 'Default'}
-</Badge>
-```
-
-### Súbory na úpravu
-
-| Súbor | Zmena |
-|-------|-------|
-| `src/components/social/SocialPostHistory.tsx` | Zväčšiť badges, lepšie farby, fallback pre NULL hodnoty |
+---
 
 ### Vizuálna zmena
 
+**Desktop:**
 ```text
-PRED (text-[10px]):
-┌─────────────────────────────────────┐
-│ Tip │ FB │ IG          Nepublikováno│
-│ [veľmi malé badges - ťažko čitateľné]│
-└─────────────────────────────────────┘
-
-PO (text-xs, výraznejšie farby):
-┌─────────────────────────────────────┐
-│ Tip │ FB │ IG          Nepublikováno│
-│ 🎨 Luxury │ 👤 S osobou              │ ← Väčšie, lepšie viditeľné
-└─────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│ Administrace PODA                                                │
+│ Správa formulářových žádostí                                     │
+│                                                                  │
+│         [📱 Social Generator] [📝 AI Blog] [🤖 Automácie] [↪ Odhlásit]
+└──────────────────────────────────────────────────────────────────┘
 ```
+
+**Mobile:**
+```text
+┌────────────────────────────────┐
+│ Administrace PODA             │
+│ Správa formulářových žádostí  │
+│                               │
+│ [📱 Social] [📝] [🤖] [↪]     │
+└────────────────────────────────┘
+```
+
+---
+
+### Technické detaily
+
+| Zmena | Popis |
+|-------|-------|
+| Import ikon | `Share2`, `BookOpen`, `Bot` |
+| Social Generator tlačidlo | Primárny variant (výrazný) |
+| AI Blog, Automácie | Outline variant |
+| Odhlásit | Ghost variant (menej výrazný) |
+| Responzivita | Skryté texty na mobile, len ikony |
+
+---
+
+### Alternatíva: Dropdown menu
+
+Ak by bolo príliš veľa tlačidiel, môžem použiť dropdown:
+
+```text
+[☰ Nástroje ▼] [Odhlásit]
+    ├── 📱 Social Generator
+    ├── 📝 AI Blog Manager  
+    └── 🤖 AI Automácie
+```
+
+Ale pre 3-4 nástroje sú priame tlačidlá rýchlejšie a prehľadnejšie.
 

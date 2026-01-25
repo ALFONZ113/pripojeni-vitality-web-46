@@ -42,6 +42,8 @@ interface SocialPost {
   id: string;
   post_type: string;
   platform: string;
+  visual_style: string | null;
+  include_person: string | null;
   custom_topic: string | null;
   facebook_text: string | null;
   facebook_hashtags: string | null;
@@ -55,6 +57,18 @@ interface SocialPost {
   published_at: string | null;
   created_at: string;
 }
+
+// Mapa štýlov na skrátené názvy a farby
+const visualStyleLabels: Record<string, { label: string; color: string }> = {
+  'luxury-gold': { label: 'Luxury', color: 'bg-amber-500/20 text-amber-500' },
+  'photo-realistic': { label: 'Foto', color: 'bg-emerald-500/20 text-emerald-500' },
+  'modern-noir': { label: 'Noir', color: 'bg-gray-500/20 text-gray-400' },
+  'minimalist': { label: 'Minimal', color: 'bg-slate-500/20 text-slate-400' },
+  'gradient-modern': { label: 'Gradient', color: 'bg-violet-500/20 text-violet-500' },
+  'tech-blue': { label: 'Tech Blue', color: 'bg-blue-500/20 text-blue-500' },
+  'bright-bold': { label: 'Bold', color: 'bg-orange-500/20 text-orange-500' },
+  'vintage-retro': { label: 'Vintage', color: 'bg-amber-600/20 text-amber-600' },
+};
 
 interface SocialPostHistoryProps {
   posts: SocialPost[];
@@ -183,6 +197,20 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                           </Badge>
                         )}
                       </div>
+                    </div>
+
+                    {/* Vizuálny štýl a osoba badges */}
+                    <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                      {post.visual_style && visualStyleLabels[post.visual_style] && (
+                        <Badge className={`text-[10px] ${visualStyleLabels[post.visual_style].color}`}>
+                          🎨 {visualStyleLabels[post.visual_style].label}
+                        </Badge>
+                      )}
+                      {post.include_person && (
+                        <Badge variant="secondary" className="text-[10px]">
+                          {post.include_person === 'with-person' ? '👤 S osobou' : '🖼️ Bez osob'}
+                        </Badge>
+                      )}
                     </div>
 
                     {post.custom_topic && (

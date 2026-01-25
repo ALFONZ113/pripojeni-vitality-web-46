@@ -36,6 +36,8 @@ interface SocialPost {
   id: string;
   post_type: string;
   platform: string;
+  visual_style: string | null;
+  include_person: string | null;
   custom_topic: string | null;
   facebook_text: string | null;
   facebook_hashtags: string | null;
@@ -144,6 +146,8 @@ export default function SocialGenerator() {
         user_id: userId,
         post_type: postType,
         platform,
+        visual_style: visualStyle,
+        include_person: includePerson,
         custom_topic: customTopic || null,
         facebook_text: result.facebook?.text || null,
         facebook_hashtags: result.facebook?.hashtags || null,

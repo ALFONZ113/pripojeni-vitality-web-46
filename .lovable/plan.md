@@ -1,20 +1,9 @@
 
 
-## Plán: Pridať 4 nové vizuálne štýly do Social Generátora
+## Plán: Opravy responzivity a UX/UI pre Social Generator
 
 ### Súhrn
-Pridám 4 nové vizuálne štýly: **Gradient Modern**, **Tech Blue**, **Bright & Bold** a **Vintage Retro**. Tieto štýly rozšíria existujúce možnosti (Luxury Gold, Photo-realistic, Modern Noir, Minimalist) na 8 štýlov celkom.
-
----
-
-### Nové štýly - prehľad
-
-| Štýl | Hlavné farby | Použitie | Ikona |
-|------|--------------|----------|-------|
-| **Gradient Modern** | Fialová/Modrá (#7C3AED → #3B82F6) | Instagram, mladé publikum | `Palette` |
-| **Tech Blue** | Navy/Elektrická modrá (#0A1628, #00A3FF) | Profesionálny tech obsah | `Cpu` |
-| **Bright & Bold** | Živé farby (červená, oranžová, žltá) | Promo akcie, sľavy, call-to-action | `Sun` |
-| **Vintage Retro** | Teplé odtiene (sépie, hnedá, krémová) | Nostalgický, dôveryhodný obsah | `Clock` |
+Implementujem opravy pre lepšiu responzivitu na mobile, zväčším touch targety pre WCAG compliance a vylepším čitateľnosť textu v selektoroch.
 
 ---
 
@@ -22,213 +11,188 @@ Pridám 4 nové vizuálne štýly: **Gradient Modern**, **Tech Blue**, **Bright 
 
 #### 1. `src/components/social/StyleSelector.tsx`
 
-**Rozšíriť typ VisualStyle:**
-```typescript
-export type VisualStyle = 
-  | 'luxury-gold' 
-  | 'photo-realistic' 
-  | 'modern-noir' 
-  | 'minimalist'
-  | 'gradient-modern'   // NOVÉ
-  | 'tech-blue'         // NOVÉ
-  | 'bright-bold'       // NOVÉ
-  | 'vintage-retro';    // NOVÉ
-```
+**Problémy:**
+- 8 štýlov v 2 stĺpcoch na mobile = 4 riadky, príliš husté
+- Text `text-[10px]` je ťažko čitateľný
+- Padding môže byť menší pre kompaktnejší vzhľad
 
-**Pridať nové štýly do poľa `styles`:**
+**Opravy:**
 ```typescript
-{
-  value: 'gradient-modern',
-  label: 'Gradient Modern',
-  description: 'Živé barevné přechody, moderní vzhled',
-  icon: <Palette className="h-4 w-4 text-violet-500" />,
-},
-{
-  value: 'tech-blue',
-  label: 'Tech Blue',
-  description: 'Profesionální modrá, technologický styl',
-  icon: <Cpu className="h-4 w-4 text-blue-500" />,
-},
-{
-  value: 'bright-bold',
-  label: 'Bright & Bold',
-  description: 'Výrazné barvy, vysoký kontrast',
-  icon: <Sun className="h-4 w-4 text-orange-500" />,
-},
-{
-  value: 'vintage-retro',
-  label: 'Vintage Retro',
-  description: 'Nostalgický, teplé odstíny',
-  icon: <Clock className="h-4 w-4 text-amber-600" />,
-}
-```
+// Zmeniť grid na 3 stĺpce pre sm+
+className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3"
 
-**Zmeniť grid na 2x4 alebo responzívny layout:**
-```typescript
-className="grid grid-cols-2 md:grid-cols-4 gap-3"
+// Zväčšiť text popisov
+<span className="text-[11px] sm:text-xs text-muted-foreground text-center leading-tight">
+
+// Zmeniť padding pre lepšiu kompaktnosť
+className="flex flex-col items-center gap-1.5 sm:gap-2 p-2.5 sm:p-3 rounded-lg..."
 ```
 
 ---
 
-#### 2. `src/data/social/templates.ts`
+#### 2. `src/components/social/PlatformSelector.tsx`
 
-**Rozšíriť typ `VisualStyle`:**
+**Problémy:**
+- Na veľmi úzkych obrazovkách (<380px) sa môžu tlačidlá stlačiť
+- Badge s rozmermi môže byť orezaný
+
+**Opravy:**
 ```typescript
-export type VisualStyle = 
-  | 'luxury-gold' 
-  | 'photo-realistic' 
-  | 'modern-noir' 
-  | 'minimalist'
-  | 'gradient-modern'
-  | 'tech-blue'
-  | 'bright-bold'
-  | 'vintage-retro';
-```
+// Pridať flex-wrap pre safety
+className="flex flex-wrap gap-2 sm:gap-3"
 
-**Pridať nové `stylePrompts`:**
+// Pridať min-width pre konzistenciu
+className="flex-1 min-w-[100px] flex items-center justify-center gap-2 p-3 sm:p-4..."
 
-```typescript
-'gradient-modern': `
-Style: Modern gradient design with vibrant color transitions and glassmorphism effects
-Background: Dynamic gradient from deep purple #7C3AED through blue #3B82F6 to cyan #06B6D4
-Primary accent color: White #FFFFFF with frosted glass panels
-Text color: Pure white #FFFFFF with subtle glow
-Typography: Modern geometric sans-serif (Inter/Poppins style), bold headlines
-Visual effects: Glassmorphism cards, soft blur overlays, gradient orbs, floating elements
-Mood: Trendy, youthful, energetic, innovative, Instagram-ready
-No watermarks, vibrant colors, smooth transitions, contemporary feel
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Use Czech: "Jak" (not "Ako"), "Změňte" (not "Zmeňte").
-`,
-
-'tech-blue': `
-Style: Professional technology-focused design with blue color palette
-Background: Deep navy gradient #0A1628 to #1E3A5F with subtle grid pattern
-Primary accent color: Electric blue #00A3FF with neon glow effects
-Secondary accent: Cyan #00D4FF for highlights
-Text color: Clean white #FFFFFF
-Typography: Technical sans-serif font (Inter/Roboto Mono style), clean and precise
-Visual effects: Network node connections, data stream visualizations, circuit patterns, blue light trails
-Mood: Professional, trustworthy, tech-forward, innovative, corporate-friendly
-No watermarks, sharp edges, digital aesthetic, futuristic but professional
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Use Czech: "Jak" (not "Ako"), "Změňte" (not "Zmeňte").
-`,
-
-'bright-bold': `
-Style: High-impact promotional design with bold, saturated colors
-Background: Solid vibrant color or energetic gradient (orange #FF6B00, red #FF0040, yellow #FFD600)
-Primary accent color: Contrasting bright color for emphasis
-Text color: White #FFFFFF or Black #000000 for maximum contrast
-Typography: Extra bold, large sans-serif font (Impact/Bebas style), ALL CAPS headlines allowed
-Visual effects: Geometric shapes, starburst elements, price tags, discount badges, dynamic angles
-Mood: Exciting, urgent, attention-grabbing, promotional, high-energy
-No watermarks, maximum visual impact, clear call-to-action areas
-Perfect for: Sales, promotions, limited offers, discounts
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Use "SLEVA", "AKCE", "od 300 Kč", "ZDARMA" for promotional elements.
-`,
-
-'vintage-retro': `
-Style: Nostalgic vintage design with warm, aged aesthetic
-Background: Warm beige/cream #F5E6D3, aged paper texture, subtle sepia gradient
-Primary accent color: Muted terracotta #C17650, dusty rose #C9A9A6, olive green #8B9A6B
-Text color: Dark brown #3D2B1F or charcoal #4A4A4A
-Typography: Vintage serif fonts (Playfair Display), retro sans-serif accents, hand-drawn feel
-Visual effects: Film grain texture, vignette corners, faded edges, vintage photo borders
-Mood: Nostalgic, trustworthy, authentic, timeless, warm, family-oriented
-No harsh modern elements, soft and inviting, classic advertising feel
-Perfect for: Family content, testimonials, long-standing company values
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Use Czech: "Jak" (not "Ako"), "Změňte" (not "Zmeňte").
-`
+// Skryť dimensions badge na mobile
+<Badge variant="secondary" className="text-[10px] mt-1 hidden sm:inline-flex">
 ```
 
 ---
 
-#### 3. `supabase/functions/social-content-generator/index.ts`
+#### 3. `src/pages/SocialGenerator.tsx`
 
-**Aktualizovať validáciu:**
+**Problémy:**
+- Header `text-3xl` je príliš veľký na mobile
+- Chýba indikácia dnešného typu na mobile (sidebar je skrytý)
+
+**Opravy:**
 ```typescript
-const InputSchema = z.object({
-  // ...
-  visualStyle: z.enum([
-    'luxury-gold', 
-    'photo-realistic', 
-    'modern-noir', 
-    'minimalist',
-    'gradient-modern',    // NOVÉ
-    'tech-blue',          // NOVÉ
-    'bright-bold',        // NOVÉ
-    'vintage-retro'       // NOVÉ
-  ]).default('luxury-gold'),
-  // ...
-});
-```
+// Responzívny header
+<h1 className="text-2xl sm:text-3xl font-bold text-foreground">
 
-**Pridať nové stylePrompts do edge funkcie** (rovnaké ako v templates.ts)
+// Pridať mobilný "quick tip" pre dnešný typ
+{/* Mobile Today Indicator - zobrazí sa len na mobile */}
+<div className="lg:hidden mb-4">
+  <Badge variant="outline" className="gap-1">
+    <Calendar className="h-3 w-3" />
+    Dnes: {getTodaySuggestion()}
+  </Badge>
+</div>
+```
 
 ---
 
-### Vizuálna ukážka štýlov
+#### 4. `src/components/social/PersonToggle.tsx`
 
+**Problémy:**
+- Padding `p-4` je väčší ako v StyleSelector (`p-3`)
+- Nekonzistentné s ostatnými selektormi
+
+**Opravy:**
+```typescript
+// Zmenšiť padding pre konzistenciu
+className="flex flex-col items-center gap-2 p-3 rounded-lg border..."
+```
+
+---
+
+#### 5. `src/components/social/GeneratedContent.tsx`
+
+**Problémy:**
+- Textarea s `min-h-[150px]` zaberá veľa miesta na mobile
+- Tlačidlá "Kopírovať" sú malé pre touch
+
+**Opravy:**
+```typescript
+// Responzívna výška textarea
+className="min-h-[120px] sm:min-h-[150px] resize-none bg-muted/50"
+
+// Väčšie touch targets pre tlačidlá
+className="h-9 sm:h-8 px-3 sm:px-2 min-w-[44px]"
+```
+
+---
+
+#### 6. `src/components/social/SocialPostHistory.tsx`
+
+**Problémy:**
+- Tlačidlá akcií `h-7 w-7` sú pod WCAG minimum (44px)
+- ScrollArea môže byť kratšia na mobile
+
+**Opravy:**
+```typescript
+// Zväčšiť action buttons
+className="h-9 w-9 sm:h-7 sm:w-7"
+
+// Responzívna výška ScrollArea
+<ScrollArea className="h-[300px] sm:h-[400px] pr-4">
+```
+
+---
+
+#### 7. `src/components/social/ContentCalendar.tsx`
+
+**Problémy:**
+- Button padding môže byť tesný na mobile
+
+**Opravy:**
+```typescript
+// Väčší touch target
+className="w-full justify-start h-auto py-3 sm:py-2 px-3..."
+```
+
+---
+
+### Vizuálna zmena - StyleSelector
+
+**Pred (mobile):**
 ```text
-┌────────────────────────────────────────────────────────────────────────────┐
-│                          Vizuální styl obrázku                             │
-├────────────────────────────────────────────────────────────────────────────┤
-│                                                                            │
-│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐      │
-│  │ ✨ Luxury    │ │ 📷 Foto      │ │ 🌙 Modern    │ │ ⚡ Minimal   │      │
-│  │    Gold      │ │ realistický  │ │    Noir      │ │    istický   │      │
-│  └──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘      │
-│                                                                            │
-│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐      │
-│  │ 🎨 Gradient  │ │ 💻 Tech      │ │ ☀️ Bright    │ │ 🕐 Vintage   │      │
-│  │   Modern     │ │    Blue      │ │   & Bold     │ │    Retro     │      │
-│  │   (NOVÉ)     │ │   (NOVÉ)     │ │   (NOVÉ)     │ │   (NOVÉ)     │      │
-│  └──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘      │
-│                                                                            │
-└────────────────────────────────────────────────────────────────────────────┘
+┌─────────┐ ┌─────────┐
+│ Luxury  │ │ Foto    │
+│ Gold    │ │ real.   │
+├─────────┤ ├─────────┤
+│ Modern  │ │ Minimal │
+│ Noir    │ │ istický │
+├─────────┤ ├─────────┤
+│ Gradient│ │ Tech    │
+│ Modern  │ │ Blue    │
+├─────────┤ ├─────────┤
+│ Bright  │ │ Vintage │
+│ & Bold  │ │ Retro   │
+└─────────┘ └─────────┘
+= 4 riadky, príliš dlhé
 ```
 
----
-
-### Príklady generovaných scén pre nové štýly
-
-**Gradient Modern:**
-> "Floating glassmorphism card with fiber optic speed visualization, vibrant purple-to-blue gradient background, modern typography showing internet speed metrics"
-
-**Tech Blue:**
-> "Network of connected nodes visualizing data flow, premium router with blue LED accents on dark navy background, circuit board pattern elements"
-
-**Bright & Bold:**
-> "Eye-catching promotional banner with large price tag '300 Kč', starburst elements, orange and red gradient, bold AKCE badge"
-
-**Vintage Retro:**
-> "Sepia-toned family living room scene, vintage TV aesthetic, warm nostalgic lighting, aged paper texture borders"
+**Po (mobile sm+):**
+```text
+┌─────────┐ ┌─────────┐ ┌─────────┐
+│ Luxury  │ │ Foto    │ │ Modern  │
+│ Gold    │ │ real.   │ │ Noir    │
+├─────────┤ ├─────────┤ ├─────────┤
+│ Minimal │ │ Gradient│ │ Tech    │
+│ istický │ │ Modern  │ │ Blue    │
+├─────────┤ ├─────────┤
+│ Bright  │ │ Vintage │
+│ & Bold  │ │ Retro   │
+└─────────┘ └─────────┘
+= 3 riadky na sm, 2 riadky na lg
+```
 
 ---
 
 ### Technické detaily
 
-| Súbor | Typ zmeny |
-|-------|-----------|
-| `src/components/social/StyleSelector.tsx` | Rozšíriť typ, pridať 4 položky do poľa, nové ikony |
-| `src/data/social/templates.ts` | Rozšíriť typ, pridať 4 stylePrompts |
-| `supabase/functions/social-content-generator/index.ts` | Rozšíriť validáciu, pridať 4 stylePrompts |
+| Súbor | Zmena | Priorita |
+|-------|-------|----------|
+| `StyleSelector.tsx` | Grid 2→3 stĺpce na sm, väčší text | Vysoká |
+| `PlatformSelector.tsx` | flex-wrap, skryť badge na mobile | Stredná |
+| `SocialGenerator.tsx` | Responzívny header, mobile dnešný tip | Stredná |
+| `PersonToggle.tsx` | Zmenšiť padding p-4→p-3 | Nízka |
+| `GeneratedContent.tsx` | Responzívna textarea, väčšie buttons | Vysoká |
+| `SocialPostHistory.tsx` | Väčšie action buttons pre touch | Vysoká |
+| `ContentCalendar.tsx` | Väčší touch target | Stredná |
 
-### Nové závislosti ikon
-Potrebné importy z `lucide-react`:
-- `Palette` (Gradient Modern)
-- `Cpu` (Tech Blue)  
-- `Sun` (Bright & Bold)
-- `Clock` (Vintage Retro)
+---
+
+### WCAG Compliance
+
+**Touch Targets (WCAG 2.5.5):**
+- Minimum: 44x44 CSS pixels
+- Aktuálne: Niektoré tlačidlá majú len 28x28px (`h-7 w-7`)
+- Po oprave: Všetky interaktívne prvky budú mať min. 44px na mobile
+
+**Čitateľnosť textu:**
+- Minimum: 10px nie je odporúčané
+- Po oprave: Minimálne 11px na mobile, 12px na desktop
 

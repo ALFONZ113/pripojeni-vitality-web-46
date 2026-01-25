@@ -1,112 +1,137 @@
 
 
-# Oprava og:image pre Facebook zdieľanie blogov
+## Plán: Pridať prepínač "S osobou / Bez osoby" do Social Generátora
 
-## Problém
+### Súhrn
+Pridáme nový komponent `PersonToggle` (prepínač), ktorý umožní používateľovi vybrať, či chce na vygenerovanom obrázku osobu/človeka alebo nie. Táto voľba ovplyvní AI prompt pre generovanie scény.
 
-Keď zdieľate blog na Facebooku, zobrazuje sa hlavné logo popri.cz namiesto obrázka konkrétneho článku.
+---
 
-**Príčina:**
-Niektoré blogové články používajú obrázky importované cez ES6 moduly zo `src/assets/`:
+### Nové komponenty
 
-```typescript
-import homeOfficeImage from '@/assets/home-office-2025.jpg';
-image: homeOfficeImage,  // Výsledok: /assets/home-office-2025-abc123.jpg
+#### 1. PersonToggle komponent
+Vytvorím nový súbor `src/components/social/PersonToggle.tsx`:
+
+```text
+┌─────────────────────────────────────────────┐
+│  Lidé na obrázku                            │
+│                                             │
+│  ┌──────────────┐  ┌──────────────────────┐ │
+│  │ 👤 S osobou  │  │ 🖼️ Bez osob         │ │
+│  │   (vybrané)  │  │                      │ │
+│  └──────────────┘  └──────────────────────┘ │
+│                                             │
+│  Popis: Obrázek bude obsahovat realistické  │
+│  osoby v autentických situacích             │
+└─────────────────────────────────────────────┘
 ```
 
-Tento hash sa mení pri každom builde a Facebook crawler nemôže spoľahlivo načítať obrázok.
+- Dva možnosti: `with-person` | `without-person`
+- Použijem rovnaký dizajn ako StyleSelector (karty s ikonami)
+- Ikony: `User` pre osobu, `Image` alebo `Frame` pre bez osoby
 
 ---
 
-## Riešenie
+### Zmeny v existujúcich súboroch
 
-Presunieme všetky blogové obrázky do `public/blog-images/` s fixnými názvami a aktualizujeme všetky blogové príspevky.
+#### 2. SocialGenerator.tsx
+- Pridať nový state: `const [includePerson, setIncludePerson] = useState<'with-person' | 'without-person'>('with-person')`
+- Pridať import a zobrazenie `PersonToggle` komponenty pod `StyleSelector`
+- Posielať parameter `includePerson` do edge funkcie
 
----
-
-## Čo sa zmení
-
-### 1. Nový priečinok pre blog obrázky
-
-Vytvoríme `public/blog-images/` a prekopírujeme tam všetky obrázky zo `src/assets/` ktoré sa používajú v blogoch:
-
-| Súbor v src/assets/ | Nová cesta v public/ |
-|---------------------|----------------------|
-| home-office-2025.jpg | /blog-images/home-office-2025.jpg |
-| poda-internet-2026-hero.webp | /blog-images/poda-internet-2026-hero.webp |
-| slow-internet-guide-image.jpg | /blog-images/slow-internet-fix.jpg |
-| myty-opticky-internet-hero.jpg | /blog-images/myty-opticky-internet.jpg |
-| polanka-60ghz-antenna.jpg | /blog-images/polanka-60ghz.jpg |
-| giga-internet-hero.jpg | /blog-images/giga-internet.jpg |
-| (ďalšie podľa potreby) | ... |
-
-### 2. Aktualizácia blogových súborov
-
-Zmena z:
 ```typescript
-import homeOfficeImage from '@/assets/home-office-2025.jpg';
-// ...
-image: homeOfficeImage,
+// Nový state
+const [includePerson, setIncludePerson] = useState<IncludePerson>('with-person');
+
+// V generateContent() pridať do body:
+body: {
+  type: postType,
+  platform,
+  visualStyle,
+  includePerson,  // NOVÉ
+  customTopic: customTopic || null,
+}
 ```
 
-Na:
+#### 3. Edge funkcia social-content-generator/index.ts
+
+**Zmeny vo validácii:**
 ```typescript
-// žiadny import
-image: '/blog-images/home-office-2025.jpg',
+const InputSchema = z.object({
+  type: z.enum([...]),
+  platform: z.enum([...]),
+  visualStyle: z.enum([...]),
+  includePerson: z.enum(['with-person', 'without-person']).default('with-person'), // NOVÉ
+  customTopic: z.string().max(500).optional().nullable(),
+});
 ```
 
-**Súbory na úpravu:**
-- `src/data/blog/home-office-2025.ts`
-- `src/data/blog/poda-internet-2026.ts`
-- `src/data/blog/slow-internet-fix.ts`
-- `src/data/blog/myty-opticky-internet.ts`
-- `src/data/blog/polanka-60ghz.ts`
-- `src/data/blog/giga-internet.ts`
-- Ďalšie súbory ktoré importujú obrázky z `src/assets/`
+**Zmeny v `generateSceneDescription()`:**
+- Pridať parameter `includePerson`
+- Upraviť system prompt podľa voľby:
 
-### 3. Overenie og:image generovania
-
-V `src/utils/blogSeo.ts` je kód správny:
 ```typescript
-ogImage: post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`,
+// Ak includePerson === 'without-person':
+CRITICAL RULES:
+1. DO NOT include any people, humans, faces, hands, or body parts
+2. Focus on objects, devices, environments, and abstract concepts
+3. Show technology, routers, devices, fiber optic cables, home interiors WITHOUT people
+
+// Ak includePerson === 'with-person':
+CRITICAL RULES:
+1. ALWAYS include PEOPLE in realistic situations
+2. Show authentic human interactions with technology
 ```
 
-Toto vytvorí absolútnu URL ako:
-- `https://www.popri.cz/blog-images/home-office-2025.jpg`
+**Zmeny v stylePrompts:**
+- Pre `photo-realistic` štýl podmienene pridať/odobrať popisy osôb
 
 ---
 
-## Výhody riešenia
+### Logika fungovania
 
-| Pred | Po |
-|------|-----|
-| Dynamické Vite hash cesty | Statické fixné URL |
-| Facebook cache problém | Facebook vždy načíta správny obrázok |
-| Obrázok sa môže meniť | Stabilná URL pre všetky platformy |
-
----
-
-## Kroky implementácie
-
-1. Vytvorenie priečinka `public/blog-images/`
-2. Kopírovanie obrázkov zo `src/assets/` do `public/blog-images/`
-3. Aktualizácia všetkých blogových súborov - odstránenie importov a použitie priamych ciest
-4. Test zdieľania na Facebook Sharing Debugger
-
----
-
-## Po implementácii
-
-1. Navštívte [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
-2. Zadajte URL blogu: `https://www.popri.cz/blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita`
-3. Kliknite **"Scrape Again"**
-4. Skontrolujte, či sa zobrazuje správny náhľadový obrázok článku
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                    Používateľ vyberie:                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌─────────────┐                      ┌───────────────────────┐ │
+│  │ S osobou    │───────────────────▶ │ AI generuje scénu:    │ │
+│  └─────────────┘                      │ "Rodina sleduje TV,   │ │
+│                                       │  žena pracuje z domu" │ │
+│                                       └───────────────────────┘ │
+│                                                                 │
+│  ┌─────────────┐                      ┌───────────────────────┐ │
+│  │ Bez osob    │───────────────────▶ │ AI generuje scénu:    │ │
+│  └─────────────┘                      │ "Router s optickým    │ │
+│                                       │  kabelem, moderný byt"│ │
+│                                       └───────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## Technické poznámky
+### Technické detaily
 
-- Obrázky v `public/` sú dostupné na fixných URL bez hashovania
-- Facebook vyžaduje minimálne 200x200px, ideálne 1200x630px pre náhľad
-- Obrázky sú cacheované Facebookom - po zmene je potrebné použiť Debugger
+| Súbor | Zmena |
+|-------|-------|
+| `src/components/social/PersonToggle.tsx` | **NOVÝ** - UI komponent s 2 možnosťami |
+| `src/pages/SocialGenerator.tsx` | Pridať state, import, zobrazenie, poslať do API |
+| `supabase/functions/social-content-generator/index.ts` | Upraviť validáciu, scene generation logiku |
+
+### Príklad výsledných promptov
+
+**S osobou (with-person):**
+> "Young couple sitting on modern sofa, watching 4K movie on large TV, warm living room lighting, happy expressions, cozy Czech home atmosphere"
+
+**Bez osob (without-person):**
+> "Modern fiber optic router with blue LED lights, ethernet cables neatly organized, minimalist home office desk, warm ambient lighting, no people"
+
+---
+
+### Čo sa nezmení
+- Všetky 4 vizuálne štýly zostanú
+- Platformy (FB/IG/Obe) zostanú
+- Typy príspevkov zostanú
+- História a kalendár zostanú
 

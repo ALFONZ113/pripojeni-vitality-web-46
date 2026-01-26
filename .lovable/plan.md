@@ -1,22 +1,22 @@
 
 
-## Plán: Pridať rýchlu navigáciu do Admin Dashboardu
+## Plán: Pridať tlačidlá na zdieľanie blogových článkov na sociálne siete
 
-### Súhrn
-Pridám navigačné tlačidlá do headeru Admin Dashboardu pre rýchly prístup k Social Generatoru a ďalším admin nástrojom bez potreby písania URL.
+### Čo urobím
+
+Pridám viditeľné tlačidlá na zdieľanie článkov na sociálne siete (Facebook, X/Twitter, LinkedIn, kopírovanie URL) priamo na stránku blogového článku. Pri zdieľaní na Facebook sa automaticky načíta obrázok článku vďaka už existujúcim Open Graph meta tagom.
 
 ---
 
 ### Riešenie
 
-Pridám panel s rýchlymi odkazmi do headeru Admin Dashboardu:
-
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│ Administrace PODA                                           │
-│ Správa formulářových žádostí                                │
+│  📅 25. 01. 2026  |  👤 Autor                               │
 │                                                             │
-│ [📱 Social Generator] [📝 AI Blog] [🤖 Automácie] [Odhlásit]│
+│  Proč internet doma zpomaluje večer?                        │
+│                                                             │
+│  [📘 Facebook] [🐦 Twitter] [💼 LinkedIn] [📋 Kopírovat URL] │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -24,128 +24,166 @@ Pridám panel s rýchlymi odkazmi do headeru Admin Dashboardu:
 
 ### Zmeny v súboroch
 
-#### `src/pages/AdminDashboard.tsx`
+#### 1. `src/components/blog/BlogPostSocialActions.tsx` - Kompletná prepracovanie
 
-**1. Pridať import ikony:**
+Nahradím generické "Sdílet" tlačidlo špecifickými tlačidlami pre sociálne siete:
+
 ```typescript
-import { 
-  // ... existujúce ikony
-  Share2,  // pre Social Generator
-  BookOpen, // pre AI Blog
-  Bot,     // pre Automácie
-} from "lucide-react";
+import { Facebook, Twitter, Linkedin, Link2, Check } from 'lucide-react';
+import { toast } from 'sonner';
+import { useState } from 'react';
+import { Button } from '../ui/button';
+
+interface BlogPostSocialActionsProps {
+  postTitle: string;
+  postExcerpt?: string;
+  postUrl?: string;
+}
+
+const BlogPostSocialActions = ({ postTitle, postExcerpt, postUrl }: BlogPostSocialActionsProps) => {
+  const [copied, setCopied] = useState(false);
+  const url = postUrl || window.location.href;
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(postTitle);
+  const encodedExcerpt = encodeURIComponent(postExcerpt || '');
+
+  // Facebook share - automaticky načíta og:image z URL
+  const shareToFacebook = () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      'facebook-share',
+      'width=600,height=400'
+    );
+  };
+
+  // Twitter/X share
+  const shareToTwitter = () => {
+    window.open(
+      `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      'twitter-share',
+      'width=600,height=400'
+    );
+  };
+
+  // LinkedIn share
+  const shareToLinkedIn = () => {
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+      'linkedin-share',
+      'width=600,height=400'
+    );
+  };
+
+  // Kopírovanie URL
+  const copyUrl = async () => {
+    await navigator.clipboard.writeText(url);
+    setCopied(true);
+    toast.success('URL zkopírována do schránky');
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <span className="text-sm text-muted-foreground mr-2">Sdílet:</span>
+      
+      <Button variant="outline" size="sm" onClick={shareToFacebook}>
+        <Facebook className="h-4 w-4 mr-1" />
+        Facebook
+      </Button>
+      
+      <Button variant="outline" size="sm" onClick={shareToTwitter}>
+        <Twitter className="h-4 w-4 mr-1" />
+        Twitter
+      </Button>
+      
+      <Button variant="outline" size="sm" onClick={shareToLinkedIn}>
+        <Linkedin className="h-4 w-4 mr-1" />
+        LinkedIn
+      </Button>
+      
+      <Button variant="outline" size="sm" onClick={copyUrl}>
+        {copied ? <Check className="h-4 w-4 mr-1" /> : <Link2 className="h-4 w-4 mr-1" />}
+        {copied ? 'Zkopírováno' : 'Kopírovat URL'}
+      </Button>
+    </div>
+  );
+};
+
+export default BlogPostSocialActions;
 ```
 
-**2. Upraviť header (riadky 293-303):**
+#### 2. `src/components/blog/BlogPostHeader.tsx` - Pridať social actions
 
-Súčasný kód:
-```typescript
-<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-  <div>
-    <h1 className="text-3xl font-bold">Administrace PODA</h1>
-    <p className="text-muted-foreground">Správa formulářových žádostí</p>
-  </div>
-  <Button variant="outline" onClick={handleLogout}>
-    <LogOut className="h-4 w-4 mr-2" />
-    Odhlásit se
-  </Button>
-</div>
-```
+Pridám import a zobrazenie tlačidiel pod nadpisom:
 
-Nový kód:
 ```typescript
-<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-  <div>
-    <h1 className="text-3xl font-bold">Administrace PODA</h1>
-    <p className="text-muted-foreground">Správa formulářových žádostí</p>
-  </div>
-  
-  {/* Rýchla navigácia */}
-  <div className="flex flex-wrap items-center gap-2">
-    <Button 
-      variant="default" 
-      onClick={() => navigate('/admin/social-generator')}
-      className="gap-2"
-    >
-      <Share2 className="h-4 w-4" />
-      <span className="hidden sm:inline">Social Generator</span>
-      <span className="sm:hidden">Social</span>
-    </Button>
-    
-    <Button 
-      variant="outline" 
-      onClick={() => navigate('/admin/ai-blog-manager')}
-      className="gap-2"
-    >
-      <BookOpen className="h-4 w-4" />
-      <span className="hidden sm:inline">AI Blog</span>
-    </Button>
-    
-    <Button 
-      variant="outline" 
-      onClick={() => navigate('/admin/ai-automation')}
-      className="gap-2"
-    >
-      <Bot className="h-4 w-4" />
-      <span className="hidden sm:inline">Automácie</span>
-    </Button>
-    
-    <Button variant="ghost" onClick={handleLogout}>
-      <LogOut className="h-4 w-4" />
-      <span className="hidden sm:inline ml-2">Odhlásit se</span>
-    </Button>
-  </div>
+import BlogPostSocialActions from './BlogPostSocialActions';
+
+// V komponente po <p> s excerpt:
+<div className="mt-6 pt-6 border-t border-border">
+  <BlogPostSocialActions 
+    postTitle={post.title}
+    postExcerpt={post.excerpt}
+  />
 </div>
 ```
 
 ---
 
-### Vizuálna zmena
+### Ako funguje zdieľanie s obrázkom na Facebook
+
+Facebook automaticky načíta obrázok z `og:image` meta tagu, ktorý už máš správne nastavený v `BlogPostSEO.tsx`:
+
+```html
+<meta property="og:image" content="https://popri.cz/blog-images/article-image.jpg" />
+```
+
+Keď používateľ klikne na "Facebook", Facebook crawler:
+1. Navštívi URL článku
+2. Prečíta `og:image`, `og:title`, `og:description`
+3. Zobrazí náhľad s obrázkom v zdieľacom dialógu
+
+---
+
+### Vizuálna podoba
 
 **Desktop:**
 ```text
-┌──────────────────────────────────────────────────────────────────┐
-│ Administrace PODA                                                │
-│ Správa formulářových žádostí                                     │
-│                                                                  │
-│         [📱 Social Generator] [📝 AI Blog] [🤖 Automácie] [↪ Odhlásit]
-└──────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│  Tipy a rady  |  📅 25. 01. 2026  |  👤 Autor                   │
+│                                                                 │
+│  Proč internet doma zpomaluje večer? (A jak to vyřešit)        │
+│                                                                 │
+│  Sedíš večer na pohovce, chceš si pustit seriál...             │
+│                                                                 │
+│  ─────────────────────────────────────────────────────────────  │
+│  Sdílet: [📘 Facebook] [🐦 Twitter] [💼 LinkedIn] [📋 Kopírovat]│
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 **Mobile:**
 ```text
-┌────────────────────────────────┐
-│ Administrace PODA             │
-│ Správa formulářových žádostí  │
-│                               │
-│ [📱 Social] [📝] [🤖] [↪]     │
-└────────────────────────────────┘
+┌───────────────────────────────┐
+│  Sdílet:                      │
+│  [📘 FB] [🐦 TW] [💼 LI] [📋] │
+└───────────────────────────────┘
 ```
 
 ---
 
-### Technické detaily
+### Súbory na úpravu
 
-| Zmena | Popis |
+| Súbor | Zmena |
 |-------|-------|
-| Import ikon | `Share2`, `BookOpen`, `Bot` |
-| Social Generator tlačidlo | Primárny variant (výrazný) |
-| AI Blog, Automácie | Outline variant |
-| Odhlásit | Ghost variant (menej výrazný) |
-| Responzivita | Skryté texty na mobile, len ikony |
+| `src/components/blog/BlogPostSocialActions.tsx` | Nové tlačidlá pre FB, Twitter, LinkedIn, Copy |
+| `src/components/blog/BlogPostHeader.tsx` | Import a zobrazenie social actions |
 
 ---
 
-### Alternatíva: Dropdown menu
+### Technické poznámky
 
-Ak by bolo príliš veľa tlačidiel, môžem použiť dropdown:
-
-```text
-[☰ Nástroje ▼] [Odhlásit]
-    ├── 📱 Social Generator
-    ├── 📝 AI Blog Manager  
-    └── 🤖 AI Automácie
-```
-
-Ale pre 3-4 nástroje sú priame tlačidlá rýchlejšie a prehľadnejšie.
+- **Facebook obrázok**: Automaticky z `og:image` - už funguje správne
+- **Popup okná**: Otvárajú sa v malom okne (600x400) pre lepší UX
+- **Responzívny dizajn**: Na mobile sa zobrazia len ikony bez textu
+- **Feedback**: Po skopírovaní URL sa zobrazí toast notifikácia
 

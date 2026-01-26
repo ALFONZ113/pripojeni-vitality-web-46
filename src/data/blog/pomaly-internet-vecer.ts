@@ -1,6 +1,6 @@
 import { BlogPost } from './types';
-import heroImage from '@/assets/pomaly-internet-vecer.png';
 
+// Using static image path from public/blog-images for proper OG meta sharing
 export const pomalyInternetVecerPost: BlogPost = {
   id: 301,
   slug: 'proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit',
@@ -201,6 +201,6 @@ export const pomalyInternetVecerPost: BlogPost = {
   tags: ['pomalý internet', 'večerní špička', 'Wi-Fi', 'router', 'optický internet', 'QoS', 'troubleshooting'],
   author: 'Popri.cz',
   date: '2026-01-25',
-  image: heroImage,
+  image: '/blog-images/pomaly-internet-vecer.png',
   alt: 'Moderní herní router s ethernetovým kabelem a telefon zobrazující nízkou rychlost internetu',
 };

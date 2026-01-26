@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
+import BlogPostSocialActions from './BlogPostSocialActions';
 
 interface BlogPostHeaderProps {
   post: BlogPost;
@@ -71,6 +72,14 @@ const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
           <p className="text-xl text-muted-foreground leading-relaxed" itemProp="description">
             {post.excerpt}
           </p>
+          
+          {/* Social sharing buttons */}
+          <div className="mt-6 pt-6 border-t border-border">
+            <BlogPostSocialActions 
+              postTitle={post.title}
+              postExcerpt={post.excerpt}
+            />
+          </div>
         </div>
       </div>
     </section>

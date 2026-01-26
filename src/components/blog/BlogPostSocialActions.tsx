@@ -1,75 +1,82 @@
-
-import { Share2, Bookmark } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Link2, Check } from 'lucide-react';
 import { toast } from 'sonner';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Button } from '../ui/button';
 
 interface BlogPostSocialActionsProps {
-  postId: number;
   postTitle: string;
   postExcerpt?: string;
+  postUrl?: string;
 }
 
-const BlogPostSocialActions = ({ postId, postTitle, postExcerpt }: BlogPostSocialActionsProps) => {
-  const [isSaved, setIsSaved] = useState(false);
-  
-  useEffect(() => {
-    const savedPosts = JSON.parse(localStorage.getItem('savedPosts') || '[]');
-    setIsSaved(savedPosts.some((savedPost: number) => savedPost === postId));
-  }, [postId]);
+const BlogPostSocialActions = ({ postTitle, postExcerpt, postUrl }: BlogPostSocialActionsProps) => {
+  const [copied, setCopied] = useState(false);
+  const url = postUrl || (typeof window !== 'undefined' ? window.location.href : '');
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(postTitle);
 
-  const handleShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: postTitle,
-          text: postExcerpt,
-          url: window.location.href,
-        });
-      } else {
-        await navigator.clipboard.writeText(window.location.href);
-        toast.success('URL zkopírována do schránky');
-      }
-    } catch (err) {
-      console.error('Sdílení selhalo:', err);
-      toast.error('Sdílení selhalo');
-    }
+  // Facebook share - automaticky načíta og:image z URL
+  const shareToFacebook = () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      'facebook-share',
+      'width=600,height=400'
+    );
   };
-  
-  const handleSave = () => {
-    const savedPosts = JSON.parse(localStorage.getItem('savedPosts') || '[]');
-    const isAlreadySaved = savedPosts.some((savedPost: number) => savedPost === postId);
-    
-    if (isAlreadySaved) {
-      const updatedSavedPosts = savedPosts.filter((savedPost: number) => savedPost !== postId);
-      localStorage.setItem('savedPosts', JSON.stringify(updatedSavedPosts));
-      toast.success('Článek byl odebrán z uložených');
-      setIsSaved(false);
-    } else {
-      savedPosts.push(postId);
-      localStorage.setItem('savedPosts', JSON.stringify(savedPosts));
-      toast.success('Článek byl uložen');
-      setIsSaved(true);
+
+  // Twitter/X share
+  const shareToTwitter = () => {
+    window.open(
+      `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      'twitter-share',
+      'width=600,height=400'
+    );
+  };
+
+  // LinkedIn share
+  const shareToLinkedIn = () => {
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+      'linkedin-share',
+      'width=600,height=400'
+    );
+  };
+
+  // Kopírovanie URL
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      toast.success('URL zkopírována do schránky');
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast.error('Nepodařilo se zkopírovat URL');
     }
   };
 
   return (
-    <div className="flex items-center space-x-4">
-      <button 
-        className="inline-flex items-center text-gray-500 hover:text-poda-blue transition-colors"
-        onClick={handleShare}
-        aria-label="Sdílet článek"
-      >
-        <Share2 className="h-5 w-5 mr-2" />
-        <span>Sdílet</span>
-      </button>
-      <button 
-        className={`inline-flex items-center transition-colors ${isSaved ? 'text-poda-blue' : 'text-gray-500 hover:text-poda-blue'}`}
-        onClick={handleSave}
-        aria-label="Uložit článek"
-      >
-        <Bookmark className={`h-5 w-5 mr-2 ${isSaved ? 'fill-poda-blue' : ''}`} />
-        <span>{isSaved ? 'Uloženo' : 'Uložit'}</span>
-      </button>
+    <div className="flex flex-wrap items-center gap-2">
+      <span className="text-sm text-muted-foreground mr-2">Sdílet:</span>
+      
+      <Button variant="outline" size="sm" onClick={shareToFacebook} className="gap-1">
+        <Facebook className="h-4 w-4" />
+        <span className="hidden sm:inline">Facebook</span>
+      </Button>
+      
+      <Button variant="outline" size="sm" onClick={shareToTwitter} className="gap-1">
+        <Twitter className="h-4 w-4" />
+        <span className="hidden sm:inline">Twitter</span>
+      </Button>
+      
+      <Button variant="outline" size="sm" onClick={shareToLinkedIn} className="gap-1">
+        <Linkedin className="h-4 w-4" />
+        <span className="hidden sm:inline">LinkedIn</span>
+      </Button>
+      
+      <Button variant="outline" size="sm" onClick={copyUrl} className="gap-1">
+        {copied ? <Check className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
+        <span className="hidden sm:inline">{copied ? 'Zkopírováno' : 'Kopírovat URL'}</span>
+      </Button>
     </div>
   );
 };

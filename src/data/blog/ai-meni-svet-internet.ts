@@ -125,7 +125,7 @@ export const aiMeniSvetInternetPost: BlogPost = {
   category: 'Technologie',
   tags: ['AI', 'umělá inteligence', 'rychlý internet', 'chytrá domácnost', 'optický internet', 'práce z domova', 'streaming'],
   author: 'Popri.cz',
-  date: '2026-01-29',
+  date: '29. 01. 2026',
   image: '/blog-images/ai-internet-zaklad.webp',
   alt: 'Futuristická vizualizace umělé inteligence s optickým vláknem symbolizující rychlý internet'
 };

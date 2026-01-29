@@ -22,10 +22,12 @@ import { homeOffice2025Post } from './home-office-2025';
 import { podaInternet2026Post } from './poda-internet-2026';
 import { mytyOptickyInternetPost } from './myty-opticky-internet';
 import { pomalyInternetVecerPost } from './pomaly-internet-vecer';
+import { aiMeniSvetInternetPost } from './ai-meni-svet-internet';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  pomalyInternetVecerPost, // Najnovší - Proč internet zpomaluje večer
+  aiMeniSvetInternetPost, // Najnovší - Jak AI mění svět
+  pomalyInternetVecerPost, // Proč internet zpomaluje večer
   mytyOptickyInternetPost, // Mýty o optickém internetu
   podaInternet2026Post,
   homeOffice2025Post,
@@ -71,5 +73,6 @@ export * from './home-office-2025';
 export * from './poda-internet-2026';
 export * from './myty-opticky-internet';
 export * from './pomaly-internet-vecer';
+export * from './ai-meni-svet-internet';
 
 // Note: WiFi blog slug changed to Czech: jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025

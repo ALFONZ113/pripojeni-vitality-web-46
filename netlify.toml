@@ -1,84 +1,16 @@
 # Netlify build configuration
 # Force Node + npm and generate SEO + AI static assets before build
 [build]
-  command = "npm ci && node scripts/build-seo.js || true && node scripts/generate-ai-pages.js || true && node scripts/generate-og-pages.js || true && npm run build"
+  command = "npm ci && node scripts/build-seo.js || true && node scripts/generate-ai-pages.js || true && npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Edge function for AI bots - serves /ai-static/ content
-# Social crawlers (Facebook) are redirected to static /og/blog/ files
-# on_error = "bypass" ensures site works even if edge function fails
-
-# AI static pages
+# Edge Functions configuration for AI bot detection
 [[edge_functions]]
   function = "ai-bot-detector"
-  path = "/"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/tarify"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/kontakt"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/internet-ostrava"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/internet-karvina"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/internet-havirov"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/internet-bohumin"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/internet-poruba"
-  cache = "manual"
-  on_error = "bypass"
-
-# Blog - AI bots get /ai-static/, social crawlers redirect to /og/blog/
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/blog/*"
-  cache = "manual"
-  on_error = "bypass"
-
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/blog"
-  cache = "manual"
-  on_error = "bypass"
-
-# CRITICAL: SPA fallback for blog - AFTER edge function processes crawlers
-[[redirects]]
-  from = "/blog/*"
-  to = "/index.html"
-  status = 200
-  force = false
+  path = "/*"
 
 # CRITICAL: Domain canonicalization - MUST be before all other redirects
 [[redirects]]
@@ -119,17 +51,3 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type = "application/xml"
-
-# Force fresh content for blog images (social media)
-[[headers]]
-  for = "/blog-images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=86400"
-    Access-Control-Allow-Origin = "*"
-
-# OG static pages - no caching for Facebook debugger
-[[headers]]
-  for = "/og/blog/*"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-    Access-Control-Allow-Origin = "*"

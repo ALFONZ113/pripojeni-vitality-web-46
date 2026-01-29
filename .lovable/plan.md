@@ -1,130 +1,103 @@
 
-# Riešenie: Statické OG HTML pre Facebook zdieľanie
+# Plán: Nový blogový článok o AI a kvalitnom internete
 
-## Diagnostika problému
+## Prehľad článku
 
-### Čo ukazuje Facebook Debugger
-- **Response Code: 418** ("I'm a teapot") - neštandardný HTTP kód
-- **Curl Timeout** - Facebook crawler nedostáva odpoveď
-- **og:title: www.popri.cz** - dostáva default hodnoty
+Vytvorím nový blogový článok na tému **"Jak AI mění svět kolem nás: Proč je kvalitní internet naprostý základ"** v štýle existujúcich článkov na webe (luxury noir + gold theme).
 
-### Prečo Edge funkcia nefunguje
-1. **Duplicitná konfigurácia** - path je definovaný v `netlify.toml` AJ v `export const config`
-2. **Edge funkcia možno zlyháva** - chyba spôsobuje timeout
-3. **Netlify môže blokovať** - rate limiting alebo bot protection
+## Súbory na vytvorenie/úpravu
 
-### Prečo predchádzajúce opravy nefungovali
-Všetky opravy sa zameriavali na OG tagy v kóde, ale skutočný problém je že **server vôbec neodpovedá Facebooku správne** (HTTP 418 + timeout).
+### 1. Nový súbor: `src/data/blog/ai-meni-svet-internet.ts`
 
-## Navrhované riešenie: Statické HTML súbory
-
-Vytvoríme jednoduché statické HTML súbory pre každý blogový článok v priečinku `public/og/`. Facebook ich načíta PRIAMO bez závislosti na Edge funkcii.
-
-### Prečo toto funguje
-- Statické súbory nevyžadujú Edge funkciu
-- Netlify ich servuje priamo bez spracovania
-- Facebook crawler ich načíta okamžite
-- 100% spoľahlivé riešenie
-
-### Implementácia
-
-#### 1. Vytvoriť priečinok `public/og/blog/`
-
-Pre každý blogový článok vytvoriť súbor ako:
-`public/og/blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad.html`
-
-#### 2. Obsah statického HTML súboru
-
-```html
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <title>Jak AI mění svět kolem nás | Blog Popri.cz</title>
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.popri.cz/blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad">
-  <meta property="og:title" content="Jak AI mění svět kolem nás: Proč je kvalitní internet naprostý základ">
-  <meta property="og:description" content="Umělá inteligence mění práci, zábavu i domácnosti.">
-  <meta property="og:image" content="https://www.popri.cz/blog-images/ai-internet-zaklad.webp">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="Popri.cz">
-  <meta http-equiv="refresh" content="0;url=https://www.popri.cz/blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad">
-</head>
-<body>
-  <p>Presmerovanie na článok...</p>
-</body>
-</html>
-```
-
-#### 3. Konfigurácia redirectu v `public/_redirects`
+Štruktúra podľa existujúcich článkov (napr. `pomaly-internet-vecer.ts`):
 
 ```text
-# Facebook OG pre blog články - presmerovať na statické OG súbory
-/og/blog/* /og/blog/:splat 200
+BlogPost = {
+  id: 302,
+  slug: 'jak-ai-meni-svet-proc-kvalitni-internet-zaklad',
+  title: 'Jak AI mění svět kolem nás: Proč je kvalitní internet naprostý základ',
+  excerpt: 'Umělá inteligence mění práci, zábavu i domácnosti. Zjistěte, proč je rychlý a stabilní internet klíčem k jejímu využití v Česku.',
+  content: [HTML obsah článku v štýle webu],
+  category: 'Technologie',
+  tags: ['AI', 'umělá inteligence', 'rychlý internet', 'chytrá domácnost', 'optický internet', 'práce z domova'],
+  author: 'Popri.cz',
+  date: '29. 01. 2026',
+  image: '/blog-images/ai-internet-zaklad.webp',
+  alt: 'Futuristická vizualizace umělé inteligence s optickým vláknem symbolizující rychlý internet'
+}
 ```
 
-#### 4. Aktualizovať zdieľacie URL
+### 2. Úprava: `src/data/blog/index.ts`
 
-Na Facebooku zdieľať URL: `https://www.popri.cz/og/blog/slug-clanku`
-- Facebook načíta OG tagy
-- Meta refresh presmeruje užívateľa na skutočný článok
+- Import nového článku
+- Pridanie na prvé miesto v poli `blogPosts` (najnovší článok)
+- Export článku
 
-### Alternatívny prístup: Opraviť Edge funkciu
+### 3. Nový obrázok: `public/blog-images/ai-internet-zaklad.webp`
 
-Ak preferuješ opravu Edge funkcie:
-
-1. **Odstrániť `export const config`** z `ai-bot-detector.ts` - použiť len `netlify.toml`
-2. **Pridať try-catch** okolo celého handlera
-3. **Zjednodušiť logiku** - menej kódu = menej chýb
-4. **Testovať lokálne** pomocou `netlify dev`
-
-### Súbory na vytvorenie
-
-Pre každý blogový článok v `BLOG_POSTS_OG_DATA` vytvoriť statický HTML:
+Vygenerujem obrázok pomocou Gemini modelu s promptom v štýle webu:
 
 ```text
-public/og/blog/
-├── jak-ai-meni-svet-proc-kvalitni-internet-zaklad.html
-├── nejcastejsi-myty-o-optickem-internetu.html
-├── poda-internet-2026-ceny-rychlosti-recenze.html
-├── home-office-internet-pozadavky-2025.html
-├── pomaly-internet-8-sposobu-jak-vyresit-msk-2025.html
-├── ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi.html
-├── o2-nej-prevzatie-poda-alternativa-zakaznici.html
-├── gpon-technologie-jak-funguje-moderni-opticky-internet.html
-├── jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025.html
-└── proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit.html
+"Modern luxury editorial photo: Abstract visualization of AI and 
+high-speed internet connection. Deep black background (#0A0A0A), 
+golden fiber optic cables (#D4A517) forming neural network patterns, 
+subtle brain silhouette made of light particles. Professional 
+photography, cinematic lighting, 16:9 aspect ratio, ultra high 
+resolution. NO text, NO faces, clean minimalist composition with 
+rich gold accents on noir background."
 ```
 
-### Build script pre automatizáciu
+## Formátovanie obsahu
 
-Vytvorím script `scripts/generate-og-pages.js` ktorý:
-1. Načíta všetky blogové články
-2. Vygeneruje statické HTML súbory s OG tagmi
-3. Beží automaticky pri každom builde
+Obsah bude formátovaný v HTML s CSS triedami konzistentnými s noir+gold témou:
 
-### Výsledok
+- `<div class="blog-content">` - hlavný wrapper
+- `<p class="lead">` - úvodný odsek
+- `<h2>` - hlavné sekcie
+- `<h3>` - podsekcie
+- `<div class="bg-card border border-primary/20 rounded-xl p-6 my-6">` - zvýraznené boxy
+- `<ul>` / `<li>` - zoznamy
+- `<div class="space-y-4 my-6">` - FAQ sekcia s kartami
+- CTA box s gradientom a tlačidlom na tarify
 
-Po implementácii:
-- Zdieľanie na Facebook: `https://www.popri.cz/og/blog/slug`
-- Facebook zobrazí správny obrázok a titulok
-- Užívateľ bude presmerovaný na skutočný článok
+## Obsah článku (formátovaný pre web)
 
-### Časový odhad
+Článok bude obsahovať:
 
-- Vytvorenie statických HTML: 5 minút
-- Build script: 10 minút
-- Testovanie: 5 minút
+1. **Úvod** - AI ako realita, nie budúcnosť
+2. **AI v práci a vzdelávaní** - praktické príklady
+3. **AI v zábave a domácnosti** - streaming, asistenti, bezpečnosť
+4. **Prečo AI potrebuje kvalitný internet** - dáta, latencia, upload
+5. **AI a rodiny** - viac zariadení, vyššie nároky
+6. **FAQ sekcia** - 6 otázok s odpoveďami v kartách
+7. **CTA** - výzva na kontrolu tarifov s telefónnym číslom
 
-## Technické poznámky
+## Poradie implementácie
 
-### Prečo HTTP 418
-- Netlify Edge Functions môžu vrátiť 418 pri internej chybe
-- Môže byť aj rate limiting alebo bot protection
-- Statické súbory toto obchádzajú
+1. Vygenerovať obrázok cez edge funkciu `ai-generate-image`
+2. Uložiť obrázok do `public/blog-images/`
+3. Vytvoriť súbor `ai-meni-svet-internet.ts` s kompletným obsahom
+4. Aktualizovať `index.ts` s importom a exportom
+5. Otestovať zobrazenie článku
 
-### Prečo nerobiť ďalšie opravy Edge funkcie
-- Už bolo vyskúšaných 5+ verzií
-- Problém nie je v OG tagoch ale v serverovej odozve
-- Statické riešenie je zaručene funkčné
+## Technické detaily
+
+### Meta tagy (podľa zadania)
+
+- **Meta title**: Jak AI mění svět a proč bez rychlého internetu nefunguje
+- **Meta description**: Umělá inteligence mění práci, zábavu i domácnosti. Zjistěte, proč je rychlý a stabilní internet klíčem k jejímu využití v Česku.
+
+### SEO optimalizácia
+
+- Slug optimalizovaný pre vyhľadávanie
+- Interné odkazy na súvisiace články
+- FAQ sekcia pre rich snippets
+- Alt text pre obrázok
+
+### Štýl písania
+
+Konzistentný s existujúcimi článkami:
+- Neformálny, priateľský tón
+- Praktické príklady
+- Jasná štruktúra
+- CTA na konci s telefónnym číslom 730 431 313

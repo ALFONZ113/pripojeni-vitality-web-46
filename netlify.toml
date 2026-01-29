@@ -9,15 +9,18 @@
 
 # CRITICAL: Edge function for social crawlers (Facebook, Twitter, LinkedIn)
 # Must intercept requests BEFORE SPA routing - explicit priority
+# on_error = "bypass" ensures site works even if edge function fails
 [[edge_functions]]
   function = "ai-bot-detector"
   path = "/blog/*"
   cache = "manual"
+  on_error = "bypass"
 
 [[edge_functions]]
   function = "ai-bot-detector"
   path = "/*"
   cache = "manual"
+  on_error = "bypass"
 
 # CRITICAL: SPA fallback for blog - AFTER edge function processes crawlers
 [[redirects]]

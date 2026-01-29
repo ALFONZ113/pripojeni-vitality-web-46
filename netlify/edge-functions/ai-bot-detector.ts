@@ -1,5 +1,8 @@
 import type { Context } from "https://edge.netlify.com";
 
+// Version tracking for deployment verification
+const EDGE_FUNCTION_VERSION = "4";
+
 // AI bot User-Agents to detect
 const AI_BOT_PATTERNS = [
   'GPTBot',
@@ -18,9 +21,18 @@ const AI_BOT_PATTERNS = [
 ];
 
 // Social media crawler User-Agents - LOWERCASE for comparison
+// CRITICAL: Include explicit version strings that Facebook actually sends
 const SOCIAL_CRAWLER_PATTERNS = [
+  // Facebook crawlers - explicit patterns
+  'facebookexternalhit/1.1',
   'facebookexternalhit',
+  'facebookcatalog/1.0',
+  'facebookcatalog',
   'facebot',
+  'facebook.com',
+  'fb_iab',
+  'fbav',
+  // Other social platforms
   'linkedinbot',
   'twitterbot',
   'whatsapp',
@@ -31,7 +43,10 @@ const SOCIAL_CRAWLER_PATTERNS = [
   'embedly',
   'applebot',
   'bingpreview',
-  'vkshare'
+  'vkshare',
+  'snapchat',
+  'viber',
+  'skypeuripreview'
 ];
 
 // Pages to serve AI-optimized versions for (Czech language)
@@ -57,8 +72,11 @@ const AI_STATIC_BLOG_SLUGS = [
   'ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi'
 ];
 
+// Base URL for absolute URLs - CRITICAL for social sharing
+const BASE_URL = 'https://www.popri.cz';
+
 // Blog post data for dynamic OG tags (synced from blog data)
-// CRITICAL: All image paths must be absolute URLs or paths that will be prefixed with baseUrl
+// CRITICAL: All image paths will be converted to absolute URLs
 const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; image: string }> = {
   'proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit': {
     title: 'Proč internet doma zpomaluje večer? (A jak to vyřešit)',
@@ -112,25 +130,30 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
   }
 };
 
+// Helper: Convert relative image path to absolute URL
+function toAbsoluteImageUrl(imagePath: string): string {
+  if (imagePath.startsWith('http')) {
+    return imagePath;
+  }
+  // Ensure single slash between base URL and path
+  const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+  return `${BASE_URL}${cleanPath}`;
+}
+
 // Generate dynamic OG meta tags HTML for social crawlers
-function generateOGMetaHTML(slug: string, baseUrl: string): string {
+function generateOGMetaHTML(slug: string, userAgent: string): string {
   const postData = BLOG_POSTS_OG_DATA[slug];
-  const canonicalUrl = `${baseUrl}/blog/${slug}`;
+  const canonicalUrl = `${BASE_URL}/blog/${slug}`;
+  const slugInRegistry = slug in BLOG_POSTS_OG_DATA;
   
   // Default fallback if post not found - use generic but still functional
   const title = postData?.title || 'Blog | Popri.cz - PODA Internet';
   const description = postData?.description || 'Tipy a novinky o internetu, IPTV a technologiích od PODA.';
   
-  // CRITICAL: Use absolute URL for og:image - Facebook requires full URL
-  let imageUrl: string;
-  if (postData?.image) {
-    // If image starts with http, use as-is, otherwise prepend baseUrl
-    imageUrl = postData.image.startsWith('http') 
-      ? postData.image 
-      : `${baseUrl}${postData.image}`;
-  } else {
-    imageUrl = `${baseUrl}/og-image.png`;
-  }
+  // CRITICAL: Always use absolute URL for og:image
+  const imageUrl = postData?.image 
+    ? toAbsoluteImageUrl(postData.image)
+    : `${BASE_URL}/og-image.png`;
 
   return `<!DOCTYPE html>
 <html lang="cs">
@@ -168,6 +191,12 @@ function generateOGMetaHTML(slug: string, baseUrl: string): string {
   <meta property="article:published_time" content="${new Date().toISOString()}">
   <meta property="article:author" content="PODA Team">
   <meta property="article:section" content="Technologie">
+  
+  <!-- Debug info -->
+  <!-- Edge Function Version: ${EDGE_FUNCTION_VERSION} -->
+  <!-- Slug: ${slug} -->
+  <!-- Found in registry: ${slugInRegistry} -->
+  <!-- User-Agent: ${userAgent.substring(0, 100)} -->
 </head>
 <body>
   <article>
@@ -180,30 +209,115 @@ function generateOGMetaHTML(slug: string, baseUrl: string): string {
 </html>`;
 }
 
+// Generate debug response HTML
+function generateDebugHTML(request: Request): string {
+  const userAgent = request.headers.get('user-agent') || 'none';
+  const userAgentLower = userAgent.toLowerCase();
+  
+  const isSocialCrawler = SOCIAL_CRAWLER_PATTERNS.some(pattern => 
+    userAgentLower.includes(pattern.toLowerCase())
+  );
+  
+  const matchedPatterns = SOCIAL_CRAWLER_PATTERNS.filter(pattern =>
+    userAgentLower.includes(pattern.toLowerCase())
+  );
+  
+  const isAIBot = AI_BOT_PATTERNS.some(pattern => 
+    userAgentLower.includes(pattern.toLowerCase())
+  );
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edge Function Debug - v${EDGE_FUNCTION_VERSION}</title>
+  <style>
+    body { font-family: monospace; padding: 20px; background: #1a1a2e; color: #eee; }
+    h1 { color: #00d9ff; }
+    .success { color: #00ff88; }
+    .warning { color: #ffaa00; }
+    .error { color: #ff4444; }
+    pre { background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto; }
+    .section { margin: 20px 0; padding: 15px; background: #16213e; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Edge Function Debug - Version ${EDGE_FUNCTION_VERSION}</h1>
+  
+  <div class="section">
+    <h2>Request Info</h2>
+    <p><strong>URL:</strong> ${request.url}</p>
+    <p><strong>Method:</strong> ${request.method}</p>
+    <p><strong>Time:</strong> ${new Date().toISOString()}</p>
+  </div>
+  
+  <div class="section">
+    <h2>User-Agent Analysis</h2>
+    <p><strong>Raw User-Agent:</strong></p>
+    <pre>${userAgent}</pre>
+    <p><strong>Is Social Crawler:</strong> <span class="${isSocialCrawler ? 'success' : 'warning'}">${isSocialCrawler ? '✅ YES' : '❌ NO'}</span></p>
+    <p><strong>Is AI Bot:</strong> <span class="${isAIBot ? 'success' : 'warning'}">${isAIBot ? '✅ YES' : '❌ NO'}</span></p>
+    ${matchedPatterns.length > 0 ? `<p><strong>Matched Patterns:</strong> ${matchedPatterns.join(', ')}</p>` : ''}
+  </div>
+  
+  <div class="section">
+    <h2>Registered Social Crawler Patterns</h2>
+    <pre>${SOCIAL_CRAWLER_PATTERNS.join('\n')}</pre>
+  </div>
+  
+  <div class="section">
+    <h2>Registered Blog Posts (${Object.keys(BLOG_POSTS_OG_DATA).length})</h2>
+    <pre>${Object.keys(BLOG_POSTS_OG_DATA).join('\n')}</pre>
+  </div>
+  
+  <div class="section">
+    <h2>Test Commands</h2>
+    <p>Test as Facebook crawler:</p>
+    <pre>curl -H "User-Agent: facebookexternalhit/1.1" "${request.url.replace('/_debug', '/nejcastejsi-myty-o-optickem-internetu')}"</pre>
+    <p>Test as LinkedIn crawler:</p>
+    <pre>curl -H "User-Agent: LinkedInBot/1.0" "${request.url.replace('/_debug', '/nejcastejsi-myty-o-optickem-internetu')}"</pre>
+  </div>
+</body>
+</html>`;
+}
+
 export default async function handler(request: Request, context: Context) {
   const url = new URL(request.url);
   const userAgent = request.headers.get('user-agent') || '';
   const userAgentLower = userAgent.toLowerCase();
   
+  // Normalize pathname (remove trailing slashes)
+  let pathname = url.pathname;
+  if (pathname.endsWith('/') && pathname !== '/') {
+    pathname = pathname.slice(0, -1);
+  }
+  
+  // DEBUG ENDPOINT: /blog/_debug
+  if (pathname === '/blog/_debug') {
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Debug endpoint accessed`);
+    return new Response(generateDebugHTML(request), {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'X-Edge-Function': `ai-bot-detector-v${EDGE_FUNCTION_VERSION}`,
+        'Cache-Control': 'no-cache, no-store, must-revalidate'
+      }
+    });
+  }
+  
   // CRITICAL: Check if it's a social media crawler FIRST
   const isSocialCrawler = SOCIAL_CRAWLER_PATTERNS.some(pattern => 
-    userAgentLower.includes(pattern)
+    userAgentLower.includes(pattern.toLowerCase())
   );
   
   // Handle social crawler requests for blog posts - serve dynamic OG tags
   // CRITICAL: For social crawlers on /blog/* URLs, ALWAYS return OG HTML - NEVER continue to SPA
   if (isSocialCrawler) {
-    console.log(`[EDGE FUNCTION] ========================================`);
-    console.log(`[EDGE FUNCTION] Social Crawler Detected!`);
-    console.log(`[EDGE FUNCTION] User-Agent: ${userAgent}`);
-    console.log(`[EDGE FUNCTION] URL: ${url.href}`);
-    console.log(`[EDGE FUNCTION] Pathname: ${url.pathname}`);
-    
-    // Normalize pathname (remove trailing slashes)
-    let pathname = url.pathname;
-    if (pathname.endsWith('/') && pathname !== '/') {
-      pathname = pathname.slice(0, -1);
-    }
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] ========================================`);
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Social Crawler Detected!`);
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] User-Agent: ${userAgent}`);
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] URL: ${url.href}`);
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Pathname: ${pathname}`);
     
     // Match blog post URLs: /blog/slug-name (any slug, not just registered ones)
     const blogMatch = pathname.match(/^\/blog\/([a-z0-9-]+)$/i);
@@ -211,18 +325,16 @@ export default async function handler(request: Request, context: Context) {
       const slug = blogMatch[1];
       const slugInRegistry = slug in BLOG_POSTS_OG_DATA;
       
-      console.log(`[EDGE FUNCTION] Blog slug: "${slug}"`);
-      console.log(`[EDGE FUNCTION] Slug in registry: ${slugInRegistry}`);
-      
-      const baseUrl = 'https://www.popri.cz';
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Blog slug: "${slug}"`);
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Slug in registry: ${slugInRegistry}`);
       
       // ALWAYS generate OG HTML - use fallback if slug not in registry
       // This ensures social crawlers NEVER get the React SPA shell
-      const ogHTML = generateOGMetaHTML(slug, baseUrl);
+      const ogHTML = generateOGMetaHTML(slug, userAgent);
       
-      console.log(`[EDGE FUNCTION] Serving OG HTML for: /blog/${slug}`);
-      console.log(`[EDGE FUNCTION] Using ${slugInRegistry ? 'registered' : 'fallback'} data`);
-      console.log(`[EDGE FUNCTION] ========================================`);
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Serving OG HTML for: /blog/${slug}`);
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Using ${slugInRegistry ? 'registered' : 'fallback'} data`);
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] ========================================`);
       
       return new Response(ogHTML, {
         status: 200,
@@ -234,7 +346,7 @@ export default async function handler(request: Request, context: Context) {
           'Pragma': 'no-cache',
           'Expires': '0',
           'X-OG-Debug': `slug=${slug}, found=${slugInRegistry}`,
-          'X-Edge-Function': 'ai-bot-detector-v3',
+          'X-Edge-Function': `ai-bot-detector-v${EDGE_FUNCTION_VERSION}`,
           'X-Fallback-Used': slugInRegistry ? 'false' : 'true'
         }
       });
@@ -242,22 +354,22 @@ export default async function handler(request: Request, context: Context) {
     
     // Match /blog listing page
     if (pathname === '/blog') {
-      console.log(`[EDGE FUNCTION] Blog listing page, serving OG HTML`);
-      const baseUrl = 'https://www.popri.cz';
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Blog listing page, serving OG HTML`);
       const blogListingHTML = `<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
   <title>Blog | Popri.cz - PODA Internet</title>
   <meta name="description" content="Tipy, novinky a rady o internetu, IPTV a technologiích od PODA.">
-  <link rel="canonical" href="${baseUrl}/blog">
+  <link rel="canonical" href="${BASE_URL}/blog">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="${baseUrl}/blog">
+  <meta property="og:url" content="${BASE_URL}/blog">
   <meta property="og:title" content="Blog | Popri.cz - PODA Internet">
   <meta property="og:description" content="Tipy, novinky a rady o internetu, IPTV a technologiích od PODA.">
-  <meta property="og:image" content="${baseUrl}/og-image.png">
+  <meta property="og:image" content="${BASE_URL}/og-image.png">
   <meta property="og:site_name" content="Popri.cz - PODA Internet">
   <meta property="fb:pages" content="popricz">
+  <!-- Edge Function Version: ${EDGE_FUNCTION_VERSION} -->
 </head>
 <body><h1>Blog</h1><p>Tipy a novinky o internetu od PODA.</p></body>
 </html>`;
@@ -268,13 +380,13 @@ export default async function handler(request: Request, context: Context) {
           'Content-Type': 'text/html; charset=utf-8',
           'X-Served-For': 'Social-Crawler',
           'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'X-Edge-Function': 'ai-bot-detector-v3'
+          'X-Edge-Function': `ai-bot-detector-v${EDGE_FUNCTION_VERSION}`
         }
       });
     }
     
     // For non-blog social crawler requests, continue to app
-    console.log(`[EDGE FUNCTION] Non-blog URL, continuing to app`);
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Non-blog URL, continuing to app`);
   }
   
   // Check if it's an AI bot
@@ -287,13 +399,13 @@ export default async function handler(request: Request, context: Context) {
   }
   
   // Check if it's a blog article with static version
-  const blogMatch = url.pathname.match(/^\/blog\/(.+)$/);
+  const blogMatch = pathname.match(/^\/blog\/(.+)$/);
   if (blogMatch) {
     const slug = blogMatch[1];
     if (AI_STATIC_BLOG_SLUGS.includes(slug)) {
       const staticPath = `/ai-static/blog/${slug}.html`;
-      console.log(`AI Bot detected for blog: ${userAgent.substring(0, 50)}...`);
-      console.log(`Serving static blog page: ${staticPath}`);
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] AI Bot detected for blog: ${userAgent.substring(0, 50)}...`);
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Serving static blog page: ${staticPath}`);
       
       const staticUrl = new URL(staticPath, url.origin);
       const staticResponse = await fetch(staticUrl.toString());
@@ -303,6 +415,7 @@ export default async function handler(request: Request, context: Context) {
         headers.set('X-Served-For', 'AI-Bot');
         headers.set('X-Robots-Tag', 'index, follow');
         headers.set('Content-Type', 'text/html; charset=utf-8');
+        headers.set('X-Edge-Function', `ai-bot-detector-v${EDGE_FUNCTION_VERSION}`);
         return new Response(staticResponse.body, {
           status: staticResponse.status,
           headers
@@ -312,13 +425,13 @@ export default async function handler(request: Request, context: Context) {
   }
   
   // Check main static paths
-  if (AI_STATIC_PATHS.includes(url.pathname)) {
-    const staticPath = url.pathname === '/' 
+  if (AI_STATIC_PATHS.includes(pathname)) {
+    const staticPath = pathname === '/' 
       ? '/ai-static/index.html'
-      : `/ai-static${url.pathname}.html`;
+      : `/ai-static${pathname}.html`;
     
-    console.log(`AI Bot detected: ${userAgent.substring(0, 50)}...`);
-    console.log(`Serving static page: ${staticPath}`);
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] AI Bot detected: ${userAgent.substring(0, 50)}...`);
+    console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Serving static page: ${staticPath}`);
     
     const staticUrl = new URL(staticPath, url.origin);
     const staticResponse = await fetch(staticUrl.toString());
@@ -328,6 +441,7 @@ export default async function handler(request: Request, context: Context) {
       headers.set('X-Served-For', 'AI-Bot');
       headers.set('X-Robots-Tag', 'index, follow');
       headers.set('Content-Type', 'text/html; charset=utf-8');
+      headers.set('X-Edge-Function', `ai-bot-detector-v${EDGE_FUNCTION_VERSION}`);
       return new Response(staticResponse.body, {
         status: staticResponse.status,
         headers

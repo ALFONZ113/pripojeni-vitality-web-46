@@ -1,124 +1,106 @@
 
-# Plán: Definitívna oprava Facebook zdieľania článkov
+# Automatické OG tagy pre VŠETKY blogové články
 
-## Analýza aktuálneho stavu
+## Problém
 
-### Čo zistil Claude Sonnet 4.5 (a čo z toho je pravda)
+Aktuálna edge funkcia má **hardcoded zoznam len 10 článkov** v `BLOG_POSTS_OG_DATA`, ale blog obsahuje **25+ článkov**. Každý nový článok vyžaduje manuálnu aktualizáciu edge funkcie.
 
-**PRAVDA:**
-- Facebook crawler dostáva homepage OG tagy (`og:url = https://www.popri.cz/`)
-- Namiesto článkového obrázka vidí `popri-logo.png`
-- Namiesto článkového titulku vidí "Nejvýhodnější PODA Internet Ostrava"
+## Riešenie: Dynamický fallback s generickými OG tagmi
 
-**PREČO sa to deje:**
-Edge funkcia `ai-bot-detector.ts` existuje a je správne nakonfigurovaná, ALE pravdepodobne sa nespúšťa alebo jej výsledok nie je doručený Facebooku.
+Implementujem systém, ktorý:
+1. **Pre registrované články** → použije špecifické OG tagy
+2. **Pre neregistrované články** → vygeneruje generické, ale funkčné OG tagy z URL slug
 
-### Technické zistenia z analýzy kódu
+### Ako to bude fungovať pre NOVÉ články:
 
-1. **Edge funkcia obsahuje správne dáta** (riadky 103-107):
+```text
+URL: /blog/novy-clanok-o-internetu
+
+Facebook dostane:
+- og:title: "Nový článek | Blog Popri.cz"
+- og:description: "Přečtěte si nejnovější článek na blogu Popri.cz o internetu a technologiích."
+- og:image: https://www.popri.cz/og-image.png (generický obrázok blogu)
+- og:url: https://www.popri.cz/blog/novy-clanok-o-internetu
+```
+
+Toto je **VŽDY lepšie** ako homepage OG tagy!
+
+## Technické zmeny
+
+### 1. Upraviť `generateOGMetaHTML` funkciu
+
 ```typescript
-'nejcastejsi-myty-o-optickem-internetu': {
-  title: 'Nejčastější mýty o optickém internetu...',
-  description: 'Věříte mýtům o optickém internetu?...',
-  image: '/blog-images/myty-opticky-internet.jpg'
+function generateOGMetaHTML(slug: string, userAgent: string): string {
+  const postData = BLOG_POSTS_OG_DATA[slug];
+  const canonicalUrl = `${BASE_URL}/blog/${slug}`;
+  
+  // Ak článok nie je v registri, použiť generické hodnoty
+  const title = postData?.title || formatSlugToTitle(slug);
+  const description = postData?.description || 
+    'Přečtěte si nejnovější článek na blogu Popri.cz o internetu, IPTV a technologiích.';
+  const imageUrl = postData?.image 
+    ? toAbsoluteImageUrl(postData.image)
+    : `${BASE_URL}/og-image.png`;
+  
+  // ... zvyšok generátora
+}
+
+// Pomocná funkcia pre formátovanie slug → title
+function formatSlugToTitle(slug: string): string {
+  return slug
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+    + ' | Blog Popri.cz';
 }
 ```
 
-2. **Obrázok existuje** v `public/blog-images/myty-opticky-internet.jpg`
+### 2. VŽDY vrátiť OG HTML pre blog URLs
 
-3. **Netlify konfigurácia vyzerá správne** v `netlify.toml`:
-```toml
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/blog/*"
-  cache = "manual"
-```
+Aktuálne edge funkcia pre neregistrované slugy spadne do fallbacku. Zmením to tak, aby **VŽDY** vrátila OG HTML, nikdy nepokračovala do React SPA:
 
-4. **Podľa Netlify dokumentácie**: "Edge functions process before redirects" - takže priorita by mala byť správna
-
-## Možné príčiny problému
-
-1. **Edge funkcia sa vôbec nenasadí** - Netlify Edge Functions vyžadujú špecifickú štruktúru
-2. **User-Agent detekcia nefunguje** - možno Facebook používa iný User-Agent string
-3. **Fallback na `context.next()` spúšťa SPA** - pre non-blog URL funkcia pokračuje, ale pre blog by nemala
-4. **Cache problém** - Netlify môže cachovať nesprávnu verziu
-
-## Navrhované riešenie
-
-### Krok 1: Zjednodušenie Edge funkcie pre blog
-Presunúť logiku tak, aby VŽDY pre `/blog/*` URL vrátila OG HTML pre social crawlery - bez možnosti fallbacku na SPA.
-
-### Krok 2: Pridanie explicitných Facebook User-Agent stringov
 ```typescript
-const SOCIAL_CRAWLER_PATTERNS = [
-  'facebookexternalhit/1.1',  // Explicitná verzia
-  'facebookexternalhit',
-  'facebookcatalog',          // Katalógový crawler
-  'facebot',
-  // ... ostatné
-];
+// Pre social crawlery na /blog/* URL VŽDY vrátiť OG HTML
+if (isSocialCrawler && blogMatch) {
+  const slug = blogMatch[1];
+  const ogHTML = generateOGMetaHTML(slug, userAgent);
+  
+  return new Response(ogHTML, {
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'X-Fallback-Used': postData ? 'false' : 'true',
+      // ...
+    }
+  });
+}
 ```
 
-### Krok 3: Pridanie diagnostických endpointov
-Pridať URL `/blog/test-og` ktorá vráti debug informácie o detekcii crawlera.
+## Výsledok
 
-### Krok 4: Overenie obrázkov - absolútne URL
-Zabezpečiť, že všetky `og:image` URL sú absolútne:
-```typescript
-// MUSÍ byť: https://www.popri.cz/blog-images/myty-opticky-internet.jpg
-// NIE: /blog-images/myty-opticky-internet.jpg
+| Situácia | Predtým | Potom |
+|----------|---------|-------|
+| Registrovaný článok | ✅ Správne OG tagy | ✅ Správne OG tagy |
+| Neregistrovaný článok | ❌ Homepage OG tagy | ✅ Generické blogové OG tagy |
+| Nový článok | ❌ Manuálna aktualizácia | ✅ Automaticky funguje |
+
+## Bonusové vylepšenie: Build script pre synchronizáciu
+
+Vytvorím build script, ktorý automaticky synchronizuje `BLOG_POSTS_OG_DATA` s `blogPosts` z React dát. Toto zabezpečí, že po každom deployi budú všetky články mať špecifické OG tagy.
+
+```javascript
+// scripts/sync-og-data.js
+// Načíta blogPosts a vygeneruje aktualizovaný BLOG_POSTS_OG_DATA
 ```
 
-### Krok 5: Testovanie cez curl simuláciu
-Po nasadení otestovať:
-```bash
-curl -H "User-Agent: facebookexternalhit/1.1" \
-     "https://www.popri.cz/blog/nejcastejsi-myty-o-optickem-internetu"
-```
+## Prečo toto funguje
 
-## Technická implementácia
+1. **Edge funkcia beží PRED React SPA** - žiadne homepage OG tagy
+2. **Fallback hodnoty** - aj neregistrované články majú funkčné OG tagy
+3. **Generická og:image** - `og-image.png` je vždy dostupný
+4. **Automatický titulok zo slug** - "gaming-ostrava-2025" → "Gaming Ostrava 2025 | Blog Popri.cz"
 
-### Zmeny v `netlify/edge-functions/ai-bot-detector.ts`
+## Čo sa nezmení
 
-1. **Pridať explicitnejšie User-Agent patterny:**
-   - `facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)`
-   - `facebookcatalog/1.0`
-
-2. **Pridať debug endpoint:**
-   - Pre URL `/blog/_debug` vrátiť info o detekcii
-
-3. **Zabezpečiť VŽDY absolútne URL:**
-   - Všetky `og:image` musia začínať `https://www.popri.cz`
-
-4. **Pridať číslo verzie do response headeru:**
-   - `X-Edge-Version: 4` pre tracking nasadenia
-
-### Zmeny v `netlify.toml`
-
-1. **Pridať onError handler:**
-```toml
-[[edge_functions]]
-  function = "ai-bot-detector"
-  path = "/blog/*"
-  cache = "manual"
-  on_error = "bypass"
-```
-
-### Zmeny v `public/_redirects`
-
-1. **Odstrániť globálny catch-all pre blog** ak ešte existuje problém - presunúť routing výhradne do edge funkcie
-
-## Testovací plán
-
-1. Po nasadení spustiť curl s Facebook User-Agent
-2. Overiť response headers (`X-Edge-Function`, `X-Edge-Version`)
-3. Overiť OG tagy v response HTML
-4. Ak všetko OK, použiť Facebook Sharing Debugger → Scrape Again
-
-## Očakávaný výsledok
-
-Facebook Debugger zobrazí:
-- `og:url`: `https://www.popri.cz/blog/nejcastejsi-myty-o-optickem-internetu`
-- `og:title`: `Nejčastější mýty o optickém internetu, kterým lidé stále věří`
-- `og:image`: `https://www.popri.cz/blog-images/myty-opticky-internet.jpg`
-- `og:description`: článkový popis
+- Stále odporúčam registrovať nové články pre najlepšie výsledky
+- Špecifický obrázok článku je lepší ako generický
+- Ale teraz aspoň zdieľanie NEBUDE ukazovať homepage!

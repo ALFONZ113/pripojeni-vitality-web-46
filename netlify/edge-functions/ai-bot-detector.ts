@@ -1,7 +1,7 @@
 import type { Context } from "https://edge.netlify.com";
 
 // Version tracking for deployment verification
-const EDGE_FUNCTION_VERSION = "5";
+const EDGE_FUNCTION_VERSION = "6";
 
 // AI bot User-Agents to detect
 const AI_BOT_PATTERNS = [
@@ -323,8 +323,7 @@ export default async function handler(request: Request, context: Context) {
     userAgentLower.includes(pattern.toLowerCase())
   );
   
-  // Handle social crawler requests for blog posts - serve dynamic OG tags
-  // CRITICAL: For social crawlers on /blog/* URLs, ALWAYS return OG HTML - NEVER continue to SPA
+  // Handle social crawler requests - REDIRECT to static /og/blog/ files (most reliable)
   if (isSocialCrawler) {
     console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] ========================================`);
     console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Social Crawler Detected!`);
@@ -332,70 +331,23 @@ export default async function handler(request: Request, context: Context) {
     console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] URL: ${url.href}`);
     console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Pathname: ${pathname}`);
     
-    // Match blog post URLs: /blog/slug-name (any slug, not just registered ones)
+    // Match blog post URLs: /blog/slug-name - REDIRECT to static OG file
     const blogMatch = pathname.match(/^\/blog\/([a-z0-9-]+)$/i);
     if (blogMatch) {
       const slug = blogMatch[1];
-      const slugInRegistry = slug in BLOG_POSTS_OG_DATA;
+      const staticOgUrl = `${BASE_URL}/og/blog/${slug}.html`;
       
-      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Blog slug: "${slug}"`);
-      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Slug in registry: ${slugInRegistry}`);
-      
-      // ALWAYS generate OG HTML - use fallback if slug not in registry
-      // This ensures social crawlers NEVER get the React SPA shell
-      const ogHTML = generateOGMetaHTML(slug, userAgent);
-      
-      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Serving OG HTML for: /blog/${slug}`);
-      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Using ${slugInRegistry ? 'registered' : 'fallback'} data`);
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Redirecting to static OG: ${staticOgUrl}`);
       console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] ========================================`);
       
-      return new Response(ogHTML, {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/html; charset=utf-8',
-          'X-Served-For': 'Social-Crawler',
-          'X-Robots-Tag': 'index, follow',
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0',
-          'X-OG-Debug': `slug=${slug}, found=${slugInRegistry}`,
-          'X-Edge-Function': `ai-bot-detector-v${EDGE_FUNCTION_VERSION}`,
-          'X-Fallback-Used': slugInRegistry ? 'false' : 'true'
-        }
-      });
+      // 302 redirect to static file - Facebook will fetch OG tags from there
+      return Response.redirect(staticOgUrl, 302);
     }
     
-    // Match /blog listing page
+    // Match /blog listing page - redirect to static OG
     if (pathname === '/blog') {
-      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Blog listing page, serving OG HTML`);
-      const blogListingHTML = `<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <title>Blog | Popri.cz - PODA Internet</title>
-  <meta name="description" content="Tipy, novinky a rady o internetu, IPTV a technologiích od PODA.">
-  <link rel="canonical" href="${BASE_URL}/blog">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="${BASE_URL}/blog">
-  <meta property="og:title" content="Blog | Popri.cz - PODA Internet">
-  <meta property="og:description" content="Tipy, novinky a rady o internetu, IPTV a technologiích od PODA.">
-  <meta property="og:image" content="${BASE_URL}/og-image.png">
-  <meta property="og:site_name" content="Popri.cz - PODA Internet">
-  <meta property="fb:pages" content="popricz">
-  <!-- Edge Function Version: ${EDGE_FUNCTION_VERSION} -->
-</head>
-<body><h1>Blog</h1><p>Tipy a novinky o internetu od PODA.</p></body>
-</html>`;
-      
-      return new Response(blogListingHTML, {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/html; charset=utf-8',
-          'X-Served-For': 'Social-Crawler',
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'X-Edge-Function': `ai-bot-detector-v${EDGE_FUNCTION_VERSION}`
-        }
-      });
+      console.log(`[EDGE v${EDGE_FUNCTION_VERSION}] Blog listing, redirecting to static OG`);
+      return Response.redirect(`${BASE_URL}/og/blog.html`, 302);
     }
     
     // For non-blog social crawler requests, continue to app

@@ -7,9 +7,60 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# CRITICAL: Edge function for social crawlers (Facebook, Twitter, LinkedIn)
-# Must intercept requests BEFORE SPA routing - explicit priority
+# Edge function for AI bots - serves /ai-static/ content
+# Social crawlers (Facebook) are redirected to static /og/blog/ files
 # on_error = "bypass" ensures site works even if edge function fails
+
+# AI static pages
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/"
+  cache = "manual"
+  on_error = "bypass"
+
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/tarify"
+  cache = "manual"
+  on_error = "bypass"
+
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/kontakt"
+  cache = "manual"
+  on_error = "bypass"
+
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/internet-ostrava"
+  cache = "manual"
+  on_error = "bypass"
+
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/internet-karvina"
+  cache = "manual"
+  on_error = "bypass"
+
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/internet-havirov"
+  cache = "manual"
+  on_error = "bypass"
+
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/internet-bohumin"
+  cache = "manual"
+  on_error = "bypass"
+
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/internet-poruba"
+  cache = "manual"
+  on_error = "bypass"
+
+# Blog - AI bots get /ai-static/, social crawlers redirect to /og/blog/
 [[edge_functions]]
   function = "ai-bot-detector"
   path = "/blog/*"
@@ -18,7 +69,7 @@
 
 [[edge_functions]]
   function = "ai-bot-detector"
-  path = "/*"
+  path = "/blog"
   cache = "manual"
   on_error = "bypass"
 

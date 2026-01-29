@@ -191,6 +191,7 @@ export default async function handler(request: Request, context: Context) {
   );
   
   // Handle social crawler requests for blog posts - serve dynamic OG tags
+  // CRITICAL: For social crawlers on /blog/* URLs, ALWAYS return OG HTML - NEVER continue to SPA
   if (isSocialCrawler) {
     console.log(`[EDGE FUNCTION] ========================================`);
     console.log(`[EDGE FUNCTION] Social Crawler Detected!`);
@@ -204,17 +205,23 @@ export default async function handler(request: Request, context: Context) {
       pathname = pathname.slice(0, -1);
     }
     
-    // Match blog post URLs: /blog/slug-name
+    // Match blog post URLs: /blog/slug-name (any slug, not just registered ones)
     const blogMatch = pathname.match(/^\/blog\/([a-z0-9-]+)$/i);
     if (blogMatch) {
       const slug = blogMatch[1];
+      const slugInRegistry = slug in BLOG_POSTS_OG_DATA;
+      
       console.log(`[EDGE FUNCTION] Blog slug: "${slug}"`);
-      console.log(`[EDGE FUNCTION] Slug in registry: ${slug in BLOG_POSTS_OG_DATA}`);
+      console.log(`[EDGE FUNCTION] Slug in registry: ${slugInRegistry}`);
       
       const baseUrl = 'https://www.popri.cz';
+      
+      // ALWAYS generate OG HTML - use fallback if slug not in registry
+      // This ensures social crawlers NEVER get the React SPA shell
       const ogHTML = generateOGMetaHTML(slug, baseUrl);
       
       console.log(`[EDGE FUNCTION] Serving OG HTML for: /blog/${slug}`);
+      console.log(`[EDGE FUNCTION] Using ${slugInRegistry ? 'registered' : 'fallback'} data`);
       console.log(`[EDGE FUNCTION] ========================================`);
       
       return new Response(ogHTML, {
@@ -226,8 +233,42 @@ export default async function handler(request: Request, context: Context) {
           'Cache-Control': 'no-cache, no-store, must-revalidate',
           'Pragma': 'no-cache',
           'Expires': '0',
-          'X-OG-Debug': `slug=${slug}, found=${slug in BLOG_POSTS_OG_DATA}`,
-          'X-Edge-Function': 'ai-bot-detector-v2'
+          'X-OG-Debug': `slug=${slug}, found=${slugInRegistry}`,
+          'X-Edge-Function': 'ai-bot-detector-v3',
+          'X-Fallback-Used': slugInRegistry ? 'false' : 'true'
+        }
+      });
+    }
+    
+    // Match /blog listing page
+    if (pathname === '/blog') {
+      console.log(`[EDGE FUNCTION] Blog listing page, serving OG HTML`);
+      const baseUrl = 'https://www.popri.cz';
+      const blogListingHTML = `<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog | Popri.cz - PODA Internet</title>
+  <meta name="description" content="Tipy, novinky a rady o internetu, IPTV a technologiích od PODA.">
+  <link rel="canonical" href="${baseUrl}/blog">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${baseUrl}/blog">
+  <meta property="og:title" content="Blog | Popri.cz - PODA Internet">
+  <meta property="og:description" content="Tipy, novinky a rady o internetu, IPTV a technologiích od PODA.">
+  <meta property="og:image" content="${baseUrl}/og-image.png">
+  <meta property="og:site_name" content="Popri.cz - PODA Internet">
+  <meta property="fb:pages" content="popricz">
+</head>
+<body><h1>Blog</h1><p>Tipy a novinky o internetu od PODA.</p></body>
+</html>`;
+      
+      return new Response(blogListingHTML, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'X-Served-For': 'Social-Crawler',
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'X-Edge-Function': 'ai-bot-detector-v3'
         }
       });
     }

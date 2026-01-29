@@ -8,14 +8,23 @@
   NODE_VERSION = "20"
 
 # CRITICAL: Edge function for social crawlers (Facebook, Twitter, LinkedIn)
-# Must intercept requests BEFORE SPA routing
+# Must intercept requests BEFORE SPA routing - explicit priority
 [[edge_functions]]
   function = "ai-bot-detector"
   path = "/blog/*"
+  cache = "manual"
 
 [[edge_functions]]
   function = "ai-bot-detector"
   path = "/*"
+  cache = "manual"
+
+# CRITICAL: SPA fallback for blog - AFTER edge function processes crawlers
+[[redirects]]
+  from = "/blog/*"
+  to = "/index.html"
+  status = 200
+  force = false
 
 # CRITICAL: Domain canonicalization - MUST be before all other redirects
 [[redirects]]

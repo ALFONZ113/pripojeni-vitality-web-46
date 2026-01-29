@@ -4,6 +4,9 @@ https://popri.cz/* https://www.popri.cz/:splat 301!
 http://popri.cz/ https://www.popri.cz/ 301!
 https://popri.cz/ https://www.popri.cz/ 301!
 
+# OG Static Pages for Facebook sharing - serve directly without SPA routing
+/og/blog/* /og/blog/:splat 200
+
 # AI Static Pages - serve directly without SPA routing
 /ai-static/* /ai-static/:splat 200
 

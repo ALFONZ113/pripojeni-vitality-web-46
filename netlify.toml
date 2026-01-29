@@ -1,7 +1,7 @@
 # Netlify build configuration
 # Force Node + npm and generate SEO + AI static assets before build
 [build]
-  command = "npm ci && node scripts/build-seo.js || true && node scripts/generate-ai-pages.js || true && npm run build"
+  command = "npm ci && node scripts/build-seo.js || true && node scripts/generate-ai-pages.js || true && node scripts/generate-og-pages.js || true && npm run build"
   publish = "dist"
 
 [build.environment]
@@ -74,4 +74,11 @@
   for = "/blog-images/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+    Access-Control-Allow-Origin = "*"
+
+# OG static pages - no caching for Facebook debugger
+[[headers]]
+  for = "/og/blog/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Access-Control-Allow-Origin = "*"

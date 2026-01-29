@@ -8,9 +8,15 @@
   NODE_VERSION = "20"
 
 # Edge Functions configuration for AI bot detection
+# CRITICAL: Edge functions run BEFORE redirects in Netlify
 [[edge_functions]]
   function = "ai-bot-detector"
   path = "/*"
+
+# Explicit blog paths for edge function (social crawlers)
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/blog/*"
 
 # CRITICAL: Domain canonicalization - MUST be before all other redirects
 [[redirects]]

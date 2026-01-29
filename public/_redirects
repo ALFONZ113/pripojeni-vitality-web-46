@@ -56,7 +56,8 @@ https://popri.cz/ https://www.popri.cz/ 301!
 /blog/internet-vyber-5-chyb-ktore-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301
 
 # SPA routing - serve index.html for all routes
-# NOTE: /blog/* is handled by edge function for social crawlers, then falls through to SPA
+# CRITICAL: /blog/* is handled EXCLUSIVELY by edge function for social crawlers
+# Do NOT add /blog/* here - it bypasses edge function!
 /internet-* /index.html 200
 /kontakt /index.html 200
 /tarify /index.html 200
@@ -66,9 +67,13 @@ https://popri.cz/ https://www.popri.cz/ 301!
 /ochrana-soukromi /index.html 200
 /obchodni-podminky /index.html 200
 /cookies /index.html 200
+/giga-internet /index.html 200
+/sitemap /index.html 200
+/promo-akcia /index.html 200
 
 # Admin panel routes
 /admin/* /index.html 200
 
-# Catch all for SPA
-/* /index.html 200
+# IMPORTANT: Blog routes handled by netlify.toml with force=false
+# This allows edge function to intercept social crawlers first
+# /blog/* is NOT listed here intentionally!

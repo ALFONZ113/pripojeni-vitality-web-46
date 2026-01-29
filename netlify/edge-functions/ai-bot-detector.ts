@@ -1,7 +1,7 @@
 import type { Context } from "https://edge.netlify.com";
 
 // Version tracking for deployment verification
-const EDGE_FUNCTION_VERSION = "4";
+const EDGE_FUNCTION_VERSION = "5";
 
 // AI bot User-Agents to detect
 const AI_BOT_PATTERNS = [
@@ -130,6 +130,14 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
   }
 };
 
+// Helper: Format slug to readable title (for unregistered posts)
+function formatSlugToTitle(slug: string): string {
+  return slug
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 // Helper: Convert relative image path to absolute URL
 function toAbsoluteImageUrl(imagePath: string): string {
   if (imagePath.startsWith('http')) {
@@ -141,16 +149,20 @@ function toAbsoluteImageUrl(imagePath: string): string {
 }
 
 // Generate dynamic OG meta tags HTML for social crawlers
+// CRITICAL: This function ALWAYS returns valid OG HTML - never falls back to SPA
 function generateOGMetaHTML(slug: string, userAgent: string): string {
   const postData = BLOG_POSTS_OG_DATA[slug];
   const canonicalUrl = `${BASE_URL}/blog/${slug}`;
   const slugInRegistry = slug in BLOG_POSTS_OG_DATA;
   
-  // Default fallback if post not found - use generic but still functional
-  const title = postData?.title || 'Blog | Popri.cz - PODA Internet';
-  const description = postData?.description || 'Tipy a novinky o internetu, IPTV a technologiích od PODA.';
+  // DYNAMIC FALLBACK: If post not in registry, generate from slug
+  // This ensures ALL blog posts work, not just registered ones
+  const title = postData?.title || formatSlugToTitle(slug);
+  const description = postData?.description || 
+    'Přečtěte si nejnovější článek na blogu Popri.cz o internetu, IPTV a technologiích.';
   
   // CRITICAL: Always use absolute URL for og:image
+  // Use specific image if registered, otherwise use generic blog image
   const imageUrl = postData?.image 
     ? toAbsoluteImageUrl(postData.image)
     : `${BASE_URL}/og-image.png`;
@@ -196,6 +208,7 @@ function generateOGMetaHTML(slug: string, userAgent: string): string {
   <!-- Edge Function Version: ${EDGE_FUNCTION_VERSION} -->
   <!-- Slug: ${slug} -->
   <!-- Found in registry: ${slugInRegistry} -->
+  <!-- Fallback used: ${!slugInRegistry} -->
   <!-- User-Agent: ${userAgent.substring(0, 100)} -->
 </head>
 <body>

@@ -17,18 +17,21 @@ const AI_BOT_PATTERNS = [
   'NotebookLMBot'
 ];
 
-// Social media crawler User-Agents (Facebook, Twitter, LinkedIn)
+// Social media crawler User-Agents - LOWERCASE for comparison
 const SOCIAL_CRAWLER_PATTERNS = [
   'facebookexternalhit',
-  'Facebot',
-  'LinkedInBot',
-  'Twitterbot',
-  'WhatsApp',
-  'Slackbot',
-  'TelegramBot',
-  'Discordbot',
-  'Pinterest',
-  'Embedly'
+  'facebot',
+  'linkedinbot',
+  'twitterbot',
+  'whatsapp',
+  'slackbot',
+  'telegrambot',
+  'discordbot',
+  'pinterest',
+  'embedly',
+  'applebot',
+  'bingpreview',
+  'vkshare'
 ];
 
 // Pages to serve AI-optimized versions for (Czech language)
@@ -129,11 +132,6 @@ function generateOGMetaHTML(slug: string, baseUrl: string): string {
     imageUrl = `${baseUrl}/og-image.png`;
   }
 
-  // Debug logging for troubleshooting
-  console.log(`[OG Generator] Slug: ${slug}`);
-  console.log(`[OG Generator] Found in registry: ${!!postData}`);
-  console.log(`[OG Generator] Image URL: ${imageUrl}`);
-
   return `<!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -152,9 +150,12 @@ function generateOGMetaHTML(slug: string, baseUrl: string): string {
   <meta property="og:image:secure_url" content="${imageUrl}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:site_name" content="Popri.cz - PODA Internet">
   <meta property="og:locale" content="cs_CZ">
+  
+  <!-- Facebook Page ID (alternative to fb:app_id) -->
+  <meta property="fb:pages" content="popricz">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -167,58 +168,54 @@ function generateOGMetaHTML(slug: string, baseUrl: string): string {
   <meta property="article:published_time" content="${new Date().toISOString()}">
   <meta property="article:author" content="PODA Team">
   <meta property="article:section" content="Technologie">
-  
-  <!-- NO redirect for crawlers - they need to parse this page -->
 </head>
 <body>
-  <h1>${title}</h1>
-  <p>${description}</p>
-  <img src="${imageUrl}" alt="${title}" width="1200" height="630">
-  <p><a href="${canonicalUrl}">Přečíst celý článek na ${canonicalUrl}</a></p>
+  <article>
+    <h1>${title}</h1>
+    <p>${description}</p>
+    <img src="${imageUrl}" alt="${title}" width="1200" height="630">
+    <p><a href="${canonicalUrl}">Přečíst celý článek na Popri.cz</a></p>
+  </article>
 </body>
 </html>`;
 }
 
-export default async (request: Request, context: Context) => {
+export default async function handler(request: Request, context: Context) {
   const url = new URL(request.url);
   const userAgent = request.headers.get('user-agent') || '';
+  const userAgentLower = userAgent.toLowerCase();
   
-  // Check if it's an AI bot
-  const isAIBot = AI_BOT_PATTERNS.some(pattern => 
-    userAgent.toLowerCase().includes(pattern.toLowerCase())
-  );
-  
-  // Check if it's a social media crawler (Facebook, Twitter, LinkedIn, etc.)
+  // CRITICAL: Check if it's a social media crawler FIRST
   const isSocialCrawler = SOCIAL_CRAWLER_PATTERNS.some(pattern => 
-    userAgent.toLowerCase().includes(pattern.toLowerCase())
+    userAgentLower.includes(pattern)
   );
   
   // Handle social crawler requests for blog posts - serve dynamic OG tags
-  // CRITICAL: Edge functions run BEFORE _redirects, so this should work
   if (isSocialCrawler) {
-    console.log(`[Social Crawler] ========================================`);
-    console.log(`[Social Crawler] Detected: ${userAgent}`);
-    console.log(`[Social Crawler] Full URL: ${url.href}`);
-    console.log(`[Social Crawler] Pathname: ${url.pathname}`);
+    console.log(`[EDGE FUNCTION] ========================================`);
+    console.log(`[EDGE FUNCTION] Social Crawler Detected!`);
+    console.log(`[EDGE FUNCTION] User-Agent: ${userAgent}`);
+    console.log(`[EDGE FUNCTION] URL: ${url.href}`);
+    console.log(`[EDGE FUNCTION] Pathname: ${url.pathname}`);
     
-    // Also try to clean the slug (remove trailing slashes, etc.)
+    // Normalize pathname (remove trailing slashes)
     let pathname = url.pathname;
     if (pathname.endsWith('/') && pathname !== '/') {
       pathname = pathname.slice(0, -1);
     }
     
-    const blogMatch = pathname.match(/^\/blog\/([^\/]+)$/);
+    // Match blog post URLs: /blog/slug-name
+    const blogMatch = pathname.match(/^\/blog\/([a-z0-9-]+)$/i);
     if (blogMatch) {
       const slug = blogMatch[1];
-      console.log(`[Social Crawler] Blog slug: "${slug}"`);
-      console.log(`[Social Crawler] Available slugs: ${Object.keys(BLOG_POSTS_OG_DATA).join(', ')}`);
-      console.log(`[Social Crawler] Slug in registry: ${slug in BLOG_POSTS_OG_DATA}`);
+      console.log(`[EDGE FUNCTION] Blog slug: "${slug}"`);
+      console.log(`[EDGE FUNCTION] Slug in registry: ${slug in BLOG_POSTS_OG_DATA}`);
       
       const baseUrl = 'https://www.popri.cz';
       const ogHTML = generateOGMetaHTML(slug, baseUrl);
       
-      console.log(`[Social Crawler] Serving OG HTML for: /blog/${slug}`);
-      console.log(`[Social Crawler] ========================================`);
+      console.log(`[EDGE FUNCTION] Serving OG HTML for: /blog/${slug}`);
+      console.log(`[EDGE FUNCTION] ========================================`);
       
       return new Response(ogHTML, {
         status: 200,
@@ -226,16 +223,23 @@ export default async (request: Request, context: Context) => {
           'Content-Type': 'text/html; charset=utf-8',
           'X-Served-For': 'Social-Crawler',
           'X-Robots-Tag': 'index, follow',
-          'Cache-Control': 'no-cache, no-store, must-revalidate', // Disable cache for debugging
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
           'Pragma': 'no-cache',
+          'Expires': '0',
           'X-OG-Debug': `slug=${slug}, found=${slug in BLOG_POSTS_OG_DATA}`,
-          'X-Edge-Function': 'ai-bot-detector'
+          'X-Edge-Function': 'ai-bot-detector-v2'
         }
       });
-    } else {
-      console.log(`[Social Crawler] Not a blog URL or regex didn't match`);
     }
+    
+    // For non-blog social crawler requests, continue to app
+    console.log(`[EDGE FUNCTION] Non-blog URL, continuing to app`);
   }
+  
+  // Check if it's an AI bot
+  const isAIBot = AI_BOT_PATTERNS.some(pattern => 
+    userAgentLower.includes(pattern.toLowerCase())
+  );
   
   if (!isAIBot) {
     return context.next();
@@ -292,9 +296,9 @@ export default async (request: Request, context: Context) => {
   
   // For AI bots without static version, continue normally
   return context.next();
-};
+}
 
 export const config = {
-  path: "/*",
+  path: ["/*", "/blog/*"],
   excludedPath: ["/api/*", "/_next/*", "/static/*", "/ai-static/*"]
 };

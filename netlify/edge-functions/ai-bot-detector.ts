@@ -97,9 +97,9 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
     description: 'Požadavky na internet pro home office. Minimální rychlosti pro videohovory, cloud a více.',
     image: '/blog-images/home-office-2025.jpg'
   },
-  'myty-o-optickem-internetu-pravda-vs-fikce': {
-    title: '7 mýtů o optickém internetu - Pravda vs. fikce',
-    description: 'Vyvracíme 7 nejčastějších mýtů o optickém internetu. Co je pravda a co fikce?',
+  'nejcastejsi-myty-o-optickem-internetu': {
+    title: 'Nejčastější mýty o optickém internetu, kterým lidé stále věří',
+    description: 'Věříte mýtům o optickém internetu? Odhalujeme nejčastější omyly a vysvětlujeme, jaká je realita rychlého připojení.',
     image: '/blog-images/myty-opticky-internet.jpg'
   },
   'jak-ai-meni-svet-proc-kvalitni-internet-zaklad': {

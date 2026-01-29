@@ -56,7 +56,7 @@ https://popri.cz/ https://www.popri.cz/ 301!
 /blog/internet-vyber-5-chyb-ktore-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301
 
 # SPA routing - serve index.html for all routes
-/blog/* /index.html 200
+# NOTE: /blog/* is handled by edge function for social crawlers, then falls through to SPA
 /internet-* /index.html 200
 /kontakt /index.html 200
 /tarify /index.html 200

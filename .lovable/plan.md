@@ -1,103 +1,82 @@
 
-# Plán: Nový blogový článok o AI a kvalitnom internete
+# Oprava Facebook zdieľania - Definitívne riešenie
 
-## Prehľad článku
+## Zistený problém
 
-Vytvorím nový blogový článok na tému **"Jak AI mění svět kolem nás: Proč je kvalitní internet naprostý základ"** v štýle existujúcich článkov na webe (luxury noir + gold theme).
+Zo screenshotu Facebook Debuggera vidím:
+- **og:url** = `https://www.popri.cz/` (HOMEPAGE!)
+- **og:title** = "PODA Internet Ostrava a okolí | Gigabit + TV zdarma | 730 431 313" (HOMEPAGE!)
+- **og:image** = `https://www.popri.cz/popri-logo.png` (HOMEPAGE logo!)
+- **Response Code** = 200 (takže server odpovedá)
 
-## Súbory na vytvorenie/úpravu
+**Koreňová príčina:** Pravidlo `/blog/* /index.html 200` v `public/_redirects` má vyššiu prioritu ako edge funkcia a servuje React SPA (index.html) s homepage OG tagmi PREDTÝM, ako edge funkcia zachytí request.
 
-### 1. Nový súbor: `src/data/blog/ai-meni-svet-internet.ts`
+## Riešenie
 
-Štruktúra podľa existujúcich článkov (napr. `pomaly-internet-vecer.ts`):
+### Krok 1: Odstrániť `/blog/*` redirect z `_redirects`
 
-```text
-BlogPost = {
-  id: 302,
-  slug: 'jak-ai-meni-svet-proc-kvalitni-internet-zaklad',
-  title: 'Jak AI mění svět kolem nás: Proč je kvalitní internet naprostý základ',
-  excerpt: 'Umělá inteligence mění práci, zábavu i domácnosti. Zjistěte, proč je rychlý a stabilní internet klíčem k jejímu využití v Česku.',
-  content: [HTML obsah článku v štýle webu],
-  category: 'Technologie',
-  tags: ['AI', 'umělá inteligence', 'rychlý internet', 'chytrá domácnost', 'optický internet', 'práce z domova'],
-  author: 'Popri.cz',
-  date: '29. 01. 2026',
-  image: '/blog-images/ai-internet-zaklad.webp',
-  alt: 'Futuristická vizualizace umělé inteligence s optickým vláknem symbolizující rychlý internet'
-}
+Súbor `public/_redirects` obsahuje na riadku 59:
+```
+/blog/* /index.html 200
 ```
 
-### 2. Úprava: `src/data/blog/index.ts`
+**Toto pravidlo musí byť ODSTRÁNENÉ** - edge funkcia sa postará o blog URL routing.
 
-- Import nového článku
-- Pridanie na prvé miesto v poli `blogPosts` (najnovší článok)
-- Export článku
+### Krok 2: Aktualizovať `netlify.toml` s explicitným edge function priority
 
-### 3. Nový obrázok: `public/blog-images/ai-internet-zaklad.webp`
+Pridať `cache = "manual"` a explicitne definovať poradie:
 
-Vygenerujem obrázok pomocou Gemini modelu s promptom v štýle webu:
-
-```text
-"Modern luxury editorial photo: Abstract visualization of AI and 
-high-speed internet connection. Deep black background (#0A0A0A), 
-golden fiber optic cables (#D4A517) forming neural network patterns, 
-subtle brain silhouette made of light particles. Professional 
-photography, cinematic lighting, 16:9 aspect ratio, ultra high 
-resolution. NO text, NO faces, clean minimalist composition with 
-rich gold accents on noir background."
+```toml
+# CRITICAL: Edge function pre social crawlers - MUSÍ byť PRVÁ
+[[edge_functions]]
+  function = "ai-bot-detector"
+  path = "/blog/*"
+  cache = "manual"
 ```
 
-## Formátovanie obsahu
+### Krok 3: Upraviť edge funkciu pre lepšiu diagnostiku
 
-Obsah bude formátovaný v HTML s CSS triedami konzistentnými s noir+gold témou:
+Pridať fallback ak slug nie je v registri - vrátiť generický článkový OG tag namiesto pokračovania do SPA:
 
-- `<div class="blog-content">` - hlavný wrapper
-- `<p class="lead">` - úvodný odsek
-- `<h2>` - hlavné sekcie
-- `<h3>` - podsekcie
-- `<div class="bg-card border border-primary/20 rounded-xl p-6 my-6">` - zvýraznené boxy
-- `<ul>` / `<li>` - zoznamy
-- `<div class="space-y-4 my-6">` - FAQ sekcia s kartami
-- CTA box s gradientom a tlačidlom na tarify
+```typescript
+// Ak slug nie je v registri, stále vrátiť OG HTML s fallback hodnotami
+// NIKDY nepokračovať do React SPA pre social crawlery na /blog/* URL
+```
 
-## Obsah článku (formátovaný pre web)
+### Krok 4: Pridať chýbajúci slug do registra
 
-Článok bude obsahovať:
-
-1. **Úvod** - AI ako realita, nie budúcnosť
-2. **AI v práci a vzdelávaní** - praktické príklady
-3. **AI v zábave a domácnosti** - streaming, asistenti, bezpečnosť
-4. **Prečo AI potrebuje kvalitný internet** - dáta, latencia, upload
-5. **AI a rodiny** - viac zariadení, vyššie nároky
-6. **FAQ sekcia** - 6 otázok s odpoveďami v kartách
-7. **CTA** - výzva na kontrolu tarifov s telefónnym číslom
-
-## Poradie implementácie
-
-1. Vygenerovať obrázok cez edge funkciu `ai-generate-image`
-2. Uložiť obrázok do `public/blog-images/`
-3. Vytvoriť súbor `ai-meni-svet-internet.ts` s kompletným obsahom
-4. Aktualizovať `index.ts` s importom a exportom
-5. Otestovať zobrazenie článku
+Článok `nejcastejsi-myty-o-optickem-internetu` už je v registri (riadok 103-107), takže dáta sú správne.
 
 ## Technické detaily
 
-### Meta tagy (podľa zadania)
+### Zmeny v `public/_redirects`
 
-- **Meta title**: Jak AI mění svět a proč bez rychlého internetu nefunguje
-- **Meta description**: Umělá inteligence mění práci, zábavu i domácnosti. Zjistěte, proč je rychlý a stabilní internet klíčem k jejímu využití v Česku.
+```diff
+- /blog/* /index.html 200
+# Edge function handles blog routing for crawlers
+```
 
-### SEO optimalizácia
+### Zmeny v `netlify/edge-functions/ai-bot-detector.ts`
 
-- Slug optimalizovaný pre vyhľadávanie
-- Interné odkazy na súvisiace články
-- FAQ sekcia pre rich snippets
-- Alt text pre obrázok
+1. Pre social crawlery na `/blog/*` URL VŽDY vrátiť OG HTML - nikdy `context.next()`
+2. Lepšie logovanie pre debug
 
-### Štýl písania
+### Zmeny v `netlify.toml`
 
-Konzistentný s existujúcimi článkami:
-- Neformálny, priateľský tón
-- Praktické príklady
-- Jasná štruktúra
-- CTA na konci s telefónnym číslom 730 431 313
+Explicitná priorita edge funkcie s cache control.
+
+## Prečo predchádzajúce pokusy nefungovali
+
+1. **Redirect priorita**: `public/_redirects` súbor má v Netlify prednosť pred edge functions pre rewrite pravidlá
+2. **200 status**: Pravidlo `/blog/* /index.html 200` je rewrite (nie redirect), takže Netlify servuje `index.html` priamo
+3. **Edge function bypass**: Kvôli rewrite pravidlu edge funkcia buď:
+   - Zachytí request, ale potom `context.next()` ho pošle do rewrite
+   - Alebo sa nespustí vôbec kvôli rewrite priorite
+
+## Očakávaný výsledok
+
+Po nasadení a kliknutí na "Scrape Again" v Facebook Debugger:
+- `og:url` = `https://www.popri.cz/blog/nejcastejsi-myty-o-optickem-internetu`
+- `og:title` = "Nejčastější mýty o optickém internetu, kterým lidé stále věří"
+- `og:image` = `https://www.popri.cz/blog-images/myty-opticky-internet.jpg`
+- `og:description` = článkový popis

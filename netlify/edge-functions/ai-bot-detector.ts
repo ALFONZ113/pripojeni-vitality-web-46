@@ -194,20 +194,31 @@ export default async (request: Request, context: Context) => {
   );
   
   // Handle social crawler requests for blog posts - serve dynamic OG tags
+  // CRITICAL: Edge functions run BEFORE _redirects, so this should work
   if (isSocialCrawler) {
+    console.log(`[Social Crawler] ========================================`);
     console.log(`[Social Crawler] Detected: ${userAgent}`);
-    console.log(`[Social Crawler] URL: ${url.pathname}`);
+    console.log(`[Social Crawler] Full URL: ${url.href}`);
+    console.log(`[Social Crawler] Pathname: ${url.pathname}`);
     
-    const blogMatch = url.pathname.match(/^\/blog\/(.+)$/);
+    // Also try to clean the slug (remove trailing slashes, etc.)
+    let pathname = url.pathname;
+    if (pathname.endsWith('/') && pathname !== '/') {
+      pathname = pathname.slice(0, -1);
+    }
+    
+    const blogMatch = pathname.match(/^\/blog\/([^\/]+)$/);
     if (blogMatch) {
       const slug = blogMatch[1];
-      console.log(`[Social Crawler] Blog slug: ${slug}`);
+      console.log(`[Social Crawler] Blog slug: "${slug}"`);
+      console.log(`[Social Crawler] Available slugs: ${Object.keys(BLOG_POSTS_OG_DATA).join(', ')}`);
       console.log(`[Social Crawler] Slug in registry: ${slug in BLOG_POSTS_OG_DATA}`);
       
       const baseUrl = 'https://www.popri.cz';
       const ogHTML = generateOGMetaHTML(slug, baseUrl);
       
       console.log(`[Social Crawler] Serving OG HTML for: /blog/${slug}`);
+      console.log(`[Social Crawler] ========================================`);
       
       return new Response(ogHTML, {
         status: 200,
@@ -215,10 +226,14 @@ export default async (request: Request, context: Context) => {
           'Content-Type': 'text/html; charset=utf-8',
           'X-Served-For': 'Social-Crawler',
           'X-Robots-Tag': 'index, follow',
-          'Cache-Control': 'public, max-age=300', // 5 min cache for faster debugging
-          'X-OG-Debug': `slug=${slug}, found=${slug in BLOG_POSTS_OG_DATA}`
+          'Cache-Control': 'no-cache, no-store, must-revalidate', // Disable cache for debugging
+          'Pragma': 'no-cache',
+          'X-OG-Debug': `slug=${slug}, found=${slug in BLOG_POSTS_OG_DATA}`,
+          'X-Edge-Function': 'ai-bot-detector'
         }
       });
+    } else {
+      console.log(`[Social Crawler] Not a blog URL or regex didn't match`);
     }
   }
   

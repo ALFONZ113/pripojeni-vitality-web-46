@@ -101,6 +101,11 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
     title: '7 mýtů o optickém internetu - Pravda vs. fikce',
     description: 'Vyvracíme 7 nejčastějších mýtů o optickém internetu. Co je pravda a co fikce?',
     image: '/blog-images/myty-opticky-internet.jpg'
+  },
+  'jak-ai-meni-svet-proc-kvalitni-internet-zaklad': {
+    title: 'Jak AI mění svět kolem nás: Proč je kvalitní internet naprostý základ',
+    description: 'Umělá inteligence mění práci, zábavu i domácnosti. Zjistěte, proč je rychlý a stabilní internet klíčem k jejímu využití v Česku.',
+    image: '/blog-images/ai-internet-zaklad.webp'
   }
 };
 

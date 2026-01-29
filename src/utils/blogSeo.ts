@@ -105,8 +105,14 @@ export const generateBlogPostMeta = (post: BlogPost, baseUrl: string) => {
 
 /**
  * Format date for schema.org
+ * Supports both "DD. MM. YYYY" (Czech) and "YYYY-MM-DD" (ISO) formats
  */
 const formatDateForSchema = (dateStr: string): string => {
+  // If already in ISO format (YYYY-MM-DD), return as-is
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return dateStr;
+  }
+  // Czech format "DD. MM. YYYY" -> "YYYY-MM-DD"
   return dateStr.split('. ').reverse().join('-');
 };
 

@@ -324,10 +324,25 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
 
               {selectedPost.facebook_text && (
                 <div className="p-4 rounded-lg bg-muted/50 border border-[#1877F2]/30">
-                  <h4 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
-                    <Facebook className="h-4 w-4 text-[#1877F2]" />
-                    Facebook text
-                  </h4>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <Facebook className="h-4 w-4 text-[#1877F2]" />
+                      Facebook text
+                    </h4>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-2"
+                      onClick={() => {
+                        const fullText = selectedPost.facebook_text + (selectedPost.facebook_hashtags ? '\n\n' + selectedPost.facebook_hashtags : '');
+                        navigator.clipboard.writeText(fullText);
+                        toast.success('Text skopírovaný!');
+                      }}
+                    >
+                      <Copy className="h-3 w-3 mr-1" />
+                      Kopírovať
+                    </Button>
+                  </div>
                   <p className="text-sm whitespace-pre-wrap">{selectedPost.facebook_text}</p>
                   {selectedPost.facebook_hashtags && (
                     <p className="text-sm text-primary mt-2">{selectedPost.facebook_hashtags}</p>
@@ -368,10 +383,25 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
 
               {selectedPost.instagram_text && (
                 <div className="p-4 rounded-lg bg-muted/50 border border-[#E4405F]/30">
-                  <h4 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
-                    <Instagram className="h-4 w-4 text-[#E4405F]" />
-                    Instagram text
-                  </h4>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <Instagram className="h-4 w-4 text-[#E4405F]" />
+                      Instagram text
+                    </h4>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-2"
+                      onClick={() => {
+                        const fullText = selectedPost.instagram_text + (selectedPost.instagram_hashtags ? '\n\n' + selectedPost.instagram_hashtags : '');
+                        navigator.clipboard.writeText(fullText);
+                        toast.success('Text skopírovaný!');
+                      }}
+                    >
+                      <Copy className="h-3 w-3 mr-1" />
+                      Kopírovať
+                    </Button>
+                  </div>
                   <p className="text-sm whitespace-pre-wrap">{selectedPost.instagram_text}</p>
                   {selectedPost.instagram_hashtags && (
                     <p className="text-sm text-primary mt-2">{selectedPost.instagram_hashtags}</p>

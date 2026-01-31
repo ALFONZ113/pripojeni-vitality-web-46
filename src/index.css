@@ -81,11 +81,19 @@
 
   html {
     scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -493,11 +501,9 @@
    SCROLLBAR & SELECTION
    ═══════════════════════════════════════════════════════════════════════════ */
 
-::-webkit-scrollbar { 
-  width: 8px; 
-}
+/* Scrollbar hidden globally in html::-webkit-scrollbar in @layer base */
 
-::-webkit-scrollbar-track { 
+::-webkit-scrollbar-track {
   background: hsl(0, 0%, 7%); 
 }
 

@@ -92,11 +92,11 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
   }
 
   const formWrapperClass = compact 
-    ? "glass rounded-xl p-4 border border-border"
-    : "glass rounded-2xl p-8 border border-border";
+    ? "glass rounded-xl p-4 md:p-6 border border-border"
+    : "glass rounded-2xl p-5 md:p-8 border border-border";
 
-  const inputClass = "w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300";
-  const labelClass = "block text-foreground font-medium mb-2";
+  const inputClass = "w-full px-4 py-3.5 bg-secondary/50 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-base";
+  const labelClass = "block text-foreground font-medium mb-2 text-responsive-sm";
 
   return (
     <div className={formWrapperClass}>

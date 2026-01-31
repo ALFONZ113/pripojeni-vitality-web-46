@@ -53,12 +53,12 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
   };
   
   return (
-    <section className="relative min-h-screen flex items-center bg-background overflow-hidden" aria-labelledby="hero-title">
+    <section className="relative min-h-svh flex items-center bg-background overflow-hidden" aria-labelledby="hero-title">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
       
-      <div className="container-custom relative z-10 py-24 lg:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="container-custom relative z-10 py-responsive">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-responsive-lg items-center">
           
           {/* Left Column - Content */}
           <motion.div 
@@ -72,9 +72,9 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="mb-8"
+              className="mb-responsive"
             >
-              <span className="inline-flex items-center gap-2 text-sm font-medium text-primary tracking-wide uppercase">
+              <span className="inline-flex items-center gap-2 text-responsive-xs font-medium text-primary tracking-wide uppercase">
                 <MapPin className="h-4 w-4" />
                 {cityName} · {coverage}% pokrytí
               </span>
@@ -85,11 +85,11 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mb-6"
+              className="mb-responsive"
             >
               <h1 
                 id="hero-title" 
-                className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight"
+                className="font-heading text-responsive-display font-bold text-foreground leading-[1.1] tracking-tight"
               >
                 Gigabit za{' '}
                 <span className="text-primary">nejvýhodnější cenu</span>
@@ -101,7 +101,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-muted-foreground font-light mb-10"
+              className="text-responsive-xl text-muted-foreground font-light mb-responsive"
             >
               TV Basic v ceně
             </motion.p>
@@ -156,7 +156,7 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground"
+              className="flex flex-wrap gap-x-6 gap-y-2 text-responsive-sm text-muted-foreground"
             >
               <span>1000 Mbps</span>
               <span>85+ TV programů</span>

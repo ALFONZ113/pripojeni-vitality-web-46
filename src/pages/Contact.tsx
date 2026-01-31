@@ -36,16 +36,16 @@ const Contact = () => {
       </Helmet>
       
       {/* Hero */}
-      <section className="py-12 bg-background">
+      <section className="section-padding-compact bg-background">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="inline-block bg-primary/10 text-primary py-1 px-4 rounded-full text-sm font-medium mb-4 border border-primary/20 reveal-animation">
+            <span className="inline-block bg-primary/10 text-primary py-1.5 px-4 rounded-full text-responsive-xs font-medium mb-4 border border-primary/20 reveal-animation">
               Kontaktujte nás
             </span>
-            <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4 leading-tight reveal-animation delay-100">
+            <h1 className="text-responsive-hero font-heading font-bold text-foreground mb-4 leading-tight reveal-animation delay-100">
               <span className="text-gradient-gold">Kontakt</span>
             </h1>
-            <p className="text-muted-foreground text-lg mb-6 leading-relaxed reveal-animation delay-200">
+            <p className="text-muted-foreground text-responsive-base mb-responsive leading-relaxed reveal-animation delay-200">
               Máte zájem o naše služby? Kontaktujte nás a vytvoříme pro vás objednávku.
             </p>
           </div>
@@ -56,8 +56,8 @@ const Contact = () => {
       <section className="section-padding bg-background">
         <div className="container-custom">
           {/* Mobile Layout */}
-          <div className="lg:hidden mb-12">
-            <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center reveal-animation">
+          <div className="lg:hidden mb-responsive">
+            <h2 className="text-responsive-xl font-heading font-bold text-foreground mb-6 text-center reveal-animation">
               Kontaktní formulář
             </h2>
             <div className="reveal-animation delay-100">
@@ -65,33 +65,33 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="lg:hidden mb-12">
+          <div className="lg:hidden mb-responsive">
             <div className="glass p-6 rounded-2xl border border-primary/20 relative overflow-hidden reveal-animation delay-200">
               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full translate-x-12 -translate-y-12"></div>
               
               <div className="relative text-center">
-                <span className="inline-block bg-primary/20 text-primary py-1 px-3 rounded-full text-sm font-medium mb-3">
+                <span className="inline-block bg-primary/20 text-primary py-1 px-3 rounded-full text-responsive-xs font-medium mb-3">
                   Obchodní zástupce
                 </span>
-                <h3 className="text-2xl font-heading font-bold text-foreground mb-4">Váš kontakt</h3>
+                <h3 className="text-responsive-xl font-heading font-bold text-foreground mb-4">Váš kontakt</h3>
                 
-                <div className="space-y-3">
-                  <div className="flex items-center justify-center">
-                    <div className="bg-primary/20 p-2 rounded-full mr-3">
-                      <Phone className="h-4 w-4 text-primary" />
+                <div className="space-y-4">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-primary/20 p-2.5 rounded-full">
+                      <Phone className="h-5 w-5 text-primary" />
                     </div>
                     <PhoneLink 
                       phone="+420730431313" 
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors" 
+                      className="text-responsive-base font-medium text-foreground hover:text-primary transition-colors" 
                       displayNumber="+420 730 431 313" 
                     />
                   </div>
                   
-                  <div className="flex items-center justify-center">
-                    <div className="bg-primary/20 p-2 rounded-full mr-3">
-                      <Mail className="h-4 w-4 text-primary" />
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-primary/20 p-2.5 rounded-full">
+                      <Mail className="h-5 w-5 text-primary" />
                     </div>
-                    <a href="mailto:terc@obchod.poda.cz" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                    <a href="mailto:terc@obchod.poda.cz" className="text-responsive-base font-medium text-foreground hover:text-primary transition-colors">
                       terc@obchod.poda.cz
                     </a>
                   </div>

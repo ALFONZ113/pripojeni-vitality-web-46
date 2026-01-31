@@ -16,7 +16,7 @@ const BlogSearch = ({ searchTerm, onSearch }: BlogSearchProps) => {
         placeholder="Hledat články..."
         value={searchTerm}
         onChange={(e) => onSearch(e.target.value)}
-        className="pl-12 pr-4 py-3 w-full bg-secondary/50 border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300"
+        className="pl-12 pr-4 py-3.5 w-full bg-secondary/50 border border-border rounded-xl text-foreground text-base placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300"
       />
     </div>
   );

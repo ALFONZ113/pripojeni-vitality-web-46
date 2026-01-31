@@ -7,13 +7,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-noir-light border-t border-border text-foreground pt-16 pb-8" role="contentinfo">
+    <footer className="bg-noir-light border-t border-border text-foreground pt-12 md:pt-16 pb-6 md:pb-8" role="contentinfo">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-responsive-lg">
           {/* Logo and Description */}
           <section>
             <Logo size="lg" className="mb-4" />
-            <p className="text-muted-foreground leading-relaxed text-sm mb-6">
+            <p className="text-muted-foreground leading-relaxed text-responsive-sm mb-6">
               Poskytujeme nejmodernější internetové a televizní služby 
               s důrazem na kvalitu, spolehlivost a zákaznickou spokojenost.
             </p>
@@ -44,8 +44,8 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <nav>
-            <h2 className="text-lg font-display font-semibold mb-5 text-foreground">Nabídka</h2>
-            <ul className="space-y-3">
+            <h2 className="text-responsive-base font-display font-semibold mb-4 md:mb-5 text-foreground">Nabídka</h2>
+            <ul className="space-y-2 md:space-y-3">
               {[
                 { to: '/internet-tv', label: 'Internet a TV pro byty' },
                 { to: '/internet-tv', label: 'Internet a TV pro domy' },
@@ -56,13 +56,13 @@ const Footer = () => {
                 { to: '/giga-internet', label: 'Gigabitový internet' }
               ].map((link) => (
                 <li key={link.label}>
-                  <Link 
-                    to={link.to} 
-                    className="text-muted-foreground hover:text-primary transition-colors flex items-center group"
-                  >
-                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                    {link.label}
-                  </Link>
+                <Link
+                  to={link.to} 
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center group text-responsive-sm py-1"
+                >
+                  <ArrowRight className="w-3 h-3 mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                  {link.label}
+                </Link>
                 </li>
               ))}
             </ul>

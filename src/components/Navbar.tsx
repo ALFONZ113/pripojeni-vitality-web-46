@@ -275,7 +275,11 @@ const Navbar = memo(() => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="lg:hidden text-foreground p-2 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button 
+          className="lg:hidden text-foreground p-2.5 hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center" 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+        >
           {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
@@ -290,17 +294,17 @@ const Navbar = memo(() => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-background pt-20 lg:hidden"
           >
-            <div className="container px-6 py-8 flex flex-col h-full overflow-y-auto">
-              <nav className="flex flex-col space-y-2">
+            <div className="container-custom py-6 flex flex-col h-full overflow-y-auto">
+              <nav className="flex flex-col space-y-2" role="navigation" aria-label="Mobilní navigace">
                 {/* Domů link */}
                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0 }}>
                   <Link 
                     to="/" 
-                    className={`flex items-center justify-between p-4 rounded-xl transition-all ${
+                    className={`flex items-center justify-between p-4 rounded-xl transition-all min-h-[52px] ${
                       isActivePath('/') ? 'bg-primary/10 text-primary border border-primary/20' : 'text-foreground hover:bg-secondary'
                     }`}
                   >
-                    <span className="flex items-center font-medium text-lg">Domů</span>
+                    <span className="flex items-center font-medium text-base">Domů</span>
                     <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </Link>
                 </motion.div>

@@ -33,7 +33,7 @@ const TariffSection = memo(() => {
   ];
 
   return (
-    <section ref={ref} className="py-10 md:py-20 lg:py-32 bg-background relative overflow-hidden" id="tarify">
+    <section ref={ref} className="py-responsive bg-background relative overflow-hidden" id="tarify">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-x-1/2" />
@@ -46,13 +46,13 @@ const TariffSection = memo(() => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-10 md:mb-16 px-4"
+          className="text-center max-w-3xl mx-auto mb-responsive"
         >
-          <span className="badge-gold mb-4 md:mb-6 inline-block text-xs md:text-sm">Naše nabídka</span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
+          <span className="badge-gold mb-4 md:mb-6 inline-block text-responsive-xs">Naše nabídka</span>
+          <h2 className="font-display text-responsive-3xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             Tarify pro <span className="text-gradient-gold">byty</span>
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-relaxed">
+          <p className="text-muted-foreground text-responsive-base leading-relaxed">
             Nabízíme výkonné a cenově dostupné internetové a televizní balíčky.
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ const TariffSection = memo(() => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 px-4"
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-responsive mb-responsive"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -70,15 +70,15 @@ const TariffSection = memo(() => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 + index * 0.1 }}
-              className="bg-card rounded-xl md:rounded-2xl p-3 md:p-5 border border-border/50 hover:border-primary/30 transition-all duration-300 group text-center"
+              className="bg-card rounded-xl md:rounded-2xl p-4 md:p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 group text-center"
             >
-              <div className="bg-primary/10 w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:bg-primary/20 transition-colors">
-                <stat.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+              <div className="bg-primary/10 w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
+                <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               </div>
-              <div className="text-xl md:text-2xl lg:text-3xl font-display font-bold text-foreground">
-                {stat.value}<span className="text-sm md:text-lg text-primary">{stat.unit}</span>
+              <div className="text-responsive-xl font-display font-bold text-foreground">
+                {stat.value}<span className="text-responsive-sm text-primary">{stat.unit}</span>
               </div>
-              <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-responsive-xs text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -97,7 +97,7 @@ const TariffSection = memo(() => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 max-w-6xl mx-auto px-4"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-responsive max-w-6xl mx-auto"
         >
           {currentTariffData.map((tariff, index) => (
             <motion.div

@@ -91,7 +91,7 @@ const HeroSection = () => {
       }
     }
   };
-  return <section ref={ref} className="relative min-h-[80vh] md:min-h-[90vh] lg:min-h-[100svh] flex items-center overflow-hidden" aria-labelledby="hero-title">
+  return <section ref={ref} className="relative min-h-[85svh] md:min-h-[90svh] lg:min-h-svh flex items-center overflow-hidden" aria-labelledby="hero-title">
       {/* ═══════════════════════════════════════════════════════════════
           FULL-SCREEN BACKGROUND IMAGE
          ═══════════════════════════════════════════════════════════════ */}
@@ -129,34 +129,30 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            {/* Headlines - Optimized UX structure */}
+            {/* Headlines - Optimized UX structure with fluid typography */}
             <motion.h1 
               id="hero-title" 
               variants={itemVariants} 
-              className="font-display font-bold mb-6 md:mb-8" 
-              style={{
-                fontSize: 'clamp(2.25rem, 5vw, 5rem)',
-                lineHeight: '1.1'
-              }}
+              className="font-display font-bold mb-responsive"
             >
               {/* Eyebrow - PODA label */}
-              <span className="block text-primary text-xs md:text-sm uppercase tracking-[0.25em] font-medium mb-3 md:mb-4">
+              <span className="block text-primary text-responsive-xs uppercase tracking-[0.25em] font-medium mb-3 md:mb-4">
                 PODA
               </span>
               
-              {/* Main headline - spojený na jeden riadok */}
-              <span className="text-foreground block tracking-tight">
+              {/* Main headline - fluid sizing */}
+              <span className="text-foreground block tracking-tight text-responsive-display">
                 Internet na který
               </span>
               
               {/* Emotional subheadline */}
-              <span className="text-gradient-gold block text-[0.75em] tracking-normal mt-1">
+              <span className="text-gradient-gold block text-responsive-hero tracking-normal mt-1">
                 se můžete spolehnout
               </span>
             </motion.h1>
 
-            {/* Subtitle - LARGER */}
-            <motion.p variants={itemVariants} className="text-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-5 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
+            {/* Subtitle - Fluid sizing */}
+            <motion.p variants={itemVariants} className="text-foreground/80 text-responsive-lg mb-responsive max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
               Nejvýhodnější optické připojení v regionu.<br className="hidden sm:block" />
               <span className="text-primary font-semibold">Gigabit 1000 Mbps, TV s 160 kanály v ceně.</span>
             </motion.p>
@@ -182,10 +178,8 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-
-
-            {/* Phone Input Form - LARGER */}
-            <motion.form variants={itemVariants} onSubmit={handlePhoneSubmit} className="mb-6 md:mb-8">
+            {/* Phone Input Form */}
+            <motion.form variants={itemVariants} onSubmit={handlePhoneSubmit} className="mb-responsive">
               <div className="glass rounded-2xl p-3 sm:p-4 max-w-lg mx-auto lg:mx-0">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <div className="flex-1 relative">
@@ -201,8 +195,6 @@ const HeroSection = () => {
                 </div>
               </div>
             </motion.form>
-
-
           </motion.div>
 
           {/* ═══════════════════════════════════════════════════════════════

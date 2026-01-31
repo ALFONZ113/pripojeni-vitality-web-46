@@ -126,16 +126,16 @@ const Blog = () => {
       </Helmet>
       
       {/* Hero Section */}
-      <section className="section-padding bg-background">
+      <section className="section-padding-compact bg-background">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block bg-primary/10 text-primary py-1 px-4 rounded-full text-sm font-medium mb-4 border border-primary/20 reveal-animation">
+            <span className="inline-block bg-primary/10 text-primary py-1.5 px-4 rounded-full text-responsive-xs font-medium mb-4 border border-primary/20 reveal-animation">
               Blog a novinky
             </span>
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 leading-tight reveal-animation delay-100">
+            <h1 className="text-responsive-hero font-heading font-bold text-foreground mb-responsive leading-tight reveal-animation delay-100">
               Články o <span className="text-gradient-gold">internetu</span> a technologiích
             </h1>
-            <p className="text-muted-foreground text-lg mb-8 leading-relaxed reveal-animation delay-200">
+            <p className="text-muted-foreground text-responsive-base mb-responsive leading-relaxed reveal-animation delay-200">
               Přečtěte si nejnovější články o technologiích, tipy pro lepší využití vašeho internetu 
               a televize. Vše o službách PODA v {locations.join(', ')} a dalších městech.
             </p>
@@ -146,7 +146,7 @@ const Blog = () => {
             <div className="mt-6 glass p-4 rounded-xl inline-block border border-primary/20">
               <button 
                 onClick={showPorubaPost} 
-                className="flex items-center text-primary hover:text-primary/80 transition-colors font-semibold"
+                className="flex items-center text-primary hover:text-primary/80 transition-colors font-semibold text-responsive-sm"
               >
                 <span className="bg-primary text-primary-foreground rounded-full px-2 py-1 text-xs mr-2">NOVÉ</span>
                 Přečtěte si o novém připojení v Ostravě-Porubě
@@ -157,7 +157,7 @@ const Blog = () => {
       </section>
 
       {/* Categories */}
-      <section className="section-padding pt-4 pb-4 bg-card/50 backdrop-blur-sm sticky top-20 z-30 border-y border-border">
+      <section className="py-4 bg-card/50 backdrop-blur-sm sticky top-20 z-30 border-y border-border">
         <div className="container-custom">
           <BlogCategories 
             selectedCategory={selectedCategory} 
@@ -172,20 +172,20 @@ const Blog = () => {
           <BlogList posts={filteredPosts} onResetFilters={resetFilters} />
           
           {/* CTA Banner */}
-          <div className="mt-16 text-center">
-            <div className="glass p-8 rounded-2xl border border-primary/20 relative overflow-hidden">
+          <div className="mt-responsive text-center">
+            <div className="glass p-6 md:p-8 rounded-2xl border border-primary/20 relative overflow-hidden">
               <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
               
               <div className="relative z-10">
-                <h2 className="text-2xl font-heading font-bold text-gradient-gold mb-4">
+                <h2 className="text-responsive-xl font-heading font-bold text-gradient-gold mb-4">
                   Hledáte rychlé internetové připojení?
                 </h2>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                <p className="text-muted-foreground mb-responsive max-w-2xl mx-auto text-responsive-sm">
                   PODA poskytuje spolehlivé optické připojení v {locations.slice(0, 3).join(', ')} 
                   a dalších městech. Kontaktujte nás pro bezplatnou konzultaci.
                 </p>
-                <div className="flex gap-4 justify-center flex-wrap">
+                <div className="flex gap-responsive-sm justify-center flex-wrap">
                   <a
                     href="tel:+420730431313"
                     className="btn-gold"

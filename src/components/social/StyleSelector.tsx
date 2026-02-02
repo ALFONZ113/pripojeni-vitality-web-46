@@ -1,6 +1,6 @@
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Sparkles, Moon, Zap, Camera, Palette, Cpu, Sun, Clock } from 'lucide-react';
+import { Sparkles, Moon, Zap, Camera, Palette, Cpu, Sun, Image } from 'lucide-react';
 
 export type VisualStyle = 
   | 'luxury-gold' 
@@ -10,7 +10,7 @@ export type VisualStyle =
   | 'gradient-modern'
   | 'tech-blue'
   | 'bright-bold'
-  | 'vintage-retro';
+  | 'premium-ad';
 
 interface StyleSelectorProps {
   value: VisualStyle;
@@ -61,10 +61,10 @@ const styles: { value: VisualStyle; label: string; description: string; icon: Re
     icon: <Sun className="h-4 w-4 text-orange-500" />,
   },
   {
-    value: 'vintage-retro',
-    label: 'Vintage Retro',
-    description: 'Nostalgický, teplé odstíny',
-    icon: <Clock className="h-4 w-4 text-amber-600" />,
+    value: 'premium-ad',
+    label: 'Premium Ad',
+    description: 'Temné pozadí, oranžové světlo, 9:16',
+    icon: <Image className="h-4 w-4 text-orange-400" />,
   },
 ];
 

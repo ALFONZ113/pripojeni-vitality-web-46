@@ -18,7 +18,7 @@ const InputSchema = z.object({
     'gradient-modern',
     'tech-blue',
     'bright-bold',
-    'vintage-retro'
+    'premium-ad'
   ]).default('luxury-gold'),
   includePerson: z.enum(['with-person', 'without-person']).default('with-person'),
   customTopic: z.string().max(500).optional().nullable(),
@@ -148,21 +148,44 @@ CRITICAL LANGUAGE REQUIREMENT:
 All text visible in the image MUST be in CZECH language (čeština).
 Use "SLEVA", "AKCE", "od 300 Kč", "ZDARMA" for promotional elements.
 `,
-  'vintage-retro': `
-Style: Nostalgic vintage design with warm, aged aesthetic
-Background: Warm beige/cream #F5E6D3, aged paper texture, subtle sepia gradient
-Primary accent color: Muted terracotta #C17650, dusty rose #C9A9A6, olive green #8B9A6B
-Text color: Dark brown #3D2B1F or charcoal #4A4A4A
-Typography: Vintage serif fonts (Playfair Display), retro sans-serif accents, hand-drawn feel
-Visual effects: Film grain texture, vignette corners, faded edges, vintage photo borders
-Mood: Nostalgic, trustworthy, authentic, timeless, warm, family-oriented
-No harsh modern elements, soft and inviting, classic advertising feel
-Perfect for: Family content, testimonials, long-standing company values
+  'premium-ad': `
+[GOAL] Generate a premium social media ad banner in 9:16 vertical format.
+
+[CONTEXT & SUBJECT]
+Style: High-end product/lifestyle photography in a dark, moody environment
+Background: Deep black #0A0A0A with dramatic warm orange ambient light from lamps, LED strips, or spotlights
+Lighting: Dramatic warm orange/amber backlighting highlighting subjects and textures against dark backgrounds
+Environment: Luxurious dark mode living rooms, modern home offices, or tech product setups
+
+[VISUAL ELEMENTS]
+Subject options based on post type:
+- Product shots: Sleek Wi-Fi routers, devices on dark wooden surfaces with warm orange rim lighting
+- Lifestyle: People in cozy dark interiors using technology, warm lamp lighting, comfortable modern spaces
+- Tech setups: Gaming stations, streaming setups, home offices with ambient orange LED lighting
+
+[TEXT RENDERING]
+Render Czech text clearly with proper layout:
+1. Headline (Bold, Elegant White Playfair Display): Main message at top of frame
+2. Subtitle (Orange/Cream italic): Supporting message below headline
+3. Badge/Button (White/cream background, Orange text): Call-to-action at bottom
+
+[COMPOSITION]
+Aspect Ratio: 9:16 (Vertical) for social media stories/reels
+Layout: Text block at top third, subject/product filling remaining frame
+Atmosphere: High-tech, premium, powerful, sophisticated, warm yet modern
+
+[STYLE]
+High-end product photography, sharp focus, luxurious dark tones, warm orange/amber accents
+Professional advertising quality, cinematic lighting, premium feel
+No watermarks, photorealistic quality, Instagram/Facebook ad ready
 
 CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
+All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
 Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Změňte" (not "Zmeňte").
+Use Czech: "Jak" (not "Ako"), "Špičková", "Změňte" (not "Zmeňte").
+Example headlines: "Špičková technologie u vás doma", "Stabilní internet pro domov", "Perfektní internet bez čekání"
+Example subtitles: "Prémiový Wi-Fi 6 router pro maximální pokrytí", "Práce i zábava bez výpadků"
+Example CTAs: "Chci nejnovější hardware", "Už od 300 Kč měsíčně", "Zařídíme to za vás"
 `,
 };
 

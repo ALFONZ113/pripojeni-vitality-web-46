@@ -209,9 +209,9 @@ export const platformSpecs = {
   facebook: {
     name: 'Facebook',
     icon: 'Facebook',
-    dimensions: '1200x630',
-    width: 1200,
-    height: 630,
+    dimensions: '1080x1350',
+    width: 1080,
+    height: 1350,
     maxTextLength: 2000,
     hashtagLimit: 10,
   },

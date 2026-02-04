@@ -6,10 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Download, Copy, Check, ArrowLeft } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Download, Copy, Check, ArrowLeft, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
-
 interface BrandingConfig {
   companyName: string;
   website: string;
@@ -48,6 +48,40 @@ const generateReplicationPrompt = (config: BrandingConfig): string => {
   const benefitsArray = config.benefits.split('\n').filter(b => b.trim());
   
   return `# Social Media Generator - Replikačný Prompt pre ${config.companyName || '[NÁZOV FIRMY]'}
+
+---
+
+## 0. AUTOMATICKÁ ANALÝZA WEBU
+
+**⚠️ PRED IMPLEMENTÁCIOU VYKONAJ TIETO KROKY:**
+
+### Krok 1: Prečítaj existujúci kód projektu
+\`\`\`
+1. Otvor a prečítaj tailwind.config.ts - extrahuj farby (primary, secondary, background)
+2. Otvor a prečítaj src/index.css - identifikuj CSS premenné (--background, --foreground, --primary)
+3. Otvor a prečítaj src/pages/Index.tsx - identifikuj hlavnú službu, ceny, výhody
+4. Otvor a prečítaj src/components/Navbar.tsx - extrahuj názov firmy z loga
+5. Otvor a prečítaj src/components/Footer.tsx - extrahuj kontaktné údaje (telefón, email, adresa)
+\`\`\`
+
+### Krok 2: Extrahuj branding z kódu
+Z prečítaného kódu vyplň nasledujúce hodnoty:
+- **Názov firmy**: Z loga v Navbar alebo <title> tagu v index.html
+- **Primárna farba**: Z tailwind.config.ts -> theme.extend.colors.primary alebo CSS --primary
+- **Sekundárna farba**: Z tailwind.config.ts -> theme.extend.colors.secondary
+- **Fonty**: Z tailwind.config.ts -> theme.extend.fontFamily (headline + body)
+- **Služby/Produkty**: Z Hero sekcie, TariffSection alebo hlavného obsahu Index.tsx
+- **Kontakt (telefón, email)**: Z Footer alebo ContactSection
+
+### Krok 3: Doplň chýbajúce hodnoty
+Ak niektoré hodnoty nie sú v kóde, použi hodnoty z konfigurácie nižšie (SEKCIA 1).
+Ak ani tam nie sú, použi placeholder \`[DOPLŇ]\` a upozorni používateľa.
+
+### Krok 4: Pokračuj s implementáciou
+S extrahovaným brandingom vytvor Social Generator podľa sekcií 1-12 nižšie.
+**Dôležité:** Hodnoty z kódu majú prednosť pred hodnotami z konfigurácie!
+
+---
 
 ## 🎯 ÚLOHA
 
@@ -587,6 +621,16 @@ export default function SocialExport() {
             </Card>
           </div>
 
+          {/* Info Alert */}
+          <Alert className="mt-6 border-primary/30 bg-primary/5">
+            <Sparkles className="h-4 w-4 text-primary" />
+            <AlertDescription className="text-foreground">
+              <strong>Automatická analýza:</strong> Nemusíte vyplnit všechna pole. 
+              AI v cílovém projektu automaticky extrahuje chybějící hodnoty z existujícího kódu 
+              (barvy z Tailwindu, kontakty z Footeru, služby z hlavní stránky).
+            </AlertDescription>
+          </Alert>
+
           {/* Export tlačidla */}
           <Card className="mt-6">
             <CardContent className="pt-6">
@@ -610,7 +654,7 @@ export default function SocialExport() {
                 </Button>
               </div>
               <p className="text-sm text-muted-foreground text-center mt-4">
-                Stažený prompt můžete vložit do Lovable chatu pro vytvoření Social Generatora na jiném webu.
+                Stažený prompt vložte do Lovable chatu v cílovém projektu. AI automaticky analyzuje web a vytvoří přizpůsobený Social Generator.
               </p>
             </CardContent>
           </Card>

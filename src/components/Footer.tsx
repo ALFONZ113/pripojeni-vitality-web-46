@@ -20,20 +20,26 @@ const Footer = () => {
             <div className="flex space-x-3">
               <a 
                 href="https://www.facebook.com/popricz/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                 aria-label="Facebook"
               >
                 <Facebook size={18} />
               </a>
               <a 
-                href="https://www.instagram.com/poda.cz/" 
+                href="https://www.instagram.com/poda.cz/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
               </a>
               <a 
-                href="https://www.linkedin.com/company/poda-a-s-/" 
+                href="https://www.linkedin.com/company/poda-a-s-/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                 aria-label="LinkedIn"
               >

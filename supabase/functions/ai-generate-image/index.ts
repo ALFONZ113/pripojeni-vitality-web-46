@@ -48,7 +48,7 @@ serve(async (req) => {
     console.log('Generating image with Gemini model for prompt:', prompt);
 
     // Vylepšíme prompt pre lepšie výsledky
-    const enhancedPrompt = `${prompt}. Professional photography, high-quality, modern design, 16:9 aspect ratio, ultra high resolution, editorial style.`;
+    const enhancedPrompt = `${prompt}. Professional photography, high-quality, modern design, ultra high resolution, editorial style.`;
 
     // Volanie Lovable AI Gateway s Gemini modelom (Nano banana)
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {

@@ -149,43 +149,46 @@ All text visible in the image MUST be in CZECH language (čeština).
 Use "SLEVA", "AKCE", "od 300 Kč", "ZDARMA" for promotional elements.
 `,
   'premium-ad': `
-[GOAL] Generate a premium social media ad banner in 9:16 vertical format.
+[GOAL] Generate a SINGLE premium social media ad banner.
+
+[CRITICAL RULES]
+1. Generate ONLY ONE image, not multiple variants
+2. Do NOT default to showing a router - choose subject based on the specific topic provided
+3. Focus on the SPECIFIC topic provided, not generic internet imagery
+4. If topic mentions WiFi tips, streaming, or lifestyle - show PEOPLE, not products
+5. Only show router/hardware if the topic is specifically about equipment
 
 [CONTEXT & SUBJECT]
 Style: High-end product/lifestyle photography in a dark, moody environment
-Background: Deep black #0A0A0A with dramatic warm orange ambient light from lamps, LED strips, or spotlights
-Lighting: Dramatic warm orange/amber backlighting highlighting subjects and textures against dark backgrounds
-Environment: Luxurious dark mode living rooms, modern home offices, or tech product setups
+Background: Deep black #0A0A0A with dramatic warm orange ambient light
+Lighting: Dramatic warm orange/amber backlighting highlighting subjects
+Environment: Luxurious dark mode living rooms, modern home offices
 
-[VISUAL ELEMENTS]
-Subject options based on post type:
-- Product shots: Sleek Wi-Fi routers, devices on dark wooden surfaces with warm orange rim lighting
-- Lifestyle: People in cozy dark interiors using technology, warm lamp lighting, comfortable modern spaces
-- Tech setups: Gaming stations, streaming setups, home offices with ambient orange LED lighting
+Subject selection based on topic (NOT router by default):
+- Tips about WiFi/streaming/internet: Person enjoying content, relaxed in cozy atmosphere
+- Promotions/offers: Lifestyle scene showing the BENEFIT (happy family, relaxed person), not the product
+- General topics: Authentic human moments with technology as subtle background element
+- Hardware topics ONLY: Show sleek router/devices with orange rim lighting
 
 [TEXT RENDERING]
 Render Czech text clearly with proper layout:
-1. Headline (Bold, Elegant White Playfair Display): Main message at top of frame
+1. Headline (Bold, Elegant White Playfair Display): Main message at top
 2. Subtitle (Orange/Cream italic): Supporting message below headline
 3. Badge/Button (White/cream background, Orange text): Call-to-action at bottom
 
 [COMPOSITION]
-Aspect Ratio: 9:16 (Vertical) for social media stories/reels
-Layout: Text block at top third, subject/product filling remaining frame
-Atmosphere: High-tech, premium, powerful, sophisticated, warm yet modern
+Aspect Ratio: 4:5 (1080x1350) for Facebook posts, 9:16 for stories
+Layout: Text at top third, subject filling remaining frame
+Atmosphere: High-tech, premium, sophisticated, warm
 
 [STYLE]
-High-end product photography, sharp focus, luxurious dark tones, warm orange/amber accents
-Professional advertising quality, cinematic lighting, premium feel
-No watermarks, photorealistic quality, Instagram/Facebook ad ready
+High-end lifestyle/product photography, sharp focus, luxurious dark tones, warm orange accents
+No watermarks, photorealistic quality
 
 CRITICAL LANGUAGE REQUIREMENT:
-All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
+All text visible in the image MUST be in CZECH language (čeština).
 Do NOT use Slovak, English or any other language.
 Use Czech: "Jak" (not "Ako"), "Špičková", "Změňte" (not "Zmeňte").
-Example headlines: "Špičková technologie u vás doma", "Stabilní internet pro domov", "Perfektní internet bez čekání"
-Example subtitles: "Prémiový Wi-Fi 6 router pro maximální pokrytí", "Práce i zábava bez výpadků"
-Example CTAs: "Chci nejnovější hardware", "Už od 300 Kč měsíčně", "Zařídíme to za vás"
 `,
 };
 
@@ -432,7 +435,7 @@ serve(async (req) => {
     for (const plat of platforms) {
       const isInstagram = plat === 'instagram';
       const userPrompt = isInstagram ? template.igPrompt : template.fbPrompt;
-      const dimensions = isInstagram ? '1080x1080' : '1200x630';
+      const dimensions = isInstagram ? '1080x1080' : '1080x1350';
       
       // Add custom topic if provided
       let finalPrompt = userPrompt;
@@ -483,7 +486,7 @@ serve(async (req) => {
 
       if (uniqueScene) {
         // Use AI-generated unique scene
-        imagePromptContent = `Social media image for ${isInstagram ? 'Instagram (1080x1080, square format)' : 'Facebook (1200x630, 16:9 aspect ratio)'}.
+        imagePromptContent = `Social media image for ${isInstagram ? 'Instagram (1080x1080, square format)' : 'Facebook (1080x1350, 4:5 vertical format)'}.
 
 SCENE: ${uniqueScene}
 

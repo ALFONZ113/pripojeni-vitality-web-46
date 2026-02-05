@@ -1,98 +1,146 @@
 
-# Plán: Oprava responzivity Admin panela pre telefóny a tablety
+# Plán: Oprava scrollovania a interakcie v Admin paneli
 
 ## Identifikované problémy
 
-Na základe screenshotov a analýzy kódu som identifikoval tieto problémy:
+Po dôkladnej analýze kódu som našiel **3 hlavné príčiny** problému:
 
-### 1. Konflikt dvoch Sheet systémov
-- **AdminLayout** má vlastný Sheet (riadky 104-108) s manuálnym `mobileOpen` stavom
-- **Sidebar component** od shadcn má vnútornú Sheet logiku, ktorá sa aktivuje automaticky cez `isMobile`
-- Tieto dva systémy si navzájom prekážajú
+### 1. Globálne skrytie scrollbaru blokuje scroll
 
-### 2. Breakpoint medzera (tablet zone)
-- Desktop sidebar: `hidden lg:block` - viditeľný od 1024px+
-- Hamburger button: `lg:hidden` - viditeľný do 1024px
-- shadcn Sidebar mobile režim: aktivuje sa pod 768px (`useIsMobile`)
-- **Problém**: Medzi 768px-1024px (tablet) je medzera kde ani jeden systém nefunguje správne
+V `index.css` (riadky 104-112):
+```css
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
 
-### 3. Nesprávne použitie Sidebar komponentu
-- `AdminSidebar` používa `<Sidebar>` komponent, ktorý má vlastnú internú Sheet logiku
-- Ale v `AdminLayout` je tento Sidebar obalený do **ďalšieho Sheet-u**
-- Toto vytvára duplicitu a konflikty
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+```
+
+Tieto pravidlá skrývajú scrollbar globálne, ale v kombinácii s `position: fixed` na admin paneli môžu spôsobiť problémy so scrollovaním na niektorých zariadeniach.
+
+### 2. Konflikt overflow vlastností
+
+V `AdminLayout.tsx`:
+- Hlavný wrapper má `fixed inset-0` - zaberá celú obrazovku
+- Content wrapper má `overflow-hidden` (riadok 95)
+- Main element má `overflow-auto` (riadok 107)
+
+**Problém**: `overflow-hidden` na rodičovi môže blokovať `overflow-auto` na potomkovi v niektorých prehliadačoch, hlavne na mobile.
+
+### 3. Chýbajúce touch-action a výška
+
+- Chýba `touch-action: pan-y` pre dotykovú navigáciu
+- Výška nie je explicitne nastavená, čo spôsobuje problémy s flexbox layoutom
 
 ## Navrhované riešenie
 
-Zjednotím prístup a využijem **vstavanú shadcn Sidebar logiku** namiesto duplicitného Sheet-u:
-
-```text
-┌─────────────────────────────────────────────────────────┐
-│  OPRAVENÝ ADMIN LAYOUT                                  │
-├─────────────────────────────────────────────────────────┤
-│  Desktop (1024px+):    Sidebar vždy viditeľný          │
-│  Tablet (768-1024px):  Sidebar cez hamburger/Sheet     │
-│  Mobile (pod 768px):   Sidebar cez hamburger/Sheet     │
-└─────────────────────────────────────────────────────────┘
-```
-
-## Technické zmeny
-
-### 1. Zjednodušenie AdminLayout.tsx
-
-**Odstráním:**
-- Duplicitný `Sheet` wrapper (riadky 104-108)
-- Manuálny `mobileOpen` stav
-- Vlastný hamburger button
-
-**Pridám:**
-- Jednotné použitie `SidebarTrigger` pre všetky zariadenia
-- Správne breakpointy: desktop sidebar na `lg:`, trigger pre mobile/tablet
-
-### 2. Úprava breakpointov
-
-| Zariadenie | Šírka | Správanie |
-|------------|-------|-----------|
-| Mobile | 0-767px | Sheet sidebar (shadcn vstavaný) |
-| Tablet | 768-1023px | Sheet sidebar (shadcn vstavaný) |
-| Desktop | 1024px+ | Pevný collapsible sidebar |
-
-### 3. Konzistentný layout
+### A) Oprava AdminLayout.tsx
 
 ```tsx
-// Opravený AdminLayout
-<SidebarProvider defaultOpen={true}>
-  <div className="flex h-full w-full">
-    <AdminSidebar />
-    
-    <div className="flex-1 flex flex-col min-w-0">
-      <header className="flex h-14 items-center gap-3 border-b px-4">
-        <SidebarTrigger /> {/* Funguje pre všetky zariadenia */}
-        <h1>{title}</h1>
-      </header>
-      
-      <main className="flex-1 overflow-auto p-3 sm:p-4 lg:p-6">
-        {children}
-      </main>
-    </div>
-  </div>
-</SidebarProvider>
+// PRED:
+<div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+  ...
+  <main className="flex-1 overflow-auto p-3 sm:p-4 lg:p-6">
+
+// PO:
+<div className="flex-1 flex flex-col min-w-0 h-full">
+  ...
+  <main className="flex-1 overflow-y-auto overscroll-contain touch-pan-y p-3 sm:p-4 lg:p-6">
 ```
 
-### 4. Úprava AdminSidebar.tsx
+**Zmeny:**
+- Odstránenie `overflow-hidden` z content wrapperu
+- Pridanie `h-full` pre explicitnú výšku
+- Zmena `overflow-auto` na `overflow-y-auto` (presnejšie)
+- Pridanie `overscroll-contain` - zabraňuje "scroll chaining"
+- Pridanie `touch-pan-y` - explicitne povolí vertikálny scroll na dotykových zariadeniach
 
-- Pridám `collapsible="offcanvas"` namiesto `"icon"` pre lepšie mobile správanie
-- Zabezpečím správne stylovanie pre všetky viewporty
+### B) Oprava index.css pre admin panel
+
+Pridanie špecifických CSS pravidiel pre admin:
+
+```css
+/* Admin Panel - Scrolling fix */
+.admin-panel-root {
+  z-index: 9999;
+  position: fixed;
+  inset: 0;
+  overflow: hidden; /* Rodič má hidden */
+}
+
+.admin-panel-root main {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+```
+
+### C) Pridanie scroll utility triedy
+
+Pre admin panel explicitne povolíme scrollbar:
+
+```css
+/* Show scrollbar in admin panel */
+.admin-panel-root *::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+}
+
+.admin-panel-root *::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+.admin-panel-root *::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+```
 
 ## Súbory na úpravu
 
 | Súbor | Akcia |
 |-------|-------|
-| `src/components/admin/AdminLayout.tsx` | Odstránenie duplicitného Sheet, zjednodušenie |
-| `src/components/admin/AdminSidebar.tsx` | Úprava collapsible módu |
+| `src/components/admin/AdminLayout.tsx` | Oprava overflow a touch vlastností |
+| `src/index.css` | Pridanie admin-špecifických scroll pravidiel |
 
-## Výsledok
+## Technické detaily opravy
 
-- Hamburger menu bude fungovať na mobile aj tablete
-- Sidebar sa otvorí ako Sheet overlay na menších zariadeniach
-- Na desktope zostane klasický collapsible sidebar
-- Žiadne konflikty medzi dvoma Sheet systémami
+### Layout hierarchia (opravená)
+
+```text
+┌─ .admin-panel-root (fixed, inset-0, overflow: hidden) ─────────┐
+│  ┌─ SidebarProvider ──────────────────────────────────────────┐ │
+│  │  ┌─ flex container (h-full, w-full) ──────────────────────┐│ │
+│  │  │  ┌─ AdminSidebar ───┐  ┌─ Content (h-full) ───────────┐││ │
+│  │  │  │                  │  │  ┌─ Header (shrink-0) ──────┐│││ │
+│  │  │  │                  │  │  │ SidebarTrigger + Title   ││││ │
+│  │  │  │                  │  │  └─────────────────────────┘│││ │
+│  │  │  │                  │  │  ┌─ Main (overflow-y-auto) ─┐│││ │
+│  │  │  │                  │  │  │ ← TOTO SCROLLUJE         ││││ │
+│  │  │  │                  │  │  │                          ││││ │
+│  │  │  │                  │  │  │                          ││││ │
+│  │  │  │                  │  │  └──────────────────────────┘│││ │
+│  │  │  └──────────────────┘  └───────────────────────────────┘││ │
+│  │  └────────────────────────────────────────────────────────┘│ │
+│  └────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Kľúčové CSS vlastnosti
+
+- **`overflow-y-auto`**: Povolí vertikálny scroll len keď je obsah väčší ako kontajner
+- **`overscroll-contain`**: Zabraňuje "scroll chaining" - keď doscrollujete na koniec, rodičovský element sa nezačne scrollovať
+- **`touch-action: pan-y`**: Explicitne hovorí prehliadaču, že tento element podporuje vertikálne gesto posunu
+- **`-webkit-overflow-scrolling: touch`**: iOS-špecifické - plynulé scrollovanie s momentum
+
+## Očakávaný výsledok
+
+Po aplikovaní opráv:
+- Stránky v admin paneli sa budú dať scrollovať na všetkých zariadeniach
+- Klikanie bude fungovať správne
+- Sidebar bude stále správne otvárať/zatvárať
+- Scrollbar bude viditeľný v admin paneli pre lepšiu navigáciu

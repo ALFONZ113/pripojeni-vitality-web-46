@@ -14,6 +14,12 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @layer base {
+  /* Hide main navbar and floating elements in admin mode */
+  body.admin-mode nav:not([data-admin-nav]),
+  body.admin-mode .floating-call-button {
+    display: none !important;
+  }
+
   :root {
     /* Noir Luxury Palette */
     --background: 0 0% 4%;

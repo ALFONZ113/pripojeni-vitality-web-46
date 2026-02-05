@@ -1,13 +1,10 @@
- import { useEffect, useState } from "react";
- import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
  import { supabase } from "@/integrations/supabase/client";
  import { toast } from "sonner";
-import { Loader2, Menu } from "lucide-react";
+import { Loader2 } from "lucide-react";
  import { AdminSidebar } from "./AdminSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useIsMobile } from "@/hooks/use-mobile";
  
  interface AdminLayoutProps {
    children: React.ReactNode;
@@ -37,9 +34,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
    useNoIndex();
    const [isLoading, setIsLoading] = useState(true);
    const [isAdmin, setIsAdmin] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
    const navigate = useNavigate();
-  const isMobile = useIsMobile();
  
    useEffect(() => {
      checkAuth();
@@ -93,37 +88,13 @@ import { useIsMobile } from "@/hooks/use-mobile";
  
    return (
     <div className="fixed inset-0 z-[9999] bg-background">
-      <SidebarProvider defaultOpen={!isMobile}>
+      <SidebarProvider defaultOpen={true}>
         <div className="flex h-full w-full">
-          {/* Desktop Sidebar */}
-          <div className="hidden lg:block">
-            <AdminSidebar />
-          </div>
+          <AdminSidebar />
           
-          {/* Mobile Sidebar Sheet */}
-          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-            <SheetContent side="left" className="p-0 w-[280px]">
-              <AdminSidebar onNavigate={() => setMobileOpen(false)} />
-            </SheetContent>
-          </Sheet>
-          
-          {/* Main Content */}
           <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-            {/* Header */}
             <header className="flex h-14 shrink-0 items-center gap-3 border-b bg-background px-4">
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden h-9 w-9"
-                onClick={() => setMobileOpen(true)}
-              >
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Menu</span>
-              </Button>
-              
-              {/* Desktop sidebar trigger */}
-              <SidebarTrigger className="hidden lg:flex -ml-1" />
+              <SidebarTrigger className="-ml-1" />
               
               <div className="flex-1 min-w-0">
                 <h1 className="text-base sm:text-lg font-semibold truncate">{title}</h1>
@@ -133,7 +104,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
               </div>
             </header>
             
-            {/* Main Content Area */}
             <main className="flex-1 overflow-auto p-3 sm:p-4 lg:p-6">
               {children}
             </main>

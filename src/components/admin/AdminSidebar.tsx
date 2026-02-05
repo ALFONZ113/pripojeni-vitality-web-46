@@ -1,4 +1,4 @@
- import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
  import { supabase } from "@/integrations/supabase/client";
  import {
    FileText,
@@ -54,11 +54,7 @@
    },
  ];
  
-interface AdminSidebarProps {
-  onNavigate?: () => void;
-}
-
-export function AdminSidebar({ onNavigate }: AdminSidebarProps) {
+export function AdminSidebar() {
    const navigate = useNavigate();
    const location = useLocation();
  
@@ -69,12 +65,8 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps) {
  
    const isActive = (href: string) => location.pathname === href;
  
-  const handleNavClick = () => {
-    onNavigate?.();
-  };
-
    return (
-    <Sidebar collapsible="icon" className="border-r h-full">
+    <Sidebar collapsible="offcanvas" className="border-r">
       <SidebarHeader className="p-3 sm:p-4 border-b">
         <div className="flex items-center gap-2">
            <LayoutDashboard className="h-6 w-6 text-primary" />
@@ -82,7 +74,7 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps) {
         </div>
        </SidebarHeader>
  
-      <SidebarContent className="p-2">
+      <SidebarContent>
          {adminNavItems.map((group) => (
            <SidebarGroup key={group.group}>
              <SidebarGroupLabel>{group.group}</SidebarGroupLabel>
@@ -93,12 +85,11 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps) {
                      <SidebarMenuButton
                        asChild
                        isActive={isActive(item.href)}
-                       tooltip={item.label}
                      >
-                      <Link to={item.href} onClick={handleNavClick}>
+                      <a href={item.href} onClick={(e) => { e.preventDefault(); navigate(item.href); }}>
                          <item.icon className="h-4 w-4" />
                          <span>{item.label}</span>
-                       </Link>
+                      </a>
                      </SidebarMenuButton>
                    </SidebarMenuItem>
                  ))}
@@ -112,13 +103,10 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps) {
         <Button
           variant="outline"
           className="w-full justify-start gap-2"
-          onClick={() => {
-            handleNavClick();
-            navigate("/");
-          }}
+          onClick={() => navigate("/")}
         >
           <Home className="h-4 w-4" />
-          <span className="group-data-[collapsible=icon]:hidden">Zpět na web</span>
+          <span>Zpět na web</span>
         </Button>
          <Button
            variant="ghost"
@@ -126,7 +114,7 @@ export function AdminSidebar({ onNavigate }: AdminSidebarProps) {
            onClick={handleLogout}
          >
            <LogOut className="h-4 w-4" />
-          <span className="group-data-[collapsible=icon]:hidden">Odhlásit se</span>
+          <span>Odhlásit se</span>
          </Button>
        </SidebarFooter>
      </Sidebar>

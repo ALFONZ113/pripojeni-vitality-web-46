@@ -18,44 +18,109 @@ https://popri.cz/ https://www.popri.cz/ 301!
 /internet-brno/ /internet-brno 301
 /blog/ /blog 301
 
-# Oprava chybných slug URL a chýbajúcich redirectov
-/blog/poda-super-2025-60ghz-internet-polanka /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301
-/blog/1 /blog 301
+# Oprava chybných slug URL
+/blog/poda-super-2025-60ghz-internet-polanka /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301!
+/blog/1 /blog 301!
 
-# 301 redirects - old blog ID URLs to new slug URLs
-/blog/10 /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda 301
-/blog/30 /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025 301
-/blog/31 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301
-/blog/102 /blog/o2-nej-prevzatie-poda-alternativa-zakaznici 301
-/blog/201 /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301
-/blog/203 /blog/iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod 301
-/blog/204 /blog/nejcastejsi-otazky-pripojeni-internet-panelak 301
-/blog/205 /blog/gaming-internet-ostrava-2025 301
-/blog/206 /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 301
-/blog/500 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301
-/blog/999 /blog/gpon-technologie-jak-funguje-moderni-opticky-internet 301
-/blog/11 /blog/novinky-poda-sluzby-nove-moznosti-zakaznici 301
-/blog/12 /blog/rozsireni-pokryti-poda-nove-oblasti-opticky-internet 301
-/blog/13 /blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby 301
-/blog/2 /blog/gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu 301
-/blog/100 /blog/internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast 301
-/blog/150 /blog/optika-vs-med-ostravsko-internet-21-stoleti 301
-/blog/3 /blog/jak-vybrat-spravny-router-domov-kompletni-pruvodce-2025 301
-/blog/4 /blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov 301
-/blog/5 /blog/zabezpeceni-domaci-wifi-site-kompletni-pruvodce-bezpecnosti 301
-/blog/6 /blog/jak-vybrat-nejlepsi-tv-balicek-vasi-rodinu 301
-/blog/7 /blog/nejlepsi-zpusob-sledovani-sportu-online-pruvodce-fanoušky 301
-/blog/8 /blog/jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje 301
+# ===== PRIORITY 1: 301 redirects - ALL blog ID URLs to slug URLs (FORCE with !) =====
+# Tieto redirecty MUSIA byť PRED SPA fallback pravidlami!
 
-# New blog posts - Home office 2025 and WiFi signal improvement
-/blog/301 /blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita 301
-/blog/701 /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 301
+# ID 2 - GPON technologie v regionu
+/blog/2 /blog/gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu 301!
+
+# ID 3 - Router výběr
+/blog/3 /blog/jak-vybrat-spravny-router-domov-kompletni-pruvodce-2025 301!
+
+# ID 4 - Mesh systémy
+/blog/4 /blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov 301!
+
+# ID 5 - Zabezpečení WiFi
+/blog/5 /blog/zabezpeceni-domaci-wifi-site-kompletni-pruvodce-bezpecnosti 301!
+
+# ID 6 - TV balíčky
+/blog/6 /blog/jak-vybrat-nejlepsi-tv-balicek-vasi-rodinu 301!
+
+# ID 7 - Sport online
+/blog/7 /blog/nejlepsi-zpusob-sledovani-sportu-online-pruvodce-fanoušky 301!
+
+# ID 8 - Test rychlosti
+/blog/8 /blog/jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje 301!
+
+# ID 10 - Karviná
+/blog/10 /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda 301!
+
+# ID 11 - Novinky PODA
+/blog/11 /blog/novinky-poda-sluzby-nove-moznosti-zakaznici 301!
+
+# ID 12 - Rozšíření pokrytí
+/blog/12 /blog/rozsireni-pokryti-poda-nove-oblasti-opticky-internet 301!
+
+# ID 13 - Recenze zákazníků
+/blog/13 /blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby 301!
+
+# ID 30 - Pomalý internet fix
+/blog/30 /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025 301!
+
+# ID 31 - Gaming Ostrava
+/blog/31 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301!
+
+# ID 100 - Ostrava Poruba
+/blog/100 /blog/internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast 301!
+
+# ID 102 - O2 Nej prevzatie
+/blog/102 /blog/o2-nej-prevzatie-poda-alternativa-zakaznici 301!
+
+# ID 150 - Optika vs měď
+/blog/150 /blog/optika-vs-med-ostravsko-internet-21-stoleti 301!
+
+# ID 201 - Polanka 60GHz
+/blog/201 /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301!
+
+# ID 203 - IPTV vs tradičná TV
+/blog/203 /blog/iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod 301!
+
+# ID 204 - Panelák FAQ
+/blog/204 /blog/nejcastejsi-otazky-pripojeni-internet-panelak 301!
+
+# ID 205 - Gaming (alias)
+/blog/205 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301!
+
+# ID 206 - Internet guide
+/blog/206 /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 301!
+
+# ID 301 - Home office 2025
+/blog/301 /blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita 301!
+
+# ID 401 - Výběr internetu chyby
+/blog/401 /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301!
+
+# ID 500 - Ostrava hlavní článek
+/blog/500 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301!
+
+# ID 601 - PODA Internet 2026
+/blog/601 /blog/poda-internet-2026-budoucnost-pripojeni 301!
+
+# ID 701 - WiFi signal zlepšení
+/blog/701 /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 301!
+
+# ID 801 - Mýty o optike
+/blog/801 /blog/myty-opticky-internet-pravda-vs-fikce 301!
+
+# ID 901 - Pomalý internet večer
+/blog/901 /blog/proc-internet-zpomaluje-vecer-reseni 301!
+
+# ID 999 - GPON technologie
+/blog/999 /blog/gpon-technologie-jak-funguje-moderni-opticky-internet 301!
+
+# ID 1001 - AI a internet
+/blog/1001 /blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni 301!
 
 # Opravené staré slugy
-/blog/gaming-internet-ostrava-2025 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301
-/blog/internet-vyber-5-chyb-ktore-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301
+/blog/gaming-internet-ostrava-2025 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301!
+/blog/internet-vyber-5-chyb-ktore-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301!
 
-# SPA routing - serve index.html for all routes
+# ===== SPA routing - serve index.html for all routes =====
+# Tieto pravidlá MUSIA byť AŽ PO redirect pravidlách!
 /blog/* /index.html 200
 /internet-* /index.html 200
 /kontakt /index.html 200

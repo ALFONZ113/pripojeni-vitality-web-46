@@ -1,82 +1,151 @@
 
+# Plán: Elegantný centralizovaný prístup k admin stránkam
 
-# Plán: Vylepšenie Social Export promptu
+## Analýza problému
 
-## Problém
+Aktuálne máte **7 admin stránok** roztrúsených po projekte:
+- Login, Dashboard, Social Generator, Social Export
+- AI Blog Manager, AI Blog Test, AI Automation
 
-Aktuálny prompt v `SocialExport.tsx` obsahuje iba statické hodnoty z formulára. **Chýba mu sekcia 0 - AUTOMATICKÁ ANALÝZA**, ktorá by inštruovala AI v Lovable, aby:
+Musíte manuálne zadávať URL adresy, čo je nepohodlné a nepraktické.
 
-1. Prečítala existujúci kód projektu
-2. Extrahovala farby z `tailwind.config.ts` alebo CSS
-3. Identifikovala služby/produkty z obsahu stránok
-4. Automaticky doplnila chýbajúce hodnoty
+## Navrhované riešenie: Skrytá admin ikona + Admin Layout s bočnou navigáciou
 
-## Riešenie
+### Koncept
 
-Pridám na začiatok generovaného promptu novú sekciu **"SEKCIA 0: AUTOMATICKÁ ANALÝZA"** s detailnými inštrukciami.
-
-## Zmeny v súbore `src/pages/SocialExport.tsx`
-
-### Nová sekcia na začiatku promptu (za riadkom 52):
-
-```markdown
-## 0. AUTOMATICKÁ ANALÝZA WEBU
-
-**PRED IMPLEMENTÁCIOU VYKONAJ TIETO KROKY:**
-
-### Krok 1: Prečítaj existujúci kód
-\`\`\`
-1. Otvor a prečítaj tailwind.config.ts - extrahuj farby (primary, secondary, background)
-2. Otvor a prečítaj index.css - identifikuj CSS premenné (--background, --foreground, --primary)
-3. Otvor a prečítaj src/pages/Index.tsx - identifikuj hlavnú službu, ceny, výhody
-4. Otvor a prečítaj src/components/Navbar.tsx - extrahuj názov firmy z loga
-5. Otvor a prečítaj src/components/Footer.tsx - extrahuj kontaktné údaje
-\`\`\`
-
-### Krok 2: Extrahuj branding
-Z prečítaného kódu vyplň nasledujúce hodnoty:
-- **Názov firmy**: Z loga alebo <title> tagu
-- **Primárna farba**: Z tailwind.config.ts -> theme.extend.colors.primary
-- **Fonty**: Z tailwind.config.ts -> theme.extend.fontFamily
-- **Služby/Produkty**: Z Hero sekcie alebo TariffSection
-- **Kontakt**: Z Footer alebo ContactSection
-
-### Krok 3: Doplň chýbajúce hodnoty
-Ak niektoré hodnoty nie sú v kóde, použi placeholder [DOPLŇ] a upozorni používateľa.
-
-### Krok 4: Pokračuj s implementáciou
-S extrahovaným brandingom vytvor Social Generator podľa sekcií 1-12 nižšie.
-
----
+```text
+┌─────────────────────────────────────────────────────────────┐
+│  PÄTIČKA WEBU                                               │
+│  © 2024 Popri.cz ···················· [FB] [IG] [⚙️ skryté] │
+└─────────────────────────────────────────────────────────────┘
+           │
+           │ Dvojklik na ikonu (Settings/Lock)
+           ▼
+┌─────────────────────────────────────────────────────────────┐
+│  ADMIN PANEL (po prihlásení)                                │
+│ ┌────────────┬──────────────────────────────────────────────┤
+│ │ BOČNÉ MENU │  OBSAH STRÁNKY                               │
+│ │            │                                              │
+│ │ 📊 Dashboard                                              │
+│ │ 📝 Formuláře│                                              │
+│ │ ────────────                                              │
+│ │ 📱 Social   │                                              │
+│ │  └ Generator                                              │
+│ │  └ Export   │                                              │
+│ │ ────────────                                              │
+│ │ 📰 Blog     │                                              │
+│ │  └ Manager  │                                              │
+│ │  └ Test     │                                              │
+│ │ ────────────                                              │
+│ │ 🤖 Automácie│                                              │
+│ │ ────────────                                              │
+│ │ 🚪 Odhlásiť │                                              │
+│ └────────────┴──────────────────────────────────────────────┘
 ```
 
-### Prečo je to dôležité
+## Technická implementácia
 
-Keď používateľ vloží tento prompt do **nového Lovable projektu**, AI:
+### 1. Nový komponent: AdminLayout
 
-1. **Automaticky prečíta existujúci kód** (tailwind, komponenty)
-2. **Extrahuje farby, fonty, služby** bez manuálneho zadávania
-3. **Vytvorí Social Generator presne pre daný web**
+Vytvorím `src/components/admin/AdminLayout.tsx` - wrapper pre všetky admin stránky s:
+- **Collapsible sidebar** (rozbaliteľné bočné menu)
+- Kompletná navigácia medzi admin stránkami
+- Spoločná autentifikácia (kontrola admin role)
+- Zobrazenie aktuálne aktívnej stránky
 
-## Dodatočné vylepšenia
+### 2. Skrytý vstupný bod v pätičke
 
-### Pridať poznámku do formulára
+Upravím `src/components/Footer.tsx`:
+- Pridám nenápadnú ikonu (Settings alebo Lock) vedľa sociálnych ikon
+- Ikona bude mať zníženú opacity (10-20%)
+- Klik presmeruje na `/admin-login-poda-2024`
+- Dvojklik alebo dlhé podržanie aktivuje admin režim
 
-Pod formulár pridám info box vysvetľujúci, že AI automaticky doplní chýbajúce hodnoty:
+### 3. Refaktoring admin stránok
+
+Všetky admin stránky obalím do `AdminLayout`:
+- Odstránim duplicitnú navigáciu z jednotlivých stránok
+- Zjednodušenie kódu - auth kontrola bude centralizovaná
+- Konzistentný vzhľad naprieč všetkými admin stránkami
+
+### 4. Aktualizácia routingu
+
+Upravím `src/App.tsx`:
+- Zjednotím URL štruktúru pod `/admin/*`
+- Zachovám spätná kompatibilita s existujúcimi URL
+
+## Súbory na vytvorenie/úpravu
+
+| Súbor | Akcia | Popis |
+|-------|-------|-------|
+| `src/components/admin/AdminLayout.tsx` | Vytvoriť | Hlavný layout s bočnou navigáciou |
+| `src/components/admin/AdminSidebar.tsx` | Vytvoriť | Bočné menu s odkazmi |
+| `src/components/admin/AdminNav.tsx` | Vytvoriť | Navigačné položky a skupiny |
+| `src/components/Footer.tsx` | Upraviť | Pridať skrytú admin ikonu |
+| `src/pages/AdminDashboard.tsx` | Upraviť | Obalenie do AdminLayout, odstránenie duplicitnej navigácie |
+| `src/pages/SocialGenerator.tsx` | Upraviť | Obalenie do AdminLayout |
+| `src/pages/SocialExport.tsx` | Upraviť | Obalenie do AdminLayout |
+| `src/pages/AIBlogManager.tsx` | Upraviť | Obalenie do AdminLayout |
+| `src/pages/AIBlogTest.tsx` | Upraviť | Obalenie do AdminLayout |
+| `src/pages/AIAutomation.tsx` | Upraviť | Obalenie do AdminLayout |
+
+## Výhody tohto riešenia
+
+- **Nenápadný prístup** - bežní návštevníci si nevšimnú admin vstup
+- **Všetko na jednom mieste** - žiadne pamätanie URL adries
+- **Konzistentný UX** - rovnaká navigácia na všetkých admin stránkach
+- **Rýchle prepínanie** - jeden klik medzi nástrojmi
+- **Mobilný responzívny** - sidebar sa schová do hamburger menu
+- **Rozšíriteľné** - ľahké pridanie nových admin stránok
+
+## Technické detaily
+
+### Skrytá ikona v pätičke
 
 ```tsx
-<Alert>
-  <AlertDescription>
-    Nemusíte vyplniť všetko. AI automaticky extrahuje chýbajúce hodnoty 
-    z existujúceho kódu v cieľovom projekte (farby, fonty, služby).
-  </AlertDescription>
-</Alert>
+// Nenápadná ikona s nízkou opacity
+<Link 
+  to="/admin-login-poda-2024"
+  className="opacity-10 hover:opacity-30 transition-opacity"
+  aria-label="Administrace"
+>
+  <Settings className="h-4 w-4" />
+</Link>
 ```
 
-## Implementačný postup
+### Štruktúra bočného menu
 
-1. Upraviť `generateReplicationPrompt()` - pridať SEKCIA 0 na začiatok
-2. Pridať inštrukcie pre AI na čítanie súborov
-3. Pridať info Alert do UI formulára
-4. Otestovať export a overiť, že prompt obsahuje správne inštrukcie
+```tsx
+const adminNavItems = [
+  { 
+    group: "Správa", 
+    items: [
+      { label: "Formuláře", href: "/admin/dashboard", icon: FileText },
+    ]
+  },
+  { 
+    group: "Social Media", 
+    items: [
+      { label: "Generátor", href: "/admin/social-generator", icon: Share2 },
+      { label: "Export", href: "/admin/social-export", icon: Download },
+    ]
+  },
+  { 
+    group: "Blog", 
+    items: [
+      { label: "Manager", href: "/admin/ai-blog-manager", icon: BookOpen },
+      { label: "Test", href: "/admin/ai-blog-test", icon: FlaskConical },
+    ]
+  },
+  { 
+    group: "Automatizace", 
+    items: [
+      { label: "AI Automácie", href: "/admin/ai-automation", icon: Bot },
+    ]
+  },
+];
+```
 
+## Časový odhad
+
+Implementácia približne 4-6 správ (vytvorenie layoutu, úprava všetkých stránok, testovanie).

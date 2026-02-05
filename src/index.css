@@ -34,25 +34,31 @@
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior: contain;
     touch-action: pan-y;
+    height: 100%;
   }
 
-  /* Show scrollbar in admin panel */
-  .admin-panel-root *::-webkit-scrollbar {
-    display: block;
-    width: 8px;
+  /* Elegant thin scrollbar in admin panel */
+  .admin-panel-root main::-webkit-scrollbar {
+    width: 4px;
   }
 
-  .admin-panel-root *::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
+  .admin-panel-root main::-webkit-scrollbar-track {
+    background: transparent;
   }
 
-  .admin-panel-root *::-webkit-scrollbar-thumb {
+  .admin-panel-root main::-webkit-scrollbar-thumb {
+    background: hsl(var(--border) / 0.5);
+    border-radius: 2px;
+  }
+
+  .admin-panel-root main::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--border));
-    border-radius: 4px;
   }
 
-  .admin-panel-root *::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground));
+  /* Firefox thin scrollbar */
+  .admin-panel-root main {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border) / 0.5) transparent;
   }
 
   /* Admin Sheet overlay needs highest z-index within admin */

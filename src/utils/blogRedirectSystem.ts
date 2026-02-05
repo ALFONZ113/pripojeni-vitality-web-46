@@ -7,44 +7,103 @@ import { createSlug } from './slugGenerator';
 import { blogPosts } from '../data/blog';
 
 /**
- * Redirect mapping for old blog post URLs to new slug-based URLs
+  * COMPLETE redirect mapping for ALL blog post IDs to their slug-based URLs
+  * CRITICAL: Tieto mapovania musia zodpovedať public/_redirects
  */
 export const blogRedirectMap: Record<string, string> = {
-  // Old O2 Nej.cz article (was ID 102, now 102)
-  '/blog/102': '/blog/o2-nej-prevzatie-poda-alternativa-zakaznici',
+  // ID 2 - GPON technologie v regionu
+  '/blog/2': '/blog/gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu',
   
-  // Polanka 60ghz (was ID 102, now 201)
-  '/blog/201': '/blog/polanka-nad-odrou-60ghz-pripojeni-2025',
+  // ID 3 - Router výběr
+  '/blog/3': '/blog/jak-vybrat-spravny-router-domov-kompletni-pruvodce-2025',
   
-  // Internet guide (was ID 102, now 206)
-  '/blog/206': '/blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025',
+  // ID 4 - Mesh systémy
+  '/blog/4': '/blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov',
   
-  // IPTV vs traditional TV (was ID 101, now 203)
-  '/blog/203': '/blog/iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod',
+  // ID 5 - Zabezpečení WiFi
+  '/blog/5': '/blog/zabezpeceni-domaci-wifi-site-kompletni-pruvodce-bezpecnosti',
   
-  // Panelak questions (was ID 101, now 204)
-  '/blog/204': '/blog/nejcastejsi-otazky-pripojeni-internet-panelak',
+  // ID 6 - TV balíčky
+  '/blog/6': '/blog/jak-vybrat-nejlepsi-tv-balicek-vasi-rodinu',
   
-  // Gaming example (was ID 101, now 205)
-  '/blog/205': '/blog/gaming-internet-ostrava-2025',
+  // ID 7 - Sport online
+  '/blog/7': '/blog/nejlepsi-zpusob-sledovani-sportu-online-pruvodce-fanoušky',
   
-  // Slow internet fix (ID 30)
-  '/blog/30': '/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
+  // ID 8 - Test rychlosti
+  '/blog/8': '/blog/jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje',
   
-  // Gaming Ostrava (ID 31)
-  '/blog/31': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
-  
-  // Ostrava main post (ID 500)
-  '/blog/500': '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025',
-  
-  // Karvina post (ID 10)
+  // ID 10 - Karviná
   '/blog/10': '/blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda',
   
-  // Home office 2025 (ID 301)
+  // ID 11 - Novinky PODA
+  '/blog/11': '/blog/novinky-poda-sluzby-nove-moznosti-zakaznici',
+  
+  // ID 12 - Rozšíření pokrytí
+  '/blog/12': '/blog/rozsireni-pokryti-poda-nove-oblasti-opticky-internet',
+  
+  // ID 13 - Recenze zákazníků
+  '/blog/13': '/blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby',
+  
+  // ID 30 - Pomalý internet fix
+  '/blog/30': '/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
+  
+  // ID 31 - Gaming Ostrava
+  '/blog/31': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
+  
+  // ID 100 - Ostrava Poruba
+  '/blog/100': '/blog/internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast',
+  
+  // ID 102 - O2 Nej prevzatie
+  '/blog/102': '/blog/o2-nej-prevzatie-poda-alternativa-zakaznici',
+  
+  // ID 150 - Optika vs měď
+  '/blog/150': '/blog/optika-vs-med-ostravsko-internet-21-stoleti',
+  
+  // ID 201 - Polanka 60GHz
+  '/blog/201': '/blog/polanka-nad-odrou-60ghz-pripojeni-2025',
+  
+  // ID 203 - IPTV vs tradičná TV
+  '/blog/203': '/blog/iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod',
+  
+  // ID 204 - Panelák FAQ
+  '/blog/204': '/blog/nejcastejsi-otazky-pripojeni-internet-panelak',
+  
+  // ID 205 - Gaming (alias to 31)
+  '/blog/205': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
+  
+  // ID 206 - Internet guide
+  '/blog/206': '/blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025',
+  
+  // ID 301 - Home office 2025
   '/blog/301': '/blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita',
   
-  // WiFi signal improvement (ID 701)
+  // ID 401 - Výběr internetu chyby
+  '/blog/401': '/blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi',
+  
+  // ID 500 - Ostrava hlavní článek
+  '/blog/500': '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025',
+  
+  // ID 601 - PODA Internet 2026
+  '/blog/601': '/blog/poda-internet-2026-budoucnost-pripojeni',
+  
+  // ID 701 - WiFi signal zlepšení
   '/blog/701': '/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025',
+  
+  // ID 801 - Mýty o optike
+  '/blog/801': '/blog/myty-opticky-internet-pravda-vs-fikce',
+  
+  // ID 901 - Pomalý internet večer
+  '/blog/901': '/blog/proc-internet-zpomaluje-vecer-reseni',
+  
+  // ID 999 - GPON technologie
+  '/blog/999': '/blog/gpon-technologie-jak-funguje-moderni-opticky-internet',
+  
+  // ID 1001 - AI a internet
+  '/blog/1001': '/blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni',
+  
+  // Opravené staré slugy
+  '/blog/gaming-internet-ostrava-2025': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
+  '/blog/internet-vyber-5-chyb-ktore-vas-stoji-penize': '/blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi',
 };
 
 /**

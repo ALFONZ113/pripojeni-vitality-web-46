@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { blogPosts } from '../data/blog';
 import { initAnimations } from '../utils/animation';
 import { findBlogPost } from '../utils/blogRouting';
-import { createSlug } from '../utils/slugGenerator';
+import { ensureSlug } from '../utils/blogRouting';
+import { getRedirectTarget, blogRedirectMap } from '../utils/blogRedirectSystem';
 import BlogPostHeader from '../components/blog/BlogPostHeader';
 import BlogPostContent from '../components/blog/BlogPostContent';
 import BlogPostSidebar from '../components/blog/BlogPostSidebar';
@@ -33,25 +34,45 @@ const BlogPostPage = () => {
     const cleanupAnimation = initAnimations();
     window.scrollTo(0, 0);
     
-    // Use new slug-based routing
     let foundPost: BlogPost | undefined;
     
     if (slugOrId) {
+      // First check if this is an ID-based URL that should be redirected
+      const numericId = parseInt(slugOrId);
+      if (!isNaN(numericId)) {
+        // Check if we have a redirect mapping for this ID
+        const redirectPath = `/blog/${slugOrId}`;
+        const redirectTarget = getRedirectTarget(redirectPath);
+        
+        if (redirectTarget) {
+          // Redirect to the proper slug URL with 301 equivalent (replace)
+          navigate(redirectTarget, { replace: true });
+          return;
+        }
+        
+        // Find post by ID and redirect to its slug
+        const postById = blogPosts.find(p => p.id === numericId);
+        if (postById) {
+          const slug = ensureSlug(postById);
+          navigate(`/blog/${slug}`, { replace: true });
+          return;
+        }
+      }
+      
+      // Try to find the post by slug
       foundPost = findBlogPost(blogPosts, slugOrId);
     }
     
     if (foundPost) {
       setPost(foundPost);
       
-      // Canonical tag is already handled by BlogPostSEO component via Helmet
-      // Remove manual DOM manipulation to avoid duplicates
-      
-      // Remove query parameters from URL if present (clean URL)
+      // Remove query parameters from URL if present
       const url = new URL(window.location.href);
       if (url.search) {
         window.history.replaceState({}, '', url.pathname);
       }
     } else {
+      // Article not found - redirect to blog listing
       navigate('/blog', { replace: true });
     }
     

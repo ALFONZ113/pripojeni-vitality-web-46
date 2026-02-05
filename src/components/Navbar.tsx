@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, Wifi, Tv, FileText, HandHeart, ChevronRight, ChevronDown, MapPin, Newspaper, Cpu, Lightbulb, Star, Briefcase } from 'lucide-react';
+import { Phone, Menu, X, Wifi, Tv, FileText, HandHeart, ChevronRight, ChevronDown, MapPin, Newspaper, Cpu, Lightbulb, Star, Briefcase, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
 import { cities } from '@/data/cities/citiesData';
@@ -482,12 +482,23 @@ const Navbar = memo(() => {
               </nav>
               
               <div className="mt-auto pt-8 border-t border-border">
-                <a href="tel:+420730431313" className="flex items-center text-foreground hover:text-primary font-medium text-lg mb-6">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  +420 730 431 313
-                </a>
+                <div className="flex items-center justify-between mb-6">
+                  <a href="tel:+420730431313" className="flex items-center text-foreground hover:text-primary font-medium text-lg">
+                    <div className="bg-primary/10 p-3 rounded-full mr-4">
+                      <Phone className="h-5 w-5 text-primary" />
+                    </div>
+                    +420 730 431 313
+                  </a>
+                  <a 
+                    href="https://www.facebook.com/popricz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-all"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                </div>
                 <Link to="/kontakt" className="btn-gold w-full flex justify-center py-4 text-lg rounded-xl">
                   Kontaktujte nás
                 </Link>

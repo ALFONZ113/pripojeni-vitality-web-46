@@ -20,6 +20,22 @@
     display: none !important;
   }
 
+  /* Admin Panel - Isolated from main site */
+  .admin-panel-root {
+    z-index: 9999;
+    position: fixed;
+    inset: 0;
+  }
+
+  /* Admin Sheet overlay needs highest z-index within admin */
+  body.admin-mode [role="dialog"] {
+    z-index: 10000 !important;
+  }
+
+  body.admin-mode [data-radix-popper-content-wrapper] {
+    z-index: 10001 !important;
+  }
+
   :root {
     /* Noir Luxury Palette */
     --background: 0 0% 4%;

@@ -25,6 +25,34 @@
     z-index: 9999;
     position: fixed;
     inset: 0;
+    overflow: hidden;
+  }
+
+  /* Admin Panel - Scrolling fix for main content */
+  .admin-panel-root main {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+
+  /* Show scrollbar in admin panel */
+  .admin-panel-root *::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+  }
+
+  .admin-panel-root *::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  .admin-panel-root *::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  .admin-panel-root *::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
   }
 
   /* Admin Sheet overlay needs highest z-index within admin */

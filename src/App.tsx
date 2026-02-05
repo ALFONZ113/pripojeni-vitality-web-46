@@ -35,12 +35,12 @@ const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
 const GigaInternet = lazy(() => import('./pages/GigaInternet'));
 const CanonicalDiagnostic = lazy(() => import('./pages/CanonicalDiagnostic'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
-const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
-const AIBlogTest = lazy(() => import('./pages/AIBlogTest'));
-const AIBlogManager = lazy(() => import('./pages/AIBlogManager'));
-const AIAutomation = lazy(() => import('./pages/AIAutomation'));
-const SocialGenerator = lazy(() => import('./pages/SocialGenerator'));
-const SocialExport = lazy(() => import('./pages/SocialExport'));
+ const AdminDashboardPage = lazy(() => import('./pages/AdminDashboard'));
+ const AIBlogTestPage = lazy(() => import('./pages/AIBlogTest'));
+ const AIBlogManagerPage = lazy(() => import('./pages/AIBlogManager'));
+ const AIAutomationPage = lazy(() => import('./pages/AIAutomation'));
+ const SocialGeneratorPage = lazy(() => import('./pages/SocialGenerator'));
+ const SocialExportPage = lazy(() => import('./pages/SocialExport'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
@@ -109,12 +109,15 @@ function App() {
                   
                   {/* Admin panel - hidden routes */}
                   <Route path="/admin-login-poda-2024" element={<AdminLogin />} />
-                  <Route path="/admin-dashboard-poda-2024" element={<AdminDashboard />} />
-                  <Route path="/admin/ai-blog-test" element={<AIBlogTest />} />
-                  <Route path="/admin/ai-blog-manager" element={<AIBlogManager />} />
-                  <Route path="/admin/ai-automation" element={<AIAutomation />} />
-                  <Route path="/admin/social-generator" element={<SocialGenerator />} />
-                  <Route path="/admin/social-export" element={<SocialExport />} />
+                   {/* New unified admin routes */}
+                   <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+                   <Route path="/admin/ai-blog-test" element={<AIBlogTestPage />} />
+                   <Route path="/admin/ai-blog-manager" element={<AIBlogManagerPage />} />
+                   <Route path="/admin/ai-automation" element={<AIAutomationPage />} />
+                   <Route path="/admin/social-generator" element={<SocialGeneratorPage />} />
+                   <Route path="/admin/social-export" element={<SocialExportPage />} />
+                   {/* Legacy route redirects for backwards compatibility */}
+                   <Route path="/admin-dashboard-poda-2024" element={<AdminDashboardPage />} />
                   
                   {/* 404 fallback */}
                   <Route path="*" element={<NotFound />} />

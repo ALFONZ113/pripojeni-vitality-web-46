@@ -1,26 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-
-// Add noindex meta tag on mount
-const useNoIndex = () => {
-  useEffect(() => {
-    const metaRobots = document.createElement('meta');
-    metaRobots.name = 'robots';
-    metaRobots.content = 'noindex, nofollow';
-    document.head.appendChild(metaRobots);
-    return () => {
-      document.head.removeChild(metaRobots);
-    };
-  }, []);
-};
+ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import {
-  LogOut,
   Search,
   Plus,
   FileText,
@@ -72,7 +59,6 @@ interface AIBlogPost {
 }
 
 const AIBlogManager = () => {
-  useNoIndex();
   const [user, setUser] = useState<any>(null);
   const [posts, setPosts] = useState<AIBlogPost[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<AIBlogPost[]>([]);
@@ -221,11 +207,6 @@ const AIBlogManager = () => {
     }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/admin-login-poda-2024");
-  };
-
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'draft':
@@ -240,26 +221,14 @@ const AIBlogManager = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-bold">AI Blog Manager</h1>
-            <p className="text-muted-foreground">Správa AI generovaných článkov</p>
-          </div>
-          <div className="flex gap-2">
-            <Button onClick={() => navigate('/admin/ai-blog-test')}>
-              <Plus className="h-4 w-4 mr-2" />
-              Vytvoriť článok
-            </Button>
-            <Button variant="outline" onClick={handleLogout}>
-              <LogOut className="h-4 w-4 mr-2" />
-              Odhlásit se
-            </Button>
-          </div>
-        </div>
-
+     <AdminLayout title="AI Blog Manager" description="Správa AI generovaných článkov">
+       <div className="space-y-6">
+         <div className="flex justify-end">
+           <Button onClick={() => navigate('/admin/ai-blog-test')}>
+             <Plus className="h-4 w-4 mr-2" />
+             Vytvoriť článok
+           </Button>
+         </div>
         {/* Stats */}
         {stats && (
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -504,7 +473,7 @@ const AIBlogManager = () => {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+     </AdminLayout>
   );
 };
 

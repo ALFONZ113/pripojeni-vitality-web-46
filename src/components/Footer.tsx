@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Info, ArrowRight } from 'lucide-react';
+ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Info, ArrowRight, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
 
@@ -45,6 +45,14 @@ const Footer = () => {
               >
                 <Linkedin size={18} />
               </a>
+               {/* Hidden admin entry point */}
+               <Link 
+                 to="/admin-login-poda-2024"
+                 className="w-10 h-10 rounded-lg bg-secondary/50 border border-border/50 flex items-center justify-center text-muted-foreground opacity-10 hover:opacity-30 transition-all"
+                 aria-label="Administrace"
+               >
+                 <Settings size={18} />
+               </Link>
             </div>
           </section>
 

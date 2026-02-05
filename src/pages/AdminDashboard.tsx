@@ -1,19 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+ import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-
-// Add noindex meta tag on mount
-const useNoIndex = () => {
-  useEffect(() => {
-    const metaRobots = document.createElement('meta');
-    metaRobots.name = 'robots';
-    metaRobots.content = 'noindex, nofollow';
-    document.head.appendChild(metaRobots);
-    return () => {
-      document.head.removeChild(metaRobots);
-    };
-  }, []);
-};
+ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,7 +10,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { 
-  LogOut, 
   Search, 
   Download, 
   Phone, 
@@ -37,9 +24,6 @@ import {
   Send,
   AlertCircle,
   Trash2,
-  Share2,
-  BookOpen,
-  Bot
 } from "lucide-react";
 import {
   Table,
@@ -83,7 +67,6 @@ interface FormSubmission {
 }
 
 const AdminDashboard = () => {
-  useNoIndex();
   const [user, setUser] = useState<any>(null);
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
   const [filteredSubmissions, setFilteredSubmissions] = useState<FormSubmission[]>([]);
@@ -106,7 +89,7 @@ const AdminDashboard = () => {
   const checkAuth = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-      navigate("/admin-login-poda-2024");
+       navigate("/admin-login-poda-2024");
       return;
     }
 
@@ -255,11 +238,6 @@ const AdminDashboard = () => {
     link.click();
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/admin-login-poda-2024");
-  };
-
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'new':
@@ -291,52 +269,8 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-bold">Administrace PODA</h1>
-            <p className="text-muted-foreground">Správa formulářových žádostí</p>
-          </div>
-          
-          {/* Rýchla navigácia */}
-          <div className="flex flex-wrap items-center gap-2">
-            <Button 
-              variant="default" 
-              onClick={() => navigate('/admin/social-generator')}
-              className="gap-2"
-            >
-              <Share2 className="h-4 w-4" />
-              <span className="hidden sm:inline">Social Generator</span>
-              <span className="sm:hidden">Social</span>
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              onClick={() => navigate('/admin/ai-blog-manager')}
-              className="gap-2"
-            >
-              <BookOpen className="h-4 w-4" />
-              <span className="hidden sm:inline">AI Blog</span>
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              onClick={() => navigate('/admin/ai-automation')}
-              className="gap-2"
-            >
-              <Bot className="h-4 w-4" />
-              <span className="hidden sm:inline">Automácie</span>
-            </Button>
-            
-            <Button variant="ghost" onClick={handleLogout}>
-              <LogOut className="h-4 w-4" />
-              <span className="hidden sm:inline ml-2">Odhlásit se</span>
-            </Button>
-          </div>
-        </div>
-
+     <AdminLayout title="Formuláře" description="Správa formulářových žádostí">
+       <div className="space-y-6">
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
@@ -496,7 +430,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Detail Dialog */}
-      <Dialog open={!!selectedSubmission} onOpenChange={() => setSelectedSubmission(null)}>
+       <Dialog open={!!selectedSubmission} onOpenChange={() => setSelectedSubmission(null)}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Detail žádosti</DialogTitle>
@@ -616,7 +550,7 @@ const AdminDashboard = () => {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+     </AdminLayout>
   );
 };
 

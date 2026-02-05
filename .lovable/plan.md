@@ -1,146 +1,85 @@
 
-# Plán: Oprava scrollovania a interakcie v Admin paneli
+# Plán: Oprava scrollovania v Admin paneli
 
-## Identifikované problémy
+## Zistený problém
 
-Po dôkladnej analýze kódu som našiel **3 hlavné príčiny** problému:
+Po analýze kódu som našiel **koreňovú príčinu** - konflikt medzi `min-h-svh` v SidebarProvider a naším `fixed inset-0` layoutom:
 
-### 1. Globálne skrytie scrollbaru blokuje scroll
+```text
+┌─ admin-panel-root (fixed, inset-0, height: 100vh) ─────────────┐
+│  ┌─ SidebarProvider (min-h-svh = 100vh minimum) ─────────────┐ │
+│  │  ┌─ flex wrapper (h-full) ───────────────────────────────┐│ │
+│  │  │  ┌─ content div (h-full) ────────────────────────────┐││ │
+│  │  │  │  ┌─ main (overflow-y-auto, ale výška NIE JE     ┐│││ │
+│  │  │  │  │  OBMEDZENÁ, takže sa roztiahne              │││││ │
+│  │  │  │  │  namiesto scrollovania)                      │││││ │
+│  │  │  │  └─────────────────────────────────────────────┘│││ │
+│  │  │  └────────────────────────────────────────────────┘││ │
+│  │  └──────────────────────────────────────────────────────┘│ │
+│  └──────────────────────────────────────────────────────────┘ │
+└───────────────────────────────────────────────────────────────┘
+```
 
-V `index.css` (riadky 104-112):
+**Problém**: `min-h-svh` v SidebarProvider umožňuje kontajneru rásť nad viewport, čo ruší účinok `overflow-y-auto` na main elemente.
+
+## Riešenie
+
+Opravím to pridaním CSS override pre admin panel v `index.css`:
+
 ```css
-html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+/* Override min-h-svh in admin panel */
+.admin-panel-root .group\/sidebar-wrapper {
+  min-height: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
 }
 ```
 
-Tieto pravidlá skrývajú scrollbar globálne, ale v kombinácii s `position: fixed` na admin paneli môžu spôsobiť problémy so scrollovaním na niektorých zariadeniach.
-
-### 2. Konflikt overflow vlastností
-
-V `AdminLayout.tsx`:
-- Hlavný wrapper má `fixed inset-0` - zaberá celú obrazovku
-- Content wrapper má `overflow-hidden` (riadok 95)
-- Main element má `overflow-auto` (riadok 107)
-
-**Problém**: `overflow-hidden` na rodičovi môže blokovať `overflow-auto` na potomkovi v niektorých prehliadačoch, hlavne na mobile.
-
-### 3. Chýbajúce touch-action a výška
-
-- Chýba `touch-action: pan-y` pre dotykovú navigáciu
-- Výška nie je explicitne nastavená, čo spôsobuje problémy s flexbox layoutom
-
-## Navrhované riešenie
-
-### A) Oprava AdminLayout.tsx
+A tiež upravím `AdminLayout.tsx` aby explicitne nastavil výšku na celú hierarchiu:
 
 ```tsx
-// PRED:
-<div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-  ...
-  <main className="flex-1 overflow-auto p-3 sm:p-4 lg:p-6">
-
-// PO:
-<div className="flex-1 flex flex-col min-w-0 h-full">
-  ...
-  <main className="flex-1 overflow-y-auto overscroll-contain touch-pan-y p-3 sm:p-4 lg:p-6">
-```
-
-**Zmeny:**
-- Odstránenie `overflow-hidden` z content wrapperu
-- Pridanie `h-full` pre explicitnú výšku
-- Zmena `overflow-auto` na `overflow-y-auto` (presnejšie)
-- Pridanie `overscroll-contain` - zabraňuje "scroll chaining"
-- Pridanie `touch-pan-y` - explicitne povolí vertikálny scroll na dotykových zariadeniach
-
-### B) Oprava index.css pre admin panel
-
-Pridanie špecifických CSS pravidiel pre admin:
-
-```css
-/* Admin Panel - Scrolling fix */
-.admin-panel-root {
-  z-index: 9999;
-  position: fixed;
-  inset: 0;
-  overflow: hidden; /* Rodič má hidden */
-}
-
-.admin-panel-root main {
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  overscroll-behavior: contain;
-  touch-action: pan-y;
-}
-```
-
-### C) Pridanie scroll utility triedy
-
-Pre admin panel explicitne povolíme scrollbar:
-
-```css
-/* Show scrollbar in admin panel */
-.admin-panel-root *::-webkit-scrollbar {
-  display: block;
-  width: 8px;
-}
-
-.admin-panel-root *::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
-}
-
-.admin-panel-root *::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 4px;
-}
+<div className="fixed inset-0 bg-background admin-panel-root">
+  <SidebarProvider defaultOpen={true} className="h-full">
+    <div className="flex h-full w-full overflow-hidden">
 ```
 
 ## Súbory na úpravu
 
-| Súbor | Akcia |
+| Súbor | Zmena |
 |-------|-------|
-| `src/components/admin/AdminLayout.tsx` | Oprava overflow a touch vlastností |
-| `src/index.css` | Pridanie admin-špecifických scroll pravidiel |
+| `src/index.css` | Pridanie override pre `min-h-svh` v admin paneli |
+| `src/components/admin/AdminLayout.tsx` | Pridanie `className="h-full"` na SidebarProvider a `overflow-hidden` na flex wrapper |
 
-## Technické detaily opravy
+## Technické detaily
 
-### Layout hierarchia (opravená)
+### Prečo je toto správne riešenie
+
+1. **Nepriamy override namiesto editácie sidebar.tsx** - Sidebar komponent je shadcn/ui komponent, jeho priama editácia by mohla spôsobiť problémy pri aktualizáciách
+2. **CSS specificity** - Použijeme `.admin-panel-root .group\/sidebar-wrapper` selektor, ktorý ovplyvní len admin panel
+3. **Explicitné výšky** - Celá hierarchia od `fixed inset-0` po `main` bude mať správne výškové obmedzenia
+
+### Výsledná hierarchia
 
 ```text
-┌─ .admin-panel-root (fixed, inset-0, overflow: hidden) ─────────┐
-│  ┌─ SidebarProvider ──────────────────────────────────────────┐ │
-│  │  ┌─ flex container (h-full, w-full) ──────────────────────┐│ │
-│  │  │  ┌─ AdminSidebar ───┐  ┌─ Content (h-full) ───────────┐││ │
-│  │  │  │                  │  │  ┌─ Header (shrink-0) ──────┐│││ │
-│  │  │  │                  │  │  │ SidebarTrigger + Title   ││││ │
-│  │  │  │                  │  │  └─────────────────────────┘│││ │
-│  │  │  │                  │  │  ┌─ Main (overflow-y-auto) ─┐│││ │
-│  │  │  │                  │  │  │ ← TOTO SCROLLUJE         ││││ │
-│  │  │  │                  │  │  │                          ││││ │
-│  │  │  │                  │  │  │                          ││││ │
-│  │  │  │                  │  │  └──────────────────────────┘│││ │
-│  │  │  └──────────────────┘  └───────────────────────────────┘││ │
+┌─ admin-panel-root (fixed, inset-0) ─────────────────────────────┐
+│  ┌─ SidebarProvider (h-full = 100%) ──────────────────────────┐ │
+│  │  ┌─ flex wrapper (h-full, overflow-hidden) ───────────────┐│ │
+│  │  │  ┌─ Sidebar ─┐  ┌─ content (h-full) ──────────────────┐││ │
+│  │  │  │           │  │  ┌─ header (shrink-0, 56px) ───────┐│││ │
+│  │  │  │           │  │  └─────────────────────────────────┘│││ │
+│  │  │  │           │  │  ┌─ main (flex-1, min-h-0,        ┐│││ │
+│  │  │  │           │  │  │  overflow-y-auto)               ││││ │
+│  │  │  │           │  │  │  ← TOTO TERAZ SCROLLUJE ✓       ││││ │
+│  │  │  │           │  │  └─────────────────────────────────┘│││ │
+│  │  │  └───────────┘  └─────────────────────────────────────┘││ │
 │  │  └────────────────────────────────────────────────────────┘│ │
 │  └────────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Kľúčové CSS vlastnosti
-
-- **`overflow-y-auto`**: Povolí vertikálny scroll len keď je obsah väčší ako kontajner
-- **`overscroll-contain`**: Zabraňuje "scroll chaining" - keď doscrollujete na koniec, rodičovský element sa nezačne scrollovať
-- **`touch-action: pan-y`**: Explicitne hovorí prehliadaču, že tento element podporuje vertikálne gesto posunu
-- **`-webkit-overflow-scrolling: touch`**: iOS-špecifické - plynulé scrollovanie s momentum
-
 ## Očakávaný výsledok
 
-Po aplikovaní opráv:
-- Stránky v admin paneli sa budú dať scrollovať na všetkých zariadeniach
-- Klikanie bude fungovať správne
-- Sidebar bude stále správne otvárať/zatvárať
-- Scrollbar bude viditeľný v admin paneli pre lepšiu navigáciu
+- Obsah v admin paneli sa bude dať scrollovať na všetkých zariadeniach
+- Tenká elegantná scrollovacia lišta bude viditeľná
+- Sidebar bude fungovať správne (hamburger menu na mobile/tablet)
+- Žiadne prerušenie funkčnosti ostatných komponentov

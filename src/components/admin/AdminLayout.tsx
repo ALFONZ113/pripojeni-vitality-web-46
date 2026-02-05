@@ -88,8 +88,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
  
    return (
     <div className="fixed inset-0 bg-background admin-panel-root">
-      <SidebarProvider defaultOpen={true}>
-        <div className="flex h-full w-full">
+      <SidebarProvider defaultOpen={true} className="h-full">
+        <div className="flex h-full w-full overflow-hidden">
           <AdminSidebar />
           
   <div className="flex-1 flex flex-col min-w-0 h-full">

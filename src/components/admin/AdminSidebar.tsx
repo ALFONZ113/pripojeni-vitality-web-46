@@ -9,6 +9,7 @@
    Bot,
    LogOut,
    LayoutDashboard,
+  Home,
  } from "lucide-react";
  import {
    Sidebar,
@@ -21,10 +22,8 @@
    SidebarMenuItem,
    SidebarFooter,
    SidebarHeader,
-   useSidebar,
  } from "@/components/ui/sidebar";
  import { Button } from "@/components/ui/button";
- import Logo from "@/components/Logo";
  
  const adminNavItems = [
    {
@@ -55,11 +54,13 @@
    },
  ];
  
- export function AdminSidebar() {
+interface AdminSidebarProps {
+  onNavigate?: () => void;
+}
+
+export function AdminSidebar({ onNavigate }: AdminSidebarProps) {
    const navigate = useNavigate();
    const location = useLocation();
-   const { state } = useSidebar();
-   const collapsed = state === "collapsed";
  
    const handleLogout = async () => {
      await supabase.auth.signOut();
@@ -68,16 +69,20 @@
  
    const isActive = (href: string) => location.pathname === href;
  
+  const handleNavClick = () => {
+    onNavigate?.();
+  };
+
    return (
-     <Sidebar collapsible="icon" className="border-r">
-       <SidebarHeader className="p-4">
-         <Link to="/" className="flex items-center gap-2">
+    <Sidebar collapsible="icon" className="border-r h-full">
+      <SidebarHeader className="p-3 sm:p-4 border-b">
+        <div className="flex items-center gap-2">
            <LayoutDashboard className="h-6 w-6 text-primary" />
-           {!collapsed && <span className="font-semibold">Admin Panel</span>}
-         </Link>
+          <span className="font-semibold group-data-[collapsible=icon]:hidden">Admin Panel</span>
+        </div>
        </SidebarHeader>
  
-       <SidebarContent>
+      <SidebarContent className="p-2">
          {adminNavItems.map((group) => (
            <SidebarGroup key={group.group}>
              <SidebarGroupLabel>{group.group}</SidebarGroupLabel>
@@ -90,7 +95,7 @@
                        isActive={isActive(item.href)}
                        tooltip={item.label}
                      >
-                       <Link to={item.href}>
+                      <Link to={item.href} onClick={handleNavClick}>
                          <item.icon className="h-4 w-4" />
                          <span>{item.label}</span>
                        </Link>
@@ -103,14 +108,25 @@
          ))}
        </SidebarContent>
  
-       <SidebarFooter className="p-4">
+      <SidebarFooter className="p-3 sm:p-4 border-t space-y-2">
+        <Button
+          variant="outline"
+          className="w-full justify-start gap-2"
+          onClick={() => {
+            handleNavClick();
+            navigate("/");
+          }}
+        >
+          <Home className="h-4 w-4" />
+          <span className="group-data-[collapsible=icon]:hidden">Zpět na web</span>
+        </Button>
          <Button
            variant="ghost"
            className="w-full justify-start gap-2"
            onClick={handleLogout}
          >
            <LogOut className="h-4 w-4" />
-           {!collapsed && <span>Odhlásit se</span>}
+          <span className="group-data-[collapsible=icon]:hidden">Odhlásit se</span>
          </Button>
        </SidebarFooter>
      </Sidebar>

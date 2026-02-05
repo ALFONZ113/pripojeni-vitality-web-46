@@ -1,18 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-
-// Add noindex meta tag on mount
-const useNoIndex = () => {
-  useEffect(() => {
-    const metaRobots = document.createElement('meta');
-    metaRobots.name = 'robots';
-    metaRobots.content = 'noindex, nofollow';
-    document.head.appendChild(metaRobots);
-    return () => {
-      document.head.removeChild(metaRobots);
-    };
-  }, []);
-};
+ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,7 +10,6 @@ import { toast } from "sonner";
 import { Loader2, Search, FileText, Image as ImageIcon, Save } from "lucide-react";
 
 const AIBlogTest = () => {
-  useNoIndex();
   const [topic, setTopic] = useState("");
   const [keywords, setKeywords] = useState("");
   const [researchData, setResearchData] = useState<any>(null);
@@ -192,13 +179,8 @@ const AIBlogTest = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">AI Blog Test</h1>
-          <p className="text-muted-foreground">Testovanie edge functions pre AI generovanie článkov</p>
-        </div>
-
+     <AdminLayout title="AI Blog Test" description="Testovanie edge functions pre AI generovanie článkov">
+       <div className="max-w-6xl space-y-6">
         {/* Input Section */}
         <Card>
           <CardHeader>
@@ -351,7 +333,7 @@ const AIBlogTest = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
+     </AdminLayout>
   );
 };
 

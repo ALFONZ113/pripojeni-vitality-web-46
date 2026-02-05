@@ -7,9 +7,9 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Download, Copy, Check, ArrowLeft, Sparkles } from 'lucide-react';
-import { Link } from 'react-router-dom';
+ import { Download, Copy, Check, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
+ import { AdminLayout } from '@/components/admin/AdminLayout';
 interface BrandingConfig {
   companyName: string;
   website: string;
@@ -399,21 +399,8 @@ export default function SocialExport() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <div className="min-h-screen bg-background py-8 px-4">
+       <AdminLayout title="Export Social Generator" description="Vytvořte replikační prompt pro jiný web">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <Link to="/admin-dashboard-poda-2024">
-              <Button variant="ghost" size="icon">
-                <ArrowLeft className="h-5 w-5" />
-              </Button>
-            </Link>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">Export Social Generator</h1>
-              <p className="text-muted-foreground">Vytvořte replikační prompt pro jiný web</p>
-            </div>
-          </div>
-
           <div className="grid gap-6 md:grid-cols-2">
             {/* Firemní údaje */}
             <Card>
@@ -659,7 +646,7 @@ export default function SocialExport() {
             </CardContent>
           </Card>
         </div>
-      </div>
+       </AdminLayout>
     </>
   );
 }

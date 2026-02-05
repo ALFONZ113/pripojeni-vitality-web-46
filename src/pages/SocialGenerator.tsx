@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import { Loader2, Sparkles, ArrowLeft, Save, Calendar } from 'lucide-react';
+ import { Loader2, Sparkles, Save, Calendar } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+ import { AdminLayout } from '@/components/admin/AdminLayout';
 
 import { toast } from 'sonner';
 import { PostTypeSelector } from '@/components/social/PostTypeSelector';
@@ -291,24 +292,7 @@ export default function SocialGenerator() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <div className="min-h-screen bg-background pt-24 pb-12">
-        <div className="container mx-auto px-4">
-          {/* Header */}
-          <div className="flex items-center gap-4 mb-6 sm:mb-8">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate('/admin-dashboard-poda-2024')}
-              className="h-10 w-10 sm:h-9 sm:w-9"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Social Media Generator</h1>
-              <p className="text-sm sm:text-base text-muted-foreground">Generuj obsah pre Facebook a Instagram</p>
-            </div>
-          </div>
-
+       <AdminLayout title="Social Media Generator" description="Generuj obsah pre Facebook a Instagram">
           {/* Mobile Today Indicator */}
           <div className="lg:hidden mb-4">
             <Badge variant="outline" className="gap-1.5 py-1.5 px-3">
@@ -449,8 +433,7 @@ export default function SocialGenerator() {
               />
             </div>
           </div>
-        </div>
-      </div>
+       </AdminLayout>
     </>
   );
 }

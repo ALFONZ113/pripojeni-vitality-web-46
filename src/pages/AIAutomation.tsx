@@ -5,22 +5,9 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { Loader2, Sparkles, TrendingUp, FileText, Calendar } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-
-// Add noindex meta tag on mount
-const useNoIndex = () => {
-  useEffect(() => {
-    const metaRobots = document.createElement('meta');
-    metaRobots.name = 'robots';
-    metaRobots.content = 'noindex, nofollow';
-    document.head.appendChild(metaRobots);
-    return () => {
-      document.head.removeChild(metaRobots);
-    };
-  }, []);
-};
+ import { AdminLayout } from '@/components/admin/AdminLayout';
 
 const AIAutomation = () => {
-  useNoIndex();
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [suggestions, setSuggestions] = useState<any[]>([]);
@@ -88,18 +75,8 @@ const AIAutomation = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <div className="flex items-center gap-3 mb-8">
-          <Sparkles className="w-8 h-8 text-primary" />
-          <div>
-            <h1 className="text-3xl font-bold">AI Automatizace Blogu</h1>
-            <p className="text-muted-foreground">
-              Automatické generování článků na základě GSC dat
-            </p>
-          </div>
-        </div>
-
+     <AdminLayout title="AI Automatizace Blogu" description="Automatické generování článků na základě GSC dat">
+       <div className="max-w-6xl space-y-6">
         {/* Control Panel */}
         <Card className="p-6">
           <h2 className="text-xl font-semibold mb-4">Ovládací Panel</h2>
@@ -258,7 +235,7 @@ const AIAutomation = () => {
           </AlertDescription>
         </Alert>
       </div>
-    </div>
+     </AdminLayout>
   );
 };
 

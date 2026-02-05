@@ -1,151 +1,98 @@
 
-# Plán: Elegantný centralizovaný prístup k admin stránkam
+# Plán: Oprava responzivity Admin panela pre telefóny a tablety
 
-## Analýza problému
+## Identifikované problémy
 
-Aktuálne máte **7 admin stránok** roztrúsených po projekte:
-- Login, Dashboard, Social Generator, Social Export
-- AI Blog Manager, AI Blog Test, AI Automation
+Na základe screenshotov a analýzy kódu som identifikoval tieto problémy:
 
-Musíte manuálne zadávať URL adresy, čo je nepohodlné a nepraktické.
+### 1. Konflikt dvoch Sheet systémov
+- **AdminLayout** má vlastný Sheet (riadky 104-108) s manuálnym `mobileOpen` stavom
+- **Sidebar component** od shadcn má vnútornú Sheet logiku, ktorá sa aktivuje automaticky cez `isMobile`
+- Tieto dva systémy si navzájom prekážajú
 
-## Navrhované riešenie: Skrytá admin ikona + Admin Layout s bočnou navigáciou
+### 2. Breakpoint medzera (tablet zone)
+- Desktop sidebar: `hidden lg:block` - viditeľný od 1024px+
+- Hamburger button: `lg:hidden` - viditeľný do 1024px
+- shadcn Sidebar mobile režim: aktivuje sa pod 768px (`useIsMobile`)
+- **Problém**: Medzi 768px-1024px (tablet) je medzera kde ani jeden systém nefunguje správne
 
-### Koncept
+### 3. Nesprávne použitie Sidebar komponentu
+- `AdminSidebar` používa `<Sidebar>` komponent, ktorý má vlastnú internú Sheet logiku
+- Ale v `AdminLayout` je tento Sidebar obalený do **ďalšieho Sheet-u**
+- Toto vytvára duplicitu a konflikty
+
+## Navrhované riešenie
+
+Zjednotím prístup a využijem **vstavanú shadcn Sidebar logiku** namiesto duplicitného Sheet-u:
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│  PÄTIČKA WEBU                                               │
-│  © 2024 Popri.cz ···················· [FB] [IG] [⚙️ skryté] │
-└─────────────────────────────────────────────────────────────┘
-           │
-           │ Dvojklik na ikonu (Settings/Lock)
-           ▼
-┌─────────────────────────────────────────────────────────────┐
-│  ADMIN PANEL (po prihlásení)                                │
-│ ┌────────────┬──────────────────────────────────────────────┤
-│ │ BOČNÉ MENU │  OBSAH STRÁNKY                               │
-│ │            │                                              │
-│ │ 📊 Dashboard                                              │
-│ │ 📝 Formuláře│                                              │
-│ │ ────────────                                              │
-│ │ 📱 Social   │                                              │
-│ │  └ Generator                                              │
-│ │  └ Export   │                                              │
-│ │ ────────────                                              │
-│ │ 📰 Blog     │                                              │
-│ │  └ Manager  │                                              │
-│ │  └ Test     │                                              │
-│ │ ────────────                                              │
-│ │ 🤖 Automácie│                                              │
-│ │ ────────────                                              │
-│ │ 🚪 Odhlásiť │                                              │
-│ └────────────┴──────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│  OPRAVENÝ ADMIN LAYOUT                                  │
+├─────────────────────────────────────────────────────────┤
+│  Desktop (1024px+):    Sidebar vždy viditeľný          │
+│  Tablet (768-1024px):  Sidebar cez hamburger/Sheet     │
+│  Mobile (pod 768px):   Sidebar cez hamburger/Sheet     │
+└─────────────────────────────────────────────────────────┘
 ```
 
-## Technická implementácia
+## Technické zmeny
 
-### 1. Nový komponent: AdminLayout
+### 1. Zjednodušenie AdminLayout.tsx
 
-Vytvorím `src/components/admin/AdminLayout.tsx` - wrapper pre všetky admin stránky s:
-- **Collapsible sidebar** (rozbaliteľné bočné menu)
-- Kompletná navigácia medzi admin stránkami
-- Spoločná autentifikácia (kontrola admin role)
-- Zobrazenie aktuálne aktívnej stránky
+**Odstráním:**
+- Duplicitný `Sheet` wrapper (riadky 104-108)
+- Manuálny `mobileOpen` stav
+- Vlastný hamburger button
 
-### 2. Skrytý vstupný bod v pätičke
+**Pridám:**
+- Jednotné použitie `SidebarTrigger` pre všetky zariadenia
+- Správne breakpointy: desktop sidebar na `lg:`, trigger pre mobile/tablet
 
-Upravím `src/components/Footer.tsx`:
-- Pridám nenápadnú ikonu (Settings alebo Lock) vedľa sociálnych ikon
-- Ikona bude mať zníženú opacity (10-20%)
-- Klik presmeruje na `/admin-login-poda-2024`
-- Dvojklik alebo dlhé podržanie aktivuje admin režim
+### 2. Úprava breakpointov
 
-### 3. Refaktoring admin stránok
+| Zariadenie | Šírka | Správanie |
+|------------|-------|-----------|
+| Mobile | 0-767px | Sheet sidebar (shadcn vstavaný) |
+| Tablet | 768-1023px | Sheet sidebar (shadcn vstavaný) |
+| Desktop | 1024px+ | Pevný collapsible sidebar |
 
-Všetky admin stránky obalím do `AdminLayout`:
-- Odstránim duplicitnú navigáciu z jednotlivých stránok
-- Zjednodušenie kódu - auth kontrola bude centralizovaná
-- Konzistentný vzhľad naprieč všetkými admin stránkami
-
-### 4. Aktualizácia routingu
-
-Upravím `src/App.tsx`:
-- Zjednotím URL štruktúru pod `/admin/*`
-- Zachovám spätná kompatibilita s existujúcimi URL
-
-## Súbory na vytvorenie/úpravu
-
-| Súbor | Akcia | Popis |
-|-------|-------|-------|
-| `src/components/admin/AdminLayout.tsx` | Vytvoriť | Hlavný layout s bočnou navigáciou |
-| `src/components/admin/AdminSidebar.tsx` | Vytvoriť | Bočné menu s odkazmi |
-| `src/components/admin/AdminNav.tsx` | Vytvoriť | Navigačné položky a skupiny |
-| `src/components/Footer.tsx` | Upraviť | Pridať skrytú admin ikonu |
-| `src/pages/AdminDashboard.tsx` | Upraviť | Obalenie do AdminLayout, odstránenie duplicitnej navigácie |
-| `src/pages/SocialGenerator.tsx` | Upraviť | Obalenie do AdminLayout |
-| `src/pages/SocialExport.tsx` | Upraviť | Obalenie do AdminLayout |
-| `src/pages/AIBlogManager.tsx` | Upraviť | Obalenie do AdminLayout |
-| `src/pages/AIBlogTest.tsx` | Upraviť | Obalenie do AdminLayout |
-| `src/pages/AIAutomation.tsx` | Upraviť | Obalenie do AdminLayout |
-
-## Výhody tohto riešenia
-
-- **Nenápadný prístup** - bežní návštevníci si nevšimnú admin vstup
-- **Všetko na jednom mieste** - žiadne pamätanie URL adries
-- **Konzistentný UX** - rovnaká navigácia na všetkých admin stránkach
-- **Rýchle prepínanie** - jeden klik medzi nástrojmi
-- **Mobilný responzívny** - sidebar sa schová do hamburger menu
-- **Rozšíriteľné** - ľahké pridanie nových admin stránok
-
-## Technické detaily
-
-### Skrytá ikona v pätičke
+### 3. Konzistentný layout
 
 ```tsx
-// Nenápadná ikona s nízkou opacity
-<Link 
-  to="/admin-login-poda-2024"
-  className="opacity-10 hover:opacity-30 transition-opacity"
-  aria-label="Administrace"
->
-  <Settings className="h-4 w-4" />
-</Link>
+// Opravený AdminLayout
+<SidebarProvider defaultOpen={true}>
+  <div className="flex h-full w-full">
+    <AdminSidebar />
+    
+    <div className="flex-1 flex flex-col min-w-0">
+      <header className="flex h-14 items-center gap-3 border-b px-4">
+        <SidebarTrigger /> {/* Funguje pre všetky zariadenia */}
+        <h1>{title}</h1>
+      </header>
+      
+      <main className="flex-1 overflow-auto p-3 sm:p-4 lg:p-6">
+        {children}
+      </main>
+    </div>
+  </div>
+</SidebarProvider>
 ```
 
-### Štruktúra bočného menu
+### 4. Úprava AdminSidebar.tsx
 
-```tsx
-const adminNavItems = [
-  { 
-    group: "Správa", 
-    items: [
-      { label: "Formuláře", href: "/admin/dashboard", icon: FileText },
-    ]
-  },
-  { 
-    group: "Social Media", 
-    items: [
-      { label: "Generátor", href: "/admin/social-generator", icon: Share2 },
-      { label: "Export", href: "/admin/social-export", icon: Download },
-    ]
-  },
-  { 
-    group: "Blog", 
-    items: [
-      { label: "Manager", href: "/admin/ai-blog-manager", icon: BookOpen },
-      { label: "Test", href: "/admin/ai-blog-test", icon: FlaskConical },
-    ]
-  },
-  { 
-    group: "Automatizace", 
-    items: [
-      { label: "AI Automácie", href: "/admin/ai-automation", icon: Bot },
-    ]
-  },
-];
-```
+- Pridám `collapsible="offcanvas"` namiesto `"icon"` pre lepšie mobile správanie
+- Zabezpečím správne stylovanie pre všetky viewporty
 
-## Časový odhad
+## Súbory na úpravu
 
-Implementácia približne 4-6 správ (vytvorenie layoutu, úprava všetkých stránok, testovanie).
+| Súbor | Akcia |
+|-------|-------|
+| `src/components/admin/AdminLayout.tsx` | Odstránenie duplicitného Sheet, zjednodušenie |
+| `src/components/admin/AdminSidebar.tsx` | Úprava collapsible módu |
+
+## Výsledok
+
+- Hamburger menu bude fungovať na mobile aj tablete
+- Sidebar sa otvorí ako Sheet overlay na menších zariadeniach
+- Na desktope zostane klasický collapsible sidebar
+- Žiadne konflikty medzi dvoma Sheet systémami

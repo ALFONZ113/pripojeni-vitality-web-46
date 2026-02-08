@@ -26,6 +26,7 @@
     position: fixed;
     inset: 0;
     overflow: hidden;
+    background: hsl(var(--background));
   }
  
   /* Override SidebarProvider min-h-svh in admin panel */
@@ -33,6 +34,24 @@
     min-height: 100% !important;
     height: 100% !important;
     max-height: 100% !important;
+  }
+
+  /* Mobile fix for admin panel - prevent black screen */
+  @media (max-width: 767px) {
+    .admin-panel-root {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .admin-panel-root .group\/sidebar-wrapper {
+      min-height: auto !important;
+      height: 100% !important;
+    }
+    
+    /* Ensure content fills full width on mobile */
+    .admin-panel-root > div > div > div:last-child {
+      width: 100% !important;
+    }
   }
 
   /* Admin Panel - Scrolling fix for main content */

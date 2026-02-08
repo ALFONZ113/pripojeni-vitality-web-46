@@ -1,202 +1,131 @@
 
+# Plán: Oprava čiernej obrazovky v Social Generatore na mobile
 
-# Plán: Nová funkcia "Vložiť osobu" do Social Media Generatora
+## Identifikovaný problém
 
-## Prehľad funkcie
+Na mobile v Admin Paneli (Social Generator) sa zobrazuje pol obrazovky čiernej. Problém je spôsobený kombináciou nasledujúcich faktorov:
 
-Rozšírenie Social Media Generatora o možnosť nahrať vlastnú fotografiu osoby. AI následne vygeneruje obrázok, kde táto osoba bude zobrazená v kontexte príspevku. Používateľ si bude môcť vybrať štýl zobrazenia:
+1. **CSS konflikt s `overflow: hidden`** - Admin panel root má `overflow: hidden`, čo môže blokovať správne zobrazenie obsahu
+2. **`min-h-svh` v SidebarProvider** - Táto minimálna výška môže spôsobovať problémy s rozmermi na mobile
+3. **Flex layout bez správneho min-width** - Hlavný content wrapper potrebuje explicitné min-width: 0 pre správne fungovanie flexbox
 
-- **Realistický** - fotorealistická úprava osoby v scéne
-- **Karikatúra** - humorná, preexponovaná karikatúra (ako na ukážke)
-- **Ilustrácia** - moderná digitálna ilustrácia
-- **Kreslený (Cartoon)** - štýl animovaných filmov
+## Technické zmeny
 
-## Architektúra zmien
+### 1. Oprava AdminLayout.tsx
 
-```text
-┌─────────────────────────────────────────────────────────────────┐
-│                    SocialGenerator.tsx                          │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │  PersonToggle (existujúci)                                  ││
-│  │  ┌─────────┐  ┌─────────────┐  ┌──────────────────────────┐ ││
-│  │  │S osobou │  │ Bez osob   │  │ NOVÉ: Vložiť osobu     │ ││
-│  │  └─────────┘  └─────────────┘  └──────────────────────────┘ ││
-│  └─────────────────────────────────────────────────────────────┘│
-│                              ▼                                  │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │  NOVÉ: PersonUploader (zobrazí sa keď "Vložiť osobu")       ││
-│  │  ┌───────────────────┐  ┌─────────────────────────────────┐ ││
-│  │  │ [Nahrať foto]     │  │ Štýl zobrazenia:                │ ││
-│  │  │                   │  │ ○ Realistický                   │ ││
-│  │  │  [Náhľad foto]    │  │ ○ Karikatúra                    │ ││
-│  │  │                   │  │ ○ Ilustrácia                    │ ││
-│  │  └───────────────────┘  │ ○ Kreslený (Cartoon)            │ ││
-│  │                         └─────────────────────────────────┘ ││
-│  └─────────────────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────────┘
-```
+**Problém:** Flex kontajner potrebuje lepšie nastavenie pre mobile zobrazenie.
 
-## Technické detaily
-
-### 1. Nový komponent: PersonUploader
-
-**Súbor:** `src/components/social/PersonUploader.tsx`
-
-**Funkcie:**
-- Upload fotografie cez `<input type="file">` (JPG, PNG, WebP)
-- Náhľad nahranej fotografie
-- Výber štýlu zobrazenia (RadioGroup)
-- Konverzia obrázka na base64 pre odoslanie do AI
-
-**Štýly zobrazenia:**
-| Štýl | Popis | AI prompt kľúče |
-|------|-------|-----------------|
-| `realistic` | Fotorealistická úprava | "professional photo, realistic lighting, seamless integration" |
-| `caricature` | Karikatúra | "exaggerated caricature style, humorous, bold features" |
-| `illustration` | Digitálna ilustrácia | "modern digital illustration, clean lines, artistic" |
-| `cartoon` | Kreslený štýl | "Pixar/Disney style cartoon, 3D animated character look" |
-
-### 2. Rozšírenie PersonToggle
-
-**Súbor:** `src/components/social/PersonToggle.tsx`
-
-**Zmeny:**
-- Pridanie tretej možnosti: `'custom-person'`
-- Nový typ: `export type IncludePerson = 'with-person' | 'without-person' | 'custom-person';`
-
-### 3. Rozšírenie SocialGenerator.tsx
-
-**Nový stav:**
-```typescript
-const [customPersonImage, setCustomPersonImage] = useState<string | null>(null);
-const [personRenderStyle, setPersonRenderStyle] = useState<'realistic' | 'caricature' | 'illustration' | 'cartoon'>('realistic');
-```
-
-**Podmienené zobrazenie:**
+**Riešenie:**
 ```tsx
-{includePerson === 'custom-person' && (
-  <PersonUploader
-    image={customPersonImage}
-    onImageChange={setCustomPersonImage}
-    renderStyle={personRenderStyle}
-    onRenderStyleChange={setPersonRenderStyle}
-  />
-)}
+// Zmeniť riadky 92-95
+<div className="flex h-full w-full overflow-hidden">
+  <AdminSidebar />
+  <div className="flex-1 flex flex-col min-w-0 h-full w-full">
 ```
 
-**Rozšírenie volania edge funkcie:**
-```typescript
-const { data, error } = await supabase.functions.invoke('social-content-generator', {
-  body: {
-    type: postType,
-    platform,
-    visualStyle,
-    includePerson,
-    customTopic: customTopic || null,
-    // NOVÉ:
-    customPersonImage: includePerson === 'custom-person' ? customPersonImage : null,
-    personRenderStyle: includePerson === 'custom-person' ? personRenderStyle : null,
-  },
-});
-```
+Pridať `w-full` k hlavnému content divu pre explicitnú šírku na mobile.
 
-### 4. Úprava Edge Funkcie social-content-generator
+### 2. Oprava CSS v index.css
 
-**Súbor:** `supabase/functions/social-content-generator/index.ts`
+**Problém:** `overflow: hidden` na admin-panel-root môže blokovať obsah.
 
-**Zmeny:**
-1. Rozšírenie InputSchema:
-```typescript
-customPersonImage: z.string().optional().nullable(),
-personRenderStyle: z.enum(['realistic', 'caricature', 'illustration', 'cartoon']).optional().nullable(),
-```
-
-2. Nové štýlové prompty pre každý render štýl:
-```typescript
-const personRenderPrompts = {
-  realistic: 'Photo-realistic person integration, natural lighting, seamless blend with environment',
-  caricature: 'Exaggerated caricature style with bold features, humorous, artistic interpretation, warm colors',
-  illustration: 'Modern digital illustration style, clean vector-like lines, artistic and professional',
-  cartoon: 'Pixar/Disney 3D cartoon style, friendly and approachable, vibrant colors',
-};
-```
-
-3. Modifikácia generovania obrázka pre zahrnutie vlastnej osoby v image prompte
-
-### 5. Úprava Edge Funkcie ai-generate-image
-
-**Súbor:** `supabase/functions/ai-generate-image/index.ts`
-
-**Zmeny:**
-- Pridanie podpory pre image editing (Gemini API podporuje vstupný obrázok)
-- Ak je poskytnutý `referenceImage`, použije sa ako vstup pre úpravu
-
-```typescript
-const InputSchema = z.object({
-  prompt: z.string().trim().min(5).max(500),
-  slug: z.string().optional().nullable(),
-  // NOVÉ:
-  referenceImage: z.string().optional().nullable(), // base64 obrázok osoby
-  renderStyle: z.enum(['realistic', 'caricature', 'illustration', 'cartoon']).optional().nullable(),
-});
-```
-
-**Rozšírený prompt pre Gemini:**
-```typescript
-if (referenceImage && renderStyle) {
-  // Použijeme image editing mode
-  messages = [
-    {
-      role: 'user',
-      content: [
-        { type: 'text', text: `Transform the person in this photo into ${styleDescription}. ${prompt}` },
-        { type: 'image_url', image_url: { url: referenceImage } }
-      ]
-    }
-  ];
+**Riešenie:**
+```css
+.admin-panel-root {
+  z-index: 9999;
+  position: fixed;
+  inset: 0;
+  /* Zmeniť overflow na auto pre lepšie správanie */
+  overflow: auto;
 }
 ```
 
-### 6. Databázové zmeny (voliteľné pre históriu)
+Alebo explicitne nastaviť mobile-friendly štýly:
+```css
+/* Mobile-specific fix */
+@media (max-width: 767px) {
+  .admin-panel-root {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .admin-panel-root .group\/sidebar-wrapper {
+    min-height: 100% !important;
+    height: auto !important;
+  }
+}
+```
 
-**Nové stĺpce v `social_posts`:**
-- `custom_person_image_url` (TEXT, nullable) - URL uloženej referenčnej fotografie
-- `person_render_style` (TEXT, nullable) - použitý štýl renderovania
+### 3. Oprava SidebarProvider wrapper
 
-## Súbory na vytvorenie/úpravu
+V `src/components/ui/sidebar.tsx` zmeniť CSS override pre admin panel:
+
+```css
+/* V index.css - zlepšiť admin panel mobile kompatibilitu */
+.admin-panel-root .group\/sidebar-wrapper {
+  min-height: 100% !important;
+  height: 100% !important;
+  max-height: none;
+  overflow: visible;
+}
+
+@media (max-width: 767px) {
+  .admin-panel-root .group\/sidebar-wrapper {
+    min-height: auto !important;
+    height: 100% !important;
+  }
+}
+```
+
+## Súbory na úpravu
 
 | Súbor | Akcia | Popis |
 |-------|-------|-------|
-| `src/components/social/PersonUploader.tsx` | **NOVÝ** | Komponent pre upload a výber štýlu |
-| `src/components/social/PersonToggle.tsx` | Upraviť | Pridať tretiu možnosť |
-| `src/pages/SocialGenerator.tsx` | Upraviť | Integrovať nové komponenty a stav |
-| `supabase/functions/social-content-generator/index.ts` | Upraviť | Spracovať custom osobu v prompte |
-| `supabase/functions/ai-generate-image/index.ts` | Upraviť | Podpora image editing |
+| `src/components/admin/AdminLayout.tsx` | Upraviť | Pridať `w-full` a opraviť flex layout pre mobile |
+| `src/index.css` | Upraviť | Opraviť CSS pre admin panel na mobile |
 
-## Workflow používateľa
+## Konkrétne zmeny
 
-1. Používateľ otvorí Social Media Generator
-2. V sekcii "Lidé na obrázku" vyberie **"Vložiť osobu"**
-3. Zobrazí sa nová sekcia:
-   - **Upload foto** - drag & drop alebo kliknutím
-   - **Výber štýlu** - Realistický / Karikatúra / Ilustrácia / Kreslený
-4. Používateľ nahrá svoju fotografiu a vyberie štýl (napr. Karikatúra)
-5. Vyplní ostatné nastavenia (typ postu, téma, atď.)
-6. Klikne "Generovať obsah"
-7. AI vygeneruje text + image prompt, ktorý zahŕňa inštrukcie pre štýl osoby
-8. Pri kliknutí na "Generovat obrázok" sa použije referenčná fotografia a vygeneruje sa karikatúra/ilustrácia osoby v kontexte témy
+### AdminLayout.tsx
 
-## Obmedzenia a poznámky
+```tsx
+// Riadok 92-95 zmeniť na:
+<div className="flex h-full w-full">
+  <AdminSidebar />
+  <div className="flex-1 flex flex-col min-w-0 h-full w-full overflow-hidden">
+```
 
-- **Veľkosť obrázka**: Max 4MB pre upload (Gemini limit)
-- **Formáty**: JPG, PNG, WebP
-- **Kvalita karikatúry**: Závisí od kvality vstupnej fotografie (ideálne portrét s jasnou tvárou)
-- **GDPR**: Upozornenie používateľa, že nahraná fotografia sa spracováva cez AI (nezostáva uložená trvalo)
+Hlavný flex kontajner nemá `overflow-hidden`, aby sidebar mohol správne fungovať.
+
+### index.css
+
+```css
+/* Riadky 24-29 zmeniť na: */
+.admin-panel-root {
+  z-index: 9999;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: hsl(var(--background));
+}
+
+/* Pridať nové pravidlá pre mobile: */
+@media (max-width: 767px) {
+  .admin-panel-root {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Zabezpečiť, že content zaberá celú šírku */
+  .admin-panel-root > div > div > div:last-child {
+    width: 100%;
+  }
+}
+```
 
 ## Očakávaný výsledok
 
-Po implementácii bude používateľ môcť:
-- Nahrať vlastnú fotografiu do Social Media Generatora
-- Vybrať si štýl zobrazenia (karikatúra ako na ukážke, alebo iný)
-- Vygenerovať príspevok, kde bude osoba z fotografie zobrazená v zvolenom štýle a kontexte témy
-
+Po implementácii:
+- Social Generator na mobile zobrazí celý obsah bez čiernej sekcie
+- Scrollovanie bude fungovať správne
+- Layout sa prispôsobí obrazovke

@@ -10,8 +10,18 @@ const corsHeaders = {
 // Input validation schema
 const ImageInputSchema = z.object({
   prompt: z.string().trim().min(5, "Prompt musí mít alespoň 5 znaků").max(500, "Prompt je příliš dlouhý"),
-  slug: z.string().trim().regex(/^[a-z0-9-]*$/, "Slug může obsahovat pouze malá písmena, čísla a pomlčky").max(100, "Slug je příliš dlouhý").optional().nullable()
+  slug: z.string().trim().regex(/^[a-z0-9-]*$/, "Slug může obsahovat pouze malá písmena, čísla a pomlčky").max(100, "Slug je příliš dlouhý").optional().nullable(),
+  referenceImage: z.string().optional().nullable(),
+  renderStyle: z.enum(['realistic', 'caricature', 'illustration', 'cartoon']).optional().nullable(),
 });
+
+// Style descriptions for image editing
+const styleDescriptions: Record<string, string> = {
+  'realistic': 'Transform this person into a photo-realistic scene. Keep the person recognizable with natural lighting and seamless environment integration.',
+  'caricature': 'Transform this person into an exaggerated caricature style. Emphasize distinctive facial features humorously while keeping them recognizable. Use bold, warm colors and artistic interpretation. Make it fun and playful.',
+  'illustration': 'Transform this person into a modern digital illustration. Use clean vector-like lines, flat design elements, and professional artistic style while keeping the person recognizable.',
+  'cartoon': 'Transform this person into a Pixar/Disney 3D cartoon style character. Make them friendly and approachable with vibrant colors and an animated character look while keeping recognizable features.',
+};
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -38,7 +48,7 @@ serve(async (req) => {
       );
     }
 
-    const { prompt, slug } = validationResult.data;
+    const { prompt, slug, referenceImage, renderStyle } = validationResult.data;
     
     const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
     if (!lovableApiKey) {
@@ -46,9 +56,55 @@ serve(async (req) => {
     }
 
     console.log('Generating image with Gemini model for prompt:', prompt);
+    console.log('Reference image provided:', !!referenceImage);
+    console.log('Render style:', renderStyle);
 
-    // Vylepšíme prompt pre lepšie výsledky
-    const enhancedPrompt = `${prompt}. Professional photography, high-quality, modern design, ultra high resolution, editorial style.`;
+    // Build the request based on whether we have a reference image
+    let messages: any[];
+    
+    if (referenceImage && renderStyle) {
+      // Image editing mode - transform the person in the reference image
+      const styleDescription = styleDescriptions[renderStyle] || styleDescriptions['realistic'];
+      
+      console.log('Using image editing mode with style:', renderStyle);
+      
+      messages = [
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: `${styleDescription}
+
+Scene context: ${prompt}
+
+IMPORTANT: 
+1. Keep the person's face recognizable but apply the ${renderStyle} style transformation
+2. Integrate the person naturally into the scene described
+3. Any text in the image MUST be in Czech language
+4. Create a single cohesive image, not multiple images
+5. Professional quality, suitable for social media marketing`
+            },
+            {
+              type: 'image_url',
+              image_url: {
+                url: referenceImage
+              }
+            }
+          ]
+        }
+      ];
+    } else {
+      // Standard text-to-image generation
+      const enhancedPrompt = `${prompt}. Professional photography, high-quality, modern design, ultra high resolution, editorial style.`;
+      
+      messages = [
+        {
+          role: 'user',
+          content: enhancedPrompt
+        }
+      ];
+    }
 
     // Volanie Lovable AI Gateway s Gemini modelom (Nano banana)
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
@@ -59,12 +115,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         model: 'google/gemini-2.5-flash-image-preview',
-        messages: [
-          {
-            role: 'user',
-            content: enhancedPrompt
-          }
-        ],
+        messages,
         modalities: ['image', 'text']
       }),
     });

@@ -1,8 +1,8 @@
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { User, Image } from 'lucide-react';
+import { User, Image, UserPlus } from 'lucide-react';
 
-export type IncludePerson = 'with-person' | 'without-person';
+export type IncludePerson = 'with-person' | 'without-person' | 'custom-person';
 
 interface PersonToggleProps {
   value: IncludePerson;
@@ -22,6 +22,12 @@ const options: { value: IncludePerson; label: string; description: string; icon:
     description: 'Pouze objekty, zařízení a prostředí bez lidí',
     icon: <Image className="h-4 w-4 text-muted-foreground" />,
   },
+  {
+    value: 'custom-person',
+    label: 'Vložit osobu',
+    description: 'Nahrajte vlastní foto a vyberte styl zobrazení',
+    icon: <UserPlus className="h-4 w-4 text-primary" />,
+  },
 ];
 
 export function PersonToggle({ value, onChange }: PersonToggleProps) {
@@ -31,7 +37,7 @@ export function PersonToggle({ value, onChange }: PersonToggleProps) {
       <RadioGroup
         value={value}
         onValueChange={(v) => onChange(v as IncludePerson)}
-        className="grid grid-cols-2 gap-3"
+        className="grid grid-cols-1 sm:grid-cols-3 gap-3"
       >
         {options.map((option) => (
           <Label

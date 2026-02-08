@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
- import { Loader2, Sparkles, Save, Calendar } from 'lucide-react';
+import { Loader2, Sparkles, Save, Calendar } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -58,10 +57,7 @@ interface SocialPost {
 }
 
 export default function SocialGenerator() {
-  const navigate = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [generatingImageFor, setGeneratingImageFor] = useState<string | null>(null);
@@ -103,8 +99,15 @@ export default function SocialGenerator() {
     }
   }, [userId]);
 
+  // Get user ID on mount - AdminLayout handles auth
   useEffect(() => {
-    checkAdminStatus();
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUserId(user.id);
+      }
+    };
+    getUser();
   }, []);
 
   useEffect(() => {
@@ -112,37 +115,6 @@ export default function SocialGenerator() {
       fetchHistory();
     }
   }, [userId, fetchHistory]);
-
-  const checkAdminStatus = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        navigate('/admin-login-poda-2024');
-        return;
-      }
-
-      const { data: roles } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', user.id)
-        .eq('role', 'admin')
-        .single();
-
-      if (!roles) {
-        toast.error('Nemáte oprávnění k přístupu');
-        navigate('/');
-        return;
-      }
-
-      setUserId(user.id);
-      setIsAdmin(true);
-    } catch (error) {
-      console.error('Auth error:', error);
-      navigate('/admin-login-poda-2024');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const savePost = async () => {
     if (!result || !userId) return;
@@ -285,18 +257,6 @@ export default function SocialGenerator() {
       };
     });
   };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (!isAdmin) {
-    return null;
-  }
 
   return (
     <>

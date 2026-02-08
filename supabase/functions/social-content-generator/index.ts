@@ -20,10 +20,20 @@ const InputSchema = z.object({
     'bright-bold',
     'premium-ad'
   ]).default('luxury-gold'),
-  includePerson: z.enum(['with-person', 'without-person']).default('with-person'),
+  includePerson: z.enum(['with-person', 'without-person', 'custom-person']).default('with-person'),
   customTopic: z.string().max(500).optional().nullable(),
   blogTitle: z.string().max(200).optional().nullable(),
+  customPersonImage: z.string().optional().nullable(),
+  personRenderStyle: z.enum(['realistic', 'caricature', 'illustration', 'cartoon']).optional().nullable(),
 });
+
+// Person render style prompts
+const personRenderPrompts: Record<string, string> = {
+  'realistic': 'Photo-realistic person integration, natural lighting, seamless blend with environment, professional photography quality',
+  'caricature': 'Exaggerated caricature style with bold features, humorous artistic interpretation, warm colors, fun and playful aesthetic',
+  'illustration': 'Modern digital illustration style, clean vector-like lines, artistic and professional, flat design elements',
+  'cartoon': 'Pixar/Disney 3D cartoon style, friendly and approachable, vibrant colors, animated character look',
+};
 
 // Style-specific branding prompts
 const stylePrompts: Record<string, string> = {
@@ -305,21 +315,35 @@ async function generateSceneDescription(
   postType: string, 
   visualStyle: string,
   includePerson: string,
+  personRenderStyle: string | null,
   apiKey: string
 ): Promise<string> {
   // Build person-specific rules based on toggle
-  const personRules = includePerson === 'without-person' 
-    ? `CRITICAL RULES FOR NO PEOPLE:
+  let personRules = '';
+  
+  if (includePerson === 'custom-person' && personRenderStyle) {
+    const stylePrompt = personRenderPrompts[personRenderStyle] || personRenderPrompts['realistic'];
+    personRules = `CRITICAL RULES FOR CUSTOM PERSON:
+1. The scene MUST be designed to feature a SPECIFIC PERSON provided by user
+2. Style: ${stylePrompt}
+3. The person should be the main focus of the image
+4. Create an engaging scene where the person is naturally integrated
+5. Describe the pose, activity, and environment around the person
+6. The person will be added via reference image, so describe the scene context`;
+  } else if (includePerson === 'without-person') {
+    personRules = `CRITICAL RULES FOR NO PEOPLE:
 1. DO NOT include any people, humans, faces, hands, or body parts in the scene
 2. Focus ONLY on objects, devices, environments, technology, and abstract concepts
 3. Show technology, routers, devices, fiber optic cables, home interiors WITHOUT any people
 4. Describe scenes with objects only: devices on desks, routers with light effects, cable setups, empty rooms with technology
-5. NO human presence whatsoever - not even silhouettes, shadows, or partial body parts`
-    : `CRITICAL RULES FOR PEOPLE:
+5. NO human presence whatsoever - not even silhouettes, shadows, or partial body parts`;
+  } else {
+    personRules = `CRITICAL RULES FOR PEOPLE:
 1. ALWAYS include PEOPLE in realistic situations
 2. Show authentic human interactions with technology
 3. Include real people: families, individuals, couples in everyday situations
 4. Describe people's activities, expressions, and their environment`;
+  }
 
   const sceneSystemPrompt = `You are an expert at creating unique image scene descriptions for social media marketing.
 Based on the topic, create a SPECIFIC and UNIQUE scene description.
@@ -418,7 +442,7 @@ serve(async (req) => {
       );
     }
 
-    const { type, platform, visualStyle, includePerson, customTopic, blogTitle } = validationResult.data;
+    const { type, platform, visualStyle, includePerson, customTopic, blogTitle, customPersonImage, personRenderStyle } = validationResult.data;
     const template = postTemplates[type];
     const brandingPrompt = stylePrompts[visualStyle];
     
@@ -427,7 +451,7 @@ serve(async (req) => {
       throw new Error('LOVABLE_API_KEY not configured');
     }
 
-    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}, includePerson=${includePerson}`);
+    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}, includePerson=${includePerson}, personRenderStyle=${personRenderStyle}`);
 
     const result: Record<string, unknown> = {};
     const platforms = platform === 'both' ? ['facebook', 'instagram'] : [platform];
@@ -478,6 +502,7 @@ serve(async (req) => {
         type, 
         visualStyle,
         includePerson,
+        personRenderStyle || null,
         lovableApiKey
       );
 
@@ -492,6 +517,13 @@ SCENE: ${uniqueScene}
 
 Topic: ${topicForScene}
 `;
+        
+        // Add custom person style instructions if applicable
+        if (includePerson === 'custom-person' && personRenderStyle) {
+          const stylePrompt = personRenderPrompts[personRenderStyle] || personRenderPrompts['realistic'];
+          imagePromptContent += `\nPERSON RENDERING STYLE: ${stylePrompt}`;
+          imagePromptContent += `\nIMPORTANT: A reference photo of a person will be provided. Transform/integrate this person into the scene using the specified style.`;
+        }
       } else {
         // Fallback to template if AI scene generation fails
         console.log('Using fallback template for image prompt');

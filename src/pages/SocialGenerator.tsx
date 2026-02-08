@@ -15,6 +15,7 @@ import { PostTypeSelector } from '@/components/social/PostTypeSelector';
 import { PlatformSelector } from '@/components/social/PlatformSelector';
 import { StyleSelector, VisualStyle } from '@/components/social/StyleSelector';
 import { PersonToggle, IncludePerson } from '@/components/social/PersonToggle';
+import { PersonUploader, PersonRenderStyle } from '@/components/social/PersonUploader';
 import { GeneratedContent } from '@/components/social/GeneratedContent';
 import { ContentCalendar } from '@/components/social/ContentCalendar';
 import { SocialPostHistory } from '@/components/social/SocialPostHistory';
@@ -67,6 +68,8 @@ export default function SocialGenerator() {
   const [platform, setPlatform] = useState<Platform>('both');
   const [visualStyle, setVisualStyle] = useState<VisualStyle>('luxury-gold');
   const [includePerson, setIncludePerson] = useState<IncludePerson>('with-person');
+  const [customPersonImage, setCustomPersonImage] = useState<string | null>(null);
+  const [personRenderStyle, setPersonRenderStyle] = useState<PersonRenderStyle>('realistic');
   const [customTopic, setCustomTopic] = useState('');
 
   // Generated content
@@ -184,6 +187,8 @@ export default function SocialGenerator() {
           visualStyle,
           includePerson,
           customTopic: customTopic || null,
+          customPersonImage: includePerson === 'custom-person' ? customPersonImage : null,
+          personRenderStyle: includePerson === 'custom-person' ? personRenderStyle : null,
         },
       });
 
@@ -227,6 +232,8 @@ export default function SocialGenerator() {
         body: {
           prompt: result[platformKey]!.imagePrompt,
           slug: `social-${platformKey}-${Date.now()}`,
+          referenceImage: includePerson === 'custom-person' ? customPersonImage : null,
+          renderStyle: includePerson === 'custom-person' ? personRenderStyle : null,
         },
       });
 
@@ -333,6 +340,15 @@ export default function SocialGenerator() {
                   <PlatformSelector value={platform} onChange={setPlatform} />
                   <StyleSelector value={visualStyle} onChange={setVisualStyle} />
                   <PersonToggle value={includePerson} onChange={setIncludePerson} />
+
+                  {includePerson === 'custom-person' && (
+                    <PersonUploader
+                      image={customPersonImage}
+                      onImageChange={setCustomPersonImage}
+                      renderStyle={personRenderStyle}
+                      onRenderStyleChange={setPersonRenderStyle}
+                    />
+                  )}
 
                   {/* Custom Topic */}
                   <div className="space-y-2">

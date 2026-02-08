@@ -292,6 +292,7 @@ export type Database = {
       social_posts: {
         Row: {
           created_at: string
+          custom_person_image_url: string | null
           custom_topic: string | null
           facebook_hashtags: string | null
           facebook_image_prompt: string | null
@@ -304,6 +305,7 @@ export type Database = {
           instagram_image_url: string | null
           instagram_text: string | null
           is_published: boolean
+          person_render_style: string | null
           platform: string
           post_type: string
           published_at: string | null
@@ -313,6 +315,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          custom_person_image_url?: string | null
           custom_topic?: string | null
           facebook_hashtags?: string | null
           facebook_image_prompt?: string | null
@@ -325,6 +328,7 @@ export type Database = {
           instagram_image_url?: string | null
           instagram_text?: string | null
           is_published?: boolean
+          person_render_style?: string | null
           platform: string
           post_type: string
           published_at?: string | null
@@ -334,6 +338,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          custom_person_image_url?: string | null
           custom_topic?: string | null
           facebook_hashtags?: string | null
           facebook_image_prompt?: string | null
@@ -346,6 +351,7 @@ export type Database = {
           instagram_image_url?: string | null
           instagram_text?: string | null
           is_published?: boolean
+          person_render_style?: string | null
           platform?: string
           post_type?: string
           published_at?: string | null

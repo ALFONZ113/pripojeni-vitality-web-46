@@ -52,6 +52,9 @@ interface SocialPost {
   is_published: boolean;
   published_at: string | null;
   created_at: string;
+  // Custom person fields
+  person_render_style: string | null;
+  custom_person_image_url: string | null;
 }
 
 export default function SocialGenerator() {
@@ -161,6 +164,9 @@ export default function SocialGenerator() {
         instagram_hashtags: result.instagram?.hashtags || null,
         instagram_image_prompt: result.instagram?.imagePrompt || null,
         instagram_image_url: result.instagram?.imageUrl || null,
+        // Custom person fields
+        person_render_style: includePerson === 'custom-person' ? personRenderStyle : null,
+        custom_person_image_url: includePerson === 'custom-person' ? customPersonImage : null,
       });
 
       if (error) throw error;

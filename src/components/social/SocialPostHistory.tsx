@@ -38,6 +38,14 @@ import {
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 
+// Person render style labels
+const personRenderStyleLabels: Record<string, { label: string; emoji: string }> = {
+  'realistic': { label: 'Realistický', emoji: '📷' },
+  'caricature': { label: 'Karikatúra', emoji: '🎨' },
+  'illustration': { label: 'Ilustrácia', emoji: '✏️' },
+  'cartoon': { label: 'Kreslený', emoji: '🎬' },
+};
+
 interface SocialPost {
   id: string;
   post_type: string;
@@ -56,6 +64,9 @@ interface SocialPost {
   is_published: boolean;
   published_at: string | null;
   created_at: string;
+  // Custom person fields
+  person_render_style: string | null;
+  custom_person_image_url: string | null;
 }
 
 // Mapa štýlov na skrátené názvy a farby - výraznejšie pre lepšiu viditeľnosť
@@ -207,8 +218,17 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                         🎨 {visualStyleLabels[post.visual_style || 'luxury-gold']?.label || 'Default'}
                       </Badge>
                       <Badge variant="secondary" className="text-xs font-medium px-2 py-0.5">
-                        {(post.include_person || 'with-person') === 'with-person' ? '👤 S osobou' : '🖼️ Bez osob'}
+                        {post.include_person === 'custom-person' 
+                          ? `📸 Vlastná osoba` 
+                          : (post.include_person || 'with-person') === 'with-person' 
+                            ? '👤 S osobou' 
+                            : '🖼️ Bez osob'}
                       </Badge>
+                      {post.include_person === 'custom-person' && post.person_render_style && (
+                        <Badge variant="outline" className="text-xs font-medium px-2 py-0.5 border-primary/50">
+                          {personRenderStyleLabels[post.person_render_style]?.emoji || '🎨'} {personRenderStyleLabels[post.person_render_style]?.label || post.person_render_style}
+                        </Badge>
+                      )}
                     </div>
 
                     {post.custom_topic && (

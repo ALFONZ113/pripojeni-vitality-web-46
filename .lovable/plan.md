@@ -1,131 +1,228 @@
 
-# Plán: Oprava čiernej obrazovky v Social Generatore na mobile
+# Plán: Vylepšenie promptu pre zachovanie identity osoby
 
-## Identifikovaný problém
+## Aktuálny stav
 
-Na mobile v Admin Paneli (Social Generator) sa zobrazuje pol obrazovky čiernej. Problém je spôsobený kombináciou nasledujúcich faktorov:
+Súčasný prompt v `ai-generate-image/index.ts` je príliš všeobecný a neobsahuje dostatočné inštrukcie pre zachovanie identity. Aktuálne inštrukcie:
 
-1. **CSS konflikt s `overflow: hidden`** - Admin panel root má `overflow: hidden`, čo môže blokovať správne zobrazenie obsahu
-2. **`min-h-svh` v SidebarProvider** - Táto minimálna výška môže spôsobovať problémy s rozmermi na mobile
-3. **Flex layout bez správneho min-width** - Hlavný content wrapper potrebuje explicitné min-width: 0 pre správne fungovanie flexbox
-
-## Technické zmeny
-
-### 1. Oprava AdminLayout.tsx
-
-**Problém:** Flex kontajner potrebuje lepšie nastavenie pre mobile zobrazenie.
-
-**Riešenie:**
-```tsx
-// Zmeniť riadky 92-95
-<div className="flex h-full w-full overflow-hidden">
-  <AdminSidebar />
-  <div className="flex-1 flex flex-col min-w-0 h-full w-full">
+```
+1. Keep the person's face recognizable but apply the ${renderStyle} style transformation
 ```
 
-Pridať `w-full` k hlavnému content divu pre explicitnú šírku na mobile.
+Toto je nedostatočné pre Gemini model, ktorý potrebuje explicitnejšie a detailnejšie inštrukcie.
 
-### 2. Oprava CSS v index.css
+## Navrhované zmeny
 
-**Problém:** `overflow: hidden` na admin-panel-root môže blokovať obsah.
+### 1. Kompletne prepísané styleDescriptions
 
-**Riešenie:**
-```css
-.admin-panel-root {
-  z-index: 9999;
-  position: fixed;
-  inset: 0;
-  /* Zmeniť overflow na auto pre lepšie správanie */
-  overflow: auto;
-}
+Každý štýl bude mať oveľa silnejšie inštrukcie na zachovanie identity:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│ REALISTIC                                                                │
+├─────────────────────────────────────────────────────────────────────────┤
+│ • Zachovať presnú štruktúru tváre (oči, nos, ústa, brada)               │
+│ • Zachovať vlasy - farba, dĺžka, účes                                   │
+│ • Zachovať proporcie tela a postavu                                     │
+│ • Oblečenie môže byť zmenené podľa scény                                │
+│ • Fotorealistické osvetlenie a tieňe                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ CARICATURE                                                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│ • Preháňať charakteristické črty tváre (veľký nos, úsmev, oči)          │
+│ • Zachovať rozpoznateľnosť osoby aj v štylizovanej forme                │
+│ • Zachovať vlasy a celkovú postavu                                      │
+│ • Oblečenie môže byť štylizované alebo zmenené                          │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-Alebo explicitne nastaviť mobile-friendly štýly:
-```css
-/* Mobile-specific fix */
-@media (max-width: 767px) {
-  .admin-panel-root {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .admin-panel-root .group\/sidebar-wrapper {
-    min-height: 100% !important;
-    height: auto !important;
-  }
-}
+### 2. Nový rozšírený prompt template
+
+Namiesto jednoduchých 5 bodov pridáme komplexný prompt s jasnou hierarchiou priorít:
+
+```
+## CRITICAL IDENTITY PRESERVATION RULES (MUST FOLLOW):
+
+### FACE - HIGHEST PRIORITY:
+- EXACT eye shape, eye color, eye spacing
+- EXACT nose shape and size  
+- EXACT mouth shape and lip fullness
+- EXACT face shape (oval, round, square, etc.)
+- EXACT chin and jawline structure
+- Preserve all distinctive facial features (moles, freckles, dimples)
+- Maintain the same facial expression style/character
+
+### HAIR - HIGH PRIORITY:
+- SAME hair color (exact shade)
+- SAME hair length and style
+- SAME hair texture (straight, curly, wavy)
+
+### BODY - MEDIUM PRIORITY:
+- SAME body proportions and build
+- SAME height impression
+- SAME skin tone
+
+### ALLOWED TO CHANGE:
+- Clothing (adapt to scene context)
+- Accessories (jewelry, glasses if not distinctive)
+- Background and environment
+- Lighting conditions
+- Pose (while maintaining body proportions)
 ```
 
-### 3. Oprava SidebarProvider wrapper
+### 3. Pridanie negatívnych inštrukcií
 
-V `src/components/ui/sidebar.tsx` zmeniť CSS override pre admin panel:
+Explicitne zakázať AI čo NEMÁ robiť:
 
-```css
-/* V index.css - zlepšiť admin panel mobile kompatibilitu */
-.admin-panel-root .group\/sidebar-wrapper {
-  min-height: 100% !important;
-  height: 100% !important;
-  max-height: none;
-  overflow: visible;
-}
+```
+## DO NOT:
+- Generate a different person
+- Change the face structure
+- Alter eye color or shape
+- Modify nose or mouth shape
+- Change hair color or length
+- Create an idealized or "beautified" version
+- Make the person look younger or older
+- Add or remove facial hair unless specified
+```
 
-@media (max-width: 767px) {
-  .admin-panel-root .group\/sidebar-wrapper {
-    min-height: auto !important;
-    height: 100% !important;
+## Technické zmeny v súbore
+
+### supabase/functions/ai-generate-image/index.ts
+
+**Zmena 1: Nové styleDescriptions (riadky 18-24)**
+
+```typescript
+const styleDescriptions: Record<string, string> = {
+  'realistic': `PHOTO-REALISTIC TRANSFORMATION with STRICT IDENTITY PRESERVATION.
+    
+This is the EXACT same person from the reference photo. You MUST preserve:
+- EXACT facial structure: eye shape, nose, mouth, chin, jawline
+- EXACT hair: color, length, texture, style  
+- EXACT skin tone and any distinctive marks (moles, freckles)
+- EXACT body proportions and build
+
+Create a professional photograph with natural lighting. 
+Clothing CAN be changed to fit the scene context.`,
+
+  'caricature': `CARICATURE STYLE with RECOGNIZABLE IDENTITY.
+
+Exaggerate the DISTINCTIVE features of THIS SPECIFIC person:
+- Emphasize their unique nose shape, smile, or eye characteristics
+- Keep them CLEARLY RECOGNIZABLE as the same person
+- Preserve their exact hair color and general style
+- Maintain their body type and proportions
+
+Use bold, warm colors. Make it fun and playful.
+Clothing can be stylized or changed.`,
+
+  'illustration': `DIGITAL ILLUSTRATION with PRESERVED IDENTITY.
+
+Create a modern vector-style illustration of THIS EXACT person:
+- Simplify but preserve their unique facial features
+- Keep exact hair color and style
+- Maintain recognizable face shape and proportions
+- Use clean lines and flat design elements
+
+Professional artistic quality. Clothing can adapt to style.`,
+
+  'cartoon': `PIXAR/DISNEY 3D STYLE with SAME PERSON.
+
+Transform into animated character while keeping IDENTITY:
+- Same face shape, eye placement, nose and mouth style
+- Same hair color and general hairstyle
+- Same skin tone
+- Friendly, approachable look with vibrant colors
+
+The character must be recognizable as the reference person.
+Clothing can be cartoon-styled.`,
+};
+```
+
+**Zmena 2: Rozšírený hlavný prompt (riadky 71-96)**
+
+```typescript
+messages = [
+  {
+    role: 'user',
+    content: [
+      {
+        type: 'text',
+        text: `${styleDescription}
+
+## SCENE CONTEXT:
+${prompt}
+
+## CRITICAL IDENTITY PRESERVATION RULES:
+
+### FACE (HIGHEST PRIORITY - MUST MATCH EXACTLY):
+- Preserve EXACT eye shape, color, and spacing
+- Preserve EXACT nose shape and size
+- Preserve EXACT mouth shape and lip fullness
+- Preserve EXACT face shape and jawline
+- Keep all distinctive features (moles, freckles, dimples, scars)
+- Maintain similar facial expression character
+
+### HAIR (HIGH PRIORITY):
+- Keep EXACT hair color (same shade)
+- Keep EXACT hair length and style
+- Keep hair texture (straight/curly/wavy)
+
+### BODY (MEDIUM PRIORITY):  
+- Maintain same body proportions and build
+- Keep same skin tone throughout
+
+### ALLOWED CHANGES:
+- Clothing can be changed to fit the scene
+- Accessories can be added/removed
+- Pose can be adjusted
+- Background is completely new
+
+## DO NOT:
+- Generate a different person's face
+- Change eye color or face shape
+- Alter hair color or length significantly
+- Create an "idealized" or different-looking version
+- Make the person look younger/older than reference
+
+## TECHNICAL REQUIREMENTS:
+- Single cohesive image (not multiple images)
+- Professional quality for social media marketing
+- Any text in image MUST be in Czech language
+- Seamless integration of person into scene
+
+The generated image MUST show the SAME PERSON from the reference photo, just in a new scene with potentially different clothing.`
+      },
+      {
+        type: 'image_url',
+        image_url: {
+          url: referenceImage
+        }
+      }
+    ]
   }
-}
+];
 ```
 
 ## Súbory na úpravu
 
 | Súbor | Akcia | Popis |
 |-------|-------|-------|
-| `src/components/admin/AdminLayout.tsx` | Upraviť | Pridať `w-full` a opraviť flex layout pre mobile |
-| `src/index.css` | Upraviť | Opraviť CSS pre admin panel na mobile |
-
-## Konkrétne zmeny
-
-### AdminLayout.tsx
-
-```tsx
-// Riadok 92-95 zmeniť na:
-<div className="flex h-full w-full">
-  <AdminSidebar />
-  <div className="flex-1 flex flex-col min-w-0 h-full w-full overflow-hidden">
-```
-
-Hlavný flex kontajner nemá `overflow-hidden`, aby sidebar mohol správne fungovať.
-
-### index.css
-
-```css
-/* Riadky 24-29 zmeniť na: */
-.admin-panel-root {
-  z-index: 9999;
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  background: hsl(var(--background));
-}
-
-/* Pridať nové pravidlá pre mobile: */
-@media (max-width: 767px) {
-  .admin-panel-root {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Zabezpečiť, že content zaberá celú šírku */
-  .admin-panel-root > div > div > div:last-child {
-    width: 100%;
-  }
-}
-```
+| `supabase/functions/ai-generate-image/index.ts` | Upraviť | Prepísať styleDescriptions a rozšíriť hlavný prompt |
 
 ## Očakávaný výsledok
 
 Po implementácii:
-- Social Generator na mobile zobrazí celý obsah bez čiernej sekcie
-- Scrollovanie bude fungovať správne
-- Layout sa prispôsobí obrazovke
+- AI bude mať jasné, hierarchické inštrukcie čo zachovať
+- Tvár a vlasy budú mať najvyššiu prioritu
+- Oblečenie bude explicitne označené ako "môže sa zmeniť"
+- Negatívne inštrukcie zabránia bežným chybám
+- Lepšia konzistencia výsledkov naprieč rôznymi štýlmi
+
+## Poznámka
+
+Aj s vylepšeným promptom má Gemini Flash obmedzenia v zachovávaní identity. Pre produkčné použitie s vysokými nárokmi na presnosť by bolo vhodné zvážiť:
+- Použitie Gemini Pro modelu (`google/gemini-3-pro-image-preview`)
+- Viacnásobné generovanie a výber najlepšieho výsledku

@@ -15,12 +15,50 @@ const ImageInputSchema = z.object({
   renderStyle: z.enum(['realistic', 'caricature', 'illustration', 'cartoon']).optional().nullable(),
 });
 
-// Style descriptions for image editing
+// Style descriptions for image editing - with STRICT identity preservation
 const styleDescriptions: Record<string, string> = {
-  'realistic': 'Transform this person into a photo-realistic scene. Keep the person recognizable with natural lighting and seamless environment integration.',
-  'caricature': 'Transform this person into an exaggerated caricature style. Emphasize distinctive facial features humorously while keeping them recognizable. Use bold, warm colors and artistic interpretation. Make it fun and playful.',
-  'illustration': 'Transform this person into a modern digital illustration. Use clean vector-like lines, flat design elements, and professional artistic style while keeping the person recognizable.',
-  'cartoon': 'Transform this person into a Pixar/Disney 3D cartoon style character. Make them friendly and approachable with vibrant colors and an animated character look while keeping recognizable features.',
+  'realistic': `PHOTO-REALISTIC TRANSFORMATION with STRICT IDENTITY PRESERVATION.
+    
+This is the EXACT same person from the reference photo. You MUST preserve:
+- EXACT facial structure: eye shape, nose, mouth, chin, jawline
+- EXACT hair: color, length, texture, style  
+- EXACT skin tone and any distinctive marks (moles, freckles)
+- EXACT body proportions and build
+
+Create a professional photograph with natural lighting. 
+Clothing CAN be changed to fit the scene context.`,
+
+  'caricature': `CARICATURE STYLE with RECOGNIZABLE IDENTITY.
+
+Exaggerate the DISTINCTIVE features of THIS SPECIFIC person:
+- Emphasize their unique nose shape, smile, or eye characteristics
+- Keep them CLEARLY RECOGNIZABLE as the same person
+- Preserve their exact hair color and general style
+- Maintain their body type and proportions
+
+Use bold, warm colors. Make it fun and playful.
+Clothing can be stylized or changed.`,
+
+  'illustration': `DIGITAL ILLUSTRATION with PRESERVED IDENTITY.
+
+Create a modern vector-style illustration of THIS EXACT person:
+- Simplify but preserve their unique facial features
+- Keep exact hair color and style
+- Maintain recognizable face shape and proportions
+- Use clean lines and flat design elements
+
+Professional artistic quality. Clothing can adapt to style.`,
+
+  'cartoon': `PIXAR/DISNEY 3D STYLE with SAME PERSON.
+
+Transform into animated character while keeping IDENTITY:
+- Same face shape, eye placement, nose and mouth style
+- Same hair color and general hairstyle
+- Same skin tone
+- Friendly, approachable look with vibrant colors
+
+The character must be recognizable as the reference person.
+Clothing can be cartoon-styled.`,
 };
 
 serve(async (req) => {
@@ -76,14 +114,48 @@ serve(async (req) => {
               type: 'text',
               text: `${styleDescription}
 
-Scene context: ${prompt}
+## SCENE CONTEXT:
+${prompt}
 
-IMPORTANT: 
-1. Keep the person's face recognizable but apply the ${renderStyle} style transformation
-2. Integrate the person naturally into the scene described
-3. Any text in the image MUST be in Czech language
-4. Create a single cohesive image, not multiple images
-5. Professional quality, suitable for social media marketing`
+## CRITICAL IDENTITY PRESERVATION RULES:
+
+### FACE (HIGHEST PRIORITY - MUST MATCH EXACTLY):
+- Preserve EXACT eye shape, color, and spacing
+- Preserve EXACT nose shape and size
+- Preserve EXACT mouth shape and lip fullness
+- Preserve EXACT face shape and jawline
+- Keep all distinctive features (moles, freckles, dimples, scars)
+- Maintain similar facial expression character
+
+### HAIR (HIGH PRIORITY):
+- Keep EXACT hair color (same shade)
+- Keep EXACT hair length and style
+- Keep hair texture (straight/curly/wavy)
+
+### BODY (MEDIUM PRIORITY):  
+- Maintain same body proportions and build
+- Keep same skin tone throughout
+
+### ALLOWED CHANGES:
+- Clothing can be changed to fit the scene
+- Accessories can be added/removed
+- Pose can be adjusted
+- Background is completely new
+
+## DO NOT:
+- Generate a different person's face
+- Change eye color or face shape
+- Alter hair color or length significantly
+- Create an "idealized" or different-looking version
+- Make the person look younger/older than reference
+
+## TECHNICAL REQUIREMENTS:
+- Single cohesive image (not multiple images)
+- Professional quality for social media marketing
+- Any text in image MUST be in Czech language
+- Seamless integration of person into scene
+
+The generated image MUST show the SAME PERSON from the reference photo, just in a new scene with potentially different clothing.`
             },
             {
               type: 'image_url',

@@ -45,17 +45,22 @@ const AI_STATIC_PATHS = [
   '/iptv'
 ];
 
-// Blog articles with static versions
+// Blog articles with static versions (ALL articles that have static HTML files)
 const AI_STATIC_BLOG_SLUGS = [
   'jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025',
   'gpon-technologie-jak-funguje-moderni-opticky-internet',
   'o2-nej-prevzatie-poda-alternativa-zakaznici',
   'pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
-  'ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi'
+  'ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi',
+  'operatori-meni-ceny-internetu-fakta-prava-zakazniku',
+  'proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit',
+  'nejcastejsi-myty-o-optickem-internetu',
+  'poda-internet-2026-opticka-era-2-gigabity-domacnosti-rodinne-domy',
+  'home-office-2025-jak-nastavit-domaci-kancelar-produktivita',
+  'jak-ai-meni-svet-proc-kvalitni-internet-zaklad'
 ];
 
-// Blog post data for dynamic OG tags (synced from blog data)
-// CRITICAL: All image paths must be absolute URLs or paths that will be prefixed with baseUrl
+// Blog post data for dynamic OG tags - FALLBACK only when static file doesn't exist
 const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; image: string }> = {
   'proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit': {
     title: 'Proč internet doma zpomaluje večer? (A jak to vyřešit)',
@@ -87,93 +92,69 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
     description: 'Vyvarujte se 5 nejčastějších chyb při výběru internetu do bytu. Praktický průvodce pro rok 2025.',
     image: '/lovable-uploads/internet-vyber-chyby-blog.jpg'
   },
-  'poda-internet-2026-ceny-rychlosti-recenze': {
-    title: 'PODA Internet 2026 - Ceny, rychlosti a recenze',
-    description: 'Kompletní přehled PODA internetu pro rok 2026. Aktuální ceny, rychlosti a recenze zákazníků.',
+  'poda-internet-2026-opticka-era-2-gigabity-domacnosti-rodinne-domy': {
+    title: 'PODA Internet 2026 - Optická éra až 2 gigabity',
+    description: 'Kompletní průvodce PODA internetem v roce 2026. Optické připojení až 2 Gb/s, férové ceny bez závazků.',
     image: '/blog-images/poda-internet-2026-hero.webp'
   },
-  'home-office-internet-pozadavky-2025': {
+  'home-office-2025-jak-nastavit-domaci-kancelar-produktivita': {
     title: 'Home Office - Jaký internet potřebujete pro práci z domova',
     description: 'Požadavky na internet pro home office. Minimální rychlosti pro videohovory, cloud a více.',
     image: '/blog-images/home-office-2025.jpg'
   },
-  'myty-o-optickem-internetu-pravda-vs-fikce': {
-    title: '7 mýtů o optickém internetu - Pravda vs. fikce',
-    description: 'Vyvracíme 7 nejčastějších mýtů o optickém internetu. Co je pravda a co fikce?',
+  'nejcastejsi-myty-o-optickem-internetu': {
+    title: 'Nejčastější mýty o optickém internetu - Pravda vs. fikce',
+    description: 'Odhalujeme nejčastější omyly o optickém internetu a vysvětlujeme realitu rychlého připojení.',
     image: '/blog-images/myty-opticky-internet.jpg'
   },
   'operatori-meni-ceny-internetu-fakta-prava-zakazniku': {
     title: 'Operátoři mění ceny internetu: co je pravda a jak se to týká domácností v Česku',
-    description: 'Zdražují operátoři internet v Česku? Přinášíme ověřená fakta o změnách cen, vysvětlení práv zákazníků a tip, jak získat stabilní internet bez nepříjemných překvapení.',
+    description: 'Zdražují operátoři internet v Česku? Přinášíme ověřená fakta o změnách cen, vysvětlení práv zákazníků.',
     image: '/blog-images/operatori-ceny-internetu.webp'
+  },
+  'jak-ai-meni-svet-proc-kvalitni-internet-zaklad': {
+    title: 'Jak AI mění svět kolem nás: Proč je kvalitní internet naprostý základ',
+    description: 'Umělá inteligence mění práci, zábavu i domácnosti. Zjistěte, proč je rychlý internet klíčem.',
+    image: '/blog-images/ai-internet-zaklad.webp'
   }
 };
-// Generate dynamic OG meta tags HTML for social crawlers
+
+// Generate dynamic OG meta tags HTML - FALLBACK only
 function generateOGMetaHTML(slug: string, baseUrl: string): string {
   const postData = BLOG_POSTS_OG_DATA[slug];
   const canonicalUrl = `${baseUrl}/blog/${slug}`;
-  
-  // Default fallback if post not found - use generic but still functional
   const title = postData?.title || 'Blog | Popri.cz - PODA Internet';
   const description = postData?.description || 'Tipy a novinky o internetu, IPTV a technologiích od PODA.';
-  
-  // CRITICAL: Use absolute URL for og:image - Facebook requires full URL
-  let imageUrl: string;
-  if (postData?.image) {
-    // If image starts with http, use as-is, otherwise prepend baseUrl
-    imageUrl = postData.image.startsWith('http') 
-      ? postData.image 
-      : `${baseUrl}${postData.image}`;
-  } else {
-    imageUrl = `${baseUrl}/og-image.png`;
-  }
-
-  // Debug logging for troubleshooting
-  console.log(`[OG Generator] Slug: ${slug}`);
-  console.log(`[OG Generator] Found in registry: ${!!postData}`);
-  console.log(`[OG Generator] Image URL: ${imageUrl}`);
+  const imageUrl = postData?.image
+    ? (postData.image.startsWith('http') ? postData.image : `${baseUrl}${postData.image}`)
+    : `${baseUrl}/og-image.png`;
 
   return `<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} | Blog Popri.cz</title>
   <meta name="description" content="${description}">
   <link rel="canonical" href="${canonicalUrl}">
-  
-  <!-- Open Graph / Facebook - CRITICAL for social sharing -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:image" content="${imageUrl}">
-  <meta property="og:image:secure_url" content="${imageUrl}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
   <meta property="og:site_name" content="Popri.cz - PODA Internet">
   <meta property="og:locale" content="cs_CZ">
-  
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="${canonicalUrl}">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${description}">
   <meta name="twitter:image" content="${imageUrl}">
-  
-  <!-- LinkedIn -->
-  <meta property="article:published_time" content="${new Date().toISOString()}">
-  <meta property="article:author" content="PODA Team">
-  <meta property="article:section" content="Technologie">
-  
-  <!-- NO redirect for crawlers - they need to parse this page -->
 </head>
 <body>
   <h1>${title}</h1>
   <p>${description}</p>
   <img src="${imageUrl}" alt="${title}" width="1200" height="630">
-  <p><a href="${canonicalUrl}">Přečíst celý článek na ${canonicalUrl}</a></p>
+  <a href="${canonicalUrl}">Přečíst celý článek</a>
 </body>
 </html>`;
 }
@@ -192,32 +173,65 @@ export default async (request: Request, context: Context) => {
     userAgent.toLowerCase().includes(pattern.toLowerCase())
   );
   
-  // Handle social crawler requests for blog posts - serve dynamic OG tags
+  // Handle social crawler requests for blog posts - STATIC FILES FIRST
   if (isSocialCrawler) {
-    console.log(`[Social Crawler] Detected: ${userAgent}`);
+    console.log(`[Social Crawler] Detected: ${userAgent.substring(0, 80)}`);
     console.log(`[Social Crawler] URL: ${url.pathname}`);
     
     const blogMatch = url.pathname.match(/^\/blog\/(.+)$/);
     if (blogMatch) {
       const slug = blogMatch[1];
-      console.log(`[Social Crawler] Blog slug: ${slug}`);
-      console.log(`[Social Crawler] Slug in registry: ${slug in BLOG_POSTS_OG_DATA}`);
-      
       const baseUrl = 'https://www.popri.cz';
-      const ogHTML = generateOGMetaHTML(slug, baseUrl);
       
-      console.log(`[Social Crawler] Serving OG HTML for: /blog/${slug}`);
-      
-      return new Response(ogHTML, {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/html; charset=utf-8',
-          'X-Served-For': 'Social-Crawler',
-          'X-Robots-Tag': 'index, follow',
-          'Cache-Control': 'public, max-age=300', // 5 min cache for faster debugging
-          'X-OG-Debug': `slug=${slug}, found=${slug in BLOG_POSTS_OG_DATA}`
+      try {
+        // Strategy 1: Try to serve static HTML file with OG tags
+        const staticPath = `/ai-static/blog/${slug}.html`;
+        const staticUrl = new URL(staticPath, url.origin);
+        console.log(`[Social Crawler] Trying static file: ${staticPath}`);
+        
+        const staticResponse = await fetch(staticUrl.toString());
+        
+        if (staticResponse.ok) {
+          console.log(`[Social Crawler] ✅ Serving STATIC file for: /blog/${slug}`);
+          const body = await staticResponse.text();
+          return new Response(body, {
+            status: 200,
+            headers: {
+              'Content-Type': 'text/html; charset=utf-8',
+              'X-Served-For': 'Social-Crawler-Static',
+              'X-Robots-Tag': 'index, follow',
+              'Cache-Control': 'public, max-age=300',
+              'X-OG-Debug': `slug=${slug}, source=static-file`
+            }
+          });
         }
-      });
+        
+        // Strategy 2: Fallback to dynamic OG HTML generation
+        console.log(`[Social Crawler] ⚠️ Static file not found, using dynamic fallback for: ${slug}`);
+        const ogHTML = generateOGMetaHTML(slug, baseUrl);
+        return new Response(ogHTML, {
+          status: 200,
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'X-Served-For': 'Social-Crawler-Dynamic',
+            'X-Robots-Tag': 'index, follow',
+            'Cache-Control': 'public, max-age=300',
+            'X-OG-Debug': `slug=${slug}, source=dynamic-fallback`
+          }
+        });
+      } catch (e) {
+        // Strategy 3: Error fallback - never crash, always return OG HTML
+        console.error(`[Social Crawler] ❌ Error serving OG for ${slug}:`, e);
+        const ogHTML = generateOGMetaHTML(slug, baseUrl);
+        return new Response(ogHTML, {
+          status: 200,
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'X-Served-For': 'Social-Crawler-Error-Fallback',
+            'Cache-Control': 'public, max-age=60'
+          }
+        });
+      }
     }
   }
   

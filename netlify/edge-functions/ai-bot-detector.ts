@@ -101,9 +101,13 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
     title: '7 mýtů o optickém internetu - Pravda vs. fikce',
     description: 'Vyvracíme 7 nejčastějších mýtů o optickém internetu. Co je pravda a co fikce?',
     image: '/blog-images/myty-opticky-internet.jpg'
+  },
+  'operatori-meni-ceny-internetu-fakta-prava-zakazniku': {
+    title: 'Operátoři mění ceny internetu: co je pravda a jak se to týká domácností v Česku',
+    description: 'Zdražují operátoři internet v Česku? Přinášíme ověřená fakta o změnách cen, vysvětlení práv zákazníků a tip, jak získat stabilní internet bez nepříjemných překvapení.',
+    image: '/blog-images/operatori-ceny-internetu.webp'
   }
 };
-
 // Generate dynamic OG meta tags HTML for social crawlers
 function generateOGMetaHTML(slug: string, baseUrl: string): string {
   const postData = BLOG_POSTS_OG_DATA[slug];

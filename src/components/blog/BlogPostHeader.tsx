@@ -2,14 +2,19 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import type { BlogPost } from '../../data/blog/types';
 import BlogPostSocialActions from './BlogPostSocialActions';
+import { ensureSlug } from '../../utils/blogRouting';
 
 interface BlogPostHeaderProps {
   post: BlogPost;
 }
 
+const PRODUCTION_BASE_URL = 'https://www.popri.cz';
+
 const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
+  const slug = ensureSlug(post);
+  const productionUrl = `${PRODUCTION_BASE_URL}/blog/${slug}`;
   const formattedDate = post.date.split('. ').reverse().join('-');
-  const currentUrl = window.location.href;
+  const currentUrl = productionUrl;
   
   return (
     <section className="section-padding pt-10 pb-12 bg-background">
@@ -78,6 +83,7 @@ const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
             <BlogPostSocialActions 
               postTitle={post.title}
               postExcerpt={post.excerpt}
+              postUrl={productionUrl}
             />
           </div>
         </div>

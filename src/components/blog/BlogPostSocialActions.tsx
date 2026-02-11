@@ -9,9 +9,11 @@ interface BlogPostSocialActionsProps {
   postUrl?: string;
 }
 
+const PRODUCTION_BASE_URL = 'https://www.popri.cz';
+
 const BlogPostSocialActions = ({ postTitle, postExcerpt, postUrl }: BlogPostSocialActionsProps) => {
   const [copied, setCopied] = useState(false);
-  const url = postUrl || (typeof window !== 'undefined' ? window.location.href : '');
+  const url = postUrl || `${PRODUCTION_BASE_URL}${typeof window !== 'undefined' ? window.location.pathname : ''}`;
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(postTitle);
 

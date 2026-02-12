@@ -16,14 +16,12 @@ https://popri.cz/ https://www.popri.cz/ 301!
 /internet-frydek-mistek/ /internet-frydek-mistek 301
 /internet-orlova/ /internet-orlova 301
 /internet-brno/ /internet-brno 301
-/blog/ /blog 301
 
 # Oprava chybných slug URL
 /blog/poda-super-2025-60ghz-internet-polanka /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301!
 /blog/1 /blog 301!
 
 # ===== PRIORITY 1: 301 redirects - ALL blog ID URLs to slug URLs (FORCE with !) =====
-# Tieto redirecty MUSIA byť PRED SPA fallback pravidlami!
 
 # ID 2 - GPON technologie v regionu
 /blog/2 /blog/gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu 301!
@@ -115,12 +113,34 @@ https://popri.cz/ https://www.popri.cz/ 301!
 # ID 1001 - AI a internet
 /blog/1001 /blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni 301!
 
-# Opravené staré slugy
+# Opravené staré slugy (existujúce)
 /blog/gaming-internet-ostrava-2025 /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301!
 /blog/internet-vyber-5-chyb-ktore-vas-stoji-penize /blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi 301!
 
+# ===== NOVÉ: Staré slug redirecty pre neindexované stránky =====
+/blog/rychly-internet-v-karvine-revoluce-v-pripojeni-domacnosti-diky-poda /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda 301!
+/blog/recenze-zakazniku-poda-skutecne-zkusenosti-s-nasimi-sluzbami /blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby 301!
+/blog/novinky-v-poda-sluzbach-nove-moznosti-pro-zakazniky /blog/novinky-poda-sluzby-nove-moznosti-zakaznici 301!
+/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-v-moravskoslezskem-kraji-2025 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301!
+/blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-pro-vas-domov /blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov 301!
+/blog/gaming-ostrava-esport-scena /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301!
+/blog/gaming-internet-ostrava-nejlepsi-pripojeni-pro-hrace /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda 301!
+/blog/prevzati-nej-cz-spolecnosti-o2-co-to-znamena-pro-zakazni /blog/o2-nej-prevzatie-poda-alternativa-zakaznici 301!
+/blog/poruchy-internetu-jak-vyresit-pomaly-internet-rychly-navod /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025 301!
+/blog/komplexny-pruvodce-modernim-internetovym-pripojenim-2025 /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025 301!
+/blog/opticky-internet-ostrava /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301!
+/blog/rychly-internet-karvina /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda 301!
+/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-v-moravskoslezskem-kraji-2025-500 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301!
+/blog/wifi-optimalizace /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025 301!
+/blog/domaci-sit-nastaveni /blog 301!
+/blog/opticky-internet-vyhody /blog 301!
+/blog/gpon-technologia-v-moravskoslezskom-regione-revolucia-optickeho-internetu-1 /blog/gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu 301!
+/blog/prechod-od-o2-k-poda-po-akvizicii-nejcz-a-netboxu-prilezitost-pre-lepsie-sluzby-v-moravskoslezskom-regione-101 /blog/o2-nej-prevzatie-poda-alternativa-zakaznici 301!
+/blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione /blog 301!
+/blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione-3 /blog 301!
+/blog/bleskovy-internet-bez-dratu-poznejte-60-ghz-technologii-a-nabidku-poda-102 /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301!
+
 # ===== SPA routing - serve index.html for all routes =====
-# Tieto pravidlá MUSIA byť AŽ PO redirect pravidlách!
 /blog/* /index.html 200
 /internet-* /index.html 200
 /kontakt /index.html 200

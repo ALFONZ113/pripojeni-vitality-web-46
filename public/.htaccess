@@ -93,11 +93,34 @@ Redirect 301 /blog/30 /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025
 Redirect 301 /blog/206 /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025
 Redirect 301 /blog/500 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025
 Redirect 301 /blog/10 /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda
-Redirect 301 /blog/1 /blog/gigabitovy-internet-poda-ostrava-technologie
-Redirect 301 /blog/13 /blog/poda-recenzie-skusenosti-zakaznikov-2025
-Redirect 301 /blog/12 /blog/televize-160-programu-hd-uhd-kvalita-2025
+Redirect 301 /blog/1 /blog
+Redirect 301 /blog/13 /blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby
+Redirect 301 /blog/12 /blog/rozsireni-pokryti-poda-nove-oblasti-opticky-internet
 
-# Block all ID-based blog URLs with RewriteRule
+# Old slug redirects for non-indexed pages
+Redirect 301 /blog/rychly-internet-v-karvine-revoluce-v-pripojeni-domacnosti-diky-poda /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda
+Redirect 301 /blog/recenze-zakazniku-poda-skutecne-zkusenosti-s-nasimi-sluzbami /blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby
+Redirect 301 /blog/novinky-v-poda-sluzbach-nove-moznosti-pro-zakazniky /blog/novinky-poda-sluzby-nove-moznosti-zakaznici
+Redirect 301 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-v-moravskoslezskem-kraji-2025 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025
+Redirect 301 /blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-pro-vas-domov /blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov
+Redirect 301 /blog/gaming-ostrava-esport-scena /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda
+Redirect 301 /blog/gaming-internet-ostrava-nejlepsi-pripojeni-pro-hrace /blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda
+Redirect 301 /blog/prevzati-nej-cz-spolecnosti-o2-co-to-znamena-pro-zakazni /blog/o2-nej-prevzatie-poda-alternativa-zakaznici
+Redirect 301 /blog/poruchy-internetu-jak-vyresit-pomaly-internet-rychly-navod /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025
+Redirect 301 /blog/komplexny-pruvodce-modernim-internetovym-pripojenim-2025 /blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025
+Redirect 301 /blog/opticky-internet-ostrava /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025
+Redirect 301 /blog/rychly-internet-karvina /blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda
+Redirect 301 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-v-moravskoslezskem-kraji-2025-500 /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025
+Redirect 301 /blog/wifi-optimalizace /blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025
+Redirect 301 /blog/domaci-sit-nastaveni /blog
+Redirect 301 /blog/opticky-internet-vyhody /blog
+Redirect 301 /blog/gpon-technologia-v-moravskoslezskom-regione-revolucia-optickeho-internetu-1 /blog/gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu
+Redirect 301 /blog/prechod-od-o2-k-poda-po-akvizicii-nejcz-a-netboxu-prilezitost-pre-lepsie-sluzby-v-moravskoslezskom-regione-101 /blog/o2-nej-prevzatie-poda-alternativa-zakaznici
+Redirect 301 /blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione /blog
+Redirect 301 /blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskom-regione-3 /blog
+Redirect 301 /blog/bleskovy-internet-bez-dratu-poznejte-60-ghz-technologii-a-nabidku-poda-102 /blog/polanka-nad-odrou-60ghz-pripojeni-2025
+
+# Block all remaining ID-based blog URLs with RewriteRule
 RewriteCond %{REQUEST_URI} ^/blog/[0-9]+$
 RewriteRule ^blog/([0-9]+)$ /blog/ [R=301,L]
 

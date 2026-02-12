@@ -104,6 +104,29 @@ export const blogRedirectMap: Record<string, string> = {
   // Opravené staré slugy
   '/blog/gaming-internet-ostrava-2025': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
   '/blog/internet-vyber-5-chyb-ktore-vas-stoji-penize': '/blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi',
+  
+  // Nové staré slug redirecty pre neindexované stránky
+  '/blog/rychly-internet-v-karvine-revoluce-v-pripojeni-domacnosti-diky-poda': '/blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda',
+  '/blog/recenze-zakazniku-poda-skutecne-zkusenosti-s-nasimi-sluzbami': '/blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby',
+  '/blog/novinky-v-poda-sluzbach-nove-moznosti-pro-zakazniky': '/blog/novinky-poda-sluzby-nove-moznosti-zakaznici',
+  '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-v-moravskoslezskem-kraji-2025': '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025',
+  '/blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-pro-vas-domov': '/blog/mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov',
+  '/blog/gaming-ostrava-esport-scena': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
+  '/blog/gaming-internet-ostrava-nejlepsi-pripojeni-pro-hrace': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
+  '/blog/prevzati-nej-cz-spolecnosti-o2-co-to-znamena-pro-zakazni': '/blog/o2-nej-prevzatie-poda-alternativa-zakaznici',
+  '/blog/poruchy-internetu-jak-vyresit-pomaly-internet-rychly-navod': '/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
+  '/blog/komplexny-pruvodce-modernim-internetovym-pripojenim-2025': '/blog/nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025',
+  '/blog/opticky-internet-ostrava': '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025',
+  '/blog/rychly-internet-karvina': '/blog/rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda',
+  '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-v-moravskoslezskem-kraji-2025-500': '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025',
+  '/blog/wifi-optimalizace': '/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025',
+  '/blog/domaci-sit-nastaveni': '/blog',
+  '/blog/opticky-internet-vyhody': '/blog',
+  '/blog/gpon-technologia-v-moravskoslezskom-regione-revolucia-optickeho-internetu-1': '/blog/gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu',
+  '/blog/prechod-od-o2-k-poda-po-akvizicii-nejcz-a-netboxu-prilezitost-pre-lepsie-sluzby-v-moravskoslezskom-regione-101': '/blog/o2-nej-prevzatie-poda-alternativa-zakaznici',
+  '/blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione': '/blog',
+  '/blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione-3': '/blog',
+  '/blog/bleskovy-internet-bez-dratu-poznejte-60-ghz-technologii-a-nabidku-poda-102': '/blog/polanka-nad-odrou-60ghz-pripojeni-2025',
 };
 
 /**

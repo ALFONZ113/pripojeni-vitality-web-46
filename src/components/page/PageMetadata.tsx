@@ -117,10 +117,9 @@ const PageMetadata = ({
             "url": "${migrationSafeCanonicalUrl}",
             "description": "${description}",
             "dateModified": "${currentDate}T12:00:00Z",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://www.popri.cz/search?q={search_term_string}",
-              "query-input": "required name=search_term_string"
+            "publisher": {
+              "@type": "Organization",
+              "name": "Popri.cz"
             }
           }
         `}

@@ -13,6 +13,8 @@ export const NoIndexMeta: React.FC = () => {
       location.search.includes('tag=') ||
       location.search.includes('category=') ||
       location.search.includes('search=') ||
+      location.search.includes('source=') ||
+      location.search.includes('post_id=') ||
       location.search.includes('?utm_') ||
       location.search.includes('&utm_');
 

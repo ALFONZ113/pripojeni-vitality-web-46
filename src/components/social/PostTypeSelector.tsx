@@ -1,16 +1,6 @@
-import { Tag, FileText, Star, Lightbulb, Newspaper, Edit } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { PostType, postTemplates } from '@/data/social/templates';
-
-const iconMap = {
-  Tag,
-  FileText,
-  Star,
-  Lightbulb,
-  Newspaper,
-  Edit,
-};
 
 interface PostTypeSelectorProps {
   value: PostType;
@@ -20,38 +10,35 @@ interface PostTypeSelectorProps {
 export function PostTypeSelector({ value, onChange }: PostTypeSelectorProps) {
   return (
     <div className="space-y-3">
-      <Label className="text-base font-semibold text-foreground">Typ príspevku</Label>
+      <Label className="text-base font-semibold text-foreground">Typ příspěvku</Label>
       <RadioGroup
         value={value}
         onValueChange={(v) => onChange(v as PostType)}
-        className="grid grid-cols-2 md:grid-cols-3 gap-3"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2"
       >
         {(Object.keys(postTemplates) as PostType[]).map((type) => {
           const template = postTemplates[type];
-          const Icon = iconMap[template.icon as keyof typeof iconMap];
           const isSelected = value === type;
 
           return (
             <Label
               key={type}
-              htmlFor={type}
+              htmlFor={`post-type-${type}`}
               className={`
-                flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200
+                flex items-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all duration-200
                 ${isSelected 
                   ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20' 
                   : 'border-border bg-card hover:border-primary/50 hover:bg-card/80'
                 }
               `}
             >
-              <RadioGroupItem value={type} id={type} className="sr-only" />
-              <div className={`p-2 rounded-lg ${isSelected ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                <Icon className="h-5 w-5" />
-              </div>
+              <RadioGroupItem value={type} id={`post-type-${type}`} className="sr-only" />
+              <span className="text-lg">{template.emoji}</span>
               <div className="flex-1 min-w-0">
-                <p className={`font-medium text-sm ${isSelected ? 'text-primary' : 'text-foreground'}`}>
+                <p className={`font-medium text-xs ${isSelected ? 'text-primary' : 'text-foreground'}`}>
                   {template.name}
                 </p>
-                <p className="text-xs text-muted-foreground truncate">
+                <p className="text-[10px] text-muted-foreground truncate">
                   {template.description}
                 </p>
               </div>

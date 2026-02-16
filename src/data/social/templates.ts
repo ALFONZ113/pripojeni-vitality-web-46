@@ -1,5 +1,5 @@
-export type PostType = 'promo' | 'blog' | 'review' | 'tip' | 'news' | 'custom';
-export type Platform = 'facebook' | 'instagram' | 'both';
+export type PostType = 'promo' | 'blog' | 'review' | 'tip' | 'news' | 'custom' | 'product' | 'photo' | 'meme' | 'education' | 'fb-ad' | 'success';
+export type Platform = 'facebook' | 'instagram' | 'both' | 'fb-ad';
 export type VisualStyle = 
   | 'luxury-gold' 
   | 'photo-realistic' 
@@ -10,10 +10,29 @@ export type VisualStyle =
   | 'bright-bold'
   | 'premium-ad';
 
+export type WizardStep = 'type' | 'platform' | 'style' | 'person' | 'topic' | 'content';
+
+export interface WizardState {
+  currentStep: WizardStep;
+  completedSteps: WizardStep[];
+}
+
+export const WIZARD_STEPS: WizardStep[] = ['type', 'platform', 'style', 'person', 'topic', 'content'];
+
+export const WIZARD_STEP_LABELS: Record<WizardStep, string> = {
+  type: 'Typ',
+  platform: 'Platforma',
+  style: 'Styl',
+  person: 'Osoba',
+  topic: 'Téma',
+  content: 'Obsah',
+};
+
 export interface PostTemplate {
   name: string;
   description: string;
   icon: string;
+  emoji: string;
   systemPrompt: string;
   fbPromptTemplate: string;
   igPromptTemplate: string;
@@ -205,7 +224,7 @@ Example CTAs: "Chci nejnovější hardware", "Už od 300 Kč měsíčně", "Zař
 `.trim(),
 };
 
-export const platformSpecs = {
+export const platformSpecs: Record<string, { name: string; icon: string; dimensions: string; width: number; height: number; maxTextLength: number; hashtagLimit: number }> = {
   facebook: {
     name: 'Facebook',
     icon: 'Facebook',
@@ -224,6 +243,15 @@ export const platformSpecs = {
     maxTextLength: 2200,
     hashtagLimit: 30,
   },
+  'fb-ad': {
+    name: 'Facebook Ad',
+    icon: 'Facebook',
+    dimensions: '1080x1080',
+    width: 1080,
+    height: 1080,
+    maxTextLength: 125,
+    hashtagLimit: 0,
+  },
 };
 
 export const postTemplates: Record<PostType, PostTemplate> = {
@@ -231,6 +259,7 @@ export const postTemplates: Record<PostType, PostTemplate> = {
     name: 'Promo tarify',
     description: 'Propagácia cien a akciových ponúk',
     icon: 'Tag',
+    emoji: '🏷️',
     systemPrompt: `Jsi expert na sociální sítě pro českého poskytovatele internetu popri.cz (autorizovaný partner PODA). 
 Piš v češtině, moderně a přátelsky. Používej emoji vhodně. 
 Zdůrazňuj výhody: gigabitová rychlost, 85+ TV programů, nulová aktivace.
@@ -254,6 +283,7 @@ ALL TEXT MUST BE IN CZECH: Use "Rychlost", "Zdarma", "od 300 Kč/měsíc".`,
     name: 'Blog článok',
     description: 'Zdieľanie článku z blogu',
     icon: 'FileText',
+    emoji: '📝',
     systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat teaser pro sdílení blog článku z popri.cz.
 Piš v češtině, přátelsky a informativně. Vzbuď zájem o přečtení celého článku.`,
     fbPromptTemplate: `Napiš Facebook příspěvek pro sdílení blog článku.
@@ -275,6 +305,7 @@ ALL TEXT MUST BE IN CZECH: Use "Přečtěte si", "Jak na to", "Tipy".`,
     name: 'Recenzia zákazníka',
     description: 'Zdieľanie pozitívnej recenzie',
     icon: 'Star',
+    emoji: '⭐',
     systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat příspěvek prezentující recenzi spokojného zákazníka popri.cz.
 Piš autenticky, důvěryhodně. Zdůrazni konkrétní přínosy zmíněné v recenzi.`,
     fbPromptTemplate: `Napiš Facebook příspěvek prezentující recenzi zákazníka.
@@ -297,6 +328,7 @@ ALL TEXT MUST BE IN CZECH: Use "Spokojený zákazník", "Recenze", "Doporučuji"
     name: 'Tip & trik',
     description: 'Užitočné rady pre používateľov',
     icon: 'Lightbulb',
+    emoji: '💡',
     systemPrompt: `Jsi expert na internet a technologie. Sdílíš užitečné tipy pro uživatele internetu.
 Piš jednoduše, srozumitelně, prakticky. Tipy by měly být snadno realizovatelné.`,
     fbPromptTemplate: `Napiš Facebook příspěvek s užitečným tipem pro uživatele internetu.
@@ -319,6 +351,7 @@ ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete", "Umístěte", "Změň
     name: 'Novinky',
     description: 'Oznámenie noviniek a aktualizácií',
     icon: 'Newspaper',
+    emoji: '📰',
     systemPrompt: `Jsi PR specialista pro popri.cz. Sdílíš novinky a aktualizace služeb.
 Piš profesionálně ale přátelsky. Zdůrazni přínosy pro zákazníky.`,
     fbPromptTemplate: `Napiš Facebook příspěvek oznamující novinku nebo aktualizaci služby popri.cz.
@@ -340,6 +373,7 @@ ALL TEXT MUST BE IN CZECH: Use "Novinka", "Aktualita", "Nové".`,
     name: 'Vlastný text',
     description: 'Vlastná téma podľa zadania',
     icon: 'Edit',
+    emoji: '✏️',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytvoříš příspěvek na míru podle zadání.
 Piš v češtině, moderně a přátelsky. Přizpůsob styl podle tématu.`,
     fbPromptTemplate: `Napiš Facebook příspěvek podle zadaného tématu.
@@ -356,6 +390,141 @@ Space for custom text overlay.
 ALL TEXT MUST BE IN CZECH: Translate any Slovak input to Czech.`,
     suggestedHashtags: ['#popri', '#internet', '#ostrava'],
   },
+  success: {
+    name: 'Úspěch zákazníka',
+    description: 'Příběh spokojného zákazníka',
+    icon: 'Star',
+    emoji: '🏆',
+    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytváříš příběhy úspěšných zákazníků.
+Piš autenticky, emotivně a důvěryhodně. Zdůrazni konkrétní transformaci - jak se život zákazníka zlepšil díky rychlému internetu.`,
+    fbPromptTemplate: `Napiš Facebook příspěvek s příběhem úspěšného zákazníka popri.cz.
+Formát: příběh s konkrétními detaily (jméno, lokalita, co se změnilo).
+Zdůrazni emotivní transformaci: "Před popri.cz" vs "Po popri.cz".
+Délka: 150-250 slov. Zakonči výzvou pro nové zákazníky.`,
+    igPromptTemplate: `Napiš Instagram příspěvek s příběhem zákazníka.
+Krátký emotivní příběh s emoji. Před/Po formát.
+Délka: 80-120 slov.`,
+    imagePromptBase: `Customer success story social media graphic.
+Split-screen "before/after" concept.
+Happy customer in cozy home environment.
+Trust indicators: stars, checkmarks.
+ALL TEXT MUST BE IN CZECH: Use "Příběh zákazníka", "Jak to změnilo můj život".`,
+    suggestedHashtags: ['#zákazník', '#příběh', '#spokojenost', '#internet', '#popri', '#reference', '#zkušenost'],
+  },
+  product: {
+    name: 'Produkt',
+    description: 'Prezentácia tarifu alebo služby',
+    icon: 'Tag',
+    emoji: '📦',
+    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Prezentuj konkrétní tarif nebo službu.
+Piš v češtině, jasně a přesvědčivě. Zdůrazni klíčové parametry a výhody oproti konkurenci.`,
+    fbPromptTemplate: `Napiš Facebook příspěvek prezentující konkrétní tarif/službu popri.cz.
+Zmíň konkrétní parametry: rychlost, cena, TV programy, bonus.
+Porovnej s průměrnou nabídkou na trhu.
+Délka: 120-180 slov. Přidej CTA.`,
+    igPromptTemplate: `Napiš Instagram příspěvek o produktu/tarifu popri.cz.
+Krátký, přehledný formát s klíčovými čísly.
+Délka: 60-100 slov.`,
+    imagePromptBase: `Product showcase social media graphic.
+Clean product card layout with key features highlighted.
+Price badge, speed indicators, feature icons.
+Professional product photography aesthetic.
+ALL TEXT MUST BE IN CZECH: Use "Tarif", "Rychlost", "od X Kč/měsíc".`,
+    suggestedHashtags: ['#tarif', '#internet', '#nabídka', '#gigabit', '#popri', '#optika'],
+  },
+  photo: {
+    name: 'Realistická foto',
+    description: 'Fotorealistický vizuál',
+    icon: 'Camera',
+    emoji: '📸',
+    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytváříš příspěvky doprovázené fotorealistickými vizuály.
+Piš v češtině, autenticky a přirozeně. Text by měl doplňovat realistickou fotografii.`,
+    fbPromptTemplate: `Napiš Facebook příspěvek pro popri.cz, který bude doprovázen fotorealistickým obrázkem.
+Tón přirozený, jako by šlo o skutečnou fotku z domácnosti zákazníka.
+Délka: 100-150 slov.`,
+    igPromptTemplate: `Napiš Instagram příspěvek s autentickým, lifestyle tónem.
+Krátký, přirozený text jako u reálné fotky.
+Délka: 60-100 slov.`,
+    imagePromptBase: `Photorealistic lifestyle photography.
+Authentic scene from Czech household.
+Natural lighting, candid feel.
+No heavy graphics or overlays.
+Real people in real situations with technology.
+ALL TEXT MUST BE IN CZECH if any text overlay.`,
+    suggestedHashtags: ['#lifestyle', '#domov', '#internet', '#rodina', '#technologie', '#popri'],
+  },
+  meme: {
+    name: 'Meme / Humor',
+    description: 'Vtipný formát pre virálny dosah',
+    icon: 'Edit',
+    emoji: '😂',
+    systemPrompt: `Jsi expert na virální obsah a memy pro popri.cz.
+Vytváříš vtipné příspěvky o internetu, WiFi problémech a technologiích.
+Piš v češtině, používej internetový humor, relatable situace. Buď vtipný ale ne urážlivý.`,
+    fbPromptTemplate: `Napiš vtipný Facebook příspěvek / meme text pro popri.cz.
+Téma: problémy s pomalým internetem, WiFi výpadky, online závislost.
+Formát: "Když..." meme styl nebo relatable situace.
+Délka: 50-100 slov. Maximálně vtipný.`,
+    igPromptTemplate: `Napiš vtipný Instagram příspěvek / meme.
+Ultra krátký, virální humor o internetu.
+Délka: 30-60 slov.`,
+    imagePromptBase: `Humorous meme-style social media image.
+Funny relatable situation about internet/WiFi.
+Bold text overlay with meme format.
+Bright, eye-catching colors.
+Cartoon or exaggerated style.
+ALL TEXT MUST BE IN CZECH: Use Czech internet humor, relatable situations.`,
+    suggestedHashtags: ['#meme', '#humor', '#internet', '#wifi', '#relatable', '#vtip', '#lol'],
+  },
+  education: {
+    name: 'Edukace',
+    description: 'Naučte publikum niečo nové',
+    icon: 'Lightbulb',
+    emoji: '🎓',
+    systemPrompt: `Jsi expert na vzdělávací obsah o internetu a technologiích pro popri.cz.
+Vysvětluj složité technické koncepty jednoduše a srozumitelně. Piš v češtině.`,
+    fbPromptTemplate: `Napiš vzdělávací Facebook příspěvek o internetu/technologiích.
+Formát: "Věděli jste?" nebo infografika-styl s čísly a fakty.
+Vysvětli technický koncept jednoduše (GPON, WiFi 6, optika vs. měď).
+Délka: 120-180 slov. Informativní a zajímavý.`,
+    igPromptTemplate: `Napiš vzdělávací Instagram příspěvek.
+Krátký, přehledný formát s emoji a čísly.
+Formát carousel-style: bod 1, bod 2, bod 3.
+Délka: 60-100 slov.`,
+    imagePromptBase: `Educational infographic social media design.
+Clean data visualization, icons, numbered steps.
+Knowledge/learning theme.
+Professional but accessible aesthetic.
+Charts, diagrams, or comparison tables.
+ALL TEXT MUST BE IN CZECH: Use "Věděli jste?", "Jak funguje", "Fakta".`,
+    suggestedHashtags: ['#edukace', '#vzdělávání', '#technologie', '#internet', '#fakta', '#jakfunguje', '#optika'],
+  },
+  'fb-ad': {
+    name: 'Facebook Ads',
+    description: 'Reklamná kampaň pre FB Ads',
+    icon: 'Facebook',
+    emoji: '📢',
+    systemPrompt: `Jsi expert na Facebook Ads pro popri.cz. Vytváříš vysoce konverzní reklamní texty.
+Piš v češtině, stručně a přesvědčivě. Dodržuj limity: Headline max 40 znaků, Popis max 30 znaků.
+Primární text by měl být 125 znaků nebo méně pro optimální zobrazení.`,
+    fbPromptTemplate: `Napiš Facebook Ads příspěvek pro popri.cz.
+Formát:
+1. Primární text (max 125 znaků) - hlavní sdělení s emoji
+2. Headline (max 40 znaků) - krátký, úderný nadpis
+3. Popis odkazu (max 30 znaků) - doplňující info
+4. Doporuč CTA tlačítko: Více informací / Zaregistrovat se / Kontaktujte nás
+
+Zdůrazni: gigabit internet, od 300 Kč/měs, 0 Kč aktivace.`,
+    igPromptTemplate: `Napiš krátký reklamní text pro Instagram Ads.
+Max 125 znaků primární text. Stručný a přesvědčivý.
+Přidej headline a popis.`,
+    imagePromptBase: `Facebook Ads banner - clean, professional, high-converting design.
+Clear headline area, product/benefit visual, CTA button space.
+Minimal text on image (Facebook 20% text rule).
+Professional advertising aesthetic.
+ALL TEXT MUST BE IN CZECH.`,
+    suggestedHashtags: [],
+  },
 };
 
 export const contentCalendar = [
@@ -364,6 +533,15 @@ export const contentCalendar = [
   { day: 'Středa', type: 'promo' as PostType, suggestion: 'Promo akce, tarify, ceny' },
   { day: 'Čtvrtek', type: 'news' as PostType, suggestion: 'Novinky a aktuality' },
   { day: 'Pátek', type: 'review' as PostType, suggestion: 'Recenze spokojených zákazníků' },
-  { day: 'Sobota', type: 'tip' as PostType, suggestion: 'Víkendový tip pro rodiny' },
-  { day: 'Neděle', type: 'custom' as PostType, suggestion: 'Volný obsah, soutěže, interakce' },
+  { day: 'Sobota', type: 'meme' as PostType, suggestion: 'Víkendový humor / meme' },
+  { day: 'Neděle', type: 'education' as PostType, suggestion: 'Vzdělávací obsah o technologiích' },
+];
+
+export const FB_AD_CTA_OPTIONS = [
+  'Více informací',
+  'Zaregistrovat se',
+  'Kontaktujte nás',
+  'Koupit',
+  'Stáhnout',
+  'Rezervovat',
 ];

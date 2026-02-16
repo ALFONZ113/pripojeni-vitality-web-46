@@ -1,17 +1,26 @@
 import { useState } from 'react';
-import { Facebook, Instagram, Copy, Check, Download, ImageIcon, Loader2 } from 'lucide-react';
+import { Facebook, Instagram, Copy, Check, Download, ImageIcon, Loader2, RefreshCw } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { platformSpecs } from '@/data/social/templates';
+import { platformSpecs, FB_AD_CTA_OPTIONS } from '@/data/social/templates';
 
 interface PlatformContent {
   text: string;
   hashtags: string;
   imagePrompt: string;
   imageUrl?: string;
+}
+
+interface FbAdFields {
+  headline: string;
+  description: string;
+  cta: string;
 }
 
 interface GeneratedContentProps {
@@ -22,6 +31,22 @@ interface GeneratedContentProps {
   onImagePromptChange: (prompt: string) => void;
   onGenerateImage: () => void;
   isGeneratingImage: boolean;
+  onRegenerate?: (field: 'text' | 'hashtags' | 'imagePrompt') => void;
+  isRegenerating?: string | null;
+  showFbAdFields?: boolean;
+  fbAdFields?: FbAdFields;
+  onFbAdFieldChange?: (field: keyof FbAdFields, value: string) => void;
+}
+
+function CharCounter({ current, max, label }: { current: number; max: number; label?: string }) {
+  const ratio = current / max;
+  const color = ratio <= 0.8 ? 'text-green-500' : ratio <= 1 ? 'text-yellow-500' : 'text-red-500';
+  return (
+    <p className={`text-xs text-right ${color}`}>
+      {label && <span className="text-muted-foreground mr-1">{label}</span>}
+      {current} / {max} znaků
+    </p>
+  );
 }
 
 export function GeneratedContent({
@@ -32,6 +57,11 @@ export function GeneratedContent({
   onImagePromptChange,
   onGenerateImage,
   isGeneratingImage,
+  onRegenerate,
+  isRegenerating,
+  showFbAdFields,
+  fbAdFields,
+  onFbAdFieldChange,
 }: GeneratedContentProps) {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const spec = platformSpecs[platform];
@@ -45,7 +75,7 @@ export function GeneratedContent({
       toast.success('Skopírované do schránky!');
       setTimeout(() => setCopiedField(null), 2000);
     } catch {
-      toast.error('Nepodarilo sa skopírovať');
+      toast.error('Nepodarilo se skopírovať');
     }
   };
 
@@ -63,9 +93,9 @@ export function GeneratedContent({
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
-      toast.success('Obrázok stiahnutý!');
+      toast.success('Obrázek stažen!');
     } catch {
-      toast.error('Nepodarilo sa stiahnuť obrázok');
+      toast.error('Nepodařilo se stáhnout obrázek');
     }
   };
 
@@ -84,80 +114,160 @@ export function GeneratedContent({
         {/* Post Text */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-foreground">📝 Text príspevku</label>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => copyToClipboard(content.text, 'text')}
-              className="h-9 sm:h-8 px-3 sm:px-2 min-w-[44px]"
-            >
-              {copiedField === 'text' ? (
-                <Check className="h-4 w-4 text-green-500" />
-              ) : (
-                <Copy className="h-4 w-4" />
+            <label className="text-sm font-medium text-foreground">📝 Text příspěvku</label>
+            <div className="flex gap-1">
+              {onRegenerate && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => onRegenerate('text')}
+                  disabled={isRegenerating === 'text'}
+                  className="h-8 px-2"
+                >
+                  {isRegenerating === 'text' ? (
+                    <Loader2 className="h-3 w-3 animate-spin" />
+                  ) : (
+                    <RefreshCw className="h-3 w-3" />
+                  )}
+                </Button>
               )}
-              <span className="ml-1 text-xs hidden sm:inline">Kopírovať</span>
-            </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => copyToClipboard(content.text, 'text')}
+                className="h-8 px-2"
+              >
+                {copiedField === 'text' ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
+              </Button>
+            </div>
           </div>
           <Textarea
             value={content.text}
             onChange={(e) => onTextChange(e.target.value)}
-            className="min-h-[120px] sm:min-h-[150px] resize-none bg-muted/50"
+            className="min-h-[120px] resize-none bg-muted/50"
             placeholder="Vygenerovaný text..."
           />
-          <p className="text-xs text-muted-foreground text-right">
-            {content.text.length} / {spec.maxTextLength} znakov
-          </p>
+          <CharCounter current={content.text.length} max={spec.maxTextLength} />
         </div>
 
-        {/* Hashtags */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-foreground">#️⃣ Hashtagy</label>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => copyToClipboard(content.hashtags, 'hashtags')}
-              className="h-9 sm:h-8 px-3 sm:px-2 min-w-[44px]"
-            >
-              {copiedField === 'hashtags' ? (
-                <Check className="h-4 w-4 text-green-500" />
-              ) : (
-                <Copy className="h-4 w-4" />
-              )}
-              <span className="ml-1 text-xs hidden sm:inline">Kopírovať</span>
-            </Button>
+        {/* FB Ad Fields */}
+        {showFbAdFields && fbAdFields && onFbAdFieldChange && (
+          <div className="space-y-3 p-3 rounded-lg border border-[#1877F2]/30 bg-[#1877F2]/5">
+            <p className="text-xs font-medium text-[#1877F2]">📢 Facebook Ads pole</p>
+            <div className="space-y-2">
+              <div>
+                <Label className="text-xs">Headline (max 40 znaků)</Label>
+                <Input
+                  value={fbAdFields.headline}
+                  onChange={(e) => onFbAdFieldChange('headline', e.target.value)}
+                  maxLength={40}
+                  className="bg-muted/50 h-8 text-sm"
+                  placeholder="Gigabit internet od 300 Kč"
+                />
+                <CharCounter current={fbAdFields.headline.length} max={40} />
+              </div>
+              <div>
+                <Label className="text-xs">Popis odkazu (max 30 znaků)</Label>
+                <Input
+                  value={fbAdFields.description}
+                  onChange={(e) => onFbAdFieldChange('description', e.target.value)}
+                  maxLength={30}
+                  className="bg-muted/50 h-8 text-sm"
+                  placeholder="Aktivace zdarma"
+                />
+                <CharCounter current={fbAdFields.description.length} max={30} />
+              </div>
+              <div>
+                <Label className="text-xs">CTA tlačítko</Label>
+                <Select value={fbAdFields.cta} onValueChange={(v) => onFbAdFieldChange('cta', v)}>
+                  <SelectTrigger className="h-8 text-sm bg-muted/50">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {FB_AD_CTA_OPTIONS.map((opt) => (
+                      <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
           </div>
-          <Textarea
-            value={content.hashtags}
-            onChange={(e) => onHashtagsChange(e.target.value)}
-            className="min-h-[60px] resize-none bg-muted/50 text-sm"
-            placeholder="#internet #ostrava..."
-          />
-        </div>
+        )}
+
+        {/* Hashtags */}
+        {spec.hashtagLimit > 0 && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium text-foreground">#️⃣ Hashtagy</label>
+              <div className="flex gap-1">
+                {onRegenerate && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onRegenerate('hashtags')}
+                    disabled={isRegenerating === 'hashtags'}
+                    className="h-8 px-2"
+                  >
+                    {isRegenerating === 'hashtags' ? (
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                    ) : (
+                      <RefreshCw className="h-3 w-3" />
+                    )}
+                  </Button>
+                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => copyToClipboard(content.hashtags, 'hashtags')}
+                  className="h-8 px-2"
+                >
+                  {copiedField === 'hashtags' ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
+                </Button>
+              </div>
+            </div>
+            <Textarea
+              value={content.hashtags}
+              onChange={(e) => onHashtagsChange(e.target.value)}
+              className="min-h-[60px] resize-none bg-muted/50 text-sm"
+              placeholder="#internet #ostrava..."
+            />
+          </div>
+        )}
 
         {/* Image Prompt */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-foreground">🖼️ Prompt pre obrázok (EN)</label>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => copyToClipboard(content.imagePrompt, 'prompt')}
-              className="h-9 sm:h-8 px-3 sm:px-2 min-w-[44px]"
-            >
-              {copiedField === 'prompt' ? (
-                <Check className="h-4 w-4 text-green-500" />
-              ) : (
-                <Copy className="h-4 w-4" />
+            <label className="text-sm font-medium text-foreground">🖼️ Prompt pro obrázek (EN)</label>
+            <div className="flex gap-1">
+              {onRegenerate && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => onRegenerate('imagePrompt')}
+                  disabled={isRegenerating === 'imagePrompt'}
+                  className="h-8 px-2"
+                >
+                  {isRegenerating === 'imagePrompt' ? (
+                    <Loader2 className="h-3 w-3 animate-spin" />
+                  ) : (
+                    <RefreshCw className="h-3 w-3" />
+                  )}
+                </Button>
               )}
-              <span className="ml-1 text-xs hidden sm:inline">Kopírovať</span>
-            </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => copyToClipboard(content.imagePrompt, 'prompt')}
+                className="h-8 px-2"
+              >
+                {copiedField === 'prompt' ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
+              </Button>
+            </div>
           </div>
           <Textarea
             value={content.imagePrompt}
             onChange={(e) => onImagePromptChange(e.target.value)}
-            className="min-h-[100px] resize-none bg-muted/50 text-sm font-mono"
+            className="min-h-[80px] resize-none bg-muted/50 text-sm font-mono"
             placeholder="Image generation prompt..."
           />
         </div>
@@ -175,17 +285,17 @@ export function GeneratedContent({
                 {isGeneratingImage ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Generujem obrázok...
+                    Generuji obrázek...
                   </>
                 ) : (
                   <>
                     <ImageIcon className="h-4 w-4 mr-2" />
-                    Vygenerovať obrázok ({spec.dimensions})
+                    Vygenerovat obrázek ({spec.dimensions})
                   </>
                 )}
               </Button>
               <p className="text-xs text-center text-muted-foreground">
-                ⚡ Generovanie obrázka = +1 AI požiadavka
+                ⚡ Generování obrázku = +1 AI požadavek
               </p>
             </div>
           ) : (
@@ -193,31 +303,22 @@ export function GeneratedContent({
               <div className="relative rounded-lg overflow-hidden border border-border">
                 <img
                   src={content.imageUrl}
-                  alt="Vygenerovaný obrázok"
+                  alt="Vygenerovaný obrázek"
                   className="w-full h-auto"
                 />
               </div>
               <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  onClick={downloadImage}
-                  className="flex-1"
-                >
+                <Button variant="outline" onClick={downloadImage} className="flex-1">
                   <Download className="h-4 w-4 mr-2" />
-                  Stiahnuť
+                  Stáhnout
                 </Button>
-                <Button
-                  variant="outline"
-                  onClick={onGenerateImage}
-                  disabled={isGeneratingImage}
-                  className="flex-1"
-                >
+                <Button variant="outline" onClick={onGenerateImage} disabled={isGeneratingImage} className="flex-1">
                   {isGeneratingImage ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
                   ) : (
                     <>
                       <ImageIcon className="h-4 w-4 mr-2" />
-                      Nový obrázok
+                      Nový obrázek
                     </>
                   )}
                 </Button>

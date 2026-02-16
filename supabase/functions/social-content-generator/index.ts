@@ -3,31 +3,26 @@ import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-// Input validation schema
 const InputSchema = z.object({
-  type: z.enum(['promo', 'blog', 'review', 'tip', 'news', 'custom']),
-  platform: z.enum(['facebook', 'instagram', 'both']),
+  action: z.enum(['generate', 'suggest-topic']).default('generate'),
+  type: z.enum(['promo', 'blog', 'review', 'tip', 'news', 'custom', 'product', 'photo', 'meme', 'education', 'fb-ad', 'success']),
+  platform: z.enum(['facebook', 'instagram', 'both']).optional().default('both'),
   visualStyle: z.enum([
-    'luxury-gold', 
-    'photo-realistic', 
-    'modern-noir', 
-    'minimalist',
-    'gradient-modern',
-    'tech-blue',
-    'bright-bold',
-    'premium-ad'
+    'luxury-gold', 'photo-realistic', 'modern-noir', 'minimalist',
+    'gradient-modern', 'tech-blue', 'bright-bold', 'premium-ad'
   ]).default('luxury-gold'),
   includePerson: z.enum(['with-person', 'without-person', 'custom-person']).default('with-person'),
   customTopic: z.string().max(500).optional().nullable(),
   blogTitle: z.string().max(200).optional().nullable(),
   customPersonImage: z.string().optional().nullable(),
   personRenderStyle: z.enum(['realistic', 'caricature', 'illustration', 'cartoon']).optional().nullable(),
+  withCTA: z.boolean().optional().default(true),
+  regenerateOnly: z.enum(['text', 'hashtags', 'imagePrompt']).optional().nullable(),
 });
 
-// Person render style prompts
 const personRenderPrompts: Record<string, string> = {
   'realistic': 'Photo-realistic person integration, natural lighting, seamless blend with environment, professional photography quality',
   'caricature': 'Exaggerated caricature style with bold features, humorous artistic interpretation, warm colors, fun and playful aesthetic',
@@ -35,511 +30,293 @@ const personRenderPrompts: Record<string, string> = {
   'cartoon': 'Pixar/Disney 3D cartoon style, friendly and approachable, vibrant colors, animated character look',
 };
 
-// Style-specific branding prompts
 const stylePrompts: Record<string, string> = {
-  'luxury-gold': `
-Style: Luxury noir and gold editorial design with professional photography quality
-Background: Deep black gradient starting from #0A0A0A
-Primary accent color: Rich gold/amber #D4A517 with subtle glow effects
-Text color: Warm cream white #F5F0E8
-Typography: Elegant serif font (Playfair Display style) for headlines, clean sans-serif for body text
-Visual effects: Subtle glassmorphism panels, golden fiber optic light trails, soft ambient lighting
-Mood: Premium, modern, trustworthy, sophisticated
-No watermarks, no text artifacts, photorealistic quality
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
-`,
-  'photo-realistic': `
-Style: Realistic lifestyle photography with natural lighting and authentic scenes
-Background: Real interior environments - cozy living rooms, modern home offices, family spaces
-
-Photo subjects - include ONE of these realistic scenes based on post type:
-- Happy Czech family watching TV together on comfortable sofa (for promo posts)
-- Woman working from home on laptop, relaxed and productive in home office (for tips)
-- Young professional streaming or gaming with fast internet connection (for custom)
-- Parents with children enjoying online content together (for news)
-- Modern person using tablet/smartphone with stable connection (for blog)
-
-Lighting: Warm natural light from windows, soft indoor ambient lighting
-Colors: Warm neutrals (beige, cream, soft brown), natural wood tones, soft whites
-Minimal gold accents - only if absolutely necessary, prefer natural warm colors
-NO heavy gold effects - keep colors natural and authentic
-Mood: Authentic, relatable, comfortable, trustworthy, aspirational but realistic
-Photography style: Editorial lifestyle magazine quality, candid feel, Czech family aesthetic
-
-Text overlay: Small, elegant Czech headline in corner or bottom third of image
-Typography: Clean sans-serif (Inter style), white or cream text with subtle shadow for readability
-No heavy graphics, no over-designed elements, focus on the authentic photo
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language.
-Examples: "Rychlý internet pro celou rodinu", "Práce z domova bez výpadků", "Streamujte v nejvyší kvalitě"
-Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
-`,
-  'modern-noir': `
-Style: Modern dark editorial design with professional photography quality
-Background: Deep charcoal black gradient, subtle dark textures
-Primary accent color: Soft white #E8E8E8 with minimal color accents
-Text color: Clean white #FFFFFF
-Typography: Modern sans-serif font (Inter/Helvetica style) for all text
-Visual effects: Subtle shadows, clean lines, minimal glassmorphism, soft ambient lighting
-Mood: Professional, clean, modern, tech-forward, trustworthy
-No watermarks, no text artifacts, photorealistic quality
-Minimal use of gold - prefer grayscale with subtle blue or teal accents
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
-`,
-  'minimalist': `
-Style: Clean minimalist design with generous whitespace
-Background: Pure white or very light gray #FAFAFA with subtle gradients
-Primary accent color: Deep black #0A0A0A for text, subtle dark accents
-Text color: Charcoal black #1A1A1A
-Typography: Clean geometric sans-serif font (Inter style), bold headlines, light body text
-Visual effects: Clean lines, geometric shapes, no heavy shadows, subtle borders
-Mood: Clean, simple, modern, Scandinavian-inspired, professional
-No watermarks, no text artifacts, high contrast, lots of whitespace
-Minimal visual clutter - focus on typography and composition
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Umístěte" (not "Umiestnite"), "Změňte" (not "Zmeňte").
-`,
-  'gradient-modern': `
-Style: Modern gradient design with vibrant color transitions and glassmorphism effects
-Background: Dynamic gradient from deep purple #7C3AED through blue #3B82F6 to cyan #06B6D4
-Primary accent color: White #FFFFFF with frosted glass panels
-Text color: Pure white #FFFFFF with subtle glow
-Typography: Modern geometric sans-serif (Inter/Poppins style), bold headlines
-Visual effects: Glassmorphism cards, soft blur overlays, gradient orbs, floating elements
-Mood: Trendy, youthful, energetic, innovative, Instagram-ready
-No watermarks, vibrant colors, smooth transitions, contemporary feel
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Změňte" (not "Zmeňte").
-`,
-  'tech-blue': `
-Style: Professional technology-focused design with blue color palette
-Background: Deep navy gradient #0A1628 to #1E3A5F with subtle grid pattern
-Primary accent color: Electric blue #00A3FF with neon glow effects
-Secondary accent: Cyan #00D4FF for highlights
-Text color: Clean white #FFFFFF
-Typography: Technical sans-serif font (Inter/Roboto Mono style), clean and precise
-Visual effects: Network node connections, data stream visualizations, circuit patterns, blue light trails
-Mood: Professional, trustworthy, tech-forward, innovative, corporate-friendly
-No watermarks, sharp edges, digital aesthetic, futuristic but professional
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Změňte" (not "Zmeňte").
-`,
-  'bright-bold': `
-Style: High-impact promotional design with bold, saturated colors
-Background: Solid vibrant color or energetic gradient (orange #FF6B00, red #FF0040, yellow #FFD600)
-Primary accent color: Contrasting bright color for emphasis
-Text color: White #FFFFFF or Black #000000 for maximum contrast
-Typography: Extra bold, large sans-serif font (Impact/Bebas style), ALL CAPS headlines allowed
-Visual effects: Geometric shapes, starburst elements, price tags, discount badges, dynamic angles
-Mood: Exciting, urgent, attention-grabbing, promotional, high-energy
-No watermarks, maximum visual impact, clear call-to-action areas
-Perfect for: Sales, promotions, limited offers, discounts
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Use "SLEVA", "AKCE", "od 300 Kč", "ZDARMA" for promotional elements.
-`,
-  'premium-ad': `
-[GOAL] Generate a SINGLE premium social media ad banner.
-
-[CRITICAL RULES]
-1. Generate ONLY ONE image, not multiple variants
-2. Do NOT default to showing a router - choose subject based on the specific topic provided
-3. Focus on the SPECIFIC topic provided, not generic internet imagery
-4. If topic mentions WiFi tips, streaming, or lifestyle - show PEOPLE, not products
-5. Only show router/hardware if the topic is specifically about equipment
-
-[CONTEXT & SUBJECT]
-Style: High-end product/lifestyle photography in a dark, moody environment
-Background: Deep black #0A0A0A with dramatic warm orange ambient light
-Lighting: Dramatic warm orange/amber backlighting highlighting subjects
-Environment: Luxurious dark mode living rooms, modern home offices
-
-Subject selection based on topic (NOT router by default):
-- Tips about WiFi/streaming/internet: Person enjoying content, relaxed in cozy atmosphere
-- Promotions/offers: Lifestyle scene showing the BENEFIT (happy family, relaxed person), not the product
-- General topics: Authentic human moments with technology as subtle background element
-- Hardware topics ONLY: Show sleek router/devices with orange rim lighting
-
-[TEXT RENDERING]
-Render Czech text clearly with proper layout:
-1. Headline (Bold, Elegant White Playfair Display): Main message at top
-2. Subtitle (Orange/Cream italic): Supporting message below headline
-3. Badge/Button (White/cream background, Orange text): Call-to-action at bottom
-
-[COMPOSITION]
-Aspect Ratio: 4:5 (1080x1350) for Facebook posts, 9:16 for stories
-Layout: Text at top third, subject filling remaining frame
-Atmosphere: High-tech, premium, sophisticated, warm
-
-[STYLE]
-High-end lifestyle/product photography, sharp focus, luxurious dark tones, warm orange accents
-No watermarks, photorealistic quality
-
-CRITICAL LANGUAGE REQUIREMENT:
-All text visible in the image MUST be in CZECH language (čeština).
-Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Špičková", "Změňte" (not "Zmeňte").
-`,
+  'luxury-gold': `Style: Luxury noir and gold editorial design. Background: Deep black #0A0A0A. Accent: Rich gold #D4A517. Text: Cream #F5F0E8. Typography: Elegant serif headlines. Effects: Glassmorphism, golden fiber optic trails. Mood: Premium, sophisticated. CRITICAL: All text MUST be in CZECH.`,
+  'photo-realistic': `Style: Realistic lifestyle photography. Background: Real interiors. Lighting: Warm natural light. Colors: Warm neutrals. Mood: Authentic, relatable. Photography: Editorial lifestyle quality. CRITICAL: All text MUST be in CZECH.`,
+  'modern-noir': `Style: Modern dark editorial. Background: Deep charcoal. Accent: White #E8E8E8. Typography: Modern sans-serif. Mood: Professional, tech-forward. CRITICAL: All text MUST be in CZECH.`,
+  'minimalist': `Style: Clean minimalist. Background: White #FAFAFA. Text: Black #1A1A1A. Typography: Geometric sans-serif. Mood: Clean, Scandinavian. CRITICAL: All text MUST be in CZECH.`,
+  'gradient-modern': `Style: Vibrant gradients. Background: Purple to cyan gradient. Text: White. Effects: Glassmorphism, gradient orbs. Mood: Trendy, energetic. CRITICAL: All text MUST be in CZECH.`,
+  'tech-blue': `Style: Technology design. Background: Navy #0A1628. Accent: Electric blue #00A3FF. Effects: Network nodes, data streams. Mood: Professional, innovative. CRITICAL: All text MUST be in CZECH.`,
+  'bright-bold': `Style: High-impact promo. Background: Vibrant orange/red/yellow. Typography: Extra bold, large. Effects: Geometric shapes, badges. Mood: Exciting, urgent. CRITICAL: All text MUST be in CZECH. Use "SLEVA", "AKCE".`,
+  'premium-ad': `Style: Premium ad banner 9:16. Background: Black #0A0A0A with warm orange light. Lighting: Dramatic orange backlighting. Text: White headline, orange subtitle, CTA badge. Mood: High-tech, premium. CRITICAL: All text MUST be in CZECH.`,
 };
 
-const postTemplates = {
+const postTemplates: Record<string, { systemPrompt: string; fbPrompt: string; igPrompt: string; imagePrompt: string; hashtags: string[] }> = {
   promo: {
-    systemPrompt: `Jsi expert na sociální sítě pro českého poskytovatele internetu popri.cz (autorizovaný partner PODA). 
-Piš v češtině, moderně a přátelsky. Používej emoji vhodně. 
-Zdůrazňuj výhody: gigabitová rychlost, 85+ TV programů, nulová aktivace.
-Aktuální ceny: od 300 Kč/měsíc (promo), standardní 440 Kč/měsíc.`,
-    fbPrompt: `Napiš poutavý Facebook příspěvek pro popri.cz o aktuální promo akci na internet.
-Zmíň: gigabitová rychlost 1000/1000 Mbps, 85+ TV programů v ceně, 0 Kč aktivace a router.
-Cena od 300 Kč/měsíc. Přidej výzvu k akci (zavolat na 730 431 313).
-Délka: 150-250 slov. Použij 3-5 emoji.`,
-    igPrompt: `Napiš krátký Instagram příspěvek pro popri.cz o promo akci.
-Gigabit internet + TV od 300 Kč/měsíc. Buď stručný a poutavý.
-Délka: 80-120 slov. Použij více emoji. Zakonči výzvou k akci.`,
-    imagePrompt: `Promotional social media banner for fiber optic internet service.
-Price badge showing "od 300 Kč/měsíc" with accent effect.
-Fiber optic cables with light trails on dark background.
-Modern router device with subtle rim lighting.
-16:9 aspect ratio for Facebook, professional marketing style.
-ALL TEXT MUST BE IN CZECH: Use "Gigabit internet", "od 300 Kč/měsíc", "Rychlost", "Zdarma".`,
+    systemPrompt: `Jsi expert na sociální sítě pro českého poskytovatele internetu popri.cz (autorizovaný partner PODA). Piš v češtině, moderně a přátelsky. Zdůrazňuj: gigabitová rychlost, 85+ TV programů, nulová aktivace. Ceny: od 300 Kč/měsíc.`,
+    fbPrompt: `Napiš poutavý Facebook příspěvek pro popri.cz o promo akci. Zmíň: 1000/1000 Mbps, 85+ TV, 0 Kč aktivace, od 300 Kč/měsíc. CTA: 730 431 313. Délka: 150-250 slov.`,
+    igPrompt: `Napiš krátký Instagram příspěvek pro popri.cz o promo akci. Gigabit + TV od 300 Kč/měsíc. Délka: 80-120 slov.`,
+    imagePrompt: `Promotional banner for fiber optic internet. Price badge "od 300 Kč/měsíc". Fiber optic light trails. ALL TEXT IN CZECH.`,
     hashtags: ['#internet', '#optickýinternet', '#gigabit', '#ostrava', '#poda', '#akce', '#rychlýinternet'],
   },
   blog: {
-    systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat teaser pro sdílení blog článku z popri.cz.
-Piš v češtině, přátelsky a informativně. Vzbuď zájem o přečtení celého článku.`,
-    fbPrompt: `Napiš Facebook příspěvek pro sdílení blog článku.
-Vytvoř zajímavý teaser, který vzbudí zájem o přečtení.
-Zmíň hlavní přínos článku pro čtenáře.
-Délka: 100-150 slov. Zakonči výzvou "Přečtěte si více na popri.cz".`,
-    igPrompt: `Napiš Instagram příspěvek pro sdílení blog článku.
-Krátký, poutavý teaser s emoji.
-Délka: 60-100 slov. Zmíň "odkaz v bio".`,
-    imagePrompt: `Blog article social media card design.
-Clean editorial layout with elegant text overlay area.
-Professional photography style, technology/internet theme.
-Reading/knowledge visual elements, modern typography space.
-ALL TEXT MUST BE IN CZECH: Use "Přečtěte si", "Jak na to", "Tipy", "Poradna".`,
-    hashtags: ['#blog', '#tipy', '#internet', '#technologie', '#poradna', '#wifi', '#streaming'],
+    systemPrompt: `Jsi expert na sociální sítě. Napiš teaser pro blog článek z popri.cz. Piš v češtině, přátelsky.`,
+    fbPrompt: `Napiš Facebook teaser pro blog článek. Vzbuď zájem. Délka: 100-150 slov. Zakonči "Přečtěte si více na popri.cz".`,
+    igPrompt: `Napiš Instagram teaser pro blog. Krátký s emoji. Délka: 60-100 slov. Zmíň "odkaz v bio".`,
+    imagePrompt: `Blog article social card. Editorial layout. Technology theme. ALL TEXT IN CZECH.`,
+    hashtags: ['#blog', '#tipy', '#internet', '#technologie', '#poradna', '#wifi'],
   },
   review: {
-    systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat příspěvek prezentující recenzi spokojného zákazníka popri.cz.
-Piš autenticky, důvěryhodně. Zdůrazni konkrétní přínosy zmíněné v recenzi.`,
-    fbPrompt: `Napiš Facebook příspěvek prezentující recenzi zákazníka.
-Použij formát citátu. Zdůrazni konkrétní přínosy (rychlost, spolehlivost, podpora).
-Délka: 100-150 slov. Zakonči pozvánkou pro nové zákazníky.`,
-    igPrompt: `Napiš Instagram příspěvek s recenzí zákazníka.
-Krátký citát s emoji ⭐. Autentický tón.
-Délka: 60-100 slov.`,
-    imagePrompt: `Customer testimonial social media graphic.
-Large elegant quotation marks accent color on dark background.
-Space for customer quote text.
-Five stars rating indicator with subtle glow.
-Trust and satisfaction theme, professional design.
-ALL TEXT MUST BE IN CZECH: Use "Spokojený zákazník", "Recenze", "Doporučuji".`,
-    hashtags: ['#recenze', '#spokojený', '#zákazník', '#internet', '#doporučení', '#reference'],
+    systemPrompt: `Jsi expert na sociální sítě. Napiš příspěvek s recenzí zákazníka popri.cz. Autentický tón.`,
+    fbPrompt: `Napiš Facebook příspěvek s recenzí zákazníka. Formát citátu. Délka: 100-150 slov.`,
+    igPrompt: `Napiš Instagram příspěvek s recenzí. Krátký citát s ⭐. Délka: 60-100 slov.`,
+    imagePrompt: `Customer testimonial graphic. Quotation marks. Five stars. ALL TEXT IN CZECH.`,
+    hashtags: ['#recenze', '#spokojený', '#zákazník', '#internet', '#doporučení'],
   },
   tip: {
-    systemPrompt: `Jsi expert na internet a technologie. Sdílíš užitečné tipy pro uživatele internetu.
-Piš jednoduše, srozumitelně, prakticky. Tipy by měly být snadno realizovatelné.`,
-    fbPrompt: `Napiš Facebook příspěvek s užitečným tipem pro uživatele internetu.
-Téma: optimalizace WiFi / rychlejší internet / lepší streaming.
-Formát: "Věděli jste, že..." nebo "Tip týdne:".
-Délka: 100-150 slov. Praktický a užitečný.`,
-    igPrompt: `Napiš Instagram tip příspěvek.
-Krátký, praktický tip s emoji 💡.
-Formát seznamu nebo krátkých bodů.
-Délka: 60-100 slov.`,
-    imagePrompt: `Educational tip social media infographic.
-Lightbulb icon with glow effect on dark background.
-Clean numbered list or bullet point layout space.
-Tech/internet theme icons (router, WiFi signal, speed meter).
-Easy to read, informative modern design.
-ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete", "Umístěte", "Změňte".`,
-    hashtags: ['#tip', '#wifi', '#internet', '#technologie', '#poradna', '#tipy', '#jakna'],
+    systemPrompt: `Jsi expert na internet. Sdílíš užitečné tipy. Piš jednoduše, prakticky.`,
+    fbPrompt: `Napiš Facebook tip o WiFi/internet optimalizaci. Formát "Věděli jste..." Délka: 100-150 slov.`,
+    igPrompt: `Napiš Instagram tip s 💡. Seznam bodů. Délka: 60-100 slov.`,
+    imagePrompt: `Educational tip infographic. Lightbulb icon. Tech icons. ALL TEXT IN CZECH.`,
+    hashtags: ['#tip', '#wifi', '#internet', '#technologie', '#poradna', '#tipy'],
   },
   news: {
-    systemPrompt: `Jsi PR specialista pro popri.cz. Sdílíš novinky a aktualizace služeb.
-Piš profesionálně ale přátelsky. Zdůrazni přínosy pro zákazníky.`,
-    fbPrompt: `Napiš Facebook příspěvek oznamující novinku nebo aktualizaci služby popri.cz.
-Profesionální ale přátelský tón. Zdůrazni přínos pro zákazníky.
-Délka: 100-150 slov.`,
-    igPrompt: `Napiš Instagram příspěvek o novince.
-Krátký, vzrušující tón s emoji 🎉.
-Délka: 60-100 slov.`,
-    imagePrompt: `News announcement social media banner.
-"NOVINKA" text badge with accent and glow on dark background.
-Modern, exciting design with dynamic light elements.
-Celebratory mood with subtle confetti or spark effects.
-Professional news broadcast aesthetic.
-ALL TEXT MUST BE IN CZECH: Use "Novinka", "Aktualita", "Nové", "Právě spuštěno".`,
-    hashtags: ['#novinka', '#news', '#aktualita', '#internet', '#služby', '#update'],
+    systemPrompt: `Jsi PR specialista pro popri.cz. Sdílíš novinky. Profesionální ale přátelský tón.`,
+    fbPrompt: `Napiš Facebook příspěvek o novince popri.cz. Zdůrazni přínos. Délka: 100-150 slov.`,
+    igPrompt: `Napiš Instagram příspěvek o novince s 🎉. Délka: 60-100 slov.`,
+    imagePrompt: `News announcement banner. "NOVINKA" badge. Dynamic design. ALL TEXT IN CZECH.`,
+    hashtags: ['#novinka', '#aktualita', '#internet', '#služby', '#update'],
   },
   custom: {
-    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytvoříš příspěvek na míru podle zadání.
-Piš v češtině, moderně a přátelsky. Přizpůsob styl podle tématu.`,
-    fbPrompt: `Napiš Facebook příspěvek podle zadaného tématu.
-Přizpůsob styl a tón tématu. Délka: 100-200 slov.`,
-    igPrompt: `Napiš Instagram příspěvek podle zadaného tématu.
-Krátký a poutavý s emoji. Délka: 60-120 slov.`,
-    imagePrompt: `Custom social media graphic.
-Flexible design adaptable to various topics.
-Accent colors on dark background with text area.
-Professional, modern aesthetic.
-ALL TEXT MUST BE IN CZECH: Translate any Slovak text to Czech language.`,
+    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Příspěvek na míru. Piš v češtině.`,
+    fbPrompt: `Napiš Facebook příspěvek podle zadaného tématu. Délka: 100-200 slov.`,
+    igPrompt: `Napiš Instagram příspěvek podle tématu. Krátký s emoji. Délka: 60-120 slov.`,
+    imagePrompt: `Custom social media graphic. Flexible design. ALL TEXT IN CZECH.`,
     hashtags: ['#popri', '#internet', '#ostrava'],
+  },
+  success: {
+    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytváříš příběhy úspěšných zákazníků. Piš autenticky, emotivně. Zdůrazni transformaci "před/po".`,
+    fbPrompt: `Napiš Facebook příspěvek s příběhem úspěšného zákazníka popri.cz. Formát: konkrétní příběh s detaily. "Před popri.cz" vs "Po popri.cz". Délka: 150-250 slov.`,
+    igPrompt: `Napiš Instagram příspěvek s příběhem zákazníka. Krátký emotivní příběh. Před/Po formát. Délka: 80-120 slov.`,
+    imagePrompt: `Customer success story graphic. Split-screen before/after concept. Happy customer. Trust indicators. ALL TEXT IN CZECH.`,
+    hashtags: ['#zákazník', '#příběh', '#spokojenost', '#internet', '#popri'],
+  },
+  product: {
+    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Prezentuj konkrétní tarif nebo službu. Jasně a přesvědčivě.`,
+    fbPrompt: `Napiš Facebook příspěvek prezentující tarif/službu popri.cz. Konkrétní parametry: rychlost, cena, TV, bonus. Délka: 120-180 slov.`,
+    igPrompt: `Napiš Instagram příspěvek o produktu/tarifu. Klíčová čísla. Délka: 60-100 slov.`,
+    imagePrompt: `Product showcase graphic. Product card layout. Price badge, speed indicators. ALL TEXT IN CZECH.`,
+    hashtags: ['#tarif', '#internet', '#nabídka', '#gigabit', '#popri'],
+  },
+  photo: {
+    systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Příspěvky s fotorealistickými vizuály. Autenticky a přirozeně.`,
+    fbPrompt: `Napiš Facebook příspěvek doprovázený realistickou fotografií. Přirozený tón. Délka: 100-150 slov.`,
+    igPrompt: `Napiš Instagram příspěvek s autentickým lifestyle tónem. Jako u reálné fotky. Délka: 60-100 slov.`,
+    imagePrompt: `Photorealistic lifestyle photography. Authentic Czech household scene. Natural lighting, candid feel. ALL TEXT IN CZECH.`,
+    hashtags: ['#lifestyle', '#domov', '#internet', '#rodina', '#popri'],
+  },
+  meme: {
+    systemPrompt: `Jsi expert na virální obsah a memy pro popri.cz. Vtipné příspěvky o internetu a WiFi. Český humor, relatable situace. Vtipný ale ne urážlivý.`,
+    fbPrompt: `Napiš vtipný Facebook meme text pro popri.cz. Téma: pomalý internet, WiFi výpadky. Formát "Když..." meme styl. Délka: 50-100 slov. MAXIMÁLNĚ VTIPNÝ.`,
+    igPrompt: `Napiš vtipný Instagram meme. Ultra krátký virální humor o internetu. Délka: 30-60 slov.`,
+    imagePrompt: `Humorous meme-style image. Funny relatable internet/WiFi situation. Bold text overlay. Bright colors. Cartoon or exaggerated style. ALL TEXT IN CZECH.`,
+    hashtags: ['#meme', '#humor', '#internet', '#wifi', '#relatable', '#vtip'],
+  },
+  education: {
+    systemPrompt: `Jsi expert na vzdělávací obsah o internetu pro popri.cz. Vysvětluj složité koncepty jednoduše. Piš v češtině.`,
+    fbPrompt: `Napiš vzdělávací Facebook příspěvek. Formát "Věděli jste?" s čísly a fakty. Vysvětli: GPON, WiFi 6, optika vs měď. Délka: 120-180 slov.`,
+    igPrompt: `Napiš vzdělávací Instagram příspěvek. Přehledný formát s emoji a čísly. Carousel-style body. Délka: 60-100 slov.`,
+    imagePrompt: `Educational infographic design. Data visualization, icons, numbered steps. Charts or comparison tables. ALL TEXT IN CZECH: "Věděli jste?", "Jak funguje".`,
+    hashtags: ['#edukace', '#vzdělávání', '#technologie', '#internet', '#fakta', '#optika'],
+  },
+  'fb-ad': {
+    systemPrompt: `Jsi expert na Facebook Ads pro popri.cz. Vysoce konverzní reklamní texty. Stručně a přesvědčivě. Primární text max 125 znaků.`,
+    fbPrompt: `Napiš Facebook Ads příspěvek pro popri.cz.
+Formát:
+1. Primární text (max 125 znaků) - hlavní sdělení s emoji
+2. Headline (max 40 znaků) - úderný nadpis
+3. Popis odkazu (max 30 znaků)
+4. Doporuč CTA: Více informací / Zaregistrovat se / Kontaktujte nás
+Zdůrazni: gigabit, od 300 Kč/měs, 0 Kč aktivace.`,
+    igPrompt: `Napiš krátký reklamní text pro Instagram Ads. Max 125 znaků. Stručný a přesvědčivý.`,
+    imagePrompt: `Facebook Ads banner. Clean, high-converting. Clear headline, benefit visual, CTA button space. Minimal text (20% rule). ALL TEXT IN CZECH.`,
+    hashtags: [],
   },
 };
 
-// Generate unique scene description based on topic using AI
+// Topic suggestions per post type
+const topicSuggestions: Record<string, string[]> = {
+  promo: ['Letní akce na gigabit internet', 'Rodinný balíček internet + TV', 'Speciální nabídka pro nové zákazníky', 'Black Friday sleva na internet', 'Studentská akce - internet za polovic'],
+  blog: ['5 tipů jak zrychlit WiFi doma', 'GPON technologie - jak funguje optika', 'Porovnání: optika vs. měděný kabel', 'Jak vybrat správný router', 'Home office - rychlý internet jako základ'],
+  review: ['Spokojený zákazník z Ostravy-Poruby', 'Recenze od rodiny s dětmi', 'Gamer hodnotí gigabit internet', 'Senior oceňuje spolehlivost služby', 'Home office profesionál doporučuje'],
+  tip: ['Jak umístit router pro nejlepší signál', 'Zabezpečení domácí WiFi sítě', 'Jak otestovat rychlost internetu', 'Mesh systém vs extender', 'Optimalizace WiFi kanálů'],
+  news: ['Rozšíření pokrytí do nové lokality', 'Upgrade sítě na WiFi 7', 'Nové TV programy v balíčku', 'Vylepšená zákaznická podpora', 'Nový tarif pro domácnosti'],
+  custom: ['Den internetu - zábavný obsah', 'Soutěž o rok internetu zdarma', 'Za kulisami - jak funguje optická síť', 'Vánoční přání od popri.cz', 'Komunitní event v Ostravě'],
+  success: ['Rodina z Havířova přešla na optiku', 'Gamer z Ostravy - konec lagů', 'Podnikatel ušetřil přechodem na popri.cz', 'Senior se naučil streamovat díky stabilnímu internetu'],
+  product: ['Tarif Gigabit 1000/1000 Mbps', 'Balíček Internet + 85 TV programů', 'Premium router v ceně', 'Optický internet pro rodinné domy'],
+  photo: ['Rodina sleduje Netflix na velké TV', 'Home office s výhledem na Ostravu', 'Dětský pokoj s tabletem a rychlým WiFi', 'Gaming setup s gigabit připojením'],
+  meme: ['Když WiFi vypadne uprostřed online schůzky', 'Pomalý internet vs optika - rozdíl', 'Router v koupelně humor', 'Když říkáš že nepotřebuješ rychlý internet'],
+  education: ['Jak funguje GPON technologie', 'WiFi 6 vs WiFi 5 - rozdíly', 'Co je to ping a proč je důležitý', 'Optické vlákno - jak přenáší data světlem'],
+  'fb-ad': ['Akční nabídka gigabit internet', 'Přejděte na optiku - 0 Kč aktivace', 'Internet + TV balíček promo', 'Nejrychlejší internet v Ostravě'],
+};
+
 async function generateSceneDescription(
-  topic: string, 
-  postType: string, 
-  visualStyle: string,
-  includePerson: string,
-  personRenderStyle: string | null,
-  apiKey: string
+  topic: string, postType: string, visualStyle: string,
+  includePerson: string, personRenderStyle: string | null, apiKey: string
 ): Promise<string> {
-  // Build person-specific rules based on toggle
   let personRules = '';
-  
   if (includePerson === 'custom-person' && personRenderStyle) {
-    const stylePrompt = personRenderPrompts[personRenderStyle] || personRenderPrompts['realistic'];
-    personRules = `CRITICAL RULES FOR CUSTOM PERSON:
-1. The scene MUST be designed to feature a SPECIFIC PERSON provided by user
-2. Style: ${stylePrompt}
-3. The person should be the main focus of the image
-4. Create an engaging scene where the person is naturally integrated
-5. Describe the pose, activity, and environment around the person
-6. The person will be added via reference image, so describe the scene context`;
+    personRules = `CUSTOM PERSON: ${personRenderPrompts[personRenderStyle] || personRenderPrompts['realistic']}. Person is main focus.`;
   } else if (includePerson === 'without-person') {
-    personRules = `CRITICAL RULES FOR NO PEOPLE:
-1. DO NOT include any people, humans, faces, hands, or body parts in the scene
-2. Focus ONLY on objects, devices, environments, technology, and abstract concepts
-3. Show technology, routers, devices, fiber optic cables, home interiors WITHOUT any people
-4. Describe scenes with objects only: devices on desks, routers with light effects, cable setups, empty rooms with technology
-5. NO human presence whatsoever - not even silhouettes, shadows, or partial body parts`;
+    personRules = `NO PEOPLE. Only objects, devices, environments, technology. NO human presence.`;
   } else {
-    personRules = `CRITICAL RULES FOR PEOPLE:
-1. ALWAYS include PEOPLE in realistic situations
-2. Show authentic human interactions with technology
-3. Include real people: families, individuals, couples in everyday situations
-4. Describe people's activities, expressions, and their environment`;
+    personRules = `Include PEOPLE in realistic situations with technology.`;
   }
 
-  const sceneSystemPrompt = `You are an expert at creating unique image scene descriptions for social media marketing.
-Based on the topic, create a SPECIFIC and UNIQUE scene description.
-
-${personRules}
-
-ADDITIONAL RULES:
-1. DO NOT describe generic routers with light effects for everything
-2. CREATE UNIQUE scenes based on the actual topic
-3. Describe the SPECIFIC scene that matches the topic
-4. Scene must be visually interesting and suitable for social media
-
-Examples of good scene descriptions ${includePerson === 'with-person' ? '(WITH PEOPLE)' : '(WITHOUT PEOPLE)'}:
-${includePerson === 'with-person' ? `
-- Topic "WiFi optimization" → Person adjusting router position, checking signal strength on smartphone
-- Topic "Tariff for seniors" → Elderly couple comfortably using tablet on sofa, video calling grandchildren
-- Topic "How to connect WiFi" → Person unpacking and setting up new router, reading quick start guide
-- Topic "Home office" → Woman working productively on laptop at home desk with coffee
-- Topic "Family internet" → Family of four watching movie together on TV in cozy living room
-- Topic "Gaming internet" → Young person at gaming setup with monitors and headphones
-- Topic "Fast streaming" → Couple enjoying movie night with popcorn, 4K TV visible
-- Topic "Price promotion" → Happy customer smiling while looking at phone showing good deal` : `
-- Topic "WiFi optimization" → Modern router on wooden desk with WiFi signal waves visualization, smartphone showing signal meter app
-- Topic "Fiber internet" → Sleek fiber optic cables with blue light trails connecting to premium router, dark background
-- Topic "How to connect WiFi" → New router in box with quick start guide, ethernet cables neatly arranged on clean desk
-- Topic "Home office setup" → Clean home office desk with laptop, monitor, coffee cup - no people, warm ambient lighting
-- Topic "High-speed internet" → Speed meter display showing 1000 Mbps, fiber optic strands with light effects
-- Topic "Gaming setup" → Gaming monitors, RGB keyboard, high-end router - empty gaming station
-- Topic "Smart home" → Smart home devices arranged elegantly: router, smart speaker, connected devices with subtle glow
-- Topic "Internet technology" → Abstract visualization of data transfer, fiber optic light trails on dark background`}
-
-For luxury-gold style: Include stylized elegant elements, premium atmosphere
-For photo-realistic style: ${includePerson === 'with-person' ? 'MUST show real people in authentic everyday situations' : 'Show realistic environments and objects without any people'}
-For modern-noir style: Professional, clean, tech-forward atmosphere
-For minimalist style: Clean, simple, lots of whitespace
-
-Output ONLY the scene description in 2-3 sentences, nothing else.`;
-
   try {
-    console.log(`Generating unique scene for topic: ${topic}, style: ${visualStyle}`);
-    
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'google/gemini-3-flash-preview',
         messages: [
-          { role: 'system', content: sceneSystemPrompt },
-          { role: 'user', content: `Create unique image scene for:
-Topic: ${topic}
-Post type: ${postType}
-Visual style: ${visualStyle}
-
-Output a 2-3 sentence scene description in English that is SPECIFIC to this topic.` }
+          { role: 'system', content: `Create unique image scene descriptions for social media. ${personRules} Output ONLY 2-3 sentence scene description in English.` },
+          { role: 'user', content: `Topic: ${topic}\nPost type: ${postType}\nVisual style: ${visualStyle}` }
         ],
       }),
     });
-
-    if (!response.ok) {
-      console.error('Scene generation failed:', response.status);
-      return '';
-    }
-
+    if (!response.ok) return '';
     const data = await response.json();
-    const scene = data.choices?.[0]?.message?.content?.trim() || '';
-    console.log(`Generated scene: ${scene}`);
-    return scene;
-  } catch (error) {
-    console.error('Scene generation error:', error);
-    return '';
-  }
+    return data.choices?.[0]?.message?.content?.trim() || '';
+  } catch { return ''; }
 }
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
-  }
+  if (req.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
 
   try {
     const requestBody = await req.json();
-    
-    // Validate input
     const validationResult = InputSchema.safeParse(requestBody);
     if (!validationResult.success) {
-      console.error("❌ Validation error:", validationResult.error.issues);
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: "Neplatná vstupní data",
-          details: validationResult.error.issues.map(i => i.message)
-        }),
+        JSON.stringify({ success: false, error: "Neplatná vstupní data", details: validationResult.error.issues.map(i => i.message) }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const { type, platform, visualStyle, includePerson, customTopic, blogTitle, customPersonImage, personRenderStyle } = validationResult.data;
-    const template = postTemplates[type];
-    const brandingPrompt = stylePrompts[visualStyle];
-    
+    const { action, type, platform, visualStyle, includePerson, customTopic, blogTitle, customPersonImage, personRenderStyle, withCTA, regenerateOnly } = validationResult.data;
     const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
-    if (!lovableApiKey) {
-      throw new Error('LOVABLE_API_KEY not configured');
+    if (!lovableApiKey) throw new Error('LOVABLE_API_KEY not configured');
+
+    // Handle suggest-topic action
+    if (action === 'suggest-topic') {
+      const suggestions = topicSuggestions[type] || topicSuggestions['custom'];
+      const randomTopic = suggestions[Math.floor(Math.random() * suggestions.length)];
+      
+      // Use AI to make it more creative
+      try {
+        const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${lovableApiKey}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'google/gemini-3-flash-preview',
+            messages: [
+              { role: 'system', content: 'Jsi kreativní expert na sociální sítě pro popri.cz (český ISP). Navrhni jedno originální téma pro sociální příspěvek. Odpověz POUZE tématem, max 10 slov, v češtině.' },
+              { role: 'user', content: `Typ příspěvku: ${type}\nInspiruj se tímto základem, ale buď originální: "${randomTopic}"` }
+            ],
+          }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const topic = data.choices?.[0]?.message?.content?.trim();
+          if (topic) {
+            return new Response(JSON.stringify({ success: true, topic }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+          }
+        }
+      } catch { /* fallback below */ }
+      
+      return new Response(JSON.stringify({ success: true, topic: randomTopic }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     }
 
-    console.log(`Generating social content: type=${type}, platform=${platform}, style=${visualStyle}, includePerson=${includePerson}, personRenderStyle=${personRenderStyle}`);
-
+    // Generate content
+    const template = postTemplates[type] || postTemplates['custom'];
+    const brandingPrompt = stylePrompts[visualStyle];
+    const platforms = platform === 'both' ? ['facebook', 'instagram'] : [platform!];
     const result: Record<string, unknown> = {};
-    const platforms = platform === 'both' ? ['facebook', 'instagram'] : [platform];
 
     for (const plat of platforms) {
       const isInstagram = plat === 'instagram';
-      const userPrompt = isInstagram ? template.igPrompt : template.fbPrompt;
       const dimensions = isInstagram ? '1080x1080' : '1080x1350';
       
-      // Add custom topic if provided
-      let finalPrompt = userPrompt;
-      if (customTopic) {
-        finalPrompt += `\n\nTéma: ${customTopic}`;
-      }
-      if (blogTitle) {
-        finalPrompt += `\n\nNázev článku: ${blogTitle}`;
+      // Handle partial regeneration
+      if (regenerateOnly) {
+        if (regenerateOnly === 'text') {
+          let finalPrompt = isInstagram ? template.igPrompt : template.fbPrompt;
+          if (customTopic) finalPrompt += `\n\nTéma: ${customTopic}`;
+          const textResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${lovableApiKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: 'google/gemini-3-flash-preview', messages: [{ role: 'system', content: template.systemPrompt }, { role: 'user', content: finalPrompt }] }),
+          });
+          if (!textResponse.ok) throw new Error(`Failed to regenerate text for ${plat}`);
+          const textData = await textResponse.json();
+          result[plat] = { text: textData.choices?.[0]?.message?.content?.trim() || '' };
+        } else if (regenerateOnly === 'hashtags') {
+          const hashtagResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${lovableApiKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: 'google/gemini-3-flash-preview', messages: [
+              { role: 'system', content: 'Jsi expert na hashtagy pro sociální sítě. Generuj relevantní české hashtagy.' },
+              { role: 'user', content: `Vygeneruj 5-15 relevantních hashtagů pro ${isInstagram ? 'Instagram' : 'Facebook'} příspěvek o: ${customTopic || type}. Pouze hashtagy, oddělené mezerami.` }
+            ] }),
+          });
+          if (!hashtagResponse.ok) throw new Error(`Failed to regenerate hashtags`);
+          const hashData = await hashtagResponse.json();
+          result[plat] = { hashtags: hashData.choices?.[0]?.message?.content?.trim() || template.hashtags.join(' ') };
+        } else if (regenerateOnly === 'imagePrompt') {
+          const topicForScene = customTopic || type;
+          const uniqueScene = await generateSceneDescription(topicForScene, type, visualStyle, includePerson, personRenderStyle || null, lovableApiKey);
+          let imagePromptContent = uniqueScene
+            ? `Social media image for ${isInstagram ? 'Instagram (1080x1080)' : 'Facebook (1080x1350)'}.\n\nSCENE: ${uniqueScene}\nTopic: ${topicForScene}\n`
+            : template.imagePrompt;
+          imagePromptContent += `\n${brandingPrompt}\nDimensions: ${dimensions}`;
+          if (withCTA) imagePromptContent += `\nInclude a clear CTA button/badge element in the image.`;
+          result[plat] = { imagePrompt: imagePromptContent.trim() };
+        }
+        continue;
       }
 
-      // Generate text content
+      // Full generation
+      let finalPrompt = isInstagram ? template.igPrompt : template.fbPrompt;
+      if (customTopic) finalPrompt += `\n\nTéma: ${customTopic}`;
+      if (blogTitle) finalPrompt += `\n\nNázev článku: ${blogTitle}`;
+
+      // Special instructions for new types
+      if (type === 'meme') {
+        finalPrompt += `\n\nDŮLEŽITÉ: Buď OPRAVDU vtipný. Používej český internetový humor, relatable situace. Formát "Když..." meme.`;
+      } else if (type === 'education') {
+        finalPrompt += `\n\nDŮLEŽITÉ: Buď informativní a srozumitelný. Používej čísla, fakta, srovnání.`;
+      } else if (type === 'fb-ad') {
+        finalPrompt += `\n\nFORMÁT ODPOVĚDI:\nPrimární text: [max 125 znaků]\nHeadline: [max 40 znaků]\nPopis: [max 30 znaků]\nCTA: [doporučené tlačítko]`;
+      }
+
       const textResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${lovableApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'google/gemini-3-flash-preview',
-          messages: [
-            { role: 'system', content: template.systemPrompt },
-            { role: 'user', content: finalPrompt }
-          ],
-        }),
+        headers: { 'Authorization': `Bearer ${lovableApiKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'google/gemini-3-flash-preview', messages: [{ role: 'system', content: template.systemPrompt }, { role: 'user', content: finalPrompt }] }),
       });
-
-      if (!textResponse.ok) {
-        const errorText = await textResponse.text();
-        console.error(`Text generation error for ${plat}:`, textResponse.status, errorText);
-        throw new Error(`Failed to generate text for ${plat}`);
-      }
-
+      if (!textResponse.ok) throw new Error(`Failed to generate text for ${plat}`);
       const textData = await textResponse.json();
       const generatedText = textData.choices?.[0]?.message?.content || '';
 
-      // Generate UNIQUE scene based on topic using AI
+      // Generate unique scene
       const topicForScene = customTopic || type;
-      const uniqueScene = await generateSceneDescription(
-        topicForScene, 
-        type, 
-        visualStyle,
-        includePerson,
-        personRenderStyle || null,
-        lovableApiKey
-      );
+      const uniqueScene = await generateSceneDescription(topicForScene, type, visualStyle, includePerson, personRenderStyle || null, lovableApiKey);
 
-      // Build dynamic image prompt with unique scene
       let imagePromptContent = '';
-
       if (uniqueScene) {
-        // Use AI-generated unique scene
-        imagePromptContent = `Social media image for ${isInstagram ? 'Instagram (1080x1080, square format)' : 'Facebook (1080x1350, 4:5 vertical format)'}.
-
-SCENE: ${uniqueScene}
-
-Topic: ${topicForScene}
-`;
-        
-        // Add custom person style instructions if applicable
+        imagePromptContent = `Social media image for ${isInstagram ? 'Instagram (1080x1080, square)' : 'Facebook (1080x1350, 4:5 vertical)'}.\n\nSCENE: ${uniqueScene}\nTopic: ${topicForScene}\n`;
         if (includePerson === 'custom-person' && personRenderStyle) {
-          const stylePrompt = personRenderPrompts[personRenderStyle] || personRenderPrompts['realistic'];
-          imagePromptContent += `\nPERSON RENDERING STYLE: ${stylePrompt}`;
-          imagePromptContent += `\nIMPORTANT: A reference photo of a person will be provided. Transform/integrate this person into the scene using the specified style.`;
+          imagePromptContent += `\nPERSON STYLE: ${personRenderPrompts[personRenderStyle] || personRenderPrompts['realistic']}`;
         }
       } else {
-        // Fallback to template if AI scene generation fails
-        console.log('Using fallback template for image prompt');
         imagePromptContent = template.imagePrompt;
-        if (customTopic) {
-          imagePromptContent += `\nTopic/theme: ${customTopic}`;
-        }
+        if (customTopic) imagePromptContent += `\nTopic: ${customTopic}`;
       }
 
-      // Add branding style and language requirements
-      imagePromptContent += `\n${brandingPrompt}`;
-      imagePromptContent += `\nDimensions: ${dimensions}`;
-      imagePromptContent += `\n\nCRITICAL: Czech text overlay required. ALL visible text must be in Czech (čeština), not Slovak or English.`;
-      if (customTopic) {
-        imagePromptContent += `\nIf topic "${customTopic}" is in Slovak, translate to Czech for any visible text.`;
-      }
+      imagePromptContent += `\n${brandingPrompt}\nDimensions: ${dimensions}`;
+      if (withCTA) imagePromptContent += `\nInclude a clear CTA button/badge element in Czech.`;
+      imagePromptContent += `\n\nCRITICAL: All visible text must be in Czech (čeština).`;
 
       result[plat] = {
         text: generatedText.trim(),
@@ -549,26 +326,12 @@ Topic: ${topicForScene}
       };
     }
 
-    console.log('Social content generated successfully');
-
-    return new Response(
-      JSON.stringify({ success: true, ...result }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
-
+    return new Response(JSON.stringify({ success: true, ...result }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   } catch (error) {
-    console.error('Error in social-content-generator:', error);
-    
+    console.error('Error:', error);
     if (error.message?.includes('rate limit') || error.status === 429) {
-      return new Response(
-        JSON.stringify({ success: false, error: 'Rate limit exceeded. Please try again later.' }),
-        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ success: false, error: 'Rate limit exceeded.' }), { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     }
-
-    return new Response(
-      JSON.stringify({ success: false, error: error.message || 'Unknown error' }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ success: false, error: error.message || 'Unknown error' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   }
 });

@@ -1,4 +1,4 @@
-import { Facebook, Instagram } from 'lucide-react';
+import { Facebook, Instagram, Megaphone } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Badge } from '@/components/ui/badge';
@@ -7,9 +7,10 @@ import { Platform, platformSpecs } from '@/data/social/templates';
 interface PlatformSelectorProps {
   value: Platform;
   onChange: (value: Platform) => void;
+  showFbAd?: boolean;
 }
 
-export function PlatformSelector({ value, onChange }: PlatformSelectorProps) {
+export function PlatformSelector({ value, onChange, showFbAd = false }: PlatformSelectorProps) {
   return (
     <div className="space-y-3">
       <Label className="text-base font-semibold text-foreground">Platforma</Label>
@@ -78,6 +79,27 @@ export function PlatformSelector({ value, onChange }: PlatformSelectorProps) {
             </Badge>
           </div>
         </ToggleGroupItem>
+
+        {showFbAd && (
+          <ToggleGroupItem
+            value="fb-ad"
+            className={`
+              flex-1 min-w-[100px] flex items-center justify-center gap-2 p-3 sm:p-4 rounded-xl border-2 transition-all duration-200
+              ${value === 'fb-ad' 
+                ? 'border-[#1877F2] bg-[#1877F2]/10 text-[#1877F2]' 
+                : 'border-border bg-card hover:border-[#1877F2]/50'
+              }
+            `}
+          >
+            <Megaphone className="h-5 w-5" />
+            <div className="text-left">
+              <p className="font-medium text-sm">FB Ad</p>
+              <Badge variant="secondary" className="text-[10px] mt-1 hidden sm:inline-flex">
+                {platformSpecs['fb-ad'].dimensions}
+              </Badge>
+            </div>
+          </ToggleGroupItem>
+        )}
       </ToggleGroup>
     </div>
   );

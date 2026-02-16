@@ -165,22 +165,22 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
   'internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda': {
     title: 'Internetové připojení pro online hráče v Ostravě: Rychlosti, ping a spolehlivost s PODA',
     description: 'Jak dosáhnout nejnižšího pingu a nejvyšší stability pro online hraní v Ostravě.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/e99cde57-f2e6-45ff-b0cb-db715960e72c.png'
   },
   'polanka-nad-odrou-60ghz-pripojeni-2025': {
     title: 'PODA 2025: Polanka nad Odrou připojena revolučním 60 GHz připojením',
     description: 'Obec Polanka nad Odrou získala nejmodernější bezdrátové připojení s 60 GHz technologií.',
-    image: '/polanka-60ghz-antenna.jpg'
+    image: '/lovable-uploads/0c952940-aa5d-4157-b3a8-82b62d2a048c.png'
   },
   'nejcastejsi-otazky-pripojeni-internet-panelak': {
     title: 'Nejčastější otázky o připojení internetu v paneláku',
     description: 'Odpovídáme na nejčastější otázky o připojení internetu v bytových domech.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/fdaf29a8-01a5-4fd4-82b1-457e07f40576.png'
   },
   'iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod': {
     title: 'TV přes internet vs klasická kabelová / satelitní televize — srovnání',
     description: 'Porovnání IPTV a klasické kabelové či satelitní TV.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/slow-internet-fix-guide.jpg'
   },
   'nejlepsi-internet-ostrava-karvina-havirov-pruvodce-2025': {
     title: 'Jak najít nejlepší internet v Ostravě, Karviné a Havířově: Průvodce 2026',
@@ -190,12 +190,12 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
   'rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda': {
     title: 'Rychlý internet v Karviné: Revoluce v připojení domácností díky PODA',
     description: 'Karviná vstupuje do digitální budoucnosti díky PODA s gigabitovým optickým připojením.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png'
   },
   'internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025': {
     title: 'Internet PODA Ostrava: Nejrychlejší optické připojení v MSK 2025',
     description: 'Hledáte rychlý internet v Ostravě? PODA nabízí nejkonkurenceschopnější internetové služby.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/d043e07c-8916-4d2d-b35d-8f0ba81b4ebc.png'
   },
   'optika-vs-med-ostravsko-internet-21-stoleti': {
     title: 'Optika vs. měď: Proč Ostravsko konečně dostává internet 21. století',
@@ -205,52 +205,52 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
   'gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu': {
     title: 'GPON technologie v Moravskoslezském regionu: Revoluce optického internetu',
     description: 'Komplexní přehled GPON technologie a jejích výhod pro domácnosti v MSK.',
-    image: '/og-image.png'
+    image: '/gpon-technologie-opticky-internet.webp'
   },
   'jak-vybrat-spravny-router-domov-kompletni-pruvodce-2025': {
     title: 'Jak vybrat správný router pro váš domov: Kompletní průvodce 2025',
     description: 'Vše, co potřebujete vědět o výběru routeru pro domácí použití.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/77099393-c42f-4da8-8d98-a7a65e08a093.png'
   },
   'mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov': {
     title: 'Mesh systémy vs. klasické routery: Co je lepší pro váš domov?',
     description: 'Kompletní porovnání mesh systémů a klasických routerů pro váš domov.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/aa92ab29-4de6-409a-8e8b-89b0fe7555b0.png'
   },
   'zabezpeceni-domaci-wifi-site-kompletni-pruvodce-bezpecnosti': {
     title: 'Zabezpečení domácí Wi-Fi sítě: Kompletní průvodce bezpečností',
     description: 'Ochrana domácí Wi-Fi sítě před hackery a útoky.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/64d06bad-71f3-4777-b62e-b49b4ca94abe.png'
   },
   'jak-vybrat-nejlepsi-tv-balicek-vasi-rodinu': {
     title: 'Jak vybrat nejlepší TV balíček pro vaši rodinu',
     description: 'Praktický průvodce výběrem televizního balíčku.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/5daa6fb6-9d90-41e9-bb84-0e836eb8965f.png'
   },
   'nejlepsi-zpusob-sledovani-sportu-online-pruvodce-fanoušky': {
     title: 'Nejlepší způsob sledování sportu online: Průvodce pro fanoušky',
     description: 'Kompletní přehled možností sledování sportovních přenosů online.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/235022db-f6c5-4a2f-8970-681e7c476589.png'
   },
   'jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje': {
     title: 'Jak otestovat rychlost internetu: Praktické tipy a nejlepší nástroje',
     description: 'Jak správně otestovat rychlost internetového připojení.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/35179673-7e72-4282-8609-a46686328aa0.png'
   },
   'novinky-poda-sluzby-nove-moznosti-zakaznici': {
     title: 'Novinky v PODA službách: Nové možnosti pro zákazníky',
     description: 'Nejnovější vylepšení a nové funkce v PODA službách.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/56ebeef3-04d0-42a6-ac4f-f47224a075fb.png'
   },
   'rozsireni-pokryti-poda-nove-oblasti-opticky-internet': {
     title: 'Rozšíření pokrytí PODA: Nové oblasti s optickým internetem',
     description: 'Informace o rozšíření optické sítě PODA do nových oblastí MSK.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/6f778a97-79bd-4698-b3f2-2a373893184b.png'
   },
   'recenze-zakazniku-poda-skutecne-zkusenosti-sluzby': {
     title: 'Recenze zákazníků PODA: Skutečné zkušenosti s našimi službami',
     description: 'Autentické recenze a hodnocení od spokojených zákazníků PODA.',
-    image: '/og-image.png'
+    image: '/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png'
   }
 };
 

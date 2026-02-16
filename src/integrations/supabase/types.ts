@@ -291,6 +291,9 @@ export type Database = {
       }
       social_posts: {
         Row: {
+          ad_cta: string | null
+          ad_description: string | null
+          ad_headline: string | null
           created_at: string
           custom_person_image_url: string | null
           custom_topic: string | null
@@ -309,11 +312,16 @@ export type Database = {
           platform: string
           post_type: string
           published_at: string | null
+          status: string | null
           updated_at: string
           user_id: string
           visual_style: string | null
+          with_cta: boolean | null
         }
         Insert: {
+          ad_cta?: string | null
+          ad_description?: string | null
+          ad_headline?: string | null
           created_at?: string
           custom_person_image_url?: string | null
           custom_topic?: string | null
@@ -332,11 +340,16 @@ export type Database = {
           platform: string
           post_type: string
           published_at?: string | null
+          status?: string | null
           updated_at?: string
           user_id: string
           visual_style?: string | null
+          with_cta?: boolean | null
         }
         Update: {
+          ad_cta?: string | null
+          ad_description?: string | null
+          ad_headline?: string | null
           created_at?: string
           custom_person_image_url?: string | null
           custom_topic?: string | null
@@ -355,9 +368,11 @@ export type Database = {
           platform?: string
           post_type?: string
           published_at?: string | null
+          status?: string | null
           updated_at?: string
           user_id?: string
           visual_style?: string | null
+          with_cta?: boolean | null
         }
         Relationships: []
       }

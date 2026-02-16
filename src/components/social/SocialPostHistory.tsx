@@ -12,7 +12,8 @@ import {
   CheckCircle,
   Clock,
   Loader2,
-  Copy
+  Copy,
+  FileInput
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -85,6 +86,7 @@ interface SocialPostHistoryProps {
   posts: SocialPost[];
   isLoading: boolean;
   onRefresh: () => void;
+  onUseAsTemplate?: (post: SocialPost) => void;
 }
 
 const postTypeLabels: Record<string, string> = {
@@ -92,11 +94,18 @@ const postTypeLabels: Record<string, string> = {
   tip: 'Tip',
   blog: 'Blog',
   testimonial: 'Reference',
+  review: 'Recenze',
   news: 'Novinka',
   custom: 'Vlastní',
+  success: 'Úspěch',
+  product: 'Produkt',
+  photo: 'Foto',
+  meme: 'Meme',
+  education: 'Edukace',
+  'fb-ad': 'FB Ad',
 };
 
-export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHistoryProps) {
+export function SocialPostHistory({ posts, isLoading, onRefresh, onUseAsTemplate }: SocialPostHistoryProps) {
   const [selectedPost, setSelectedPost] = useState<SocialPost | null>(null);
   const [isUpdating, setIsUpdating] = useState<string | null>(null);
 
@@ -242,6 +251,17 @@ export function SocialPostHistory({ posts, isLoading, onRefresh }: SocialPostHis
                         {format(new Date(post.created_at), 'd. MMMM yyyy, HH:mm', { locale: cs })}
                       </span>
                       <div className="flex items-center gap-1">
+                        {onUseAsTemplate && (
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-9 w-9 sm:h-7 sm:w-7"
+                            onClick={() => onUseAsTemplate(post)}
+                            title="Použít jako šablonu"
+                          >
+                            <FileInput className="h-4 w-4" />
+                          </Button>
+                        )}
                         <Button
                           variant="ghost"
                           size="icon"

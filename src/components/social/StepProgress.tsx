@@ -11,7 +11,7 @@ export function StepProgress({ currentStep, completedSteps, onStepClick }: StepP
   const currentIndex = WIZARD_STEPS.indexOf(currentStep);
 
   return (
-    <div className="flex items-center gap-1 overflow-x-auto pb-2">
+    <div className="flex items-center gap-1 overflow-x-auto pb-2 -mx-2 px-2" style={{ WebkitOverflowScrolling: 'touch' }}>
       {WIZARD_STEPS.map((step, index) => {
         const isCompleted = completedSteps.includes(step);
         const isCurrent = step === currentStep;
@@ -23,7 +23,7 @@ export function StepProgress({ currentStep, completedSteps, onStepClick }: StepP
               onClick={() => isClickable && onStepClick(step)}
               disabled={!isClickable}
               className={`
-                flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap
+                flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all whitespace-nowrap
                 ${isCurrent
                   ? 'bg-primary text-primary-foreground shadow-sm'
                   : isCompleted

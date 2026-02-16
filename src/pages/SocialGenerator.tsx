@@ -456,7 +456,7 @@ export default function SocialGenerator() {
                       </div>
                     ) : (
                       <div className="space-y-4">
-                        <div className="flex justify-end gap-2">
+                        <div className="flex flex-col sm:flex-row justify-end gap-2">
                           <Button onClick={generateContent} disabled={isGenerating} variant="outline" size="sm">
                             {isGenerating ? <Loader2 className="h-4 w-4 animate-spin mr-1" /> : <Sparkles className="h-4 w-4 mr-1" />}
                             Regenerovat vše

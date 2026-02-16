@@ -1,44 +1,99 @@
 
-# Oprava obrázkov pre Facebook zdieľanie - skutočné obrázky článkov
 
-## Problém
+# Vylepšenie Social Generátora - funkcie z Junkert AI Studio
 
-V edge funkcii `BLOG_POSTS_OG_DATA` a statických HTML súboroch (`public/ai-static/blog/*.html`) je pre vacsinu clankov nastaveny genericky obrazok `/og-image.png` (logo popri.cz) namiesto skutocneho obrazku clanku.
+## Čo pridáme
 
-Facebook crawler dostane `/og-image.png` a preto zobrazuje logo webu namiesto obrazku clanku.
+Z projektu [Junkert AI Studio](/projects/da30a0f2-c78b-4a25-bf4c-d9ae5b04b484) prenesieme tieto vylepšenia do aktuálneho Social Generátora:
 
-## Riesenie
+### 1. Nové typy príspevkov (4 nové)
+- **Úspěch zákazníka** - príbehy spokojených zákazníkov (nahradí "Recenzia" za rozšírenú verziu)
+- **Produkt** - prezentácia konkrétneho tarifu alebo služby
+- **Realistická foto** - fotorealistický vizuál s autentickou atmosférou
+- **Meme / Humor** - vtipný formát pre virálny dosah
+- **Edukace** - naučte publikum niečo nové o internete
+- **Facebook Ads** - reklamná kampaň pre Facebook Ads Manager
 
-Aktualizovat `image` hodnotu v `BLOG_POSTS_OG_DATA` v edge funkcii a v statickyych HTML suboroch na skutocne obrazky z blog data suborov.
+### 2. Wizard UI so Step Progress
+Namiesto jedného dlhého formulára - prehľadný krokový wizard:
+Typ -> Platforma -> Styl -> Osoba -> Téma -> Obsah
 
-## Mapovanie slug -> skutocny obrazok
+Každý krok sa zobrazí až po dokončení predchádzajúceho.
 
-| Slug | Aktualna (chybna) hodnota | Spravna hodnota (z blog dat) |
-|---|---|---|
-| `internetove-pripojeni-online-hraci-ostrava...` | `/og-image.png` | `/lovable-uploads/e99cde57-f2e6-45ff-b0cb-db715960e72c.png` |
-| `polanka-nad-odrou-60ghz-pripojeni-2025` | `/polanka-60ghz-antenna.jpg` | `/lovable-uploads/0c952940-aa5d-4157-b3a8-82b62d2a048c.png` |
-| `nejcastejsi-otazky-pripojeni-internet-panelak` | `/og-image.png` | `/lovable-uploads/fdaf29a8-01a5-4fd4-82b1-457e07f40576.png` |
-| `iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod` | `/og-image.png` | `/lovable-uploads/slow-internet-fix-guide.jpg` |
-| `rychly-internet-karvina-revoluce-pripojeni-domacnosti-poda` | `/og-image.png` | `/lovable-uploads/4fc5ce47-bd2b-4c44-8e84-4bf330cbf57c.png` |
-| `internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025` | `/og-image.png` | `/lovable-uploads/d043e07c-8916-4d2d-b35d-8f0ba81b4ebc.png` |
-| `gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu` | `/og-image.png` | `/gpon-technologie-opticky-internet.webp` |
-| `jak-vybrat-spravny-router-domov-kompletni-pruvodce-2025` | `/og-image.png` | `/lovable-uploads/77099393-c42f-4da8-8d98-a7a65e08a093.png` |
-| `mesh-systemy-vs-klasicke-routery-co-je-lepsi-domov` | `/og-image.png` | `/lovable-uploads/aa92ab29-4de6-409a-8e8b-89b0fe7555b0.png` |
-| `zabezpeceni-domaci-wifi-site-kompletni-pruvodce-bezpecnosti` | `/og-image.png` | `/lovable-uploads/64d06bad-71f3-4777-b62e-b49b4ca94abe.png` |
-| `jak-vybrat-nejlepsi-tv-balicek-vasi-rodinu` | `/og-image.png` | `/lovable-uploads/5daa6fb6-9d90-41e9-bb84-0e836eb8965f.png` |
-| `nejlepsi-zpusob-sledovani-sportu-online-pruvodce-fanoušky` | `/og-image.png` | `/lovable-uploads/235022db-f6c5-4a2f-8970-681e7c476589.png` |
-| `jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje` | `/og-image.png` | `/lovable-uploads/35179673-7e72-4282-8609-a46686328aa0.png` |
-| `novinky-poda-sluzby-nove-moznosti-zakaznici` | `/og-image.png` | `/lovable-uploads/56ebeef3-04d0-42a6-ac4f-f47224a075fb.png` |
-| `rozsireni-pokryti-poda-nove-oblasti-opticky-internet` | `/og-image.png` | `/lovable-uploads/6f778a97-79bd-4698-b3f2-2a373893184b.png` |
-| `recenze-zakazniku-poda-skutecne-zkusenosti-sluzby` | `/og-image.png` | `/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png` |
+### 3. CTA Toggle
+Nový prepínač: S CTA tlačidlom / Bez CTA na obrázku. Edge funkcia dostane parameter `withCTA` a podľa neho upraví image prompt.
 
-## Subory na upravu
+### 4. AI návrh témy
+Tlačidlo "Nechat AI navrhnout téma" - edge funkcia dostane nový action `suggest-topic` a vygeneruje originálne téma podľa typu príspevku.
 
-| Subor | Akcia |
+### 5. Regenerácia jednotlivých častí
+Možnosť pregenerovať zvlášť text, hashtagy alebo image prompt bez regenerovania celého obsahu.
+
+### 6. Facebook Ads pole
+Pre typ "Facebook Ads" - extra polia: Headline (max 40 znakov), Popis odkazu (max 30 znakov), CTA tlačidlo.
+
+### 7. Počítadlo znakov
+Zobrazenie aktuálneho počtu znakov s farebným indikátorom (zelená = optimum, žltá = varovanie, červená = príliš dlhý).
+
+### 8. Platform mockup preview
+Náhľad príspevku ako by vyzeral na Facebooku/Instagrame - s avatárom, menom a správnym aspect ratio.
+
+### 9. Stiahnutie obrázka
+Tlačidlo na stiahnutie vygenerovaného obrázka ako PNG.
+
+### 10. Použiť ako šablonu
+V histórií tlačidlo na načítanie starého príspevku ako šablóny pre nový.
+
+### 11. Tabs UI
+Záložky "Generátor" a "Historie" namiesto sidebar layoutu.
+
+## Technické zmeny
+
+### Súbory na úpravu
+
+| Súbor | Akcia |
 |---|---|
-| `netlify/edge-functions/ai-bot-detector.ts` | Aktualizovat `image` hodnoty v `BLOG_POSTS_OG_DATA` pre 16 clankov |
-| `public/ai-static/blog/*.html` (16 suborov) | Aktualizovat `og:image` a `twitter:image` meta tagy na spravne obrazky |
+| `src/data/social/templates.ts` | Pridať 4 nové PostType (product, photo, meme, education, fb-ad, success), pridať WizardState interface, pridať Facebook Ads platform |
+| `src/pages/SocialGenerator.tsx` | Prepísať na wizard UI s Tabs (Generátor/Historie), StepProgress, krokovou logikou |
+| `src/components/social/PostTypeSelector.tsx` | Aktualizovať na 10 typov s emoji ikonami namiesto Lucide ikon |
+| `src/components/social/PlatformSelector.tsx` | Pridať "Facebook Ad" platformu |
+| `src/components/social/GeneratedContent.tsx` | Pridať regeneráciu častí, CharCounter, platform mockup, download, FB Ads polia |
+| `src/components/social/SocialPostHistory.tsx` | Pridať "Použiť ako šablonu" a mazanie |
+| `supabase/functions/social-content-generator/index.ts` | Pridať action "suggest-topic", regenerateOnly logiku, withCTA parameter, fb-ad/meme/education/photo špeciálne inštrukcie |
 
-## Ocakavany vysledok
+### Nové súbory
 
-Po publikovani a vycisteni Facebook cache cez [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) sa pri zdielani clanku na Facebooku zobrazi skutocny obrazok clanku namiesto generickeho loga popri.cz.
+| Súbor | Popis |
+|---|---|
+| `src/components/social/StepProgress.tsx` | Krokový indikátor wizardu (Typ -> Platforma -> Styl -> Osoba -> Téma -> Obsah) |
+| `src/components/social/CTAToggle.tsx` | Prepínač CTA tlačidla na obrázku |
+| `src/components/social/TopicInput.tsx` | Textové pole s AI návrhom témy |
+
+### Komponenty na zmazanie (nahradené)
+
+| Súbor | Dôvod |
+|---|---|
+| `src/components/social/ContentCalendar.tsx` | Nahradená inline badge v SocialGenerator |
+| `src/components/social/CreditUsageInfo.tsx` | Integrácia priamo do GeneratedContent |
+
+### Databáza
+Existujúca tabuľka `social_posts` bude potrebovať nové stĺpce:
+- `with_cta` (boolean)
+- `ad_headline` (text, nullable)
+- `ad_description` (text, nullable)  
+- `ad_cta` (text, nullable)
+- `status` (text, default 'draft')
+
+### Edge funkcia - kľúčové zmeny
+- Nový action `suggest-topic` s rotáciou kategórií a vylúčením predtým navrhnutých tém
+- `regenerateOnly` parameter pre čiastočnú regeneráciu (text/hashtags/imagePrompt)
+- `withCTA` parameter ovplyvňujúci image prompt
+- Špeciálne inštrukcie pre nové typy (meme humor, edukačná infografika, realistická foto, Facebook Ads s extra poľami)
+- Branding zachovaný pre popri.cz (nie overdostupnost.cz)
+
+## Čo zostane rovnaké
+- Autentifikácia cez AdminLayout (nie AuthGate)
+- Vizuálne štýly (luxury-gold, photo-realistic atď.) - zostanú pôvodné 8 štýlov z tohto projektu
+- Custom person / PersonUploader funkcionalita
+- Branding pre popri.cz
+

@@ -6,6 +6,38 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
+// Perplexity web search for current info
+async function searchCurrentInfo(topic: string, apiKey: string): Promise<string> {
+  try {
+    const response = await fetch('https://api.perplexity.ai/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'sonar',
+        messages: [
+          { role: 'system', content: 'Poskytni 2-3 odstavce aktuálních ověřených informací k danému tématu. Piš v češtině, stručně a věcně. Zaměř se na nejnovější fakta a novinky.' },
+          { role: 'user', content: topic },
+        ],
+      }),
+    });
+    if (!response.ok) {
+      console.error('Perplexity error:', response.status);
+      return '';
+    }
+    const data = await response.json();
+    const content = data.choices?.[0]?.message?.content?.trim() || '';
+    const citations = data.citations || [];
+    const sourcesStr = citations.length > 0 ? `\n[Zdroje: ${citations.slice(0, 3).join(', ')}]` : '';
+    return content ? `${content}${sourcesStr}` : '';
+  } catch (e) {
+    console.error('Perplexity search error:', e);
+    return '';
+  }
+}
+
 const InputSchema = z.object({
   action: z.enum(['generate', 'suggest-topic']).default('generate'),
   type: z.enum(['promo', 'blog', 'review', 'tip', 'news', 'custom', 'product', 'photo', 'meme', 'education', 'fb-ad', 'success']),
@@ -280,6 +312,17 @@ serve(async (req) => {
       let finalPrompt = isInstagram ? template.igPrompt : template.fbPrompt;
       if (customTopic) finalPrompt += `\n\nTéma: ${customTopic}`;
       if (blogTitle) finalPrompt += `\n\nNázev článku: ${blogTitle}`;
+
+      // Fetch current web info for custom topics via Perplexity
+      if (customTopic) {
+        const perplexityKey = Deno.env.get('PERPLEXITY_API_KEY');
+        if (perplexityKey) {
+          const webContext = await searchCurrentInfo(customTopic, perplexityKey);
+          if (webContext) {
+            finalPrompt += `\n\nAKTUÁLNÍ KONTEXT Z WEBU (ověřené informace - použij je v příspěvku):\n${webContext}`;
+          }
+        }
+      }
 
       // Special instructions for new types
       if (type === 'meme') {

@@ -144,7 +144,7 @@ export function GeneratedContent({
           <Textarea
             value={content.text}
             onChange={(e) => onTextChange(e.target.value)}
-            className="min-h-[120px] resize-none bg-muted/50"
+            className="min-h-[100px] sm:min-h-[120px] resize-none bg-background border-input text-foreground"
             placeholder="Vygenerovaný text..."
           />
           <CharCounter current={content.text.length} max={spec.maxTextLength} />
@@ -157,22 +157,22 @@ export function GeneratedContent({
             <div className="space-y-2">
               <div>
                 <Label className="text-xs">Headline (max 40 znaků)</Label>
-                <Input
-                  value={fbAdFields.headline}
-                  onChange={(e) => onFbAdFieldChange('headline', e.target.value)}
-                  maxLength={40}
-                  className="bg-muted/50 h-8 text-sm"
+                  <Input
+                    value={fbAdFields.headline}
+                    onChange={(e) => onFbAdFieldChange('headline', e.target.value)}
+                    maxLength={40}
+                    className="bg-background border-input text-foreground h-8 text-sm"
                   placeholder="Gigabit internet od 300 Kč"
                 />
                 <CharCounter current={fbAdFields.headline.length} max={40} />
               </div>
               <div>
                 <Label className="text-xs">Popis odkazu (max 30 znaků)</Label>
-                <Input
-                  value={fbAdFields.description}
-                  onChange={(e) => onFbAdFieldChange('description', e.target.value)}
-                  maxLength={30}
-                  className="bg-muted/50 h-8 text-sm"
+                  <Input
+                    value={fbAdFields.description}
+                    onChange={(e) => onFbAdFieldChange('description', e.target.value)}
+                    maxLength={30}
+                    className="bg-background border-input text-foreground h-8 text-sm"
                   placeholder="Aktivace zdarma"
                 />
                 <CharCounter current={fbAdFields.description.length} max={30} />
@@ -180,7 +180,7 @@ export function GeneratedContent({
               <div>
                 <Label className="text-xs">CTA tlačítko</Label>
                 <Select value={fbAdFields.cta} onValueChange={(v) => onFbAdFieldChange('cta', v)}>
-                  <SelectTrigger className="h-8 text-sm bg-muted/50">
+                   <SelectTrigger className="h-8 text-sm bg-background border-input text-foreground">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -228,7 +228,7 @@ export function GeneratedContent({
             <Textarea
               value={content.hashtags}
               onChange={(e) => onHashtagsChange(e.target.value)}
-              className="min-h-[60px] resize-none bg-muted/50 text-sm"
+              className="min-h-[50px] sm:min-h-[60px] resize-none bg-background border-input text-foreground text-sm"
               placeholder="#internet #ostrava..."
             />
           </div>
@@ -267,7 +267,7 @@ export function GeneratedContent({
           <Textarea
             value={content.imagePrompt}
             onChange={(e) => onImagePromptChange(e.target.value)}
-            className="min-h-[80px] resize-none bg-muted/50 text-sm font-mono"
+            className="min-h-[60px] sm:min-h-[80px] resize-none bg-background border-input text-foreground text-sm font-mono"
             placeholder="Image generation prompt..."
           />
         </div>
@@ -307,7 +307,7 @@ export function GeneratedContent({
                   className="w-full h-auto"
                 />
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Button variant="outline" onClick={downloadImage} className="flex-1">
                   <Download className="h-4 w-4 mr-2" />
                   Stáhnout

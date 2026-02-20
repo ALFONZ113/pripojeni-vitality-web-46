@@ -197,7 +197,7 @@ const PromotionPopup = () => {
           </DialogTitle>
           <div className="inline-block mt-2">
             <span className="text-sm font-bold text-primary-foreground bg-primary px-4 py-2 rounded-full shadow-lg animate-pulse-slow">
-              Len do {promotionEndDate}!
+              Pouze do {promotionEndDate}!
             </span>
           </div>
           <DialogDescription className="text-base text-muted-foreground mt-3 leading-relaxed">

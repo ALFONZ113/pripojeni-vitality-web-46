@@ -31,6 +31,24 @@ const SOCIAL_CRAWLER_PATTERNS = [
   'Embedly'
 ];
 
+// Search engine bots that should get static HTML for city pages
+const SEARCH_BOT_PATTERNS = [
+  'Googlebot',
+  'bingbot',
+  'Slurp',
+  'DuckDuckBot',
+  'YandexBot'
+];
+
+// City paths that have static HTML versions
+const CITY_STATIC_PATHS = [
+  '/internet-ostrava',
+  '/internet-karvina',
+  '/internet-havirov',
+  '/internet-bohumin',
+  '/internet-poruba'
+];
+
 // Pages to serve AI-optimized versions for (Czech language)
 const AI_STATIC_PATHS = [
   '/',
@@ -429,6 +447,32 @@ export default async (request: Request, context: Context) => {
           }
         });
       }
+    }
+  }
+  
+  // Check if it's a search engine bot (Googlebot, Bingbot, etc.)
+  const isSearchBot = SEARCH_BOT_PATTERNS.some(pattern => 
+    userAgent.toLowerCase().includes(pattern.toLowerCase())
+  );
+  
+  // Serve static HTML to search bots for city pages (fixes canonical/indexing issues)
+  if (isSearchBot && CITY_STATIC_PATHS.includes(url.pathname)) {
+    const staticPath = `/ai-static${url.pathname}.html`;
+    console.log(`[Search Bot] ${userAgent.substring(0, 50)} -> Serving static: ${staticPath}`);
+    
+    const staticUrl = new URL(staticPath, url.origin);
+    const staticResponse = await fetch(staticUrl.toString());
+    
+    if (staticResponse.ok) {
+      const headers = new Headers(staticResponse.headers);
+      headers.set('X-Served-For', 'Search-Bot-Static');
+      headers.set('X-Robots-Tag', 'index, follow');
+      headers.set('Content-Type', 'text/html; charset=utf-8');
+      headers.set('Cache-Control', 'public, max-age=3600');
+      return new Response(staticResponse.body, {
+        status: 200,
+        headers
+      });
     }
   }
   

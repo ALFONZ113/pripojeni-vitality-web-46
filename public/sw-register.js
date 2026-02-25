@@ -1,6 +1,11 @@
 
 // Simplified Service Worker Registration
 (function() {
+  // Skip SW registration for search engine bots
+  if (navigator.userAgent && /googlebot|bingbot|slurp|duckduckbot|yandex/i.test(navigator.userAgent)) {
+    return;
+  }
+
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       // Unregister all old service workers first

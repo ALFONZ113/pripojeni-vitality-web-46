@@ -72,28 +72,40 @@ const CityHeroSection = ({ cityName, nameLocative, highlight, coverage, district
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="mb-responsive"
+              className="mb-2"
             >
               <span className="inline-flex items-center gap-2 text-responsive-xs font-medium text-primary tracking-wide uppercase">
                 <MapPin className="h-4 w-4" />
-                {cityName} · {coverage}% pokrytí
+                {coverage}% pokrytí
               </span>
             </motion.div>
 
-            {/* Main Headline */}
+            {/* City Name - Large & Prominent */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.6 }}
+              className="mb-2"
+            >
+              <h1 
+                id="hero-title" 
+                className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-[1.05] tracking-tight"
+              >
+                Internet {cityName}
+              </h1>
+            </motion.div>
+
+            {/* Subheadline */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
               className="mb-responsive"
             >
-              <h1 
-                id="hero-title" 
-                className="font-heading text-responsive-display font-bold text-foreground leading-[1.1] tracking-tight"
-              >
+              <p className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-[1.15] tracking-tight">
                 Gigabit za{' '}
-                <span className="text-primary">nejvýhodnější cenu</span>
-              </h1>
+                <span className="text-gradient-gold">nejvýhodnější cenu</span>
+              </p>
             </motion.div>
 
             {/* Subtitle */}

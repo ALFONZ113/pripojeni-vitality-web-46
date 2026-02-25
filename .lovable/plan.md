@@ -1,55 +1,79 @@
 
-# Oprava mobilného zobrazenia + Aktuálne info z webu
 
-## Problem 1: Mobilné zobrazenie
+# Oprava indexovania mestských stránok - Diagnostika a riešenie
 
-Na screenshote je vidieť, že po vygenerovaní obsahu sa zobrazuje iba hlavička karty "Facebook 1080x1350", ale obsah (texty, hashtagy, image prompt) nie je viditeľný - zobrazuje sa len čierna plocha.
+## Zistený problém
 
-**Príčina**: Komponenta `GeneratedContent` používa tmavé pozadie (`bg-muted/50`) na textáreách, a v kombinácii s dark theme adminu sa text stáva neviditeľný alebo karty majú nedostatočný kontrast. Taktiež na mobile zaberajú karty veľa priestoru a navigačné tlačidlá "Regenerovat vše" / "Uložit" môžu byť odrezané.
+Zo screenshotov z Google Search Console som identifikoval **2 kritické problémy**, prečo Google nemôže indexovať stránky ako `/internet-karvina` a `/internet-havirov`:
 
-**Riešenie**:
-- Pridať explicitné `text-foreground` na všetky textáreá v `GeneratedContent`
-- Na mobile zobraziť content karty vertikálne s lepším paddingom
-- Tlačidlá "Regenerovat vše" a "Uložit" na mobile zobraziť pod sebou (`flex-col sm:flex-row`)
-- Zmenšiť min-height textáreí na mobile
+### Problém 1: Hardcoded canonical tag v index.html (KRITICKÝ)
 
-## Problem 2: Aktuálne informácie z webu
-
-Keď používateľ zadá tému typu "novinky vo svete AI", generátor momentálne nemá prístup k aktuálnym informáciám - AI vymýšľa obsah z tréningových dát.
-
-**Riešenie**: Integrovať Perplexity API (kľúč `PERPLEXITY_API_KEY` je už nakonfigurovaný) do edge funkcie `social-content-generator`. Pred generovaním textu sa najprv vyhľadajú aktuálne informácie cez Perplexity, a tie sa pridajú do promptu ako kontext.
-
-## Technické zmeny
-
-### 1. `src/components/social/GeneratedContent.tsx`
-- Pridať `text-foreground` triedy na všetky textáreá a labely
-- Tlačidlá wrap na mobile: `flex flex-col sm:flex-row`
-- Zmenšiť `min-h` textáreí na mobile (`min-h-[100px] sm:min-h-[120px]`)
-
-### 2. `src/pages/SocialGenerator.tsx`
-- Tlačidlá "Regenerovat vše" / "Uložit" na mobile pod sebou
-- Navigačné tlačidlá lepší spacing na mobile
-- Content grid `gap-4` namiesto `gap-6` na mobile
-
-### 3. `src/components/social/StepProgress.tsx`
-- Na mobile zmenšiť padding krokov (`px-2 py-1 sm:px-3 sm:py-1.5`)
-- Scrollovateľné s `-webkit-overflow-scrolling: touch`
-
-### 4. `supabase/functions/social-content-generator/index.ts`
-- Pridať novú funkciu `searchCurrentInfo(topic, apiKey)` ktorá volá Perplexity API (`sonar` model) a získa aktuálne informácie k téme
-- Pred generovaním textu sa zavolá Perplexity search s témou
-- Výsledky (max 200 slov) sa pridajú do system promptu ako `AKTUÁLNÍ KONTEXT Z WEBU: ...`
-- Perplexity sa volá iba ak je zadaná customTopic (vlastná téma) - pre generické typy nie
-- Citácie z Perplexity sa pridajú do výstupu ako `sources[]`
-
-Príklad upraveného promptu:
+Súbor `index.html` (riadok 47) obsahuje:
+```text
+<link rel="canonical" href="https://www.popri.cz/" />
 ```
-Jsi expert na sociální sítě pro popri.cz...
 
-AKTUÁLNÍ KONTEXT Z WEBU (ověřené informace):
-- OpenAI právě vydalo GPT-5 s novými schopnostmi...
-- Google oznámil Gemini 2.0 Ultra...
-[Zdroje: techcrunch.com, theverge.com]
+Pretože je to SPA (Single Page Application), **VŠETKY stránky** sa servírujú z tohto jedného `index.html`. To znamená, že keď Googlebot načíta `/internet-karvina`, prvé čo uvidí v HTML je canonical smerujúci na homepage `/`.
 
-Napiš Facebook příspěvek o: novinky ve světě AI
+Aj keď React (Helmet) neskôr prepisuje canonical na správnu URL, Google môže spracovať pôvodný canonical z HTML skôr, než sa JavaScript vykoná. Presne toto potvrdzuje GSC hlásenie pre `/internet-havirov`: **"Alternatívna stránka so správnou kanonickou značkou"** - Google si myslí, že mestská stránka je duplikát homepage.
+
+### Problém 2: Edge funkcia blokuje Googlebot rendering
+
+Edge funkcia `ai-bot-detector` beží na KAŽDOM requeste (`path: "/*"`). Pre bežného Googlebota (nie AI bot) volá `context.next()`, čo je v poriadku. Ale problém môže byť v tom, že edge funkcia pridáva latenciu a pri servírovaní SPA môže Googlebot naraziť na timeout alebo chybu presmerovania.
+
+Navyše, stránky mesta existujú iba v `AI_STATIC_PATHS` pre AI boty, ale **pre Googlebota nie je žiadna statická verzia** - musí renderovať celú React aplikáciu.
+
+### Problém 3: Service Worker interferuje s Googlebotom
+
+Súbor `sw-register.js` pri **každom načítaní stránky** odregistruje VŠETKY service workery a znova registruje nový. Toto môže narušiť rendering pipeline Googlebota.
+
+## Plán opravy
+
+### Krok 1: Odstrániť hardcoded canonical z index.html
+**Súbor**: `index.html`
+
+Odstrániť riadok 47 (`<link rel="canonical" href="https://www.popri.cz/" />`). Canonical bude nastavovaný dynamicky cez React Helmet na každej stránke.
+
+### Krok 2: Pridať Googlebot do edge funkcie pre statické servírovanie
+**Súbor**: `netlify/edge-functions/ai-bot-detector.ts`
+
+Pridať `Googlebot` do detekcie botov (rovnako ako AI boty), aby sa mestským stránkam servíroval statický HTML namiesto SPA. Googlebot tak dostane plnohodnotný HTML s korektným canonical tagom bez nutnosti renderovať JavaScript.
+
+Pridať do `AI_BOT_PATTERNS` alebo vytvoriť novú skupinu `SEARCH_BOT_PATTERNS`:
+- `Googlebot` (ale NIE pre hlavné stránky ako `/`, `/blog` - tam nechať SPA)
+- Aplikovať iba na mestské stránky (`/internet-*`), kde statické HTML verzie už existujú
+
+### Krok 3: Aktualizovať statické HTML stránky miest
+**Súbory**: `public/ai-static/internet-karvina.html`, `internet-havirov.html`, atd.
+
+Overiť, že všetky statické HTML stránky miest majú:
+- Správny `<link rel="canonical">` tag
+- Aktuálne meta tagy `robots: index, follow`
+- Presný obsah zodpovedajúci React verzii
+
+### Krok 4: Deaktivovať Service Worker pre boty
+**Súbor**: `public/sw-register.js`
+
+Pridať kontrolu User-Agenta pred registráciou SW, aby sa pre Googlebota SW vôbec neregistroval:
+```text
+if (navigator.userAgent && /googlebot|bingbot/i.test(navigator.userAgent)) return;
 ```
+
+### Krok 5: Pridať Googlebot do edge funkcie pre mestské stránky
+**Súbor**: `netlify/edge-functions/ai-bot-detector.ts`
+
+Upraviť logiku tak, aby pre Googlebota na cestách `/internet-*` servírovala statický HTML zo zložky `/ai-static/`. Tým Googlebot dostane:
+- Korektný canonical tag
+- Plný HTML obsah bez nutnosti JS renderingu
+- Správne meta tagy pre indexovanie
+
+## Očakávaný výsledok
+
+Po nasadení týchto zmien:
+1. Googlebot uvidí správny canonical tag na každej mestskej stránke
+2. GSC prestane hlásiť "Alternatívna stránka so správnou kanonickou značkou"
+3. GSC prestane hlásiť "Chyba presmerovania"
+4. Mestské stránky sa začnú indexovať (zvyčajne do 1-2 týždňov)
+
+Po nasadení bude potrebné v GSC znova požiadať o indexovanie každej mestskej URL.
+

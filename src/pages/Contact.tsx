@@ -13,7 +13,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen pt-24 bg-background">
+    <div className="min-h-screen pt-20 bg-background">
       <Helmet>
         <title>Kontakt | Objednejte Gigabitový Internet + TV Zdarma</title>
         <meta name="description" content="Objednejte optické připojení ještě dnes. Zavolejte 730 431 313 nebo vyplňte formulář. Rychlá instalace, férová cena, bez závazků. Jsme tu pro vás!" />
@@ -35,17 +35,17 @@ const Contact = () => {
         </script>
       </Helmet>
       
-      {/* Hero */}
-      <section className="section-padding-compact bg-background">
+      {/* Compact Hero */}
+      <section className="pt-6 pb-4 bg-background">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="inline-block bg-primary/10 text-primary py-1.5 px-4 rounded-full text-responsive-xs font-medium mb-4 border border-primary/20 reveal-animation">
+            <span className="inline-block bg-primary/10 text-primary py-1 px-3 rounded-full text-xs font-medium mb-3 border border-primary/20 reveal-animation">
               Kontaktujte nás
             </span>
-            <h1 className="text-responsive-hero font-heading font-bold text-foreground mb-4 leading-tight reveal-animation delay-100">
+            <h1 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-2 leading-tight reveal-animation delay-100">
               <span className="text-gradient-gold">Kontakt</span>
             </h1>
-            <p className="text-muted-foreground text-responsive-base mb-responsive leading-relaxed reveal-animation delay-200">
+            <p className="text-muted-foreground text-sm sm:text-base mb-4 leading-relaxed reveal-animation delay-200">
               Máte zájem o naše služby? Kontaktujte nás a vytvoříme pro vás objednávku.
             </p>
           </div>
@@ -53,7 +53,7 @@ const Contact = () => {
       </section>
 
       {/* Content */}
-      <section className="section-padding bg-background">
+      <section className="pb-12 bg-background">
         <div className="container-custom">
           {/* Mobile Layout */}
           <div className="lg:hidden mb-responsive">

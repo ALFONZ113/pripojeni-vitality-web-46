@@ -24,10 +24,12 @@ import { mytyOptickyInternetPost } from './myty-opticky-internet';
 import { pomalyInternetVecerPost } from './pomaly-internet-vecer';
 import { aiMeniSvetInternetPost } from './ai-meni-svet-internet';
 import { operatoriCenyInternetuPost } from './operatori-ceny-internetu';
+import { vypadekInternetu24hPost } from './vypadek-internetu-24h';
 
 // Combine all posts from different categories
 export const blogPosts: BlogPost[] = [
-  operatoriCenyInternetuPost, // Najnovší - Operátoři mění ceny internetu
+  vypadekInternetu24hPost, // Nejnovější - Co se stane při výpadku
+  operatoriCenyInternetuPost,
   aiMeniSvetInternetPost, // Jak AI mění svět
   pomalyInternetVecerPost, // Proč internet zpomaluje večer
   mytyOptickyInternetPost, // Mýty o optickém internetu
@@ -77,5 +79,6 @@ export * from './myty-opticky-internet';
 export * from './pomaly-internet-vecer';
 export * from './ai-meni-svet-internet';
 export * from './operatori-ceny-internetu';
+export * from './vypadek-internetu-24h';
 
 // Note: WiFi blog slug changed to Czech: jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025

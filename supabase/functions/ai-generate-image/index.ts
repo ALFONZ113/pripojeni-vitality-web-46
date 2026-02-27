@@ -9,7 +9,7 @@ const corsHeaders = {
 
 // Input validation schema
 const ImageInputSchema = z.object({
-  prompt: z.string().trim().min(5, "Prompt musí mít alespoň 5 znaků").max(2000, "Prompt je příliš dlouhý"),
+  prompt: z.string().trim().min(5, "Prompt musí mít alespoň 5 znaků").max(8000, "Prompt je příliš dlouhý"),
   slug: z.string().trim().regex(/^[a-z0-9-]*$/, "Slug může obsahovat pouze malá písmena, čísla a pomlčky").max(100, "Slug je příliš dlouhý").optional().nullable(),
   referenceImage: z.string().optional().nullable(),
   renderStyle: z.enum(['realistic', 'caricature', 'illustration', 'cartoon']).optional().nullable(),

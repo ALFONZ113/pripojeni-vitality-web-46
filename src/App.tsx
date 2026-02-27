@@ -1,7 +1,23 @@
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, ComponentType } from 'react';
 import { Toaster } from 'sonner';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Retry wrapper for lazy imports - handles stale chunk errors after rebuilds
+function lazyWithRetry(factory: () => Promise<{ default: ComponentType<any> }>) {
+  return lazy(() =>
+    factory().catch((err) => {
+      console.warn('Chunk load failed, retrying...', err);
+      // Force reload on stale chunk
+      const url = new URL(window.location.href);
+      if (!url.searchParams.has('retry')) {
+        url.searchParams.set('retry', '1');
+        window.location.href = url.toString();
+      }
+      throw err;
+    })
+  );
+}
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
@@ -15,33 +31,33 @@ import { NoIndexMeta } from './components/seo/NoIndexMeta';
 import Home from './pages/Index';
 
 // Lazy load other components for better performance
-const InternetTV = lazy(() => import('./pages/InternetTV'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Blog = lazy(() => import('./pages/Blog'));
-const BlogPost = lazy(() => import('./pages/BlogPost'));
-const CityTemplate = lazy(() => import('./pages/CityTemplate'));
-const Tarify = lazy(() => import('./pages/Tarify'));
-const Programy = lazy(() => import('./pages/TvPrograms'));
-const IPTV = lazy(() => import('./pages/IPTV'));
-const PromoAkcia = lazy(() => import('./pages/PromoAkcia'));
-const PomocPrechodem = lazy(() => import('./pages/PomocPrechodem'));
-const PrivacyPolicy = lazy(() => import('./pages/OchranaSoukromi'));
-const TermsOfService = lazy(() => import('./pages/ObchodniPodminky'));
-const CookiePolicy = lazy(() => import('./pages/Cookies'));
-const MigrationMonitor = lazy(() => import('./pages/MigrationMonitor'));
-const IndexingDashboard = lazy(() => import('./pages/IndexingDashboard'));
-const SEODashboard = lazy(() => import('./pages/SEODashboard'));
-const MigrationCenter = lazy(() => import('./pages/MigrationCenter'));
-const GigaInternet = lazy(() => import('./pages/GigaInternet'));
-const CanonicalDiagnostic = lazy(() => import('./pages/CanonicalDiagnostic'));
-const AdminLogin = lazy(() => import('./pages/AdminLogin'));
- const AdminDashboardPage = lazy(() => import('./pages/AdminDashboard'));
- const AIBlogTestPage = lazy(() => import('./pages/AIBlogTest'));
- const AIBlogManagerPage = lazy(() => import('./pages/AIBlogManager'));
- const AIAutomationPage = lazy(() => import('./pages/AIAutomation'));
- const SocialGeneratorPage = lazy(() => import('./pages/SocialGenerator'));
- const SocialExportPage = lazy(() => import('./pages/SocialExport'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const InternetTV = lazyWithRetry(() => import('./pages/InternetTV'));
+const Contact = lazyWithRetry(() => import('./pages/Contact'));
+const Blog = lazyWithRetry(() => import('./pages/Blog'));
+const BlogPost = lazyWithRetry(() => import('./pages/BlogPost'));
+const CityTemplate = lazyWithRetry(() => import('./pages/CityTemplate'));
+const Tarify = lazyWithRetry(() => import('./pages/Tarify'));
+const Programy = lazyWithRetry(() => import('./pages/TvPrograms'));
+const IPTV = lazyWithRetry(() => import('./pages/IPTV'));
+const PromoAkcia = lazyWithRetry(() => import('./pages/PromoAkcia'));
+const PomocPrechodem = lazyWithRetry(() => import('./pages/PomocPrechodem'));
+const PrivacyPolicy = lazyWithRetry(() => import('./pages/OchranaSoukromi'));
+const TermsOfService = lazyWithRetry(() => import('./pages/ObchodniPodminky'));
+const CookiePolicy = lazyWithRetry(() => import('./pages/Cookies'));
+const MigrationMonitor = lazyWithRetry(() => import('./pages/MigrationMonitor'));
+const IndexingDashboard = lazyWithRetry(() => import('./pages/IndexingDashboard'));
+const SEODashboard = lazyWithRetry(() => import('./pages/SEODashboard'));
+const MigrationCenter = lazyWithRetry(() => import('./pages/MigrationCenter'));
+const GigaInternet = lazyWithRetry(() => import('./pages/GigaInternet'));
+const CanonicalDiagnostic = lazyWithRetry(() => import('./pages/CanonicalDiagnostic'));
+const AdminLogin = lazyWithRetry(() => import('./pages/AdminLogin'));
+const AdminDashboardPage = lazyWithRetry(() => import('./pages/AdminDashboard'));
+const AIBlogTestPage = lazyWithRetry(() => import('./pages/AIBlogTest'));
+const AIBlogManagerPage = lazyWithRetry(() => import('./pages/AIBlogManager'));
+const AIAutomationPage = lazyWithRetry(() => import('./pages/AIAutomation'));
+const SocialGeneratorPage = lazyWithRetry(() => import('./pages/SocialGenerator'));
+const SocialExportPage = lazyWithRetry(() => import('./pages/SocialExport'));
+const NotFound = lazyWithRetry(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({
   defaultOptions: {

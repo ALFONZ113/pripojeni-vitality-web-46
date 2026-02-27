@@ -186,7 +186,7 @@ The generated image MUST show the SAME PERSON from the reference photo, just in 
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash-image-preview',
+        model: 'google/gemini-2.5-flash-image',
         messages,
         modalities: ['image', 'text']
       }),
@@ -222,7 +222,7 @@ The generated image MUST show the SAME PERSON from the reference photo, just in 
           success: true,
           image_url: imageBase64,
           stored: false,
-          model: 'google/gemini-2.5-flash-image-preview'
+          model: 'google/gemini-2.5-flash-image'
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -264,7 +264,7 @@ The generated image MUST show the SAME PERSON from the reference photo, just in 
           image_url: imageBase64,
           stored: false,
           error: uploadError.message,
-          model: 'google/gemini-2.5-flash-image-preview'
+          model: 'google/gemini-2.5-flash-image'
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -283,7 +283,7 @@ The generated image MUST show the SAME PERSON from the reference photo, just in 
         original_base64: imageBase64,
         stored: true,
         file_name: fileName,
-        model: 'google/gemini-2.5-flash-image-preview'
+        model: 'google/gemini-2.5-flash-image'
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
@@ -294,7 +294,7 @@ The generated image MUST show the SAME PERSON from the reference photo, just in 
       JSON.stringify({ 
         success: false, 
         error: error.message,
-        model: 'google/gemini-2.5-flash-image-preview'
+        model: 'google/gemini-2.5-flash-image'
       }),
       { 
         status: 500,

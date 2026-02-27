@@ -56,21 +56,21 @@ const InputSchema = z.object({
 });
 
 const personRenderPrompts: Record<string, string> = {
-  'realistic': 'Photo-realistic person integration, natural lighting, seamless blend with environment, professional photography quality',
-  'caricature': 'Exaggerated caricature style with bold features, humorous artistic interpretation, warm colors, fun and playful aesthetic',
-  'illustration': 'Modern digital illustration style, clean vector-like lines, artistic and professional, flat design elements',
-  'cartoon': 'Pixar/Disney 3D cartoon style, friendly and approachable, vibrant colors, animated character look',
+  'realistic': 'The person is seamlessly integrated into the scene with photo-realistic quality. Natural soft lighting wraps around them, matching the environment. Shot with an 85mm portrait lens at f/2.8 for a gentle bokeh that separates them from the background while keeping them sharp and lifelike.',
+  'caricature': 'The person is rendered as a playful caricature with exaggerated distinctive features — a bigger smile, expressive eyes, and dynamic proportions. The style uses bold outlines, warm saturated colors, and a fun hand-drawn quality that feels humorous yet recognizable.',
+  'illustration': 'The person is depicted in a modern digital illustration style with clean geometric lines and flat color blocks. Subtle gradients add depth while maintaining a professional, vector-art aesthetic. The design feels polished and contemporary.',
+  'cartoon': 'The person is transformed into a Pixar-style 3D animated character with friendly proportions, large expressive eyes, and smooth skin textures. Vibrant, saturated colors and soft studio lighting give the character a warm, approachable feel.',
 };
 
 const stylePrompts: Record<string, string> = {
-  'luxury-gold': `Style: Luxury noir and gold editorial design. Background: Deep black #0A0A0A. Accent: Rich gold #D4A517. Text: Cream #F5F0E8. Typography: Elegant serif headlines. Effects: Glassmorphism, golden fiber optic trails. Mood: Premium, sophisticated. CRITICAL: All text MUST be in CZECH.`,
-  'photo-realistic': `Style: Realistic lifestyle photography. Background: Real interiors. Lighting: Warm natural light. Colors: Warm neutrals. Mood: Authentic, relatable. Photography: Editorial lifestyle quality. CRITICAL: All text MUST be in CZECH.`,
-  'modern-noir': `Style: Modern dark editorial. Background: Deep charcoal. Accent: White #E8E8E8. Typography: Modern sans-serif. Mood: Professional, tech-forward. CRITICAL: All text MUST be in CZECH.`,
-  'minimalist': `Style: Clean minimalist. Background: White #FAFAFA. Text: Black #1A1A1A. Typography: Geometric sans-serif. Mood: Clean, Scandinavian. CRITICAL: All text MUST be in CZECH.`,
-  'gradient-modern': `Style: Vibrant gradients. Background: Purple to cyan gradient. Text: White. Effects: Glassmorphism, gradient orbs. Mood: Trendy, energetic. CRITICAL: All text MUST be in CZECH.`,
-  'tech-blue': `Style: Technology design. Background: Navy #0A1628. Accent: Electric blue #00A3FF. Effects: Network nodes, data streams. Mood: Professional, innovative. CRITICAL: All text MUST be in CZECH.`,
-  'bright-bold': `Style: High-impact promo. Background: Vibrant orange/red/yellow. Typography: Extra bold, large. Effects: Geometric shapes, badges. Mood: Exciting, urgent. CRITICAL: All text MUST be in CZECH. Use "SLEVA", "AKCE".`,
-  'premium-ad': `Style: Premium ad banner 9:16. Background: Black #0A0A0A with warm orange light. Lighting: Dramatic orange backlighting. Text: White headline, orange subtitle, CTA badge. Mood: High-tech, premium. CRITICAL: All text MUST be in CZECH.`,
+  'luxury-gold': `A luxurious, high-end social media visual with a deep noir background (#0A0A0A). The scene is illuminated by warm golden ambient light that creates soft reflections and rich gold (#D4A517) accents throughout the composition. Typography uses an elegant serif style for headlines rendered in cream white (#F5F0E8). Subtle glassmorphism panels and golden fiber optic light trails add depth and sophistication. The overall mood is premium and trustworthy. Shot with professional studio lighting, sharp focus on the main subject, shallow depth of field.`,
+  'photo-realistic': `An authentic lifestyle photograph captured in a real Czech home interior. Warm natural window light fills the room, creating soft shadows and a cozy atmosphere. The color palette is warm neutrals — wood tones, cream walls, and soft textiles. The image feels candid and relatable, as if taken by a professional editorial photographer using a 35mm lens with natural depth of field. The mood is inviting, genuine, and family-friendly.`,
+  'modern-noir': `A sleek, modern editorial composition on a deep charcoal background (#1A1A1A). Crisp white (#E8E8E8) typography in a geometric sans-serif font provides sharp contrast. Subtle blue-gray gradient accents and thin line elements add visual interest without clutter. The lighting is dramatic and directional, creating defined shadows. The mood is professional, tech-forward, and authoritative. Clean negative space dominates the composition.`,
+  'minimalist': `A clean, Scandinavian-inspired design on a pristine white background (#FAFAFA). Typography is set in a geometric sans-serif font in deep black (#1A1A1A) with generous letter-spacing. The layout embraces abundant white space and precise alignment. A single accent color appears sparingly. The overall feeling is calm, sophisticated, and effortlessly modern. Shot with flat, even lighting and no harsh shadows.`,
+  'gradient-modern': `A vibrant, trendy composition featuring a rich purple-to-cyan gradient background that flows diagonally across the canvas. White text overlays stand out against the colorful backdrop. Frosted glassmorphism panels float above the gradient, and soft glowing orbs add depth. The mood is energetic, youthful, and forward-looking. The lighting is diffused and ambient, creating a futuristic digital atmosphere.`,
+  'tech-blue': `A professional technology-themed visual with a deep navy background (#0A1628). Electric blue (#00A3FF) accent lines form subtle network node patterns and data stream visualizations. Typography is modern sans-serif in white with blue highlights. The lighting simulates cool LED illumination with sharp highlights on metallic or glass surfaces. The mood is innovative, reliable, and cutting-edge. Rendered with crisp detail and precise geometric elements.`,
+  'bright-bold': `A high-impact promotional visual with an explosive background of vibrant orange, red, and yellow gradients. Extra-bold, oversized typography dominates the composition with promotional words like "SLEVA" or "AKCE" in Czech. Geometric shapes, star bursts, and badge elements create urgency. The lighting is bright and even, ensuring maximum readability. The mood is exciting, urgent, and impossible to ignore. Designed to stop the scroll immediately.`,
+  'premium-ad': `A premium vertical advertisement (9:16 aspect ratio) with a deep black background (#0A0A0A). Dramatic warm orange backlighting creates a cinematic rim light effect around the main subject. The headline is rendered in bold white sans-serif font, with an orange subtitle below. A CTA badge element with rounded corners sits at the bottom third. The mood is high-tech, premium, and aspirational. Studio-quality lighting with controlled shadows and rich contrast.`,
 };
 
 const postTemplates: Record<string, { systemPrompt: string; fbPrompt: string; igPrompt: string; imagePrompt: string; hashtags: string[] }> = {
@@ -202,7 +202,17 @@ async function generateSceneDescription(
       body: JSON.stringify({
         model: 'google/gemini-3-flash-preview',
         messages: [
-          { role: 'system', content: `Create unique image scene descriptions for social media. ${personRules} Output ONLY 2-3 sentence scene description in English.` },
+          { role: 'system', content: `You are a creative director writing image scene descriptions for a social media photo shoot. ${personRules}
+
+Output ONLY a 4-6 sentence scene description in English. Each description MUST include:
+1. The main subject and their action or pose in the scene
+2. The specific type of lighting (e.g. "soft window light", "dramatic rim lighting", "golden hour sunlight")
+3. The camera/lens perspective (e.g. "shot with a 50mm lens at f/1.8", "wide-angle overhead view")
+4. The dominant colors and textures visible in the scene
+5. The composition and where negative space exists for text overlays
+6. The overall mood and atmosphere
+
+Be specific and cinematic. Describe what a photographer would actually see through the viewfinder.` },
           { role: 'user', content: `Topic: ${topic}\nPost type: ${postType}\nVisual style: ${visualStyle}` }
         ],
       }),
@@ -347,19 +357,23 @@ serve(async (req) => {
       const uniqueScene = await generateSceneDescription(topicForScene, type, visualStyle, includePerson, personRenderStyle || null, lovableApiKey);
 
       let imagePromptContent = '';
+      const aspectDesc = isInstagram
+        ? 'Square composition in 1:1 aspect ratio (1080x1080px). The layout is balanced and centered.'
+        : 'Vertical portrait composition in 4:5 aspect ratio (1080x1350px). The layout uses the vertical space with content flowing top to bottom.';
+
       if (uniqueScene) {
-        imagePromptContent = `Social media image for ${isInstagram ? 'Instagram (1080x1080, square)' : 'Facebook (1080x1350, 4:5 vertical)'}.\n\nSCENE: ${uniqueScene}\nTopic: ${topicForScene}\n`;
+        imagePromptContent = `${aspectDesc}\n\nSCENE: ${uniqueScene}\nTopic: ${topicForScene}\n`;
         if (includePerson === 'custom-person' && personRenderStyle) {
           imagePromptContent += `\nPERSON STYLE: ${personRenderPrompts[personRenderStyle] || personRenderPrompts['realistic']}`;
         }
       } else {
-        imagePromptContent = template.imagePrompt;
+        imagePromptContent = `${aspectDesc}\n\n${template.imagePrompt}`;
         if (customTopic) imagePromptContent += `\nTopic: ${customTopic}`;
       }
 
-      imagePromptContent += `\n${brandingPrompt}\nDimensions: ${dimensions}`;
-      if (withCTA) imagePromptContent += `\nInclude a clear CTA button/badge element in Czech.`;
-      imagePromptContent += `\n\nCRITICAL: All visible text must be in Czech (čeština).`;
+      imagePromptContent += `\n\nVISUAL STYLE:\n${brandingPrompt}`;
+      if (withCTA) imagePromptContent += `\nInclude a clear CTA button or badge element with rounded corners in the lower third of the image.`;
+      imagePromptContent += `\n\nTEXT RENDERING: Any visible text in the image must be in Czech (čeština) with proper diacritics (č, š, ž, ř, ď, ť, ň, ů, ý, á, í, é). Use clean, bold sans-serif font for headlines positioned in the upper third with sufficient contrast against the background. Subtitle text should be smaller below. Put exact text strings in quotation marks. Single cohesive image output only.`;
 
       result[plat] = {
         text: generatedText.trim(),

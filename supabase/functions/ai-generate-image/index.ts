@@ -260,7 +260,7 @@ serve(async (req) => {
       const styleDescription = styleDescriptions[renderStyle] || styleDescriptions['realistic'];
       finalPrompt = buildIdentityPrompt(styleDescription, prompt);
     } else {
-      finalPrompt = `${prompt}. Professional photography, high-quality, modern design, ultra high resolution, editorial style.`;
+      finalPrompt = `${prompt}\n\nPhotographed with a professional camera using natural depth of field. Sharp focus on the main subject with a complementary, uncluttered background. The composition leaves appropriate negative space for text overlays. Soft, directional lighting creates gentle shadows and dimension. Single cohesive image output.`;
     }
 
     // Call Gemini API directly

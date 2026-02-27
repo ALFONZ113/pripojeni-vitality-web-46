@@ -270,7 +270,7 @@ serve(async (req) => {
 
     // Try to upload to storage
     const stored = await uploadToStorage(imageBase64, slug);
-    const MODEL_NAME = 'google/nano-banana-2 (gemini-2.0-flash-exp)';
+    const MODEL_NAME = 'google/nano-banana-2 (gemini-3.1-flash-image-preview)';
 
     if (stored) {
       console.log('📦 Image stored:', stored.publicUrl);

@@ -108,7 +108,7 @@ export const AIOptimizedSchema: React.FC = () => {
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'PODA Internet Tarify 2025',
+      name: 'PODA Internet Tarify 2026',
       itemListElement: [
         {
           '@type': 'Offer',
@@ -117,9 +117,9 @@ export const AIOptimizedSchema: React.FC = () => {
           description: 'Gigabitový internet 1000/1000 Mbps s 85+ TV kanály v ceně. Ideální pro rodiny a náročné uživatele.',
           price: '300',
           priceCurrency: 'CZK',
-          priceValidUntil: '2025-12-31',
+          priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/InStock',
-          validFrom: '2025-01-01',
+          validFrom: '2026-01-01',
           itemOffered: {
             '@type': 'Service',
             name: 'PODA Internet Basic',
@@ -133,9 +133,9 @@ export const AIOptimizedSchema: React.FC = () => {
           description: 'Gigabitový internet 1000/1000 Mbps se 100+ TV kanály a výběrem 10 prémiových stanic. Pro náročné diváky.',
           price: '440',
           priceCurrency: 'CZK',
-          priceValidUntil: '2025-12-31',
+          priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/InStock',
-          validFrom: '2025-01-01',
+          validFrom: '2026-01-01',
           itemOffered: {
             '@type': 'Service',
             name: 'PODA Internet Mých 10',
@@ -149,9 +149,9 @@ export const AIOptimizedSchema: React.FC = () => {
           description: 'Gigabitový internet 1000/1000 Mbps se 160+ TV kanály včetně všech prémiových balíčků. Kompletní zábava.',
           price: '520',
           priceCurrency: 'CZK',
-          priceValidUntil: '2025-12-31',
+          priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/InStock',
-          validFrom: '2025-01-01',
+          validFrom: '2026-01-01',
           itemOffered: {
             '@type': 'Service',
             name: 'PODA Internet Max',

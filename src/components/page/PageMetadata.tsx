@@ -65,7 +65,7 @@ const PageMetadata = ({
       <meta name="revisit-after" content="7 days" />
       
       {/* Enhanced domain migration signals */}
-      <meta name="migration-date" content="2025-06-23" />
+      <meta name="migration-date" content="2026-01-23" />
       <meta name="original-domain" content="pripojeni-poda.cz" />
       <meta name="preferred-domain" content="www.popri.cz" />
       <meta name="migration-status" content="completed" />
@@ -135,7 +135,7 @@ const PageMetadata = ({
             "description": "${description}",
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+420-739-065-142",
+              "telephone": "+420-730-431-313",
               "contactType": "customer service",
               "areaServed": "CZ",
               "availableLanguage": "Czech"

@@ -78,7 +78,7 @@ const Index = () => {
           'Profesionální technická podpora'
         ]}
         contactInfo={{
-          phone: '+420 739 065 142'
+          phone: '+420 730 431 313'
         }}
       />
       

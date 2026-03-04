@@ -96,12 +96,10 @@ const PageMetadata = ({
       <meta name="version" content={faviconVersion} />
       <meta name="cache-version" content="1747302000000" />
       
-      {/* Favicon links with updated cache version */}
-      <link rel="icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} type="image/png" />
-      <link rel="icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} sizes="32x32" type="image/png" />
-      <link rel="icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} sizes="192x192" type="image/png" />
-      <link rel="apple-touch-icon" href={`/popri-favicon.png?v=${faviconVersion}&t=${Date.now()}`} />
-      <link rel="manifest" href={`/site.webmanifest?v=${faviconVersion}&t=1747302000`} />
+      {/* Favicon - stable URL for Google Favicon crawler */}
+      <link rel="icon" href="/popri-favicon.png?v=2026.03" type="image/png" sizes="48x48" />
+      <link rel="apple-touch-icon" href="/popri-favicon.png?v=2026.03" sizes="180x180" />
+      <link rel="manifest" href="/site.webmanifest" />
 
       {/* Font preloading */}
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />

@@ -51,3 +51,8 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type = "application/xml"
+
+[[headers]]
+  for = "/popri-favicon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

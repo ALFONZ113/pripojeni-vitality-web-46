@@ -140,6 +140,12 @@ https://popri.cz/ https://www.popri.cz/ 301!
 /blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione-3 /blog 301!
 /blog/bleskovy-internet-bez-dratu-poznejte-60-ghz-technologii-a-nabidku-poda-102 /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301!
 
+# ===== Staré nesprávne cieľové slugy (Google ich už crawloval) =====
+/blog/poda-internet-2026-budoucnost-pripojeni /blog/poda-internet-2026-opticka-era-2-gigabity-domacnosti-rodinne-domy 301!
+/blog/myty-opticky-internet-pravda-vs-fikce /blog/nejcastejsi-myty-o-optickem-internetu 301!
+/blog/proc-internet-zpomaluje-vecer-reseni /blog/proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit 301!
+/blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni /blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad 301!
+
 # ===== SPA routing - serve index.html for all routes =====
 /blog/* /index.html 200
 /internet-* /index.html 200

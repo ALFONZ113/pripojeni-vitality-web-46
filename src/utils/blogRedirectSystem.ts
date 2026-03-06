@@ -77,29 +77,29 @@ export const blogRedirectMap: Record<string, string> = {
   // ID 301 - Home office 2025
   '/blog/301': '/blog/home-office-2025-jak-nastavit-domaci-kancelar-produktivita',
   
-  // ID 401 - Výběr internetu chyby
-  '/blog/401': '/blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi',
+  // ID 401 - PODA Internet 2026 (skutočné id: 401)
+  '/blog/401': '/blog/poda-internet-2026-opticka-era-2-gigabity-domacnosti-rodinne-domy',
   
   // ID 500 - Ostrava hlavní článek
   '/blog/500': '/blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025',
   
-  // ID 601 - PODA Internet 2026
-  '/blog/601': '/blog/poda-internet-2026-budoucnost-pripojeni',
+  // ID 601 - Výběr internetu chyby (skutočné id: 601)
+  '/blog/601': '/blog/ako-si-vybrat-internet-do-bytu-5-chyb-ktore-robi-80-percent-ludi',
   
   // ID 701 - WiFi signal zlepšení
   '/blog/701': '/blog/jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025',
   
-  // ID 801 - Mýty o optike
-  '/blog/801': '/blog/myty-opticky-internet-pravda-vs-fikce',
+  // ID 801 - Mýty o optice
+  '/blog/801': '/blog/nejcastejsi-myty-o-optickem-internetu',
   
   // ID 901 - Pomalý internet večer
-  '/blog/901': '/blog/proc-internet-zpomaluje-vecer-reseni',
+  '/blog/901': '/blog/proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit',
   
   // ID 999 - GPON technologie
   '/blog/999': '/blog/gpon-technologie-jak-funguje-moderni-opticky-internet',
   
   // ID 1001 - AI a internet
-  '/blog/1001': '/blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni',
+  '/blog/1001': '/blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad',
   
   // Opravené staré slugy
   '/blog/gaming-internet-ostrava-2025': '/blog/internetove-pripojeni-online-hraci-ostrava-rychlosti-ping-spolehlivost-poda',
@@ -127,6 +127,12 @@ export const blogRedirectMap: Record<string, string> = {
   '/blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione': '/blog',
   '/blog/jednoduchy-prechod-k-poda-od-stavajuceho-poskytovatela-v-moravskoslezskem-regione-3': '/blog',
   '/blog/bleskovy-internet-bez-dratu-poznejte-60-ghz-technologii-a-nabidku-poda-102': '/blog/polanka-nad-odrou-60ghz-pripojeni-2025',
+  
+  // Staré nesprávne cieľové slugy (Google ich už crawloval)
+  '/blog/poda-internet-2026-budoucnost-pripojeni': '/blog/poda-internet-2026-opticka-era-2-gigabity-domacnosti-rodinne-domy',
+  '/blog/myty-opticky-internet-pravda-vs-fikce': '/blog/nejcastejsi-myty-o-optickem-internetu',
+  '/blog/proc-internet-zpomaluje-vecer-reseni': '/blog/proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit',
+  '/blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni': '/blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad',
 };
 
 /**

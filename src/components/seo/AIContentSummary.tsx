@@ -78,28 +78,6 @@ export const AIContentSummary: React.FC<AIContentSummaryProps> = ({
         </div>
       )}
 
-      {/* Structured FAQ for common questions */}
-      <div itemScope itemType="https://schema.org/FAQPage">
-        <div itemProp="mainEntity" itemScope itemType="https://schema.org/Question">
-          <h3 itemProp="name">Co nabízíme?</h3>
-          <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-            <div itemProp="text">
-              Poskytujeme rychlé internetové připojení PODA s TV zdarma, 
-              profesionální instalaci a non-stop podporu.
-            </div>
-          </div>
-        </div>
-        
-        <div itemProp="mainEntity" itemScope itemType="https://schema.org/Question">
-          <h3 itemProp="name">Kde poskytujeme služby?</h3>
-          <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-            <div itemProp="text">
-              Ostrava, Karviná, Havířov, Bohumín, Poruba a okolní oblasti 
-              v Moravskoslezském kraji.
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

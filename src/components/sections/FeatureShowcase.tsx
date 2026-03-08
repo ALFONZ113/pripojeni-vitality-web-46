@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
 import { Clock, Wifi, Gamepad2, HeadphonesIcon, LucideIcon } from 'lucide-react';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 import featureInstallation from '@/assets/feature-installation.jpg';
 import featureWorkHome from '@/assets/feature-work-home.jpg';
@@ -51,24 +51,17 @@ const features: Feature[] = [
   },
 ];
 
-interface FeatureItemProps {
-  feature: Feature;
-  index: number;
-}
-
-const FeatureItem = ({ feature, index }: FeatureItemProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+const FeatureItem = ({ feature, index }: { feature: Feature; index: number }) => {
+  const { ref, isVisible } = useAnimateOnView({ margin: '-100px' });
   const isEven = index % 2 === 0;
   const Icon = feature.icon;
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+      className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center transition-all duration-700 ${
+        isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+      }`}
     >
       {/* Image */}
       <div className={`relative ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
@@ -121,13 +114,12 @@ const FeatureItem = ({ feature, index }: FeatureItemProps) => {
           {feature.description}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 const FeatureShowcase = () => {
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true });
+  const { ref: headerRef, isVisible: isHeaderVisible } = useAnimateOnView();
 
   return (
     <section className="py-20 lg:py-32 relative overflow-hidden">
@@ -136,12 +128,11 @@ const FeatureShowcase = () => {
       
       <div className="container-custom relative z-10">
         {/* Header */}
-        <motion.div
+        <div
           ref={headerRef}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-16 lg:mb-24"
+          className={`text-center mb-16 lg:mb-24 transition-all duration-700 ${
+            isHeaderVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+          }`}
         >
           <span className="badge-gold mb-4 inline-block">
             Naše výhody
@@ -152,7 +143,7 @@ const FeatureShowcase = () => {
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-body">
             Nabízíme více než jen rychlý internet. Získáte kompletní služby od profesionálů.
           </p>
-        </motion.div>
+        </div>
 
         {/* Features */}
         <div className="space-y-20 lg:space-y-32">

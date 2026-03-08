@@ -1,8 +1,9 @@
-
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 const WhyPopriSection = () => {
+  const { ref, isVisible } = useAnimateOnView();
+
   return (
     <section className="min-h-screen flex items-center py-20 bg-gradient-to-br from-blue-50 via-white to-orange-50/30 relative overflow-hidden">
       {/* Decorative background */}
@@ -12,12 +13,11 @@ const WhyPopriSection = () => {
       </div>
       
       <div className="container-custom relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6 }} 
-          viewport={{ once: true }} 
-          className="max-w-5xl mx-auto bg-white/95 backdrop-blur-xl rounded-3xl p-10 md:p-14 lg:p-16 shadow-2xl border border-white/40"
+        <div 
+          ref={ref}
+          className={`max-w-5xl mx-auto bg-white/95 backdrop-blur-xl rounded-3xl p-10 md:p-14 lg:p-16 shadow-2xl border border-white/40 transition-all duration-700 ${
+            isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-8'
+          }`}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-poda-blue mb-6 text-center leading-tight">
             Proč právě Popri.cz?
@@ -33,7 +33,7 @@ const WhyPopriSection = () => {
                 </svg>
               </div>
               <h3 className="font-bold text-xl lg:text-2xl text-poda-blue mb-3">Rychlost</h3>
-              <p className="text-gray-600 leading-relaxed">Jsme popři vás, když potřebujete rychlé PODA internet, připojení bez čekání.</p>
+              <p className="text-gray-600 leading-relaxed">Jsme popří vás, když potřebujete rychlé PODA internet, připojení bez čekání.</p>
             </div>
             <div className="text-center group">
               <div className="bg-gradient-to-br from-poda-orange to-poda-orange-light w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -51,10 +51,10 @@ const WhyPopriSection = () => {
                 </svg>
               </div>
               <h3 className="font-bold text-xl lg:text-2xl text-poda-blue mb-3">Podpora</h3>
-              <p className="text-gray-600 leading-relaxed">Jsme vždy popři vás, když potřebujete pomoc s vaším PODA internetem.</p>
+              <p className="text-gray-600 leading-relaxed">Jsme vždy popří vás, když potřebujete pomoc s vaším PODA internetem.</p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

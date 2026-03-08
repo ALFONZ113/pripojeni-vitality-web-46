@@ -1,15 +1,13 @@
-import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
 import { Badge } from '../ui/badge';
 import { blogPosts } from '@/data/blog';
 import { getBlogPostUrl } from '@/utils/blogRouting';
 import { Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react';
 import { Button } from '../ui/button';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 const FeaturedBlogPosts = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const { ref, isVisible } = useAnimateOnView();
   
   // Select first 3 posts
   const featuredPosts = blogPosts.slice(0, 3);
@@ -27,11 +25,10 @@ const FeaturedBlogPosts = () => {
 
       <div className="container-custom relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-12 lg:mb-16"
+        <div
+          className={`text-center mb-12 lg:mb-16 transition-all duration-700 ${
+            isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+          }`}
         >
           <span className="badge-gold mb-4 inline-block">
             <BookOpen className="w-4 h-4" />
@@ -43,22 +40,19 @@ const FeaturedBlogPosts = () => {
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-body">
             Průvodci, novinky a odborné rady pro výběr nejlepšího internetu
           </p>
-        </motion.div>
+        </div>
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {featuredPosts.map((post, index) => {
             const readingTime = estimateReadingTime(post.content);
             return (
-              <motion.div
+              <div
                 key={post.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: 0.1 + index * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94] 
-                }}
+                className={`transition-all duration-700 ${
+                  isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+                }`}
+                style={{ animationDelay: `${0.1 + index * 0.1}s` }}
               >
                 <Link
                   to={getBlogPostUrl(post)}
@@ -113,17 +107,17 @@ const FeaturedBlogPosts = () => {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.4, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center"
+        <div
+          className={`text-center transition-all duration-700 ${
+            isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ animationDelay: '0.4s' }}
         >
           <Button variant="noir" size="xl" asChild>
             <Link to="/blog">
@@ -131,7 +125,7 @@ const FeaturedBlogPosts = () => {
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

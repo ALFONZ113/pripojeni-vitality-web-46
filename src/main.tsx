@@ -52,7 +52,6 @@ try {
   }
   
   // Defer ALL non-critical optimizations to avoid blocking initial render
-  // Use immediate callback to avoid any delays
   setTimeout(() => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
@@ -61,14 +60,15 @@ try {
         lazyLoadHeavyComponents();
         loadMapyWhenNeeded();
         measureCoreWebVitals();
+        registerServiceWorker();
       }, { timeout: 2000 });
     } else {
-      // Even faster fallback - no setTimeout delay
       preloadCriticalRoutes();
       optimizeChunkLoading();
       lazyLoadHeavyComponents();
       loadMapyWhenNeeded();
       measureCoreWebVitals();
+      registerServiceWorker();
     }
   }, 0);
   

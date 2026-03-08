@@ -287,21 +287,13 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div style={{
-      opacity: scrollOpacity
-    }} className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center z-10">
+      {/* Scroll Indicator — CSS only */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center z-10">
         <span className="text-xs text-foreground/60 uppercase tracking-widest mb-2 font-body">Scroll</span>
-        <motion.div animate={{
-        y: [0, 8, 0]
-      }} transition={{
-        duration: 1.5,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }}>
+        <div className="animate-bounce">
           <ChevronDown className="h-5 w-5 text-primary" />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Quick Contact Modal for Mobile */}
       <QuickContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />

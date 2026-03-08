@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote, Users } from 'lucide-react';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 interface Testimonial {
   id: number;
@@ -49,8 +50,7 @@ const testimonials: Testimonial[] = [
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const { ref, isVisible } = useAnimateOnView();
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -90,10 +90,10 @@ const TestimonialsSection = () => {
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left - Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          <div
+            className={`transition-all duration-700 ${
+              isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+            }`}
           >
             <span className="badge-gold mb-4 inline-block">
               <Users className="w-4 h-4" />
@@ -123,14 +123,14 @@ const TestimonialsSection = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right - Carousel */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative"
+          {/* Right - Carousel — AnimatePresence kept for slide transitions */}
+          <div
+            className={`relative transition-all duration-700 ${
+              isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ animationDelay: '0.2s' }}
           >
             <div className="glass-card rounded-2xl p-6 sm:p-8 md:p-10 relative overflow-hidden min-h-[280px] sm:min-h-[300px] md:min-h-[320px]">
               {/* Quote icon */}
@@ -210,7 +210,7 @@ const TestimonialsSection = () => {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

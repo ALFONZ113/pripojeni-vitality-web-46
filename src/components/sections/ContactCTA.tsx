@@ -1,16 +1,15 @@
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
 import { Phone, Zap, Clock, Shield, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { sendContactFormEmail } from '@/utils/emailService';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 const ContactCTA = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const { ref, isVisible } = useAnimateOnView();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,11 +48,10 @@ const ContactCTA = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[200px]" />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="max-w-3xl mx-auto text-center px-4"
+        <div
+          className={`max-w-3xl mx-auto text-center px-4 transition-all duration-700 ${
+            isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+          }`}
         >
           {/* Badge */}
           <span className="badge-gold mb-4 md:mb-6 inline-block">
@@ -73,12 +71,12 @@ const ContactCTA = () => {
           </p>
 
           {/* Phone Form */}
-          <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          <form
             onSubmit={handleSubmit}
-            className="mb-8"
+            className={`mb-8 transition-all duration-700 ${
+              isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ animationDelay: '0.2s' }}
           >
             <div className="glass-card rounded-2xl p-4 md:p-6 max-w-lg mx-auto glow-gold-subtle">
               <div className="flex flex-col sm:flex-row gap-3">
@@ -105,14 +103,14 @@ const ContactCTA = () => {
                 </Button>
               </div>
             </div>
-          </motion.form>
+          </form>
 
           {/* Trust Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="flex flex-wrap justify-center gap-4 md:gap-6"
+          <div
+            className={`flex flex-wrap justify-center gap-4 md:gap-6 transition-all duration-700 ${
+              isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ animationDelay: '0.3s' }}
           >
             {trustBadges.map((badge, index) => (
               <div 
@@ -123,8 +121,8 @@ const ContactCTA = () => {
                 {badge.text}
               </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,12 +1,11 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
 import { Tv, ArrowRight, Play, Monitor, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 const IPTVSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const { ref, isVisible } = useAnimateOnView();
 
   const stats = [
     { icon: Tv, value: '95+', label: 'TV kanálů' },
@@ -23,11 +22,10 @@ const IPTVSection = () => {
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[200px] translate-x-1/2 translate-y-1/2" />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="max-w-4xl mx-auto text-center"
+        <div
+          className={`max-w-4xl mx-auto text-center transition-all duration-700 ${
+            isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+          }`}
         >
           {/* Badge */}
           <span className="badge-gold mb-6 inline-block">
@@ -52,11 +50,11 @@ const IPTVSection = () => {
           </p>
 
           {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="grid grid-cols-3 gap-4 md:gap-6 mb-12 max-w-2xl mx-auto"
+          <div
+            className={`grid grid-cols-3 gap-4 md:gap-6 mb-12 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+              isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ animationDelay: '0.2s' }}
           >
             {stats.map((stat, index) => (
               <div
@@ -72,14 +70,14 @@ const IPTVSection = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+          <div
+            className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 ${
+              isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ animationDelay: '0.3s' }}
           >
             <Button variant="gold" size="xl" asChild>
               <Link to="/iptv">
@@ -92,8 +90,8 @@ const IPTVSection = () => {
                 Objednat teď
               </Link>
             </Button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

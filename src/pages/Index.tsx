@@ -86,7 +86,6 @@ const Index = () => {
       <div className={`transition-opacity duration-300 opacity-100`}>
         <MainContent />
         <LocalSEOSection />
-        <IPTVSection />
       </div>
 
       {/* Popup will show once isLoading is false (which should be very quick) */}

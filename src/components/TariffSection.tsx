@@ -1,11 +1,11 @@
-import React, { memo, useState, useCallback, useMemo, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { memo, useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import TariffTabs from './tariffs/TariffTabs';
 import TariffCard from './tariffs/TariffCard';
 import { tariffData } from './tariffs/tariffData';
 import { ArrowRight, Wifi, Tv, Zap, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 type PromoInfoState = Record<'bytyBasic' | 'bytyMych10' | 'domyBasic' | 'domyMych10', boolean>;
 
@@ -15,8 +15,7 @@ const TariffSection = memo(() => {
     bytyBasic: false, bytyMych10: false, domyBasic: false, domyMych10: false,
   });
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isVisible } = useAnimateOnView({ margin: '-100px' });
 
   const togglePromoInfo = useCallback((tariff: keyof PromoInfoState) => {
     setOpenPromoInfo(prev => ({ ...prev, [tariff]: !prev[tariff] }));
@@ -42,11 +41,10 @@ const TariffSection = memo(() => {
       
       <div className="container-custom relative z-10">
         {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-responsive"
+        <div 
+          className={`text-center max-w-3xl mx-auto mb-responsive transition-all duration-700 ${
+            isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+          }`}
         >
           <span className="badge-gold mb-4 md:mb-6 inline-block text-responsive-xs">Naše nabídka</span>
           <h2 className="font-display text-responsive-3xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
@@ -55,22 +53,20 @@ const TariffSection = memo(() => {
           <p className="text-muted-foreground text-responsive-base leading-relaxed">
             Nabízíme výkonné a cenově dostupné internetové a televizní balíčky.
           </p>
-        </motion.div>
+        </div>
 
         {/* Stats Grid */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-responsive mb-responsive"
+        <div 
+          className={`hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-responsive mb-responsive transition-all duration-700 ${
+            isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ animationDelay: '0.1s' }}
         >
           {stats.map((stat, index) => (
-            <motion.div
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              className="bg-card rounded-xl md:rounded-2xl p-4 md:p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 group text-center"
+              className={`bg-card rounded-xl md:rounded-2xl p-4 md:p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 group text-center animate-fade-up-sm`}
+              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
             >
               <div className="bg-primary/10 w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
                 <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
@@ -79,33 +75,32 @@ const TariffSection = memo(() => {
                 {stat.value}<span className="text-responsive-sm text-primary">{stat.unit}</span>
               </div>
               <div className="text-responsive-xs text-muted-foreground">{stat.label}</div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 }}
+        <div
+          className={`transition-all duration-700 ${
+            isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ animationDelay: '0.2s' }}
         >
           <TariffTabs activeTab={activeTab} onTabChange={handleTabChange} />
-        </motion.div>
+        </div>
 
         {/* Tariff Cards */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-responsive max-w-6xl mx-auto"
+        <div 
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-responsive max-w-6xl mx-auto transition-all duration-700 ${
+            isVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ animationDelay: '0.3s' }}
         >
           {currentTariffData.map((tariff, index) => (
-            <motion.div
+            <div
               key={tariff.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 + index * 0.1 }}
-              className={index === 0 ? 'lg:col-span-7' : 'lg:col-span-5'}
+              className={`${index === 0 ? 'lg:col-span-7' : 'lg:col-span-5'} animate-fade-up-sm`}
+              style={{ animationDelay: `${0.4 + index * 0.1}s` }}
             >
               <TariffCard
                 {...tariff}
@@ -113,16 +108,16 @@ const TariffSection = memo(() => {
                 openPromoInfo={openPromoInfo}
                 onPromoInfoToggle={togglePromoInfo}
               />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center mt-12"
+        <div
+          className={`text-center mt-12 transition-all duration-700 ${
+            isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ animationDelay: '0.6s' }}
         >
           <Button variant="heroOutline" size="lg" asChild>
             <Link to="/tarify">
@@ -130,7 +125,7 @@ const TariffSection = memo(() => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

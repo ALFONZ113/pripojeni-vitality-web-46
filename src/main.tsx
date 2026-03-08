@@ -8,6 +8,17 @@ import { measureCoreWebVitals } from './utils/performance'
 import { handleBlogRedirects } from './utils/redirectManager'
 import { initializeLCPOptimizations } from './utils/lcp-optimization'
 
+// Register service worker after hydration
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (/googlebot|bingbot|slurp|duckduckbot|yandex/i.test(navigator.userAgent)) return;
+  
+  navigator.serviceWorker.getRegistrations()
+    .then(regs => Promise.all(regs.map(r => r.unregister())))
+    .then(() => navigator.serviceWorker.register('/service-worker.js?v=4.0'))
+    .catch(() => {});
+}
+
 // Global type declaration for window functions
 declare global {
   interface Window {
@@ -52,7 +63,6 @@ try {
   }
   
   // Defer ALL non-critical optimizations to avoid blocking initial render
-  // Use immediate callback to avoid any delays
   setTimeout(() => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
@@ -61,14 +71,15 @@ try {
         lazyLoadHeavyComponents();
         loadMapyWhenNeeded();
         measureCoreWebVitals();
+        registerServiceWorker();
       }, { timeout: 2000 });
     } else {
-      // Even faster fallback - no setTimeout delay
       preloadCriticalRoutes();
       optimizeChunkLoading();
       lazyLoadHeavyComponents();
       loadMapyWhenNeeded();
       measureCoreWebVitals();
+      registerServiceWorker();
     }
   }, 0);
   

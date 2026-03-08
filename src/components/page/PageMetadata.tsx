@@ -61,7 +61,11 @@ const PageMetadata = ({
       <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
       {seznamVerification && <meta name="seznam-wmt" content={seznamVerification} />}
       <meta name="author" content="Obchodní zástupce PODA" />
-      <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
+      {keywords.length > 0 ? (
+        <meta name="keywords" content={keywords.join(', ')} />
+      ) : (
+        <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
+      )}
       <meta name="revisit-after" content="7 days" />
       
       <meta name="meta-update" content={currentDate} />

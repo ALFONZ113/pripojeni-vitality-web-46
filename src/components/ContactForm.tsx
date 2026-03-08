@@ -183,7 +183,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
                 disabled={formState.loading}
               >
                 <option value="byty">Byt/bytovka</option>
-                <option value="domy">Rodinný dom</option>
+                <option value="domy">Rodinný dům</option>
               </select>
             </div>
             

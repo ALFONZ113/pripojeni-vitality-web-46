@@ -132,7 +132,7 @@ const PromotionPopup = () => {
       // Use the existing email service to send the callback request
       const emailSent = await sendContactFormEmail({
         name: "Promo - Žádost o zpětné volání",
-        email: "promo@popri.cz", // Dummy email as required by the function
+        email: "", // Empty - no customer confirmation email needed
         phone: phoneNumber,
         message: "Žádost o zpětné volání z promo popupu - První měsíc zdarma. Telefonní číslo: " + phoneNumber
       });

@@ -79,7 +79,7 @@ const PageMetadata = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://www.popri.cz/popri-logo.png" />
+      <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/LUwkMqUk05VjvdJHgCrEMWrAPsQ2/social-images/social-1771921151754-Generated_Image_February_24,_2026_-_9_18AM.jpg.webp" />
       <meta name="last-updated" content={currentDate} />
       
       {/* Hreflang tags for domain migration */}

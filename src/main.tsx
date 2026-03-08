@@ -8,6 +8,17 @@ import { measureCoreWebVitals } from './utils/performance'
 import { handleBlogRedirects } from './utils/redirectManager'
 import { initializeLCPOptimizations } from './utils/lcp-optimization'
 
+// Register service worker after hydration
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (/googlebot|bingbot|slurp|duckduckbot|yandex/i.test(navigator.userAgent)) return;
+  
+  navigator.serviceWorker.getRegistrations()
+    .then(regs => Promise.all(regs.map(r => r.unregister())))
+    .then(() => navigator.serviceWorker.register('/service-worker.js?v=4.0'))
+    .catch(() => {});
+}
+
 // Global type declaration for window functions
 declare global {
   interface Window {

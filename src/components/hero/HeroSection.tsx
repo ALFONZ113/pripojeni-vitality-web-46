@@ -108,7 +108,7 @@ const HeroSection = () => {
         {/* Dark Overlay - stronger gradient for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
-      </motion.div>
+      </div>
 
       {/* Content Container */}
       <div className="container-custom relative z-10 py-20 md:py-28">

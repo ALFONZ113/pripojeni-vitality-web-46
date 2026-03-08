@@ -18,14 +18,7 @@ const HeroSection = () => {
   const isInView = useInView(ref, {
     once: true
   });
-  const {
-    scrollY
-  } = useScroll();
   const isMobile = useIsMobile();
-
-  // Parallax effects
-  const imageScale = useTransform(scrollY, [0, 500], [1, 1.1]);
-  const scrollOpacity = useTransform(scrollY, [0, 200], [1, 0]);
   const handleContactClick = (e: React.MouseEvent) => {
     if (isMobile) {
       e.preventDefault();

@@ -176,7 +176,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
             
             <div>
               <label className={labelClass} htmlFor="propertyType">
-                Typ nehnuteľnosti
+                Typ nemovitosti
               </label>
               <select
                 id="propertyType"

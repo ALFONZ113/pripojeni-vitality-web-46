@@ -98,9 +98,7 @@ const HeroSection = () => {
       {/* ═══════════════════════════════════════════════════════════════
           FULL-SCREEN BACKGROUND IMAGE
          ═══════════════════════════════════════════════════════════════ */}
-      <motion.div className="absolute inset-0 z-0" style={{
-      scale: imageScale
-    }}>
+      <div className="absolute inset-0 z-0">
         <picture>
           {/* Desktop/Tablet - od 768px */}
           <source media="(min-width: 768px)" srcSet={heroBgDesktop} />

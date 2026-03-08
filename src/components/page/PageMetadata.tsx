@@ -64,11 +64,6 @@ const PageMetadata = ({
       <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
       <meta name="revisit-after" content="7 days" />
       
-      {/* Enhanced domain migration signals */}
-      <meta name="migration-date" content="2026-01-23" />
-      <meta name="original-domain" content="pripojeni-poda.cz" />
-      <meta name="preferred-domain" content="www.popri.cz" />
-      <meta name="migration-status" content="completed" />
       <meta name="meta-update" content={currentDate} />
       
       {/* Open Graph tags with canonical URLs and updated timestamp */}

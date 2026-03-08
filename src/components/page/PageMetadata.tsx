@@ -72,7 +72,7 @@ const PageMetadata = ({
       <meta property="og:url" content={migrationSafeCanonicalUrl} />
       <meta property="og:site_name" content="Popri.cz" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="https://www.popri.cz/popri-logo.png" />
+      <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/LUwkMqUk05VjvdJHgCrEMWrAPsQ2/social-images/social-1771921151754-Generated_Image_February_24,_2026_-_9_18AM.jpg.webp" />
       <meta property="og:updated_time" content={`${currentDate}T12:00:00Z`} />
       
       {/* Twitter Card tags */}

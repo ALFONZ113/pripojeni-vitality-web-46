@@ -6,7 +6,7 @@ import PromotionPopup from '../components/PromotionPopup';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { useEnhancedTracking } from '../hooks/use-enhanced-tracking';
 import LocalSEOSection from '../components/sections/LocalSEOSection';
-import IPTVSection from '../components/sections/IPTVSection';
+
 import { AIContentSummary } from '../components/seo/AIContentSummary';
 import { AIOptimizedSchema } from '../components/seo/AIOptimizedSchema';
 
@@ -86,7 +86,6 @@ const Index = () => {
       <div className={`transition-opacity duration-300 opacity-100`}>
         <MainContent />
         <LocalSEOSection />
-        <IPTVSection />
       </div>
 
       {/* Popup will show once isLoading is false (which should be very quick) */}

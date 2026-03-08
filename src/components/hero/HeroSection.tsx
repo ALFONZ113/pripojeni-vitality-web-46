@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Phone, Sparkles, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import QuickContactModal from '../QuickContactModal';
@@ -33,20 +34,29 @@ const HeroSection = () => {
   };
   const handlePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (phoneNumber.length >= 9) {
-      setIsLoading(true);
-      const success = await sendContactFormEmail({
-        name: "Žádost o zpětné volání - Hero",
-        phone: phoneNumber,
-        email: "",
-        message: `Zákazník požádal o zpětné volání: ${phoneNumber}`
+    const cleanPhone = phoneNumber.replace(/\s+/g, '');
+    const isValidPhone = /^(\+420)?[0-9]{9}$/.test(cleanPhone);
+    if (!isValidPhone) {
+      toast.error('Neplatné telefonní číslo', {
+        description: 'Zadejte platné české telefonní číslo (9 číslic nebo +420...).',
       });
-      setIsLoading(false);
-      if (success) {
-        setIsSubmitted(true);
-        setPhoneNumber('');
-        setTimeout(() => setIsSubmitted(false), 3000);
-      }
+      return;
+    }
+    setIsLoading(true);
+    const success = await sendContactFormEmail({
+      name: "Žádost o zpětné volání - Hero",
+      phone: cleanPhone,
+      email: "",
+      message: `Zákazník požádal o zpětné volání: ${cleanPhone}`
+    });
+    setIsLoading(false);
+    if (success) {
+      setIsSubmitted(true);
+      setPhoneNumber('');
+      toast.success('Děkujeme!', {
+        description: 'Budeme vás kontaktovat co nejdříve.',
+      });
+      setTimeout(() => setIsSubmitted(false), 3000);
     }
   };
   const trustPoints = ['Rychlá instalace', 'Bez závazků', '2000+ zákazníků'];

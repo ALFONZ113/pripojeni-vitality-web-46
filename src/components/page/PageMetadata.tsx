@@ -61,14 +61,13 @@ const PageMetadata = ({
       <meta name="google-site-verification" content="VwYBXv9ggyTnTzk-QAPDh-ZaJCioeFF-RnLP6Pf0hQA" />
       {seznamVerification && <meta name="seznam-wmt" content={seznamVerification} />}
       <meta name="author" content="Obchodní zástupce PODA" />
-      <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
+      {keywords.length > 0 ? (
+        <meta name="keywords" content={keywords.join(', ')} />
+      ) : (
+        <meta name="keywords" content="popri, PODA internet, popri připojení, popri.cz, PODA připojení, gigabitový internet popri, internetové připojení Ostrava, rychlý internet PODA" />
+      )}
       <meta name="revisit-after" content="7 days" />
       
-      {/* Enhanced domain migration signals */}
-      <meta name="migration-date" content="2026-01-23" />
-      <meta name="original-domain" content="pripojeni-poda.cz" />
-      <meta name="preferred-domain" content="www.popri.cz" />
-      <meta name="migration-status" content="completed" />
       <meta name="meta-update" content={currentDate} />
       
       {/* Open Graph tags with canonical URLs and updated timestamp */}
@@ -77,14 +76,14 @@ const PageMetadata = ({
       <meta property="og:url" content={migrationSafeCanonicalUrl} />
       <meta property="og:site_name" content="Popri.cz" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="https://www.popri.cz/popri-logo.png" />
+      <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/LUwkMqUk05VjvdJHgCrEMWrAPsQ2/social-images/social-1771921151754-Generated_Image_February_24,_2026_-_9_18AM.jpg.webp" />
       <meta property="og:updated_time" content={`${currentDate}T12:00:00Z`} />
       
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://www.popri.cz/popri-logo.png" />
+      <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/LUwkMqUk05VjvdJHgCrEMWrAPsQ2/social-images/social-1771921151754-Generated_Image_February_24,_2026_-_9_18AM.jpg.webp" />
       <meta name="last-updated" content={currentDate} />
       
       {/* Hreflang tags for domain migration */}

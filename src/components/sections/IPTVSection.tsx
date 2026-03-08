@@ -47,7 +47,7 @@ const IPTVSection = () => {
 
           {/* Description */}
           <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-2xl mx-auto font-body leading-relaxed">
-            Sledujte více ako 95 TV kanálů vo Full HD kvalitě bez satelitních parabolů. 
+            Sledujte více než 95 TV kanálů ve Full HD kvalitě bez satelitních parabolů. 
             Kompatibilní se všemi zařízeními - Smart TV, mobil, tablet, počítač.
           </p>
 

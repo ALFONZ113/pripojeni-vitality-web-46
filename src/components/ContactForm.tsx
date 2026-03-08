@@ -85,11 +85,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
     }
   }, [handleAddressSuggestion]);
 
-  if (formState.error) {
-    toast.error('Kontrola formuláře', {
-      description: formState.error,
-    });
-  }
+  // Error toast is handled inside useOptimizedForm submit flow, not on every render
 
   const formWrapperClass = compact 
     ? "glass rounded-xl p-4 md:p-6 border border-border"
@@ -176,7 +172,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
             
             <div>
               <label className={labelClass} htmlFor="propertyType">
-                Typ nehnuteľnosti
+                Typ nemovitosti
               </label>
               <select
                 id="propertyType"
@@ -187,7 +183,7 @@ const ContactForm = memo(({ onSuccess, compact = false }: ContactFormProps) => {
                 disabled={formState.loading}
               >
                 <option value="byty">Byt/bytovka</option>
-                <option value="domy">Rodinný dom</option>
+                <option value="domy">Rodinný dům</option>
               </select>
             </div>
             

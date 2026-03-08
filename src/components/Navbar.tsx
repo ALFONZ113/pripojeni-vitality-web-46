@@ -274,14 +274,23 @@ const Navbar = memo(() => {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="lg:hidden text-foreground p-2.5 hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center" 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
-        >
-          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        {/* Mobile: Phone CTA + Menu Button */}
+        <div className="lg:hidden flex items-center gap-2">
+          <a 
+            href="tel:+420730431313" 
+            className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors"
+            aria-label="Zavolat 730 431 313"
+          >
+            <Phone className="h-5 w-5" />
+          </a>
+          <button 
+            className="text-foreground p-2.5 hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

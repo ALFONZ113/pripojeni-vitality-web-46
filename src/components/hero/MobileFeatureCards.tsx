@@ -1,18 +1,10 @@
-
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const MobileFeatureCards = () => {
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
-
   return (
     <div className="block md:hidden space-y-4 mt-8">
-      <motion.div 
-        variants={item}
-        className="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-6 border border-white/40 shadow-2xl"
+      <div 
+        className="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-6 border border-white/40 shadow-2xl animate-fade-up"
         style={{ boxShadow: '0 10px 40px -10px rgba(15, 76, 129, 0.15)' }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-poda-blue/8 to-transparent rounded-3xl"></div>
@@ -25,12 +17,11 @@ const MobileFeatureCards = () => {
           <h3 className="font-bold text-lg text-poda-blue mb-2">Rychlý optický internet</h3>
           <p className="text-gray-600 text-sm leading-relaxed">PODA připojení s garantovanou rychlostí až 1000/1000 Mbps pro celou domácnost.</p>
         </div>
-      </motion.div>
+      </div>
       
-      <motion.div 
-        variants={item}
-        className="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-6 border border-white/40 shadow-2xl"
-        style={{ boxShadow: '0 10px 40px -10px rgba(255, 107, 53, 0.15)' }}
+      <div 
+        className="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-6 border border-white/40 shadow-2xl animate-fade-up"
+        style={{ boxShadow: '0 10px 40px -10px rgba(255, 107, 53, 0.15)', animationDelay: '0.1s' }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-poda-orange/8 to-transparent rounded-3xl"></div>
         <div className="relative flex flex-col items-center text-center">
@@ -42,12 +33,11 @@ const MobileFeatureCards = () => {
           <h3 className="font-bold text-lg text-poda-blue mb-2">Chytrá televize</h3>
           <p className="text-gray-600 text-sm leading-relaxed">Získáte více než 100 TV programů, sledování na všech zařízeních a vlastní výběr stanic.</p>
         </div>
-      </motion.div>
+      </div>
       
-      <motion.div 
-        variants={item}
-        className="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-6 border border-white/40 shadow-2xl"
-        style={{ boxShadow: '0 10px 40px -10px rgba(15, 76, 129, 0.15)' }}
+      <div 
+        className="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-6 border border-white/40 shadow-2xl animate-fade-up"
+        style={{ boxShadow: '0 10px 40px -10px rgba(15, 76, 129, 0.15)', animationDelay: '0.2s' }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-poda-blue/8 to-transparent rounded-3xl"></div>
         <div className="relative flex flex-col items-center text-center">
@@ -59,7 +49,7 @@ const MobileFeatureCards = () => {
           <h3 className="font-bold text-lg text-poda-blue mb-2">Moderní technologie</h3>
           <p className="text-gray-600 text-sm leading-relaxed">Optická síť GPON od PODA zajišťuje maximální stabilitu a komfort bez kompromisů.</p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react';
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { MapPin, Users, Check, ArrowRight, TrendingUp, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cities as citiesData } from '@/data/cities/citiesData';
+import { useAnimateOnView } from '@/hooks/use-animate-on-view';
 
 interface CityCardData {
   name: string;
@@ -13,7 +14,6 @@ interface CityCardData {
   link: string;
 }
 
-// Transformuj dáta z citiesData pre CitySection
 const cities: CityCardData[] = citiesData.map(city => ({
   name: city.name,
   coverage: city.coverage,
@@ -23,15 +23,15 @@ const cities: CityCardData[] = citiesData.map(city => ({
 }));
 
 const CityCard = ({ city, index }: { city: CityCardData; index: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const { ref, isVisible } = useAnimateOnView();
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className={`transition-all duration-500 ${
+        isVisible ? 'animate-fade-up-sm' : 'opacity-0 translate-y-5'
+      }`}
+      style={{ animationDelay: `${index * 0.05}s` }}
     >
       <Link
         to={city.link}
@@ -57,11 +57,9 @@ const CityCard = ({ city, index }: { city: CityCardData; index: number }) => {
             <span className="font-semibold text-foreground">{city.coverage}%</span>
           </div>
           <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: `${city.coverage}%` } : {}}
-              transition={{ duration: 1, delay: 0.3 + index * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+            <div
+              className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-1000"
+              style={{ width: isVisible ? `${city.coverage}%` : '0%' }}
             />
           </div>
         </div>
@@ -78,47 +76,35 @@ const CityCard = ({ city, index }: { city: CityCardData; index: number }) => {
           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 };
 
 const CitySection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const sectionRef = useRef(null);
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true });
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-  
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const { ref: headerRef, isVisible: isHeaderVisible } = useAnimateOnView();
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 relative overflow-hidden">
-      {/* Parallax background */}
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute inset-0 z-0"
-      >
+    <section className="py-20 lg:py-32 relative overflow-hidden">
+      {/* Static background — no parallax scroll listener */}
+      <div className="absolute inset-0 z-0">
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{ 
             backgroundImage: `url('/Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_modern_apa_0.webp')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-      </motion.div>
+      </div>
 
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left - Content */}
-          <motion.div
+          <div
             ref={headerRef}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className={`transition-all duration-700 ${
+              isHeaderVisible ? 'animate-fade-up' : 'opacity-0 translate-y-10'
+            }`}
           >
             <span className="badge-gold mb-4 inline-block">
               <MapPin className="w-4 h-4" />
@@ -146,7 +132,7 @@ const CitySection = () => {
                 </a>
               </Button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right - Collapsible City Grid */}
           <div>
@@ -176,7 +162,7 @@ const CitySection = () => {
               </motion.div>
             </button>
 
-            {/* Expandable City Grid */}
+            {/* Expandable City Grid — AnimatePresence kept for interactive expand/collapse */}
             <AnimatePresence>
               {isExpanded && (
                 <motion.div

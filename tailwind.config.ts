@@ -116,7 +116,9 @@ export default {
         }
       },
       animation: {
-        'fade-up': 'fade-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        'fade-up': 'fade-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+        'fade-up-sm': 'fade-up-sm 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+        'fade-in-only': 'fade-in-only 0.8s ease both',
         'float': 'float 6s ease-in-out infinite',
         'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',

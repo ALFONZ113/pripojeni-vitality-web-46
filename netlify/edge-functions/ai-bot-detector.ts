@@ -477,7 +477,15 @@ export default async (request: Request, context: Context) => {
   }
   
   if (!isAIBot) {
-    return context.next();
+    // Add Last-Modified header for all HTML responses (freshness signal for SEO)
+    const response = await context.next();
+    const contentType = response.headers.get('content-type') || '';
+    if (contentType.includes('text/html')) {
+      const headers = new Headers(response.headers);
+      headers.set('Last-Modified', new Date().toUTCString());
+      return new Response(response.body, { status: response.status, headers });
+    }
+    return response;
   }
   
   // AI bot handler - also universal for all blog slugs

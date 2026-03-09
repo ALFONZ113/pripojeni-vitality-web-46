@@ -512,6 +512,37 @@ async function buildSEO() {
     fs.writeFileSync('public/json/schema-service.json', JSON.stringify(serviceSchema, null, 2));
     console.log('✅ Generated structured data schemas');
 
+    // 5) Google Sitemap Ping
+    console.log('📡 Pinging Google with updated sitemap...');
+    try {
+      await new Promise((resolve) => {
+        const pingUrl = 'https://www.google.com/ping?sitemap=https://www.popri.cz/sitemap.xml';
+        https.get(pingUrl, (res) => {
+          console.log(`✅ Google Sitemap Ping: HTTP ${res.statusCode}`);
+          resolve();
+        }).on('error', (e) => {
+          console.warn(`⚠️ Google Sitemap Ping failed: ${e.message}`);
+          resolve();
+        });
+      });
+    } catch (e) {
+      console.warn('⚠️ Google Sitemap Ping skipped:', e.message);
+    }
+
+    // 6) Update lastmod dates in existing sitemap.xml (preserve structure)
+    try {
+      const sitemapPath = 'public/sitemap.xml';
+      if (fs.existsSync(sitemapPath)) {
+        const currentDate = new Date().toISOString().split('T')[0];
+        let sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
+        sitemapContent = sitemapContent.replace(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g, `<lastmod>${currentDate}</lastmod>`);
+        fs.writeFileSync(sitemapPath, sitemapContent);
+        console.log(`✅ Sitemap lastmod dates updated to ${currentDate}`);
+      }
+    } catch (e) {
+      console.warn('⚠️ Could not update sitemap lastmod:', e.message);
+    }
+
     console.log('🎉 SEO build completed successfully!');
   } catch (error) {
     console.error('❌ Error building SEO files:', error);

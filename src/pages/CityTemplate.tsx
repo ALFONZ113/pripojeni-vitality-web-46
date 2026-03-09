@@ -49,7 +49,7 @@ const CityTemplate = () => {
         title={city.seo.title}
         description={city.seo.description}
         keywords={city.seo.keywords}
-        currentDate="2026-03-09"
+        
         faviconVersion="3.2"
         location={`${city.name}, ${city.region}`}
       />

@@ -95,7 +95,8 @@ export const cities: CityData[] = [
       description: 'PODA internet Ostrava - gigabitové optické připojení 1000/1000 Mbps + TV zdarma. 98% pokrytí města. Objednávka: 730 431 313 nebo www.popri.cz',
       keywords: [
         'PODA Ostrava', 'PODA internet Ostrava', 'internet Ostrava', 'optické připojení Ostrava',
-        'gigabitový internet Ostrava', 'rychlý internet Ostrava', 'GPON Ostrava'
+        'gigabitový internet Ostrava', 'rychlý internet Ostrava', 'GPON Ostrava',
+        'PODA dostupnost Ostrava', 'dostupnost PODA internet', 'PODA internet dostupnost'
       ]
     }
   },

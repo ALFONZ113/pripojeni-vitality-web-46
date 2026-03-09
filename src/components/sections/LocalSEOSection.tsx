@@ -32,10 +32,10 @@ const LocalSEOSection = () => {
               Dostupnost v regionech
             </span>
             <h2 className="text-4xl md:text-5xl font-heading text-foreground mb-6 leading-tight">
-              Gigabitový Internet <span className="text-gradient-gold">PODA</span><br />v {locations.length} městech
+              Dostupnost <span className="text-gradient-gold">PODA</span> internetu<br />v {locations.length} městech regionu
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-              Vyberte si své město a zjistěte, proč si tisíce zákazníků vybralo nejrychlejší optický internet PODA
+              Ověřte dostupnost PODA internetu ve vašem městě. Gigabitové optické připojení s TV zdarma — Ostrava, Karviná, Havířov a další.
             </p>
           </div>
           

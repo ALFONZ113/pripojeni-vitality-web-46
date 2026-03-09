@@ -43,15 +43,16 @@ const Index = () => {
     <div className="min-h-screen">
       <PageMetadata 
         title="PODA Internet Ostrava a okolí | Gigabit + TV zdarma | 730 431 313"
-        description="Máte pomalý internet? PODA optika v Ostravě, Karviné, Havířově a okolí nabízí stabilních 1000 Mbps bez výpadků. TV zdarma, bez závazků. Váš lokální partner - 730 431 313."
+        description="PODA internet Ostrava — dostupnost a pokrytí v celém regionu. Optika 1000 Mbps bez výpadků, TV zdarma, bez závazků. Ověřte dostupnost: 730 431 313."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
-        currentDate="2025-01-14"
+        currentDate="2026-03-09"
         faviconVersion="3.1"
         aiOptimized={true}
         pageType="website"
         keywords={[
-          'internet', 'PODA internet', 'optické připojení', 
-          'gigabitový internet', 'rychlý internet', 'stabilní internet'
+          'PODA internet', 'PODA Ostrava', 'PODA dostupnost', 'internet PODA',
+          'optické připojení', 'gigabitový internet', 'rychlý internet Ostrava',
+          'PODA internet dostupnost', 'internet Ostrava'
         ]}
         location="Ostrava, Moravskoslezský kraj"
       />

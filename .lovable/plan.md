@@ -1,86 +1,29 @@
 
 
-# Plán na návrat na první stránku Google pro "PODA internet", "PODA dostupnost", "PODA Ostrava"
+# Oprava duplicitných FAQPage schém na hlavnej stránke
 
-## Analýza aktuálneho stavu
+## Problém
 
-Z kódu a screenshotu vidím:
-- Popri.cz sa zobrazuje na Google, ale kleslo z 1. na 2. stránku
-- Homepage title: "PODA Internet Ostrava | Gigabit + TV zdarma | 730 431 313"
-- Existuje `/internet-ostrava` stránka s dobrým obsahom
-- Chýba dedikovaná stránka pre "PODA dostupnost"
-- Sitemap `lastmod` dátumy sú staré (2026-01-12 — takmer 2 mesiace)
-- `index.html` má `last-modified: 2026-03-03` ale Helmet prepíše na `2025-01-14`
-- Chýba "O nás" stránka (E-E-A-T signál)
-- Schema.org dáta sú dobré, ale niektoré dátumy sú nekonzistentné
+Google Search Console hlási **"Duplicitné pole FAQPage"** — na hlavnej stránke `popri.cz` sú **2 samostatné FAQPage schémy**, čo Google považuje za chybu:
 
-## Identifikované problémy a riešenia
+1. **AIOptimizedSchema.tsx** — JSON-LD FAQPage s 18 otázkami (ID `/#faq`) — toto je správna, kompletná verzia
+2. **AIContentSummary.tsx** — HTML microdata FAQPage s 2 otázkami ("Co nabízíme?", "Kde poskytujeme služby?") — toto je duplicit, ktorý spôsobuje chybu
 
-### 1. Zastaralé lastmod dátumy v sitemap.xml (KRITICKÉ)
-Google vidí `2026-01-12` na všetkých stránkach — signalizuje "stagnujúci web". Aktualizovať na `2026-03-09` (dnešný dátum) pre hlavné stránky.
+Google nedokáže rozlíšiť, ktorá FAQPage je "tá správna", a obe označí ako neplatné.
 
-### 2. Nekonzistentné dátumy v PageMetadata
-`Index.tsx` posieľa `currentDate="2025-01-14"` — viac ako rok starý! `CityTemplate.tsx` má `"2025-12-10"`. Toto musí byť aktuálne.
+## Riešenie
 
-### 3. Chýba dedikovaná landing page pre "PODA dostupnost"
-Kľúčové slovo "PODA dostupnost" nemá žiadnu cielenú stránku. Riešenie: Rozšíriť `LocalSEOSection` na homepage o výrazný H2 nadpis s textom "Dostupnost PODA internetu" a pridať dedikovanú sekciu s mapou pokrytia a CTA.
+**Odstrániť microdata FAQPage z `AIContentSummary.tsx`** (riadky 81-102). Ponechať len JSON-LD verziu v `AIOptimizedSchema.tsx`, ktorá je kompletná a správne štruktúrovaná.
 
-### 4. Nedostatočný on-page SEO pre cieľové kľúčové slová
-Homepage nemá v H1/H2 priamo frázy "PODA internet", "PODA Ostrava", "PODA dostupnost". Tieto frázy musia byť viditeľné v heading tagoch.
+Tie 2 otázky z AIContentSummary ("Co nabízíme?" a "Kde poskytujeme služby?") sú aj tak príliš generické a nemajú SEO hodnotu. Kompletná FAQ s 18 otázkami v AIOptimizedSchema pokrýva všetko.
 
-### 5. Homepage `<title>` začína "PODA Internet Ostrava" — dobré, ale meta description nezahŕňa "dostupnost"
-Upraviť meta description aby zahŕňal slovo "dostupnost".
+## Dotknutý súbor
 
-### 6. Interné prepojenie (internal linking) je slabé
-Homepage linkuje na mestské stránky, ale `/internet-ostrava` nelinkuje späť na tarify alebo blog. Pridať interné odkazy medzi kľúčovými stránkami.
-
-### 7. Nový obsah / freshness signály
-Aktualizovať dátumy, pridať nový textový obsah na homepage (sekcia "Dostupnost"), a aktualizovať `llms.txt` s dnešným dátumom.
-
-## Konkrétne zmeny
-
-### Súbor 1: `public/sitemap.xml`
-- Aktualizovať všetky `<lastmod>` na `2026-03-09` pre hlavné stránky (homepage, tarify, internet-ostrava, internet-tv, blog)
-
-### Súbor 2: `src/pages/Index.tsx`
-- Zmeniť `currentDate` na `"2026-03-09"`
-- Pridať kľúčové slová: `'PODA dostupnost'`, `'PODA Ostrava'`, `'internet PODA'`
-- Upraviť meta description: pridať slovo "dostupnost"
-
-### Súbor 3: `src/pages/CityTemplate.tsx`
-- Zmeniť `currentDate` na `"2026-03-09"`
-
-### Súbor 4: `src/components/sections/LocalSEOSection.tsx`
-- Pridať `<h2>` s textom "Dostupnost PODA internetu v regionu" (targeting "PODA dostupnost")
-- Pridať krátky SEO odstavec pod nadpis vysvetľujúci dostupnosť
-
-### Súbor 5: `src/components/hero/HeroSection.tsx`
-- Zabezpečiť, že H1 obsahuje "PODA" a "internet" spolu
-- Pridať `<p>` tag s "PODA internet Ostrava" pre on-page relevance
-
-### Súbor 6: `index.html`
-- Aktualizovať `last-modified` a `content-updated` na `2026-03-09`
-
-### Súbor 7: `public/llms.txt`
-- Aktualizovať dátum na `2026-03-09`
-
-### Súbor 8: `src/components/page/PageMetadata.tsx`
-- Pridať `dateModified` do WebSite a Organization schém s aktuálnym dátumom
-
-### Súbor 9: `public/ai-static/internet-ostrava.html`
-- Aktualizovať statický HTML s aktuálnym dátumom pre Google boty
-
-### Súbor 10: `src/data/cities/citiesData.ts`
-- Rozšíriť Ostrava SEO keywords o "PODA dostupnost Ostrava", "dostupnost PODA internet"
-
-## Očakávaný dopad
-
-| Zmena | Dopad na ranking |
+| Súbor | Zmena |
 |---|---|
-| Aktualizácia sitemap lastmod | Google recrawlne stránky rýchlejšie |
-| Oprava `currentDate` z 2025 na 2026-03 | Freshness signál — veľký boost |
-| H2 "Dostupnost PODA internetu" | Priamy targeting kľúčového slova |
-| Rozšírenie keywords v meta tagoch | Lepšia relevancia pre queries |
-| Internal linking vylepšenia | Lepšia distribúcia PageRank |
-| Aktualizácia llms.txt a ai-static | AI search a crawler signály |
+| `src/components/seo/AIContentSummary.tsx` | Odstránenie `<div itemScope itemType="https://schema.org/FAQPage">` bloku (riadky 81-102) |
+
+## Výsledok
+
+Po nasadení a re-indexácii v GSC zmizne chyba "Zistili sa 2 neplatné položky" a FAQ schéma bude validná.
 

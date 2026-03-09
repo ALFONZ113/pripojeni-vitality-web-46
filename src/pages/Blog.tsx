@@ -104,6 +104,11 @@ const Blog = () => {
         <title>Blog | Tipy pro internet, WiFi a TV | Průvodce pro domácnosti</title>
         <meta name="description" content="Praktické rady pro výběr internetu, nastavení WiFi a využití TV služeb. Novinky z technologického světa. Máte dotaz? Zavolejte 730 431 313!" />
         <link rel="canonical" href="https://www.popri.cz/blog" />
+        {hasQueryParams ? (
+          <meta name="robots" content="noindex, follow" />
+        ) : (
+          <meta name="robots" content="index, follow" />
+        )}
         <meta name="keywords" content={`blog PODA, technologické články, internet blog, TV služby, ${allTags.join(', ')}, ${locations.join(', ')}`} />
         
         <meta property="og:title" content="Blog PODA | Internetové služby a technologie" />

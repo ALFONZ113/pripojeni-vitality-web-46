@@ -76,7 +76,7 @@ function App() {
           <div className="min-h-screen bg-background flex flex-col">
             
             <ScrollToTop />
-            <NoIndexMeta />
+            <TrailingSlashRedirect />
             <Navbar />
             <main className="flex-grow">
               <Suspense fallback={

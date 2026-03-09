@@ -116,7 +116,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       
       {/* Enhanced meta tags */}
       <meta name="author" content={post.author} />
-      {isIdBasedUrl ? (
+      {shouldNoIndex ? (
         <>
           <meta name="robots" content="noindex, follow" />
           <meta name="googlebot" content="noindex, follow" />

@@ -6,6 +6,7 @@ import BlogCategories from '../components/blog/BlogCategories';
 import BlogList from '../components/blog/BlogList';
 import { initAnimations } from '../utils/animation';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 import { preloadCriticalResources } from '../utils/performance';
 
 const Blog = () => {

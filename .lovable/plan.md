@@ -1,29 +1,68 @@
 
 
-# Oprava duplicitných FAQPage schém na hlavnej stránke
+# Plán: Rozšírenie build-seo.js o automatické SEO funkcie
 
-## Problém
+## Prehľad zmien
 
-Google Search Console hlási **"Duplicitné pole FAQPage"** — na hlavnej stránke `popri.cz` sú **2 samostatné FAQPage schémy**, čo Google považuje za chybu:
+Tri konkrétne vylepšenia existujúceho build procesu — žiadny nový systém, len rozšírenie toho, čo funguje.
 
-1. **AIOptimizedSchema.tsx** — JSON-LD FAQPage s 18 otázkami (ID `/#faq`) — toto je správna, kompletná verzia
-2. **AIContentSummary.tsx** — HTML microdata FAQPage s 2 otázkami ("Co nabízíme?", "Kde poskytujeme služby?") — toto je duplicit, ktorý spôsobuje chybu
+## 1. Google Sitemap Ping po builde
 
-Google nedokáže rozlíšiť, ktorá FAQPage je "tá správna", a obe označí ako neplatné.
+Pridať na koniec `scripts/build-seo.js` funkciu, ktorá po úspešnom builde automaticky pingne Google:
 
-## Riešenie
+```
+GET https://www.google.com/ping?sitemap=https://www.popri.cz/sitemap.xml
+```
 
-**Odstrániť microdata FAQPage z `AIContentSummary.tsx`** (riadky 81-102). Ponechať len JSON-LD verziu v `AIOptimizedSchema.tsx`, ktorá je kompletná a správne štruktúrovaná.
+Výsledok sa zaloguje do Netlify build logov. Jednoduchý HTTPS GET request, 10 riadkov kódu.
 
-Tie 2 otázky z AIContentSummary ("Co nabízíme?" a "Kde poskytujeme služby?") sú aj tak príliš generické a nemajú SEO hodnotu. Kompletná FAQ s 18 otázkami v AIOptimizedSchema pokrýva všetko.
+## 2. Dynamický `currentDate` — odstrániť hardcoded dátumy
 
-## Dotknutý súbor
+**Problém:** `Index.tsx` a `CityTemplate.tsx` majú `currentDate="2026-03-09"` — manuálne sa musí updatovať. `PageMetadata.tsx` už má default `new Date().toISOString().split('T')[0]`, takže stačí odstrániť prop.
+
+**Zmeny:**
+- `src/pages/Index.tsx` — odstrániť `currentDate="2026-03-09"` prop
+- `src/pages/CityTemplate.tsx` — odstrániť `currentDate="2026-03-09"` prop
+- Skontrolovať ďalšie stránky (Tarify, Blog, IPTV, Contact) a odstrániť hardcoded dátumy ak existujú
+
+Výsledok: Každá stránka bude mať vždy dnešný dátum v `last-modified`, `dateModified` schéme, a `og:updated_time` — bez manuálneho zásahu.
+
+## 3. `Last-Modified` HTTP header pre HTML stránky
+
+Pridať do `netlify.toml` header sekciu pre HTML odpovede. Keďže Netlify nepodporuje dynamické hodnoty v TOML headeroch, použijeme edge function alebo existujúci `ai-bot-detector` na pridanie `Last-Modified` headeru s aktuálnym dátumom.
+
+**Zmena v `netlify.toml`:**
+```toml
+[[headers]]
+  for = "/"
+  [headers.values]
+    X-Robots-Tag = "index, follow"
+
+[[headers]]
+  for = "/*.html"  
+  [headers.values]
+    X-Robots-Tag = "index, follow"
+```
+
+**Zmena v `netlify/edge-functions/ai-bot-detector.ts`:**
+Pridať `Last-Modified` header do response pre všetky HTML stránky (nie len bot requesty).
+
+## 4. Aktualizácia lastmod v existujúcom sitemap.xml (bez prepisovania)
+
+Zmeniť `build-seo.js` tak, aby namiesto prepisovania celého `sitemap.xml` len aktualizoval `<lastmod>` dátumy na dnešný dátum pomocou regex replace. Ak súbor neexistuje, vygeneruje nový.
+
+## Súbory na zmenu
 
 | Súbor | Zmena |
 |---|---|
-| `src/components/seo/AIContentSummary.tsx` | Odstránenie `<div itemScope itemType="https://schema.org/FAQPage">` bloku (riadky 81-102) |
+| `scripts/build-seo.js` | Pridať Google Ping + sitemap lastmod updater |
+| `src/pages/Index.tsx` | Odstrániť `currentDate` prop |
+| `src/pages/CityTemplate.tsx` | Odstrániť `currentDate` prop |
+| `netlify.toml` | Pridať `X-Robots-Tag` header |
+| `netlify/edge-functions/ai-bot-detector.ts` | Pridať `Last-Modified` header |
 
-## Výsledok
-
-Po nasadení a re-indexácii v GSC zmizne chyba "Zistili sa 2 neplatné položky" a FAQ schéma bude validná.
+## Čo sa NEZMENÍ
+- `robots.txt` — manuálne spravovaný
+- `sitemap.xml` štruktúra — len dátumy
+- Existujúce redirecty a edge function logika
 

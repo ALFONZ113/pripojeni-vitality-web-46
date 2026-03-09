@@ -28,8 +28,10 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
   const canonicalUrl = generateCanonicalUrl(canonicalPath);
   const hreflangTags = generateHreflangTags(canonicalPath);
   
-  // Detect if current URL is ID-based (e.g., /blog/102)
+  // Detect if current URL is ID-based or has query parameters (should not be indexed)
   const isIdBasedUrl = typeof window !== 'undefined' && /^\/blog\/\d+/.test(window.location.pathname);
+  const hasQueryParams = typeof window !== 'undefined' && window.location.search.length > 0;
+  const shouldNoIndex = isIdBasedUrl || hasQueryParams;
   
   // Extract location for geo-specific optimization
   const extractLocation = (text: string): string | null => {
@@ -114,7 +116,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       
       {/* Enhanced meta tags */}
       <meta name="author" content={post.author} />
-      {isIdBasedUrl ? (
+      {shouldNoIndex ? (
         <>
           <meta name="robots" content="noindex, follow" />
           <meta name="googlebot" content="noindex, follow" />

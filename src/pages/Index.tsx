@@ -45,7 +45,7 @@ const Index = () => {
         title="PODA Internet Ostrava a okolí | Gigabit + TV zdarma | 730 431 313"
         description="PODA internet Ostrava — dostupnost a pokrytí v celém regionu. Optika 1000 Mbps bez výpadků, TV zdarma, bez závazků. Ověřte dostupnost: 730 431 313."
         seznamVerification="TZXj7ilgwfcAOewRproL3dFn9jTDd15R"
-        currentDate="2026-03-09"
+        
         faviconVersion="3.1"
         aiOptimized={true}
         pageType="website"

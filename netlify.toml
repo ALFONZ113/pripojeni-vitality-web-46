@@ -56,3 +56,14 @@
   for = "/popri-favicon.png"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+
+# SEO: Allow indexing for all HTML pages
+[[headers]]
+  for = "/"
+  [headers.values]
+    X-Robots-Tag = "index, follow"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    X-Robots-Tag = "index, follow"

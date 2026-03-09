@@ -154,7 +154,7 @@ const HeroSection = () => {
 
             {/* Subtitle - Fluid sizing */}
             <motion.p variants={itemVariants} className="text-foreground/80 text-responsive-lg mb-responsive max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
-              Nejvýhodnější optické připojení v regionu.<br className="hidden sm:block" />
+              PODA internet Ostrava a okolí — ověřte dostupnost ve vašem městě.<br className="hidden sm:block" />
               <span className="text-primary font-semibold">Gigabit 1000 Mbps, TV s 160 kanály v ceně.</span>
             </motion.p>
 

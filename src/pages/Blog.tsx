@@ -11,6 +11,8 @@ import { preloadCriticalResources } from '../utils/performance';
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const hasQueryParams = location.search.length > 0;
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(blogPosts);
   const [selectedCategory, setSelectedCategory] = useState('all');

@@ -67,7 +67,8 @@ const Footer = () => {
                 { to: '/blog/poda-internet-2026-opticka-era-2-gigabity-domacnosti-rodinne-domy', label: 'PODA internet 2026' },
                 { to: '/blog', label: 'Blog a novinky' },
                 { to: '/promo-akce', label: 'Promo akce' },
-                { to: '/giga-internet', label: 'Gigabitový internet' }
+                { to: '/giga-internet', label: 'Gigabitový internet' },
+                { to: '/o-nas', label: 'O nás' }
               ].map((link) => (
                 <li key={link.label}>
                 <Link

@@ -1,29 +1,42 @@
 
 
-# Oprava duplicitných FAQPage schém na hlavnej stránke
+# Fix: Googlebot vidí prázdnu stránku
 
-## Problém
+## Príčina problému
 
-Google Search Console hlási **"Duplicitné pole FAQPage"** — na hlavnej stránke `popri.cz` sú **2 samostatné FAQPage schémy**, čo Google považuje za chybu:
+Edge function `ai-bot-detector.ts` má 3 kategórie botov:
+- **AI boty** (GPTBot, Claude) → servuje statické HTML zo všetkých `AI_STATIC_PATHS` (/, /tarify, /kontakt, /iptv, /blog, city pages)
+- **Social crawlery** (Facebook, LinkedIn) → servuje OG tagy pre blog
+- **Search boty** (Googlebot, Bingbot) → servuje statické HTML **LEN pre city pages** (`CITY_STATIC_PATHS`)
 
-1. **AIOptimizedSchema.tsx** — JSON-LD FAQPage s 18 otázkami (ID `/#faq`) — toto je správna, kompletná verzia
-2. **AIContentSummary.tsx** — HTML microdata FAQPage s 2 otázkami ("Co nabízíme?", "Kde poskytujeme služby?") — toto je duplicit, ktorý spôsobuje chybu
-
-Google nedokáže rozlíšiť, ktorá FAQPage je "tá správna", a obe označí ako neplatné.
+Googlebot teda na `/o-nas`, `/tarify`, `/kontakt`, `/iptv` dostáva React SPA s lazy loading. Chunky sa nestihnú načítať → prázdna stránka.
 
 ## Riešenie
 
-**Odstrániť microdata FAQPage z `AIContentSummary.tsx`** (riadky 81-102). Ponechať len JSON-LD verziu v `AIOptimizedSchema.tsx`, ktorá je kompletná a správne štruktúrovaná.
+### 1. Vytvoriť `public/ai-static/o-nas.html`
+Statická HTML verzia stránky O nás s plným obsahom, Organization schema, kontaktnými údajmi.
 
-Tie 2 otázky z AIContentSummary ("Co nabízíme?" a "Kde poskytujeme služby?") sú aj tak príliš generické a nemajú SEO hodnotu. Kompletná FAQ s 18 otázkami v AIOptimizedSchema pokrýva všetko.
+### 2. Rozšíriť search bot handling v edge function
+Zmeniť `ai-bot-detector.ts` tak, aby Googlebot dostal statické HTML aj pre `AI_STATIC_PATHS` — nie len pre city pages. Jeden riadok zmeny: použiť `AI_STATIC_PATHS` aj pre search boty.
 
-## Dotknutý súbor
+Konkrétne v riadku ~459:
+```
+// Pred: if (isSearchBot && CITY_STATIC_PATHS.includes(url.pathname))
+// Po:   if (isSearchBot && (CITY_STATIC_PATHS.includes(url.pathname) || AI_STATIC_PATHS.includes(url.pathname)))
+```
+
+A pridať `/o-nas` do `AI_STATIC_PATHS` (riadok 53).
+
+### 3. Pridať `/o-nas` do AI_STATIC_PATHS
+Aby edge function vedela servovať statickú verziu aj AI botom.
+
+## Súbory na zmenu
 
 | Súbor | Zmena |
 |---|---|
-| `src/components/seo/AIContentSummary.tsx` | Odstránenie `<div itemScope itemType="https://schema.org/FAQPage">` bloku (riadky 81-102) |
+| `public/ai-static/o-nas.html` | **NOVÝ** — statická HTML verzia stránky O nás |
+| `netlify/edge-functions/ai-bot-detector.ts` | Pridať `/o-nas` do `AI_STATIC_PATHS` + rozšíriť search bot handling na všetky statické cesty |
 
 ## Výsledok
-
-Po nasadení a re-indexácii v GSC zmizne chyba "Zistili sa 2 neplatné položky" a FAQ schéma bude validná.
+Googlebot na `/o-nas` (a aj `/tarify`, `/kontakt`, `/iptv`, `/blog`) dostane plné statické HTML namiesto prázdnej SPA. Google URL Inspection test ukáže kompletný obsah.
 

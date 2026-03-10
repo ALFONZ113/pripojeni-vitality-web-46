@@ -54,6 +54,7 @@ const AI_STATIC_PATHS = [
   '/',
   '/tarify',
   '/kontakt',
+  '/o-nas',
   '/internet-ostrava',
   '/internet-karvina',
   '/internet-havirov',

@@ -82,5 +82,6 @@ export * from './pomaly-internet-vecer';
 export * from './ai-meni-svet-internet';
 export * from './operatori-ceny-internetu';
 export * from './vypadek-internetu-24h';
+export * from './ostrava-gigabit-promo';
 
 // Note: WiFi blog slug changed to Czech: jak-zlepsit-wifi-signal-doma-10-overenych-triku-2025

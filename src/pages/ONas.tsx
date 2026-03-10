@@ -64,7 +64,7 @@ const ONas = () => {
   };
 
   const stats = [
-    { icon: Users, value: '110 000+', label: 'spokojených zákazníků' },
+    { icon: Users, value: '33 000+', label: 'spokojených zákazníků' },
     { icon: Clock, value: '26+', label: 'let na trhu' },
     { icon: Wifi, value: '509 km', label: 'optických tras' },
     { icon: Award, value: '4.8/5', label: 'průměrné hodnocení' },

@@ -1,4 +1,5 @@
 import type { BlogPost } from './types';
+import ostravaGigabitPromoImg from '@/assets/ostrava-gigabit-promo.webp';
 
 export const ostravaGigabitPromoPost: BlogPost = {
   id: 701,
@@ -8,7 +9,7 @@ export const ostravaGigabitPromoPost: BlogPost = {
   author: "Redakce Popri.cz",
   date: "2026-03-10",
   category: "Novinky",
-  image: "/src/assets/ostrava-gigabit-promo.webp",
+  image: ostravaGigabitPromoImg,
   alt: "Ostrava skyline s optickým internetem PODA — gigabitové připojení pro domácnosti",
   tags: ["ostrava", "gigabit", "optický internet", "PODA", "promo akce", "1000 Mbps"],
   content: `

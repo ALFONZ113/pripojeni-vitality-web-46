@@ -197,12 +197,23 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
       
-      {/* Structured data */}
+      {/* Structured data with enhanced author */}
       <script type="application/ld+json">
         {JSON.stringify({
           ...meta.structuredData,
           mainEntityOfPage: canonicalUrl,
-          url: canonicalUrl
+          url: canonicalUrl,
+          author: {
+            '@type': 'Person',
+            name: post.author || 'Redakce Popri.cz',
+            url: 'https://www.popri.cz/o-nas',
+            description: 'Autorizovaný partner PODA internetu — odborníci na optické připojení a telekomunikace v Moravskoslezském kraji.',
+            worksFor: {
+              '@type': 'Organization',
+              name: 'Popri.cz',
+              url: 'https://www.popri.cz'
+            }
+          }
         })}
       </script>
       

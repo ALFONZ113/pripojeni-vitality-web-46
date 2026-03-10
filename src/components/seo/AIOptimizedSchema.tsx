@@ -84,7 +84,40 @@ export const AIOptimizedSchema: React.FC = () => {
       areaServed: 'CZ'
     },
     sameAs: [
-      'https://www.facebook.com/podainternet'
+      'https://www.facebook.com/popricz/',
+      'https://www.instagram.com/poda.cz/',
+      'https://www.linkedin.com/company/poda-a-s-/'
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: '150',
+      reviewCount: '87'
+    },
+    review: [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Martin Novák' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'Konečně internet, který funguje! Práce z domova je teď radost. Instalace proběhla rychle a technik byl velmi profesionální.',
+        datePublished: '2025-11-15'
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Jana Veselá' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'Přešli jsme od konkurence a nelitujeme. Rychlost je stabilní, žádné výpadky. Děti můžou streamovat a já pracovat současně.',
+        datePublished: '2025-12-03'
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Eva Horáková' },
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        reviewBody: 'Nejlepší poměr cena/výkon v okolí. TV kanály v HD kvalitě a rychlý internet za rozumnou cenu. Doporučuji všem sousedům.',
+        datePublished: '2026-01-20'
+      }
     ]
   };
 

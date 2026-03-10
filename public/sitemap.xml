@@ -74,12 +74,12 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- MAPA STRÁNEK -->
+  <!-- O NÁS -->
   <url>
-    <loc>https://www.popri.cz/sitemap</loc>
-    <lastmod>2026-01-12</lastmod>
+    <loc>https://www.popri.cz/o-nas</loc>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
 
   <!-- REGIONÁLNÍ STRÁNKY - Moravskoslezský kraj -->

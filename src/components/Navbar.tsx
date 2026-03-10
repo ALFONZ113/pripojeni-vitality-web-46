@@ -56,6 +56,7 @@ const Navbar = memo(() => {
     { path: '/', label: 'Domů', icon: null },
     { path: '/programy', label: 'TV Programy', icon: Tv },
     { path: '/pomoc-s-prechodem', label: 'Pomoc s přechodem', icon: HandHeart },
+    { path: '/o-nas', label: 'O nás', icon: null },
   ];
 
   const closeMobileMenu = () => {

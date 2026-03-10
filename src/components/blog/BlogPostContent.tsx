@@ -42,6 +42,23 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         />
       </article>
 
+      {/* Author box */}
+      <div className="mt-10 p-6 glass-card rounded-2xl flex items-start gap-4">
+        <div className="w-14 h-14 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center flex-shrink-0">
+          <span className="font-display font-bold text-primary text-lg">
+            {(post.author || 'Redakce Popri.cz').split(' ').map(w => w[0]).join('').slice(0, 2)}
+          </span>
+        </div>
+        <div>
+          <div className="font-display font-semibold text-foreground mb-1">
+            {post.author || 'Redakce Popri.cz'}
+          </div>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            Autorizovaný partner PODA internetu. Odborníci na optické připojení, GPON technologie a telekomunikační služby v Moravskoslezském kraji.
+          </p>
+        </div>
+      </div>
+
       {/* Internal link suggestions */}
       <InternalLinkSuggestions currentPost={post} />
 

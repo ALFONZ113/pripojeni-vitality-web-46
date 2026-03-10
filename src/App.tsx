@@ -96,6 +96,7 @@ function App() {
                   <Route path="/blog/:slugOrId" element={<BlogPost />} />
                   <Route path="/promo-akce" element={<PromoAkcia />} />
                   <Route path="/pomoc-s-prechodem" element={<PomocPrechodem />} />
+                  <Route path="/o-nas" element={<ONas />} />
                   
                   {/* Geographic pages - Dynamic route for all cities */}
                   <Route path="/internet-ostrava" element={<CityTemplate />} />

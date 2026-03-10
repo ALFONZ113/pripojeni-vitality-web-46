@@ -457,7 +457,7 @@ export default async (request: Request, context: Context) => {
   );
   
   // Serve static HTML to search bots for city pages (fixes canonical/indexing issues)
-  if (isSearchBot && CITY_STATIC_PATHS.includes(url.pathname)) {
+  if (isSearchBot && (CITY_STATIC_PATHS.includes(url.pathname) || AI_STATIC_PATHS.includes(url.pathname))) {
     const staticPath = `/ai-static${url.pathname}.html`;
     console.log(`[Search Bot] ${userAgent.substring(0, 50)} -> Serving static: ${staticPath}`);
     

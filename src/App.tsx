@@ -57,6 +57,7 @@ const AIBlogManagerPage = lazyWithRetry(() => import('./pages/AIBlogManager'));
 const AIAutomationPage = lazyWithRetry(() => import('./pages/AIAutomation'));
 const SocialGeneratorPage = lazyWithRetry(() => import('./pages/SocialGenerator'));
 const SocialExportPage = lazyWithRetry(() => import('./pages/SocialExport'));
+const ONas = lazyWithRetry(() => import('./pages/ONas'));
 const NotFound = lazyWithRetry(() => import('./pages/NotFound'));
 
 const queryClient = new QueryClient({

@@ -83,7 +83,7 @@ const Navbar = memo(() => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-6">
+        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
           <Link 
             to="/" 
             className={`link-underline font-body font-medium transition-colors duration-300 ${

@@ -255,7 +255,7 @@ serve(async (req) => {
           body: JSON.stringify({
             model: 'google/gemini-3-flash-preview',
             messages: [
-              { role: 'system', content: 'Jsi kreativní expert na sociální sítě pro popri.cz (český ISP). Navrhni jedno originální téma pro sociální příspěvek. Odpověz POUZE tématem, max 10 slov, v češtině.' },
+              { role: 'system', content: 'Jsi kreativní expert na sociální sítě pro popri.cz (český ISP). Navrhni jedno originální téma pro sociální příspěvek. Odpověz POUZE tématem, max 10 slov, VÝHRADNĚ v češtině (ne slovensky).' },
               { role: 'user', content: `Typ příspěvku: ${type}\nInspiruj se tímto základem, ale buď originální: "${randomTopic}"` }
             ],
           }),

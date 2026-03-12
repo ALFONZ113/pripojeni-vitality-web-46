@@ -216,7 +216,7 @@ const Navbar = memo(() => {
             onMouseLeave={() => setIsArticlesOpen(false)}
           >
             <button 
-              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center whitespace-nowrap text-sm xl:text-base ${
                 isBlogPath ? 'text-primary' : 'text-foreground/80 hover:text-primary'
               }`}
             >

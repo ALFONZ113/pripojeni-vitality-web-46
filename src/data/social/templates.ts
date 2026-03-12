@@ -303,7 +303,7 @@ ALL TEXT MUST BE IN CZECH: Use "Přečtěte si", "Jak na to", "Tipy".`,
   },
   review: {
     name: 'Recenzia zákazníka',
-    description: 'Zdieľanie pozitívnej recenzie',
+    description: 'Sdílení pozitivní recenze',
     icon: 'Star',
     emoji: '⭐',
     systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat příspěvek prezentující recenzi spokojného zákazníka popri.cz.

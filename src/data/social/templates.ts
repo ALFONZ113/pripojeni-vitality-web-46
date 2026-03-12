@@ -455,7 +455,7 @@ ALL TEXT MUST BE IN CZECH if any text overlay.`,
   },
   meme: {
     name: 'Meme / Humor',
-    description: 'Vtipný formát pre virálny dosah',
+    description: 'Vtipný formát pro virální dosah',
     icon: 'Edit',
     emoji: '😂',
     systemPrompt: `Jsi expert na virální obsah a memy pro popri.cz.

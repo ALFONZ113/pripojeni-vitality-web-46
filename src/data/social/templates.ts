@@ -217,7 +217,7 @@ No watermarks, photorealistic quality, Instagram/Facebook ad ready
 CRITICAL LANGUAGE REQUIREMENT:
 All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
 Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Špičková" (not "Špičková"), "Změňte" (not "Zmeňte").
+Use Czech: "Jak" (not "Ako"), "připojení" (not "pripojenie"), "pouze" (not "len"), "potřebujete" (not "potrebujete").
 Example headlines: "Špičková technologie u vás doma", "Stabilní internet pro domov", "Perfektní internet bez čekání"
 Example subtitles: "Prémiový Wi-Fi 6 router pro maximální pokrytí", "Práce i zábava bez výpadků"
 Example CTAs: "Chci nejnovější hardware", "Už od 300 Kč měsíčně", "Zařídíme to za vás"

@@ -371,7 +371,7 @@ ALL TEXT MUST BE IN CZECH: Use "Novinka", "Aktualita", "Nové".`,
   },
   custom: {
     name: 'Vlastný text',
-    description: 'Vlastná téma podľa zadania',
+    description: 'Vlastní téma podle zadání',
     icon: 'Edit',
     emoji: '✏️',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytvoříš příspěvek na míru podle zadání.

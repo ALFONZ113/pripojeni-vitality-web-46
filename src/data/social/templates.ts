@@ -326,7 +326,7 @@ ALL TEXT MUST BE IN CZECH: Use "Spokojený zákazník", "Recenze", "Doporučuji"
   },
   tip: {
     name: 'Tip & trik',
-    description: 'Užitočné rady pre používateľov',
+    description: 'Užitečné rady pro uživatele',
     icon: 'Lightbulb',
     emoji: '💡',
     systemPrompt: `Jsi expert na internet a technologie. Sdílíš užitečné tipy pro uživatele internetu.

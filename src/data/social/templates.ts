@@ -349,7 +349,7 @@ ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete", "Umístěte", "Změň
   },
   news: {
     name: 'Novinky',
-    description: 'Oznámenie noviniek a aktualizácií',
+    description: 'Oznámení novinek a aktualizací',
     icon: 'Newspaper',
     emoji: '📰',
     systemPrompt: `Jsi PR specialista pro popri.cz. Sdílíš novinky a aktualizace služeb.

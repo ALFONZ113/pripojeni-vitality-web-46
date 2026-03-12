@@ -102,7 +102,7 @@ const Navbar = memo(() => {
             }}
           >
             <button 
-              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center whitespace-nowrap text-sm xl:text-base ${
                 isActivePath('/internet-tv') || isCityPath ? 'text-primary' : 'text-foreground/80 hover:text-primary'
               }`}
             >

@@ -375,7 +375,7 @@ serve(async (req) => {
 
       imagePromptContent += `\n\nVISUAL STYLE:\n${brandingPrompt}`;
       if (withCTA) imagePromptContent += `\nInclude a clear CTA button or badge element with rounded corners in the lower third of the image.`;
-      imagePromptContent += `\n\nTEXT RENDERING: Any visible text in the image must be in Czech (čeština) with proper diacritics (č, š, ž, ř, ď, ť, ň, ů, ý, á, í, é). Use clean, bold sans-serif font for headlines positioned in the upper third with sufficient contrast against the background. Subtitle text should be smaller below. Put exact text strings in quotation marks. Single cohesive image output only.`;
+      imagePromptContent += `\n\nTEXT RENDERING: Any visible text in the image must be in Czech (čeština) with proper diacritics (č, š, ž, ř, ď, ť, ň, ů, ý, á, í, é). Do NOT use Slovak language. Use Czech: "Jak" (not "Ako"), "připojení" (not "pripojenie"), "pouze" (not "len"). Use clean, bold sans-serif font for headlines positioned in the upper third with sufficient contrast against the background. Subtitle text should be smaller below. Put exact text strings in quotation marks. Single cohesive image output only.`;
 
       result[plat] = {
         text: generatedText.trim(),

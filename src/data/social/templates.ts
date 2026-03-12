@@ -392,7 +392,7 @@ ALL TEXT MUST BE IN CZECH: Translate any Slovak input to Czech.`,
   },
   success: {
     name: 'Úspěch zákazníka',
-    description: 'Příběh spokojného zákazníka',
+    description: 'Příběh spokojeného zákazníka',
     icon: 'Star',
     emoji: '🏆',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytváříš příběhy úspěšných zákazníků.

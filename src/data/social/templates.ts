@@ -413,7 +413,7 @@ ALL TEXT MUST BE IN CZECH: Use "Příběh zákazníka", "Jak to změnilo můj ž
   },
   product: {
     name: 'Produkt',
-    description: 'Prezentácia tarifu alebo služby',
+    description: 'Prezentace tarifu nebo služby',
     icon: 'Tag',
     emoji: '📦',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Prezentuj konkrétní tarif nebo službu.

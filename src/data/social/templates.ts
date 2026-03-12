@@ -217,7 +217,7 @@ No watermarks, photorealistic quality, Instagram/Facebook ad ready
 CRITICAL LANGUAGE REQUIREMENT:
 All text, headlines, labels visible in the image MUST be in CZECH language (čeština).
 Do NOT use Slovak, English or any other language.
-Use Czech: "Jak" (not "Ako"), "Špičková" (not "Špičková"), "Změňte" (not "Zmeňte").
+Use Czech: "Jak" (not "Ako"), "připojení" (not "pripojenie"), "pouze" (not "len"), "potřebujete" (not "potrebujete").
 Example headlines: "Špičková technologie u vás doma", "Stabilní internet pro domov", "Perfektní internet bez čekání"
 Example subtitles: "Prémiový Wi-Fi 6 router pro maximální pokrytí", "Práce i zábava bez výpadků"
 Example CTAs: "Chci nejnovější hardware", "Už od 300 Kč měsíčně", "Zařídíme to za vás"
@@ -257,7 +257,7 @@ export const platformSpecs: Record<string, { name: string; icon: string; dimensi
 export const postTemplates: Record<PostType, PostTemplate> = {
   promo: {
     name: 'Promo tarify',
-    description: 'Propagácia cien a akciových ponúk',
+    description: 'Propagace cen a akčních nabídek',
     icon: 'Tag',
     emoji: '🏷️',
     systemPrompt: `Jsi expert na sociální sítě pro českého poskytovatele internetu popri.cz (autorizovaný partner PODA). 
@@ -281,7 +281,7 @@ ALL TEXT MUST BE IN CZECH: Use "Rychlost", "Zdarma", "od 300 Kč/měsíc".`,
   },
   blog: {
     name: 'Blog článok',
-    description: 'Zdieľanie článku z blogu',
+    description: 'Sdílení článku z blogu',
     icon: 'FileText',
     emoji: '📝',
     systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat teaser pro sdílení blog článku z popri.cz.
@@ -303,7 +303,7 @@ ALL TEXT MUST BE IN CZECH: Use "Přečtěte si", "Jak na to", "Tipy".`,
   },
   review: {
     name: 'Recenzia zákazníka',
-    description: 'Zdieľanie pozitívnej recenzie',
+    description: 'Sdílení pozitivní recenze',
     icon: 'Star',
     emoji: '⭐',
     systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat příspěvek prezentující recenzi spokojného zákazníka popri.cz.
@@ -326,7 +326,7 @@ ALL TEXT MUST BE IN CZECH: Use "Spokojený zákazník", "Recenze", "Doporučuji"
   },
   tip: {
     name: 'Tip & trik',
-    description: 'Užitočné rady pre používateľov',
+    description: 'Užitečné rady pro uživatele',
     icon: 'Lightbulb',
     emoji: '💡',
     systemPrompt: `Jsi expert na internet a technologie. Sdílíš užitečné tipy pro uživatele internetu.
@@ -349,7 +349,7 @@ ALL TEXT MUST BE IN CZECH: Use "Jak", "Tipy", "Zlepšete", "Umístěte", "Změň
   },
   news: {
     name: 'Novinky',
-    description: 'Oznámenie noviniek a aktualizácií',
+    description: 'Oznámení novinek a aktualizací',
     icon: 'Newspaper',
     emoji: '📰',
     systemPrompt: `Jsi PR specialista pro popri.cz. Sdílíš novinky a aktualizace služeb.
@@ -371,7 +371,7 @@ ALL TEXT MUST BE IN CZECH: Use "Novinka", "Aktualita", "Nové".`,
   },
   custom: {
     name: 'Vlastný text',
-    description: 'Vlastná téma podľa zadania',
+    description: 'Vlastní téma podle zadání',
     icon: 'Edit',
     emoji: '✏️',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytvoříš příspěvek na míru podle zadání.
@@ -392,7 +392,7 @@ ALL TEXT MUST BE IN CZECH: Translate any Slovak input to Czech.`,
   },
   success: {
     name: 'Úspěch zákazníka',
-    description: 'Příběh spokojného zákazníka',
+    description: 'Příběh spokojeného zákazníka',
     icon: 'Star',
     emoji: '🏆',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytváříš příběhy úspěšných zákazníků.
@@ -413,7 +413,7 @@ ALL TEXT MUST BE IN CZECH: Use "Příběh zákazníka", "Jak to změnilo můj ž
   },
   product: {
     name: 'Produkt',
-    description: 'Prezentácia tarifu alebo služby',
+    description: 'Prezentace tarifu nebo služby',
     icon: 'Tag',
     emoji: '📦',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Prezentuj konkrétní tarif nebo službu.
@@ -434,7 +434,7 @@ ALL TEXT MUST BE IN CZECH: Use "Tarif", "Rychlost", "od X Kč/měsíc".`,
   },
   photo: {
     name: 'Realistická foto',
-    description: 'Fotorealistický vizuál',
+    description: 'Fotorealistický vizuál pro příspěvek',
     icon: 'Camera',
     emoji: '📸',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytváříš příspěvky doprovázené fotorealistickými vizuály.
@@ -455,7 +455,7 @@ ALL TEXT MUST BE IN CZECH if any text overlay.`,
   },
   meme: {
     name: 'Meme / Humor',
-    description: 'Vtipný formát pre virálny dosah',
+    description: 'Vtipný formát pro virální dosah',
     icon: 'Edit',
     emoji: '😂',
     systemPrompt: `Jsi expert na virální obsah a memy pro popri.cz.
@@ -478,7 +478,7 @@ ALL TEXT MUST BE IN CZECH: Use Czech internet humor, relatable situations.`,
   },
   education: {
     name: 'Edukace',
-    description: 'Naučte publikum niečo nové',
+    description: 'Naučte publikum něco nového',
     icon: 'Lightbulb',
     emoji: '🎓',
     systemPrompt: `Jsi expert na vzdělávací obsah o internetu a technologiích pro popri.cz.
@@ -501,7 +501,7 @@ ALL TEXT MUST BE IN CZECH: Use "Věděli jste?", "Jak funguje", "Fakta".`,
   },
   'fb-ad': {
     name: 'Facebook Ads',
-    description: 'Reklamná kampaň pre FB Ads',
+    description: 'Reklamní kampaň pro FB Ads',
     icon: 'Facebook',
     emoji: '📢',
     systemPrompt: `Jsi expert na Facebook Ads pro popri.cz. Vytváříš vysoce konverzní reklamní texty.

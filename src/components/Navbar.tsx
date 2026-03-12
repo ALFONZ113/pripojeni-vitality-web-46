@@ -83,10 +83,10 @@ const Navbar = memo(() => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-6">
+        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
           <Link 
             to="/" 
-            className={`link-underline font-body font-medium transition-colors duration-300 ${
+            className={`link-underline font-body font-medium transition-colors duration-300 whitespace-nowrap text-sm xl:text-base ${
               isActivePath('/') ? 'text-primary' : 'text-foreground/80 hover:text-primary'
             }`}
           >
@@ -102,7 +102,7 @@ const Navbar = memo(() => {
             }}
           >
             <button 
-              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center whitespace-nowrap text-sm xl:text-base ${
                 isActivePath('/internet-tv') || isCityPath ? 'text-primary' : 'text-foreground/80 hover:text-primary'
               }`}
             >
@@ -200,11 +200,11 @@ const Navbar = memo(() => {
             <Link 
               key={link.path}
               to={link.path} 
-              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center whitespace-nowrap text-sm xl:text-base ${
                 isActivePath(link.path) ? 'text-primary' : 'text-foreground/80 hover:text-primary'
               }`}
             >
-              {link.icon && <link.icon className="mr-1.5 h-4 w-4" />}
+              {link.icon && <link.icon className="mr-1.5 h-4 w-4 flex-shrink-0" />}
               {link.label}
             </Link>
           ))}
@@ -216,7 +216,7 @@ const Navbar = memo(() => {
             onMouseLeave={() => setIsArticlesOpen(false)}
           >
             <button 
-              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center whitespace-nowrap text-sm xl:text-base ${
                 isBlogPath ? 'text-primary' : 'text-foreground/80 hover:text-primary'
               }`}
             >
@@ -265,12 +265,12 @@ const Navbar = memo(() => {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center gap-4">
-          <a href="tel:+420730431313" className="flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary px-4 py-2 rounded-lg hover:bg-primary/20 transition-colors font-semibold whitespace-nowrap">
-            <Phone className="h-4 w-4" />
+        <div className="hidden lg:flex items-center gap-3">
+          <a href="tel:+420730431313" className="flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary px-3 py-2 rounded-lg hover:bg-primary/20 transition-colors font-semibold whitespace-nowrap text-sm">
+            <Phone className="h-4 w-4 flex-shrink-0" />
             +420 730 431 313
           </a>
-          <Link to="/kontakt" className="btn-gold px-6 py-2.5 rounded-lg text-sm font-semibold">
+          <Link to="/kontakt" className="btn-gold px-5 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap">
             Mám zájem
           </Link>
         </div>

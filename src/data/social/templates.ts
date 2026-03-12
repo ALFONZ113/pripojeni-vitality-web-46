@@ -434,7 +434,7 @@ ALL TEXT MUST BE IN CZECH: Use "Tarif", "Rychlost", "od X Kč/měsíc".`,
   },
   photo: {
     name: 'Realistická foto',
-    description: 'Fotorealistický vizuál',
+    description: 'Fotorealistický vizuál pro příspěvek',
     icon: 'Camera',
     emoji: '📸',
     systemPrompt: `Jsi expert na sociální sítě pro popri.cz. Vytváříš příspěvky doprovázené fotorealistickými vizuály.

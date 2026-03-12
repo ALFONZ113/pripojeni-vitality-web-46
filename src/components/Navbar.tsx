@@ -200,11 +200,11 @@ const Navbar = memo(() => {
             <Link 
               key={link.path}
               to={link.path} 
-              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center ${
+              className={`link-underline font-body font-medium transition-colors duration-300 flex items-center whitespace-nowrap text-sm xl:text-base ${
                 isActivePath(link.path) ? 'text-primary' : 'text-foreground/80 hover:text-primary'
               }`}
             >
-              {link.icon && <link.icon className="mr-1.5 h-4 w-4" />}
+              {link.icon && <link.icon className="mr-1.5 h-4 w-4 flex-shrink-0" />}
               {link.label}
             </Link>
           ))}

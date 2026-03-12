@@ -281,7 +281,7 @@ ALL TEXT MUST BE IN CZECH: Use "Rychlost", "Zdarma", "od 300 Kč/měsíc".`,
   },
   blog: {
     name: 'Blog článok',
-    description: 'Zdieľanie článku z blogu',
+    description: 'Sdílení článku z blogu',
     icon: 'FileText',
     emoji: '📝',
     systemPrompt: `Jsi expert na sociální sítě. Tvým úkolem je napsat teaser pro sdílení blog článku z popri.cz.

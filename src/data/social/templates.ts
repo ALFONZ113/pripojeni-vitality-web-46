@@ -501,7 +501,7 @@ ALL TEXT MUST BE IN CZECH: Use "Věděli jste?", "Jak funguje", "Fakta".`,
   },
   'fb-ad': {
     name: 'Facebook Ads',
-    description: 'Reklamná kampaň pre FB Ads',
+    description: 'Reklamní kampaň pro FB Ads',
     icon: 'Facebook',
     emoji: '📢',
     systemPrompt: `Jsi expert na Facebook Ads pro popri.cz. Vytváříš vysoce konverzní reklamní texty.

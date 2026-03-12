@@ -257,7 +257,7 @@ export const platformSpecs: Record<string, { name: string; icon: string; dimensi
 export const postTemplates: Record<PostType, PostTemplate> = {
   promo: {
     name: 'Promo tarify',
-    description: 'Propagácia cien a akciových ponúk',
+    description: 'Propagace cen a akčních nabídek',
     icon: 'Tag',
     emoji: '🏷️',
     systemPrompt: `Jsi expert na sociální sítě pro českého poskytovatele internetu popri.cz (autorizovaný partner PODA). 

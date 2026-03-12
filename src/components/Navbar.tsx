@@ -265,12 +265,12 @@ const Navbar = memo(() => {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center gap-4">
-          <a href="tel:+420730431313" className="flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary px-4 py-2 rounded-lg hover:bg-primary/20 transition-colors font-semibold whitespace-nowrap">
-            <Phone className="h-4 w-4" />
+        <div className="hidden lg:flex items-center gap-3">
+          <a href="tel:+420730431313" className="flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary px-3 py-2 rounded-lg hover:bg-primary/20 transition-colors font-semibold whitespace-nowrap text-sm">
+            <Phone className="h-4 w-4 flex-shrink-0" />
             +420 730 431 313
           </a>
-          <Link to="/kontakt" className="btn-gold px-6 py-2.5 rounded-lg text-sm font-semibold">
+          <Link to="/kontakt" className="btn-gold px-5 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap">
             Mám zájem
           </Link>
         </div>

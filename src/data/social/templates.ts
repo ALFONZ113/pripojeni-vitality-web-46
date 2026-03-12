@@ -478,7 +478,7 @@ ALL TEXT MUST BE IN CZECH: Use Czech internet humor, relatable situations.`,
   },
   education: {
     name: 'Edukace',
-    description: 'Naučte publikum niečo nové',
+    description: 'Naučte publikum něco nového',
     icon: 'Lightbulb',
     emoji: '🎓',
     systemPrompt: `Jsi expert na vzdělávací obsah o internetu a technologiích pro popri.cz.

@@ -1,5 +1,4 @@
 import type { BlogPost } from './types';
-import ostravaGigabitPromoImg from '@/assets/ostrava-gigabit-promo.webp';
 
 export const ostravaGigabitPromoPost: BlogPost = {
   id: 701,

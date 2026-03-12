@@ -86,7 +86,7 @@ const Navbar = memo(() => {
         <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
           <Link 
             to="/" 
-            className={`link-underline font-body font-medium transition-colors duration-300 ${
+            className={`link-underline font-body font-medium transition-colors duration-300 whitespace-nowrap text-sm xl:text-base ${
               isActivePath('/') ? 'text-primary' : 'text-foreground/80 hover:text-primary'
             }`}
           >

@@ -158,6 +158,17 @@ https://popri.cz/ https://www.popri.cz/ 301!
 /blog/proc-internet-zpomaluje-vecer-reseni /blog/proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit 301!
 /blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni /blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad 301!
 
+# ===== NOVÉ: Chýbajúce staré slug redirecty (GSC "crawled not indexed") =====
+/blog/pomal%C3%BD-internet-riesenia-guide /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025 301!
+/blog/rychly-internet-navod-problemy /blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025 301!
+/blog/panelak-internet-otazky-odpovede /blog/nejcastejsi-otazky-pripojeni-internet-panelak 301!
+/blog/iptv-vs-traditionalni-tv-porovnani /blog/iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod 301!
+/blog/poda-recenzie-skusenosti-zakaznikov-2025 /blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby 301!
+/blog/polanka-60ghz-antena-revolucia /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301!
+/blog/internet-poda-v-ostrave-porube-gigabitove-pripojeni-pro-nejvetsi-mestskou-cast /blog/internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast 301!
+/blog/internet-poda-v-ostrave-porube-gigabitove-pripojenie-pre-najvacsiu-mestsku-cast-100 /blog/internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast 301!
+/blog/jak-otestovat-rychlost-internetu-prakticke-tipy-a-nejlepsi-nastroje-8 /blog/jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje 301!
+
 # ===== SPA routing - serve index.html for all routes =====
 /blog/* /index.html 200
 /internet-* /index.html 200

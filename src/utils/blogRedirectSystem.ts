@@ -133,6 +133,17 @@ export const blogRedirectMap: Record<string, string> = {
   '/blog/myty-opticky-internet-pravda-vs-fikce': '/blog/nejcastejsi-myty-o-optickem-internetu',
   '/blog/proc-internet-zpomaluje-vecer-reseni': '/blog/proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit',
   '/blog/jak-ai-meni-svet-internetu-budoucnost-pripojeni': '/blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad',
+  
+  // Nové chýbajúce redirecty (GSC "crawled not indexed")
+  '/blog/pomalý-internet-riesenia-guide': '/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
+  '/blog/rychly-internet-navod-problemy': '/blog/pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
+  '/blog/panelak-internet-otazky-odpovede': '/blog/nejcastejsi-otazky-pripojeni-internet-panelak',
+  '/blog/iptv-vs-traditionalni-tv-porovnani': '/blog/iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod',
+  '/blog/poda-recenzie-skusenosti-zakaznikov-2025': '/blog/recenze-zakazniku-poda-skutecne-zkusenosti-sluzby',
+  '/blog/polanka-60ghz-antena-revolucia': '/blog/polanka-nad-odrou-60ghz-pripojeni-2025',
+  '/blog/internet-poda-v-ostrave-porube-gigabitove-pripojeni-pro-nejvetsi-mestskou-cast': '/blog/internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast',
+  '/blog/internet-poda-v-ostrave-porube-gigabitove-pripojenie-pre-najvacsiu-mestsku-cast-100': '/blog/internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast',
+  '/blog/jak-otestovat-rychlost-internetu-prakticke-tipy-a-nejlepsi-nastroje-8': '/blog/jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje',
 };
 
 /**

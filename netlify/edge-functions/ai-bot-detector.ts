@@ -90,6 +90,16 @@ const BLOG_SLUG_REDIRECTS: Record<string, string> = {
   'gpon-technologia-v-moravskoslezskom-regione-revolucia-optickeho-internetu-1': 'gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu',
   'prechod-od-o2-k-poda-po-akvizicii-nejcz-a-netboxu-prilezitost-pre-lepsie-sluzby-v-moravskoslezskom-regione-101': 'o2-nej-prevzatie-poda-alternativa-zakaznici',
   'bleskovy-internet-bez-dratu-poznejte-60-ghz-technologii-a-nabidku-poda-102': 'polanka-nad-odrou-60ghz-pripojeni-2025',
+  // Nové chýbajúce redirecty (GSC "crawled not indexed")
+  'pomal%C3%BD-internet-riesenia-guide': 'pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
+  'rychly-internet-navod-problemy': 'pomaly-internet-8-sposobu-jak-vyresit-msk-2025',
+  'panelak-internet-otazky-odpovede': 'nejcastejsi-otazky-pripojeni-internet-panelak',
+  'iptv-vs-traditionalni-tv-porovnani': 'iptv-vs-traditionalni-tv-srovnani-vyhod-nevyhod',
+  'poda-recenzie-skusenosti-zakaznikov-2025': 'recenze-zakazniku-poda-skutecne-zkusenosti-sluzby',
+  'polanka-60ghz-antena-revolucia': 'polanka-nad-odrou-60ghz-pripojeni-2025',
+  'internet-poda-v-ostrave-porube-gigabitove-pripojeni-pro-nejvetsi-mestskou-cast': 'internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast',
+  'internet-poda-v-ostrave-porube-gigabitove-pripojenie-pre-najvacsiu-mestsku-cast-100': 'internet-poda-ostrava-poruba-gigabitove-pripojeni-nejvetsi-mestska-cast',
+  'jak-otestovat-rychlost-internetu-prakticke-tipy-a-nejlepsi-nastroje-8': 'jak-otestovat-rychlost-internetu-prakticke-tipy-nejlepsi-nastroje',
   // ID-based redirects
   '1': 'polanka-nad-odrou-60ghz-pripojeni-2025',
   '2': 'gpon-technologie-moravskoslezsky-region-revoluce-optickeho-internetu',

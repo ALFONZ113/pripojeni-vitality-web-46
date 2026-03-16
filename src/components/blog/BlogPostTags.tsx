@@ -1,5 +1,4 @@
 
-import { Link } from 'react-router-dom';
 import type { BlogPost } from '../../data/blog/types';
 
 interface BlogPostTagsProps {
@@ -13,20 +12,16 @@ const BlogPostTags = ({ post }: BlogPostTagsProps) => {
         <div className="w-full">
           <h3 className="text-gray-700 font-medium mb-2">Štítky:</h3>
           <div className="flex flex-wrap gap-2">
-            <Link 
-              to={`/blog?category=${encodeURIComponent(post.category)}`} 
-              className="bg-poda-blue text-white px-3 py-1 rounded-full text-sm hover:bg-poda-blue-dark transition-colors"
-            >
+            <span className="bg-poda-blue text-white px-3 py-1 rounded-full text-sm">
               {post.category}
-            </Link>
+            </span>
             {post.tags?.map((tag, index) => (
-              <Link 
+              <span 
                 key={index} 
-                to={`/blog?tag=${encodeURIComponent(tag)}`} 
-                className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-poda-blue hover:text-white transition-colors"
+                className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
               >
                 {tag}
-              </Link>
+              </span>
             ))}
           </div>
         </div>

@@ -62,9 +62,10 @@ Allow: /blog/[0-9]
 Allow: /blog/[0-9][0-9]
 Allow: /blog/[0-9][0-9][0-9]
 
-# Block parameterized blog URLs
+# Block parameterized blog URLs (with and without trailing slash before ?)
 Disallow: /blog/*?*
 Disallow: /blog/*&*
+Disallow: /blog?*
 
 # Search engine specific rules
 User-agent: Googlebot

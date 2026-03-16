@@ -102,7 +102,7 @@ const BlogPostSEO = ({ post, prevPost, nextPost }: BlogPostSEOProps) => {
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Úvod", "item": baseUrl },
       { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${baseUrl}/blog` },
-      { "@type": "ListItem", "position": 3, "name": post.category, "item": `${baseUrl}/blog?category=${encodeURIComponent(post.category)}` },
+      { "@type": "ListItem", "position": 3, "name": post.category, "item": `${baseUrl}/blog` },
       { "@type": "ListItem", "position": 4, "name": post.title, "item": canonicalUrl }
     ]
   };

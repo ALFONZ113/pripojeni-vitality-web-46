@@ -1,29 +1,63 @@
 
 
-# Oprava duplicitných FAQPage schém na hlavnej stránke
+## Analýza GSC problémov zo screenshotov
 
-## Problém
+Z tvojich screenshotov vidím tri nové kategórie problémov:
 
-Google Search Console hlási **"Duplicitné pole FAQPage"** — na hlavnej stránke `popri.cz` sú **2 samostatné FAQPage schémy**, čo Google považuje za chybu:
+### 1. "Duplikovať bez kanonickej adresy" -- 17 URL
 
-1. **AIOptimizedSchema.tsx** — JSON-LD FAQPage s 18 otázkami (ID `/#faq`) — toto je správna, kompletná verzia
-2. **AIContentSummary.tsx** — HTML microdata FAQPage s 2 otázkami ("Co nabízíme?", "Kde poskytujeme služby?") — toto je duplicit, ktorý spôsobuje chybu
+URL adresy z GSC:
+- `/cookies`, `/blog`, `/kontakt` -- bez trailing slash (OK verzie)
+- `/iptv/`, `/tarify/`, `/cookies/`, `/internet-tv/`, `/blog/` -- s trailing slash (duplicity)
+- `/blog/?tag=Bohumín`, `/blog/?tag=Mesh`, `/blog?tag=Kybernetická bezpečnost`, `/blog?category=Novinky` -- parametrové URL
+- `/blog/6`, `/blog/3` -- ID-based URL
+- `/blog/11?source=blog&post_id=11&category=Novinky`, `/blog/o2-nej-prevzatie-poda-alternativa-zakaznici?source=blog&post_id=102&category=Technologie` -- slug + parametre
 
-Google nedokáže rozlíšiť, ktorá FAQPage je "tá správna", a obe označí ako neplatné.
+**Prícina:** Google vidí dve verzie tej istej stránky (napr. `/iptv` aj `/iptv/`) a ani jedna nemá explicitný `rel=canonical` tag, ktorý by ukazoval na tú druhú. Trailing slash redirecty v `_redirects` existujú, ale Google ich zachytil predtým, než boli implementované, alebo redirect neprebehol spolahlivo. Pre parametrové URL -- Google ich objavil z interných odkazov a nemajú canonical tag ukazujúci na čistú verziu.
 
-## Riešenie
+### 2. "Chyba presmerovania" -- 8 URL
 
-**Odstrániť microdata FAQPage z `AIContentSummary.tsx`** (riadky 81-102). Ponechať len JSON-LD verziu v `AIOptimizedSchema.tsx`, ktorá je kompletná a správne štruktúrovaná.
+- `/blog/?tag=Služby`, `/blog/?tag=Moravskoslezský región`, `/blog/?tag=Test rychlosti` -- parametrové s trailing slash
+- `/internet-havirov/`, `/internet-ostrava/`, `/internet-poruba/` -- trailing slash city URL
+- `/blog/` -- trailing slash
+- `/internet-karvina` -- bez trailing slash
 
-Tie 2 otázky z AIContentSummary ("Co nabízíme?" a "Kde poskytujeme služby?") sú aj tak príliš generické a nemajú SEO hodnotu. Kompletná FAQ s 18 otázkami v AIOptimizedSchema pokrýva všetko.
+**Prícina:** Edge funkcia `ai-bot-detector.ts` spracováva request PRED `_redirects`. Pre search boty kontroluje `CITY_STATIC_PATHS` a `AI_STATIC_PATHS`, ale tieto polia obsahujú len verzie BEZ trailing slash. Keď Googlebot pristúpi na `/internet-ostrava/`, edge funkcia nenájde match, zavolá `context.next()`, a Netlify spraví 301 redirect. Ale potom pri novom requeste edge funkcia znovu interceptuje. Problém je pravdepodobne v tom, ze edge funkcia pri `context.next()` pre trailing slash URL vracia malformed response alebo redirect chain, ktorý Google nedokáže spracovať.
 
-## Dotknutý súbor
+### 3. "Chyba servera (5xx)" -- 5 URL
 
-| Súbor | Zmena |
-|---|---|
-| `src/components/seo/AIContentSummary.tsx` | Odstránenie `<div itemScope itemType="https://schema.org/FAQPage">` bloku (riadky 81-102) |
+- `/blog?tag=Router`, `/blog/?tag=Poruba` -- parametrové URL
+- `/internet-ostrava` -- hlavná city stránka
+- `/blog/poda-super-2025-60ghz-internet-polanka` -- starý slug
+- `/blog/1` -- ID redirect
 
-## Výsledok
+**Prícina:** Edge funkcia nemá `try/catch` okolo `fetch()` volania pre search boty (riadky 470-488). Ak fetch statického súboru zlyhá (timeout, network error), edge funkcia crashne a vráti 5xx. Pre social crawlery try/catch existuje, ale pre search boty NIE.
 
-Po nasadení a re-indexácii v GSC zmizne chyba "Zistili sa 2 neplatné položky" a FAQ schéma bude validná.
+---
+
+## Plan implementácie
+
+### 1. Oprava edge funkcie -- trailing slash normalizácia a try/catch
+
+Na začiatku handler funkcie (riadok 382+) pridať normalizáciu trailing slash. Ak URL končí na `/` (okrem root `/`), odstrániť trailing slash a spraviť 301 redirect priamo z edge funkcie. Toto zabezpečí, že search boty nikdy nedostanú duplicitný obsah.
+
+Pridať `try/catch` okolo search bot `fetch()` volania (riadky 470-488), rovnako ako to má social crawler handler.
+
+### 2. Oprava edge funkcie -- parametrové URL
+
+Pre search boty, ak URL obsahuje query parametre (`?tag=`, `?category=`, `?source=`, `?search=`), odstrániť parametre a spraviť 301 redirect na čistú URL. Toto zabráni duplikátnemu obsahu aj redirect chybám.
+
+### 3. Synchronizácia `_redirects`
+
+Trailing slash redirecty v `_redirects` zmeniť na `301!` (force), aby mali prednosť pred SPA catch-all. Aktuálne sú bez `!`.
+
+### 4. Verifikácia v GSC
+
+Po deploy-i kliknúť "Overiť opravu" na všetkých troch issue kategóriách.
+
+---
+
+### Súbory na úpravu:
+- `netlify/edge-functions/ai-bot-detector.ts` -- hlavná oprava (trailing slash + params + try/catch)
+- `public/_redirects` -- force flag na trailing slash redirecty
 

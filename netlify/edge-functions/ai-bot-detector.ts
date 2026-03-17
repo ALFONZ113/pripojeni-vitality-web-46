@@ -383,15 +383,54 @@ export default async (request: Request, context: Context) => {
   const url = new URL(request.url);
   const userAgent = request.headers.get('user-agent') || '';
   
-  // Check if it's an AI bot
-  const isAIBot = AI_BOT_PATTERNS.some(pattern => 
-    userAgent.toLowerCase().includes(pattern.toLowerCase())
-  );
+  // Check bot types early
+  const uaLower = userAgent.toLowerCase();
+  const isAIBot = AI_BOT_PATTERNS.some(p => uaLower.includes(p.toLowerCase()));
+  const isSocialCrawler = SOCIAL_CRAWLER_PATTERNS.some(p => uaLower.includes(p.toLowerCase()));
+  const isSearchBot = SEARCH_BOT_PATTERNS.some(p => uaLower.includes(p.toLowerCase()));
+  const isAnyBot = isAIBot || isSocialCrawler || isSearchBot;
   
-  // Check if it's a social media crawler (Facebook, Twitter, LinkedIn, etc.)
-  const isSocialCrawler = SOCIAL_CRAWLER_PATTERNS.some(pattern => 
-    userAgent.toLowerCase().includes(pattern.toLowerCase())
-  );
+  // ============================================================
+  // PRIORITY 1: Trailing slash normalization for ALL bots
+  // Redirect /tarify/ -> /tarify, /internet-ostrava/ -> /internet-ostrava etc.
+  // This prevents "Duplicate without canonical" and "Redirect error" in GSC
+  // ============================================================
+  if (isAnyBot && url.pathname !== '/' && url.pathname.endsWith('/')) {
+    const cleanPath = url.pathname.slice(0, -1);
+    const redirectUrl = `https://www.popri.cz${cleanPath}`;
+    console.log(`[Bot Redirect] Trailing slash: ${url.pathname} -> ${cleanPath}`);
+    return new Response(null, {
+      status: 301,
+      headers: {
+        'Location': redirectUrl,
+        'X-Redirect-Reason': 'trailing-slash-normalization',
+        'Cache-Control': 'public, max-age=86400'
+      }
+    });
+  }
+  
+  // ============================================================
+  // PRIORITY 2: Strip query parameters for bots on blog/city pages
+  // Redirect /blog?tag=X -> /blog, /blog/slug?source=... -> /blog/slug
+  // This prevents "Duplicate without canonical" and "Server error 5xx" in GSC
+  // ============================================================
+  if (isAnyBot && url.search) {
+    const hasProblematicParams = ['tag', 'category', 'search', 'source', 'post_id'].some(
+      param => url.searchParams.has(param)
+    );
+    if (hasProblematicParams) {
+      const cleanUrl = `https://www.popri.cz${url.pathname}`;
+      console.log(`[Bot Redirect] Strip params: ${url.pathname}${url.search} -> ${url.pathname}`);
+      return new Response(null, {
+        status: 301,
+        headers: {
+          'Location': cleanUrl,
+          'X-Redirect-Reason': 'strip-query-parameters',
+          'Cache-Control': 'public, max-age=86400'
+        }
+      });
+    }
+  }
   
   // Handle social crawler requests for blog posts - UNIVERSAL for ALL slugs
   if (isSocialCrawler) {
@@ -461,29 +500,30 @@ export default async (request: Request, context: Context) => {
     }
   }
   
-  // Check if it's a search engine bot (Googlebot, Bingbot, etc.)
-  const isSearchBot = SEARCH_BOT_PATTERNS.some(pattern => 
-    userAgent.toLowerCase().includes(pattern.toLowerCase())
-  );
-  
-  // Serve static HTML to search bots for city pages (fixes canonical/indexing issues)
+  // Serve static HTML to search bots for city/main pages (fixes canonical/indexing issues)
   if (isSearchBot && (CITY_STATIC_PATHS.includes(url.pathname) || AI_STATIC_PATHS.includes(url.pathname))) {
-    const staticPath = `/ai-static${url.pathname}.html`;
-    console.log(`[Search Bot] ${userAgent.substring(0, 50)} -> Serving static: ${staticPath}`);
-    
-    const staticUrl = new URL(staticPath, url.origin);
-    const staticResponse = await fetch(staticUrl.toString());
-    
-    if (staticResponse.ok) {
-      const headers = new Headers(staticResponse.headers);
-      headers.set('X-Served-For', 'Search-Bot-Static');
-      headers.set('X-Robots-Tag', 'index, follow');
-      headers.set('Content-Type', 'text/html; charset=utf-8');
-      headers.set('Cache-Control', 'public, max-age=3600');
-      return new Response(staticResponse.body, {
-        status: 200,
-        headers
-      });
+    try {
+      const staticFileName = url.pathname === '/' ? 'index' : url.pathname.slice(1);
+      const staticPath = `/ai-static/${staticFileName}.html`;
+      console.log(`[Search Bot] ${userAgent.substring(0, 50)} -> Serving static: ${staticPath}`);
+      
+      const staticUrl = new URL(staticPath, url.origin);
+      const staticResponse = await fetch(staticUrl.toString());
+      
+      if (staticResponse.ok) {
+        const headers = new Headers(staticResponse.headers);
+        headers.set('X-Served-For', 'Search-Bot-Static');
+        headers.set('X-Robots-Tag', 'index, follow');
+        headers.set('Content-Type', 'text/html; charset=utf-8');
+        headers.set('Cache-Control', 'public, max-age=3600');
+        return new Response(staticResponse.body, {
+          status: 200,
+          headers
+        });
+      }
+    } catch (e) {
+      console.error(`[Search Bot] ❌ Error serving static for ${url.pathname}:`, e);
+      // Fall through to context.next() - let Netlify serve the SPA
     }
   }
   

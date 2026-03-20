@@ -1,29 +1,56 @@
 
 
-# Oprava duplicitných FAQPage schém na hlavnej stránke
+## Synchronizácia ai-static meta tagov s React komponentmi
 
-## Problém
+### Problém
+Edge funkcia `ai-bot-detector` posiela Googlebotu statický HTML z `public/ai-static/`, ktorý má **iné meta tagy** než React aplikácia. Google preto indexuje nesprávne titulky a popisy.
 
-Google Search Console hlási **"Duplicitné pole FAQPage"** — na hlavnej stránke `popri.cz` sú **2 samostatné FAQPage schémy**, čo Google považuje za chybu:
+**Príklad homepage:**
+- React (`Index.tsx`): "PODA Internet Ostrava a okolí | Gigabit + TV zdarma | 730 431 313"
+- ai-static (`index.html`): "Popri.cz - Autorizovaný partner PODA | Gigabitový Internet + TV | 730 431 313"
 
-1. **AIOptimizedSchema.tsx** — JSON-LD FAQPage s 18 otázkami (ID `/#faq`) — toto je správna, kompletná verzia
-2. **AIContentSummary.tsx** — HTML microdata FAQPage s 2 otázkami ("Co nabízíme?", "Kde poskytujeme služby?") — toto je duplicit, ktorý spôsobuje chybu
+Google používa ten druhý (statický) — preto vidíš vo vyhľadávaní iný text.
 
-Google nedokáže rozlíšiť, ktorá FAQPage je "tá správna", a obe označí ako neplatné.
+### Plán
 
-## Riešenie
+#### 1. Aktualizovať `public/ai-static/index.html`
+Zmeniť `<title>` a `<meta description>` aby presne zodpovedali tomu, čo je v `Index.tsx`:
+- Title: "PODA Internet Ostrava a okolí | Gigabit + TV zdarma | 730 431 313"
+- Description: "PODA internet Ostrava — dostupnost a pokrytí v celém regionu. Optika 1000 Mbps bez výpadků, TV zdarma, bez závazků. Ověřte dostupnost: 730 431 313."
 
-**Odstrániť microdata FAQPage z `AIContentSummary.tsx`** (riadky 81-102). Ponechať len JSON-LD verziu v `AIOptimizedSchema.tsx`, ktorá je kompletná a správne štruktúrovaná.
+#### 2. Aktualizovať ai-static city stránky
+Synchronizovať meta tagy pre tieto súbory s údajmi z `pageSeoOptimizer.ts` a `citiesData.ts`:
+- `public/ai-static/internet-ostrava.html`
+- `public/ai-static/internet-karvina.html`
+- `public/ai-static/internet-havirov.html`
+- `public/ai-static/internet-bohumin.html`
+- `public/ai-static/internet-poruba.html`
 
-Tie 2 otázky z AIContentSummary ("Co nabízíme?" a "Kde poskytujeme služby?") sú aj tak príliš generické a nemajú SEO hodnotu. Kompletná FAQ s 18 otázkami v AIOptimizedSchema pokrýva všetko.
+#### 3. Aktualizovať ai-static ďalšie stránky
+- `public/ai-static/tarify.html`
+- `public/ai-static/kontakt.html`
+- `public/ai-static/blog.html`
+- `public/ai-static/o-nas.html`
 
-## Dotknutý súbor
+#### 4. Aktualizovať `index.html` (hlavný)
+Zosúladiť `<title>` v `index.html` s `Index.tsx` (momentálne má "Nejvýhodnější PODA Internet Ostrava" vs "PODA Internet Ostrava a okolí").
 
-| Súbor | Zmena |
-|---|---|
-| `src/components/seo/AIContentSummary.tsx` | Odstránenie `<div itemScope itemType="https://schema.org/FAQPage">` bloku (riadky 81-102) |
+#### 5. Aktualizovať OG tagy v ai-static
+Pridať `og:title` a `og:description` do statických HTML súborov, aby aj social sharing z cache-ovaných verzií zobrazoval správne údaje.
 
-## Výsledok
+### Súbory na úpravu
+- `public/ai-static/index.html` — homepage meta tagy
+- `public/ai-static/internet-ostrava.html` — city meta tagy
+- `public/ai-static/internet-karvina.html`
+- `public/ai-static/internet-havirov.html`
+- `public/ai-static/internet-bohumin.html`
+- `public/ai-static/internet-poruba.html`
+- `public/ai-static/tarify.html`
+- `public/ai-static/kontakt.html`
+- `public/ai-static/blog.html`
+- `public/ai-static/o-nas.html`
+- `index.html` — zosúladiť title s Index.tsx
 
-Po nasadení a re-indexácii v GSC zmizne chyba "Zistili sa 2 neplatné položky" a FAQ schéma bude validná.
+### Výsledok
+Po deploy-i Google pri ďalšom crawle uvidí správne meta tagy a postupne aktualizuje snippet vo vyhľadávaní. Zmena sa prejaví do 1-4 týždňov.
 

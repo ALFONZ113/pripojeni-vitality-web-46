@@ -361,6 +361,55 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://www.popri.cz/blog/co-se-stane-kdyz-doma-vypadne-internet-na-24-hodin</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/jak-ai-meni-svet-proc-kvalitni-internet-zaklad</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/nejcastejsi-myty-o-optickem-internetu</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/operatori-meni-ceny-internetu-fakta-prava-zakazniku</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/proc-internet-doma-pomaluje-vecer-a-jak-to-vyresit</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/ostrava-gigabitovy-internet-exkluzivni-nabidka-poda-2026</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.popri.cz/blog/gaming-internet-ostrava-2025</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- PRÁVNÍ STRÁNKY -->
   <url>
     <loc>https://www.popri.cz/ochrana-soukromi</loc>

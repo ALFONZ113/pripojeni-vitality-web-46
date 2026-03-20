@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Phone, Sparkles, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';

@@ -34,6 +34,8 @@ const SOCIAL_CRAWLER_PATTERNS = [
 // Search engine bots that should get static HTML for city pages
 const SEARCH_BOT_PATTERNS = [
   'Googlebot',
+  'Google-InspectionTool',
+  'GoogleOther',
   'bingbot',
   'Slurp',
   'DuckDuckBot',

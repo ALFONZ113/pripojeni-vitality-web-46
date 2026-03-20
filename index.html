@@ -285,7 +285,136 @@
 </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Pre-rendered fallback content for Google/search crawlers -->
+      <!-- React will replace this entire content when it mounts -->
+      <div id="ssr-fallback" style="background:#0a0a0a; color:#f5f0e8; min-height:100vh; font-family:system-ui,sans-serif;">
+        <nav style="padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1);">
+          <a href="/" style="color:#d97706; font-size:1.5rem; font-weight:700; text-decoration:none;">popri.cz</a>
+          <span style="color:#9ca3af; font-size:0.875rem;">Autorizovaný partner PODA</span>
+        </nav>
+        
+        <main style="max-width:900px; margin:0 auto; padding:2rem 1rem;">
+          <section style="padding:3rem 0; text-align:center;">
+            <h1 style="font-size:2.5rem; font-weight:700; margin-bottom:1rem; color:#f5f0e8;">
+              PODA Internet Ostrava a okolí
+            </h1>
+            <p style="font-size:1.25rem; color:#d97706; margin-bottom:0.5rem;">
+              Gigabitový optický internet + TV zdarma
+            </p>
+            <p style="font-size:1.125rem; color:#9ca3af; margin-bottom:2rem;">
+              Optika 1000 Mbps bez výpadků, bez závazků. Ověřte dostupnost na vaší adrese.
+            </p>
+            <a href="tel:+420730431313" style="background:#d97706; color:#0a0a0a; padding:0.75rem 2rem; border-radius:0.5rem; text-decoration:none; font-weight:600; font-size:1.25rem; display:inline-block;">
+              📞 730 431 313
+            </a>
+          </section>
+
+          <section style="margin:2rem 0;">
+            <h2 style="font-size:1.75rem; color:#f5f0e8; margin-bottom:1rem;">Proč právě Popri.cz?</h2>
+            <p style="color:#9ca3af; line-height:1.8;">
+              Jsme <strong style="color:#d97706;">popři</strong> vám při každém kroku instalace PODA internetu. 
+              Nabízíme rychlé připojení bez čekání, stabilní optický internet na který se můžete spolehnout 
+              a profesionální podporu kdykoli ji potřebujete.
+            </p>
+          </section>
+
+          <section style="margin:2rem 0;">
+            <h2 style="font-size:1.75rem; color:#f5f0e8; margin-bottom:1rem;">Aktuální tarify 2026</h2>
+            <div style="border:1px solid rgba(255,255,255,0.1); border-radius:0.75rem; padding:1.5rem; margin-bottom:1rem; background:rgba(255,255,255,0.03);">
+              <h3 style="color:#d97706; margin-bottom:0.5rem;">Internet + TV Basic</h3>
+              <p style="color:#f5f0e8; font-size:1.5rem; font-weight:700;">300 Kč/měsíc <span style="color:#9ca3af; font-size:0.875rem; font-weight:400;">(PROMO 12 měsíců, poté 440 Kč)</span></p>
+              <p style="color:#9ca3af;">1000/1000 Mbps • 85+ TV programů • Instalace zdarma • Bez závazku</p>
+            </div>
+            <div style="border:1px solid rgba(217,119,6,0.3); border-radius:0.75rem; padding:1.5rem; background:rgba(217,119,6,0.05);">
+              <h3 style="color:#d97706; margin-bottom:0.5rem;">Internet + TV Mých 10 ⭐</h3>
+              <p style="color:#f5f0e8; font-size:1.5rem; font-weight:700;">440 Kč/měsíc <span style="color:#9ca3af; font-size:0.875rem; font-weight:400;">(PROMO 12 měsíců, poté 520 Kč)</span></p>
+              <p style="color:#9ca3af;">1000/1000 Mbps • 100+ TV programů + 10 vlastních • Instalace zdarma • Bez závazku</p>
+            </div>
+          </section>
+
+          <section style="margin:2rem 0;">
+            <h2 style="font-size:1.75rem; color:#f5f0e8; margin-bottom:1rem;">Dostupnost PODA internetu</h2>
+            <p style="color:#9ca3af; line-height:1.8; margin-bottom:1rem;">
+              PODA internet je dostupný v těchto městech a oblastech Moravskoslezského kraje:
+            </p>
+            <ul style="color:#9ca3af; line-height:2; padding-left:1.5rem;">
+              <li><a href="/internet-ostrava" style="color:#d97706; text-decoration:none;">Ostrava</a> – Poruba, Moravská Ostrava, Slezská Ostrava, Zábřeh, Hrabůvka, Dubina (98% pokrytí)</li>
+              <li><a href="/internet-karvina" style="color:#d97706; text-decoration:none;">Karviná</a> – Fryštát, Darkov, Nové Město, Hranice (95% pokrytí)</li>
+              <li><a href="/internet-havirov" style="color:#d97706; text-decoration:none;">Havířov</a> – Město, Podlesí, Šumbark, Životice (96% pokrytí)</li>
+              <li><a href="/internet-bohumin" style="color:#d97706; text-decoration:none;">Bohumín</a> – Starý Bohumín, Nový Bohumín, Skřečoň (100% pokrytí)</li>
+              <li><a href="/internet-poruba" style="color:#d97706; text-decoration:none;">Ostrava-Poruba</a> (100% pokrytí)</li>
+            </ul>
+          </section>
+
+          <section style="margin:2rem 0;">
+            <h2 style="font-size:1.75rem; color:#f5f0e8; margin-bottom:1rem;">Co je v ceně</h2>
+            <ul style="color:#9ca3af; line-height:2; padding-left:1.5rem;">
+              <li>Optický internet GPON s rychlostí až 1000/1000 Mbps</li>
+              <li>PODA net.TV – IPTV služba pro až 4 zařízení současně</li>
+              <li>160+ TV programů včetně HD a 4K kanálů</li>
+              <li>Instalace a aktivace ZDARMA</li>
+              <li>Moderní Wi-Fi router v ceně</li>
+              <li>Bez závazku – výpověď kdykoli s 30denní lhůtou</li>
+              <li>24/7 zákaznická podpora</li>
+            </ul>
+          </section>
+
+          <section style="margin:2rem 0;">
+            <h2 style="font-size:1.75rem; color:#f5f0e8; margin-bottom:1rem;">Často kladené otázky</h2>
+            <div style="margin-bottom:1rem;">
+              <h3 style="color:#d97706; font-size:1rem; margin-bottom:0.25rem;">Kolik stojí PODA internet?</h3>
+              <p style="color:#9ca3af;">Internet + TV Basic stojí 300 Kč/měsíc (PROMO), poté 440 Kč. Internet + TV Mých 10 stojí 440 Kč/měsíc (PROMO), poté 520 Kč. V ceně je TV služba a instalace.</p>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <h3 style="color:#d97706; font-size:1rem; margin-bottom:0.25rem;">Jaká je rychlost internetu?</h3>
+              <p style="color:#9ca3af;">V bytech nabízíme symetrickou rychlost 1000/1000 Mbps. Pro rodinné domy je rychlost 1000/200 Mbps přes 60 GHz technologii.</p>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <h3 style="color:#d97706; font-size:1rem; margin-bottom:0.25rem;">Je tam nějaký závazek?</h3>
+              <p style="color:#9ca3af;">Ne, smlouva je bez závazku. Můžete kdykoliv vypovědět s 30denní výpovědní lhůtou.</p>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <h3 style="color:#d97706; font-size:1rem; margin-bottom:0.25rem;">Jak dlouho trvá instalace?</h3>
+              <p style="color:#9ca3af;">Instalace obvykle proběhne do 1 týdne od objednávky. Technik přijede, nainstaluje router a vše nastaví zdarma.</p>
+            </div>
+          </section>
+
+          <section style="margin:2rem 0;">
+            <h2 style="font-size:1.75rem; color:#f5f0e8; margin-bottom:1rem;">Co říkají zákazníci</h2>
+            <p style="color:#d97706; margin-bottom:1rem;"><strong>4.8/5</strong> – průměrné hodnocení od 2000+ zákazníků</p>
+            <blockquote style="border-left:3px solid #d97706; padding-left:1rem; margin:1rem 0; color:#9ca3af; font-style:italic;">
+              "Konečně internet, který funguje! Práce z domova je teď radost." — Martin Novák, Ostrava-Poruba
+            </blockquote>
+            <blockquote style="border-left:3px solid #d97706; padding-left:1rem; margin:1rem 0; color:#9ca3af; font-style:italic;">
+              "Přešli jsme od konkurence a nelitujeme. Rychlost je stabilní, žádné výpadky." — Jana Veselá, Karviná
+            </blockquote>
+          </section>
+
+          <section style="margin:2rem 0; text-align:center; padding:2rem; border:1px solid rgba(217,119,6,0.3); border-radius:0.75rem; background:rgba(217,119,6,0.05);">
+            <h2 style="font-size:1.5rem; color:#f5f0e8; margin-bottom:0.5rem;">Kontaktujte nás</h2>
+            <p style="color:#9ca3af; margin-bottom:1rem;">Telefon: <a href="tel:+420730431313" style="color:#d97706; text-decoration:none; font-weight:700;">730 431 313</a></p>
+            <p style="color:#9ca3af; margin-bottom:1rem;">Email: <a href="mailto:terc@obchod.poda.cz" style="color:#d97706; text-decoration:none;">terc@obchod.poda.cz</a></p>
+            <p style="color:#9ca3af;">Provozní doba: Po–Pá 8:00–18:00</p>
+          </section>
+
+          <nav style="margin:2rem 0;">
+            <h2 style="font-size:1.25rem; color:#f5f0e8; margin-bottom:0.75rem;">Další stránky</h2>
+            <ul style="list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:0.5rem;">
+              <li><a href="/tarify" style="color:#d97706; text-decoration:none; padding:0.25rem 0.75rem; border:1px solid rgba(217,119,6,0.3); border-radius:1rem; font-size:0.875rem;">Tarify</a></li>
+              <li><a href="/iptv" style="color:#d97706; text-decoration:none; padding:0.25rem 0.75rem; border:1px solid rgba(217,119,6,0.3); border-radius:1rem; font-size:0.875rem;">IPTV</a></li>
+              <li><a href="/o-nas" style="color:#d97706; text-decoration:none; padding:0.25rem 0.75rem; border:1px solid rgba(217,119,6,0.3); border-radius:1rem; font-size:0.875rem;">O nás</a></li>
+              <li><a href="/kontakt" style="color:#d97706; text-decoration:none; padding:0.25rem 0.75rem; border:1px solid rgba(217,119,6,0.3); border-radius:1rem; font-size:0.875rem;">Kontakt</a></li>
+              <li><a href="/blog" style="color:#d97706; text-decoration:none; padding:0.25rem 0.75rem; border:1px solid rgba(217,119,6,0.3); border-radius:1rem; font-size:0.875rem;">Blog</a></li>
+            </ul>
+          </nav>
+        </main>
+        
+        <footer style="padding:1.5rem 2rem; border-top:1px solid rgba(255,255,255,0.1); text-align:center; color:#6b7280; font-size:0.875rem;">
+          <p>© 2026 Popri.cz – Autorizovaný partner PODA a.s. | <a href="tel:+420730431313" style="color:#d97706; text-decoration:none;">730 431 313</a></p>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
     
     

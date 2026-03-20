@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Phone, Sparkles, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -15,9 +15,6 @@ const HeroSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef(null);
-  const isInView = useInView(ref, {
-    once: true
-  });
   const isMobile = useIsMobile();
   const handleContactClick = (e: React.MouseEvent) => {
     if (isMobile) {
@@ -117,7 +114,7 @@ const HeroSection = () => {
           {/* ═══════════════════════════════════════════════════════════════
               CONTENT COLUMN - LEFT SIDE
              ═══════════════════════════════════════════════════════════════ */}
-          <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="text-center lg:text-left">
+          <motion.div variants={containerVariants} initial="hidden" animate={true ? "visible" : "hidden"} className="text-center lg:text-left">
             {/* Badge with pulsing dot */}
             <motion.div variants={itemVariants} className="mb-4 md:mb-6">
               <span className="badge-gold">
@@ -204,7 +201,7 @@ const HeroSection = () => {
           <motion.div initial={{
           opacity: 0,
           y: 30
-        }} animate={isInView ? {
+        }} animate={true ? {
           opacity: 1,
           y: 0
         } : {}} transition={{
@@ -216,7 +213,7 @@ const HeroSection = () => {
             {stats.map((stat, index) => <motion.div key={index} initial={{
             opacity: 0,
             x: 30
-          }} animate={isInView ? {
+          }} animate={true ? {
             opacity: 1,
             x: 0
           } : {}} transition={{
@@ -242,7 +239,7 @@ const HeroSection = () => {
             {/* Network Info Badge - Under Stats Cards */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={true ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="mr-[100px] mt-2"
             >
@@ -259,7 +256,7 @@ const HeroSection = () => {
         <motion.div initial={{
         opacity: 0,
         y: 20
-      }} animate={isInView ? {
+      }} animate={true ? {
         opacity: 1,
         y: 0
       } : {}} transition={{

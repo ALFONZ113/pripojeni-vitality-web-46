@@ -16,8 +16,8 @@ export interface PageSEOData {
  */
 export const OPTIMIZED_PAGE_SEO: Record<string, PageSEOData> = {
   '/': {
-    title: 'Nejvýhodnější PODA Internet + TV | Tel: 730 431 313',
-    description: 'Rychlé a spolehlivé optické připojení pro vaše město. Gigabitový internet až 1000 Mbps s TV zdarma a profesionální instalací. Volejte 730 431 313.',
+    title: 'PODA Internet Ostrava a okolí | Gigabit + TV zdarma | 730 431 313',
+    description: 'PODA internet Ostrava — dostupnost a pokrytí v celém regionu. Optika 1000 Mbps bez výpadků, TV zdarma, bez závazků. Ověřte dostupnost: 730 431 313.',
     keywords: ['PODA internet', 'optické připojení', 'rychlý internet', 'Moravskoslezský kraj', 'gigabit internet', 'TV zdarma', 'popri.cz'],
     canonical: 'https://www.popri.cz/',
     robots: 'index, follow',

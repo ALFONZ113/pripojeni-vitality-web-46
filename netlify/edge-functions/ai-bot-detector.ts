@@ -32,10 +32,10 @@ const SOCIAL_CRAWLER_PATTERNS = [
 ];
 
 // Search engine bots that should get static HTML for city pages
+// NOTE: Google bots (Googlebot, Google-InspectionTool, GoogleOther) are
+// intentionally EXCLUDED — Google renders JavaScript natively and should
+// see the real React website, not a simplified static fallback.
 const SEARCH_BOT_PATTERNS = [
-  'Googlebot',
-  'Google-InspectionTool',
-  'GoogleOther',
   'bingbot',
   'Slurp',
   'DuckDuckBot',

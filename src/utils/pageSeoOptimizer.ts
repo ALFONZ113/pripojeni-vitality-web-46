@@ -131,8 +131,8 @@ export const getPageSEO = (path: string): PageSEOData => {
   const cleanPath = path.replace(/\/$/, '') || '/';
   
   return OPTIMIZED_PAGE_SEO[cleanPath] || {
-    title: 'PODA Internet | Optické Připojení Moravskoslezský Kraj | Tel: 730 431 313',
-    description: 'Nejlepší PODA internet v Moravskoslezském kraji. Gigabitové optické připojení s TV službami. Rychlá instalace, spolehlivá podpora. Tel: 730 431 313.',
+    title: 'PODA Internet | Optické Připojení Moravskoslezský Kraj | 730 431 313',
+    description: 'PODA internet v Moravskoslezském kraji. Gigabitové optické připojení s TV službami. Rychlá instalace, spolehlivá podpora. Tel: 730 431 313.',
     keywords: ['PODA internet', 'optické připojení', 'Moravskoslezský kraj', 'rychlý internet'],
     canonical: `https://www.popri.cz${cleanPath}`
   };

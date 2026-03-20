@@ -15,9 +15,6 @@ const HeroSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef(null);
-  const isInView = useInView(ref, {
-    once: true
-  });
   const isMobile = useIsMobile();
   const handleContactClick = (e: React.MouseEvent) => {
     if (isMobile) {

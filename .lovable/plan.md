@@ -1,82 +1,62 @@
 
 
-## Analýza odporúčania od Claude + skutočný problém
+## Prečo Google vidí "debilinu" namiesto tvojho webu
 
-### Má Claude pravdu?
+### Čo sa deje
 
-**Čiastočne áno.** Hlavný problém je reálny:
-
-Google otvorí tvoj web → React sa nestihne načítať (timeout) → fallback je `display:none` → Google vidí **čiernu obrazovku**.
-
-Ale riešenie "daj fallback `display:block`" sme už skúšali a spôsobilo to **prebliknutie** (videl si "inú stránku" pred načítaním). Preto sme to zmenili na `display:none`. Teraz je Google opäť slepý.
-
-### Prečo to tak je — jednoduché vysvetlenie
+Tvoja edge funkcia `ai-bot-detector.ts` na riadku 511 robí toto:
 
 ```text
-Čo sa deje teraz:
-
-Používateľ otvorí web:
-  1. HTML sa načíta (fallback je SKRYTÝ)
-  2. React sa načíta (za 1-2 sekundy)
-  3. Vidí krásny web ✅
-
-Googlebot otvorí web:
-  1. HTML sa načíta (fallback je SKRYTÝ)
-  2. React sa NESTIHNE načítať (timeout)
-  3. Vidí ČIERNU OBRAZOVKU ❌
+Googlebot príde na www.popri.cz
+  → Edge funkcia ho ZACHYTÍ
+  → Namiesto tvojho React webu mu POŠLE /ai-static/index.html
+  → To je tá jednoduchá stránka s tabuľkou a telefónnym číslom
+  → Google TOTO indexuje namiesto tvojho skutočného webu
 ```
 
-### Správne riešenie — malý inline skript
+**To je presne to, čo vidíš na screenshote** — jednoduchá HTML stránka s tabuľkami taríf, nie tvoj dizajnový web.
 
-Namiesto `display:none` alebo `display:block` použijeme **chytrý prístup**:
+### Prečo to tam je
 
-1. Fallback bude **viditeľný** (`display:block`) — Google ho uvidí okamžite
-2. Hneď pod ním dáme **3-riadkový JavaScript** (nie React!), ktorý ho **okamžite skryje**
+Pridali sme to, lebo predtým Google videl čiernu obrazovku (React sa nestihol načítať). Ale teraz máš **Netlify Prerendering zapnuté** — to znamená, že Netlify **automaticky** vyrenderuje tvoj React web pre Googlebota. Nepotrebuješ edge funkciu.
 
-```text
-Čo sa stane:
+### Riešenie
 
-Používateľ (má JavaScript):
-  1. HTML sa načíta, fallback je viditeľný
-  2. Inline skript ho OKAMŽITE skryje (< 1 ms)
-  3. React sa načíta, zobrazí web
-  4. Žiadne prebliknutie ✅
+**Odstrániť Google z `SEARCH_BOT_PATTERNS`** v edge funkcii. Nechať Netlify Prerendering robiť svoju prácu pre Google. Edge funkcia bude naďalej obsluhovať len:
+- Social crawlery (Facebook, Twitter, LinkedIn) — pre OG tagy
+- AI boty (GPTBot, Claude) — pre textový obsah
 
-Googlebot (JavaScript timeout):
-  1. HTML sa načíta, fallback je viditeľný ✅
-  2. Google VIDÍ obsah okamžite ✅
-  3. Aj keď React zlyhá, obsah tam je
+### Technická zmena
+
+**Súbor: `netlify/edge-functions/ai-bot-detector.ts`**
+
+1. Odstrániť z `SEARCH_BOT_PATTERNS` (riadky 38-46) všetky Google patterny:
+```typescript
+const SEARCH_BOT_PATTERNS = [
+  'bingbot',
+  'Slurp',
+  'DuckDuckBot',
+  'YandexBot'
+];
 ```
 
-### Technická implementácia
+Googlebot už nebude zachytávaný → dostane skutočný React web prerenderovaný Netlify.
 
-**Súbor: `index.html`**
-
-1. Zmeniť `display:none` na `display:block` na `#ssr-fallback`
-2. Pridať hneď za `</div>` fallbacku malý inline skript:
-
-```html
-<div id="ssr-fallback" style="display:block; ...">
-  <!-- existujúci fallback obsah -->
-</div>
-<script>
-  // Okamžite skryje fallback pre používateľov s JS
-  // Googlebot s timeout-om tento skript nespustí = uvidí obsah
-  document.getElementById('ssr-fallback').style.display='none';
-</script>
+2. V sekcii trailing slash + query param redirect (riadky 394-440) — pridať detekciu Googlebota **samostatne**, aby redirecty stále fungovali aj pre Google:
+```typescript
+const isGoogleBot = /googlebot|google-inspectiontool/i.test(uaLower);
+const isAnyBot = isAIBot || isSocialCrawler || isSearchBot || isGoogleBot;
 ```
 
-3. Odstrániť `<noscript>` pravidlo pre `#ssr-fallback` (už nie je potrebné — fallback je viditeľný by default)
+Tým sa zachová trailing slash normalizácia a stripping parametrov pre Google, ale Google **nedostane statický HTML** — dostane skutočný web.
 
-### Čo s klesajúcim počtom indexovaných stránok (60 → 20)?
+### Výsledok
 
-Toto je **priamo spôsobené** čiernou obrazovkou. Google postupne deindexuje stránky, ktoré nevie prečítať. Po oprave sa začnú vracať.
-
-### Ďalšie kroky po deploy-i
-
-- V GSC urobiť Live Test na `https://www.popri.cz/` — overiť, že Google vidí H1, tarify, FAQ
-- Kliknúť "Vyžiadať indexovanie" na homepage a kľúčových stránkach
+- Google uvidí tvoj **skutočný React web** (prerenderovaný cez Netlify)
+- Trailing slash a parameter redirecty zostanú funkčné
+- Social crawlery stále dostanú OG tagy
+- AI boty stále dostanú textový obsah
 
 ### Súbory na úpravu
-- `index.html` — 3 malé zmeny (display:block, inline skript, odstránenie noscript pravidla)
+- `netlify/edge-functions/ai-bot-detector.ts` — úprava SEARCH_BOT_PATTERNS + pridanie samostatnej Google detekcie pre redirecty
 

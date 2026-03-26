@@ -397,7 +397,8 @@ export default async (request: Request, context: Context) => {
   const isAIBot = AI_BOT_PATTERNS.some(p => uaLower.includes(p.toLowerCase()));
   const isSocialCrawler = SOCIAL_CRAWLER_PATTERNS.some(p => uaLower.includes(p.toLowerCase()));
   const isSearchBot = SEARCH_BOT_PATTERNS.some(p => uaLower.includes(p.toLowerCase()));
-  const isAnyBot = isAIBot || isSocialCrawler || isSearchBot;
+  const isGoogleBot = GOOGLE_BOT_PATTERNS.some(p => uaLower.includes(p.toLowerCase()));
+  const isAnyBot = isAIBot || isSocialCrawler || isSearchBot || isGoogleBot;
   
   // ============================================================
   // PRIORITY 1: Trailing slash normalization for ALL bots

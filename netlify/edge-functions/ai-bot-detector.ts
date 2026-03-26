@@ -31,11 +31,16 @@ const SOCIAL_CRAWLER_PATTERNS = [
   'Embedly'
 ];
 
-// Search engine bots that should get static HTML for city pages
-// NOTE: Google bots (Googlebot, Google-InspectionTool, GoogleOther) are
-// intentionally EXCLUDED — Google renders JavaScript natively and should
-// see the real React website, not a simplified static fallback.
+// Search engine bots that should get static HTML
+// Google bots INCLUDED — Google's JS renderer times out on this SPA,
+// resulting in a black page in Search Console. Static HTML is the fix.
 const SEARCH_BOT_PATTERNS = [
+  'Googlebot',
+  'Google-InspectionTool',
+  'GoogleOther',
+  'AdsBot-Google',
+  'APIs-Google',
+  'Mediapartners-Google',
   'bingbot',
   'Slurp',
   'DuckDuckBot',

@@ -31,20 +31,22 @@ const SOCIAL_CRAWLER_PATTERNS = [
   'Embedly'
 ];
 
-// Search engine bots that should get static HTML
-// Google bots INCLUDED — Google's JS renderer times out on this SPA,
-// resulting in a black page in Search Console. Static HTML is the fix.
+// Search engine bots that should get static HTML (NOT Google — Netlify Prerendering handles Google)
 const SEARCH_BOT_PATTERNS = [
+  'bingbot',
+  'Slurp',
+  'DuckDuckBot',
+  'YandexBot'
+];
+
+// Google bot patterns — used ONLY for redirect normalization, NOT for static HTML serving
+const GOOGLE_BOT_PATTERNS = [
   'Googlebot',
   'Google-InspectionTool',
   'GoogleOther',
   'AdsBot-Google',
   'APIs-Google',
-  'Mediapartners-Google',
-  'bingbot',
-  'Slurp',
-  'DuckDuckBot',
-  'YandexBot'
+  'Mediapartners-Google'
 ];
 
 // City paths that have static HTML versions

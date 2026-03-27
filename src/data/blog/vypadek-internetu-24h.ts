@@ -1,5 +1,4 @@
 import { BlogPost } from './types';
-import vypadekImage from '@/assets/vypadek-internetu-24h.jpg';
 
 export const vypadekInternetu24hPost: BlogPost = {
   id: 1101,

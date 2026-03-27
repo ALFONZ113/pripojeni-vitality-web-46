@@ -1,62 +1,62 @@
 
 
-## Prečo Google vidí "debilinu" namiesto tvojho webu
+## Prečo Facebook neukazuje náhľadový obrázok pri zdieľaní blogu
 
-### Čo sa deje
+### Príčina
 
-Tvoja edge funkcia `ai-bot-detector.ts` na riadku 511 robí toto:
+Keď zdieľaš blogový článok na Facebooku, stane sa toto:
 
 ```text
-Googlebot príde na www.popri.cz
-  → Edge funkcia ho ZACHYTÍ
-  → Namiesto tvojho React webu mu POŠLE /ai-static/index.html
-  → To je tá jednoduchá stránka s tabuľkou a telefónnym číslom
-  → Google TOTO indexuje namiesto tvojho skutočného webu
+Facebook otvorí odkaz www.popri.cz/blog/ostrava-gigabitovy-internet...
+  → Edge funkcia ho rozpozná ako "facebookexternalhit" (social crawler)
+  → Hľadá statický súbor /ai-static/blog/ostrava-gigabitovy-internet...html
+  → NEEXISTUJE
+  → Hľadá v BLOG_POSTS_OG_DATA mape
+  → NEEXISTUJE (tento článok tam nie je pridaný)
+  → Vygeneruje generický HTML s titulkom z URL slugu
+  → Obrázok: /og-image.png (generický, nie článkový)
+  → Facebook zobrazí len text bez správneho obrázku
 ```
 
-**To je presne to, čo vidíš na screenshote** — jednoduchá HTML stránka s tabuľkami taríf, nie tvoj dizajnový web.
+**Problém č. 1**: Nové články (napr. `ostrava-gigabitovy-internet-exkluzivni-nabidka-poda-2026`) nie sú pridané do mapy `BLOG_POSTS_OG_DATA` v edge funkcii.
 
-### Prečo to tam je
+**Problém č. 2**: Neexistuje statický HTML súbor pre nové články v `/ai-static/blog/`.
 
-Pridali sme to, lebo predtým Google videl čiernu obrazovku (React sa nestihol načítať). Ale teraz máš **Netlify Prerendering zapnuté** — to znamená, že Netlify **automaticky** vyrenderuje tvoj React web pre Googlebota. Nepotrebuješ edge funkciu.
+**Problém č. 3**: Aj keby bol obrázok nastavený, cesta `/blog-images/ostrava-gigabit-promo.webp` musí byť plná URL (`https://www.popri.cz/blog-images/...`) — to edge funkcia robí správne, ale len keď článok existuje v mape.
 
 ### Riešenie
 
-**Odstrániť Google z `SEARCH_BOT_PATTERNS`** v edge funkcii. Nechať Netlify Prerendering robiť svoju prácu pre Google. Edge funkcia bude naďalej obsluhovať len:
-- Social crawlery (Facebook, Twitter, LinkedIn) — pre OG tagy
-- AI boty (GPTBot, Claude) — pre textový obsah
+#### 1. Pridať chýbajúce články do `BLOG_POSTS_OG_DATA`
 
-### Technická zmena
+V `netlify/edge-functions/ai-bot-detector.ts` pridať do mapy `BLOG_POSTS_OG_DATA` všetky nové články, ktoré chýbajú. Momentálne chýba minimálne:
 
-**Súbor: `netlify/edge-functions/ai-bot-detector.ts`**
-
-1. Odstrániť z `SEARCH_BOT_PATTERNS` (riadky 38-46) všetky Google patterny:
 ```typescript
-const SEARCH_BOT_PATTERNS = [
-  'bingbot',
-  'Slurp',
-  'DuckDuckBot',
-  'YandexBot'
-];
+'ostrava-gigabitovy-internet-exkluzivni-nabidka-poda-2026': {
+  title: 'Ostrava a gigabitový internet: Exkluzivní nabídka PODA, která se neodmítá',
+  description: 'Optický internet PODA s rychlostí 1000/1000 Mbps, 85+ TV programů a aktivací zdarma — to vše od 300 Kč měsíčně.',
+  image: '/blog-images/ostrava-gigabit-promo.webp'
+},
 ```
 
-Googlebot už nebude zachytávaný → dostane skutočný React web prerenderovaný Netlify.
+Prejdem všetky články v `src/data/blog/index.ts` a porovnám s mapou — doplním všetky chýbajúce.
 
-2. V sekcii trailing slash + query param redirect (riadky 394-440) — pridať detekciu Googlebota **samostatne**, aby redirecty stále fungovali aj pre Google:
-```typescript
-const isGoogleBot = /googlebot|google-inspectiontool/i.test(uaLower);
-const isAnyBot = isAIBot || isSocialCrawler || isSearchBot || isGoogleBot;
-```
+#### 2. Vytvoriť statické HTML súbory pre chýbajúce články
 
-Tým sa zachová trailing slash normalizácia a stripping parametrov pre Google, ale Google **nedostane statický HTML** — dostane skutočný web.
+Pre každý chýbajúci článok vytvoriť `/ai-static/blog/{slug}.html` so správnymi OG tagmi (rovnaký formát ako existujúce súbory).
 
-### Výsledok
+#### 3. Overiť obrázky
 
-- Google uvidí tvoj **skutočný React web** (prerenderovaný cez Netlify)
-- Trailing slash a parameter redirecty zostanú funkčné
-- Social crawlery stále dostanú OG tagy
-- AI boty stále dostanú textový obsah
+Skontrolovať, že všetky referované obrázky v OG tagoch reálne existujú na serveri (`/blog-images/`, `/lovable-uploads/`). Facebook vyžaduje:
+- Obrázok musí byť prístupný cez HTTPS
+- Minimálna veľkosť 200x200 px (ideálne 1200x630)
+- Formát JPG, PNG alebo WebP
+
+#### 4. Po deploy-i
+
+Po nasadení zmien použiť **Facebook Sharing Debugger** (`https://developers.facebook.com/tools/debug/`) na každý článok — tým sa vyčistí Facebook cache a načítajú sa nové OG tagy.
 
 ### Súbory na úpravu
-- `netlify/edge-functions/ai-bot-detector.ts` — úprava SEARCH_BOT_PATTERNS + pridanie samostatnej Google detekcie pre redirecty
+- `netlify/edge-functions/ai-bot-detector.ts` — doplniť chýbajúce články do `BLOG_POSTS_OG_DATA`
+- `public/ai-static/blog/` — vytvoriť nové statické HTML súbory pre chýbajúce články
+- Skontrolovať existenciu referovaných obrázkov
 

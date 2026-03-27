@@ -130,7 +130,7 @@ export const vypadekInternetu24hPost: BlogPost = {
   date: '2026-02-25',
   author: 'Popri.cz tým',
   category: 'Tipy a rady',
-  image: vypadekImage,
+  image: '/blog-images/vypadek-internetu-24h.jpg',
   alt: 'Rodina v tmavém obýváku při výpadku internetu - TV bez signálu, svíčky',
   tags: ['výpadek internetu', 'spolehlivost', 'optický internet', 'chytrá domácnost', 'home office', 'GPON']
 };

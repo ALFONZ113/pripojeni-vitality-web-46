@@ -289,6 +289,16 @@ const BLOG_POSTS_OG_DATA: Record<string, { title: string; description: string; i
     title: 'Recenze zákazníků PODA: Skutečné zkušenosti s našimi službami',
     description: 'Autentické recenze a hodnocení od spokojených zákazníků PODA.',
     image: '/lovable-uploads/8a151fa2-b198-402b-9ead-89329b8b9ab2.png'
+  },
+  'ostrava-gigabitovy-internet-exkluzivni-nabidka-poda-2026': {
+    title: 'Ostrava a gigabitový internet: Exkluzivní nabídka PODA, která se neodmítá',
+    description: 'Optický internet PODA s rychlostí 1000/1000 Mbps, 85+ TV programů a aktivací zdarma — to vše od 300 Kč měsíčně. Proč se spokojit s něčím pomalejším?',
+    image: '/blog-images/ostrava-gigabit-promo.webp'
+  },
+  'co-se-stane-kdyz-doma-vypadne-internet-na-24-hodin': {
+    title: 'Co se stane, když doma vypadne internet na 24 hodin?',
+    description: 'Internet dnes není luxus – je to základ. Co se ale stane, když o něj přijdete na celý den? Projděte si hodinu po hodině, jak výpadek ovlivní vaši domácnost.',
+    image: '/blog-images/vypadek-internetu-24h.jpg'
   }
 };
 

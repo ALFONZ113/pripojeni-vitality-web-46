@@ -1,62 +1,53 @@
 
 
-## Prečo Facebook neukazuje náhľadový obrázok pri zdieľaní blogu
+## Prečo overenie zlyhalo a čo s tým
 
-### Príčina
+### Vysvetlenie pre teba (jednoducho)
 
-Keď zdieľaš blogový článok na Facebooku, stane sa toto:
+Keď si v GSC klikol "Overiť opravu", Google začal znova prechádzať všetkých 59 problémových URL. Ak čo i len **jedna** stránka stále nefunguje správne, celé overenie zlyhá. Neznamená to, že sa nič neopravilo — znamená to, že niektoré z tých 59 URL stále nie sú v poriadku.
 
-```text
-Facebook otvorí odkaz www.popri.cz/blog/ostrava-gigabitovy-internet...
-  → Edge funkcia ho rozpozná ako "facebookexternalhit" (social crawler)
-  → Hľadá statický súbor /ai-static/blog/ostrava-gigabitovy-internet...html
-  → NEEXISTUJE
-  → Hľadá v BLOG_POSTS_OG_DATA mape
-  → NEEXISTUJE (tento článok tam nie je pridaný)
-  → Vygeneruje generický HTML s titulkom z URL slugu
-  → Obrázok: /og-image.png (generický, nie článkový)
-  → Facebook zobrazí len text bez správneho obrázku
+Z tvojho zoznamu vidím **3 konkrétne chyby v kóde**, ktoré spôsobujú zlyhanie:
+
+### Chyba č. 1: `/promo-akcia` neexistuje
+Google crawluje URL `https://www.popri.cz/promo-akcia`, ale tvoj web má route `/promo-akce` (s **e** na konci, nie **ia**). Takže `/promo-akcia` zobrazí tvoj React web, ale s komponentom NotFound (404 stránka renderovaná ako 200 status). Google to vidí ako "prázdnu stránku" a odmietne indexovať.
+
+**Oprava**: Pridať redirect `/promo-akcia` → `/promo-akce` do `_redirects`.
+
+### Chyba č. 2: `/blog/internet-poda-ostrava-pripojeni` nemá redirect
+Toto je starý blog slug, ktorý Google stále crawluje. Neexistuje k nemu redirect na aktuálny slug. V `redirectManager.ts` vidím, že sa na tento slug odkazuje ako na cieľ, ale samotný slug už neexistuje ako platný článok.
+
+**Oprava**: Pridať redirect na správny aktuálny slug do `_redirects`.
+
+### Chyba č. 3: `/sitemap-index.xml` v robots.txt
+V `robots.txt` máš riadok `Sitemap: https://www.popri.cz/sitemap-index.xml`. Google ho crawluje ako stránku a samozrejme ho neindexuje (je to XML). Toto zbytočne nafukuje počet "neindexovaných" stránok.
+
+**Oprava**: Odstrániť `sitemap-index.xml` z robots.txt (ponechať len `sitemap.xml`).
+
+### Čo so zvyšnými URL?
+
+Väčšina ostatných (trailing slash URL ako `/programy/`, `/internet-tv/`, query param URL ako `/blog/11?source=...`) **už má správne redirecty**. Google ich len ešte nestihol znova precrawlovať po opravách. Po fixe týchto 3 chýb a novom overení by to malo prejsť.
+
+### Technické zmeny
+
+**Súbor `public/_redirects`** — pridať 2 nové redirecty:
+```
+/promo-akcia /promo-akce 301!
+/blog/internet-poda-ostrava-pripojeni /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301!
 ```
 
-**Problém č. 1**: Nové články (napr. `ostrava-gigabitovy-internet-exkluzivni-nabidka-poda-2026`) nie sú pridané do mapy `BLOG_POSTS_OG_DATA` v edge funkcii.
-
-**Problém č. 2**: Neexistuje statický HTML súbor pre nové články v `/ai-static/blog/`.
-
-**Problém č. 3**: Aj keby bol obrázok nastavený, cesta `/blog-images/ostrava-gigabit-promo.webp` musí byť plná URL (`https://www.popri.cz/blog-images/...`) — to edge funkcia robí správne, ale len keď článok existuje v mape.
-
-### Riešenie
-
-#### 1. Pridať chýbajúce články do `BLOG_POSTS_OG_DATA`
-
-V `netlify/edge-functions/ai-bot-detector.ts` pridať do mapy `BLOG_POSTS_OG_DATA` všetky nové články, ktoré chýbajú. Momentálne chýba minimálne:
-
-```typescript
-'ostrava-gigabitovy-internet-exkluzivni-nabidka-poda-2026': {
-  title: 'Ostrava a gigabitový internet: Exkluzivní nabídka PODA, která se neodmítá',
-  description: 'Optický internet PODA s rychlostí 1000/1000 Mbps, 85+ TV programů a aktivací zdarma — to vše od 300 Kč měsíčně.',
-  image: '/blog-images/ostrava-gigabit-promo.webp'
-},
+**Súbor `public/robots.txt`** — odstrániť riadok so `sitemap-index.xml`, ponechať len:
+```
+Sitemap: https://www.popri.cz/sitemap.xml
 ```
 
-Prejdem všetky články v `src/data/blog/index.ts` a porovnám s mapou — doplním všetky chýbajúce.
+**Súbor `public/sitemap.xml`** — overiť, že neobsahuje URL `/promo-akcia` ani `/sitemap-index.xml`.
 
-#### 2. Vytvoriť statické HTML súbory pre chýbajúce články
-
-Pre každý chýbajúci článok vytvoriť `/ai-static/blog/{slug}.html` so správnymi OG tagmi (rovnaký formát ako existujúce súbory).
-
-#### 3. Overiť obrázky
-
-Skontrolovať, že všetky referované obrázky v OG tagoch reálne existujú na serveri (`/blog-images/`, `/lovable-uploads/`). Facebook vyžaduje:
-- Obrázok musí byť prístupný cez HTTPS
-- Minimálna veľkosť 200x200 px (ideálne 1200x630)
-- Formát JPG, PNG alebo WebP
-
-#### 4. Po deploy-i
-
-Po nasadení zmien použiť **Facebook Sharing Debugger** (`https://developers.facebook.com/tools/debug/`) na každý článok — tým sa vyčistí Facebook cache a načítajú sa nové OG tagy.
+### Po deploy-i
+1. V GSC znova klikni "Overiť opravu" na tejto chybe
+2. Požiadaj o indexovanie pre `/promo-akce` a homepage
+3. Počkaj 2-4 týždne — Google postupne precrawluje všetky URL
 
 ### Súbory na úpravu
-- `netlify/edge-functions/ai-bot-detector.ts` — doplniť chýbajúce články do `BLOG_POSTS_OG_DATA`
-- `public/ai-static/blog/` — vytvoriť nové statické HTML súbory pre chýbajúce články
-- Skontrolovať existenciu referovaných obrázkov
+- `public/_redirects` — 2 nové 301 redirecty
+- `public/robots.txt` — odstrániť sitemap-index.xml
 

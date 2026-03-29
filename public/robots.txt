@@ -135,6 +135,5 @@ Allow: /
 User-agent: MJ12bot
 Allow: /
 
-# Sitemap location - hlavné sitemapy
-Sitemap: https://www.popri.cz/sitemap-index.xml
+# Sitemap location
 Sitemap: https://www.popri.cz/sitemap.xml

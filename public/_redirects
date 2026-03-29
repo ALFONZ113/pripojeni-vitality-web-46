@@ -33,6 +33,8 @@ https://popri.cz/ https://www.popri.cz/ 301!
 # Oprava chybných slug URL
 /blog/poda-super-2025-60ghz-internet-polanka /blog/polanka-nad-odrou-60ghz-pripojeni-2025 301!
 /blog/1 /blog 301!
+/promo-akcia /promo-akce 301!
+/blog/internet-poda-ostrava-pripojeni /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301!
 
 # ===== PRIORITY 1: 301 redirects - ALL blog ID URLs to slug URLs (FORCE with !) =====
 

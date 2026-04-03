@@ -1,7 +1,7 @@
 # Netlify build configuration
 # Force Node + npm and generate SEO + AI static assets before build
 [build]
-  command = "npm ci && node scripts/build-seo.js || true && node scripts/generate-ai-pages.js || true && npm run build"
+  command = "npm ci && node scripts/build-seo.js || true && node scripts/generate-ai-pages.js || true && npm run build && node scripts/prerender-pages.js || true"
   publish = "dist"
 
 [build.environment]

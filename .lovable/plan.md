@@ -1,53 +1,78 @@
 
 
-## Prečo overenie zlyhalo a čo s tým
+## Prečo konkurent s WordPress/HTML je indexovaný rýchlejšie a čo s tým
 
-### Vysvetlenie pre teba (jednoducho)
+### Jednoduchá odpoveď
 
-Keď si v GSC klikol "Overiť opravu", Google začal znova prechádzať všetkých 59 problémových URL. Ak čo i len **jedna** stránka stále nefunguje správne, celé overenie zlyhá. Neznamená to, že sa nič neopravilo — znamená to, že niektoré z tých 59 URL stále nie sú v poriadku.
+**Áno, máš pravdu.** WordPress/HTML stránky sa indexujú rýchlejšie. Dôvod je jednoduchý:
 
-Z tvojho zoznamu vidím **3 konkrétne chyby v kóde**, ktoré spôsobujú zlyhanie:
+```text
+WordPress stránka:
+  Google príde → okamžite vidí hotové HTML s celým obsahom → indexuje
 
-### Chyba č. 1: `/promo-akcia` neexistuje
-Google crawluje URL `https://www.popri.cz/promo-akcia`, ale tvoj web má route `/promo-akce` (s **e** na konci, nie **ia**). Takže `/promo-akcia` zobrazí tvoj React web, ale s komponentom NotFound (404 stránka renderovaná ako 200 status). Google to vidí ako "prázdnu stránku" a odmietne indexovať.
-
-**Oprava**: Pridať redirect `/promo-akcia` → `/promo-akce` do `_redirects`.
-
-### Chyba č. 2: `/blog/internet-poda-ostrava-pripojeni` nemá redirect
-Toto je starý blog slug, ktorý Google stále crawluje. Neexistuje k nemu redirect na aktuálny slug. V `redirectManager.ts` vidím, že sa na tento slug odkazuje ako na cieľ, ale samotný slug už neexistuje ako platný článok.
-
-**Oprava**: Pridať redirect na správny aktuálny slug do `_redirects`.
-
-### Chyba č. 3: `/sitemap-index.xml` v robots.txt
-V `robots.txt` máš riadok `Sitemap: https://www.popri.cz/sitemap-index.xml`. Google ho crawluje ako stránku a samozrejme ho neindexuje (je to XML). Toto zbytočne nafukuje počet "neindexovaných" stránok.
-
-**Oprava**: Odstrániť `sitemap-index.xml` z robots.txt (ponechať len `sitemap.xml`).
-
-### Čo so zvyšnými URL?
-
-Väčšina ostatných (trailing slash URL ako `/programy/`, `/internet-tv/`, query param URL ako `/blog/11?source=...`) **už má správne redirecty**. Google ich len ešte nestihol znova precrawlovať po opravách. Po fixe týchto 3 chýb a novom overení by to malo prejsť.
-
-### Technické zmeny
-
-**Súbor `public/_redirects`** — pridať 2 nové redirecty:
-```
-/promo-akcia /promo-akce 301!
-/blog/internet-poda-ostrava-pripojeni /blog/internet-poda-ostrava-nejrychlejsi-opticke-pripojeni-moravskoslezsky-kraj-2025 301!
+Tvoja React stránka (SPA):
+  Google príde → vidí prázdny <div id="root"> → musí spustiť JavaScript
+  → počká kým React vykreslí obsah → AŽ POTOM indexuje
 ```
 
-**Súbor `public/robots.txt`** — odstrániť riadok so `sitemap-index.xml`, ponechať len:
-```
-Sitemap: https://www.popri.cz/sitemap.xml
+Aj keď máš zapnutý Netlify Prerendering, ten funguje tak, že Netlify **na pozadí** spustí prehliadač, počká na vykreslenie a pošle výsledok Googlu. Ale:
+- Trvá to dlhšie ako čisté HTML
+- Niekedy sa stane timeout a Google dostane neúplnú stránku
+- Google dáva prednosť stránkam, kde obsah vidí okamžite
+
+### Čo konkrétne robiť
+
+Riešenie je **SSG (Static Site Generation)** — vygenerovať hotové HTML súbory pri builde, nie za behu. Tvoj web už má základ v `scripts/generate-ai-pages.js` pre AI crawlery. Rozšírime to tak, aby **každá dôležitá stránka** mala vopred vygenerované kompletné HTML.
+
+### Technický plán
+
+#### 1. Vytvoriť build-time prerendering skript
+
+Nový skript `scripts/prerender-pages.js`, ktorý po `npm run build`:
+- Spustí hotový build v headless prehliadači (Puppeteer)
+- Navštívi každú dôležitú URL (homepage, tarify, mestské stránky, blog)
+- Uloží výsledné HTML do `dist/` priečinka
+- Google potom dostane **hotové HTML** okamžite, bez čakania na JavaScript
+
+#### 2. Aktualizovať Netlify build príkaz
+
+V `netlify.toml` pridať krok prerenderovania po builde:
+```text
+command = "npm ci && node scripts/build-seo.js || true && npm run build && node scripts/prerender-pages.js || true"
 ```
 
-**Súbor `public/sitemap.xml`** — overiť, že neobsahuje URL `/promo-akcia` ani `/sitemap-index.xml`.
+#### 3. Stránky na prerenderovanie (prioritne)
 
-### Po deploy-i
-1. V GSC znova klikni "Overiť opravu" na tejto chybe
-2. Požiadaj o indexovanie pre `/promo-akce` a homepage
-3. Počkaj 2-4 týždne — Google postupne precrawluje všetky URL
+Celkovo ~25 kľúčových stránok:
+- `/` (homepage)
+- `/tarify`, `/internet-tv`, `/iptv`, `/programy`, `/kontakt`
+- `/internet-ostrava`, `/internet-karvina`, `/internet-havirov`, `/internet-bohumin`, `/internet-poruba`
+- `/giga-internet`, `/promo-akce`, `/o-nas`
+- `/blog` + top 10 blogových článkov
+
+#### 4. Čo to zmení
+
+```text
+PRED opravou:
+  Google príde → Netlify prerendering (2-5 sekúnd) → možný timeout → čierna stránka
+
+PO oprave:
+  Google príde → hotové HTML okamžite (< 100ms) → plný obsah → rýchla indexácia
+```
+
+### Alternatívny jednoduchší prístup
+
+Ak nechceme pridávať Puppeteer (veľká závislosť), môžeme použiť **vite-plugin-prerender**, ktorý je už odkomentovaný v `vite.config.ts`. Tento plugin generuje statické HTML priamo počas Vite buildu bez externého prehliadača.
+
+### Odporúčaný prístup
+
+Použiť `vite-plugin-prerender` — je to najčistejšie riešenie pre Vite projekt:
+- Pridať `vite-plugin-prerender` ako závislosť
+- Konfigurovať v `vite.config.ts` so zoznamom 25 kľúčových routes
+- Plugin pri builde automaticky vygeneruje statické HTML pre každú route
 
 ### Súbory na úpravu
-- `public/_redirects` — 2 nové 301 redirecty
-- `public/robots.txt` — odstrániť sitemap-index.xml
+- `vite.config.ts` — pridať vite-plugin-prerender s 25 routes
+- `package.json` — pridať závislosť vite-plugin-prerender
+- `netlify.toml` — prípadné úpravy build príkazu
 

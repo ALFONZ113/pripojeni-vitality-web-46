@@ -43,7 +43,7 @@
     <meta name="version" content="4.0" />
     
     <!-- Canonical URLs -->
-    <!-- Canonical is set dynamically by React Helmet for each page -->
+    <link rel="canonical" href="https://www.popri.cz/" />
     <link rel="alternate" href="https://popri.cz/" hrefLang="cs" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     
@@ -255,7 +255,93 @@
     
     <!-- Remove Mapy.cz from initial load - will load conditionally via code-splitting -->
     
-    <!-- JSON-LD schemas are generated dynamically by React Helmet in PageMetadata.tsx -->
+    <!-- Static JSON-LD for crawlers (React Helmet adds more dynamically) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.popri.cz/#localbusiness",
+      "name": "Popri.cz - PODA Internet",
+      "url": "https://www.popri.cz",
+      "telephone": "+420730431313",
+      "email": "terc@obchod.poda.cz",
+      "description": "Autorizovaný obchodní zástupce PODA a.s. — poskytovatel gigabitového optického internetu a IPTV v Moravskoslezském kraji. Rychlost až 1000/1000 Mbps, TV s 85+ kanály zdarma.",
+      "logo": "https://www.popri.cz/popri-logo.png",
+      "image": "https://www.popri.cz/popri-logo.png",
+      "priceRange": "300-520 Kč/měsíc",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ostrava",
+        "addressRegion": "Moravskoslezský kraj",
+        "postalCode": "70200",
+        "addressCountry": "CZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.8209,
+        "longitude": 18.2625
+      },
+      "areaServed": [
+        {"@type": "City", "name": "Ostrava"},
+        {"@type": "City", "name": "Karviná"},
+        {"@type": "City", "name": "Havířov"},
+        {"@type": "City", "name": "Bohumín"},
+        {"@type": "City", "name": "Frýdek-Místek"},
+        {"@type": "City", "name": "Opava"}
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+420730431313",
+        "contactType": "customer service",
+        "availableLanguage": ["Czech"]
+      },
+      "sameAs": [
+        "https://www.facebook.com/popricz/",
+        "https://www.instagram.com/poda.cz/"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://www.popri.cz/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kolik stojí PODA internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PODA internet začíná na 300 Kč/měsíc za tarif Internet + TV Basic s gigabitovou rychlostí 1000/1000 Mbps a 85+ TV kanály zdarma. Volejte 730 431 313."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kde je PODA internet dostupný?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PODA internet je dostupný v Ostravě, Karviné, Havířově, Bohumíně, Frýdku-Místku a Opavě. Ověřte dostupnost na www.popri.cz nebo volejte 730 431 313."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jaká je rychlost PODA internetu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PODA nabízí symetrickou gigabitovou rychlost až 1000/1000 Mbps na optické síti GPON. Ideální pro streaming, hry i práci z domova."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Je TV opravdu zdarma v ceně internetu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ano, 85+ TV kanálů je součástí základního tarifu Internet + TV Basic za 300 Kč/měsíc bez příplatku. Objednávka na 730 431 313."
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Simplified app loading script -->
     <script>

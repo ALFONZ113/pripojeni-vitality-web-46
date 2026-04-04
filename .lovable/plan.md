@@ -1,78 +1,86 @@
 
 
-## Prečo konkurent s WordPress/HTML je indexovaný rýchlejšie a čo s tým
+## Zhodnotenie SEO reportu — čo je pravda, čo nie, a čo stojí za opravu
 
-### Jednoduchá odpoveď
+### Čo je v reporte SPRÁVNE a už máš vyriešené ✅
 
-**Áno, máš pravdu.** WordPress/HTML stránky sa indexujú rýchlejšie. Dôvod je jednoduchý:
+Report správne chváli tieto veci, ktoré už fungujú:
+- `<html lang="cs">`, title, description, OG tagy, robots meta, favicon, font preloading
+- netlify.toml redirecty (www, HTTPS, trailing slash)
+- SSR fallback s kompletným obsahom (H1, tarify, FAQ, kontakt, mestské linky)
+- robots.txt so správnou sitemap, AI bot povoleniami
+- Noscript fallback obsah
 
-```text
-WordPress stránka:
-  Google príde → okamžite vidí hotové HTML s celým obsahom → indexuje
+### Čo je v reporte NESPRÁVNE alebo nepodstatné ❌
 
-Tvoja React stránka (SPA):
-  Google príde → vidí prázdny <div id="root"> → musí spustiť JavaScript
-  → počká kým React vykreslí obsah → AŽ POTOM indexuje
-```
+| Tvrdenie z reportu | Skutočnosť |
+|---|---|
+| **🔴 .env je bezpečnostný problém** | **NIE.** Obsahuje len verejné `VITE_` kľúče (anon key). Tieto sú navrhnuté na verejné použitie. `SERVICE_ROLE_KEY` tam nie je. Rotácia kľúčov nie je potrebná. |
+| **ai:* meta tagy nemajú efekt** | **PRAVDA**, ale neškodí ich tam mať. Nie je dôvod ich odstraňovať. |
+| **Keywords meta tag je zbytočný** | **PRAVDA.** Google ho ignoruje od 2009. Ale neškodí. |
+| **OG obrázok na externej URL** | **Minimálny problém.** Google Storage URL funguje spoľahlivo. Presun na vlastnú doménu je nice-to-have, nie priorita. |
 
-Aj keď máš zapnutý Netlify Prerendering, ten funguje tak, že Netlify **na pozadí** spustí prehliadač, počká na vykreslenie a pošle výsledok Googlu. Ale:
-- Trvá to dlhšie ako čisté HTML
-- Niekedy sa stane timeout a Google dostane neúplnú stránku
-- Google dáva prednosť stránkam, kde obsah vidí okamžite
+### Čo je v reporte PRAVDA a stojí za opravu 🟠
 
-### Čo konkrétne robiť
+#### 1. Chýba statický canonical tag v index.html (ODPORÚČAM)
 
-Riešenie je **SSG (Static Site Generation)** — vygenerovať hotové HTML súbory pri builde, nie za behu. Tvoj web už má základ v `scripts/generate-ai-pages.js` pre AI crawlery. Rozšírime to tak, aby **každá dôležitá stránka** mala vopred vygenerované kompletné HTML.
+Riadok 46 má len komentár: `<!-- Canonical is set dynamically by React Helmet for each page -->`. Ak Netlify prerendering zlyhá a React sa nenačíta, homepage nemá žiadny canonical. 
+
+**Oprava:** Pridať `<link rel="canonical" href="https://www.popri.cz/" />` do `<head>`. React Helmet ho prepíše pre podstránky.
+
+#### 2. Chýba statický JSON-LD v index.html (ODPORÚČAM)
+
+Riadok 258 má len komentár: `<!-- JSON-LD schemas are generated dynamically by React Helmet -->`. Pre prípad, keď React sa nenačíta, Googlebot nevidí žiadnu štruktúrovanú dátu.
+
+**Oprava:** Pridať statický `<script type="application/ld+json">` s `LocalBusiness` + `FAQPage` priamo do `<head>`. React Helmet pridá ďalšie schémy dynamicky.
+
+#### 3. Entitný popis "Čo je Popri.cz" (NICE-TO-HAVE)
+
+SSR fallback už obsahuje vysvetlenie ("Jsme popři vám..."), ale môže byť explicitnejší. Nie je kritické.
+
+### Súhrn — čo implementovať
+
+| Priorita | Akcia | Náročnosť |
+|---|---|---|
+| 🟠 Stredná | Pridať statický `<link rel="canonical">` do `index.html` | 1 riadok |
+| 🟠 Stredná | Pridať statický JSON-LD (`LocalBusiness` + `FAQPage`) do `<head>` | ~40 riadkov |
+| ❌ Nerobiť | Rotácia Supabase kľúčov | Zbytočné |
+| ❌ Nerobiť | Odstraňovanie ai:* meta tagov | Neškodí |
+| ❌ Nerobiť | Presun OG obrázku | Minimálny efekt |
 
 ### Technický plán
 
-#### 1. Vytvoriť build-time prerendering skript
+**Súbor: `index.html`**
 
-Nový skript `scripts/prerender-pages.js`, ktorý po `npm run build`:
-- Spustí hotový build v headless prehliadači (Puppeteer)
-- Navštívi každú dôležitú URL (homepage, tarify, mestské stránky, blog)
-- Uloží výsledné HTML do `dist/` priečinka
-- Google potom dostane **hotové HTML** okamžite, bez čakania na JavaScript
-
-#### 2. Aktualizovať Netlify build príkaz
-
-V `netlify.toml` pridať krok prerenderovania po builde:
-```text
-command = "npm ci && node scripts/build-seo.js || true && npm run build && node scripts/prerender-pages.js || true"
+1. Na riadok 47 (pred `<link rel="alternate">`) pridať:
+```html
+<link rel="canonical" href="https://www.popri.cz/" />
 ```
 
-#### 3. Stránky na prerenderovanie (prioritne)
-
-Celkovo ~25 kľúčových stránok:
-- `/` (homepage)
-- `/tarify`, `/internet-tv`, `/iptv`, `/programy`, `/kontakt`
-- `/internet-ostrava`, `/internet-karvina`, `/internet-havirov`, `/internet-bohumin`, `/internet-poruba`
-- `/giga-internet`, `/promo-akce`, `/o-nas`
-- `/blog` + top 10 blogových článkov
-
-#### 4. Čo to zmení
-
-```text
-PRED opravou:
-  Google príde → Netlify prerendering (2-5 sekúnd) → možný timeout → čierna stránka
-
-PO oprave:
-  Google príde → hotové HTML okamžite (< 100ms) → plný obsah → rýchla indexácia
+2. Na riadok 258 (namiesto komentára) pridať statický JSON-LD:
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Popri.cz - PODA Internet",
+  "url": "https://www.popri.cz",
+  "telephone": "+420730431313",
+  "email": "terc@obchod.poda.cz",
+  "description": "Autorizovaný obchodní zástupce PODA a.s. ...",
+  "areaServed": ["Ostrava", "Karviná", "Havířov", "Bohumín"],
+  ...
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [4 existujúce FAQ zo SSR fallbacku]
+}
+</script>
 ```
-
-### Alternatívny jednoduchší prístup
-
-Ak nechceme pridávať Puppeteer (veľká závislosť), môžeme použiť **vite-plugin-prerender**, ktorý je už odkomentovaný v `vite.config.ts`. Tento plugin generuje statické HTML priamo počas Vite buildu bez externého prehliadača.
-
-### Odporúčaný prístup
-
-Použiť `vite-plugin-prerender` — je to najčistejšie riešenie pre Vite projekt:
-- Pridať `vite-plugin-prerender` ako závislosť
-- Konfigurovať v `vite.config.ts` so zoznamom 25 kľúčových routes
-- Plugin pri builde automaticky vygeneruje statické HTML pre každú route
 
 ### Súbory na úpravu
-- `vite.config.ts` — pridať vite-plugin-prerender s 25 routes
-- `package.json` — pridať závislosť vite-plugin-prerender
-- `netlify.toml` — prípadné úpravy build príkazu
+- `index.html` — pridať canonical tag + 2× JSON-LD schému
 

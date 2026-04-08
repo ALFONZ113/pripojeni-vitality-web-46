@@ -490,7 +490,7 @@
         </footer>
       </div>
     </div>
-    <script>document.getElementById('ssr-fallback').style.display='none';</script>
+    <script>var f=document.getElementById('ssr-fallback');if(f)setTimeout(function(){f.style.display='none'},100);</script>
     <script type="module" src="/src/main.tsx"></script>
     
     

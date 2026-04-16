@@ -1,38 +1,30 @@
 
 
-## Plán: 5 Facebook Ads pre Popri.cz — textový dokument
+## Oprava blogu O2/Nej.cz — 2 problémy
 
-Vytvorím PDF dokument s 5 kompletmými Facebook reklamami. Každá reklama bude obsahovať:
+### Problém 1: Tlačidlo bez viditeľného textu (fotka 2)
 
-1. **Primary text** (hlavný text reklamy v češtine)
-2. **Headline** (max 40 znakov, čeština)
-3. **Description** (max 30 znakov, čeština)
-4. **CTA tlačidlo** (odporúčanie)
-5. **Image prompt** (textový prompt pre AI generátor obrázkov — v angličtine, ale všetok text NA obrázku bude v češtine)
-6. **Psychologický princíp** použitý
+**Príčina:** V `index.css` riadok 746-748 je pravidlo `.blog-content a { @apply text-primary; }` ktoré prepíše `text-white` na všetkých odkazoch. Navyše riadky 851-861 — wildcard selektor `div[class*="bg-green"] *` pridáva `!text-foreground` na VŠETKY deti farebných boxov. Výsledok: tlačidlo `bg-primary` (zlaté) má zlatý/foreground text = neviditeľný.
 
-### 5 reklám:
+**Riešenie:** Pridať CSS výnimku pre CTA tlačidlá (odkazy so štýlom tlačidla) v `.blog-content`:
 
-| # | Uhol | Psychológia |
-|---|---|---|
-| 1 | Pomalý internet = frustrácia | Pain-Agitate-Solve |
-| 2 | PROMO 300 Kč/měsíc | FOMO + Urgency |
-| 3 | Recenzie zákazníkov 4.8/5 | Social Proof |
-| 4 | Starý vs. nový internet | Contrast/Before-After |
-| 5 | Rodina / Home Office | Emotional Benefits |
+```css
+/* CTA buttons in blog content - preserve their colors */
+.blog-content a[class*="bg-primary"],
+.blog-content a[class*="bg-orange"],
+.blog-content a[class*="bg-green"],
+.blog-content a[class*="bg-white"] {
+  @apply !text-white font-medium;
+}
+.blog-content a[class*="bg-white"] {
+  @apply !text-primary;
+}
+```
 
-### Branding konzistencia:
-- Luxury Noir + Gold paleta (#0A0A0A, #D4A517, #F5F0E8)
-- Fonty: Playfair Display + Inter
-- Formát obrázkov: 1080x1350px (4:5)
-- Všetok český text na obrázkoch explicitne uvedený v prompte
+### Problém 2: Obrázok článku (fotka 1)
 
-### Technická implementácia:
-- Python skript vygeneruje formátovaný textový dokument
-- Výstup do `/mnt/documents/facebook-ads-popri.md` (Markdown pre ľahkú čitateľnosť)
-- Žiadne obrázky sa negenerujú — iba textové prompty
+Obrázok `/o2-nej-vs-poda-comparison.jpg` existuje v `public/` priečinku a zobrazuje sa. Ak chceš iný/lepší obrázok, budem potrebovať nový súbor. Ak je problém v zobrazení, opravím CSS.
 
-### Súbory:
-- Žiadne zmeny v kóde projektu
-- Výstup: `/mnt/documents/facebook-ads-popri.md`
+### Súbory na úpravu
+- `src/index.css` — pridať CSS pravidlá pre CTA tlačidlá v blog-content (za riadok 920)
 

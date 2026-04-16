@@ -918,3 +918,20 @@
 .blog-content .border-blue-400 {
   @apply !border-primary;
 }
+
+/* CTA buttons in blog content - preserve their intended text colors */
+.blog-content a[class*="bg-primary"],
+.blog-content a[class*="bg-orange"],
+.blog-content a[class*="bg-green"],
+.blog-content a[class*="bg-green-7"] {
+  @apply !text-white font-medium;
+}
+.blog-content a[class*="bg-white"] {
+  @apply !text-primary font-medium;
+}
+.blog-content div[class*="bg-gradient"] a[class*="bg-white"] {
+  @apply !text-primary;
+}
+.blog-content div[class*="bg-gradient"] a[class*="bg-green"] {
+  @apply !text-white;
+}

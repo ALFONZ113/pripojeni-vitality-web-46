@@ -104,4 +104,4 @@ const TariffCard = ({
       </div>
     </div>;
 };
-export default TariffCard;
+export default memo(TariffCard);

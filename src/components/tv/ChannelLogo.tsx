@@ -8,7 +8,7 @@ interface ChannelLogoProps {
   className?: string;
 }
 
-const ChannelLogo: React.FC<ChannelLogoProps> = ({ channelName, className = "w-12 h-8" }) => {
+const ChannelLogo: React.FC<ChannelLogoProps> = React.memo(({ channelName, className = "w-12 h-8" }) => {
   const logoInfo = getChannelLogo(channelName);
 
   return (
@@ -20,6 +20,8 @@ const ChannelLogo: React.FC<ChannelLogoProps> = ({ channelName, className = "w-1
       />
     </div>
   );
-};
+});
+
+ChannelLogo.displayName = 'ChannelLogo';
 
 export default ChannelLogo;

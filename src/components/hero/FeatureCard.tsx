@@ -44,4 +44,4 @@ const FeatureCard = ({
   );
 };
 
-export default FeatureCard;
+export default React.memo(FeatureCard);

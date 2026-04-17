@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Check, Info, ChevronDown, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';

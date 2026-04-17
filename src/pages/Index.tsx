@@ -63,39 +63,46 @@ const Index = () => {
       />
       
       {/* AI-optimized structured data for Google AI Overviews and Gemini */}
-      <AIOptimizedSchema />
-      
-      <AIContentSummary
-        title="PODA Internet s TV Zdarma"
-        summary="Využíváme moderní optickou technologii GPON, která přináší gigabitový internet až 1000 Mbps přímo do vašeho bytu. Nabízíme televizní vysílání zdarma, profesionální instalaci a non-stop technickou podporu."
-        services={[
-          'Gigabitový internet PODA',
-          'Televizní vysílání zdarma',
-          'IPTV služby',
-          'Optické připojení',
-          'Non-stop podpora'
-        ]}
-        location="Ostrava, Karviná, Havířov, Bohumín, Poruba"
-        keyPoints={[
-          'Rychlá profesionální instalace',
-          'Bez závazků a skrytých poplatků',
-          'Stabilní připojení s 99,9% dostupností',
-          'Výhodné cenové balíčky',
-          'Profesionální technická podpora'
-        ]}
-        contactInfo={{
-          phone: '+420 730 431 313'
-        }}
-      />
+      <Suspense fallback={null}>
+        <AIOptimizedSchema />
+        <AIContentSummary
+          title="PODA Internet s TV Zdarma"
+          summary="Využíváme moderní optickou technologii GPON, která přináší gigabitový internet až 1000 Mbps přímo do vašeho bytu. Nabízíme televizní vysílání zdarma, profesionální instalaci a non-stop technickou podporu."
+          services={[
+            'Gigabitový internet PODA',
+            'Televizní vysílání zdarma',
+            'IPTV služby',
+            'Optické připojení',
+            'Non-stop podpora'
+          ]}
+          location="Ostrava, Karviná, Havířov, Bohumín, Poruba"
+          keyPoints={[
+            'Rychlá profesionální instalace',
+            'Bez závazků a skrytých poplatků',
+            'Stabilní připojení s 99,9% dostupností',
+            'Výhodné cenové balíčky',
+            'Profesionální technická podpora'
+          ]}
+          contactInfo={{
+            phone: '+420 730 431 313'
+          }}
+        />
+      </Suspense>
       
       {/* Main content - always full opacity */}
       <div className={`transition-opacity duration-300 opacity-100`}>
         <MainContent />
-        <LocalSEOSection />
+        <Suspense fallback={null}>
+          <LocalSEOSection />
+        </Suspense>
       </div>
 
       {/* Popup will show once isLoading is false (which should be very quick) */}
-      {!isLoading && <PromotionPopup />}
+      {!isLoading && (
+        <Suspense fallback={null}>
+          <PromotionPopup />
+        </Suspense>
+      )}
     </div>
   );
 };

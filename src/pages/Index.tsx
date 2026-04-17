@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
-import PromotionPopup from '../components/PromotionPopup';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { useEnhancedTracking } from '../hooks/use-enhanced-tracking';
-import LocalSEOSection from '../components/sections/LocalSEOSection';
 
-import { AIContentSummary } from '../components/seo/AIContentSummary';
-import { AIOptimizedSchema } from '../components/seo/AIOptimizedSchema';
+// Below-the-fold components — lazy loaded to reduce initial bundle
+const LocalSEOSection = lazy(() => import('../components/sections/LocalSEOSection'));
+const PromotionPopup = lazy(() => import('../components/PromotionPopup'));
+const AIContentSummary = lazy(() =>
+  import('../components/seo/AIContentSummary').then(m => ({ default: m.AIContentSummary }))
+);
+const AIOptimizedSchema = lazy(() =>
+  import('../components/seo/AIOptimizedSchema').then(m => ({ default: m.AIOptimizedSchema }))
+);
 
 // Critical resources for LCP optimization
 const CRITICAL_IMAGES = [
@@ -58,39 +63,46 @@ const Index = () => {
       />
       
       {/* AI-optimized structured data for Google AI Overviews and Gemini */}
-      <AIOptimizedSchema />
-      
-      <AIContentSummary
-        title="PODA Internet s TV Zdarma"
-        summary="Využíváme moderní optickou technologii GPON, která přináší gigabitový internet až 1000 Mbps přímo do vašeho bytu. Nabízíme televizní vysílání zdarma, profesionální instalaci a non-stop technickou podporu."
-        services={[
-          'Gigabitový internet PODA',
-          'Televizní vysílání zdarma',
-          'IPTV služby',
-          'Optické připojení',
-          'Non-stop podpora'
-        ]}
-        location="Ostrava, Karviná, Havířov, Bohumín, Poruba"
-        keyPoints={[
-          'Rychlá profesionální instalace',
-          'Bez závazků a skrytých poplatků',
-          'Stabilní připojení s 99,9% dostupností',
-          'Výhodné cenové balíčky',
-          'Profesionální technická podpora'
-        ]}
-        contactInfo={{
-          phone: '+420 730 431 313'
-        }}
-      />
+      <Suspense fallback={null}>
+        <AIOptimizedSchema />
+        <AIContentSummary
+          title="PODA Internet s TV Zdarma"
+          summary="Využíváme moderní optickou technologii GPON, která přináší gigabitový internet až 1000 Mbps přímo do vašeho bytu. Nabízíme televizní vysílání zdarma, profesionální instalaci a non-stop technickou podporu."
+          services={[
+            'Gigabitový internet PODA',
+            'Televizní vysílání zdarma',
+            'IPTV služby',
+            'Optické připojení',
+            'Non-stop podpora'
+          ]}
+          location="Ostrava, Karviná, Havířov, Bohumín, Poruba"
+          keyPoints={[
+            'Rychlá profesionální instalace',
+            'Bez závazků a skrytých poplatků',
+            'Stabilní připojení s 99,9% dostupností',
+            'Výhodné cenové balíčky',
+            'Profesionální technická podpora'
+          ]}
+          contactInfo={{
+            phone: '+420 730 431 313'
+          }}
+        />
+      </Suspense>
       
       {/* Main content - always full opacity */}
       <div className={`transition-opacity duration-300 opacity-100`}>
         <MainContent />
-        <LocalSEOSection />
+        <Suspense fallback={null}>
+          <LocalSEOSection />
+        </Suspense>
       </div>
 
       {/* Popup will show once isLoading is false (which should be very quick) */}
-      {!isLoading && <PromotionPopup />}
+      {!isLoading && (
+        <Suspense fallback={null}>
+          <PromotionPopup />
+        </Suspense>
+      )}
     </div>
   );
 };

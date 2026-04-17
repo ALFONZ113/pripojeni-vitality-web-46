@@ -171,4 +171,4 @@ const CityPreviewCard: React.FC<CityPreviewCardProps> = ({
   );
 };
 
-export default CityPreviewCard;
+export default React.memo(CityPreviewCard);

@@ -1,30 +1,66 @@
 
 
-## Oprava blogu O2/Nej.cz — 2 problémy
+## Plán: Optimalizácia projektu bez zmeny dizajnu a funkcionality
 
-### Problém 1: Tlačidlo bez viditeľného textu (fotka 2)
+### 1. Odstránenie mŕtveho kódu (utils + komponenty)
+12 utility súborov má **0 importov** v projekte — bezpečne ich vymažem:
+- `automatedSEO.ts`, `blogDescriptionFixer.ts`, `blogSlugMigration.ts`, `enhancedSeo.ts`, `gscMigration.ts`, `indexingOptimization.ts`, `lazyLoading.ts`, `pageSeoOptimizer.ts`, `seoRouting.ts`, `sitemap-optimizer.ts`, `sitemapExporter.ts`, `webp-converter.ts`
 
-**Príčina:** V `index.css` riadok 746-748 je pravidlo `.blog-content a { @apply text-primary; }` ktoré prepíše `text-white` na všetkých odkazoch. Navyše riadky 851-861 — wildcard selektor `div[class*="bg-green"] *` pridáva `!text-foreground` na VŠETKY deti farebných boxov. Výsledok: tlačidlo `bg-primary` (zlaté) má zlatý/foreground text = neviditeľný.
+`src/components/ui/chart.tsx` sa nikde neimportuje → zmaže sa **celý** recharts import (cca 400 KB v bundle).
 
-**Riešenie:** Pridať CSS výnimku pre CTA tlačidlá (odkazy so štýlom tlačidla) v `.blog-content`:
+### 2. Odstránenie framer-motion (–~120 KB gzipped)
+Memory pravidlo projektu hovorí: **"Animations: CSS only (useAnimateOnView hook), no framer-motion"**. Aktuálne je framer-motion v 9 súboroch v rozpore s pravidlom.
 
-```css
-/* CTA buttons in blog content - preserve their colors */
-.blog-content a[class*="bg-primary"],
-.blog-content a[class*="bg-orange"],
-.blog-content a[class*="bg-green"],
-.blog-content a[class*="bg-white"] {
-  @apply !text-white font-medium;
-}
-.blog-content a[class*="bg-white"] {
-  @apply !text-primary;
-}
-```
+Nahradím `motion.*` za bežné `<div>`/`<h1>` s Tailwind animáciami (`animate-fade-in`, `animate-slide-up` — tieto už v `tailwind.config.ts` a `index.css` existujú). Vizuálny výsledok ostane rovnaký (fade/slide animácie v rovnakom timingu).
 
-### Problém 2: Obrázok článku (fotka 1)
+Súbory: `Navbar.tsx`, `HeroSection.tsx`, `HeroContainer.tsx`, `HeroContent.tsx`, `CityHeroSection.tsx`, `CitySection.tsx`, `TestimonialsSection.tsx`, `TariffTabs.tsx`, `use-animate-on-view.tsx`. Potom `npm uninstall framer-motion`.
 
-Obrázok `/o2-nej-vs-poda-comparison.jpg` existuje v `public/` priečinku a zobrazuje sa. Ak chceš iný/lepší obrázok, budem potrebovať nový súbor. Ak je problém v zobrazení, opravím CSS.
+### 3. Vyčistenie závislostí v `package.json`
+Odstrániť: `framer-motion`, `recharts`, `ts-node` (nepoužitý), `terser` (vite ho má ako optional, ale `vite.config.ts` ho používa — ponechám), `@types/dompurify` (DOMPurify má vlastné typy v 3.x).
 
-### Súbory na úpravu
-- `src/index.css` — pridať CSS pravidlá pre CTA tlačidlá v blog-content (za riadok 920)
+Zo `vite.config.ts` odstrániť `charts: ["recharts"]` a `animations: ["framer-motion"]` z `manualChunks`.
+
+### 4. Console.log čistka (72 výskytov)
+Wrapnem všetky `console.log/info/warn` v src/ do `if (import.meta.env.DEV)` guard, alebo úplne vymažem v utility súboroch. Production build už cez terser `drop_console: true` toto čistí, ale kód bude čitateľnejší.
+
+### 5. React performance — memoizácia
+- `BlogCard`, `TariffCard`, `FeatureCard`, `CityPreviewCard`, `ChannelLogo` → wrap do `React.memo` (často sa renderujú v listoch).
+- `MainContent.tsx` sekcie — overiť či nemajú nestable callbacks.
+
+### 6. Lazy loading — drobnosti
+- `Home` (Index.tsx) je direct-imported (správne kvôli LCP), ale `LocalSEOSection`, `AIContentSummary`, `AIOptimizedSchema` sa dajú lazy-loadnúť (under-the-fold).
+- `PromotionPopup` → lazy import (nezobrazuje sa hneď).
+
+### 7. CSS čistka (`index.css` 937 riadkov)
+- Odstrániť duplicitné `@layer` definície.
+- Konsolidovať wildcard selektory `div[class*="bg-..."] *` (sú performance-killery — prepíšu cez celé DOM stromy). Nahradiť za explicit selector list.
+- Ponechať vizuálne identické správanie.
+
+### 8. SEO & a11y mikro-vylepšenia (bez zmeny dizajnu)
+- `<button>` bez `aria-label` (icon-only) → doplniť aria-label.
+- Duplicitné `<meta name="robots">` v `UniversalCanonicalTag` + `PageMetadata` — konsolidovať.
+- `loading="lazy"` + `decoding="async"` na všetky `<img>` pod foldom (FeaturedBlogPosts, CitySection).
+- Pridať `width`/`height` atribúty na obrázky v hero/blog kde chýbajú (CLS prevention).
+
+### 9. Bundle config (`vite.config.ts`)
+- Pridať `cssCodeSplit: true` (default true ale potvrdiť).
+- Odstrániť mŕtve manualChunks po odstránení recharts/framer-motion.
+- Pridať `assetsInlineLimit: 4096` (default OK).
+
+### Očakávaný výsledok
+- **Bundle size**: –300 až –500 KB gzipped (recharts + framer-motion + dead utils).
+- **TTI / FCP**: rýchlejšie o ~200-400 ms na 4G.
+- **Re-renders**: menej zbytočných re-renderov v listoch (memo).
+- **Maintainability**: –12 mŕtvych súborov, –72 console.log, –1 nepoužitý chart komponent.
+- **Dizajn**: 100 % identický (fade/slide animácie zachované cez CSS s rovnakým timingom).
+- **Funkčnosť**: 100 % identická.
+
+### Súbory na úpravu (~25 súborov)
+- Zmazať: 12 utils + `chart.tsx`
+- Upraviť: 9 framer-motion súborov, `vite.config.ts`, `package.json`, `index.css`, `Index.tsx`, ~5 list komponentov pre memo, ~10 súborov console.log čistka.
+
+### Riziká a mitigácia
+- **Framer-motion → CSS**: animácie sa môžu mierne líšiť v stagger delay. Použijem `animation-delay` v Tailwind štýle aby vyzerali identicky.
+- **Memo wrapping**: bezpečné, žiadny vizuálny dopad.
+- **Dead code removal**: kontrolované grep-om, žiadne externé importy.
 

@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import PageMetadata from '../components/page/PageMetadata';
 import ErrorState from '../components/page/ErrorState';
 import MainContent from '../components/page/MainContent';
-import PromotionPopup from '../components/PromotionPopup';
 import usePageInitialization from '../hooks/use-page-initialization';
 import { useEnhancedTracking } from '../hooks/use-enhanced-tracking';
-import LocalSEOSection from '../components/sections/LocalSEOSection';
 
-import { AIContentSummary } from '../components/seo/AIContentSummary';
-import { AIOptimizedSchema } from '../components/seo/AIOptimizedSchema';
+// Below-the-fold components — lazy loaded to reduce initial bundle
+const LocalSEOSection = lazy(() => import('../components/sections/LocalSEOSection'));
+const PromotionPopup = lazy(() => import('../components/PromotionPopup'));
+const AIContentSummary = lazy(() =>
+  import('../components/seo/AIContentSummary').then(m => ({ default: m.AIContentSummary }))
+);
+const AIOptimizedSchema = lazy(() =>
+  import('../components/seo/AIOptimizedSchema').then(m => ({ default: m.AIOptimizedSchema }))
+);
 
 // Critical resources for LCP optimization
 const CRITICAL_IMAGES = [

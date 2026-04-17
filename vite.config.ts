@@ -53,9 +53,6 @@ export default defineConfig(({ mode }) => {
 
             // Animation and interaction chunk
             animations: ["framer-motion"],
-
-            // Charts chunk (if used)
-            charts: ["recharts"],
           },
         },
       },
